@@ -27,3 +27,13 @@ yarn.lock
 # + SEMANTIC +
 # +----------+
 semantic/dist/
+
+# +---------+
+# + WEBPACK +
+# +---------+
+/src/*.ttf
+/src/*.png
+/src/*.eot
+/src/*.woff*
+/src/*.svg
+/src/*.min.js
