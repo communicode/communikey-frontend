@@ -15,20 +15,22 @@
     "mobx-react": "^4.1.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "semantic-ui-react": "^0.64.8",
-    "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "semantic-ui": "^2.2.7",
+    "semantic-ui-react": "^0.64.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-dev-server": "^2.3.0",
+    "webpack": "^2.2.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7"
+  },
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "name": "frontend",
-  "version": "1.0.0",
+  "name": "Communikey",
+  "version": "0.1.0",
   "main": "index.js",
   "author": "Dennis von der Bey <dvonderbey@communicode.de>",
-  "license": "MIT"
+  "license": ""
 }
