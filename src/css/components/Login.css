@@ -10,12 +10,12 @@
 }
 
 .AuthenticationPanel {
-    position:       absolute;
-    width:          600px;
-    top:            50%;
-    left:           50%;
-    transform:      translateX(-50%) translateY(-50%);
-    margin-top:     50px;
+  position:       absolute;
+  width:          600px;
+  top:            50%;
+  left:           50%;
+  transform:      translateX(-50%) translateY(-50%);
+  margin-top:     50px;
 }
 
 #logo {
@@ -33,5 +33,5 @@
 .lover {
   text-align:       center !important;
   width:            100%;
-  color:            grey;
+  color:            lightgrey;
 }

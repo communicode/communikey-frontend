@@ -6,7 +6,12 @@ export default class Login extends React.Component {
     render() {
         return (
           <div>
-              <Image src='../../img/communikey-logo.svg' size='small' class="centerHorizontal" id="logo" />
+              <Image
+                  src='../../img/communikey-logo_transparent.svg'
+                  height="300px"
+                  class="centerHorizontal"
+                  id="logo"
+              />
               <div class="AuthenticationPanel">
                   <Segment padded>
                       <div class="login">
@@ -15,9 +20,16 @@ export default class Login extends React.Component {
                               labelPosition='right'
                               placeholder='E-Mail'
                               fluid
+                              ref="email"
                           />
                           <br />
-                          <Input id="password" fluid icon='key' placeholder='Password...' />
+                          <Input
+                              id="password"
+                              fluid icon='key'
+                              placeholder='Password...'
+                              ref="password"
+                              type="password"
+                          />
                           <br />
                           <Button primary fluid>Login</Button>
                       </div>
@@ -28,11 +40,26 @@ export default class Login extends React.Component {
                               labelPosition='right'
                               placeholder='E-Mail'
                               fluid
+                              ref="registerEmail"
                           />
                           <br />
-                          <Input id="password" fluid icon='key' placeholder='Password...' />
+                          <Input
+                              id="password"
+                              fluid
+                              icon='key'
+                              placeholder='Password...'
+                              ref="registerPassword"
+                              type="password"
+                          />
                           <br />
-                          <Input id="password" fluid icon='key' placeholder='Password confirmation...' />
+                          <Input
+                              id="password"
+                              fluid
+                              icon='key'
+                              placeholder='Password confirmation...'
+                              ref="registerPasswordConfirmation"
+                              type="password"
+                          />
                           <br />
                           <Button secondary fluid>Sign Up Now</Button>
                       </div>

@@ -1,3 +1,27 @@
-.ui.thin.left.sidebar {
-  width: 90px !important;
+.date {
+  float:              right;
+  padding:            0px 5px 3px 0px;
+}
+
+.column {
+  width:              auto !important;
+  padding: 15px 15px 15px 15px !important;
+}
+
+.content {
+  display:inline-block;
+  /* Firefox */
+  width: -moz-calc(100% - 70px);
+  /* WebKit */
+  width: -webkit-calc(100% - 70px);
+  /* Opera */
+  width: -o-calc(100% - 70px);
+  /* Standard */
+  width: calc(100% - 70px);
+  padding: 85px 15px 15px 15px;
+}
+
+.asd {
+    display: inline;
+    background-color: red;
 }
