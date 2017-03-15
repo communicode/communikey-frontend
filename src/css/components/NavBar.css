@@ -1,0 +1,10 @@
+.navbar {
+  position: fixed;
+  top: 70px;
+  display: inline-block;
+  height: 100%;
+  width: 70px;
+  float: left;
+  position: sticky;
+  background-color: #434c5e;
+}
