@@ -27,6 +27,7 @@ yarn.lock
 # + SEMANTIC +
 # +----------+
 semantic/
+semantic.json
 
 # +---------+
 # + WEBPACK +
