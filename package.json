@@ -10,7 +10,6 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "css-loader": "^0.26.1",
-    "file-loader": "^0.10.0",
     "mobx": "^3.1.0",
     "mobx-react": "^4.1.0",
     "react": "^15.4.2",
@@ -20,17 +19,20 @@
     "semantic-ui-react": "^0.64.8"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.3.0",
-    "webpack": "^2.2.1",
+    "copy-webpack-plugin": "^4.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7"
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot --history-api-fallback",
+    "dist": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "name": "communikey",
-  "version": "0.2.0",
+  "engines": {
+    "node": "<=6.5"
+  },
+  "name": "Communikey",
+  "version": "0.1.0",
   "main": "index.js",
   "author": "Dennis von der Bey <dvonderbey@communicode.de>",
   "license": "communicode AG"
