@@ -1,0 +1,37 @@
+.centerVertical {
+  position:         absolute;
+  top:              50%;
+  transform:        translateY();
+}
+
+.centerHorizontal {
+  margin:           0 auto;
+  display:          block;
+}
+
+.AuthenticationPanel {
+  position:       absolute;
+  width:          600px;
+  top:            50%;
+  left:           50%;
+  transform:      translateX(-50%) translateY(-50%);
+  margin-top:     50px;
+}
+
+#logo {
+  padding-top:          50px;
+}
+
+.AuthenticationPanel .ui.fluid.primary.button {
+  background-color: #a3be8c !important;
+}
+
+.AuthenticationPanel .ui.fluid.secondary.button {
+  background-color: #434c5e !important;
+}
+
+.lover {
+  text-align:       center !important;
+  width:            100%;
+  color:            lightgrey;
+}

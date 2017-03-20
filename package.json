@@ -21,11 +21,8 @@
   "devDependencies": {
     "copy-webpack-plugin": "^4.0.1",
     "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "url-loader": "^0.5.7"
   },
-  "devDependencies": {},
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot --history-api-fallback",
     "dist": "webpack",
@@ -38,5 +35,5 @@
   "version": "0.1.0",
   "main": "index.js",
   "author": "Dennis von der Bey <dvonderbey@communicode.de>",
-  "license": "MIT"
+  "license": "communicode AG"
 }
