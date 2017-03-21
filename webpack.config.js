@@ -1,10 +1,11 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname, "src"),
-    devtool: debug ? "inline-sourcemap" : null,
+    devtool: debug ? "inline-sourcemap" : "",
     entry: "./js/client.js",
     module: {
         loaders: [
@@ -30,12 +31,14 @@ module.exports = {
     ]
   },
     output: {
-        path: __dirname + "/src/",
+        path: __dirname + "/dist",
         filename: "client.min.js"
   },
-    plugins: debug ? [] : [
-        new webpack.optimize.DedupePlugin(),
+    plugins: debug ? [ ] : [
+        new CopyWebpackPlugin([
+          { from: 'index.html', to: '../dist/index.html'}
+        ]),
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+        new webpack.optimize.UglifyJsPlugin()
     ]
 };
