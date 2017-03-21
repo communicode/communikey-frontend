@@ -25,7 +25,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot --history-api-fallback",
-    "dist": "webpack",
+    "dist": "node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
