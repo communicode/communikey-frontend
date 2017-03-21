@@ -18,11 +18,12 @@
     "react-router": "^3.0.2",
     "semantic-ui": "^2.2.7",
     "semantic-ui-react": "^0.64.8",
-    "webpack": "^2.2.1"
-  },
-  "devDependencies": {
+    "webpack": "^2.2.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot --history-api-fallback",
