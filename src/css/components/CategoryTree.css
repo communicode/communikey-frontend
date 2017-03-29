@@ -1,0 +1,13 @@
+.card {
+  height: 100%;
+  overflow-x: scroll;
+}
+
+.accordion {
+  padding-left: 15px !important;
+  margin-top: 0 !important;
+}
+
+.content {
+  padding-top: 0 !important;
+}
