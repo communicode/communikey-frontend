@@ -5,23 +5,23 @@
 
 .column {
   width:              auto !important;
-  padding: 15px 15px 15px 15px !important;
+  padding:            15px 15px 15px 15px !important;
 }
 
 .content {
-  display:inline-block;
+  display:            inline-block;
   /* Firefox */
-  width: -moz-calc(100% - 70px);
+  width:              -moz-calc(100% - 150px);
   /* WebKit */
-  width: -webkit-calc(100% - 70px);
+  width:              -webkit-calc(100% - 150px);
   /* Opera */
-  width: -o-calc(100% - 70px);
+  width:              -o-calc(100% - 150px);
   /* Standard */
-  width: calc(100% - 70px);
-  padding: 85px 15px 15px 15px;
+  width:              calc(100% - 150px);
+  padding:            0 15px 15px 15px;
 }
 
-.asd {
-    display: inline;
+.keyGroup {
+    display:          inline;
     background-color: red;
 }

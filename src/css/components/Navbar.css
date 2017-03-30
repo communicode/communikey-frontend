@@ -1,0 +1,16 @@
+.ui.inverted.menu {
+  background-color: #434c5e;
+}
+
+.header {
+  margin: auto;
+  width: 50%;
+}
+
+.footer {
+  position:absolute;
+  bottom:0px;
+  width: 100%;
+  font-size: 8pt;
+  color: #fff;
+}
