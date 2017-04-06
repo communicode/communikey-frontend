@@ -18,7 +18,7 @@ class Navbar extends Component {
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' width='thin' visible={visible} icon='labeled' vertical inverted>
+          <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
             <Link to="home">
               <div class="header">
                 <Image src='../../img/communikey-logo_transparent.svg' size="tiny"/>

@@ -8,7 +8,9 @@
   padding:            15px 15px 15px 15px !important;
 }
 
-.content {
+
+
+.container {
   display:            inline-block;
   /* Firefox */
   width:              -moz-calc(100% - 150px);
@@ -18,10 +20,18 @@
   width:              -o-calc(100% - 150px);
   /* Standard */
   width:              calc(100% - 150px);
-  padding:            0 15px 15px 15px;
-}
 
-.keyGroup {
-    display:          inline;
-    background-color: red;
+  /* Firefox */
+  height:              -moz-calc(100% - 30px);
+  /* WebKit */
+  height:              -webkit-calc(100% - 30px);
+  /* Opera */
+  height:              -o-calc(100% - 30px);
+  /* Standard */
+  height:              calc(100% - 30px);
+
+  margin-left: 150px !important;
+  max-height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden !important;
 }
