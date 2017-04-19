@@ -1,6 +1,8 @@
-.card {
-  height: 100%;
+.box {
+  float:left !important;
+  height: 97%;
   overflow-x: scroll;
+  display: inline-block !important;
 }
 
 .accordion {
@@ -8,6 +10,6 @@
   margin-top: 0 !important;
 }
 
-.content {
+.accordion .content {
   padding-top: 0 !important;
 }

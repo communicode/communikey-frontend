@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Accordion, Icon, Card, Image } from 'semantic-ui-react'
+import KeyCardView from "./KeyCardView";
 import "../../css/components/CategoryTree.css";
 
 class CategoryTree extends Component {
@@ -30,9 +31,12 @@ class CategoryTree extends Component {
       )
     })
     return (
-      <Card>
-        { categoryList }
-      </Card>
+      <div>
+        <Card class="box" raised>
+          { categoryList }
+        </Card>
+        <KeyCardView/>
+      </div>
       )
     }
   }
