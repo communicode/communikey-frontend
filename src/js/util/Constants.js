@@ -1,8 +1,11 @@
 export const PROTOCOL = 'http://'
 export const FRONTEND = 'localhost:8081'
-export const BACKEND = 'localhost:8080'
+export const BACKEND = 'localhost:8081'
 
 export const API = PROTOCOL + BACKEND + '/api'
+
+export const API_VALIDATE_USER = API + '?validate_user'
+
 export const API_USERS = API + '/users'
 export const API_USERS_GET_ALL = API_USERS
 export const API_USERS_GET_ACTIVATION = API_USERS + '/activate'

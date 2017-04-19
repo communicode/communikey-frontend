@@ -1,72 +1,90 @@
 import React from "react";
 import { Segment, Button, Divider, Input, Image } from "semantic-ui-react";
 import "../../css/components/Login.css";
+import AuthService from '../util/AuthService';
+import * as constants from '../util/Constants';
 
 export default class Login extends React.Component {
-    render() {
-        return (
-          <div>
-              <Image
-                  src='../../img/communikey-logo_transparent.svg'
-                  height="300px"
-                  class="centerHorizontal"
-                  id="logo"
-              />
-              <div class="AuthenticationPanel">
-                  <Segment padded>
-                      <div class="login">
-                          <Input
-                              label={{ basic: true, content: '@communicode.de' }}
-                              labelPosition='right'
-                              placeholder='E-Mail'
-                              fluid
-                              ref="email"
-                          />
-                          <br />
-                          <Input
-                              id="password"
-                              fluid icon='key'
-                              placeholder='Password...'
-                              ref="password"
-                              type="password"
-                          />
-                          <br />
-                          <Button primary fluid>Login</Button>
-                      </div>
-                      <Divider horizontal>Or</Divider>
-                      <div class="register">
-                          <Input
-                              label={{ basic: true, content: '@communicode.de' }}
-                              labelPosition='right'
-                              placeholder='E-Mail'
-                              fluid
-                              ref="registerEmail"
-                          />
-                          <br />
-                          <Input
-                              id="password"
-                              fluid
-                              icon='key'
-                              placeholder='Password...'
-                              ref="registerPassword"
-                              type="password"
-                          />
-                          <br />
-                          <Input
-                              id="password"
-                              fluid
-                              icon='key'
-                              placeholder='Password confirmation...'
-                              ref="registerPasswordConfirmation"
-                              type="password"
-                          />
-                          <br />
-                          <Button secondary fluid>Sign Up Now</Button>
-                      </div>
-                  </Segment>
-                  <p class="lover">Made with ♡ in Essen</p>
-              </div>
-          </div>
-        );
+  authService = this.props.route.authService;
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: ""
     }
+  }
+
+  handleClick = () => this.authService.login(this.state.username, this.state.password);
+
+  handleUsernameChange(e) {
+    const username = e.target.value;
+    this.state.username = username;
+  }
+
+  handlePasswordChange(e) {
+    const password = e.target.value;
+    this.state.password = password;
+  }
+
+  render() {
+    return (
+      <div>
+        <Image
+          src='../../img/communikey-logo_transparent.svg'
+          height="300px"
+          class="centerHorizontal"
+          id="logo"
+        />
+        <div class="AuthenticationPanel">
+          <Segment padded>
+            <div class="login">
+              <Input
+                label={{ basic: true, content: '@communicode.de' }}
+                labelPosition='right'
+                placeholder='E-Mail'
+                fluid
+                ref="email"
+                onChange={this.handleUsernameChange.bind(this)}
+              />
+              <br />
+              <Input
+                id="password"
+                fluid icon='key'
+                placeholder='Password...'
+                ref="password"
+                type="password"
+                onChange={this.handlePasswordChange.bind(this)}
+              />
+              <br />
+              <Button primary fluid onClick={this.handleClick}>Login</Button>
+            </div>
+          </Segment>
+          <p class="lover">Made with ♡ in Essen</p>
+        </div>
+      </div>
+    );
+  }
+}
+
+export class LoginConfirmation extends React.Component {
+  render() {
+    var hash = this.props.location.hash.replace('#','');
+    var hashParams = hash.split('&');
+    for(var i = 0; i< hashParams.length; i++) {
+      var param = hashParams[i].split('=')
+      if(param[0] == 'access_token') {
+        localStorage.setItem('access_token', param[1]);
+        this.props.route.authService.setToken(param[1]);
+      } else if(param[0] == 'token_type') {
+        localStorage.setItem('token_type', param[1]);
+      } else if(param[0] == 'expires_in') {
+        localStorage.setItem('expires_in', param[1]);
+      }
+    }
+    window.location = constants.PROTOCOL + constants.FRONTEND + "/home";
+
+    return (
+      <div>Weiterleitung...</div>
+    );
+  }
 }
