@@ -7,6 +7,18 @@ module.exports = {
     context: path.join(__dirname, "src"),
     devtool: debug ? "inline-sourcemap" : "",
     entry: "./js/client.js",
+    devServer: {
+      proxy: {
+          "/api**": {
+            "target": "http://localhost:8080",
+            "secure": false
+          },
+          "/oauth/**": {
+            "target": "http://localhost:8080",
+            "secure": false
+          }
+      }
+    },
     module: {
         loaders: [
         {
