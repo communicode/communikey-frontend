@@ -1,0 +1,14 @@
+.keycardView {
+  margin-top: 0 !important;
+  margin-left: 15px !important;
+  width: 76%;
+  height: 97%;
+  display: inline-block;
+  float: left !important;
+  background-color: red;
+}
+
+.column {
+  width:              auto !important;
+  padding:            15px 15px 15px 15px !important;
+}
