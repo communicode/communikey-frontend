@@ -2,9 +2,36 @@ import '../../semantic/dist/semantic.min.css';
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, browserHistory, IndexRedirect } from "react-router";
+
+import AuthService from './util/AuthService';
 import Login, { LoginConfirmation } from "./components/Login";
 import Index from "./components/Index"
-import AuthService from './util/AuthService';
+import Home from "./components/Home"
+import Categories from "./components/Categories"
+import Settings from "./components/Settings"
+import About from "./components/About"
+import Admin from "./components/Admin"
+
+const loggedIn = true;
+const isAdmin = false;
+
+const requireAdminAuth = (nextState, replace) => {
+  if (!isAdmin) {
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  }
+}
+
+const requireAuth = (nextState, replace) => {
+  if (!loggedIn) {
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  }
+}
 
 class App extends React.Component {
   authService = new AuthService();
@@ -35,17 +62,23 @@ class App extends React.Component {
     return (
       <Router history={browserHistory}>
         <Route path="/">
-          <IndexRedirect to="home"/>
-          <Route path={"login"} component={Login} authService={this.authService}/>
+          <IndexRedirect to="home" />
+          <Route path={"login"} component={Login} />
           <Route path={"loginConfirmation"} component={LoginConfirmation} authService={this.authService}/>
           <Route onEnter={this.requireAuth}>
-            <Route path={"home"} component={Index} authService={this.authService}/>
+            <Route component={Index} onEnter={requireAuth}>
+              <Route path={"home"} component={Home} authService={this.authService}/>
+              <Route path={"categories"} component={Categories} />
+              <Route path={"settings"} component={Settings} />
+              <Route path={"about"} component={About} />
+              <Route path={"admin"} component={Admin} />
+            </Route>
           </Route>
-          <Route onEnter={this.requireAdminAuth}>
-            <Route path={"admin"} component={Index} authService={this.authService}/>
-          </Route>
-        </Route>
-      </Router>
+       </Route>
+       <Route onEnter={this.requireAdminAuth}>
+         <Route path={"admin"} component={Index} authService={this.authService}/>
+       </Route>
+    </Router>
     )
   }
 }
