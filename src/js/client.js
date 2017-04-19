@@ -12,27 +12,6 @@ import Settings from "./components/Settings"
 import About from "./components/About"
 import Admin from "./components/Admin"
 
-const loggedIn = true;
-const isAdmin = false;
-
-const requireAdminAuth = (nextState, replace) => {
-  if (!isAdmin) {
-    replace({
-      pathname: '/login',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }
-}
-
-const requireAuth = (nextState, replace) => {
-  if (!loggedIn) {
-    replace({
-      pathname: '/login',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }
-}
-
 class App extends React.Component {
   authService = new AuthService();
   constructor() {
@@ -66,7 +45,7 @@ class App extends React.Component {
           <Route path={"login"} component={Login} />
           <Route path={"loginConfirmation"} component={LoginConfirmation} authService={this.authService}/>
           <Route onEnter={this.requireAuth}>
-            <Route component={Index} onEnter={requireAuth}>
+            <Route component={Index}>
               <Route path={"home"} component={Home} authService={this.authService}/>
               <Route path={"categories"} component={Categories} />
               <Route path={"settings"} component={Settings} />
