@@ -42,11 +42,11 @@ class App extends React.Component {
       <Router history={browserHistory}>
         <Route path="/">
           <IndexRedirect to="home" />
-          <Route path={"login"} component={Login} />
-          <Route path={"loginConfirmation"} component={LoginConfirmation} authService={this.authService}/>
+          <Route path={"login"} component={Login} authService={this.authService} />
+          <Route path={"loginConfirmation"} component={LoginConfirmation} authService={this.authService} />
           <Route onEnter={this.requireAuth}>
             <Route component={Index}>
-              <Route path={"home"} component={Home} authService={this.authService}/>
+              <Route path={"home"} component={Home} authService={this.authService} />
               <Route path={"categories"} component={Categories} />
               <Route path={"settings"} component={Settings} />
               <Route path={"about"} component={About} />
