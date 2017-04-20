@@ -9,14 +9,18 @@ module.exports = {
     entry: "./js/client.js",
     devServer: {
       proxy: {
-          "/api**": {
-            "target": "http://localhost:8080",
-            "secure": false
-          },
-          "/oauth/**": {
-            "target": "http://localhost:8080",
-            "secure": false
-          }
+        "/api/**": {
+          "target": "http://localhost:8080",
+          "secure": false
+        },
+        "/api**": {
+          "target": "http://localhost:8080",
+          "secure": false
+        },
+        "/oauth/**": {
+          "target": "http://localhost:8080",
+          "secure": false
+        }
       }
     },
     module: {
