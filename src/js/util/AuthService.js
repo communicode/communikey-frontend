@@ -2,30 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import * as constants from './Constants'
 
-const loggedIn = false;
-const isAdmin = false;
-const token = "";
-
 class AuthService extends Component {
   constructor() {
     super();
-    this.token = localStorage.getItem("access_token");
-  }
-
-  isLoggedIn() {
-    return loggedIn;
-  }
-
-  setLoggedIn(state) {
-    this.loggedIn = state;
-  }
-
-  isAdmin() {
-    return isAdmin;
-  }
-
-  setToken(token) {
-    this.token = token;
   }
 
   login(username, password) {
@@ -46,8 +25,9 @@ class AuthService extends Component {
 
   logout() {
       localStorage.clear();
-      this.loggedIn = false;
   }
 }
+
+export var authService = new AuthService()
 
 export default AuthService

@@ -20,4 +20,6 @@
 
   margin-left: 150px !important;
   max-height: 100%;
+  /*overflow-y: scroll;
+  overflow-x: hidden !important;*/
 }

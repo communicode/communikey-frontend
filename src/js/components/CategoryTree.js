@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Accordion, Icon, Card, Image } from 'semantic-ui-react'
-import KeyCardView from "./KeyCardView";
-import "../../css/components/CategoryTree.css";
+import axios from 'axios'
+import KeyCardView from "./KeyCardView"
+import "../../css/components/CategoryTree.css"
+import * as constants from '../util/Constants'
 
 class CategoryTree extends Component {
   render() {
@@ -16,6 +18,7 @@ class CategoryTree extends Component {
         </Accordion>
       )
     })
+
     var categories = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'];
     var categoryList = categories.map(function(category) {
       return (

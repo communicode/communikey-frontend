@@ -2,9 +2,18 @@ export const PROTOCOL = 'http://'
 export const FRONTEND = 'localhost:8081'
 export const BACKEND = 'localhost:8081'
 
+export const FRONTEND_LOGIN = 'login'
+export const FRONTEND_LOGINCONFIRMATION = 'loginConfirmation'
+export const FRONTEND_HOME = 'home'
+export const FRONTEND_CATEGORIES = 'categories'
+export const FRONTEND_SETTINGS = 'settings'
+export const FRONTEND_ABOUT = 'about'
+export const FRONTEND_ADMIN = 'admin'
+
 export const API = PROTOCOL + BACKEND + '/api'
 
 export const API_VALIDATE_USER = API + '?validate_user'
+export const API_CHECK_PRIVILEGE = API + '?privileged'
 
 export const API_USERS = API + '/users'
 export const API_USERS_GET_ALL = API_USERS

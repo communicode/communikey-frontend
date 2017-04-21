@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { Image, List, Container, Header } from 'semantic-ui-react'
 import UserDetails from "./UserDetails";
+import AuthenticatedRoute from "./AuthenticatedRoute";
 import "../../css/components/Admin.css";
 
-export default class Admin extends React.Component {
+export default class Admin extends AuthenticatedRoute {
+  static get privilegeRequired() {
+      return true;
+  }
 
   constructor(props) {
     super(props);
