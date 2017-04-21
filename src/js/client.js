@@ -37,7 +37,7 @@ class App extends React.Component {
             <Route path={constants.FRONTEND_ADMIN} component={Admin} onEnter={Admin.willTransitionTo} />
           </Route>
        </Route>
-       <Route onEnter={this.requireAdminAuth}>
+       <Route>
          <Route path={constants.FRONTEND_ADMIN} component={Index} />
        </Route>
     </Router>
