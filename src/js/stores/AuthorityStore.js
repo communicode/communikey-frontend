@@ -10,11 +10,11 @@ class Authority {
   @observable LastModifiedDate
 
   constructor() {
-    name = null
-    createdBy = null
-    createdDate = null
-    lastModifiedBy = null
-    LastModifiedDate = null
+    this.name = null
+    this.createdBy = null
+    this.createdDate = null
+    this.lastModifiedBy = null
+    this.LastModifiedDate = null
   }
 }
 

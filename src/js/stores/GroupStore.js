@@ -13,14 +13,14 @@ class Group {
   @observable LastModifiedDate
 
   constructor() {
-    id = null
-    name = null
-    users = null
-    categories = null
-    createdBy = null
-    createdDate = null
-    lastModifiedBy = null
-    LastModifiedDate = null
+    this.id = null
+    this.name = null
+    this.users = null
+    this.categories = null
+    this.createdBy = null
+    this.createdDate = null
+    this.lastModifiedBy = null
+    this.LastModifiedDate = null
   }
 }
 

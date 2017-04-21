@@ -17,18 +17,18 @@ class Category {
   @observable responsible
 
   constructor() {
-    id = null
-    name = null
-    keys = null
-    parent = null
-    children = null
-    creator = null
-    createdBy = null
-    createdDate = null
-    lastModifiedBy = null
-    LastModifiedDate = null
-    groups = null
-    responsible = null
+    this.id = null
+    this.name = null
+    this.keys = null
+    this.parent = null
+    this.children = null
+    this.creator = null
+    this.createdBy = null
+    this.createdDate = null
+    this.lastModifiedBy = null
+    this.LastModifiedDate = null
+    this.groups = null
+    this.responsible = null
   }
 }
 
