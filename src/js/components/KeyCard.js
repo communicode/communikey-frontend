@@ -1,25 +1,41 @@
 import React, { Component } from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Input,Card, Image } from 'semantic-ui-react'
 import "../../css/components/KeyCard.css";
 
 class KeyCard extends Component {
-    render() {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    console.log("trying to render keycard");
+    console.log(this.props);
+    if(this.props.passedKey !== undefined) {
+      console.log(this.props);
+      console.log("rendering keycard");
       return (
         <Card>
-            <Card.Content header='Card 1' />
-                <Card.Meta>
-                    <span className='date'>
-                        Created 23rd January 2016
-                    </span>
-                </Card.Meta>
-            <Card.Content description="Lorem ipsum dolor sit amet" />
-            <Card.Content extra>
-                <Image src='../../img/communikey-logo.svg' avatar />
-                <span>Username</span>
-            </Card.Content>
+          <Card.Content header={this.props.passedKey.name} />
+            <Card.Meta>
+              <span className='date'>
+                Created 23rd January 2016
+              </span>
+            </Card.Meta>
+          <Card.Content description>
+            <Input
+              action={{ color: 'teal', icon: 'copy' }}
+              defaultValue={this.props.passedKey.password}
+              type='password'
+            />
+          </Card.Content>
+          <Card.Content extra>
+            <Image src='../../img/communikey-logo.svg' avatar />
+            <span>Responsible user</span>
+          </Card.Content>
         </Card>
       )
-    }
+    } else return null
+  }
 }
 
 export default KeyCard

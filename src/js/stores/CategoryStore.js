@@ -36,7 +36,7 @@ class CategoryStore {
   @observable categories = [];
 
   addCategory(category) {
-
+    this.categories.push(category);
   }
 
   constructor() {

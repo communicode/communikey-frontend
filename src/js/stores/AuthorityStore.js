@@ -22,7 +22,7 @@ class AuthorityStore {
   @observable authorities = [];
 
   addAuthority(authority) {
-
+    this.authorities.push(authority);
   }
 
   constructor() {
@@ -37,9 +37,14 @@ class AuthorityStore {
       }
     })
     .then(function (response) {
-      this.authorities = response.data;
-      for(var authority in response.data) {
-        console.log(authority.name);
+      for(let authority of response.data) {
+        let newAuthority = new Authority()
+        newAuthority.name = authority.name;
+        newAuthority.createdBy = authority.createdBy;
+        newAuthority.createdDate = authority.createdDate;
+        newAuthority.lastModifiedBy = authority.lastModifiedBy;
+        newAuthority.lastModifiedDate = authority.LastModifiedDate;
+        this.addAuthority(newAuthority);
       }
     }.bind(this))
     .catch(function (error) {

@@ -14,6 +14,10 @@ import Settings from "./components/Settings"
 import About from "./components/About"
 import Admin from "./components/Admin"
 import { authStore } from "./stores/AuthStore"
+import { userStore } from "./stores/UserStore"
+import { categoryStore } from "./stores/CategoryStore"
+import { groupStore } from "./stores/GroupStore"
+import { authorityStore } from "./stores/AuthorityStore"
 import * as constants from './util/Constants'
 
 @observer

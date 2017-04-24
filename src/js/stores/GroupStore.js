@@ -28,7 +28,7 @@ class GroupStore {
   @observable groups = [];
 
   addGroup(group) {
-
+    this.groups.push(group);
   }
 
   constructor() {
@@ -43,7 +43,18 @@ class GroupStore {
       }
     })
     .then(function (response) {
-      this.groups = response.data;
+      for(let group of response.data) {
+        let newGroup = new Group()
+        newGroup.id = group.id;
+        newGroup.name = group.name;
+        newGroup.users = group.users;
+        newGroup.categories = group.categories;
+        newGroup.createdBy = group.createdBy;
+        newGroup.createdDate = group.createdDate;
+        newGroup.lastModifiedBy = group.lastModifiedBy;
+        newGroup.LastModifiedDate = group.LastModifiedDate;
+        this.addGroup(newGroup);
+      }
     }.bind(this))
     .catch(function (error) {
       console.log(error);

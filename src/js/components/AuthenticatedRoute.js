@@ -27,6 +27,8 @@ class AuthenticatedRoute extends React.Component {
         callback();
       })
       .catch(error => {
+        console.log("KEIN LOGIN");
+        console.log(error);
         authStore.loggedIn = false;
         authStore.isAdmin = false;
         replace('/login');

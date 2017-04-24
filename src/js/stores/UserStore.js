@@ -48,7 +48,7 @@ class UserStore {
   @observable users = [];
 
   addUser(user) {
-
+    this.groups.push(user);
   }
 
   constructor() {

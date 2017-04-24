@@ -4,41 +4,55 @@ import axios from 'axios'
 import KeyCardView from "./KeyCardView"
 import "../../css/components/CategoryTree.css"
 import * as constants from '../util/Constants'
+import { categoryStore } from "../stores/CategoryStore"
 
 class CategoryTree extends Component {
-  render() {
-    var subCategories = ['Subcategory 1', 'Subcategory 2', 'Subcategory 3'];
-    var subCategoryList = subCategories.map(function(subCategory) {
-      return (
-        <Accordion fluid>
-          <Accordion.Title>
-            <Icon name='triangle right' />
-            { subCategory }
-          </Accordion.Title>
-        </Accordion>
-      )
-    })
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCategory: ""
+    }
+  }
 
-    var categories = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'];
-    var categoryList = categories.map(function(category) {
-      return (
-        <Accordion fluid>
-          <Accordion.Title>
-            <Icon name='dropdown' />
-            {category}
-          </Accordion.Title>
-          <Accordion.Content>
-            {subCategoryList}
-          </Accordion.Content>
-        </Accordion>
-      )
-    })
+  changeMyState(category) {
+    console.log(this.state.selectedCategory.id);
+    this.state.selectedCategory = category;
+    console.log(this.state.selectedCategory.id);
+    // this.forceUpdate();
+    this.setState(this.state);
+  }
+
+  render() {
+    var handleTitleClick = (category) => this.changeMyState(category)
+
+    function CategoryList(props) {
+      if(props.node !== undefined) {
+        if(props.node.length > 0) {
+          var rows = [];
+          props.node.map(function(category) {
+            rows.push(
+              <Accordion fluid>
+                <Accordion.Title onClick={() => handleTitleClick(category)}>
+                  <Icon name='triangle right' />
+                  {category.name}
+                </Accordion.Title>
+                <Accordion.Content>
+                  <CategoryList node={category.children} />
+                </Accordion.Content>
+              </Accordion>
+            );
+          })
+          return <tbody>{rows}</tbody>;
+        } else return null
+      } else return null
+    }
+
     return (
       <div>
         <Card class="box" raised>
-          { categoryList }
+          <CategoryList node={categoryStore.categories} />
         </Card>
-        <KeyCardView/>
+        <KeyCardView category={this.state.selectedCategory}/>
       </div>
       )
     }
