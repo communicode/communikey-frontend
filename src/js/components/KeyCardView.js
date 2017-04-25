@@ -24,13 +24,11 @@ class KeyCardView extends Component {
     }
 
     return (
-      <Segment class="keycardView" raised>
-        <h1>Company internal:</h1>
+      <Segment class="keycardView">
+        <h1>{this.props.category.name}</h1>
         <Divider />
         <Grid stackable>
-          <Grid.Column>
-            <KeyCards keys={this.props.category.keys}/>
-          </Grid.Column>
+          <KeyCards keys={this.props.category.keys}/>
         </Grid>
       </Segment>
     )

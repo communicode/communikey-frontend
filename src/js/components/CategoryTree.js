@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, Card, Image } from 'semantic-ui-react'
+import { Accordion, Icon, Segment, Image } from 'semantic-ui-react'
 import axios from 'axios'
 import KeyCardView from "./KeyCardView"
 import "../../css/components/CategoryTree.css"
@@ -15,15 +15,15 @@ class CategoryTree extends Component {
   }
 
   changeMyState(category) {
-    console.log(this.state.selectedCategory.id);
-    this.state.selectedCategory = category;
-    console.log(this.state.selectedCategory.id);
+    // console.log(this.state);
+    // this.state.selectedCategory = category;
     // this.forceUpdate();
-    this.setState(this.state);
+    this.setState({selectedCategory: category});
   }
 
   render() {
-    var handleTitleClick = (category) => this.changeMyState(category)
+    const { activeIndex, selectedCategory } = this.state
+    var handleClick = (category, index) => this.changeMyState(category)
 
     function CategoryList(props) {
       if(props.node !== undefined) {
@@ -31,8 +31,8 @@ class CategoryTree extends Component {
           var rows = [];
           props.node.map(function(category) {
             rows.push(
-              <Accordion fluid>
-                <Accordion.Title onClick={() => handleTitleClick(category)}>
+              <Accordion fluid activeIndex={0} key={category.id}>
+                <Accordion.Title onClick={() => handleClick(category)}>
                   <Icon name='triangle right' />
                   {category.name}
                 </Accordion.Title>
@@ -49,9 +49,9 @@ class CategoryTree extends Component {
 
     return (
       <div>
-        <Card class="box" raised>
+        <Segment class="categoryTree">
           <CategoryList node={categoryStore.categories} />
-        </Card>
+        </Segment>
         <KeyCardView category={this.state.selectedCategory}/>
       </div>
       )

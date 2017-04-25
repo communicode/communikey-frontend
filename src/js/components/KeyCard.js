@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input,Card, Image } from 'semantic-ui-react'
+import { Grid,Input,Card,Image } from 'semantic-ui-react'
 import "../../css/components/KeyCard.css";
 
 class KeyCard extends Component {
@@ -8,31 +8,30 @@ class KeyCard extends Component {
   }
 
   render() {
-    console.log("trying to render keycard");
-    console.log(this.props);
     if(this.props.passedKey !== undefined) {
-      console.log(this.props);
-      console.log("rendering keycard");
       return (
-        <Card>
-          <Card.Content header={this.props.passedKey.name} />
-            <Card.Meta>
-              <span className='date'>
-                Created 23rd January 2016
-              </span>
-            </Card.Meta>
-          <Card.Content description>
-            <Input
-              action={{ color: 'teal', icon: 'copy' }}
-              defaultValue={this.props.passedKey.password}
-              type='password'
-            />
-          </Card.Content>
-          <Card.Content extra>
-            <Image src='../../img/communikey-logo.svg' avatar />
-            <span>Responsible user</span>
-          </Card.Content>
-        </Card>
+        <Grid.Column>
+          <Card>
+            <Card.Content header={this.props.passedKey.name} />
+              <Card.Meta>
+                <span className='date'>
+                  Created 23rd January 2016
+                </span>
+              </Card.Meta>
+            <Card.Content description>
+              <Input
+                action={{ color: 'teal', icon: 'copy' }}
+                defaultValue={this.props.passedKey.password}
+                type='password'
+                fluid
+              />
+            </Card.Content>
+            <Card.Content extra>
+              <Image src='../../img/communikey-logo.svg' avatar />
+              <span>Responsible user</span>
+            </Card.Content>
+          </Card>
+        </Grid.Column>
       )
     } else return null
   }

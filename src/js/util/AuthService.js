@@ -25,6 +25,7 @@ class AuthService extends Component {
 
   logout() {
       localStorage.clear();
+      console.log("Cleared");
   }
 }
 

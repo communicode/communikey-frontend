@@ -1,7 +1,8 @@
-.box {
-  float:left !important;
-  height: 97%;
-  overflow-x: scroll;
+.categoryTree {
+  float: left !important;
+  height: 100%;
+  width: 250px !important;
+  overflow: auto;
   display: inline-block !important;
 }
 

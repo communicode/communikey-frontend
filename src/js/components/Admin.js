@@ -25,7 +25,7 @@ export default class Admin extends AuthenticatedRoute {
 
   render() {
     return (
-      <div class='container'>
+      <div>
           <Header as='h1'> Admin View </Header>
           <div>
             <List animated divided size='big' verticalAlign='middle'>
@@ -50,8 +50,6 @@ export default class Admin extends AuthenticatedRoute {
               </List.Item>
             </List>
           </div>
-
-
       </div>
     )
   }

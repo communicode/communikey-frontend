@@ -4,6 +4,7 @@ export const BACKEND = 'localhost:8081'
 
 export const FRONTEND_LOGIN = 'login'
 export const FRONTEND_LOGINCONFIRMATION = 'loginConfirmation'
+export const FRONTEND_LOGOUT = 'logout'
 export const FRONTEND_HOME = 'home'
 export const FRONTEND_CATEGORIES = 'categories'
 export const FRONTEND_SETTINGS = 'settings'

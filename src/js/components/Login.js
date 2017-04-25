@@ -97,3 +97,19 @@ export class LoginConfirmation extends React.Component {
     );
   }
 }
+
+export class Logout extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    authService.logout();
+    browserHistory.push(constants.PROTOCOL + constants.FRONTEND + "/" + constants.FRONTEND_LOGIN);
+    return (
+      <div>
+        <Loader size='large'>Loading</Loader>
+      </div>
+    );
+  }
+}

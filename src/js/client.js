@@ -6,7 +6,7 @@ import { observer } from "mobx-react"
 import { autorun } from "mobx"
 
 import { authService } from './util/AuthService';
-import Login, { LoginConfirmation } from "./components/Login";
+import Login, { LoginConfirmation, Logout } from "./components/Login";
 import Index from "./components/Index"
 import Home from "./components/Home"
 import Categories from "./components/Categories"
@@ -31,9 +31,10 @@ class App extends React.Component {
       <Router history={browserHistory}>
         <Route path="/">
           <IndexRedirect to={constants.FRONTEND_HOME} />
-          <Route path={constants.FRONTEND_LOGIN} component={Login} authService={this.authService}/>
-          <Route path={constants.FRONTEND_LOGINCONFIRMATION} component={LoginConfirmation} authService={this.authService} />
-          <Route component={Index} >
+          <Route path={constants.FRONTEND_LOGIN} component={Login} authService={this.authService} />
+          <Route path={constants.FRONTEND_LOGINCONFIRMATION} component={LoginConfirmation} authService={this.authService}/>
+          <Route path={constants.FRONTEND_LOGOUT} component={Logout} authService={this.authService} />
+          <Route component={Index}>
             <Route path={constants.FRONTEND_HOME} component={Home} onEnter={Home.willTransitionTo} />
             <Route path={constants.FRONTEND_CATEGORIES} component={Categories} onEnter={Categories.willTransitionTo} />
             <Route path={constants.FRONTEND_SETTINGS} component={Settings} onEnter={Settings.willTransitionTo} />
