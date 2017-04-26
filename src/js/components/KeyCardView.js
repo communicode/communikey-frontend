@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Divider } from 'semantic-ui-react'
+import { Grid, Segment, Divider, Header } from 'semantic-ui-react'
 import KeyCard from "./KeyCard";
 import "../../css/components/KeyCardView.css";
 
@@ -25,7 +25,7 @@ class KeyCardView extends Component {
 
     return (
       <Segment class="keycardView">
-        <h1>{this.props.category.name}</h1>
+        <Header as='h1'>{this.props.category.name}</Header>
         <Divider />
         <Grid stackable>
           <KeyCards keys={this.props.category.keys}/>

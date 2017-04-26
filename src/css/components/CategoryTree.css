@@ -4,10 +4,12 @@
   width: 250px !important;
   overflow: auto;
   display: inline-block !important;
+  padding-left: 0 !important;
+  padding-top: 0 !important;
 }
 
 .accordion {
-  padding-left: 15px !important;
+  padding-left: 10px !important;
   margin-top: 0 !important;
 }
 
