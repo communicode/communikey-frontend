@@ -51,7 +51,22 @@ class CategoryStore {
       }
     })
     .then(function (response) {
-      this.categories = response.data;
+      for(let category of response.data) {
+        let newCategory = new Category()
+        newCategory.id = category.id;
+        newCategory.name = category.name;
+        newCategory.keys = category.keys;
+        newCategory.parent = category.parent;
+        newCategory.children = category.children;
+        newCategory.creator = category.creator;
+        newCategory.createdBy = category.createdBy;
+        newCategory.createdDate = category.createdDate;
+        newCategory.lastModifiedBy = category.lastModifiedBy;
+        newCategory.lastModifiedDate = category.LastModifiedDate;
+        newCategory.groups = category.groups;
+        newCategory.responsible = category.responsible;
+        this.addCategory(newCategory);
+      }
     }.bind(this))
     .catch(function (error) {
       console.log(error);

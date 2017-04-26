@@ -46,6 +46,7 @@ export default class Login extends React.Component {
                 fluid
                 ref="email"
                 onChange={this.handleUsernameChange.bind(this)}
+                onKeyPress={this.handleClick}
               />
               <br />
               <Input
@@ -55,6 +56,7 @@ export default class Login extends React.Component {
                 ref="password"
                 type="password"
                 onChange={this.handlePasswordChange.bind(this)}
+                onKeyPress={this.handleClick} 
               />
               <br />
               <Button primary fluid onClick={this.handleClick}>Login</Button>
