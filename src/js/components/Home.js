@@ -8,9 +8,7 @@ export default class Home extends AuthenticatedRoute {
 
   render() {
     return (
-      <div>
-        Home Test
-      </div>
+      <div/>
     )
   }
 }

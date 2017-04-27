@@ -5,9 +5,7 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 export default class About extends AuthenticatedRoute {
   render() {
     return (
-      <div>
-        About Test
-      </div>
+      <div/>
     )
   }
 }
