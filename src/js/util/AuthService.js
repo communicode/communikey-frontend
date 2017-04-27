@@ -11,15 +11,15 @@ class AuthService extends Component {
     var params = "?response_type=token&client_id=communikey&scope=read&redirect_uri=" + constants.API_OAUTH_SUCCESS_REDIRECT_URI;
     var oauth = constants.PROTOCOL + username + ":" + password + '@' + constants.API_OAUTH_AUTHORIZE + params;
 
-      axios.post(constants.API_VALIDATE_USER, {
-          login:      username,
-          password:   password
-        })
-      .then(function (response) {
-        window.location = oauth;
+    axios.post(constants.API_VALIDATE_USER, {
+        login:      username,
+        password:   password
       })
-      .catch(function (error) {
-        console.log(error);
+    .then(function (response) {
+      window.location = oauth;
+    })
+    .catch(function (error) {
+      console.log(error);
     });
   }
 
