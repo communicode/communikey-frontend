@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import { Grid, Table, Input, Radio, Segment, Label, Card, Icon, Popup, Button, Header, Image, Modal, List, Container, Divider } from 'semantic-ui-react'
-import AuthenticatedRoute from "./AuthenticatedRoute";
-import { userStore } from "../stores/UserStore"
-import "../../css/components/Admin.css";
+import AdminRoute from './AdminRoute'
+import { userStore } from '../stores/UserStore'
+import '../../css/components/Admin.css'
 
-export default class Admin extends AuthenticatedRoute {
-  static get privilegeRequired() {
-      return true;
-  }
-
+export default class Admin extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
@@ -153,14 +149,14 @@ export default class Admin extends AuthenticatedRoute {
     }
 
     return (
-            <Segment class="adminUserView">
+            <div class="adminUserView">
               <Header as='h1'>Admin user view</Header>
               <Divider />
               <Grid stackable>
                 <UserList/>
               </Grid>
               <UserDetails/>
-            </Segment>
+            </div>
     )
   }
 }
