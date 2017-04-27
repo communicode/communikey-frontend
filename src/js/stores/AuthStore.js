@@ -5,44 +5,14 @@ class AuthStore {
   @observable oAuthToken
   @observable loggedIn
   @observable isAdmin
+  @observable firstLogin
 
   constructor() {
-    this.login = null
-    this.oAuthToken = null
+    this.login = ""
+    this.oAuthToken = ""
     this.loggedIn = false
     this.isAdmin = false
-  }
-
-  set login(login) {
-    this.login = login;
-  }
-
-  get login() {
-    return login;
-  }
-
-  set oAuthToken(oAuthToken) {
-    this.oAuthToken = oAuthToken;
-  }
-
-  get oAuthToken() {
-    return this.oAuthToken;
-  }
-
-  set loggedIn(loggedIn) {
-    this.loggedIn = loggedIn;
-  }
-
-  get loggedIn() {
-    return this.loggedIn;
-  }
-
-  set isAdmin(isAdmin) {
-    this.isAdmin = isAdmin;
-  }
-
-  get isAdmin(){
-    return this.isAdmin;
+    this.firstLogin = true
   }
 }
 
