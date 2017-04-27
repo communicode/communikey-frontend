@@ -41,7 +41,6 @@ class CategoryStore {
 
   constructor() {
     this.fetchCategories = this.fetchCategories.bind(this);
-    this.fetchCategories();
   }
 
   fetchCategories() {

@@ -27,7 +27,6 @@ class AuthorityStore {
 
   constructor() {
     this.fetchAuthorities = this.fetchAuthorities.bind(this);
-    this.fetchAuthorities();
   }
 
   fetchAuthorities() {
