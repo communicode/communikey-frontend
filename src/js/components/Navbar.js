@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { Sidebar, Segment, Menu, Image, Icon } from 'semantic-ui-react'
 import "../../css/components/Navbar.css";
+import * as constants from '../util/Constants'
 
 class Navbar extends Component {
   state = {
@@ -23,37 +24,37 @@ class Navbar extends Component {
               <Image src='../../img/communikey-logo_transparent.svg' size="tiny"/>
             </div>
           </Link>
-          <Link to="home">
+          <Link to={"/" + constants.FRONTEND_HOME}>
             <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
               <Icon name='home' />
               Home
             </Menu.Item>
           </Link>
-          <Link to="categories">
+          <Link to={"/" + constants.FRONTEND_CATEGORIES}>
             <Menu.Item name='categories' active={activeItem === 'categories'} onClick={this.handleItemClick}>
               <Icon name='tags' />
               Categories
             </Menu.Item>
           </Link>
-          <Link to="settings">
+          <Link to={"/" + constants.FRONTEND_SETTINGS}>
             <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick}>
               <Icon name='settings' />
               Settings
             </Menu.Item>
           </Link>
-          <Link to="about">
+          <Link to={"/" + constants.FRONTEND_ABOUT}>
             <Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick}>
               <Icon name='info' />
               About
             </Menu.Item>
           </Link>
-          <Link to="admin">
+          <Link to={"/" + constants.FRONTEND_ADMIN}>
             <Menu.Item name='admin' active={activeItem === 'admin'} onClick={this.handleItemClick}>
               <Icon name='warning sign' />
               Admin menu
             </Menu.Item>
           </Link>
-          <Link to="logout">
+          <Link to={"/" + constants.FRONTEND_LOGOUT}>
             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
               <Icon name='sign out' />
               Logout
