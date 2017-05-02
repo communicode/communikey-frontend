@@ -4,11 +4,17 @@ import { Sidebar, Segment, Menu, Image, Icon } from 'semantic-ui-react'
 import "../../css/components/Navbar.css";
 
 class Navbar extends Component {
-  state = {
-            visible: true,
-            activeItem: 'home'
+  constructor(props) {
+    super(props)
+    this.state = {
+      visible: true,
+      activeItem: 'home',
+      visibleAdmin: false
+    }
+    this.toggleSubMenu = this.toggleSubMenu.bind(this)
   }
 
+  toggleSubMenu = () => {const {visibleAdmin} = this.state; this.setState({visibleAdmin: !visibleAdmin})}
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -47,12 +53,21 @@ class Navbar extends Component {
               About
             </Menu.Item>
           </Link>
-          <Link to="admin">
-            <Menu.Item name='admin' active={activeItem === 'admin'} onClick={this.handleItemClick}>
+          <Link >
+            <Menu.Item name='admin' onClick={this.toggleSubMenu}>
               <Icon name='warning sign' />
               Admin menu
             </Menu.Item>
           </Link>
+          {this.state.visibleAdmin &&
+            <div>
+              <Link to="admin">
+                <Menu.Item class="dropdown" name='admin' active={activeItem === 'admin'} onClick={this.handleItemClick}>
+                  User
+                </Menu.Item>
+              </Link>
+            </div>
+          }
           <Link to="logout">
             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
               <Icon name='sign out' />

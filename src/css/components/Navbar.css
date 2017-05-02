@@ -36,3 +36,12 @@
   height: 100%;
   padding: 0 0 0 0 !important;
 }
+
+/*subMenu*/
+.dropdown {
+  background-color: #4C566A !important;
+}
+
+.dropdown:hover {
+  background-color: #434c5e !important;
+}
