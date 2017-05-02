@@ -33,7 +33,6 @@ class GroupStore {
 
   constructor() {
     this.fetchGroups = this.fetchGroups.bind(this);
-    this.fetchGroups();
   }
 
   fetchGroups() {

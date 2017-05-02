@@ -53,7 +53,6 @@ class UserStore {
 
   constructor() {
     this.fetchUsers = this.fetchUsers.bind(this);
-    this.fetchUsers();
   }
 
   fetchUsers() {

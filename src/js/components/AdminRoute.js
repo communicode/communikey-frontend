@@ -3,7 +3,7 @@ import axios from 'axios'
 import { authStore }  from '../stores/AuthStore';
 import * as constants from '../util/Constants'
 
-class AuthenticatedRoute extends React.Component {
+class AdminRoute extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -24,7 +24,7 @@ class AuthenticatedRoute extends React.Component {
         } else if(response.status == 200 && response.data.privileged == false){
           authStore.setLoggedIn = true;
           authStore.setIsAdmin = false;
-          authStore.oAuthToken = oAuthToken;
+          replace('/home');
           callback();
         }
         callback();
@@ -39,4 +39,4 @@ class AuthenticatedRoute extends React.Component {
   }
 }
 
-export default AuthenticatedRoute;
+export default AdminRoute;

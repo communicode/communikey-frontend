@@ -12,7 +12,7 @@ class Category {
   createdBy
   createdDate
   @observable lastModifiedBy
-  @observable LastModifiedDate
+  @observable lastModifiedDate
   @observable groups
   @observable responsible
 
@@ -26,7 +26,7 @@ class Category {
     this.createdBy = null
     this.createdDate = null
     this.lastModifiedBy = null
-    this.LastModifiedDate = null
+    this.lastModifiedDate = null
     this.groups = null
     this.responsible = null
   }
@@ -41,7 +41,6 @@ class CategoryStore {
 
   constructor() {
     this.fetchCategories = this.fetchCategories.bind(this);
-    this.fetchCategories();
   }
 
   fetchCategories() {
@@ -52,7 +51,7 @@ class CategoryStore {
     })
     .then(function (response) {
       for(let category of response.data) {
-        let newCategory = new Category()
+        let newCategory = new Category();
         newCategory.id = category.id;
         newCategory.name = category.name;
         newCategory.keys = category.keys;

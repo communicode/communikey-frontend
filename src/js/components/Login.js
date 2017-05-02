@@ -15,7 +15,15 @@ export default class Login extends React.Component {
     }
   }
 
-  handleClick = () => authService.login(this.state.username, this.state.password);
+  handleKeyPress = (event) => {
+    if(event.key == 'Enter') {
+      authService.login(this.state.username, this.state.password);
+    }
+  }
+
+  handleClick = () => {
+    authService.login(this.state.username, this.state.password);
+  }
 
   handleUsernameChange(e) {
     const username = e.target.value;
@@ -46,17 +54,18 @@ export default class Login extends React.Component {
                 fluid
                 ref="email"
                 onChange={this.handleUsernameChange.bind(this)}
-                onKeyPress={this.handleClick}
+                onKeyPress={this.handleKeyPress}
               />
               <br />
               <Input
                 id="password"
-                fluid icon='key'
+                fluid
+                icon='key'
                 placeholder='Password...'
                 ref="password"
                 type="password"
                 onChange={this.handlePasswordChange.bind(this)}
-                onKeyPress={this.handleClick} 
+                onKeyPress={this.handleKeyPress}
               />
               <br />
               <Button primary fluid onClick={this.handleClick}>Login</Button>
