@@ -2,25 +2,125 @@ import React, { Component } from 'react'
 import { Grid, Table, Input, Radio, Segment, Label, Card, Icon, Popup, Button, Header, Image, Modal, List, Container, Divider } from 'semantic-ui-react'
 import AdminRoute from './AdminRoute'
 import { userStore } from '../stores/UserStore'
+import { userService } from '../util/UserService'
 import '../../css/components/Admin.css'
 
 export default class Admin extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
-      user: ""
+      openUserDetails: false,
+      openAddUser: false,
+      user: "",
+      email: ""
     }
   }
 
-  render() {
-    var show = (user) => () => this.setState({open: true, user})
-    var close = () => this.setState({open: false})
-    const {open, user} = this.state;
+  handleEmailChange(e) {
+    const email = e.target.value;
+    this.state.email = email;
+    console.log(email);
+  }
 
+  render() {
+    var showUserDetails = (user) => () => this.setState({openUserDetails: true, user})
+    var closeUserDetails = () => this.setState({openUserDetails: false})
+    const {openUserDetails, user} = this.state;
+
+    var showAddUser = () => this.setState({openAddUser: true})
+    var closeAddUser = () => this.setState({openAddUser: false})
+    var handleEmailChangeClick = (email) => this.handleEmailChange(email)
+    const {openAddUser} = this.state;
+
+    var saveUser = () => userService.addUser(this.state.email);
+
+
+
+    {/* addUser */}
+    function AddUser(props) {
+      return (
+        <Modal size="small" dimmer={false} open={openAddUser} onClose={closeAddUser}>
+          <Modal.Header>Add an user</Modal.Header>
+          <Modal.Content>
+            <Modal.Description>
+              <List relaxed divided>
+                <List.Item>
+                  <List.Icon name='user' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header>Firstname</List.Header>
+                    <List.Description>
+                      <Input class='modalInput' />
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='user' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header>Lastname</List.Header>
+                    <List.Description>
+                      <Input class='modalInput' />
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='at' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header>E-Mail</List.Header>
+                    <List.Description>
+                      <Input
+                        class='modalInput'
+                        onChange={(e) => handleEmailChangeClick(e)}
+                      />
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='key' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header>Password</List.Header>
+                    <List.Description>
+                      <Input class='modalInput' />
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='key' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header>Confirm password</List.Header>
+                    <List.Description>
+                      <Input class='modalInput'/>
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='unlock alternate' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header>Activated</List.Header>
+                    <List.Description>
+                      <Radio toggle />
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+              </List>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color='red' onClick={closeAddUser}>
+              Cancel
+            </Button>
+            <Button color='green' onClick={saveUser}>
+              Save
+            </Button>
+          </Modal.Actions>
+        </Modal>
+
+      )
+    }
+
+    {/* userDetailView */}
     function UserDetails(props) {
       return (
-              <Modal size="small" dimmer={false} open={open} onClose={close}>
+              <Modal size="small" dimmer={false} open={openUserDetails} onClose={closeUserDetails}>
                 <Modal.Header>{user.firstName}'s details: </Modal.Header>
                 <Modal.Content image>
                   <Image wrapped size='small' src='http://react.semantic-ui.com/assets/images/avatar/large/matthew.png' />
@@ -39,12 +139,27 @@ export default class Admin extends AdminRoute {
                           <List.Header>E-Mail</List.Header>
                           <List.Description>
                             <Input
-                                label={{ basic: true, content: '@communicode.de' }}
-                                labelPosition='right'
-                                placeholder={user.email}
-                                fluid
-                                size='mini'
+                                value={user.email}
+                                class='modalInput'
                             />
+                          </List.Description>
+                        </List.Content>
+                      </List.Item>
+                      <List.Item>
+                        <List.Icon name='key' size='large' verticalAlign='middle' />
+                        <List.Content>
+                          <List.Header>Password</List.Header>
+                          <List.Description>
+                            <Input class='modalInput' />
+                          </List.Description>
+                        </List.Content>
+                      </List.Item>
+                      <List.Item>
+                        <List.Icon name='key' size='large' verticalAlign='middle' />
+                        <List.Content>
+                          <List.Header>Confirm password</List.Header>
+                          <List.Description>
+                            <Input class='modalInput'/>
                           </List.Description>
                         </List.Content>
                       </List.Item>
@@ -111,7 +226,7 @@ export default class Admin extends AdminRoute {
                   </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button color='teal' onClick={close}>
+                  <Button color='teal' onClick={closeUserDetails}>
                     X
                   </Button>
                 </Modal.Actions>
@@ -119,13 +234,14 @@ export default class Admin extends AdminRoute {
       )
     }
 
+    {/* userCard */}
     function UserList() {
       if(userStore.users.length > 0) {
         var rows = [];
         userStore.users.map(function(user) {
           rows.push(
             <Grid.Column key={user.id}>
-              <Card onClick={show(user)}>
+              <Card onClick={showUserDetails(user)}>
                 <Card.Content>
                   <Card.Header>
                     {user.firstName} {user.lastName}
@@ -149,14 +265,28 @@ export default class Admin extends AdminRoute {
     }
 
     return (
-            <div class="adminUserView">
-              <Header as='h1'>Admin user view</Header>
-              <Divider />
-              <Grid stackable>
-                <UserList/>
-              </Grid>
-              <UserDetails/>
-            </div>
+      <Segment class="adminUserView">
+        <Header as='h1'>
+          Admin user view
+          <Popup
+            trigger={
+              <Button
+                icon='add'
+                content='Add an user'
+                onClick={showAddUser}
+              />
+            }
+            content='Opens an popup to add an user.'
+            on='hover'
+          />
+        </Header>
+        <Divider />
+        <Grid stackable>
+          <UserList/>
+        </Grid>
+        <UserDetails/>
+        <AddUser/>
+      </Segment>
     )
   }
 }
