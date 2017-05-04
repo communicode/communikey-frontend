@@ -15,6 +15,7 @@ class CategoryTree extends Component {
   }
 
   changeMyState(category) {
+    //TODO: Remove comments
     // console.log(this.state);
     // this.state.selectedCategory = category;
     // this.forceUpdate();
@@ -23,27 +24,25 @@ class CategoryTree extends Component {
 
   render() {
     const { activeIndex, selectedCategory } = this.state
-    var handleClick = (category, index) => this.changeMyState(category)
+    let handleClick = (category, index) => this.changeMyState(category)
 
     function CategoryList(props) {
-      if(props.node !== undefined) {
-        if(props.node.length > 0) {
-          var rows = [];
-          props.node.map(function(category) {
-            rows.push(
-              <Accordion fluid activeIndex={0} key={category.id}>
-                <Accordion.Title onClick={() => handleClick(category)}>
-                  <Icon name='triangle right' />
-                  {category.name}
-                </Accordion.Title>
-                <Accordion.Content>
-                  <CategoryList node={category.children} />
-                </Accordion.Content>
-              </Accordion>
-            );
-          })
-          return <tbody>{rows}</tbody>;
-        } else return null
+      if(props.node !== undefined && props.node.length > 0) {
+        let rows = [];
+        props.node.map(function(category) {
+          rows.push(
+            <Accordion fluid activeIndex={0} key={category.id}>
+              <Accordion.Title onClick={() => handleClick(category)}>
+                <Icon name='triangle right' />
+                {category.name}
+              </Accordion.Title>
+              <Accordion.Content>
+                <CategoryList node={category.children} />
+              </Accordion.Content>
+            </Accordion>
+          );
+        })
+        return <tbody>{rows}</tbody>;
       } else return null
     }
 

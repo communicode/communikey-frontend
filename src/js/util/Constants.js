@@ -27,6 +27,9 @@ export const API_USERS_POST_RESET = API_USERS + '/reset_password'
 export const API_USERS_PUT_AUTHORITIES = API_USERS + '/admin/authorities'
 export const API_USERS_PUT_ONE = API_USERS + '/admin'
 
+export const API_LOGIN = "/" + FRONTEND_LOGIN
+export const API_HOME = "/" + FRONTEND_HOME
+
 export const API_OAUTH = BACKEND + '/oauth'
 export const API_OAUTH_AUTHORIZE = API_OAUTH + '/authorize'
 export const API_OAUTH_TOKEN = API_OAUTH + '/token'

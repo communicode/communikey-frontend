@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 
-export default class Index extends React.Component {
+class Index extends React.Component {
   render() {
     return (
       <Navbar>
@@ -10,3 +10,5 @@ export default class Index extends React.Component {
     )
   }
 }
+
+export default Index;

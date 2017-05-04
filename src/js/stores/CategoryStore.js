@@ -40,7 +40,6 @@ class CategoryStore {
   }
 
   constructor() {
-    this.fetchCategories = this.fetchCategories.bind(this);
   }
 
   fetchCategories() {
@@ -48,8 +47,7 @@ class CategoryStore {
       params: {
          access_token: localStorage.getItem('access_token')
       }
-    })
-    .then(function (response) {
+    }).then(response => {
       for(let category of response.data) {
         let newCategory = new Category();
         newCategory.id = category.id;
@@ -66,13 +64,12 @@ class CategoryStore {
         newCategory.responsible = category.responsible;
         this.addCategory(newCategory);
       }
-    }.bind(this))
-    .catch(function (error) {
+    }).catch(function (error) {
       console.log(error);
     });
   }
 }
 
-export var categoryStore = new CategoryStore()
+export let categoryStore = new CategoryStore()
 
-export default CategoryStore
+export default CategoryStore;

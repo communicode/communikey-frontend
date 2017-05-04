@@ -15,6 +15,7 @@ class KeyCard extends Component {
             <Card.Content header={this.props.passedKey.name} />
               <Card.Meta>
                 <span className='date'>
+                  {/*Placeholder*/}
                   Created 23rd January 2016
                 </span>
               </Card.Meta>
@@ -33,8 +34,10 @@ class KeyCard extends Component {
           </Card>
         </Grid.Column>
       )
-    } else return null
+    } else {
+      return null
+    }
   }
 }
 
-export default KeyCard
+export default KeyCard;

@@ -32,7 +32,6 @@ class GroupStore {
   }
 
   constructor() {
-    this.fetchGroups = this.fetchGroups.bind(this);
   }
 
   fetchGroups() {
@@ -40,27 +39,26 @@ class GroupStore {
       params: {
          access_token: localStorage.getItem('access_token')
       }
-    })
-    .then(function (response) {
-      for(let group of response.data) {
-        let newGroup = new Group()
-        newGroup.id = group.id;
-        newGroup.name = group.name;
-        newGroup.users = group.users;
-        newGroup.categories = group.categories;
-        newGroup.createdBy = group.createdBy;
-        newGroup.createdDate = group.createdDate;
-        newGroup.lastModifiedBy = group.lastModifiedBy;
-        newGroup.LastModifiedDate = group.LastModifiedDate;
-        this.addGroup(newGroup);
-      }
-    }.bind(this))
-    .catch(function (error) {
-      console.log(error);
+    }).then(response => {
+        for(let group of response.data) {
+          let newGroup = new Group()
+          newGroup.id = group.id;
+          newGroup.name = group.name;
+          newGroup.users = group.users;
+          newGroup.categories = group.categories;
+          newGroup.createdBy = group.createdBy;
+          newGroup.createdDate = group.createdDate;
+          newGroup.lastModifiedBy = group.lastModifiedBy;
+          newGroup.LastModifiedDate = group.LastModifiedDate;
+          this.addGroup(newGroup);
+        }
+      }).catch(function (error) {
+        //TODO: implement error-handling
+        console.log(error);
     });
   }
 }
 
-export var groupStore = new GroupStore()
+export let groupStore = new GroupStore();
 
-export default GroupStore
+export default GroupStore;

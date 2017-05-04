@@ -1,12 +1,12 @@
 import React from "react";
-import { Loader, Segment, Button, Divider, Input, Image } from "semantic-ui-react";
+import { Loader, Segment, Button, Input, Image } from "semantic-ui-react";
 import "../../css/components/Login.css";
 import { authService } from '../util/AuthService';
 import * as constants from '../util/Constants';
 import { authStore } from "../stores/AuthStore"
 import { browserHistory } from 'react-router';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ export default class Login extends React.Component {
   }
 
   handleKeyPress = (event) => {
-    if(event.key == 'Enter') {
+    if(event.key === 'Enter') {
       authService.login(this.state.username, this.state.password);
     }
   }
@@ -26,13 +26,11 @@ export default class Login extends React.Component {
   }
 
   handleUsernameChange(e) {
-    const username = e.target.value;
-    this.state.username = username;
+    this.state.username = e.target.value;
   }
 
   handlePasswordChange(e) {
-    const password = e.target.value;
-    this.state.password = password;
+    this.state.password = e.target.value;
   }
 
   render() {
@@ -84,23 +82,23 @@ export class LoginConfirmation extends React.Component {
   }
 
   render() {
-    var hash = this.props.location.hash.replace('#','');
-    var hashParams = hash.split('&');
-    for(var i = 0; i< hashParams.length; i++) {
-      var param = hashParams[i].split('=')
-      if(param[0] == 'access_token') {
-        if(param[1] == '') {
-          browserHistory.push(constants.PROTOCOL + constants.FRONTEND + "/login");
+    let hash = this.props.location.hash.replace('#','');
+    let hashParams = hash.split('&');
+    for(let i = 0; i< hashParams.length; i++) {
+      let param = hashParams[i].split('=')
+      if(param[0] === 'access_token') {
+        if(param[1] === '') {
+          browserHistory.push(constants.PROTOCOL + constants.FRONTEND + constants.API_LOGIN);
         }
         localStorage.setItem('access_token', param[1]);
         authStore.oAuthToken = param[1];
-      } else if(param[0] == 'token_type') {
+      } else if(param[0] === 'token_type') {
         localStorage.setItem('token_type', param[1]);
-      } else if(param[0] == 'expires_in') {
+      } else if(param[0] === 'expires_in') {
         localStorage.setItem('expires_in', param[1]);
       }
     }
-    browserHistory.push(constants.PROTOCOL + constants.FRONTEND + "/home");
+    browserHistory.push(constants.PROTOCOL + constants.FRONTEND + constants.API_HOME);
     return (
       <div>
         <Loader size='large'>Loading</Loader>
@@ -124,3 +122,5 @@ export class Logout extends React.Component {
     );
   }
 }
+
+export default Login;

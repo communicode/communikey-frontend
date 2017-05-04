@@ -10,6 +10,7 @@ class UserService extends Component {
   addUser(email) {
     axios.post(constants.API_USERS_POST_ONE, {
       email: email,
+      //TODO: replace placeholders
       password: "testPassword",
       firstName: "newUser",
       lastName: "Unknown"
@@ -29,4 +30,4 @@ class UserService extends Component {
 
 export var userService = new UserService()
 
-export default UserService
+export default UserService;

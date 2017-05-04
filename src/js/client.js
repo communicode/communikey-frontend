@@ -4,8 +4,6 @@ import ReactDOM from "react-dom";
 import { Router, Route, browserHistory, IndexRedirect } from "react-router";
 import { observer } from "mobx-react"
 import { autorun } from "mobx"
-
-import { authService } from './util/AuthService';
 import Login, { LoginConfirmation, Logout } from "./components/Login";
 import Index from "./components/Index"
 import Home from "./components/Home"

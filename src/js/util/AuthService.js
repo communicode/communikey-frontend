@@ -25,10 +25,9 @@ class AuthService extends Component {
 
   logout() {
       localStorage.clear();
-      console.log("Cleared");
   }
 }
 
 export var authService = new AuthService()
 
-export default AuthService
+export default AuthService;

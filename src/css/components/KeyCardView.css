@@ -17,6 +17,6 @@
 
 .column {
   width:    auto !important;
-  padding:  15px 15px 15px 15px !important;
+  padding:  15px !important;
   display:  inline-block;
 }

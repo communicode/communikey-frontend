@@ -52,7 +52,6 @@ class UserStore {
   }
 
   constructor() {
-    this.fetchUsers = this.fetchUsers.bind(this);
   }
 
   fetchUsers() {
@@ -60,11 +59,9 @@ class UserStore {
       params: {
          access_token: localStorage.getItem('access_token')
       }
-    })
-    .then(function (response) {
-      this.users = response.data;
-    }.bind(this))
-    .catch(function (error) {
+    }).then(response => {
+        this.users = response.data;
+      }).catch(function (error) {
       console.log(error);
     });
   }
@@ -72,4 +69,4 @@ class UserStore {
 
 export var userStore = new UserStore()
 
-export default UserStore
+export default UserStore;

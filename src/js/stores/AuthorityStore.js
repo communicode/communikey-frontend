@@ -26,7 +26,6 @@ class AuthorityStore {
   }
 
   constructor() {
-    this.fetchAuthorities = this.fetchAuthorities.bind(this);
   }
 
   fetchAuthorities() {
@@ -34,8 +33,7 @@ class AuthorityStore {
       params: {
          access_token: localStorage.getItem('access_token')
       }
-    })
-    .then(function (response) {
+    }).then(response => {
       for(let authority of response.data) {
         let newAuthority = new Authority()
         newAuthority.name = authority.name;
@@ -45,8 +43,7 @@ class AuthorityStore {
         newAuthority.lastModifiedDate = authority.LastModifiedDate;
         this.addAuthority(newAuthority);
       }
-    }.bind(this))
-    .catch(function (error) {
+    }).catch(function (error) {
       console.log(error);
     });
   }
@@ -54,4 +51,4 @@ class AuthorityStore {
 
 export var authorityStore = new AuthorityStore()
 
-export default AuthorityStore
+export default AuthorityStore;

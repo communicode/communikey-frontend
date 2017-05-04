@@ -6,22 +6,21 @@ import * as constants from '../util/Constants'
 
 class Navbar extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       visible: true,
       activeItem: 'home',
       visibleAdmin: false
-    }
+    };
     this.toggleSubMenu = this.toggleSubMenu.bind(this)
   }
 
-  toggleSubMenu = () => {const {visibleAdmin} = this.state; this.setState({visibleAdmin: !visibleAdmin})}
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  toggleSubMenu = () => {const {visibleAdmin} = this.state; this.setState({visibleAdmin: !visibleAdmin})};
+  toggleVisibility = () => this.setState({ visible: !this.state.visible });
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    const { visible } = this.state
-    const { activeItem } = this.state
+    const { visible, activeItem} = this.state;
     return (
       <Sidebar.Pushable as={Segment} class="frame">
         <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
@@ -89,4 +88,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+export default Navbar;

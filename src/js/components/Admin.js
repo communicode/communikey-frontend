@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Grid, Table, Input, Radio, Segment, Label, Card, Icon, Popup, Button, Header, Image, Modal, List, Container, Divider } from 'semantic-ui-react'
+import { Grid, Input, Radio, Segment, Label, Card, Icon, Popup, Button, Header, Image, Modal, List, Divider } from 'semantic-ui-react'
 import AdminRoute from './AdminRoute'
 import { userStore } from '../stores/UserStore'
 import { userService } from '../util/UserService'
 import '../../css/components/Admin.css'
 
-export default class Admin extends AdminRoute {
+class Admin extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,20 +19,19 @@ export default class Admin extends AdminRoute {
   handleEmailChange(e) {
     const email = e.target.value;
     this.state.email = email;
-    console.log(email);
   }
 
   render() {
-    var showUserDetails = (user) => () => this.setState({openUserDetails: true, user})
-    var closeUserDetails = () => this.setState({openUserDetails: false})
+    let showUserDetails = (user) => () => this.setState({openUserDetails: true, user})
+    let closeUserDetails = () => this.setState({openUserDetails: false})
     const {openUserDetails, user} = this.state;
 
-    var showAddUser = () => this.setState({openAddUser: true})
-    var closeAddUser = () => this.setState({openAddUser: false})
-    var handleEmailChangeClick = (email) => this.handleEmailChange(email)
+    let showAddUser = () => this.setState({openAddUser: true})
+    let closeAddUser = () => this.setState({openAddUser: false})
+    let handleEmailChangeClick = (email) => this.handleEmailChange(email)
     const {openAddUser} = this.state;
 
-    var saveUser = () => userService.addUser(this.state.email);
+    let saveUser = () => userService.addUser(this.state.email);
 
 
 
@@ -237,7 +236,7 @@ export default class Admin extends AdminRoute {
     {/* userCard */}
     function UserList() {
       if(userStore.users.length > 0) {
-        var rows = [];
+        let rows = [];
         userStore.users.map(function(user) {
           rows.push(
             <Grid.Column key={user.id}>
@@ -290,3 +289,5 @@ export default class Admin extends AdminRoute {
     )
   }
 }
+
+export default Admin;

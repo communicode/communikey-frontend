@@ -12,15 +12,19 @@ class KeyCardView extends Component {
     function KeyCards(props) {
       if(props.keys !== undefined) {
         if(props.keys.length > 0) {
-          var rows = [];
+          let rows = [];
           props.keys.map(function(key) {
             rows.push(
               <KeyCard passedKey={key}/>
             );
           })
           return <tbody>{rows}</tbody>;
-        } else return null
-      } else return null
+        } else {
+          return null
+        }
+      } else {
+        return null
+      }
     }
 
     return (
@@ -35,4 +39,4 @@ class KeyCardView extends Component {
   }
 }
 
-export default KeyCardView
+export default KeyCardView;

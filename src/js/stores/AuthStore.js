@@ -16,6 +16,5 @@ class AuthStore {
   }
 }
 
-export var authStore = new AuthStore()
-
-export default AuthStore
+export let authStore = new AuthStore();
+export default AuthStore;

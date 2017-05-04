@@ -9,27 +9,26 @@ class AuthenticatedRoute extends React.Component {
   }
 
   static willTransitionTo(nextState, replace, callback) {
-    var oAuthToken = localStorage.getItem('access_token');
+    let oAuthToken = localStorage.getItem('access_token');
     axios.get(constants.API_CHECK_PRIVILEGE, {
        params: {
           access_token: oAuthToken
         }
       })
       .then(response => {
-        if(response.status == 200 && response.data.privileged == true) {
+        if(response.status === 200 && response.data.privileged === true) {
           authStore.loggedIn = true;
           authStore.isAdmin = true;
           authStore.oAuthToken = oAuthToken;
-          callback();
-        } else if(response.status == 200 && response.data.privileged == false){
+        } else if(response.status === 200 && response.data.privileged === false){
           authStore.setLoggedIn = true;
           authStore.setIsAdmin = false;
           authStore.oAuthToken = oAuthToken;
-          callback();
         }
         callback();
       })
       .catch(error => {
+        //TODO: implement error-handling
         console.log(error);
         authStore.loggedIn = false;
         authStore.isAdmin = false;
