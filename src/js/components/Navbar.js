@@ -12,7 +12,6 @@ class Navbar extends Component {
       activeItem: 'home',
       visibleAdmin: false
     };
-    this.toggleSubMenu = this.toggleSubMenu.bind(this)
   }
 
   toggleSubMenu = () => {const {visibleAdmin} = this.state; this.setState({visibleAdmin: !visibleAdmin})};
