@@ -30,7 +30,7 @@ export default class AddUserModal extends AdminRoute {
       'email: ', this.state.email,
       'password: ', this.state.password
     );
-
+    this.props.onModalClose();
   }
 
     render() {
