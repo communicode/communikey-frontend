@@ -7,13 +7,12 @@ class UserService extends Component {
     super();
   }
 
-  addUser(email) {
+  addUser(firstName, lastName, email, password) {
     axios.post(constants.API_USERS_POST_ONE, {
       email: email,
-      //TODO: replace placeholders
-      password: "testPassword",
-      firstName: "newUser",
-      lastName: "Unknown"
+      password: password,
+      firstName: firstName,
+      lastName: lastName
     }, {
       params: {
          access_token: localStorage.getItem('access_token')

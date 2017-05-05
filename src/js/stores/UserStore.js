@@ -67,6 +67,6 @@ class UserStore {
   }
 }
 
-export var userStore = new UserStore()
+export let userStore = new UserStore()
 
 export default UserStore;
