@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
-import { Button, List, Modal, Image, Input } from 'semantic-ui-react'
+import { Icon, Label, Radio, Button, List, Modal, Image, Input } from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
-import { userService } from '../../util/UserService'
 
 
 class UserDetailModal extends AdminRoute  {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      cardUser: this.props.cardUser
+    }
+  }
+
+  handleChange(event) {
+    //TODO: handle input value updates
+    this.setState({ [`cardUser.${event.target.name}`]: event.target.value});
+  }
+
+
+  handleSubmit() {
+    userService.editUser(this.state.email, this.state.firstName, this.state.lastName, this.state.activated, this.state.cardUser.login);
+  }
+
   render() {
     return (
-      <Modal size="small" dimmer='inverted'>
-        <Modal.Header>{user.firstName}'s details: </Modal.Header>
+      <Modal size="small" dimmer='inverted' open={true}>
+        <Modal.Header>{this.state.cardUser.firstName}'s details: </Modal.Header>
         <Modal.Content image>
           <Image wrapped size='small' src='http://react.semantic-ui.com/assets/images/avatar/large/matthew.png' />
           <Modal.Description>
@@ -16,8 +33,29 @@ class UserDetailModal extends AdminRoute  {
               <List.Item>
                 <List.Icon name='user' size='large' verticalAlign='middle' />
                 <List.Content>
-                  <List.Header>Name</List.Header>
-                  <List.Description>{user.firstName} {user.lastName}</List.Description>
+                  <List.Header>First Name</List.Header>
+                  <List.Description>
+                    <Input
+                      name="firstName"
+                      value={this.state.cardUser.firstName}
+                      class='modalInput'
+                      onChange={this.handleChange.bind(this)}
+                    />
+                  </List.Description>
+                </List.Content>
+              </List.Item>
+              <List.Item>
+                <List.Icon name='user' size='large' verticalAlign='middle' />
+                <List.Content>
+                  <List.Header>Last Name</List.Header>
+                  <List.Description>
+                    <Input
+                      name="lastName"
+                      value={this.state.cardUser.lastName}
+                      class='modalInput'
+                      onChange={this.handleChange.bind(this)}
+                    />
+                  </List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
@@ -26,27 +64,11 @@ class UserDetailModal extends AdminRoute  {
                   <List.Header>E-Mail</List.Header>
                   <List.Description>
                     <Input
-                      value={user.email}
+                      name="email"
+                      value={this.state.cardUser.email}
                       class='modalInput'
+                      onChange={this.handleChange.bind(this)}
                     />
-                  </List.Description>
-                </List.Content>
-              </List.Item>
-              <List.Item>
-                <List.Icon name='key' size='large' verticalAlign='middle' />
-                <List.Content>
-                  <List.Header>Password</List.Header>
-                  <List.Description>
-                    <Input class='modalInput' />
-                  </List.Description>
-                </List.Content>
-              </List.Item>
-              <List.Item>
-                <List.Icon name='key' size='large' verticalAlign='middle' />
-                <List.Content>
-                  <List.Header>Confirm password</List.Header>
-                  <List.Description>
-                    <Input class='modalInput'/>
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -55,7 +77,12 @@ class UserDetailModal extends AdminRoute  {
                 <List.Content>
                   <List.Header>Activated</List.Header>
                   <List.Description>
-                    <Radio toggle />
+                    <Radio
+                      name="activated"
+                      toggle={true}
+                      checked={this.state.cardUser.activated}
+                      onChange={this.handleChange.bind(this)}
+                    />
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -63,14 +90,14 @@ class UserDetailModal extends AdminRoute  {
                 <List.Icon name='birthday' size='large' verticalAlign='middle' />
                 <List.Content>
                   <List.Header>Activation-Token</List.Header>
-                  <List.Description>{user.activationKey}</List.Description>
+                  <List.Description>{this.state.cardUser.activationKey}</List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Icon name='repeat' size='large' verticalAlign='middle' />
                 <List.Content>
                   <List.Header>Reset-Token</List.Header>
-                  <List.Description>{user.resetKey}</List.Description>
+                  <List.Description>{this.state.cardUser.resetKey}</List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
@@ -113,8 +140,11 @@ class UserDetailModal extends AdminRoute  {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button color='teal' onClick={closeUserDetails}>
-            X
+          <Button color='teal' onClick={this.handleSubmit.bind(this)}>
+            Save
+          </Button>
+          <Button color='teal' onClick={this.props.onModalClose}>
+            Cancel
           </Button>
         </Modal.Actions>
       </Modal>
