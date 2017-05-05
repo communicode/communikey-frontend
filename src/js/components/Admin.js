@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Grid, Input, Radio, Segment, Label, Card, Icon, Popup, Button, Header, Image, Modal, List, Divider, Form } from 'semantic-ui-react'
+import { Grid, Segment, Button, Header, Divider } from 'semantic-ui-react'
 import AdminRoute from './AdminRoute'
 import AddUserModal from './modals/AddUserModal'
-import { userService } from '../util/UserService'
 import '../../css/components/Admin.css'
 import UserList from './lists/UserList'
 

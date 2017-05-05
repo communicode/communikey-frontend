@@ -24,6 +24,8 @@ export default class AddUserModal extends AdminRoute {
 
   handleSubmit(){
     userService.addUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password);
+
+    //TODO: Replace consoleLog with Error-Handling
     console.log(
       'first Name: ', this.state.firstName,
       'last Name: ', this.state.lastName,
