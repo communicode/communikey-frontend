@@ -25,6 +25,29 @@ class UserService extends Component {
       console.log(error);
     });
   }
+
+  editUser(email, firstname, lastname, activated, login) {
+    console.log("email " + email);
+    console.log("firstname " + firstname);
+    console.log("lastname " + lastname);
+    console.log("activated " + activated);
+    console.log("login " + login)
+    axios.put(constants.API_USERS_PUT_ONE + "/" + login, {
+      email: email,
+      firstName: firstname,
+      lastName: lastname
+    }, {
+      params: {
+        access_token: localStorage.getItem('access_token')
+      }
+    })
+      .then(function (response) {
+        console.log(response);
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }
 
 export var userService = new UserService()
