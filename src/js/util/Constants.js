@@ -10,6 +10,11 @@ export const FRONTEND_CATEGORIES = 'categories'
 export const FRONTEND_SETTINGS = 'settings'
 export const FRONTEND_ABOUT = 'about'
 export const FRONTEND_ADMIN = 'admin'
+export const FRONTEND_USER_MANAGEMENT = 'userManagement'
+export const FRONTEND_CATEGORY_MAGAMEMENT = 'categoryManagement'
+export const FRONTEND_USER = 'user'
+export const FRONTEND_CATEGORY = 'category'
+export const FRONTEND_MANAGEMENT = 'management'
 
 export const API = PROTOCOL + BACKEND + '/api'
 

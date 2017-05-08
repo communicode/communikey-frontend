@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Grid, Segment, Button, Header, Divider } from 'semantic-ui-react'
-import AdminRoute from './AdminRoute'
-import AddUserModal from './modals/AddUserModal'
-import '../../css/components/Admin.css'
-import UserList from './lists/UserList'
+import AdminRoute from '../AdminRoute'
+import AddUserModal from '../modals/AddUserModal'
+import '../../../css/components/Admin.css'
+import UserList from './../lists/UserList'
 
-class Admin extends AdminRoute {
+class UserManagement extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,4 +34,4 @@ class Admin extends AdminRoute {
     )
   }
 }
-export default Admin;
+export default UserManagement;
