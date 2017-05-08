@@ -22,7 +22,6 @@ class UserList extends AdminRoute {
   };
 
   render() {
-
     const userCardList = userStore.users.map(user => {
       return (
         <Grid.Column key={user.id}>

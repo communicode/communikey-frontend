@@ -59,7 +59,7 @@ export default class AddUserModal extends AdminRoute {
             <Button color='red' onClick={this.props.onModalClose}>
               Cancel
             </Button>
-            <Button color='green' onClick={this.handleSubmit.bind(this)}>
+            <Button color='teal' onClick={this.handleSubmit.bind(this)}>
               Save
             </Button>
           </Modal.Actions>
