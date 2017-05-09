@@ -1,11 +1,9 @@
 .categoryTree {
-  float: left !important;
+  float: left;
   height: 100%;
-  width: 250px !important;
+  width: 250px;
   overflow: auto;
-  display: inline-block !important;
-  padding-left: 0 !important;
-  padding-top: 0 !important;
+  display: inline-block;
 }
 
 .accordion {
