@@ -51,9 +51,6 @@ class UserStore {
     this.groups.push(user);
   }
 
-  constructor() {
-  }
-
   fetchUsers() {
     axios.get(constants.API_USERS_GET_ALL, {
       params: {

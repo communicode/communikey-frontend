@@ -13,7 +13,11 @@ class Admin extends AdminRoute {
     };
   }
 
-  toggleAddUserModal = () => {const {addUserModalIsOpen} = this.state; this.setState({addUserModalIsOpen: !addUserModalIsOpen})};
+  toggleAddUserModal = () => {
+    const {addUserModalIsOpen} = this.state; this.setState({
+      addUserModalIsOpen: !addUserModalIsOpen
+    })
+  };
 
   render() {
     return (

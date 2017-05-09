@@ -1,7 +1,7 @@
-let debug = process.env.NODE_ENV !== "production";
-let webpack = require('webpack');
-let path = require('path');
-let CopyWebpackPlugin = require('copy-webpack-plugin');
+const debug = process.env.NODE_ENV !== "production";
+const webpack = require('webpack');
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname, "src"),
