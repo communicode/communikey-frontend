@@ -27,12 +27,7 @@ class UserService extends Component {
   }
 
   editUser(email, firstname, lastname, activated, login) {
-    console.log("email " + email);
-    console.log("firstname " + firstname);
-    console.log("lastname " + lastname);
-    console.log("activated " + activated);
-    console.log("login " + login)
-    axios.put(constants.API_USERS_PUT_ONE + "/" + login, {
+    axios.put(constants.API_USERS_PUT_ONE + login, {
       email: email,
       firstName: firstname,
       lastName: lastname
@@ -50,6 +45,6 @@ class UserService extends Component {
   }
 }
 
-export var userService = new UserService()
+export let userService = new UserService()
 
 export default UserService;

@@ -20,10 +20,10 @@ class UserManagement extends AdminRoute {
 
   render() {
     return (
-      <Segment class="adminUserView">
+      <Segment class="adminView">
         <Header as='h1'>
-          Admin user view
-          <Button icon='add' content='Add an user' onClick={this.toggleAddUserModal}/>
+          User management
+          <Button icon='add' content='User' onClick={this.toggleAddUserModal}/>
         </Header>
         <Divider />
         <Grid stackable>

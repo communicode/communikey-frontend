@@ -3,7 +3,7 @@ import { Button, Modal, Form } from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
 import { userService } from '../../util/UserService'
 
-export default class AddUserModal extends AdminRoute {
+class AddUserModal extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,26 +14,14 @@ export default class AddUserModal extends AdminRoute {
     }
   };
 
-  handleChange(event) {
-    if (!event.target.name) {
-      //TODO handle
-      return;
-    }
+  handleChange = (event) => {
     this.setState({[event.target.name]: event.target.value});
-  }
+  };
 
-  handleSubmit(){
+  handleSubmit = () => {
     userService.addUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password);
-
-    //TODO: Replace consoleLog with Error-Handling
-    console.log(
-      'first Name: ', this.state.firstName,
-      'last Name: ', this.state.lastName,
-      'email: ', this.state.email,
-      'password: ', this.state.password
-    );
     this.props.onModalClose();
-  }
+  };
 
     render() {
       return (
@@ -43,14 +31,14 @@ export default class AddUserModal extends AdminRoute {
             <Modal.Description>
               <Form>
                 <Form.Group>
-                  <Form.Input name="firstName" placeholder="First Name" label="First Name" onChange={this.handleChange.bind(this)}/>
-                  <Form.Input name="lastName" placeholder="Last Name" label="Last Name" onChange={this.handleChange.bind(this)}/>
+                  <Form.Input name="firstName" placeholder="First Name" label="First Name" onChange={this.handleChange}/>
+                  <Form.Input name="lastName" placeholder="Last Name" label="Last Name" onChange={this.handleChange}/>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Input name="email" placeholder="Email" label="Email" onChange={this.handleChange.bind(this)}/>
+                  <Form.Input name="email" placeholder="Email" label="Email" onChange={this.handleChange}/>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Input name="password" placeholder="Password" label="Password" type='password' onChange={this.handleChange.bind(this)}/>
+                  <Form.Input name="password" placeholder="Password" label="Password" type='password' onChange={this.handleChange}/>
                 </Form.Group>
               </Form>
             </Modal.Description>
@@ -59,7 +47,7 @@ export default class AddUserModal extends AdminRoute {
             <Button color='red' onClick={this.props.onModalClose}>
               Cancel
             </Button>
-            <Button color='teal' onClick={this.handleSubmit.bind(this)}>
+            <Button color='teal' onClick={this.handleSubmit}>
               Save
             </Button>
           </Modal.Actions>
@@ -67,3 +55,5 @@ export default class AddUserModal extends AdminRoute {
       )
   }
 }
+
+export default AddUserModal;

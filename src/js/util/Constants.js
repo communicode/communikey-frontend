@@ -30,7 +30,7 @@ export const API_USERS_DELETE_ONE = API_USERS + '/'
 export const API_USERS_POST_ONE = API_USERS + '/register'
 export const API_USERS_POST_RESET = API_USERS + '/reset_password'
 export const API_USERS_PUT_AUTHORITIES = API_USERS + '/admin/authorities'
-export const API_USERS_PUT_ONE = API_USERS
+export const API_USERS_PUT_ONE = API_USERS + '/'
 
 export const API_LOGIN = "/" + FRONTEND_LOGIN
 export const API_HOME = "/" + FRONTEND_HOME
