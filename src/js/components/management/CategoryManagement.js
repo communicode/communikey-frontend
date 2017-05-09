@@ -59,7 +59,7 @@ class CategorieManagement extends AdminRoute {
       <Segment class="adminView">
         <Header as='h1'>
           Category management
-          <Button icon='add' content='Categorie' onClick={this.toggleAddCategoryModal}/>
+          <Button class="headerButton" icon='add' content='Categorie' onClick={this.toggleAddCategoryModal}/>
         </Header>
         <Divider />
         <CategoryList node={categoryStore.categories} />

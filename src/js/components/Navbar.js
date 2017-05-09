@@ -64,9 +64,9 @@ class Navbar extends Component {
             </Menu.Item>
           </Link>
           <div>
-            <Menu.Item name='admin' onClick={() => this.toggleSubMenu("visibleAdmin")}>
-              <Icon name='warning sign' />
-              Admin menu
+            <Menu.Item name='Management' onClick={() => this.toggleSubMenu("visibleAdmin")}>
+              <Icon name='legal' />
+              Management
             </Menu.Item>
           </div>
           {this.state.visibleAdmin &&

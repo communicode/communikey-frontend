@@ -31,3 +31,7 @@
 .headerIcon.icon {
   width: 1px !important;
 }
+
+.headerButton {
+  margin-left: 10px !important;
+}
