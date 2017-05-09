@@ -14,9 +14,20 @@ class Navbar extends Component {
     };
   }
 
-  toggleSubMenu = () => {const {visibleAdmin} = this.state; this.setState({visibleAdmin: !visibleAdmin})};
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  toggleSubMenu = (menu) => {
+    if (this.state.visibleAdmin) {
+      this.setState({
+        [menu]: false
+      });
+    } else {
+      this.setState({
+        [menu]: true
+      });
+    }
+  };
 
   render() {
     const { visible, activeItem} = this.state;
@@ -52,17 +63,22 @@ class Navbar extends Component {
               About
             </Menu.Item>
           </Link>
-          <Link >
-            <Menu.Item name='admin' onClick={this.toggleSubMenu}>
-              <Icon name='warning sign' />
-              Admin menu
+          <div>
+            <Menu.Item name='Management' onClick={() => this.toggleSubMenu("visibleAdmin")}>
+              <Icon name='legal' />
+              Management
             </Menu.Item>
-          </Link>
+          </div>
           {this.state.visibleAdmin &&
           <div>
-            <Link to={"/" + constants.FRONTEND_ADMIN}>
-              <Menu.Item class="dropdown" name='admin' active={activeItem === 'admin'} onClick={this.handleItemClick}>
-                User
+            <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_USER}>
+              <Menu.Item class="dropdown" name='UserManagement' active={activeItem === 'UserManagement'} onClick={this.handleItemClick}>
+                Users
+              </Menu.Item>
+            </Link>
+            <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_CATEGORY}>
+              <Menu.Item class="dropdown" name='CategoryManagement' active={activeItem === 'CategoryManagement'} onClick={this.handleItemClick}>
+                Categories
               </Menu.Item>
             </Link>
           </div>
