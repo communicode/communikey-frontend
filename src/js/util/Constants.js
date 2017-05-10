@@ -1,6 +1,5 @@
-export const PROTOCOL = 'http://'
-export const FRONTEND = 'localhost:8081'
-export const BACKEND = 'localhost:8081'
+export const FRONTEND = process.env.COMMUNIKEY_FRONTEND_URL || "http://localhost:8081";
+export const BACKEND = process.env.COMMUNIKEY_BACKEND_URL || "http://localhost:8081";
 
 export const FRONTEND_LOGIN = 'login'
 export const FRONTEND_LOGINCONFIRMATION = 'loginConfirmation'
@@ -11,7 +10,7 @@ export const FRONTEND_SETTINGS = 'settings'
 export const FRONTEND_ABOUT = 'about'
 export const FRONTEND_ADMIN = 'admin'
 
-export const API = PROTOCOL + BACKEND + '/api'
+export const API = BACKEND + '/api'
 
 export const API_VALIDATE_USER = API + '?validate_user'
 export const API_CHECK_PRIVILEGE = API + '?privileged'
@@ -33,7 +32,7 @@ export const API_HOME = "/" + FRONTEND_HOME
 export const API_OAUTH = BACKEND + '/oauth'
 export const API_OAUTH_AUTHORIZE = API_OAUTH + '/authorize'
 export const API_OAUTH_TOKEN = API_OAUTH + '/token'
-export const API_OAUTH_SUCCESS_REDIRECT_URI = PROTOCOL + FRONTEND + '/loginConfirmation'
+export const API_OAUTH_SUCCESS_REDIRECT_URI = FRONTEND + '/loginConfirmation'
 
 export const API_KEYS = API + '/keys'
 export const API_KEYS_GET_ALL = API_KEYS

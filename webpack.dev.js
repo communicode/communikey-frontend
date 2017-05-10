@@ -3,15 +3,6 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const { URL } = require("url");
-
-const COMMUNIKEY_BACKEND_URL = () => {
-  return process.env.COMMUNIKEY_BACKEND_URL !== "undefined" ? process.env.COMMUNIKEY_BACKEND_URL : new URL("http://localhost:8080");
-};
-
-const COMMUNIKEY_FRONTEND_URL = () => {
-  return process.env.COMMUNIKEY_FRONTEND_URL !== "undefined" ? process.env.COMMUNIKEY_FRONTEND_URL : new URL("http://localhost:8081");
-};
 
 module.exports = {
   devtool: "cheap-module-source-map",
@@ -27,12 +18,16 @@ module.exports = {
   devServer: {
     contentBase: "src",
     proxy: {
+      "/api/**": {
+        "target": "http://localhost:8080",
+        "secure": false
+      },
       "/api**": {
-        "target": JSON.stringify(COMMUNIKEY_BACKEND_URL),
+        "target": "http://localhost:8080",
         "secure": false
       },
       "/oauth/**": {
-        "target": JSON.stringify(COMMUNIKEY_BACKEND_URL),
+        "target": "http://localhost:8080",
         "secure": false
       }
     }
@@ -67,13 +62,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html"
-    }),
-    new webpack.DefinePlugin({
-      "process.env": {
-        "NODE_ENV": JSON.stringify("production"),
-        "COMMUNIKEY_BACKEND_URL": JSON.stringify(COMMUNIKEY_BACKEND_URL),
-        "COMMUNIKEY_FRONTEND_URL": JSON.stringify(COMMUNIKEY_FRONTEND_URL)
-      }
     })
   ]
 };

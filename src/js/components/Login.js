@@ -88,7 +88,7 @@ export class LoginConfirmation extends React.Component {
       let param = hashParams[i].split('=')
       if(param[0] === 'access_token') {
         if(param[1] === '') {
-          browserHistory.push(constants.PROTOCOL + constants.FRONTEND + constants.API_LOGIN);
+          browserHistory.push(constants.FRONTEND + constants.API_LOGIN);
         }
         localStorage.setItem('access_token', param[1]);
         authStore.oAuthToken = param[1];
@@ -98,7 +98,7 @@ export class LoginConfirmation extends React.Component {
         localStorage.setItem('expires_in', param[1]);
       }
     }
-    browserHistory.push(constants.PROTOCOL + constants.FRONTEND + constants.API_HOME);
+    browserHistory.push(constants.FRONTEND + constants.API_HOME);
     return (
       <div>
         <Loader size='large'>Loading</Loader>
@@ -114,7 +114,7 @@ export class Logout extends React.Component {
 
   render() {
     authService.logout();
-    browserHistory.push(constants.PROTOCOL + constants.FRONTEND + "/" + constants.FRONTEND_LOGIN);
+    browserHistory.push(constants.FRONTEND + "/" + constants.FRONTEND_LOGIN);
     return (
       <div>
         <Loader size='large'>Loading</Loader>
