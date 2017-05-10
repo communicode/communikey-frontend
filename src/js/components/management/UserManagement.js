@@ -23,7 +23,7 @@ class UserManagement extends AdminRoute {
       <Segment class="adminView">
         <Header as='h1'>
           User management
-          <Button class="headerButton" icon='add' content='User' onClick={this.toggleAddUserModal}/>
+          <Button class="headerButton" icon='add user' content='User' onClick={this.toggleAddUserModal}/>
         </Header>
         <Divider />
         <Grid stackable>

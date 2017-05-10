@@ -48,6 +48,42 @@ class UserDetailModal extends AdminRoute  {
   };
 
   render() {
+    const authorities = this.state.cardUser.authorities.map(authorities => {
+      return (
+        <Label>
+          {authorities.name}
+          <Icon name='delete' />
+        </Label>
+      )
+    });
+
+    const keyCategories = this.state.cardUser.keyCategories.map(keyCategories => {
+      return (
+        <Label>
+          {keyCategories.name}
+          <Icon name='delete' />
+        </Label>
+      )
+    });
+
+    const groups = this.state.cardUser.groups.map(groups => {
+      return (
+        <Label>
+          {groups.name}
+          <Icon name='delete' />
+        </Label>
+      )
+    });
+
+    const keys = this.state.cardUser.keys.map(keys => {
+      return (
+        <Label>
+          {keys.name}
+          <Icon name='delete' />
+        </Label>
+      )
+    });
+
     return (
         <Modal size="small" dimmer='inverted' open={true}>
           <Modal.Header>{this.state.firstName}'s details: </Modal.Header>
@@ -133,22 +169,13 @@ class UserDetailModal extends AdminRoute  {
                   </List.Content>
                 </List.Item>
                 <List.Item>
-                  <List.Icon name='privacy' size='large' verticalAlign='middle' />
+                  <List.Icon name='legal' size='large' verticalAlign='middle' />
                   <List.Content>
                     <List.Header>Authorities</List.Header>
-                    {/*TODO: Replaceholders */}
+                    {/*TODO: Implement search */}
                     <List.Description>
-                      <Input size='mini' icon='diamond' iconPosition='left' placeholder='Search authorities...' /> <br /><br />
-                      <Label as='a'>
-                        <Icon name='users' />
-                        User
-                        <Icon name='delete' />
-                      </Label>
-                      <Label as='a'>
-                        <Icon name='diamond' />
-                        Admin
-                        <Icon name='delete' />
-                      </Label>
+                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search authorities...' /> <br /><br />
+                      {authorities}
                     </List.Description>
                   </List.Content>
                 </List.Item>
@@ -156,17 +183,29 @@ class UserDetailModal extends AdminRoute  {
                   <List.Icon name='users' size='large' verticalAlign='middle' />
                   <List.Content>
                     <List.Header>Groups</List.Header>
-                    {/*TODO: Replaceholders */}
                     <List.Description>
-                      <Input size='mini' icon='diamond' iconPosition='left' placeholder='Search groups...' /> <br /><br />
-                      <Label as='a'>
-                        group A
-                        <Icon name='delete' />
-                      </Label>
-                      <Label as='a'>
-                        group B
-                        <Icon name='delete' />
-                      </Label>
+                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search groups...' /> <br /><br />
+                      {groups}
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='tags' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header>Key categories</List.Header>
+                    <List.Description>
+                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search key categories...' /> <br /><br />
+                      {keyCategories}
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name='privacy' size='large' verticalAlign='middle' />
+                  <List.Content>
+                    <List.Header> Keys </List.Header>
+                    <List.Description>
+                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search keys...' /> <br /><br />
+                      {keys}
                     </List.Description>
                   </List.Content>
                 </List.Item>
@@ -179,21 +218,13 @@ class UserDetailModal extends AdminRoute  {
             </Button>
             {
               this.state.cardUser.activated &&
-              <Button color='black' onClick={this.handleDeactivateUser}>
-                Deactivate
-              </Button>
+              <Button color='black' content="Deactivate" onClick={this.handleDeactivateUser}/>
             }
             { !this.state.cardUser.activated &&
-            <Button color='black' onClick={this.handleActivateUser}>
-              Activate
-            </Button>
+              <Button color='black' content="Activate" onClick={this.handleActivateUser}/>
             }
-            <Button color='black' onClick={this.handleDeleteUser}>
-              Delete
-            </Button>
-            <Button color='teal' onClick={this.handleInputSubmit}>
-              Save
-            </Button>
+            <Button icon="remove user" content="Delete" color='black' onClick={this.handleDeleteUser}/>
+            <Button color='teal' content="Save" onClick={this.handleInputSubmit}/>
           </Modal.Actions>
         </Modal>
     )
