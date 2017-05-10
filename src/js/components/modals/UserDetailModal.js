@@ -6,6 +6,7 @@ import UserAuthorities from '../listItems/UserAuthorities'
 import UserGroups from '../listItems/UserGroups'
 import UserKeyCategories from '../listItems/UserKeyCategories'
 import UserKeys from '../listItems/UserKeys'
+import '../../../css/components/Admin.css'
 
 class UserDetailModal extends AdminRoute  {
 
@@ -144,18 +145,16 @@ class UserDetailModal extends AdminRoute  {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='red' onClick={this.props.onModalClose}>
-              Cancel
-            </Button>
             {
               this.state.cardUser.activated &&
-              <Button color='black' content="Deactivate" onClick={this.handleDeactivateUser}/>
+              <Button class="otherActionButton" content="Deactivate" icon="hide" onClick={this.handleDeactivateUser}/>
             }
             { !this.state.cardUser.activated &&
-              <Button color='black' content="Activate" onClick={this.handleActivateUser}/>
+              <Button class="otherActionButton" content="Activate" icon="unhide" onClick={this.handleActivateUser}/>
             }
-            <Button icon="remove user" content="Delete" color='black' onClick={this.handleDeleteUser}/>
-            <Button color='teal' content="Save" onClick={this.handleInputSubmit}/>
+            <Button class="deleteButton" icon="remove user" content="Delete" onClick={this.handleDeleteUser}/>
+            <Button class="saveButton" content="Save" icon="save" onClick={this.handleInputSubmit}/>
+            <Button class="cancelButton" content="Cancel" icon="remove" onClick={this.props.onModalClose}/>
           </Modal.Actions>
         </Modal>
     )

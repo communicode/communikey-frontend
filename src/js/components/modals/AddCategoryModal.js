@@ -34,12 +34,8 @@ class AddCategoryModal extends AdminRoute {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button color='red' onClick={this.props.onModalClose}>
-            Cancel
-          </Button>
-          <Button color='teal' onClick={this.handleSubmit}>
-            Save
-          </Button>
+          <Button class="saveButton" content="Save" icon="save" onClick={this.handleSubmit}/>
+          <Button content="Cancel" class="cancelButton" icon="remove" onClick={this.props.onModalClose}/>
         </Modal.Actions>
       </Modal>
     )

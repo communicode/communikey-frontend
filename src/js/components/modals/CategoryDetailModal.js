@@ -76,15 +76,9 @@ class UserDetailModal extends AdminRoute  {
           </List>
         </Modal.Content>
         <Modal.Actions>
-          <Button color='red' onClick={this.props.onModalClose}>
-            Cancel
-          </Button>
-          <Button color='black' onClick={this.handleDeleteCategory}>
-            Delete
-          </Button>
-          <Button color='teal' onClick={this.toggleAddChildToCategoryModal}>
-            Add as child
-          </Button>
+          <Button content="Delete" class="deleteButton" icon="delete calendar" onClick={this.handleDeleteCategory}/>
+          <Button content="Add as child" class="otherActionButton" icon="child" onClick={this.toggleAddChildToCategoryModal}/>
+          <Button content="Cancel" class="cancelButton" icon="remove" onClick={this.props.onModalClose}/>
         </Modal.Actions>
         {this.state.addChildToCategoryModalIsOpen && <AddChildToCategoryModal selectedCategory={this.state.selectedCategory} onModalClose={this.toggleAddChildToCategoryModal}/>}
       </Modal>
