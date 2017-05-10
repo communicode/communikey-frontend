@@ -149,7 +149,8 @@ class UserDetailModal extends AdminRoute  {
               this.state.cardUser.activated &&
               <Button class="otherActionButton" content="Deactivate" icon="hide" onClick={this.handleDeactivateUser}/>
             }
-            { !this.state.cardUser.activated &&
+            {
+              !this.state.cardUser.activated &&
               <Button class="otherActionButton" content="Activate" icon="unhide" onClick={this.handleActivateUser}/>
             }
             <Button class="deleteButton" icon="remove user" content="Delete" onClick={this.handleDeleteUser}/>
