@@ -1,7 +1,7 @@
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var path = require('path');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const debug = process.env.NODE_ENV !== "production";
+const webpack = require('webpack');
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname, "src"),
@@ -9,14 +9,18 @@ module.exports = {
     entry: "./js/client.js",
     devServer: {
       proxy: {
-          "/api**": {
-            "target": "http://localhost:8080",
-            "secure": false
-          },
-          "/oauth/**": {
-            "target": "http://localhost:8080",
-            "secure": false
-          }
+        "/api/**": {
+          "target": "http://localhost:8080",
+          "secure": false
+        },
+        "/api**": {
+          "target": "http://localhost:8080",
+          "secure": false
+        },
+        "/oauth/**": {
+          "target": "http://localhost:8080",
+          "secure": false
+        }
       }
     },
     module: {

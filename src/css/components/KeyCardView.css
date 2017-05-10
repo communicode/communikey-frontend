@@ -1,0 +1,22 @@
+.keycardView {
+  /* Firefox */
+  width:              -moz-calc(100% - 250px);
+  /* WebKit */
+  width:              -webkit-calc(100% - 250px);
+  /* Opera */
+  width:              -o-calc(100% - 250px);
+  /* Standard */
+  width:              calc(100% - 250px);
+
+  height: 100%;
+  margin-top: 0 !important;
+  display: inline-block;
+  float: left !important;
+  overflow-y: auto;
+}
+
+.column {
+  width:    auto !important;
+  padding:  15px !important;
+  display:  inline-block;
+}
