@@ -14,8 +14,9 @@ class Navbar extends Component {
     };
   }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible });
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => this.setState({
+    activeItem: name
+  });
 
   toggleSubMenu = (menu) => {
     if (this.state.visibleAdmin) {
@@ -69,19 +70,20 @@ class Navbar extends Component {
               Management
             </Menu.Item>
           </div>
-          {this.state.visibleAdmin &&
-          <div>
-            <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_USER}>
-              <Menu.Item class="dropdown" name='UserManagement' active={activeItem === 'UserManagement'} onClick={this.handleItemClick}>
-                Users
-              </Menu.Item>
-            </Link>
-            <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_CATEGORY}>
-              <Menu.Item class="dropdown" name='CategoryManagement' active={activeItem === 'CategoryManagement'} onClick={this.handleItemClick}>
-                Categories
-              </Menu.Item>
-            </Link>
-          </div>
+          {
+            this.state.visibleAdmin &&
+            <div>
+              <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_USER}>
+                <Menu.Item class="dropdown" name='UserManagement' active={activeItem === 'UserManagement'} onClick={this.handleItemClick}>
+                  Users
+                </Menu.Item>
+              </Link>
+              <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_CATEGORY}>
+                <Menu.Item class="dropdown" name='CategoryManagement' active={activeItem === 'CategoryManagement'} onClick={this.handleItemClick}>
+                  Categories
+                </Menu.Item>
+              </Link>
+            </div>
           }
           <Link to={"/" + constants.FRONTEND_LOGOUT}>
             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
