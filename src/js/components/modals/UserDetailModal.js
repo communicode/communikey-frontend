@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Label, Radio, Button, List, Modal, Image, Input } from 'semantic-ui-react'
+import { Icon, Label, Radio, Button, List, Modal, Image, Input, Popup } from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
 import { userService } from '../../util/UserService'
 
@@ -11,14 +11,13 @@ class UserDetailModal extends AdminRoute  {
       firstName: this.props.cardUser.firstName,
       lastName: this.props.cardUser.lastName,
       email: this.props.cardUser.email,
-      activated: this.props.cardUser.activated,
       cardUser: this.props.cardUser
     }
   }
 
   handleInputChange = (event) => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -28,7 +27,24 @@ class UserDetailModal extends AdminRoute  {
   };
 
   handleInputSubmit = () => {
-    userService.editUser(this.state.email, this.state.firstName, this.state.lastName, this.state.activated, this.state.cardUser.login);
+    console.log(this.state.activated);
+    userService.editUser(this.state.email, this.state.firstName, this.state.lastName, this.state.cardUser.login);
+    this.props.onModalClose();
+  };
+
+  handleDeleteUser = () => {
+    userService.deleteUser(this.state.cardUser.login);
+    this.props.onModalClose();
+  };
+
+  handleDeactivateUser = () => {
+    userService.deactivateUser(this.state.cardUser.login);
+    this.props.onModalClose();
+  };
+
+  handleActivateUser = () => {
+    userService.activateUser(this.state.cardUser.activationKey);
+    this.props.onModalClose();
   };
 
   render() {
@@ -86,11 +102,18 @@ class UserDetailModal extends AdminRoute  {
                   <List.Content>
                     <List.Header>Activated</List.Header>
                     <List.Description>
-                      <Radio
-                        name="activated"
-                        toggle={true}
-                        //checked={this.state.cardUser.activated}
-                        onChange={this.handleInputChange}
+                      <Popup
+                        trigger={
+                          <Radio
+                            name="activated"
+                            toggle={true}
+                            checked={this.state.cardUser.activated}
+                            type="checkbox"
+                          />
+                        }
+                        content='Use the button below to activate/deactivate this user'
+                        on='click'
+                        hideOnScroll
                       />
                     </List.Description>
                   </List.Content>
@@ -113,6 +136,7 @@ class UserDetailModal extends AdminRoute  {
                   <List.Icon name='privacy' size='large' verticalAlign='middle' />
                   <List.Content>
                     <List.Header>Authorities</List.Header>
+                    {/*TODO: Replaceholders */}
                     <List.Description>
                       <Input size='mini' icon='diamond' iconPosition='left' placeholder='Search authorities...' /> <br /><br />
                       <Label as='a'>
@@ -132,6 +156,7 @@ class UserDetailModal extends AdminRoute  {
                   <List.Icon name='users' size='large' verticalAlign='middle' />
                   <List.Content>
                     <List.Header>Groups</List.Header>
+                    {/*TODO: Replaceholders */}
                     <List.Description>
                       <Input size='mini' icon='diamond' iconPosition='left' placeholder='Search groups...' /> <br /><br />
                       <Label as='a'>
@@ -151,6 +176,20 @@ class UserDetailModal extends AdminRoute  {
           <Modal.Actions>
             <Button color='red' onClick={this.props.onModalClose}>
               Cancel
+            </Button>
+            {
+              this.state.cardUser.activated &&
+              <Button color='black' onClick={this.handleDeactivateUser}>
+                Deactivate
+              </Button>
+            }
+            { !this.state.cardUser.activated &&
+            <Button color='black' onClick={this.handleActivateUser}>
+              Activate
+            </Button>
+            }
+            <Button color='black' onClick={this.handleDeleteUser}>
+              Delete
             </Button>
             <Button color='teal' onClick={this.handleInputSubmit}>
               Save

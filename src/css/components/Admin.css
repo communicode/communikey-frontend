@@ -1,6 +1,10 @@
 .adminView {
-  width: auto;
+  width: 100%;
   height: 100%;
+  margin-top: 0 !important;
+  display: inline-block;
+  float: left !important;
+  overflow-y: auto;
 }
 
 .column {

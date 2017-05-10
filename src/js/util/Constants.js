@@ -24,6 +24,7 @@ export const API_CHECK_PRIVILEGE = API + '?privileged'
 export const API_USERS = API + '/users'
 export const API_USERS_GET_ALL = API_USERS
 export const API_USERS_GET_ACTIVATION = API_USERS + '/activate'
+export const API_USERS_GET_DEACTIVATION = API_USERS + '/deactivate'
 export const API_USERS_GET_ONE = API_USERS + '/'
 export const API_USERS_GET_RESET_KEY = API_USERS + '/reset_password'
 export const API_USERS_DELETE_ONE = API_USERS + '/'
