@@ -8,7 +8,6 @@ class CategoryService extends Component {
   }
 
   createCategory(name) {
-    console.log("createCategroy -> categoryName " + name)
     axios.post(constants.API_CATEGORIES_POST_ONE, {
       name: name
     }, {
@@ -25,7 +24,7 @@ class CategoryService extends Component {
   }
 
   addChild(parentID, childID) {
-    axios.get(constants.API_CATEGORIES_ADD_CHILD + parentID + "/children", {
+    axios.get(constants.API_CATEGORIES_ADD_CHILD + parentID + constants.API_CHILDREN, {
       params: {
         access_token: localStorage.getItem('access_token'),
         childKeyCategoryId: childID

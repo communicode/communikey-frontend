@@ -18,6 +18,8 @@ export const FRONTEND_MANAGEMENT = 'management'
 
 export const API = PROTOCOL + BACKEND + '/api'
 
+export const API_CHILDREN = '/children'
+
 export const API_VALIDATE_USER = API + '?validate_user'
 export const API_CHECK_PRIVILEGE = API + '?privileged'
 

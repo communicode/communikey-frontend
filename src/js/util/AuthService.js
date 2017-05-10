@@ -8,8 +8,8 @@ class AuthService extends Component {
   }
 
   login(username, password) {
-    var params = "?response_type=token&client_id=communikey&scope=read&redirect_uri=" + constants.API_OAUTH_SUCCESS_REDIRECT_URI;
-    var oauth = constants.PROTOCOL + username + ":" + password + '@' + constants.API_OAUTH_AUTHORIZE + params;
+    const params = "?response_type=token&client_id=communikey&scope=read&redirect_uri=" + constants.API_OAUTH_SUCCESS_REDIRECT_URI;
+    const oauth = constants.PROTOCOL + username + ":" + password + '@' + constants.API_OAUTH_AUTHORIZE + params;
 
     axios.post(constants.API_VALIDATE_USER, {
         login:      username,
@@ -28,6 +28,6 @@ class AuthService extends Component {
   }
 }
 
-export var authService = new AuthService()
+export const authService = new AuthService()
 
 export default AuthService;
