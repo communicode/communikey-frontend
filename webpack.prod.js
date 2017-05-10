@@ -4,20 +4,16 @@ const webpack = require("webpack");
 const BabiliPlugin = require("babili-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const { URL } = require("url");
 
-const COMMUNIKEY_BACKEND_URL = () => {
-  if (typeof process.env.COMMUNIKEY_BACKEND_URL === "undefined") {
-    throw new Error("COMMUNIKEY_BACKEND_URL environment variable is undefined");
-  }
-  return new URL(process.env.COMMUNIKEY_BACKEND_URL);
-};
-const COMMUNIKEY_FRONTEND_URL = () => {
-  if (typeof process.env.COMMUNIKEY_BACKEND_URL === "undefined") {
-    throw new Error("COMMUNIKEY_BACKEND_URL environment variable is undefined");
-  }
-  return new URL(process.env.COMMUNIKEY_BACKEND_URL);
-};
+if (typeof process.env.COMMUNIKEY_BACKEND_URL === "undefined") {
+  throw new Error("COMMUNIKEY_BACKEND_URL environment variable is undefined");
+}
+const COMMUNIKEY_BACKEND_URL = process.env.COMMUNIKEY_BACKEND_URL;
+
+if (typeof process.env.COMMUNIKEY_FRONTEND_URL === "undefined") {
+  throw new Error("COMMUNIKEY_FRONTEND_URL environment variable is undefined");
+}
+const COMMUNIKEY_FRONTEND_URL = process.env.COMMUNIKEY_FRONTEND_URL;
 
 module.exports = {
   entry: "./src/js/client.js",
