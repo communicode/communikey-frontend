@@ -23,7 +23,7 @@ class AdminRoute extends React.Component {
         } else if(response.status === 200 && response.data.privileged === false){
           authStore.setLoggedIn = true;
           authStore.setIsAdmin = false;
-          replace('/home');
+          replace(constants.API_HOME);
         }
         callback();
       })
@@ -32,7 +32,7 @@ class AdminRoute extends React.Component {
         console.log(error);
         authStore.loggedIn = false;
         authStore.isAdmin = false;
-        replace('/login');
+        replace(constants.API_LOGIN);
         callback();
       });
   }

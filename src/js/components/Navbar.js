@@ -14,9 +14,16 @@ class Navbar extends Component {
     };
   }
 
-  toggleSubMenu = () => {const {visibleAdmin} = this.state; this.setState({visibleAdmin: !visibleAdmin})};
-  toggleVisibility = () => this.setState({ visible: !this.state.visible });
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  toggleSubMenu = () => {
+    const {visibleAdmin} = this.state;
+    this.setState({
+      visibleAdmin: !visibleAdmin
+    });
+  };
+
+  handleItemClick = (e, { name }) => this.setState({
+    activeItem: name
+  });
 
   render() {
     const { visible, activeItem} = this.state;
@@ -52,7 +59,7 @@ class Navbar extends Component {
               About
             </Menu.Item>
           </Link>
-          <Link >
+          <Link>
             <Menu.Item name='admin' onClick={this.toggleSubMenu}>
               <Icon name='warning sign' />
               Admin menu

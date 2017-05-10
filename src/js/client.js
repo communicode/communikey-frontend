@@ -51,13 +51,11 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById("app"))
 
 autorun(() => {
-  if(authStore.loggedIn) {
-    if(authStore.firstLogin) {
-      authorityStore.fetchAuthorities();
-      categoryStore.fetchCategories();
-      groupStore.fetchGroups();
-      userStore.fetchUsers();
-      authStore.firstLogin = false;
-    }
+  if(authStore.loggedIn && authStore.firstLogin) {
+    authorityStore.fetchAuthorities();
+    categoryStore.fetchCategories();
+    groupStore.fetchGroups();
+    userStore.fetchUsers();
+    authStore.firstLogin = false;
   }
 });

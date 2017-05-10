@@ -51,9 +51,6 @@ class UserStore {
     this.groups.push(user);
   }
 
-  constructor() {
-  }
-
   fetchUsers() {
     axios.get(constants.API_USERS_GET_ALL, {
       params: {
@@ -67,6 +64,6 @@ class UserStore {
   }
 }
 
-export var userStore = new UserStore()
+export let userStore = new UserStore()
 
 export default UserStore;
