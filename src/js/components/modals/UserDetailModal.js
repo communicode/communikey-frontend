@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Icon, Label, Radio, Button, List, Modal, Image, Input, Popup } from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
 import { userService } from '../../util/UserService'
+import UserAuthorities from '../listItems/UserAuthorities'
+import UserGroups from '../listItems/UserGroups'
+import UserKeyCategories from '../listItems/UserKeyCategories'
+import UserKeys from '../listItems/UserKeys'
 
 class UserDetailModal extends AdminRoute  {
 
@@ -48,42 +52,6 @@ class UserDetailModal extends AdminRoute  {
   };
 
   render() {
-    const authorities = this.state.cardUser.authorities.map(authorities => {
-      return (
-        <Label>
-          {authorities.name}
-          <Icon name='delete' />
-        </Label>
-      )
-    });
-
-    const keyCategories = this.state.cardUser.keyCategories.map(keyCategories => {
-      return (
-        <Label>
-          {keyCategories.name}
-          <Icon name='delete' />
-        </Label>
-      )
-    });
-
-    const groups = this.state.cardUser.groups.map(groups => {
-      return (
-        <Label>
-          {groups.name}
-          <Icon name='delete' />
-        </Label>
-      )
-    });
-
-    const keys = this.state.cardUser.keys.map(keys => {
-      return (
-        <Label>
-          {keys.name}
-          <Icon name='delete' />
-        </Label>
-      )
-    });
-
     return (
         <Modal size="small" dimmer='inverted' open={true}>
           <Modal.Header>{this.state.firstName}'s details: </Modal.Header>
@@ -168,47 +136,10 @@ class UserDetailModal extends AdminRoute  {
                     <List.Description>{this.state.cardUser.resetKey}</List.Description>
                   </List.Content>
                 </List.Item>
-                <List.Item>
-                  <List.Icon name='legal' size='large' verticalAlign='middle' />
-                  <List.Content>
-                    <List.Header>Authorities</List.Header>
-                    {/*TODO: Implement search */}
-                    <List.Description>
-                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search authorities...' /> <br /><br />
-                      {authorities}
-                    </List.Description>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Icon name='users' size='large' verticalAlign='middle' />
-                  <List.Content>
-                    <List.Header>Groups</List.Header>
-                    <List.Description>
-                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search groups...' /> <br /><br />
-                      {groups}
-                    </List.Description>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Icon name='tags' size='large' verticalAlign='middle' />
-                  <List.Content>
-                    <List.Header>Key categories</List.Header>
-                    <List.Description>
-                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search key categories...' /> <br /><br />
-                      {keyCategories}
-                    </List.Description>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Icon name='privacy' size='large' verticalAlign='middle' />
-                  <List.Content>
-                    <List.Header> Keys </List.Header>
-                    <List.Description>
-                      <Input size='mini' icon='search' iconPosition='left' placeholder='Search keys...' /> <br /><br />
-                      {keys}
-                    </List.Description>
-                  </List.Content>
-                </List.Item>
+                <UserAuthorities selectedUser={this.state.cardUser}/>
+                <UserGroups selectedUser={this.state.cardUser}/>
+                <UserKeyCategories selectedUser={this.state.cardUser}/>
+                <UserKeys selectedUser={this.state.cardUser}/>
               </List>
             </Modal.Description>
           </Modal.Content>
