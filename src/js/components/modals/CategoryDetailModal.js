@@ -15,11 +15,6 @@ class UserDetailModal extends AdminRoute  {
     }
   }
 
-  handleInputSubmit = () => {
-    categoryService.editCategory(this.state.name, this.state.selectedCategory.id);
-    this.props.onModalClose();
-  };
-
   handleDeleteCategory = () => {
     categoryService.deleteCategory(this.state.selectedCategory.id);
     this.props.onModalClose();
@@ -60,7 +55,7 @@ class UserDetailModal extends AdminRoute  {
             <List.Item>
               <List.Icon name='copyright' size='large' verticalAlign='middle' />
               <List.Content>
-                <List.Header>Create date</List.Header>
+                <List.Header>Creation date</List.Header>
                 <List.Description> {this.state.selectedCategory.createdDate} </List.Description>
               </List.Content>
             </List.Item>
@@ -87,11 +82,8 @@ class UserDetailModal extends AdminRoute  {
           <Button color='black' onClick={this.handleDeleteCategory}>
             Delete
           </Button>
-          <Button color='green' onClick={this.toggleAddChildToCategoryModal}>
+          <Button color='teal' onClick={this.toggleAddChildToCategoryModal}>
             Add as child
-          </Button>
-          <Button color='teal' onClick={this.handleInputSubmit}>
-            Save
           </Button>
         </Modal.Actions>
         {this.state.addChildToCategoryModalIsOpen && <AddChildToCategoryModal selectedCategory={this.state.selectedCategory} onModalClose={this.toggleAddChildToCategoryModal}/>}
