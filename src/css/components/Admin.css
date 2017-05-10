@@ -1,6 +1,10 @@
-.adminUserView {
-  width: auto;
+.adminView {
+  width: 100%;
   height: 100%;
+  margin-top: 0 !important;
+  display: inline-block;
+  float: left !important;
+  overflow-y: auto;
 }
 
 .column {
@@ -30,4 +34,42 @@
 
 .headerIcon.icon {
   width: 1px !important;
+}
+
+.headerButton {
+  margin-left: 10px !important;
+}
+
+.ui.deleteButton {
+  background-color: #BF616A;
+}
+
+.ui.deleteButton:hover {
+  background-color: #D08770;
+}
+
+.ui.saveButton {
+  background-color: #A3BE8C;
+}
+
+.ui.saveButton:hover {
+  background-color: #8FBCBB;
+}
+
+.ui.cancelButton {
+  background-color: #4C566A;
+  color: #E5E9F0;
+}
+
+.ui.cancelButton:hover {
+  background-color: #2E3440;
+  color: #E5E9F0;
+}
+
+.ui.otherActionButton {
+  background-color: #D8DEE9;
+}
+
+.ui.otherActionButton:hover {
+  background-color: #E5E9F0;
 }
