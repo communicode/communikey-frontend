@@ -9,8 +9,15 @@ export const FRONTEND_CATEGORIES = 'categories'
 export const FRONTEND_SETTINGS = 'settings'
 export const FRONTEND_ABOUT = 'about'
 export const FRONTEND_ADMIN = 'admin'
+export const FRONTEND_USER_MANAGEMENT = 'userManagement'
+export const FRONTEND_CATEGORY_MAGAMEMENT = 'categoryManagement'
+export const FRONTEND_USER = 'user'
+export const FRONTEND_CATEGORY = 'category'
+export const FRONTEND_MANAGEMENT = 'management'
 
 export const API = BACKEND + '/api'
+
+export const API_CHILDREN = '/children'
 
 export const API_VALIDATE_USER = API + '?validate_user'
 export const API_CHECK_PRIVILEGE = API + '?privileged'
@@ -18,13 +25,14 @@ export const API_CHECK_PRIVILEGE = API + '?privileged'
 export const API_USERS = API + '/users'
 export const API_USERS_GET_ALL = API_USERS
 export const API_USERS_GET_ACTIVATION = API_USERS + '/activate'
+export const API_USERS_GET_DEACTIVATION = API_USERS + '/deactivate'
 export const API_USERS_GET_ONE = API_USERS + '/'
 export const API_USERS_GET_RESET_KEY = API_USERS + '/reset_password'
 export const API_USERS_DELETE_ONE = API_USERS + '/'
 export const API_USERS_POST_ONE = API_USERS + '/register'
 export const API_USERS_POST_RESET = API_USERS + '/reset_password'
 export const API_USERS_PUT_AUTHORITIES = API_USERS + '/admin/authorities'
-export const API_USERS_PUT_ONE = API_USERS + '/admin'
+export const API_USERS_PUT_ONE = API_USERS + '/'
 
 export const API_LOGIN = "/" + FRONTEND_LOGIN
 export const API_HOME = "/" + FRONTEND_HOME

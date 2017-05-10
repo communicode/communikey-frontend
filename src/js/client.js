@@ -10,7 +10,8 @@ import Home from "./components/Home"
 import Categories from "./components/Categories"
 import Settings from "./components/Settings"
 import About from "./components/About"
-import Admin from "./components/Admin"
+import UserManagement from "./components/management/UserManagement"
+import CategoryManagement from "./components/management/CategoryManagement"
 import { authStore } from "./stores/AuthStore"
 import { userStore } from "./stores/UserStore"
 import { categoryStore } from "./stores/CategoryStore"
@@ -37,7 +38,8 @@ class App extends React.Component {
             <Route path={constants.FRONTEND_CATEGORIES} component={Categories} onEnter={Categories.willTransitionTo} />
             <Route path={constants.FRONTEND_SETTINGS} component={Settings} onEnter={Settings.willTransitionTo} />
             <Route path={constants.FRONTEND_ABOUT} component={About} onEnter={About.willTransitionTo} />
-            <Route path={constants.FRONTEND_ADMIN} component={Admin} onEnter={Admin.willTransitionTo} />
+            <Route path={constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_USER} component={UserManagement} onEnter={UserManagement.willTransitionTo}/>
+            <Route path={constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_CATEGORY} component={CategoryManagement} onEnter={CategoryManagement.willTransitionTo} />
           </Route>
        </Route>
        <Route>

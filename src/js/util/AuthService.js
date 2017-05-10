@@ -36,6 +36,6 @@ class AuthService extends Component {
   }
 }
 
-export var authService = new AuthService()
+export const authService = new AuthService()
 
 export default AuthService;

@@ -14,16 +14,21 @@ class Navbar extends Component {
     };
   }
 
-  toggleSubMenu = () => {
-    const {visibleAdmin} = this.state;
-    this.setState({
-      visibleAdmin: !visibleAdmin
-    });
-  };
-
   handleItemClick = (e, { name }) => this.setState({
     activeItem: name
   });
+
+  toggleSubMenu = (menu) => {
+    if (this.state.visibleAdmin) {
+      this.setState({
+        [menu]: false
+      });
+    } else {
+      this.setState({
+        [menu]: true
+      });
+    }
+  };
 
   render() {
     const { visible, activeItem} = this.state;
@@ -59,20 +64,26 @@ class Navbar extends Component {
               About
             </Menu.Item>
           </Link>
-          <Link>
-            <Menu.Item name='admin' onClick={this.toggleSubMenu}>
-              <Icon name='warning sign' />
-              Admin menu
-            </Menu.Item>
-          </Link>
-          {this.state.visibleAdmin &&
           <div>
-            <Link to={"/" + constants.FRONTEND_ADMIN}>
-              <Menu.Item class="dropdown" name='admin' active={activeItem === 'admin'} onClick={this.handleItemClick}>
-                User
-              </Menu.Item>
-            </Link>
+            <Menu.Item name='Management' onClick={() => this.toggleSubMenu("visibleAdmin")}>
+              <Icon name='legal' />
+              Management
+            </Menu.Item>
           </div>
+          {
+            this.state.visibleAdmin &&
+            <div>
+              <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_USER}>
+                <Menu.Item class="dropdown" name='UserManagement' active={activeItem === 'UserManagement'} onClick={this.handleItemClick}>
+                  Users
+                </Menu.Item>
+              </Link>
+              <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_CATEGORY}>
+                <Menu.Item class="dropdown" name='CategoryManagement' active={activeItem === 'CategoryManagement'} onClick={this.handleItemClick}>
+                  Categories
+                </Menu.Item>
+              </Link>
+            </div>
           }
           <Link to={"/" + constants.FRONTEND_LOGOUT}>
             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
