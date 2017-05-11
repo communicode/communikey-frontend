@@ -23,6 +23,10 @@ module.exports = {
     filename: "client.min.js"
   },
 
+  resolve: {
+    modules: ["node_modules", "./src"]
+  },
+
   module: {
     rules: [
       {
