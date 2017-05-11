@@ -36,11 +36,11 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif)$/,
-        use: "file-loader"
+        use: "file-loader?limit=1024&name=[name].[ext]"
       },
       {
         test: /\.(woff|woff2|eot|ttf|[ot]tf|svg)$/,
-        use: "url-loader"
+        use: "url-loader?limit=1024&name=[name].[ext]"
       }
     ]
   },
