@@ -46,10 +46,10 @@ class Navbar extends Component {
               Home
             </Menu.Item>
           </Link>
-          <Link to={"/" + constants.FRONTEND_CATEGORIES}>
-            <Menu.Item name='categories' active={activeItem === 'categories'} onClick={this.handleItemClick}>
-              <Icon name='tags' />
-              Categories
+          <Link to={"/" + constants.FRONTEND_KEYS}>
+            <Menu.Item name='keys' active={activeItem === 'keys'} onClick={this.handleItemClick}>
+              <Icon name='privacy' />
+              Keys
             </Menu.Item>
           </Link>
           <Link to={"/" + constants.FRONTEND_SETTINGS}>
@@ -81,6 +81,11 @@ class Navbar extends Component {
               <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_CATEGORY}>
                 <Menu.Item class="dropdown" name='CategoryManagement' active={activeItem === 'CategoryManagement'} onClick={this.handleItemClick}>
                   Categories
+                </Menu.Item>
+              </Link>
+              <Link to={"/" + constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_KEY}>
+                <Menu.Item class="dropdown" name='KeyManagement' active={activeItem === 'KeyManagement'} onClick={this.handleItemClick}>
+                  Keys
                 </Menu.Item>
               </Link>
             </div>

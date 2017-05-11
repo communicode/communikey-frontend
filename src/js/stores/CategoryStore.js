@@ -5,6 +5,10 @@ import * as constants from '../util/Constants'
 class CategoryStore {
   @observable categories = [];
 
+  constructor() {
+    this.fetchCategories();
+  }
+
   addCategory(category) {
     this.categories.push(category);
   }

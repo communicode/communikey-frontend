@@ -46,14 +46,14 @@ class UserDetailModal extends AdminRoute  {
               </List.Content>
             </List.Item>
             <List.Item>
-              <List.Icon name='calendar' size='large' verticalAlign='middle' />
+              <List.Icon name='copyright' size='large' verticalAlign='middle' />
               <List.Content>
                 <List.Header>Created by</List.Header>
                 <List.Description> {this.state.selectedCategory.createdBy} </List.Description>
               </List.Content>
             </List.Item>
             <List.Item>
-              <List.Icon name='copyright' size='large' verticalAlign='middle' />
+              <List.Icon name='calendar' size='large' verticalAlign='middle' />
               <List.Content>
                 <List.Header>Creation date</List.Header>
                 <List.Description> {this.state.selectedCategory.createdDate} </List.Description>

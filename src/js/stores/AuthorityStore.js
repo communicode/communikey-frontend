@@ -5,6 +5,10 @@ import * as constants from '../util/Constants'
 class AuthorityStore {
   @observable authorities = [];
 
+  constructor() {
+    this.fetchAuthorities();
+  }
+
   addAuthority(authority) {
     this.authorities.push(authority);
   }

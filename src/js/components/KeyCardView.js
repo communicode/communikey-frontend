@@ -6,6 +6,9 @@ import "../../css/components/KeyCardView.css";
 class KeyCardView extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      addKeyModalIsOpen: false
+    };
   }
 
   render() {
@@ -29,11 +32,14 @@ class KeyCardView extends Component {
 
     return (
       <Segment class="keycardView">
-        <Header as='h1'>{this.props.category.name}</Header>
+        <Header as='h1'>
+          Keys: {this.props.category.name}
+        </Header>
         <Divider />
         <Grid stackable>
           <KeyCards keys={this.props.category.keys}/>
         </Grid>
+        {this.state.addUserModalIsOpen && <AddUserModal onModalClose={this.toggleAddUserModal}/>}
       </Segment>
     )
   }
