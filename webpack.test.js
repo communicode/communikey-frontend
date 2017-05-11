@@ -20,8 +20,7 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "client.min.js",
-    publicPath: COMMUNIKEY_FRONTEND_URL
+    filename: "client.min.js"
   },
 
   module: {
