@@ -1,0 +1,93 @@
+import React, { Component } from 'react'
+import { Button, List, Modal, Form} from 'semantic-ui-react'
+import AdminRoute from './../AdminRoute'
+import { keyService } from '../../util/keyService'
+import SelectCategoryModal from './SelectCategoryModal'
+import { categoryService } from '../../util/categoryService'
+
+/**
+ * @author mskyschally@communicode.de
+ */
+class KeyDetailModal extends AdminRoute  {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      passedKey: this.props.passedKey,
+      name: this.props.passedKey.name,
+      password: this.props.passedKey.password,
+      addKeyToCategoryIsOpen: false
+    }
+  }
+
+  handleDeleteKey = () => {
+    keyService.deleteKey(this.state.passedKey.id);
+    this.props.onModalClose();
+  };
+
+  toggleAddKeyToCategoryModal = () => {
+    const {addKeyToCategoryIsOpen} = this.state;
+    this.setState({
+      addKeyToCategoryIsOpen: !addKeyToCategoryIsOpen
+    })
+  };
+
+  handleAddKeyToCategory = (category) => {
+    categoryService.addKeyToCategory(category.id, this.state.passedKey.id)
+  };
+
+
+
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      //TODO: use passedKey object, delete single attributes
+      [name]: value
+    });
+  };
+
+  handleInputSubmit = () => {
+    keyService.editKey(this.state.name, this.state.password, this.state.passedKey.id);
+    this.props.onModalClose();
+  };
+
+  render() {
+    return (
+      <Modal size="small" dimmer={true} open={true}  >
+        <Modal.Header>Edit key: {this.state.name}</Modal.Header>
+        <Modal.Content>
+          <Form>
+            <Form.Group>
+              <Form.Input
+                name="name"
+                label="Name"
+                value={this.state.name}
+                class='modalInput'
+                onChange={this.handleInputChange}
+              />
+              <Form.Input
+                name="password"
+                label="Password"
+                value={this.state.password}
+                class='modalInput'
+                onChange={this.handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button content="Delete" class="deleteButton" icon="delete calendar" onClick={this.handleDeleteKey}/>
+          <Button content="Add to category" class="otherActionButton" icon="tags" onClick={this.toggleAddKeyToCategoryModal}/>
+          <Button class="saveButton" content="Save" icon="save" onClick={this.handleInputSubmit}/>
+          <Button content="Cancel" class="cancelButton" icon="remove" onClick={this.props.onModalClose}/>
+        </Modal.Actions>
+        {this.state.addKeyToCategoryIsOpen && <SelectCategoryModal onSelectCategory={this.handleAddKeyToCategory} onModalClose={this.toggleAddKeyToCategoryModal}/>}
+      </Modal>
+    )
+  }
+}
+
+export default KeyDetailModal;

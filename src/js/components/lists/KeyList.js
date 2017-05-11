@@ -3,7 +3,8 @@ import {Grid, Card, Icon} from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
 import { keyStore } from '../../stores/KeyStore'
 import UserDetailModal from './../modals/UserDetailModal'
-import KeyCard from "./../KeyCard";
+import KeyDetailModal from "./../modals/KeyDetailModal"
+import KeyCard from "./../KeyCard"
 
 /**
  * @author mskyschally@communicode.de
@@ -12,32 +13,37 @@ class KeyList extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
-      /*userDetailModalIsOpen: false,
-      cardUser: null*/
+      keyDetailModalIsOpen: false,
+      passedKey: null
     };
   }
 
-  toggleUserDetailModal = (user) => {
-   /* const {userDetailModalIsOpen} = this.state;
+  toggleKeyDetailModal = () => {
+    const {keyDetailModalIsOpen} = this.state;
     this.setState({
-      userDetailModalIsOpen: !userDetailModalIsOpen,
-      cardUser: user
-    });*/
+      keyDetailModalIsOpen: !keyDetailModalIsOpen
+    });
+  };
+
+  toggleCardClick = (passedKey) => {
+    this.setState({
+      passedKey: passedKey,
+      keyDetailModalIsOpen: true
+    });
   };
 
   render() {
     const keyList = keyStore.keys.map(key => {
       return (
-        <KeyCard passedKey={key}/>
+        <KeyCard passedKey={key} onCardClick={this.toggleCardClick}/>
       )
     });
 
     return (
       <div>
         {keyList}
-        {/*{this.state.userDetailModalIsOpen && <UserDetailModal cardUser={this.state.cardUser} onModalClose={this.toggleUserDetailModal}/>}*/}
+        {this.state.keyDetailModalIsOpen && <KeyDetailModal passedKey={this.state.passedKey} onModalClose={this.toggleKeyDetailModal}/>}
       </div>
-
     )
   }
 }

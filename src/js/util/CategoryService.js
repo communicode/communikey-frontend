@@ -38,8 +38,9 @@ class CategoryService extends Component {
       });
   }
 
-  addKey(categoryID, keyID) {
-    axios.get(constants.API_CATEGORIES_ADD_KEY + categoryID + constants.API_KEYS, {
+  addKeyToCategory(categoryID, keyID) {
+    console.log("gg",categoryID, keyID)
+    axios.get(constants.API_CATEGORIES_ADD_KEY + categoryID + "/keys", {
       params: {
         access_token: localStorage.getItem('access_token'),
         keyId: keyID

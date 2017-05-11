@@ -26,6 +26,37 @@ class KeyService extends Component {
         console.log(error);
       });
   }
+
+  editKey(name, password, id) {
+    axios.put(constants.API_KEYS_PUT_ONE + id, {
+      name: name,
+      password: password
+    }, {
+      params: {
+        access_token: localStorage.getItem('access_token')
+      }
+    })
+      .then(function (response) {
+        console.log(response);
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  deleteKey(id) {
+    axios.delete(constants.API_KEYS_DELETE_ONE + id, {
+      params: {
+        access_token: localStorage.getItem('access_token')
+      }
+    })
+      .then(function (response) {
+        console.log(response);
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }
 
 export let keyService = new KeyService();

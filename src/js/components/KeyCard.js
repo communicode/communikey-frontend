@@ -11,7 +11,7 @@ class KeyCard extends Component {
     if(this.props.passedKey !== undefined) {
       return (
         <Grid.Column>
-          <Card>
+          <Card onClick={() => this.props.onCardClick(this.props.passedKey)}>
             <Card.Content header={this.props.passedKey.name} />
               <Card.Meta>
                 <span className='date'>

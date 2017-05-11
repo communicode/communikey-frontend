@@ -52,7 +52,7 @@ class UserStore {
   }
 
   addUser(user) {
-    this.groups.push(user);
+    this.users.push(user);
   }
 
   fetchUsers() {
