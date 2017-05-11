@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, List, Modal} from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
 import { categoryService } from '../../util/CategoryService'
-import AddChildToCategoryModal from '../modals/AddChildToCategoryModal'
+import SelectCategoryModal from './SelectCategoryModal'
 
 class UserDetailModal extends AdminRoute  {
 
@@ -11,7 +11,7 @@ class UserDetailModal extends AdminRoute  {
     this.state = {
       selectedCategory: this.props.selectedCategory,
       name: this.props.selectedCategory.name,
-      addChildToCategoryModalIsOpen: null
+      selectCategoryModalIsOpen: false
     }
   }
 
@@ -20,9 +20,15 @@ class UserDetailModal extends AdminRoute  {
     this.props.onModalClose();
   };
 
-  toggleAddChildToCategoryModal = () => {
-    const {addChildToCategoryModalIsOpen} = this.state;
-    this.setState({addChildToCategoryModalIsOpen: !addChildToCategoryModalIsOpen})
+  toggleSelectCategoryModal = () => {
+    const {selectCategoryModalIsOpen} = this.state;
+    this.setState({
+      selectCategoryModalIsOpen: !selectCategoryModalIsOpen
+    })
+  };
+
+  handleAddCategoryChildToCategoryParent = (category) => {
+    categoryService.addChild(category.id, this.state.selectedCategory.id);
   };
 
   render() {
@@ -77,10 +83,10 @@ class UserDetailModal extends AdminRoute  {
         </Modal.Content>
         <Modal.Actions>
           <Button content="Delete" class="deleteButton" icon="delete calendar" onClick={this.handleDeleteCategory}/>
-          <Button content="Add as child" class="otherActionButton" icon="child" onClick={this.toggleAddChildToCategoryModal}/>
+          <Button content="Add as child" class="otherActionButton" icon="tags" onClick={this.toggleSelectCategoryModal}/>
           <Button content="Cancel" class="cancelButton" icon="remove" onClick={this.props.onModalClose}/>
         </Modal.Actions>
-        {this.state.addChildToCategoryModalIsOpen && <AddChildToCategoryModal selectedCategory={this.state.selectedCategory} onModalClose={this.toggleAddChildToCategoryModal}/>}
+        {this.state.selectCategoryModalIsOpen && <SelectCategoryModal onSelectCategory={this.handleAddCategoryChildToCategoryParent} onModalClose={this.toggleSelectCategoryModal}/>}
       </Modal>
 
     )

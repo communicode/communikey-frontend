@@ -16,7 +16,7 @@ class KeyDetailModal extends AdminRoute  {
       passedKey: this.props.passedKey,
       name: this.props.passedKey.name,
       password: this.props.passedKey.password,
-      addKeyToCategoryIsOpen: false
+      selectCategoryModalIsOpen: false
     }
   }
 
@@ -25,10 +25,10 @@ class KeyDetailModal extends AdminRoute  {
     this.props.onModalClose();
   };
 
-  toggleAddKeyToCategoryModal = () => {
-    const {addKeyToCategoryIsOpen} = this.state;
+  toggleSelectCategoryModal = () => {
+    const {selectCategoryModalIsOpen} = this.state;
     this.setState({
-      addKeyToCategoryIsOpen: !addKeyToCategoryIsOpen
+      selectCategoryModalIsOpen: !selectCategoryModalIsOpen
     })
   };
 
@@ -80,11 +80,11 @@ class KeyDetailModal extends AdminRoute  {
         </Modal.Content>
         <Modal.Actions>
           <Button content="Delete" class="deleteButton" icon="delete calendar" onClick={this.handleDeleteKey}/>
-          <Button content="Add to category" class="otherActionButton" icon="tags" onClick={this.toggleAddKeyToCategoryModal}/>
+          <Button content="Add to category" class="otherActionButton" icon="tags" onClick={this.toggleSelectCategoryModal}/>
           <Button class="saveButton" content="Save" icon="save" onClick={this.handleInputSubmit}/>
           <Button content="Cancel" class="cancelButton" icon="remove" onClick={this.props.onModalClose}/>
         </Modal.Actions>
-        {this.state.addKeyToCategoryIsOpen && <SelectCategoryModal onSelectCategory={this.handleAddKeyToCategory} onModalClose={this.toggleAddKeyToCategoryModal}/>}
+        {this.state.selectCategoryModalIsOpen && <SelectCategoryModal onSelectCategory={this.handleAddKeyToCategory} onModalClose={this.toggleSelectCategoryModal}/>}
       </Modal>
     )
   }
