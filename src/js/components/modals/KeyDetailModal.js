@@ -33,7 +33,8 @@ class KeyDetailModal extends AdminRoute  {
   };
 
   handleAddKeyToCategory = (category) => {
-    categoryService.addKeyToCategory(category.id, this.state.passedKey.id)
+    categoryService.addKeyToCategory(category.id, this.state.passedKey.id);
+    this.props.onModalClose();
   };
 
 

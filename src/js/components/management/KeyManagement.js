@@ -27,7 +27,7 @@ class UserManagement extends AdminRoute {
       <Segment class="adminView">
         <Header as='h1'>
           Key management
-          <Button class="headerButton" icon='add circle' content='Key' onClick={this.toggleAddKeyModal}/>
+          <Button class="headerButton" icon='plus' content='Key' onClick={this.toggleAddKeyModal}/>
         </Header>
         <Divider />
         <Grid stackable>

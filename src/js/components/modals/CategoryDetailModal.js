@@ -29,6 +29,7 @@ class UserDetailModal extends AdminRoute  {
 
   handleAddCategoryChildToCategoryParent = (category) => {
     categoryService.addChild(category.id, this.state.selectedCategory.id);
+    this.props.onModalClose();
   };
 
   render() {
@@ -83,7 +84,7 @@ class UserDetailModal extends AdminRoute  {
         </Modal.Content>
         <Modal.Actions>
           <Button content="Delete" class="deleteButton" icon="delete calendar" onClick={this.handleDeleteCategory}/>
-          <Button content="Add as child" class="otherActionButton" icon="tags" onClick={this.toggleSelectCategoryModal}/>
+          <Button content="Add as child" class="otherActionButton" icon="child" onClick={this.toggleSelectCategoryModal}/>
           <Button content="Cancel" class="cancelButton" icon="remove" onClick={this.props.onModalClose}/>
         </Modal.Actions>
         {this.state.selectCategoryModalIsOpen && <SelectCategoryModal onSelectCategory={this.handleAddCategoryChildToCategoryParent} onModalClose={this.toggleSelectCategoryModal}/>}
