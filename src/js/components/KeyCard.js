@@ -28,7 +28,7 @@ class KeyCard extends Component {
               />
             </Card.Content>
             <Card.Content extra>
-              <Image src='../../img/communikey-logo.svg' avatar />
+              <Image src='/assets/img/communikey-logo.svg' avatar />
               <span>Responsible user</span>
             </Card.Content>
           </Card>

@@ -37,7 +37,7 @@ class Navbar extends Component {
         <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
           <Link to="home">
             <div class="navbarLogo">
-              <Image src='../../img/communikey-logo_transparent.svg' size="tiny"/>
+              <Image src='/assets/img/communikey-logo_transparent.svg' size="tiny"/>
             </div>
           </Link>
           <Link to={"/" + constants.FRONTEND_HOME}>
