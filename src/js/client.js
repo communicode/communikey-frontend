@@ -2,8 +2,6 @@ import '../../semantic/dist/semantic.min.css';
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, browserHistory, IndexRedirect } from "react-router";
-import { observer } from "mobx-react"
-import { autorun } from "mobx"
 import Login, { LoginConfirmation, Logout } from "./components/Login";
 import Index from "./components/Index"
 import Home from "./components/Home"
@@ -15,7 +13,6 @@ import CategoryManagement from "./components/management/CategoryManagement"
 import KeyManagement from "./components/management/KeyManagement"
 import * as constants from './util/Constants'
 
-@observer
 class App extends React.Component {
   constructor() {
     super();
