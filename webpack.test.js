@@ -20,8 +20,11 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "client.min.js",
-    publicPath: COMMUNIKEY_FRONTEND_URL
+    filename: "client.min.js"
+  },
+
+  resolve: {
+    modules: ["node_modules", "./src"]
   },
 
   module: {
@@ -37,11 +40,11 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif)$/,
-        use: "file-loader"
+        use: "file-loader?limit=1024&name=[name].[ext]"
       },
       {
         test: /\.(woff|woff2|eot|ttf|[ot]tf|svg)$/,
-        use: "url-loader"
+        use: "url-loader?limit=1024&name=[name].[ext]"
       }
     ]
   },

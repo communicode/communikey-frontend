@@ -37,7 +37,7 @@ class Login extends React.Component {
     return (
       <div>
         <Image
-          src='../../img/communikey-logo_transparent.svg'
+          src='/assets/img/communikey-logo_transparent.svg'
           height="300px"
           class="centerHorizontal"
           id="logo"
