@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import {Grid, Card, Icon} from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
 import { keyStore } from '../../stores/KeyStore'
-import UserDetailModal from './../modals/UserDetailModal'
-import KeyDetailModal from "./../modals/KeyDetailModal"
+import EditKeyDetailModal from "../modals/EditKeyDetailModal"
 import KeyCard from "./../KeyCard"
 
 /**
@@ -42,7 +40,7 @@ class KeyList extends AdminRoute {
     return (
       <div>
         {keyList}
-        {this.state.keyDetailModalIsOpen && <KeyDetailModal passedKey={this.state.passedKey} onModalClose={this.toggleKeyDetailModal}/>}
+        {this.state.keyDetailModalIsOpen && <EditKeyDetailModal passedKey={this.state.passedKey} onModalClose={this.toggleKeyDetailModal}/>}
       </div>
     )
   }
