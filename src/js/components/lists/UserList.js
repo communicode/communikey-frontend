@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {inject, observer} from "mobx-react";
 import {Grid, Card, Icon} from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
-import { userStore } from '../../stores/UserStore'
 import UserDetailModal from './../modals/UserDetailModal'
 
+@inject("userStore") @observer
 class UserList extends AdminRoute {
   constructor(props) {
     super(props);
@@ -12,6 +13,11 @@ class UserList extends AdminRoute {
       cardUser: null
     };
   }
+
+  componentDidMount() {
+    this.props.userStore.fetchUsers();
+  }
+
 
   toggleUserDetailModal = (user) => {
     const {userDetailModalIsOpen} = this.state;
@@ -22,7 +28,7 @@ class UserList extends AdminRoute {
   };
 
   render() {
-    const userCardList = userStore.users.map(user => {
+    const userCardList = this.props.userStore.users.map(user => {
       return (
         <Grid.Column key={user.id}>
           <Card onClick={() => this.toggleUserDetailModal(user)}>
@@ -48,7 +54,7 @@ class UserList extends AdminRoute {
     return (
       <div>
         {userCardList}
-        {this.state.userDetailModalIsOpen && <UserDetailModal cardUser={this.state.cardUser} onModalClose={this.toggleUserDetailModal}/>}
+        {this.state.userDetailModalIsOpen && <UserDetailModal key={this.state.cardUser.login} cardUser={this.state.cardUser} onModalClose={this.toggleUserDetailModal}/>}
       </div>
 
     )

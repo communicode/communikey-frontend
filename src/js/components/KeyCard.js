@@ -19,7 +19,7 @@ class KeyCard extends Component {
                   Created 23rd January 2016
                 </span>
               </Card.Meta>
-            <Card.Content description>
+            <Card.Content>
               <Input
                 action={{ color: 'teal', icon: 'copy' }}
                 defaultValue={this.props.passedKey.password}

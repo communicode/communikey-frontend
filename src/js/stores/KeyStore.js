@@ -35,7 +35,7 @@ class KeyStore {
       if (response.status === 201) {
         this.keys.push(response.data);
       }
-    }).catch(function (error) {
+    }).catch(error => {
       console.log(error);
     });
   }
@@ -54,7 +54,7 @@ class KeyStore {
       if (response.status === 204) {
         this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1);
       }
-    }).catch(function (error) {
+    }).catch(error => {
       console.log(error);
     });
   }
@@ -73,7 +73,7 @@ class KeyStore {
       if (response.status === 200) {
         this.keys = response.data;
       }
-    }).catch(function (error) {
+    }).catch(error => {
       console.log(error);
     });
   }
@@ -97,7 +97,7 @@ class KeyStore {
       if (response.status === 200) {
         this.keys[this.keys.findIndex(key => key.id === response.data.id)] = response.data;
       }
-    }).catch(function (error) {
+    }).catch(error => {
       console.log(error);
     });
   }
