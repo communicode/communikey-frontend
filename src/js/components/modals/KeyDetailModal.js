@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Button, List, Modal, Form} from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
-import { keyService } from '../../util/keyService'
+import { keyService } from '../../util/KeyService'
 import SelectCategoryModal from './SelectCategoryModal'
-import { categoryService } from '../../util/categoryService'
+import { categoryService } from '../../util/CategoryService'
 
 /**
  * @author mskyschally@communicode.de
