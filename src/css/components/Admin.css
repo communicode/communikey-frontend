@@ -41,7 +41,6 @@
 }
 
 .ui.deleteButton {
-  #background-color: #BF616A;
   background-color: transparent;
   border: 1px solid #BF616A;
   color: #BF616A;
@@ -53,7 +52,6 @@
 }
 
 .ui.saveButton {
-  #background-color: #A3BE8C;
   background-color: transparent;
   border: 1px solid #A3BE8C;
   color: #A3BE8C;
@@ -77,7 +75,6 @@
 }
 
 .ui.otherActionButton {
-  #background-color: #D8DEE9;
   background-color: transparent;
   border: 1px solid #4C566A;
   color: #4C566A;
