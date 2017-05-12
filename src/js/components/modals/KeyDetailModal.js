@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
-import { Button, List, Modal, Form} from 'semantic-ui-react'
+import React from 'react'
+import {inject} from "mobx-react";
+import { Button, Modal, Form} from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
-import { keyService } from '../../util/KeyService'
 import SelectCategoryModal from './SelectCategoryModal'
 import { categoryService } from '../../util/CategoryService'
 
 /**
+ * A modal for details of a key.
+ *
  * @author mskyschally@communicode.de
+ * @author sgreb@communicode.de
+ * @since 0.5.0
  */
+@inject("keyStore")
 class KeyDetailModal extends AdminRoute  {
 
   constructor(props) {
@@ -21,7 +26,7 @@ class KeyDetailModal extends AdminRoute  {
   }
 
   handleDeleteKey = () => {
-    keyService.deleteKey(this.state.passedKey.id);
+    this.props.keyStore.deleteKey(this.state.passedKey.id);
     this.props.onModalClose();
   };
 
@@ -37,8 +42,6 @@ class KeyDetailModal extends AdminRoute  {
     this.props.onModalClose();
   };
 
-
-
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -51,7 +54,7 @@ class KeyDetailModal extends AdminRoute  {
   };
 
   handleInputSubmit = () => {
-    keyService.editKey(this.state.name, this.state.password, this.state.passedKey.id);
+    this.props.keyStore.updateKey(this.state.passedKey.id, this.state.name, this.state.password);
     this.props.onModalClose();
   };
 

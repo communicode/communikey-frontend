@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
-import {Grid, Card, Icon} from 'semantic-ui-react'
+import React from 'react'
+import {observer, inject} from "mobx-react";
 import AdminRoute from './../AdminRoute'
 import { keyStore } from '../../stores/KeyStore'
-import UserDetailModal from './../modals/UserDetailModal'
 import KeyDetailModal from "./../modals/KeyDetailModal"
 import KeyCard from "./../KeyCard"
 
 /**
+ * A observer list of {@link KeyCard}s.
+ *
  * @author mskyschally@communicode.de
+ * @author sgreb@communicode.de
+ * @since 0.5.0
  */
+@inject("keyStore") @observer
 class KeyList extends AdminRoute {
   constructor(props) {
     super(props);
@@ -16,6 +20,10 @@ class KeyList extends AdminRoute {
       keyDetailModalIsOpen: false,
       passedKey: null
     };
+  }
+
+  componentDidMount() {
+    this.props.keyStore.fetchKeys();
   }
 
   toggleKeyDetailModal = () => {
@@ -33,9 +41,9 @@ class KeyList extends AdminRoute {
   };
 
   render() {
-    const keyList = keyStore.keys.map(key => {
+    const keyList = this.props.keyStore.keys.map(key => {
       return (
-        <KeyCard passedKey={key} onCardClick={this.toggleCardClick}/>
+        <KeyCard key={key.id} passedKey={key} onCardClick={this.toggleCardClick}/>
       )
     });
 
