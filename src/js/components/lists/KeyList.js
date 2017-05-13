@@ -2,7 +2,7 @@ import React from 'react'
 import {observer, inject} from "mobx-react";
 import AdminRoute from './../AdminRoute'
 import { keyStore } from '../../stores/KeyStore'
-import KeyDetailModal from "./../modals/KeyDetailModal"
+import EditKeyDetailModal from "../modals/EditKeyDetailModal"
 import KeyCard from "./../KeyCard"
 
 /**
@@ -50,7 +50,7 @@ class KeyList extends AdminRoute {
     return (
       <div>
         {keyList}
-        {this.state.keyDetailModalIsOpen && <KeyDetailModal passedKey={this.state.passedKey} onModalClose={this.toggleKeyDetailModal}/>}
+        {this.state.keyDetailModalIsOpen && <EditKeyDetailModal passedKey={this.state.passedKey} onModalClose={this.toggleKeyDetailModal}/>}
       </div>
     )
   }
