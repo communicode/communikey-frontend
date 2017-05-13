@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
-import { Accordion, Icon, Segment, Image } from 'semantic-ui-react'
-import axios from 'axios'
-import KeyCardView from "./KeyCardView"
+import React, { Component } from "react";
+import {inject, observer} from "mobx-react";
+import {Accordion, Icon, Segment} from "semantic-ui-react";
+import KeyCardView from "./KeyCardView";
 import "../../css/components/CategoryTree.css"
-import * as constants from '../util/Constants'
-import { categoryStore } from "../stores/CategoryStore"
 
+@inject("categoryStore") @observer
 class CategoryTree extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +19,10 @@ class CategoryTree extends Component {
     // this.state.selectedCategory = category;
     // this.forceUpdate();
     this.setState({selectedCategory: category});
+  }
+
+  componentDidMount() {
+    this.props.categoryStore.fetchCategories();
   }
 
   render() {
@@ -49,7 +52,7 @@ class CategoryTree extends Component {
     return (
       <div>
         <Segment class="categoryTree">
-          <CategoryList node={categoryStore.categories} />
+          <CategoryList node={this.props.categoryStore.categories} />
         </Segment>
         <KeyCardView category={this.state.selectedCategory}/>
       </div>

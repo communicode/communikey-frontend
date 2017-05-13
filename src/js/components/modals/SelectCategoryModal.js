@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { Button, Modal, Accordion, Icon } from 'semantic-ui-react'
-import AdminRoute from './../AdminRoute'
-import { categoryService } from '../../util/CategoryService'
-import { categoryStore } from "../../stores/CategoryStore"
+import React from "react";
+import {inject} from "mobx-react";
+import {Button, Modal, Accordion, Icon} from "semantic-ui-react";
+import AdminRoute from "./../AdminRoute";
 
 /**
  * @author mskyschally@communicode.de
  */
+@inject("categoryStore")
 class SelectCategoryModal extends AdminRoute {
   constructor(props) {
     super(props);
@@ -55,7 +55,7 @@ class SelectCategoryModal extends AdminRoute {
         <Modal.Header>Select category</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <CategoryList node={categoryStore.categories} />
+            <CategoryList node={this.props.categoryStore.categories} />
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>

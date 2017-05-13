@@ -12,15 +12,17 @@ import About from "./components/About"
 import UserManagement from "./components/management/UserManagement"
 import CategoryManagement from "./components/management/CategoryManagement"
 import KeyManagement from "./components/management/KeyManagement"
+import {categoryStore} from "./stores/CategoryStore";
 import {keyStore} from "./stores/KeyStore";
 import {userStore} from "./stores/UserStore";
 import * as constants from './util/Constants'
 
-const stores = {keyStore, userStore};
+const stores = {categoryStore, keyStore, userStore};
 
 class App extends React.Component {
   constructor() {
     super();
+    categoryStore.fetchCategories();
     keyStore.fetchKeys();
     userStore.fetchUsers();
   }

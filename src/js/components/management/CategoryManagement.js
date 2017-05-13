@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
-import {Segment, Header, Divider, Button, Accordion, Icon} from 'semantic-ui-react'
-import AdminRoute from '../AdminRoute'
-import '../../../css/components/Admin.css'
-import { categoryStore } from "../../stores/CategoryStore"
-import CategoryDetailModal from '../modals/CategoryDetailModal'
-import AddCategoryModal from '../modals/AddCategoryModal'
+import React from "react";
+import {inject} from "mobx-react";
+import {Segment, Header, Divider, Button, Accordion, Icon} from "semantic-ui-react";
+import "../../../css/components/Admin.css";
+import AdminRoute from "../AdminRoute";
+import CategoryDetailModal from "../modals/CategoryDetailModal";
+import AddCategoryModal from "../modals/AddCategoryModal";
 
-class CategorieManagement extends AdminRoute {
+@inject("categoryStore")
+class CategoryManagement extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +15,10 @@ class CategorieManagement extends AdminRoute {
       selectedCategory: null,
       addCategoryModalIsOpen: false
     };
+  }
+
+  componentDidMount() {
+    this.props.categoryStore.fetchCategories();
   }
 
   toggleCategoryDetailModal = (category) => {
@@ -62,11 +67,11 @@ class CategorieManagement extends AdminRoute {
           <Button class="headerButton" icon='add' content='Categorie' onClick={this.toggleAddCategoryModal}/>
         </Header>
         <Divider />
-        <CategoryList node={categoryStore.categories} />
+        <CategoryList node={this.props.categoryStore.categories} />
         {this.state.addCategoryModalIsOpen && <AddCategoryModal onModalClose={this.toggleAddCategoryModal}/>}
         {this.state.categoryDetailModalIsOpen && <CategoryDetailModal selectedCategory={this.state.selectedCategory} onModalClose={this.toggleCategoryDetailModal}/>}
       </Segment>
     )
   }
 }
-export default CategorieManagement;
+export default CategoryManagement;
