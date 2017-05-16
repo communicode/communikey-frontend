@@ -125,14 +125,14 @@ class UserStore {
    *
    * @param {string} login - The login of the user to update
    * @param {string} email - The email of the user
-   * @param {string} firstname - The first name of the user
-   * @param {string} lastname - The last name of the user
+   * @param {string} firstName - The first name of the user
+   * @param {string} lastName - The last name of the user
    */
-  updateUser(login, email, firstname, lastname) {
+  updateUser(login, email, firstName, lastName) {
     axios.put(API_USERS_PUT_ONE + login, {
       email: email,
-      firstName: firstname,
-      lastName: lastname
+      firstName: firstName,
+      lastName: lastName
     }, {
       params: {
         access_token: localStorage.getItem("access_token")
