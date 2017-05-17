@@ -32,3 +32,9 @@ semantic/
 # + WEBPACK +
 # +---------+
 /dist/
+
+# +---------+
+# +  JEST   +
+# +---------+
+coverage/
+
