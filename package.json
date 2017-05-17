@@ -27,13 +27,18 @@
     "webpack": "~2.2.1"
   },
   "devDependencies": {
+    "babel-jest": "~20.0.1",
+    "babel-preset-es2015": "~6.24.1",
+    "jest": "~20.0.1",
     "webpack-dev-server": "~2.4.2"
   },
   "scripts": {
     "dev": "webpack-dev-server --env=dev --hot --history-api-fallback",
-    "dist:test": "node_modules/.bin/webpack --env=test --progress --profile --colors && cp -rf ./src/assets ./dist",
+    "dist:test": "node_modules/.bin/webpack --env=testing --progress --profile --colors && cp -rf ./src/assets ./dist",
     "dist:prod": "node_modules/.bin/webpack --env=prod --progress --profile --colors && cp -rf ./src/assets ./dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --no-cache",
+    "test:cov": "jest --coverage --no-cache",
+    "test:watch": "jest --watch --no-cache"
   },
   "engines": {
     "node": "<=6.5"
