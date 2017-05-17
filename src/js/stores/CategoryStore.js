@@ -77,7 +77,24 @@ class CategoryStore {
     }).then(response => {
       if (response.status === 201) {
         this.categories.push(response.data);
-        console.log("CREATED CATEGORY", response.data)
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  /**
+   * Gets the category with the specified ID.
+   *
+   * @param {string} categoryId - The ID of the category to get
+   */
+  get(categoryId) {axios.get(API_CATEGORIES + "/" + categoryId, {
+      params: {
+        access_token: localStorage.getItem("access_token")
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        return response.data;
       }
     }).catch(error => {
       console.log(error);
