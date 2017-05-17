@@ -106,16 +106,13 @@ class CategoryStore {
    *
    * @param {number} categoryId - The ID of the category to delete
    */
-  deleteOne(categoryId) {
+  delete(categoryId) {
     axios.delete(API_CATEGORIES_DELETE_ONE + categoryId, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
-      if (response.status === 204) {
-        this.categories.splice(this.categories.findIndex(category => category.id === categoryId), 1);
-        console.log("DELETED CATEGORY")
-      }
+    }).then(() => {
+        this.fetchCategories();
     }).catch(error => {
       console.log(error);
     });
