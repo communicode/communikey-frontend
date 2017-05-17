@@ -136,7 +136,60 @@ class CategoryStore {
       console.log(error);
     });
   }
+
+  /**
+   * Finds the category with the specified ID.
+   *
+   * @returns {object} The category if found
+   */
+  findOne(categoryId) {
+    return this.categories[this.categories.findIndex(category => category.id === categoryId)];
+  }
+
+  /**
+   * Updates a category.
+   *
+   * @param {object} category - The updated category
+   * @since 0.6.0
+   */
+  update(category) {
+    axios.put(API_CATEGORIES + "/" + category.id, {
+      name: category.name
+    }, {
+      params: {
+        access_token: localStorage.getItem("access_token")
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  /**
+   * Updates the responsible user of the category with the specified ID.
+   *
+   * @param {number} categoryId - The ID of the category to update
+   * @param {string} userLogin - The login of the user to set as responsible
+   * @since 0.6.0
+   */
+  updateResponsible(categoryId, userLogin) {
+    axios.put(API_CATEGORIES_PUT_RESPONSIBLE + categoryId + API_CATEGORY_RESPONSIBLE, {
+      userLogin: userLogin
+    }, {
+      params: {
+        access_token: localStorage.getItem("access_token")
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  }
 }
 
 export let categoryStore = new CategoryStore();
-export default CategoryStore;

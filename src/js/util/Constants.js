@@ -20,6 +20,7 @@ export const FRONTEND_KEY = 'key'
 export const API = BACKEND + '/api'
 
 export const API_CHILDREN = '/children'
+export const API_CATEGORY_RESPONSIBLE = '/responsible'
 
 export const API_VALIDATE_USER = API + '?validate_user'
 export const API_CHECK_PRIVILEGE = API + '?privileged'
