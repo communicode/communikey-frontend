@@ -23,7 +23,7 @@ class AddCategoryModal extends AdminRoute {
 
   render() {
     return (
-      <Modal size="small" dimmer={false} open={true}  >
+      <Modal size="small" dimmer="inverted" open={true}  >
         <Modal.Header>New Category</Modal.Header>
         <Modal.Content>
           <Modal.Description>
