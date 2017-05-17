@@ -1,11 +1,14 @@
 import axios from "axios";
 import {observable} from "mobx";
 import {
+  API_CATEGORIES,
   API_CATEGORIES_ADD_CHILD,
   API_CATEGORIES_ADD_KEY,
   API_CATEGORIES_DELETE_ONE,
   API_CATEGORIES_GET_ALL,
   API_CATEGORIES_POST_ONE,
+  API_CATEGORIES_PUT_RESPONSIBLE,
+  API_CATEGORY_RESPONSIBLE,
   API_CHILDREN
 } from "../util/Constants";
 
@@ -34,7 +37,6 @@ class CategoryStore {
     }).then(response => {
       if (response.status === 200) {
         this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
-        console.log("ADDED CHILD", response.data)
       }
     }).catch(error => {
       console.log(error);
@@ -55,7 +57,6 @@ class CategoryStore {
       }
     }).then(response => {
       this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
-      console.log("ADDED KEY", response.data)
       }).catch(error => {
         console.log(error);
       });
