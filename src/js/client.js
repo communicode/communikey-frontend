@@ -1,6 +1,7 @@
 import '../../semantic/dist/semantic.min.css';
 import React from "react";
 import ReactDOM from "react-dom";
+import { useStrict } from 'mobx';
 import {Provider} from "mobx-react";
 import { Router, Route, browserHistory, IndexRedirect } from "react-router";
 import Login, { LoginConfirmation, Logout } from "./components/Login";
@@ -16,6 +17,8 @@ import {categoryStore} from "./stores/CategoryStore";
 import {keyStore} from "./stores/KeyStore";
 import {userStore} from "./stores/UserStore";
 import * as constants from './util/Constants'
+
+useStrict(true);
 
 const stores = {categoryStore, keyStore, userStore};
 
