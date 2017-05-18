@@ -4,25 +4,31 @@ import AdminRoute from './../AdminRoute'
 import { categoryService } from '../../util/CategoryService'
 import { categoryStore } from "../../stores/CategoryStore"
 
-class AddChildToCategoryModal extends AdminRoute {
+/**
+ * @author mskyschally@communicode.de
+ */
+class SelectCategoryModal extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
-      childID: this.props.selectedCategory.id
+      selectedCategory: null
     }
   };
 
-  handleSubmit = (parentID) => {
-    console.log("parentID " + parentID + ", childID " + this.state.childID)
+  handleSubmit = (selectedCategory) => {
+    /*console.log("parentID " + parentID + ", childID " + this.state.childID)
     categoryService.addChild(parentID, this.state.childID);
-    this.props.onModalClose();
+    this.props.onModalClose();*/
+    this.setState({
+      selectedCategory: selectedCategory
+    })
   };
 
   render() {
     //TODO: Remove duplicate
     // CategoryTree, CategoryManagement & AddChildToCategoryModal use the same function (CategoryList) with different onClick
 
-    let handleClick = (parentID) => this.handleSubmit(parentID);
+    let handleClick = (category) => this.props.onSelectCategory(category);
 
     function CategoryList(props) {
       if(props.node !== undefined && props.node.length > 0) {
@@ -30,7 +36,7 @@ class AddChildToCategoryModal extends AdminRoute {
         props.node.map(function(category) {
           rows.push(
             <Accordion fluid activeIndex={0} key={category.id}>
-              <Accordion.Title onClick={() => handleClick(category.id)}>
+              <Accordion.Title onClick={() => handleClick(category)}>
                 <Icon name='triangle right' />
                 {category.name}
               </Accordion.Title>
@@ -46,7 +52,7 @@ class AddChildToCategoryModal extends AdminRoute {
 
     return (
       <Modal size="small" dimmer={true} open={true}  >
-        <Modal.Header>Add "{this.props.selectedCategory.name}" as child to..</Modal.Header>
+        <Modal.Header>Select category</Modal.Header>
         <Modal.Content>
           <Modal.Description>
             <CategoryList node={categoryStore.categories} />
@@ -60,4 +66,4 @@ class AddChildToCategoryModal extends AdminRoute {
   }
 }
 
-export default AddChildToCategoryModal;
+export default SelectCategoryModal;

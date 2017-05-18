@@ -3,7 +3,7 @@ import CategoryTree from "./CategoryTree";
 import {} from 'semantic-ui-react'
 import AuthenticatedRoute from "./AuthenticatedRoute";
 
-class Categories extends AuthenticatedRoute {
+class Keys extends AuthenticatedRoute {
   render() {
     return (
       <CategoryTree/>
@@ -11,4 +11,4 @@ class Categories extends AuthenticatedRoute {
   }
 }
 
-export default Categories;
+export default Keys;
