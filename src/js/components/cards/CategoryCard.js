@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {Card, Divider, Grid, Icon, Image, Input, Label, List, Popup} from "semantic-ui-react";
+import {Card, Divider, Grid, Header, Icon, Image, Input, Label, List, Popup} from "semantic-ui-react";
 
 /**
  * A category represented as a card.
@@ -12,20 +12,14 @@ class CategoryCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //
       /**
        * The lock status of the category card.
        *
        * @type {boolean}
        * @default true
        */
-      isLocked: true,
-      /**
-       * The current category.
-       *
-       * @type {object}
-       * @default props.category
-       */
-      category: props.category
+      isLocked: true
     };
   }
 
@@ -36,7 +30,7 @@ class CategoryCard extends Component {
    */
   componentWillReceiveProps(nextProps) {
     this.setState({
-      category: nextProps.category
+      isLocked: true
     });
   }
 
@@ -46,16 +40,17 @@ class CategoryCard extends Component {
    */
   handleDeleteRequest = () => {
     this.setState({isLocked: !this.state.isLocked});
-    this.props.onDelete(this.state.category);
+    this.props.onDelete(this.props.category);
   };
 
   /**
    * Handles category attribute value change events from input components.
+   * Fires the {@code onChange()} prop callback function.
    *
    * @param event - The change event
    */
   handleInputChange = (event) => {
-    this.state.category[event.target.name] = event.target.value;
+    this.props.onChange(event.target.name, event.target.value);
   };
 
   /**
@@ -64,11 +59,11 @@ class CategoryCard extends Component {
    */
   toggleLockStatus = () => {
     this.setState({isLocked: !this.state.isLocked});
-    this.state.isLocked || this.props.onSave(this.state.category);
+    this.state.isLocked || this.props.onSave();
   };
 
   render() {
-    const {category} = this.state;
+    const {category} = this.props;
 
     /**
      * The creation date attribute of a category as localized string.
@@ -86,6 +81,8 @@ class CategoryCard extends Component {
 
     /**
      * Returns the name of lock icon depending on the current lock status.
+     *
+     * @return {string} The name of the lock icon
      */
     const lockIcon = () => this.state.isLocked ? "pencil" : "save";
 
@@ -94,20 +91,26 @@ class CategoryCard extends Component {
         {this.props.image}
         <Card.Content>
           <Card.Header>
-            <Input
-              name="name"
-              /*
-               * The "key" prop is important to override the default value with the updated value from the state after initialization, otherwise the
-               * input will be handled as uncontrolled component which prevents React from updating the value in the DOM.
-               * Reference: https://facebook.github.io/react/docs/uncontrolled-components.html
-               * */
-              key={category.id}
-              onChange={this.handleInputChange}
-              defaultValue={category.name}
-              readOnly={this.state.isLocked}
-              size="mini"
-              transparent={this.state.isLocked}
-            />
+            {
+              this.state.isLocked ?
+                <Header as="h5">{category.name}</Header> :
+                <Input
+                  /*
+                   * The "name" prop is the name of category attribute the input holds as value. it is important to process a changed value to pass it
+                   * to the event handler function.
+                   * */
+                  name="name"
+                  /*
+                   * The "key" prop is important to override the default value with the updated value from the state after initialization, otherwise the
+                   * input will be handled as uncontrolled component which prevents React from updating the value in the DOM.
+                   * Reference: https://facebook.github.io/react/docs/uncontrolled-components.html
+                   * */
+                  key={category.id}
+                  onChange={this.handleInputChange}
+                  defaultValue={category.name}
+                  size="mini"
+                />
+            }
             {this.props.editable && <Label as="a" corner="right" icon={lockIcon()} onClick={this.toggleLockStatus}/>}
             {!this.state.isLocked && <Label as="a" corner="left" icon="trash outline" onClick={this.handleDeleteRequest}/>}
           </Card.Header>
@@ -152,12 +155,17 @@ CategoryCard.propTypes = {
   image: PropTypes.element,
 
   /**
-   * @type {object} The callback function to handle category deletion
+   * @type {handleCategoryCardChange} The callback function to handle category changes
+   */
+  onChange: PropTypes.func.isRequired,
+
+  /**
+   * @type {handleCategoryCardChange} The callback function to handle category deletions
    */
   onDelete: PropTypes.func.isRequired,
 
   /**
-   * @type {object} The callback function to handle category changes
+   * @type {object} The callback function to handle category saves
    */
   onSave: PropTypes.func.isRequired
 };

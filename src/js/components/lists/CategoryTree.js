@@ -11,15 +11,6 @@ import {Accordion, Icon} from "semantic-ui-react";
 class CategoryTree extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      /**
-       * The currently selected category.
-       *
-       * @type {object}
-       * @default null
-       */
-      selectedCategory: null
-    }
   }
 
   /**
@@ -29,7 +20,6 @@ class CategoryTree extends Component {
    * @param {object} category - The category of which the title has been clicked
    */
   handleTitleClick = (category) => {
-    this.setState({selectedCategory: category});
     this.props.onCategorySelect(category);
   };
 

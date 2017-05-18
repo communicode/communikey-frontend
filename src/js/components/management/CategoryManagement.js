@@ -8,6 +8,13 @@ import AddCategoryModal from "../modals/AddCategoryModal";
 import CategoryCard from "./../cards/CategoryCard";
 import CategoryTree from "../lists/CategoryTree";
 
+/**
+ * A board to manage categories.
+ *
+ * @author mskyschally@communicode.de
+ * @author sgreb@communicode.de
+ * @since 0.5.0
+ */
 @inject("categoryStore") @observer
 class CategoryManagement extends AdminRoute {
   constructor(props) {
@@ -28,15 +35,32 @@ class CategoryManagement extends AdminRoute {
     this.setState({categoryDetailModalIsOpen: !categoryDetailModalIsOpen})
   };
 
-  handleCategoryCardSave = (category) => {
-    this.props.categoryStore.update(category);
-  };
+  /**
+   * Handles a category card change.
+   *
+   * @callback handleCategoryCardChange
+   * @param {string} categoryAttribute - The name of the attribute to change
+   * @param value - The new attribute value
+   */
+  handleCategoryCardChange = (categoryAttribute, value) => this.state.selectedCategory[categoryAttribute] = value;
 
-  handleCategoryCardDelete = (category) => {
-    this.props.categoryStore.delete(category.id);
+  /**
+   * Handles a category card deletion.
+   *
+   * @callback handleCategoryCardDelete
+   */
+  handleCategoryCardDelete = () => {
+    this.props.categoryStore.delete(this.state.selectedCategory.id);
     this.setState({selectedCategory: null});
     this.props.categoryStore.fetchCategories();
   };
+
+  /**
+   * Handles a category card save.
+   *
+   * @callback handleCategoryCardSave
+   */
+  handleCategoryCardSave = () => this.props.categoryStore.update(this.state.selectedCategory);
 
   toggleAddCategoryModal = () => {
     const {addCategoryModalIsOpen} = this.state;
@@ -63,9 +87,10 @@ class CategoryManagement extends AdminRoute {
             {selectedCategory &&
             <CategoryCard
               category={selectedCategory}
-              onSave={this.handleCategoryCardSave}
               editable={true}
-              onDelete={this.handleCategoryCardDelete}/>
+              onChange={this.handleCategoryCardChange}
+              onDelete={this.handleCategoryCardDelete}
+              onSave={this.handleCategoryCardSave}/>
             }
             <Rail dividing={true} position="left">
               <Menu vertical={true} fluid={true}>
