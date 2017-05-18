@@ -36,7 +36,7 @@ class CategoryStore {
       }
     }).then(response => {
       if (response.status === 200) {
-        this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
+        this.fetchCategories();
       }
     }).catch(error => {
       console.log(error);
@@ -56,10 +56,12 @@ class CategoryStore {
         keyId: keyId
       }
     }).then(response => {
-      this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
-      }).catch(error => {
-        console.log(error);
-      });
+      if (response.status === 200) {
+        this.fetchCategories();
+      }
+    }).catch(error => {
+      console.log(error);
+    });
   }
 
   /**
@@ -88,7 +90,8 @@ class CategoryStore {
    *
    * @param {string} categoryId - The ID of the category to get
    */
-  get(categoryId) {axios.get(API_CATEGORIES + "/" + categoryId, {
+  get(categoryId) {
+    axios.get(API_CATEGORIES + "/" + categoryId, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
@@ -112,7 +115,7 @@ class CategoryStore {
         access_token: localStorage.getItem("access_token")
       }
     }).then(() => {
-        this.fetchCategories();
+      this.fetchCategories();
     }).catch(error => {
       console.log(error);
     });
@@ -161,7 +164,7 @@ class CategoryStore {
       }
     }).then(response => {
       if (response.status === 200) {
-        this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
+        this.fetchCategories();
       }
     }).catch(error => {
       console.log(error);
@@ -184,7 +187,7 @@ class CategoryStore {
       }
     }).then(response => {
       if (response.status === 200) {
-        this.categories[this.categories.findIndex(category => category.id === response.data.id)] = response.data;
+        this.fetchCategories();
       }
     }).catch(error => {
       console.log(error);
