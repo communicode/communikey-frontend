@@ -7,16 +7,12 @@ import { autorun } from "mobx"
 import Login, { LoginConfirmation, Logout } from "./components/Login";
 import Index from "./components/Index"
 import Home from "./components/Home"
-import Categories from "./components/Categories"
+import Keys from "./components/Keys"
 import Settings from "./components/Settings"
 import About from "./components/About"
 import UserManagement from "./components/management/UserManagement"
 import CategoryManagement from "./components/management/CategoryManagement"
-import { authStore } from "./stores/AuthStore"
-import { userStore } from "./stores/UserStore"
-import { categoryStore } from "./stores/CategoryStore"
-import { groupStore } from "./stores/GroupStore"
-import { authorityStore } from "./stores/AuthorityStore"
+import KeyManagement from "./components/management/KeyManagement"
 import * as constants from './util/Constants'
 
 @observer
@@ -35,11 +31,12 @@ class App extends React.Component {
           <Route path={constants.FRONTEND_LOGOUT} component={Logout} authService={this.authService} />
           <Route component={Index}>
             <Route path={constants.FRONTEND_HOME} component={Home} onEnter={Home.willTransitionTo} />
-            <Route path={constants.FRONTEND_CATEGORIES} component={Categories} onEnter={Categories.willTransitionTo} />
+            <Route path={constants.FRONTEND_KEYS} component={Keys} onEnter={Keys.willTransitionTo} />
             <Route path={constants.FRONTEND_SETTINGS} component={Settings} onEnter={Settings.willTransitionTo} />
             <Route path={constants.FRONTEND_ABOUT} component={About} onEnter={About.willTransitionTo} />
             <Route path={constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_USER} component={UserManagement} onEnter={UserManagement.willTransitionTo}/>
             <Route path={constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_CATEGORY} component={CategoryManagement} onEnter={CategoryManagement.willTransitionTo} />
+            <Route path={constants.FRONTEND_MANAGEMENT + "/" + constants.FRONTEND_KEY} component={KeyManagement} onEnter={KeyManagement.willTransitionTo} />
           </Route>
        </Route>
        <Route>
@@ -51,13 +48,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById("app"))
-
-autorun(() => {
-  if(authStore.loggedIn && authStore.firstLogin) {
-    authorityStore.fetchAuthorities();
-    categoryStore.fetchCategories();
-    groupStore.fetchGroups();
-    userStore.fetchUsers();
-    authStore.firstLogin = false;
-  }
-});

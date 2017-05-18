@@ -5,6 +5,10 @@ import * as constants from '../util/Constants'
 class GroupStore {
   @observable groups = [];
 
+  constructor() {
+    this.fetchGroups();
+  }
+
   addGroup(group) {
     this.groups.push(group);
   }

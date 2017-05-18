@@ -38,6 +38,22 @@ class CategoryService extends Component {
       });
   }
 
+  addKeyToCategory(categoryID, keyID) {
+    console.log("gg",categoryID, keyID)
+    axios.get(constants.API_CATEGORIES_ADD_KEY + categoryID + "/keys", {
+      params: {
+        access_token: localStorage.getItem('access_token'),
+        keyId: keyID
+      }
+    })
+      .then(function (response) {
+        console.log(response);
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   deleteCategory(id) {
     axios.delete(constants.API_CATEGORIES_DELETE_ONE + id, {
       params: {
