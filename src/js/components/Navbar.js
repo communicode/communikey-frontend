@@ -97,7 +97,7 @@ class Navbar extends Component {
             </Menu.Item>
           </Link>
           <Menu.Item class="version">
-            Version 0.3.0
+            Version {constants.VERSION}
           </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher class="page">
