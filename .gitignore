@@ -36,5 +36,5 @@ semantic/
 # +---------+
 # +  JEST   +
 # +---------+
-coverage/
+test-results/
 
