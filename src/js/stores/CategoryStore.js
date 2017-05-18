@@ -1,5 +1,5 @@
 import axios from "axios";
-import {observable} from "mobx";
+import {action, observable} from "mobx";
 import {
   API_CATEGORIES,
   API_CATEGORIES_ADD_CHILD,
@@ -20,7 +20,11 @@ import {
  * @since 0.5.0
  */
 class CategoryStore {
-  @observable categories = [];
+  @observable categories;
+
+  constructor() {
+    this.categories = [];
+  }
 
   /**
    * Adds a child category to the parent category with the specified ID.
@@ -28,17 +32,18 @@ class CategoryStore {
    * @param {number} parentId - The ID of the parent category to add the child category to
    * @param {number} childId - The ID of the child category to be added to the parent category
    */
+  @action
   addChild(parentId, childId) {
     axios.get(API_CATEGORIES_ADD_CHILD + parentId + API_CHILDREN, {
       params: {
         access_token: localStorage.getItem("access_token"),
         childKeyCategoryId: childId
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         this.fetchCategories();
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -49,17 +54,18 @@ class CategoryStore {
    * @param {number} categoryId - The ID of the category to add the key to
    * @param {number} keyId - The ID of the key to be added to the category
    */
+  @action
   addKey(categoryId, keyId) {
     axios.get(API_CATEGORIES_ADD_KEY + categoryId + "/keys", {
       params: {
         access_token: localStorage.getItem("access_token"),
         keyId: keyId
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         this.fetchCategories();
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -69,6 +75,7 @@ class CategoryStore {
    *
    * @param {string} name - The name of the category to create
    */
+  @action
   create(name) {
     axios.post(API_CATEGORIES_POST_ONE, {
       name: name,
@@ -76,11 +83,11 @@ class CategoryStore {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 201) {
         this.categories.push(response.data);
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -90,16 +97,17 @@ class CategoryStore {
    *
    * @param {string} categoryId - The ID of the category to get
    */
+  @action
   get(categoryId) {
     axios.get(API_CATEGORIES + "/" + categoryId, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         return response.data;
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -109,14 +117,15 @@ class CategoryStore {
    *
    * @param {number} categoryId - The ID of the category to delete
    */
+  @action
   delete(categoryId) {
     axios.delete(API_CATEGORIES_DELETE_ONE + categoryId, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(() => {
+    }).then(action(() => {
       this.fetchCategories();
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -126,16 +135,17 @@ class CategoryStore {
    *
    * @returns {ObservableArray} The fetched categories as observable array
    */
+  @action
   fetchCategories() {
     axios.get(API_CATEGORIES_GET_ALL, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         this.categories = response.data;
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -145,6 +155,7 @@ class CategoryStore {
    *
    * @returns {object} The category if found
    */
+  @action
   findOne(categoryId) {
     return this.categories[this.categories.findIndex(category => category.id === categoryId)];
   }
@@ -155,6 +166,7 @@ class CategoryStore {
    * @param {object} category - The updated category
    * @since 0.6.0
    */
+  @action
   update(category) {
     axios.put(API_CATEGORIES + "/" + category.id, {
       name: category.name
@@ -162,11 +174,11 @@ class CategoryStore {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         this.fetchCategories();
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -178,6 +190,7 @@ class CategoryStore {
    * @param {string} userLogin - The login of the user to set as responsible
    * @since 0.6.0
    */
+  @action
   updateResponsible(categoryId, userLogin) {
     axios.put(API_CATEGORIES_PUT_RESPONSIBLE + categoryId + API_CATEGORY_RESPONSIBLE, {
       userLogin: userLogin
@@ -185,11 +198,11 @@ class CategoryStore {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         this.fetchCategories();
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
