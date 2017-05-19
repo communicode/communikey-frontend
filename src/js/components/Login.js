@@ -69,7 +69,7 @@ class Login extends React.Component {
               <Button primary fluid onClick={this.handleClick}>Login</Button>
             </div>
           </Segment>
-          <p class="lover">Made with ♡ in Essen</p>
+          <p class="lover">Version {constants.VERSION} made with ♡ in Essen</p>
         </div>
       </div>
     );

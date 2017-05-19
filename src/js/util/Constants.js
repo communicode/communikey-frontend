@@ -1,5 +1,6 @@
 export const FRONTEND = process.env.COMMUNIKEY_FRONTEND_URL || "http://localhost:8081";
 export const BACKEND = process.env.COMMUNIKEY_BACKEND_URL || "http://localhost:8081";
+export const VERSION = process.env.COMMUNIKEY_VERSION || "0.0.0";
 
 export const FRONTEND_LOGIN = 'login'
 export const FRONTEND_LOGINCONFIRMATION = 'loginConfirmation'

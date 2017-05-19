@@ -15,6 +15,11 @@ if (typeof process.env.COMMUNIKEY_FRONTEND_URL === "undefined") {
 }
 const COMMUNIKEY_FRONTEND_URL = process.env.COMMUNIKEY_FRONTEND_URL;
 
+if (typeof process.env.COMMUNIKEY_VERSION === "undefined") {
+  throw new Error("COMMUNIKEY_VERSION environment variable is undefined");
+}
+const COMMUNIKEY_VERSION = process.env.COMMUNIKEY_VERSION;
+
 module.exports = {
   entry: "./src/js/client.js",
 
@@ -74,7 +79,8 @@ module.exports = {
       "process.env": {
         "NODE_ENV": JSON.stringify("production"),
         "COMMUNIKEY_BACKEND_URL": JSON.stringify(COMMUNIKEY_BACKEND_URL),
-        "COMMUNIKEY_FRONTEND_URL": JSON.stringify(COMMUNIKEY_FRONTEND_URL)
+        "COMMUNIKEY_FRONTEND_URL": JSON.stringify(COMMUNIKEY_FRONTEND_URL),
+        "COMMUNIKEY_VERSION": JSON.stringify(COMMUNIKEY_VERSION)
       }
     })
   ]
