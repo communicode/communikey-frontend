@@ -43,7 +43,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --env=dev --hot --history-api-fallback",
-    "dist:test": "node_modules/.bin/webpack --env=test --progress --profile --colors && cp -rf ./src/assets ./dist",
+    "dist:test": "node_modules/.bin/webpack --env=testing --progress --profile --colors && cp -rf ./src/assets ./dist",
     "dist:prod": "node_modules/.bin/webpack --env=prod --progress --profile --colors && cp -rf ./src/assets ./dist",
     "test": "jest --no-cache",
     "test:cov": "jest --coverage --no-cache",
