@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {inject} from "mobx-react";
 import { Button, Modal, Form } from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
-import { userService } from '../../util/UserService'
 
+@inject("userStore")
 class AddUserModal extends AdminRoute {
   constructor(props) {
     super(props);
@@ -19,7 +20,7 @@ class AddUserModal extends AdminRoute {
   };
 
   handleSubmit = () => {
-    userService.addUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password);
+    this.props.userStore.createUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password);
     this.props.onModalClose();
   };
 

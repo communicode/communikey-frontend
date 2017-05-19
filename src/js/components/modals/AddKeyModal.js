@@ -1,12 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {inject} from "mobx-react";
 import { Button, Modal, Form } from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
-import { keyService } from '../../util/KeyService'
 import SelectCategoryModal from './SelectCategoryModal'
 
 /**
+ * A modal to add a new key.
+ *
  * @author mskyschally@communicode.de
+ * @author sgreb@communicode.de
+ * @since 0.5.0
  */
+@inject("keyStore")
 class AddKeyModal extends AdminRoute {
   constructor(props) {
     super(props);
@@ -23,7 +28,7 @@ class AddKeyModal extends AdminRoute {
   };
 
   handleSubmit = () => {
-    keyService.addKey(this.state.name, this.state.password);
+    this.props.keyStore.createKey(this.state.name, this.state.password);
     this.props.onModalClose();
     this.setState({selectCategoryModalIsOpen: true})
   };

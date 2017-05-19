@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import {inject} from "mobx-react";
 import { Button, List, Modal, Input} from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 /**
+ * A modal for details of a key.
+ *
  * @author mskyschally@communicode.de
+ * @author sgreb@communicode.de
+ * @since 0.5.0
  */
+@inject("keyStore")
 class KeyDetailModal extends AdminRoute  {
 
   constructor(props) {

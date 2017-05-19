@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { Button, Modal, Form} from 'semantic-ui-react'
-import AdminRoute from './../AdminRoute'
-import { keyService } from '../../util/KeyService'
-import SelectCategoryModal from './SelectCategoryModal'
-import { categoryService } from '../../util/CategoryService'
+import React from "react";
+import {inject} from "mobx-react";
+import {Button, Modal, Form} from "semantic-ui-react";
+import AdminRoute from "./../AdminRoute";
+import SelectCategoryModal from "./SelectCategoryModal";
 
 /**
  * @author mskyschally@communicode.de
  */
-class EditKeyDetailModal extends AdminRoute  {
+@inject("keyStore")
+class EditKeyDetailModal extends AdminRoute {
 
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class EditKeyDetailModal extends AdminRoute  {
   }
 
   handleDeleteKey = () => {
-    keyService.deleteKey(this.state.passedKey.id);
+    this.props.keyStore.deleteKey(this.state.passedKey.id);
     this.props.onModalClose();
   };
 
@@ -33,7 +33,7 @@ class EditKeyDetailModal extends AdminRoute  {
   };
 
   handleAddKeyToCategory = (category) => {
-    categoryService.addKeyToCategory(category.id, this.state.passedKey.id);
+    this.props.keyStore.addKey(category.id, this.state.passedKey.id);
     this.props.onModalClose();
   };
 
@@ -51,7 +51,7 @@ class EditKeyDetailModal extends AdminRoute  {
   };
 
   handleInputSubmit = () => {
-    keyService.editKey(this.state.name, this.state.password, this.state.passedKey.id);
+    this.props.keyStore.updateKey(this.state.passedKey.id, this.state.name, this.state.password);
     this.props.onModalClose();
   };
 

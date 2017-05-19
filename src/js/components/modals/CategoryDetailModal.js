@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import { Button, List, Modal} from 'semantic-ui-react'
-import AdminRoute from './../AdminRoute'
-import { categoryService } from '../../util/CategoryService'
-import SelectCategoryModal from './SelectCategoryModal'
+import React from "react";
+import {inject} from "mobx-react";
+import {Button, List, Modal} from "semantic-ui-react";
+import AdminRoute from "./../AdminRoute";
+import SelectCategoryModal from "./SelectCategoryModal";
 
-class UserDetailModal extends AdminRoute  {
+@inject("categoryStore")
+class UserDetailModal extends AdminRoute {
 
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class UserDetailModal extends AdminRoute  {
   }
 
   handleDeleteCategory = () => {
-    categoryService.deleteCategory(this.state.selectedCategory.id);
+    this.props.categoryStore.deleteOne(this.state.selectedCategory.id);
     this.props.onModalClose();
   };
 
@@ -28,7 +29,7 @@ class UserDetailModal extends AdminRoute  {
   };
 
   handleAddCategoryChildToCategoryParent = (category) => {
-    categoryService.addChild(category.id, this.state.selectedCategory.id);
+    this.props.categoryStore.addChild(category.id, this.state.selectedCategory.id);
     this.props.onModalClose();
   };
 

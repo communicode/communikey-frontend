@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { Button, Modal, Form } from 'semantic-ui-react'
-import AdminRoute from './../AdminRoute'
-import { categoryService } from '../../util/CategoryService'
+import React from "react";
+import {inject} from "mobx-react";
+import {Button, Modal, Form} from "semantic-ui-react";
+import AdminRoute from "./../AdminRoute";
 
+@inject("categoryStore")
 class AddCategoryModal extends AdminRoute {
   constructor(props) {
     super(props);
@@ -16,13 +17,13 @@ class AddCategoryModal extends AdminRoute {
   };
 
   handleSubmit = () => {
-    categoryService.createCategory(this.state.name);
+    this.props.categoryStore.create(this.state.name);
     this.props.onModalClose();
   };
 
   render() {
     return (
-      <Modal size="small" dimmer={false} open={true}  >
+      <Modal size="small" dimmer="inverted" open={true}  >
         <Modal.Header>New Category</Modal.Header>
         <Modal.Content>
           <Modal.Description>

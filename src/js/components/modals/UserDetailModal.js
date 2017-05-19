@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { Icon, Label, Radio, Button, List, Modal, Image, Input, Popup } from 'semantic-ui-react'
+import React from 'react'
+import {inject} from "mobx-react";
+import { Radio, Button, List, Modal, Image, Input, Popup } from 'semantic-ui-react'
 import AdminRoute from './../AdminRoute'
-import { userService } from '../../util/UserService'
 import UserAuthorities from '../listItems/UserAuthorities'
 import UserGroups from '../listItems/UserGroups'
 import UserKeyCategories from '../listItems/UserKeyCategories'
 import UserKeys from '../listItems/UserKeys'
 import '../../../css/components/Admin.css'
 
+@inject("userStore")
 class UserDetailModal extends AdminRoute  {
 
   constructor(props) {
@@ -32,23 +33,22 @@ class UserDetailModal extends AdminRoute  {
   };
 
   handleInputSubmit = () => {
-    console.log(this.state.activated);
-    userService.editUser(this.state.email, this.state.firstName, this.state.lastName, this.state.cardUser.login);
+    this.props.userStore.updateUser(this.state.cardUser.login, this.state.email, this.state.firstName, this.state.lastName);
     this.props.onModalClose();
   };
 
   handleDeleteUser = () => {
-    userService.deleteUser(this.state.cardUser.login);
+    this.props.userStore.deleteUser(this.state.cardUser.login);
     this.props.onModalClose();
   };
 
   handleDeactivateUser = () => {
-    userService.deactivateUser(this.state.cardUser.login);
+    this.props.userStore.deactivateUser(this.state.cardUser.login);
     this.props.onModalClose();
   };
 
   handleActivateUser = () => {
-    userService.activateUser(this.state.cardUser.activationKey);
+    this.props.userStore.activateUser(this.state.cardUser.activationKey);
     this.props.onModalClose();
   };
 
