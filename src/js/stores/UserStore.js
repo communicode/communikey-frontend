@@ -1,5 +1,5 @@
 import axios from "axios";
-import {observable} from "mobx";
+import {action, observable} from "mobx";
 import {
   API_USERS_GET_ACTIVATION,
   API_USERS_POST_ONE,
@@ -17,22 +17,27 @@ import {
  * @since 0.5.0
  */
 class UserStore {
-  @observable users = [];
+  @observable users;
+
+  constructor() {
+    this.users = [];
+  }
 
   /**
    * Activates a user with the specified activation key.
    *
    * @param {string} activationKey - The activation key to activate a user with
    */
+  @action
   activateUser(activationKey) {
     axios.get(API_USERS_GET_ACTIVATION, {
       params: {
         access_token: localStorage.getItem("access_token"),
         activation_key: activationKey
       }
-    }).then(response => {
+    }).then(action(response => {
       this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data;
-      }).catch(error => {
+      })).catch(error => {
         console.log(error);
       });
   }
@@ -45,6 +50,7 @@ class UserStore {
    * @param {string} email - The email of the user to create
    * @param {string} password - The password of the user to create
    */
+  @action
   createUser(firstName, lastName, email, password) {
     axios.post(API_USERS_POST_ONE, {
       firstName: firstName,
@@ -55,11 +61,11 @@ class UserStore {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 201) {
         this.users.push(response.data);
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -69,15 +75,16 @@ class UserStore {
    *
    * @param {string} login - The login of the user to deactivate
    */
+  @action
   deactivateUser(login) {
     axios.get(API_USERS_GET_DEACTIVATION, {
       params: {
         access_token: localStorage.getItem("access_token"),
         login: login
       }
-    }).then(response => {
+    }).then(action(response => {
       this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data;
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -87,16 +94,17 @@ class UserStore {
    *
    * @param {string} login - The login of the user to delete
    */
+  @action
   deleteUser(login) {
     axios.delete(API_USERS_DELETE_ONE + login, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 204) {
         this.users.splice(this.users.findIndex(user => user.login === login), 1);
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -106,16 +114,17 @@ class UserStore {
    *
    * @returns {ObservableArray} The fetched user as observable array
    */
+  @action
   fetchUsers() {
     axios.get(API_USERS_GET_ALL, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         this.users = response.data;
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
@@ -128,6 +137,7 @@ class UserStore {
    * @param {string} firstName - The first name of the user
    * @param {string} lastName - The last name of the user
    */
+  @action
   updateUser(login, email, firstName, lastName) {
     axios.put(API_USERS_PUT_ONE + login, {
       email: email,
@@ -137,16 +147,14 @@ class UserStore {
       params: {
         access_token: localStorage.getItem("access_token")
       }
-    }).then(response => {
+    }).then(action(response => {
       if (response.status === 200) {
         this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data;
       }
-    }).catch(error => {
+    })).catch(error => {
       console.log(error);
     });
   }
 }
 
-export let userStore = new UserStore()
-
-export default UserStore;
+export let userStore = new UserStore();
