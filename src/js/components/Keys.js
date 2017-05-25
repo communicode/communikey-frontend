@@ -69,7 +69,7 @@ class Keys extends AuthenticatedRoute {
             <Grid>
               {selectedCategory && renderKeyCards()}
             </Grid>
-            <Rail dividing={true} position="left">
+            <Rail dividing={true}>
               <Menu vertical={true} fluid={true}>
                 <CategoryTree categories={categoryStore.categories} onCategorySelect={this.setSelectedCategory}/>
               </Menu>
