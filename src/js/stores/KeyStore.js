@@ -28,10 +28,11 @@ class KeyStore {
    * @param {string} password - The password of the key
    */
   @action
-  createKey(name, password) {
+  createKey(name, password, login) {
     axios.post(API_KEYS_POST_ONE, {
       name: name,
-      password: password
+      password: password,
+      login: login
     }, {
       params: {
         access_token: localStorage.getItem("access_token")

@@ -16,10 +16,11 @@ class AddKeyModal extends AdminRoute {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
-      password: null,
-      selectCategoryModalIsOpen: false
-
+      name: "",
+      password: "",
+      login: "",
+      selectCategoryModalIsOpen: false,
+      isLoading: false
     }
   };
 
@@ -28,9 +29,10 @@ class AddKeyModal extends AdminRoute {
   };
 
   handleSubmit = () => {
-    this.props.keyStore.createKey(this.state.name, this.state.password);
+    this.setState({isLoading: true});
+    this.props.keyStore.createKey(this.state.name, this.state.password, this.state.login);
     this.props.onModalClose();
-    this.setState({selectCategoryModalIsOpen: true})
+    this.setState({isLoading: false});
   };
 
   toggleSelectCategoryModal = () => {
@@ -47,13 +49,14 @@ class AddKeyModal extends AdminRoute {
             <Form>
               <Form.Group>
                 <Form.Input name="name" placeholder="Name" label="Name" onChange={this.handleChange}/>
+                <Form.Input name="login" placeholder="Login" label="Login" onChange={this.handleChange}/>
                 <Form.Input name="password" placeholder="Password" label="Password" onChange={this.handleChange}/>
               </Form.Group>
             </Form>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button class="saveButton" content="Save" icon="save" onClick={this.handleSubmit}/>
+          <Button class="saveButton" content="Save" icon="save" onClick={this.handleSubmit} loading={this.state.isLoading}/>
           <Button content="Cancel" class="cancelButton" icon="remove" onClick={this.props.onModalClose}/>
         </Modal.Actions>
         {this.state.selectCategoryModalIsOpen && <SelectCategoryModal onModalClose={this.toggleSelectCategoryModal}/>}

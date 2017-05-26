@@ -34,7 +34,7 @@ class CategoryStore {
    */
   @action
   addChild(parentId, childId) {
-    axios.get(API_CATEGORIES_ADD_CHILD + parentId + API_CHILDREN, {
+    return axios.get(API_CATEGORIES_ADD_CHILD + parentId + API_CHILDREN, {
       params: {
         access_token: localStorage.getItem("access_token"),
         childKeyCategoryId: childId
@@ -56,7 +56,7 @@ class CategoryStore {
    */
   @action
   addKey(categoryId, keyId) {
-    axios.get(API_CATEGORIES_ADD_KEY + categoryId + "/keys", {
+    return axios.get(API_CATEGORIES_ADD_KEY + categoryId + "/keys", {
       params: {
         access_token: localStorage.getItem("access_token"),
         keyId: keyId
@@ -77,7 +77,7 @@ class CategoryStore {
    */
   @action
   create(name) {
-    axios.post(API_CATEGORIES_POST_ONE, {
+    return axios.post(API_CATEGORIES_POST_ONE, {
       name: name,
     }, {
       params: {
@@ -99,7 +99,7 @@ class CategoryStore {
    */
   @action
   get(categoryId) {
-    axios.get(API_CATEGORIES + "/" + categoryId, {
+    return axios.get(API_CATEGORIES + "/" + categoryId, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
@@ -119,7 +119,7 @@ class CategoryStore {
    */
   @action
   delete(categoryId) {
-    axios.delete(API_CATEGORIES_DELETE_ONE + categoryId, {
+    return axios.delete(API_CATEGORIES_DELETE_ONE + categoryId, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
@@ -137,7 +137,7 @@ class CategoryStore {
    */
   @action
   fetchCategories() {
-    axios.get(API_CATEGORIES_GET_ALL, {
+    return axios.get(API_CATEGORIES_GET_ALL, {
       params: {
         access_token: localStorage.getItem("access_token")
       }
@@ -168,7 +168,7 @@ class CategoryStore {
    */
   @action
   update(category) {
-    axios.put(API_CATEGORIES + "/" + category.id, {
+    return axios.put(API_CATEGORIES + "/" + category.id, {
       name: category.name
     }, {
       params: {
@@ -192,7 +192,7 @@ class CategoryStore {
    */
   @action
   updateResponsible(categoryId, userLogin) {
-    axios.put(API_CATEGORIES_PUT_RESPONSIBLE + categoryId + API_CATEGORY_RESPONSIBLE, {
+    return axios.put(API_CATEGORIES_PUT_RESPONSIBLE + categoryId + API_CATEGORY_RESPONSIBLE, {
       userLogin: userLogin
     }, {
       params: {

@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 import {observer, inject} from "mobx-react";
-import AdminRoute from './../AdminRoute'
-import { keyStore } from '../../stores/KeyStore'
-import EditKeyDetailModal from "../modals/EditKeyDetailModal"
+import AdminRoute from "./../AdminRoute";
 import KeyCard from "./../KeyCard"
 
 /**
@@ -26,35 +25,31 @@ class KeyList extends AdminRoute {
     this.props.keyStore.fetchKeys();
   }
 
-  toggleKeyDetailModal = () => {
-    const {keyDetailModalIsOpen} = this.state;
-    this.setState({
-      keyDetailModalIsOpen: !keyDetailModalIsOpen
-    });
-  };
-
-  toggleCardClick = (passedKey) => {
-    this.setState({
-      passedKey: passedKey,
-      keyDetailModalIsOpen: true
-    });
+  handleCategoryAddClick = (passedKey) => {
+    this.props.onAddKeyToCategory(passedKey);
   };
 
   render() {
     const keyList = this.props.keyStore.keys.map(key => {
       return (
-        <KeyCard key={key.id} passedKey={key} onCardClick={this.toggleCardClick}/>
+        <KeyCard key={key.id} passedKey={key} onCategoryAddClick={this.handleCategoryAddClick}/>
       )
     });
 
     return (
       <div>
         {keyList}
-        {this.state.keyDetailModalIsOpen && <EditKeyDetailModal passedKey={this.state.passedKey} onModalClose={this.toggleKeyDetailModal}/>}
       </div>
     )
   }
 }
+
+KeyList.propTypes = {
+  /**
+   * @type {toggleCategorySelectionModal} The callback function to handle the event to add a key to a category
+   */
+  onAddKeyToCategory: PropTypes.func.isRequired
+};
 
 export default KeyList;
 

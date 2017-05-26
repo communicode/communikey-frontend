@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {PropTypes} from "mobx-react";
+import {PropTypes as MobXPropTypes} from "mobx-react";
 import {Accordion, Icon} from "semantic-ui-react";
 
 /**
@@ -52,7 +52,7 @@ CategoryTree.propTypes = {
   /**
    * @type {ObservableArray} categories - The observable array of categories
    */
-  categories: PropTypes.observableArray.isRequired
+  categories: MobXPropTypes.observableArray.isRequired
 };
 
 export default CategoryTree;
