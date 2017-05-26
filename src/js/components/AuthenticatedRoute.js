@@ -1,41 +1,34 @@
-import React from 'react';
-import axios from 'axios'
-import { authStore }  from '../stores/AuthStore';
-import * as constants from '../util/Constants'
+import React from "react";
+import PropTypes from "prop-types";
+import {Route, Redirect} from "react-router-dom";
 
-class AuthenticatedRoute extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  static willTransitionTo(nextState, replace, callback) {
-    let oAuthToken = localStorage.getItem('access_token');
-    axios.get(constants.API_CHECK_PRIVILEGE, {
-       params: {
-          access_token: oAuthToken
-        }
-      })
-      .then(response => {
-        if(response.status === 200 && response.data.privileged === true) {
-          authStore.loggedIn = true;
-          authStore.isAdmin = true;
-          authStore.oAuthToken = oAuthToken;
-        } else if(response.status === 200 && response.data.privileged === false){
-          authStore.setLoggedIn = true;
-          authStore.setIsAdmin = false;
-          authStore.oAuthToken = oAuthToken;
-        }
-        callback();
-      })
-      .catch(error => {
-        //TODO: implement error-handling
-        console.log(error);
-        authStore.loggedIn = false;
-        authStore.isAdmin = false;
-        replace('/login');
-        callback();
-      });
-  }
-}
+/**
+ * A Higher Order Component (HOC) for handling security restricted routes.
+ *
+ * @param Component - The component to route
+ * @param {boolean} isAuthorized - Determines if the user is authorized
+ * @param rest - Pass-through properties
+ * @constructor
+ * @author dvonderbey@communicode.de
+ * @author mskyschally@communicode.de
+ * @author sgreb@communicode.de
+ * @since 0.3.0
+ */
+const AuthenticatedRoute = ({component: Component, isAuthorized, ...rest}) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthorized
+        ? <Component isAuthorized={isAuthorized} {...props} />
+        : <Redirect to={{pathname: "/login"}}/>}
+  />
+);
 
 export default AuthenticatedRoute;
+
+AuthenticatedRoute.propTypes = {
+  /**
+   * @type {boolean} isAuthorized - Determines if the user is authorized
+   */
+  isAuthorized: PropTypes.bool.isRequired
+};
