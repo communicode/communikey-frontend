@@ -10,7 +10,7 @@ class AuthenticatedRoute extends React.Component {
 
   static willTransitionTo(nextState, replace, callback) {
     let oAuthToken = localStorage.getItem('access_token');
-    axios.get(constants.API_CHECK_PRIVILEGE, {
+    axios.get(constants.API_ME, {
        params: {
           access_token: oAuthToken
         }

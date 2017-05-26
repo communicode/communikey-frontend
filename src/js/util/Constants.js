@@ -24,7 +24,7 @@ export const API_CHILDREN = '/children'
 export const API_CATEGORY_RESPONSIBLE = '/responsible'
 
 export const API_VALIDATE_USER = API + '?validate_user'
-export const API_CHECK_PRIVILEGE = API + '?privileged'
+export const API_ME = API + '?me'
 
 export const API_USERS = API + '/users'
 export const API_USERS_GET_ALL = API_USERS
