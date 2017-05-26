@@ -4,11 +4,11 @@ const path = require("path");
 
 module.exports = {
   devtool: "cheap-module-source-map",
-  entry: "./src/js/client.js",
+  entry: "./src/js/communikey.js",
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "client.min.js",
+    filename: "communikey.min.js",
     sourceMapFilename: "[file].map",
     publicPath: "/"
   },

@@ -26,11 +26,11 @@ const extractLess = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: "./src/js/client.js",
+  entry: "./src/js/communikey.js",
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "client.min.js"
+    filename: "communikey.min.js"
   },
 
   resolve: {
