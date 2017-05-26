@@ -1,9 +1,25 @@
 {
-  "presets": ["react", "es2016", "stage-0"],
-  "plugins": ["react-html-attrs", "transform-decorators-legacy", "transform-class-properties"],
+  "presets": [
+    "react",
+    "es2016",
+    "stage-0"
+  ],
+  "plugins": [
+    "react-html-attrs",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    ["import", {
+      "libraryName": "antd",
+      "style": "true"
+    }]
+  ],
   "env": {
     "test": {
-      "presets": ["es2015", "react", "stage-0"]
+      "presets": [
+        "es2015",
+        "react",
+        "stage-0"
+      ]
     }
   }
 }

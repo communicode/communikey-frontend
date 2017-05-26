@@ -1,5 +1,3 @@
-"use strict";
-
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
@@ -59,6 +57,10 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
+        test: /\.less$/,
+        use: ["style-loader", "css-loader","less-loader"]
+      },
+      {
         test: /\.(jpg|png|gif)$/,
         use: "file-loader"
       },
@@ -72,7 +74,8 @@ module.exports = {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       minimize: false,
-      debug: true
+      debug: true,
+      sourceMap: true
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html"

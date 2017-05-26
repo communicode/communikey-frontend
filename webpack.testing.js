@@ -1,7 +1,6 @@
-"use strict";
-
 const webpack = require("webpack");
 const BabiliPlugin = require("babili-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -19,6 +18,12 @@ if (typeof process.env.COMMUNIKEY_VERSION === "undefined") {
   throw new Error("COMMUNIKEY_VERSION environment variable is undefined");
 }
 const COMMUNIKEY_VERSION = process.env.COMMUNIKEY_VERSION;
+
+const extractLess = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development",
+  allChunks: true
+});
 
 module.exports = {
   entry: "./src/js/client.js",
@@ -54,6 +59,17 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
+        test: /\.less$/,
+        use: extractLess.extract({
+          use: [{
+            loader: "css-loader"
+          }, {
+            loader: "less-loader"
+          }],
+          fallback: "style-loader"
+        })
+      },
+      {
         test: /\.(jpg|png|gif)$/,
         use: "file-loader?limit=1024&name=[name].[ext]"
       },
@@ -72,6 +88,7 @@ module.exports = {
     new BabiliPlugin({
       comments: false
     }),
+    extractLess,
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
