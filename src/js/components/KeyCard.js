@@ -16,6 +16,10 @@ class KeyCard extends Component {
   togglePasswordInputVisibility = () =>
     this.state.inputType === "password" ? this.setState({inputType: "text"}) : this.setState({inputType: "password"});
 
+  handleAddToCategory = () => {
+    this.props.onCategoryAddClick(this.props.passedKey);
+  };
+
   render() {
       return (
         <Grid.Column>
@@ -43,6 +47,7 @@ class KeyCard extends Component {
                   <CopyToClipboard text={this.props.passedKey.password}>
                     <Button icon="copy" circular={true}/>
                   </CopyToClipboard>
+                  <Button icon="add" circular={true} onClick={this.handleAddToCategory}/>
                 </Grid.Column>
                 <Grid.Column floated="right">
                   <Button
@@ -88,7 +93,12 @@ KeyCard.propTypes = {
   /**
    * @type {object} key - The passed key
    */
-  passedKey: PropTypes.object.isRequired
+  passedKey: PropTypes.object.isRequired,
+
+  /**
+   * @type {handleCategoryAddClick} The callback function to handle the addition of a key to a category
+   */
+  onCategoryAddClick: PropTypes.func
 };
 
 KeyCard.defaultProps = {
