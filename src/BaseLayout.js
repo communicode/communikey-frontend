@@ -1,0 +1,121 @@
+import React from "react";
+import axios from "axios";
+import {inject, observer} from "mobx-react";
+import {Link, NavLink} from "react-router-dom";
+import {Layout, Menu, Icon, Row, Spin} from "antd";
+import appConfig from "./config/app";
+import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE} from "./stores/storeConstants";
+import {DASHBOARD, ADMINISTRATION} from "./routes/routeConstants";
+import {
+  ROUTE_SIGNOUT,
+  ROUTE_DASHBOARD,
+  ROUTE_ADMINISTRATION_USERS,
+  ROUTE_ADMINISTRATION_CATEGORIES,
+  ROUTE_ADMINISTRATION_KEYS
+} from "./routes/routeMappings";
+import "antd/lib/layout/style/index.less";
+import "antd/lib/menu/style/index.less";
+import "antd/lib/icon/style/css";
+import "antd/lib/row/style/css";
+import "./BaseLayout.less";
+
+@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE) @observer
+class BaseLayout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      storesInitialized: false,
+      isSidebarCollapsed: true,
+      sidebarMenuMode: "inline"
+    }
+  }
+
+  componentDidMount() {
+    this.props.authStore.fetch().then(() => {
+      this.initializeStores();
+    })
+  }
+
+  initializeStores = () => {
+    axios.all([
+      this.props.categoryStore.getAll(),
+      this.props.userStore.getAll(),
+      this.props.keyStore.getAll()
+    ]).then(() => {
+      this.setState({storesInitialized: true});
+    });
+  };
+
+  onSidebarCollapse = () => {
+    this.setState({
+      isSidebarCollapsed: !this.state.isSidebarCollapsed,
+      menuMode: this.state.isSidebarCollapsed ? "inline" : "vertical"
+    });
+  };
+
+  render() {
+    const sidebar = () => (
+      <Layout.Sider className="sidebar" collapsible={true} collapsed={this.state.isSidebarCollapsed} onCollapse={this.onSidebarCollapse}>
+        <div className="logo">
+          <img src={appConfig.assets.logoLightDropshadow}/>
+          <span>communikey</span>
+        </div>
+        <Menu mode={this.state.menuMode} defaultSelectedKeys={[DASHBOARD]}>
+          <Menu.Item key={DASHBOARD}>
+            <NavLink to={ROUTE_DASHBOARD}>
+              <span><Icon type="laptop"/><span className="nav-text">Dashboard</span></span>
+            </NavLink>
+          </Menu.Item>
+          {
+            this.props.authStore.privileged &&
+            <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="api"/><span className="nav-text">Administration</span></span>}>
+              <Menu.Item key="administration-users">
+                <NavLink to={ROUTE_ADMINISTRATION_USERS}>User</NavLink>
+              </Menu.Item>
+              <Menu.Item key="administration-categories">
+                <NavLink to={ROUTE_ADMINISTRATION_CATEGORIES}>Categories</NavLink>
+              </Menu.Item>
+              <Menu.Item key="administration-keys">
+                <NavLink to={ROUTE_ADMINISTRATION_KEYS}>Keys</NavLink>
+              </Menu.Item>
+            </Menu.SubMenu>
+          }
+        </Menu>
+      </Layout.Sider>
+    );
+
+    const header = () => (
+      <Layout.Header className="cckey-base-layout-header">
+        <Row type="flex" justify="end" align="bottom">
+          <Menu mode="horizontal">
+            <Menu.SubMenu title={this.props.authStore.firstName}>
+              <Menu.Item key="sign-out">
+                <Link to={ROUTE_SIGNOUT}>Sign out</Link>
+              </Menu.Item>
+            </Menu.SubMenu>
+          </Menu>
+        </Row>
+      </Layout.Header>
+    );
+
+    const spinner = () => {
+      return <div className="cckey-layout-center-div"><Spin spinning={true} size="large"/></div>;
+    };
+
+    const renderBaseLayout = () => (
+      <Layout className="cckey-base-layout">
+        {sidebar()}
+        <Layout className="cckey-base-layout">
+          {header()}
+          <Layout.Content>
+            {this.props.children}
+          </Layout.Content>
+        </Layout>
+      </Layout>
+    );
+
+    return this.state.storesInitialized ? renderBaseLayout() : spinner();
+  };
+}
+
+export default BaseLayout;
