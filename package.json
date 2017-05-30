@@ -68,7 +68,8 @@
   },
   "name": "communikey",
   "version": "0.1.0",
-  "main": "index.js",
-  "author": "Dennis von der Bey <dvonderbey@communicode.de>",
+  "main": "src/Communikey.js",
+  "private": true,
+  "author": "communicode AG",
   "license": "communicode AG"
 }

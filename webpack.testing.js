@@ -26,7 +26,7 @@ const extractLess = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: "./src/js/communikey.js",
+  entry: "./src/Communikey.js",
 
   output: {
     path: path.join(__dirname, "dist"),

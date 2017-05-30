@@ -4,7 +4,7 @@ const path = require("path");
 
 module.exports = {
   devtool: "cheap-module-source-map",
-  entry: "./src/js/communikey.js",
+  entry: "./src/Communikey.js",
 
   output: {
     path: path.join(__dirname, "dist"),
