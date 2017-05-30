@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
+import {ROUTE_SIGNIN} from "./../../routes/routeMappings";
 
 /**
  * A Higher Order Component (HOC) for handling security restricted routes.
  *
- * @param Component - The component to route
- * @param {boolean} isAuthorized - Determines if the user is authorized
+ * @param Component - The components to route
+ * @param {boolean} authorized - Determines if the user is authorized
  * @param rest - Pass-through properties
  * @constructor
  * @author dvonderbey@communicode.de
@@ -14,13 +15,13 @@ import {Route, Redirect} from "react-router-dom";
  * @author sgreb@communicode.de
  * @since 0.3.0
  */
-const AuthenticatedRoute = ({component: Component, isAuthorized, ...rest}) => (
+const AuthenticatedRoute = ({component: Component, authorized, ...rest}) => (
   <Route
     {...rest}
     render={props =>
-      isAuthorized
-        ? <Component isAuthorized={isAuthorized} {...props} />
-        : <Redirect to={{pathname: "/login"}}/>}
+      authorized
+        ? <Component authorized={authorized} {...props} />
+        : <Redirect to={{pathname: ROUTE_SIGNIN}}/>}
   />
 );
 
@@ -28,7 +29,7 @@ export default AuthenticatedRoute;
 
 AuthenticatedRoute.propTypes = {
   /**
-   * @type {boolean} isAuthorized - Determines if the user is authorized
+   * @type {boolean} authorized - Determines if the user is authorized
    */
-  isAuthorized: PropTypes.bool.isRequired
+  authorized: PropTypes.bool.isRequired
 };
