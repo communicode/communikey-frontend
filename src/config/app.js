@@ -7,5 +7,6 @@ module.exports = {
     logoLightDropshadow: "/assets/images/communikey-logo-light-dropshadow.svg",
     logoTypographyGreen: "/assets/images/communikey-logo-typography-green.svg",
     logoTypographyLight: "/assets/images/communikey-logo-typography-light.svg"
-  }
+  },
+  emailPrefix: "@communicode.de"
 };
