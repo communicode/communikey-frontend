@@ -1,0 +1,56 @@
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -220px 0 0 -220px;
+  width: 420px;
+  height: 460px;
+  padding: 36px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, .08);
+
+  button {
+    width: 100%;
+  }
+
+  p {
+    color: rgb(204, 204, 204);
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .app-title {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .anticon-close-circle {
+    cursor: pointer;
+    color: #cccccc;
+    transition: color 0.3s;
+    font-size: 12px;
+
+    &:hover {
+      color: #999999;
+    }
+
+    &:active {
+      color: #666666;
+    }
+  }
+}
+
+.logo {
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 24px;
+
+  img {
+    width: 180px;
+  }
+}
+
+/* Fixes the input height when using prefix icon */
+.ant-input-affix-wrapper .ant-input {
+  min-height: 0;
+}
