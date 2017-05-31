@@ -39,7 +39,7 @@ module.exports = {
 
   module: {
     rules: [
-/*      {
+      {
         enforce: "pre",
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -48,7 +48,7 @@ module.exports = {
           failOnError: true,
           failOnWarning: false
         }
-      },*/
+      },
       {
         test: /\.js?$/,
         exclude: /(node_modules)/,
