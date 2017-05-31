@@ -75,23 +75,23 @@ module.exports = {
     // Code Performance
     "global-require": "warn",
     // Documentation
-    "require-jsdoc": ["warn", {
+    "require-jsdoc": ["off", {
       "require": {
-        "FunctionDeclaration": true,
+        "FunctionDeclaration": false,
         "MethodDefinition": false,
         "ClassDeclaration": true,
         "ArrowFunctionExpression": false
       }
     }],
-    "valid-jsdoc": ["error", {
+    "valid-jsdoc": ["off", {
       "prefer": {
         "arg": "param",
         "argument": "param",
-        "class": "constructor",
         "virtual": "abstract"
       },
-      "requireParamDescription": true,
-      "requireReturnDescription": true
+      "requireParamDescription": false,
+      "requireReturnDescription": false,
+      "requireReturnType": false
     }],
     // Unit Tests
     "jest/no-disabled-tests": "warn",
