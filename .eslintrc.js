@@ -39,6 +39,10 @@ module.exports = {
       "templateStrings": true
     }
   },
+  "globals": {
+    "describe": true,
+    "it": true
+  },
   "plugins": [
     "jest",
     "react"
