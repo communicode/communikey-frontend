@@ -1,13 +1,15 @@
 /*
-[References]
-ESLint
-  http://eslint.org/docs/rules
-  http://eslint.org/docs/user-guide/configuring
-  http://eslint.org/docs/user-guide/configuring#using-configuration-files
-  http://eslint.org/docs/user-guide/configuring#specifying-environments
-  http://eslint.org/docs/user-guide/configuring.html#specifying-globals
-  https://github.com/yannickcr/eslint-plugin-react
-*/
+ [References]
+ ESLint
+ http://eslint.org/docs/rules
+ http://eslint.org/docs/user-guide/configuring
+ http://eslint.org/docs/user-guide/configuring#using-configuration-files
+ http://eslint.org/docs/user-guide/configuring#specifying-environments
+ http://eslint.org/docs/user-guide/configuring.html#specifying-globals
+ https://github.com/yannickcr/eslint-plugin-react
+ http://eslint.org/docs/user-guide/migrating-to-2.0.0#language-options
+ https://leanpub.com/understandinges6/read
+ */
 module.exports = {
   "env": {
     "browser": true,
@@ -16,6 +18,7 @@ module.exports = {
     "jest": true,
     "node": true,
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 6,
