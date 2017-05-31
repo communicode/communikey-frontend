@@ -23,7 +23,20 @@ module.exports = {
     "sourceType": "module",
     "ecmaVersion": 6,
     "ecmaFeatures": {
-      "jsx": true
+      "modules": true,
+      "jsx": true,
+      "arrowFunctions": true,
+      "binaryLiterals": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": true,
+      "restParams": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true
     }
   },
   "plugins": [
