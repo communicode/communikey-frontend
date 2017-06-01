@@ -6,7 +6,7 @@ import {Link, NavLink} from "react-router-dom";
 import {Layout, Menu, Icon, Row, Spin} from "antd";
 import appConfig from "./config/app";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE} from "./stores/storeConstants";
-import {DASHBOARD, ADMINISTRATION} from "./routes/routeConstants";
+import {ADMINISTRATION} from "./routes/routeConstants";
 import {
   ROUTE_SIGNOUT,
   ROUTE_DASHBOARD,
@@ -28,7 +28,7 @@ class BaseLayout extends React.Component {
       storesInitialized: false,
       isSidebarCollapsed: true,
       sidebarMenuMode: "inline",
-      sidebarCurrentSelected: DASHBOARD,
+      sidebarCurrentSelected: props.location.pathname,
       sidebarOpenKeys: []
     };
   }
@@ -78,6 +78,8 @@ class BaseLayout extends React.Component {
     return map[key] || [];
   };
 
+  isActiveSidebarNavLink = (menuItemKeyName) => this.state.sidebarCurrentSelected === menuItemKeyName;
+
   render() {
     const sidebar = () => (
       <Layout.Sider className="sidebar" collapsible={true} collapsed={this.state.isSidebarCollapsed} onCollapse={this.onSidebarCollapse}>
@@ -87,28 +89,28 @@ class BaseLayout extends React.Component {
         </div>
         <Menu
           mode={this.state.menuMode}
-          defaultSelectedKeys={[DASHBOARD]}
+          defaultSelectedKeys={[ROUTE_DASHBOARD]}
           openKeys={this.state.sidebarOpenKeys}
           selectedKeys={[this.state.sidebarCurrentSelected]}
           onOpenChange={this.onSidebarOpenChange}
           onClick={this.handleSidebarClick}
         >
-          <Menu.Item key={DASHBOARD}>
-            <NavLink to={ROUTE_DASHBOARD}>
+          <Menu.Item key={ROUTE_DASHBOARD}>
+            <NavLink to={ROUTE_DASHBOARD} isActive={() => this.isActiveSidebarNavLink(ROUTE_DASHBOARD)}>
               <span><Icon type="laptop"/><span className="nav-text">Dashboard</span></span>
             </NavLink>
           </Menu.Item>
           {
             this.props.authStore.privileged &&
             <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="api"/><span className="nav-text">Administration</span></span>}>
-              <Menu.Item key="administration-users">
-                <NavLink to={ROUTE_ADMINISTRATION_USERS}>Users</NavLink>
+              <Menu.Item key={ROUTE_ADMINISTRATION_USERS}>
+                <NavLink to={ROUTE_ADMINISTRATION_USERS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USERS)}>Users</NavLink>
               </Menu.Item>
-              <Menu.Item key="administration-categories">
-                <NavLink to={ROUTE_ADMINISTRATION_CATEGORIES}>Categories</NavLink>
+              <Menu.Item key={ROUTE_ADMINISTRATION_CATEGORIES}>
+                <NavLink to={ROUTE_ADMINISTRATION_CATEGORIES} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_CATEGORIES)}>Categories</NavLink>
               </Menu.Item>
-              <Menu.Item key="administration-keys">
-                <NavLink to={ROUTE_ADMINISTRATION_KEYS}>Keys</NavLink>
+              <Menu.Item key={ROUTE_ADMINISTRATION_KEYS}>
+                <NavLink to={ROUTE_ADMINISTRATION_KEYS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_KEYS)}>Keys</NavLink>
               </Menu.Item>
             </Menu.SubMenu>
           }
@@ -170,6 +172,11 @@ BaseLayout.propTypes = {
    * @type {ObservableArray} keyStore - The injected key store
    */
   keyStore: MobXPropTypes.observableArray,
+
+  /**
+   * @type {object} location - The location object injected by React Router
+   */
+  location: PropTypes.object,
 
   /**
    * @type {ObservableArray} userStore - The injected user store
