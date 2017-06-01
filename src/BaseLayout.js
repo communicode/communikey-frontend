@@ -6,7 +6,7 @@ import {Link, NavLink} from "react-router-dom";
 import {Layout, Menu, Icon, Row, Spin} from "antd";
 import appConfig from "./config/app";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE} from "./stores/storeConstants";
-import {ADMINISTRATION} from "./routes/routeConstants";
+import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
   ROUTE_SIGNOUT,
   ROUTE_DASHBOARD,
@@ -28,7 +28,7 @@ class BaseLayout extends React.Component {
       storesInitialized: false,
       isSidebarCollapsed: true,
       sidebarMenuMode: "inline",
-      sidebarCurrentSelected: props.location.pathname,
+      sidebarCurrentSelected: props.location.pathname === ROOT ? ROUTE_DASHBOARD : props.location.pathname,
       sidebarOpenKeys: []
     };
   }
