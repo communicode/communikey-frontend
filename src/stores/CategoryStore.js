@@ -1,7 +1,6 @@
 import {action, observable} from "mobx";
-
 import apiService from "../services/ApiService";
-import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_RESPONSIBLE} from "./../services/apiRequestMappings";
+import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_KEYS, CATEGORY_RESPONSIBLE} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**

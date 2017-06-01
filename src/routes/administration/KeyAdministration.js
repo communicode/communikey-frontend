@@ -16,7 +16,7 @@ class KeyAdministration extends React.Component {
   render() {
     return (
       <div/>
-    )
+    );
   }
 }
 

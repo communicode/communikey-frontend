@@ -1,6 +1,6 @@
 import React from "react";
 import AuthService from "./../services/AuthService";
-import {inject, observer} from "mobx-react";
+import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
 import {Button, Form, Icon, Input, Row} from "antd";
 import appConfig from "../config/app";
 import {AUTH_STORE} from "../stores/storeConstants";
@@ -118,3 +118,10 @@ class SignIn extends React.Component {
 }
 
 export default SignIn;
+
+SignIn.propTypes = {
+  /**
+   * @type {ObservableArray} authStore - The injected authentication store
+   */
+  authStore: MobxPropTypes.observableArray
+};

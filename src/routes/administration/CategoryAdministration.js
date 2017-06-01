@@ -16,7 +16,7 @@ class CategoryAdministration extends React.Component {
   render() {
     return (
       <div/>
-    )
+    );
   }
 }
 

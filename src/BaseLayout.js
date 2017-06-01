@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import {inject, observer} from "mobx-react";
+import PropTypes from "prop-types";
+import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {Link, NavLink} from "react-router-dom";
 import {Layout, Menu, Icon, Row, Spin} from "antd";
 import appConfig from "./config/app";
@@ -27,13 +28,13 @@ class BaseLayout extends React.Component {
       storesInitialized: false,
       isSidebarCollapsed: true,
       sidebarMenuMode: "inline"
-    }
+    };
   }
 
   componentDidMount() {
     this.props.authStore.fetch().then(() => {
       this.initializeStores();
-    })
+    });
   }
 
   initializeStores = () => {
@@ -115,7 +116,34 @@ class BaseLayout extends React.Component {
     );
 
     return this.state.storesInitialized ? renderBaseLayout() : spinner();
-  };
+  }
 }
+
+BaseLayout.propTypes = {
+  /**
+   * @type {ObservableArray} authStore - The injected authentication store
+   */
+  authStore: MobXPropTypes.observableArray,
+
+  /**
+   * @type {ObservableArray} categoryStore - The injected category store
+   */
+  categoryStore: MobXPropTypes.observableArray,
+
+  /**
+   * @type {element} children - The passed children
+   */
+  children: PropTypes.element,
+
+  /**
+   * @type {ObservableArray} keyStore - The injected key store
+   */
+  keyStore: MobXPropTypes.observableArray,
+
+  /**
+   * @type {ObservableArray} userStore - The injected user store
+   */
+  userStore: MobXPropTypes.observableArray
+};
 
 export default BaseLayout;

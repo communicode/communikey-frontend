@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
-import {inject} from "mobx-react";
+import {inject, PropTypes as MobxPropTypes} from "mobx-react";
 import {AUTH_STORE} from "../stores/storeConstants";
 
 @inject(AUTH_STORE)
@@ -20,4 +20,11 @@ class SignOut extends React.Component {
 }
 
 export default SignOut;
+
+SignOut.propTypes = {
+  /**
+   * @type {ObservableArray} authStore - The injected authentication store
+   */
+  authStore: MobxPropTypes.observableArray
+};
 

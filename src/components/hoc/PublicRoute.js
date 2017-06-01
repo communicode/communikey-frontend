@@ -29,5 +29,10 @@ PublicRoute.propTypes = {
   /**
    * @type {boolean} authorized - Determines if the user is authorized
    */
-  authorized: PropTypes.bool.isRequired
+  authorized: PropTypes.bool.isRequired,
+
+  /**
+   * @type {element} component - The React component to be wrapped
+   */
+  component: PropTypes.element.isRequired
 };
