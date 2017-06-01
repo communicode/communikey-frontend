@@ -27,7 +27,9 @@ class BaseLayout extends React.Component {
     this.state = {
       storesInitialized: false,
       isSidebarCollapsed: true,
-      sidebarMenuMode: "inline"
+      sidebarMenuMode: "inline",
+      sidebarCurrentSelected: DASHBOARD,
+      sidebarOpenKeys: []
     };
   }
 
@@ -54,6 +56,28 @@ class BaseLayout extends React.Component {
     });
   };
 
+  handleSidebarClick = (event) => this.setState({sidebarCurrentSelected: event.key});
+
+  onSidebarOpenChange = (openKeys) => {
+    const {sidebarOpenKeys} = this.state;
+    const latestOpenKey = openKeys.find(key => !(sidebarOpenKeys.indexOf(key) > -1));
+    const latestCloseKey = sidebarOpenKeys.find(key => !(openKeys.indexOf(key) > -1));
+
+    let nextOpenKeys = [];
+    if (latestOpenKey) {
+      nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
+    }
+    if (latestCloseKey) {
+      nextOpenKeys = this.getAncestorKeys(latestCloseKey);
+    }
+    this.setState({sidebarOpenKeys: nextOpenKeys});
+  };
+
+  getAncestorKeys = (key) => {
+    const map = {};
+    return map[key] || [];
+  };
+
   render() {
     const sidebar = () => (
       <Layout.Sider className="sidebar" collapsible={true} collapsed={this.state.isSidebarCollapsed} onCollapse={this.onSidebarCollapse}>
@@ -61,7 +85,14 @@ class BaseLayout extends React.Component {
           <img src={appConfig.assets.logoLightDropshadow}/>
           <span>communikey</span>
         </div>
-        <Menu mode={this.state.menuMode} defaultSelectedKeys={[DASHBOARD]}>
+        <Menu
+          mode={this.state.menuMode}
+          defaultSelectedKeys={[DASHBOARD]}
+          openKeys={this.state.sidebarOpenKeys}
+          selectedKeys={[this.state.sidebarCurrentSelected]}
+          onOpenChange={this.onSidebarOpenChange}
+          onClick={this.handleSidebarClick}
+        >
           <Menu.Item key={DASHBOARD}>
             <NavLink to={ROUTE_DASHBOARD}>
               <span><Icon type="laptop"/><span className="nav-text">Dashboard</span></span>
@@ -71,7 +102,7 @@ class BaseLayout extends React.Component {
             this.props.authStore.privileged &&
             <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="api"/><span className="nav-text">Administration</span></span>}>
               <Menu.Item key="administration-users">
-                <NavLink to={ROUTE_ADMINISTRATION_USERS}>User</NavLink>
+                <NavLink to={ROUTE_ADMINISTRATION_USERS}>Users</NavLink>
               </Menu.Item>
               <Menu.Item key="administration-categories">
                 <NavLink to={ROUTE_ADMINISTRATION_CATEGORIES}>Categories</NavLink>
