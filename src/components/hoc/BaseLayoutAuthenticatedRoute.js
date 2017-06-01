@@ -30,5 +30,10 @@ BaseLayoutAuthenticatedRoute.propTypes = {
   /**
    * @type {boolean} authorized - Determines if the user is authorized
    */
-  authorized: PropTypes.bool.isRequired
+  authorized: PropTypes.bool.isRequired,
+
+  /**
+   * @type component - The React component to be wrapped
+   */
+  component: PropTypes.any.isRequired
 };

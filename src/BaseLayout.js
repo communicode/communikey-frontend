@@ -131,9 +131,9 @@ BaseLayout.propTypes = {
   categoryStore: MobXPropTypes.observableArray,
 
   /**
-   * @type {element} children - The passed children
+   * @type {function} children - The passed children
    */
-  children: PropTypes.element,
+  children: PropTypes.node,
 
   /**
    * @type {ObservableArray} keyStore - The injected key store
