@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {Provider, observer} from "mobx-react";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
-import {Spin} from "antd";
+import {LocaleProvider, Spin} from "antd";
 import {useStrict} from "mobx";
 import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
@@ -27,6 +27,7 @@ import {
   ROUTE_SIGNOUT,
   ROUTE_ROOT
 } from "./routes/routeMappings";
+import enUS from "antd/lib/locale-provider/en_US";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "./config/constants";
 import "antd/lib/spin/style/index.less";
 
@@ -80,6 +81,7 @@ class Communikey extends React.Component {
     const spinner = () => <div className="cckey-layout-center-div"><Spin spinning={true} size="large"/></div>;
     const routes = () => {
       return <Provider {...stores}>
+        <LocaleProvider locale={enUS}>
         <BrowserRouter>
           <Switch>
             <Route path={ROUTE_SIGNOUT} component={SignOut}/>
@@ -95,6 +97,7 @@ class Communikey extends React.Component {
             </BaseLayout>
           </Switch>
         </BrowserRouter>
+        </LocaleProvider>
       </Provider>;
     };
 
