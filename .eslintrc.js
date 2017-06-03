@@ -74,6 +74,7 @@ module.exports = {
     "no-console": "off",
     // Code Performance
     "global-require": "warn",
+    "no-unused-vars": "warn",
     // Documentation
     "require-jsdoc": ["off", {
       "require": {
