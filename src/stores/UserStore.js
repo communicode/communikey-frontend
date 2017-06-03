@@ -123,6 +123,24 @@ class UserStore {
   };
 
   /**
+   * Gets a password reset token for the user with the specified email.
+   *
+   * @param {string} email - The email of the user to get a password reset token for
+   * @param {string} login - The login of the user to get a password reset token for
+   * @returns {Promise} - A promise
+   */
+  @action
+  getPasswordResetToken = (email, login) => {
+    return apiService.get(USERS_PASSWORD_RESET, {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        email: email
+      }
+    })
+      .then(() => this.get(login));
+  };
+
+  /**
    * Updates the user with the specified login.
    *
    * @param {string} login - The login of the user to update
