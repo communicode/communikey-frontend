@@ -86,12 +86,12 @@ class SignIn extends React.Component {
           <img src={appConfig.assets.logoLightDropshadow}/>
         </div>
         <p className="app-title">{appConfig.name}</p>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
           <Form.Item>
             <Input
               name="login"
               prefix={<Icon type="mail"/>}
-              addonAfter={appConfig.emailPrefix}
+              addonAfter={appConfig.EMAIL_PREFIX}
               onChange={this.handleInputChange}
               placeholder="Email"
               value={login}
