@@ -1,7 +1,7 @@
 import {action, observable} from "mobx";
 
 import apiService from "../services/ApiService";
-import {USER, USERS, USERS_ACTIVATE, USERS_DEACTIVATE} from "./../services/apiRequestMappings";
+import {USER, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_REGISTER} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -46,7 +46,7 @@ class UserStore {
    */
   @action
   create = (firstName, lastName, email, password) => {
-    return apiService.post(USERS, {
+    return apiService.post(USERS_REGISTER, {
       firstName: firstName,
       lastName: lastName,
       email: email,
