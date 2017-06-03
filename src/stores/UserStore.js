@@ -92,6 +92,22 @@ class UserStore {
   };
 
   /**
+   * Gets the user with the specified login.
+   *
+   * @param {string} login - The login of the user to get
+   * @returns {Promise} - A promise
+   */
+  @action
+  get = (login) => {
+    return apiService.get(USER({login: login}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+      }
+    })
+      .then(action(response => this.users[this.users.findIndex(user => user.login === login)] = response.data));
+  };
+
+  /**
    * Gets all users.
    *
    * @returns {Promise} - A promise
