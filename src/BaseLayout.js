@@ -102,15 +102,15 @@ class BaseLayout extends React.Component {
           </Menu.Item>
           {
             this.props.authStore.privileged &&
-            <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="api"/><span className="nav-text">Administration</span></span>}>
-              <Menu.Item key={ROUTE_ADMINISTRATION_USERS}>
-                <NavLink to={ROUTE_ADMINISTRATION_USERS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USERS)}>Users</NavLink>
-              </Menu.Item>
+            <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="setting"/><span className="nav-text">Administration</span></span>}>
               <Menu.Item key={ROUTE_ADMINISTRATION_CATEGORIES}>
                 <NavLink to={ROUTE_ADMINISTRATION_CATEGORIES} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_CATEGORIES)}>Categories</NavLink>
               </Menu.Item>
               <Menu.Item key={ROUTE_ADMINISTRATION_KEYS}>
                 <NavLink to={ROUTE_ADMINISTRATION_KEYS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_KEYS)}>Keys</NavLink>
+              </Menu.Item>
+              <Menu.Item key={ROUTE_ADMINISTRATION_USERS}>
+                <NavLink to={ROUTE_ADMINISTRATION_USERS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USERS)}>Users</NavLink>
               </Menu.Item>
             </Menu.SubMenu>
           }
