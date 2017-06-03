@@ -1,11 +1,10 @@
 import {action, observable} from "mobx";
-
 import apiService from "../services/ApiService";
-import {USER, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_REGISTER} from "./../services/apiRequestMappings";
+import {USER, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
- * A observable store for {@linkcode user} entities.
+ * A observable store for user entities.
  *
  * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
@@ -32,7 +31,7 @@ class UserStore {
         activation_key: activationKey
       }
     })
-      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data));
+      .then(action(response => this.users[this.users.findIndex(user => user.id === response.data.id)] = response.data));
   };
 
   /**
@@ -73,7 +72,7 @@ class UserStore {
         login: login
       }
     })
-      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data));
+      .then(action(response => this.users[this.users.findIndex(user => user.id === response.data.id)] = response.data));
   };
 
   /**
