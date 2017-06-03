@@ -39,7 +39,7 @@ class UserModal extends React.Component {
       onUserActivate,
       onUserDeactivate,
       onValueChange,
-      toggleUnlockStatus,
+      toggleLockStatus,
       user,
       ...modalProps
     } = this.props;
@@ -218,7 +218,7 @@ class UserModal extends React.Component {
 
     const lockStatusButton = () => (
       <Tooltip title={locked ? "Unlock" : "Lock"} mouseEnterDelay={1} placement="right">
-        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleUnlockStatus} icon={locked ? "unlock" : "lock"}/>
+        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "unlock" : "lock"}/>
       </Tooltip>
     );
 
@@ -350,7 +350,7 @@ UserModal.propTypes = {
    *
    * @type {function}
    */
-  toggleUnlockStatus: PropTypes.func.isRequired,
+  toggleLockStatus: PropTypes.func.isRequired,
 
   /**
    * The user.
