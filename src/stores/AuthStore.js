@@ -48,8 +48,7 @@ class AuthStore {
         }
         this.isAuthorized = true;
         return response;
-      }))
-      .catch(error => console.error(error));
+      }));
   };
 
   /**

@@ -32,8 +32,7 @@ class UserStore {
         activation_key: activationKey
       }
     })
-      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data))
-      .catch(error => console.error(error));
+      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data));
   };
 
   /**
@@ -57,8 +56,7 @@ class UserStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.users.push(response.data)))
-      .catch(error => console.error(error));
+      .then(action(response => this.users.push(response.data)));
   };
 
   /**
@@ -75,8 +73,7 @@ class UserStore {
         login: login
       }
     })
-      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data))
-      .catch(error => console.error(error));
+      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data));
   };
 
   /**
@@ -92,8 +89,7 @@ class UserStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(() => this.users.splice(this.users.findIndex(user => user.login === login), 1)))
-      .catch(error => console.error(error));
+      .then(action(() => this.users.splice(this.users.findIndex(user => user.login === login), 1)));
   };
 
   /**
@@ -108,8 +104,7 @@ class UserStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.users = response.data))
-      .catch(error => console.error(error));
+      .then(action(response => this.users = response.data));
   };
 
   /**
@@ -131,8 +126,7 @@ class UserStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data))
-      .catch(error => console.error(error));
+      .then(action(response => this.users[this.users.findIndex(user => user.login === response.data.login)] = response.data));
   }
 }
 

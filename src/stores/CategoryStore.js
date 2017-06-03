@@ -32,8 +32,7 @@ class CategoryStore {
         childKeyCategoryId: childId
       }
     })
-      .then(action(() => this.getAll()))
-      .catch(error => console.error(error));
+      .then(action(() => this.getAll()));
   };
 
   /**
@@ -51,8 +50,7 @@ class CategoryStore {
         keyId: keyId
       }
     })
-      .then(action(() => this.getAll()))
-      .catch(error => console.error(error));
+      .then(action(() => this.getAll()));
   };
 
   /**
@@ -68,8 +66,7 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.categories.push(response.data)))
-      .catch(error => console.error(error));
+      .then(action(response => this.categories.push(response.data)));
   };
 
   /**
@@ -85,8 +82,7 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(() => this.getAll()))
-      .catch(error => console.error(error));
+      .then(action(() => this.getAll()));
   };
 
   /**
@@ -102,8 +98,7 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => response.data))
-      .catch(error => console.error(error));
+      .then(action(response => response.data));
   };
 
   /**
@@ -119,8 +114,7 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.categories = response.data))
-      .catch(error => console.error(error));
+      .then(action(response => this.categories = response.data));
   };
 
   /**
@@ -139,8 +133,7 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(() => this.getAll()))
-      .catch(error => console.error(error));
+      .then(action(() => this.getAll()));
   };
 
   /**
@@ -160,8 +153,7 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(() => this.getAll()))
-      .catch(error => console.error(error));
+      .then(action(() => this.getAll()));
   };
 }
 

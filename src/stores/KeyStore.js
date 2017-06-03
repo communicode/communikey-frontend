@@ -1,5 +1,4 @@
 import {action, observable} from "mobx";
-
 import apiService from "../services/ApiService";
 import {KEY, KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
@@ -35,8 +34,7 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.keys.push(response.data)))
-      .catch(error => console.error(error));
+      .then(action(response => this.keys.push(response.data)));
   };
 
   /**
@@ -52,8 +50,7 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(() => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1)))
-      .catch(error => console.error(error));
+      .then(action(() => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1)));
   };
 
   /**
@@ -68,8 +65,7 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.keys = response.data))
-      .catch(error => console.error(error));
+      .then(action(response => this.keys = response.data));
   };
 
   /**
@@ -90,8 +86,7 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.keys[this.keys.findIndex(key => key.id === response.data.id)] = response.data))
-      .catch(error => console.error(error));
+      .then(action(response => this.keys[this.keys.findIndex(key => key.id === response.data.id)] = response.data));
   };
 }
 
