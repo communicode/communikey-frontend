@@ -13,5 +13,5 @@ module.exports = {
       }
     }
   },
-  emailPrefix: "@communicode.de"
+  EMAIL_PREFIX: "@communicode.de"
 };
