@@ -6,7 +6,12 @@ module.exports = {
     logoCircleDropshadow: "/assets/images/communikey-logo-circle-light-dropshadow.svg",
     logoLightDropshadow: "/assets/images/communikey-logo-light-dropshadow.svg",
     logoTypographyGreen: "/assets/images/communikey-logo-typography-green.svg",
-    logoTypographyLight: "/assets/images/communikey-logo-typography-light.svg"
+    logoTypographyLight: "/assets/images/communikey-logo-typography-light.svg",
+    wireframe: {
+      avatars: {
+        matthew: "/assets/images/wireframe/avatars/matthew.png"
+      }
+    }
   },
   emailPrefix: "@communicode.de"
 };
