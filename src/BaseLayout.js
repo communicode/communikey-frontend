@@ -88,16 +88,16 @@ class BaseLayout extends React.Component {
     const {authStore, children} = this.props;
 
     const sidebar = () => (
-      <Layout.Sider className="sidebar" collapsible={true} collapsed={this.state.isSidebarCollapsed} onCollapse={this.onSidebarCollapse}>
+      <Layout.Sider className="sidebar" collapsible={true} collapsed={isSidebarCollapsed} onCollapse={this.onSidebarCollapse}>
         <div className="logo">
           <img src={appConfig.assets.logoLightDropshadow}/>
           <span>communikey</span>
         </div>
         <Menu
-          mode={this.state.menuMode}
+          mode={sidebarMenuMode}
           defaultSelectedKeys={[ROUTE_DASHBOARD]}
-          openKeys={this.state.sidebarOpenKeys}
-          selectedKeys={[this.state.sidebarCurrentSelected]}
+          openKeys={sidebarOpenKeys}
+          selectedKeys={[sidebarCurrentSelected]}
           onOpenChange={this.onSidebarOpenChange}
           onClick={this.handleSidebarClick}
         >
@@ -107,7 +107,7 @@ class BaseLayout extends React.Component {
             </NavLink>
           </Menu.Item>
           {
-            this.props.authStore.privileged &&
+            authStore.privileged &&
             <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="setting"/><span className="nav-text">Administration</span></span>}>
               <Menu.Item key={ROUTE_ADMINISTRATION_CATEGORIES}>
                 <NavLink to={ROUTE_ADMINISTRATION_CATEGORIES} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_CATEGORIES)}>Categories</NavLink>
@@ -128,7 +128,7 @@ class BaseLayout extends React.Component {
       <Layout.Header className="cckey-base-layout-header">
         <Row type="flex" justify="end" align="bottom">
           <Menu mode="horizontal">
-            <Menu.SubMenu title={this.props.authStore.firstName}>
+            <Menu.SubMenu title={authStore.firstName}>
               <Menu.Item key="sign-out">
                 <Link to={ROUTE_SIGNOUT}>Sign out</Link>
               </Menu.Item>
@@ -148,7 +148,7 @@ class BaseLayout extends React.Component {
         <Layout className="cckey-base-layout">
           {header()}
           <Layout.Content>
-            {this.props.children}
+            {children}
           </Layout.Content>
         </Layout>
       </Layout>
