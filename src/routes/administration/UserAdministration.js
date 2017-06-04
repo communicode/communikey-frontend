@@ -259,6 +259,7 @@ class UserAdministration extends React.Component {
           </Row>
           <UserModal
             visible={userModalVisible}
+            key={user.id}
             user={user}
             locked={userModalLocked}
             creationMode={userModalCreationMode}
