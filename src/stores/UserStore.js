@@ -96,6 +96,7 @@ class UserStore {
    *
    * @param {string} login - The login of the user to get
    * @returns {Promise} - A promise
+   * @since 0.8.0
    */
   @action
   get = (login) => {
@@ -128,6 +129,7 @@ class UserStore {
    * @param {string} email - The email of the user to get a password reset token for
    * @param {string} login - The login of the user to get a password reset token for
    * @returns {Promise} - A promise
+   * @since 0.8.0
    */
   @action
   getPasswordResetToken = (email, login) => {
@@ -135,6 +137,28 @@ class UserStore {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
         email: email
+      }
+    })
+      .then(() => this.get(login));
+  };
+
+  /**
+   * Resets a user password with the specified reset token and new password.
+   *
+   * @param {string} resetToken - The reset token
+   * @param {string} newPassword - The new password
+   * @param {string} login - The login of the user to reset the password of
+   * @returns {Promise} - A promise
+   * @since 0.8.0
+   */
+  @action
+  resetPassword = (resetToken, newPassword, login) => {
+    return apiService.post(USERS_PASSWORD_RESET, {
+      resetKey: resetToken,
+      password: newPassword
+    }, {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
       .then(() => this.get(login));

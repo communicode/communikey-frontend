@@ -164,6 +164,26 @@ class UserAdministration extends React.Component {
   };
 
   /**
+   * Handles the user modal password reset event.
+   *
+   * @callback handleUserModalUserPasswordReset
+   * @param {string} newPassword - The new password
+   * @return {Promise}
+   */
+  handleUserModalUserPasswordReset = (newPassword) => {
+    this.setProcessingStatus(true);
+    return this.props.userStore.resetPassword(this.state.user.resetKey, newPassword, this.state.user.login)
+      .then(updatedUser => {
+        this.setState({user: update(this.state.user, {$merge: updatedUser})});
+        this.setProcessingStatus(false);
+      })
+      .catch(error => {
+        this.setProcessingStatus(false);
+        return Promise.reject(error);
+      });
+  };
+
+  /**
    * Handles a user table record selection event.
    *
    * @callback handleUserTableRecordSelect
@@ -249,6 +269,7 @@ class UserAdministration extends React.Component {
             onSave={this.handleUserModalSave}
             onUserActivate={this.handleUserModalUserActivation}
             onUserDeactivate={this.handleUserModalUserDeactivation}
+            onUserPasswordReset={this.handleUserModalUserPasswordReset}
             onValueChange={this.handleModalValueChange}
             toggleLockStatus={this.toggleUserModalLockStatus}
           />

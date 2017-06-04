@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CopyToClipboard from "react-copy-to-clipboard";
+import _ from "lodash";
 import {Badge, Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Tooltip} from "antd";
 import appConfig from "./../../config/app";
 import "antd/lib/badge/style/index.less";
@@ -19,13 +20,97 @@ import "./UserModal.less";
 /**
  * A modal for user.
  *
+ * @author dvonderbey@communicode.de
+ * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
 class UserModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      /**
+       * The value of the password reset modal confirmation input.
+       *
+       * @default ""
+       * @type {string}
+       */
+      passwordResetModalConfirmValue: "",
+
+      /**
+       * The value of the password reset modal password input.
+       *
+       * @default ""
+       * @type {string}
+       */
+      passwordResetModalNewPasswordValue: "",
+
+      /**
+       * Indicates if the both password reset modal values are valid.
+       *
+       * @default false
+       * @type {boolean}
+       */
+      passwordResetModalValuesValid: false,
+
+      /**
+       * The visibility status of the password reset modal.
+       *
+       * @default false
+       * @type {boolean}
+       */
+      passwordResetModalVisible: false
+    };
   }
+
+  /**
+   * Handles the user modal close event.
+   *
+   * @callback handleUserModalClose
+   */
+  handlePasswordResetModalClose = () => {
+    this.togglePasswordResetModal();
+    this.resetPasswordResetModalValues();
+  };
+
+  /**
+   * Handles all input value change events.
+   *
+   * @callback handleModalValueChange
+   * @param event - The change event
+   */
+  handlePasswordResetModalValueChange = (event) => {
+    this.setState({[event.target.name]: event.target.value});
+    this.validatePasswordResetValues();
+  };
+
+  /**
+   * Handles the password reset modal save event.
+   */
+  handleUserPasswordResetSave = () => {
+    this.props.onUserPasswordReset(this.state.passwordResetModalNewPasswordValue)
+      .then(() => this.togglePasswordResetModal())
+      .catch(error => console.error(error));
+  };
+
+  /**
+   * Resets the state user object.
+   */
+  resetPasswordResetModalValues = () => this.setState({passwordResetModalConfirmValue: "", passwordResetModalNewPasswordValue: ""});
+
+  /**
+   * Toggles the password reset modal.
+   */
+  togglePasswordResetModal = () => this.setState(prevState => ({passwordResetModalVisible: !prevState.passwordResetModalVisible}));
+
+  /**
+   * Validates the password reset input values.
+   */
+  validatePasswordResetValues = () => {
+    let newPassword = this.passwordResetModalNewPasswordInput.refs.input.value;
+    let confirmedPassword = this.passwordResetModalConfirmInput.refs.input.value;
+    this.setState({passwordResetModalValuesValid: _.isEqual(newPassword, confirmedPassword) && !_.isEmpty(newPassword, confirmedPassword)});
+  };
 
   render() {
     const {
@@ -43,6 +128,8 @@ class UserModal extends React.Component {
       user,
       ...modalProps
     } = this.props;
+
+    const {passwordResetModalValuesValid, passwordResetModalVisible} = this.state;
 
     /**
      * Layout configurations for all editable form items.
@@ -76,6 +163,10 @@ class UserModal extends React.Component {
         keyName: "GENERATE_PASSWORD_RESET_TOKEN",
         handler: onGeneratePasswordResetToken
       },
+      RESET_PASSWORD: {
+        keyName: "RESET_PASSWORD",
+        handler: this.togglePasswordResetModal
+      },
       USER_ACTIVATE: {
         keyName: "USER_ACTIVATE",
         handler: onUserActivate
@@ -98,7 +189,8 @@ class UserModal extends React.Component {
 
     const footerOperationsDropdownMenu = (
       <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
-        <Menu.Item key={OPERATION_TYPES.GENERATE_PASSWORD_RESET_TOKEN.keyName} disabled={!!(locked || user.resetKey)}>Generate password reset token</Menu.Item>
+        <Menu.Item key={OPERATION_TYPES.GENERATE_PASSWORD_RESET_TOKEN.keyName} disabled={!!(locked || user.resetKey || !user.activated)}>Generate password reset token</Menu.Item>
+        <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={locked || !user.resetKey}>Reset password</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_ACTIVATE.keyName} disabled={locked || user.activated}>Activate</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_DEACTIVATE.keyName} disabled={locked || !user.activated}>Deactivate</Menu.Item>
       </Menu>
@@ -247,12 +339,78 @@ class UserModal extends React.Component {
       </div>
     );
 
+    const passwordResetInnerModal = () => (
+      <Modal
+        visible={passwordResetModalVisible}
+        footer={false}
+        closable={false}
+        className="password-reset-inner-modal">
+        <Row>
+          <Col span={24}>
+            <Form>
+              <Form.Item>
+                <Input
+                  name="resetKey"
+                  addonBefore={<Icon type="pay-circle-o"/>}
+                  value={user.resetKey}
+                  readOnly={true}
+                  disabled={!user.resetKey}
+                  suffix={user.resetKey ? copyToClipboardIcon(user.resetKey) : null}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Input
+                  name="passwordResetModalNewPasswordValue"
+                  onChange={this.handlePasswordResetModalValueChange}
+                  placeholder="New password"
+                  value={this.state.passwordResetModalNewPasswordValue}
+                  type="password"
+                  ref={node => this.passwordResetModalNewPasswordInput = node}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Input
+                  name="passwordResetModalConfirmValue"
+                  onChange={this.handlePasswordResetModalValueChange}
+                  value={this.state.passwordResetModalConfirmValue}
+                  placeholder="Confirm new password"
+                  type="password"
+                  ref={node => this.passwordResetModalConfirmInput = node}
+                />
+              </Form.Item>
+            </Form>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="footer">
+              <Row type="flex" justify="end">
+                <Col>
+                  <Button key="cancel-password-reset" size="large" onClick={this.handlePasswordResetModalClose}>Cancel</Button>
+                  <Button
+                    key="save-password-reset"
+                    type="primary" size="large"
+                    onClick={this.handleUserPasswordResetSave}
+                    loading={loading}
+                    disabled={!passwordResetModalValuesValid}
+                  >
+                    Save
+                  </Button>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+        </Row>
+      </Modal>
+    );
+
     return (
       <Modal
         onSave={onSave}
         onClose={onClose}
         footer={false}
         closable={false}
+        className="cckey-user-modal"
         {...modalProps}>
         <Row gutter={24}>
           <Col span={6}>
@@ -270,6 +428,7 @@ class UserModal extends React.Component {
         </Row>
         {!creationMode && <Row span={4}>{lockStatusButton()}</Row>}
         <Row><Col>{footer()}</Col></Row>
+        {passwordResetInnerModal()}
       </Modal>
     );
   }
@@ -338,6 +497,13 @@ UserModal.propTypes = {
    * @type {function}
    */
   onUserDeactivate: PropTypes.func.isRequired,
+
+  /**
+   * Callback function to handle the user password reset event.
+   *
+   * @type {function}
+   */
+  onUserPasswordReset: PropTypes.func.isRequired,
 
   /**
    * Callback function to handle input value change events.
