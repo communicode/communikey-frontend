@@ -237,24 +237,21 @@ class UserAdministration extends React.Component {
               size="middle"
             />
           </Row>
-          {
-            userModalVisible &&
-            <UserModal
-              visible={userModalVisible}
-              user={user}
-              locked={userModalLocked}
-              creationMode={userModalCreationMode}
-              loading={processing}
-              onClose={this.handleUserModalClose}
-              onDelete={this.handleUserModalDelete}
-              onGeneratePasswordResetToken={this.handleUserModalPasswordResetTokenGeneration}
-              onSave={this.handleUserModalSave}
-              onUserActivate={this.handleUserModalUserActivation}
-              onUserDeactivate={this.handleUserModalUserDeactivation}
-              onValueChange={this.handleModalValueChange}
-              toggleLockStatus={this.toggleUserModalLockStatus}
-            />
-          }
+          <UserModal
+            visible={userModalVisible}
+            user={user}
+            locked={userModalLocked}
+            creationMode={userModalCreationMode}
+            loading={processing}
+            onClose={this.handleUserModalClose}
+            onDelete={this.handleUserModalDelete}
+            onGeneratePasswordResetToken={this.handleUserModalPasswordResetTokenGeneration}
+            onSave={this.handleUserModalSave}
+            onUserActivate={this.handleUserModalUserActivation}
+            onUserDeactivate={this.handleUserModalUserDeactivation}
+            onValueChange={this.handleModalValueChange}
+            toggleLockStatus={this.toggleUserModalLockStatus}
+          />
         </div>
       </div>
     );
