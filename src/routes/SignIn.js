@@ -51,7 +51,6 @@ class SignIn extends React.Component {
       .then(oAuth2Data => {
         Object.entries(oAuth2Data).map(([key, value]) => localStorage.setItem(key, value));
         this.props.authStore.fetch()
-          .then(() => this.setState({processing: false}))
           .catch(error => console.error(error));
       })
       .catch(error => console.error(error))
