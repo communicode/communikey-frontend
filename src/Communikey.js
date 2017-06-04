@@ -69,10 +69,7 @@ class Communikey extends React.Component {
 
   componentDidMount() {
     localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN) && AuthService.validateLocalStorageOAuth2AccessToken()
-      .then(() => {
-        stores.authStore.setIsAuthorized(true);
-        this.setState({initialized: true});
-      })
+      .then(() => stores.authStore.setIsAuthorized(true))
       .catch(error => console.error(error));
     this.setState({initialized: true});
   }

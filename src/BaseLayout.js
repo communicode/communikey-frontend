@@ -25,6 +25,7 @@ class BaseLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      initialized: false,
       storesInitialized: false,
       isSidebarCollapsed: true,
       sidebarMenuMode: "inline",
@@ -34,19 +35,21 @@ class BaseLayout extends React.Component {
   }
 
   componentDidMount() {
-    this.props.authStore.fetch().then(() => {
-      this.initializeStores();
-    });
+    this.props.authStore.fetch()
+      .then(() => {
+        this.initializeStores()
+          .then(() => this.setState({storesInitialized: true}))
+          .catch(() => this.setState({initialized: true}));
+      })
+      .catch(() => this.setState({initialized: true}));
   }
 
   initializeStores = () => {
-    axios.all([
+    return axios.all([
       this.props.categoryStore.getAll(),
       this.props.userStore.getAll(),
       this.props.keyStore.getAll()
-    ]).then(() => {
-      this.setState({storesInitialized: true});
-    });
+    ]);
   };
 
   onSidebarCollapse = () => {
@@ -81,6 +84,9 @@ class BaseLayout extends React.Component {
   isActiveSidebarNavLink = (menuItemKeyName) => this.state.sidebarCurrentSelected === menuItemKeyName;
 
   render() {
+    const {initialized, isSidebarCollapsed, sidebarCurrentSelected, sidebarMenuMode, sidebarOpenKeys, storesInitialized} = this.state;
+    const {authStore, children} = this.props;
+
     const sidebar = () => (
       <Layout.Sider className="sidebar" collapsible={true} collapsed={this.state.isSidebarCollapsed} onCollapse={this.onSidebarCollapse}>
         <div className="logo">
@@ -148,7 +154,7 @@ class BaseLayout extends React.Component {
       </Layout>
     );
 
-    return this.state.storesInitialized ? renderBaseLayout() : spinner();
+    return storesInitialized || initialized ? renderBaseLayout() : spinner();
   }
 }
 
