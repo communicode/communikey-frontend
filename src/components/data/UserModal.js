@@ -177,6 +177,7 @@ class UserModal extends React.Component {
             onChange={onValueChange}
             placeholder="Email"
             readOnly={!creationMode}
+            suffix={user.email ? copyToClipboardIcon(user.email) : null}
             value={
               creationMode
                 ? user.email
