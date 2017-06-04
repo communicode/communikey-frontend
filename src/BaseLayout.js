@@ -28,7 +28,7 @@ class BaseLayout extends React.Component {
       initialized: false,
       storesInitialized: false,
       isSidebarCollapsed: true,
-      sidebarMenuMode: "inline",
+      sidebarMenuMode: "vertical",
       sidebarCurrentSelected: props.location.pathname === ROOT ? ROUTE_DASHBOARD : props.location.pathname,
       sidebarOpenKeys: []
     };
@@ -53,10 +53,10 @@ class BaseLayout extends React.Component {
   };
 
   onSidebarCollapse = () => {
-    this.setState({
-      isSidebarCollapsed: !this.state.isSidebarCollapsed,
-      menuMode: this.state.isSidebarCollapsed ? "inline" : "vertical"
-    });
+    this.setState(prevState => ({
+      isSidebarCollapsed: !prevState.isSidebarCollapsed,
+      sidebarMenuMode: prevState.isSidebarCollapsed ? "inline" : "vertical"
+    }));
   };
 
   handleSidebarClick = (event) => this.setState({sidebarCurrentSelected: event.key});
