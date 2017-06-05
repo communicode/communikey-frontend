@@ -27,8 +27,8 @@ class BaseLayout extends React.Component {
     this.state = {
       initialized: false,
       storesInitialized: false,
-      isSidebarCollapsed: true,
-      sidebarMenuMode: "vertical",
+      isSidebarCollapsed: false,
+      sidebarMenuMode: "inline",
       sidebarCurrentSelected: props.location.pathname === ROOT ? ROUTE_DASHBOARD : props.location.pathname,
       sidebarOpenKeys: []
     };
