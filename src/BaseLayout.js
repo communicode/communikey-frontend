@@ -123,6 +123,7 @@ class BaseLayout extends React.Component {
         </Menu>
       </Layout.Sider>
     );
+    sidebar.__ANT_LAYOUT_SIDER = true;
 
     const header = () => (
       <Layout.Header className="cckey-base-layout-header">
