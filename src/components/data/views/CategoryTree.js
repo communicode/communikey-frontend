@@ -23,7 +23,7 @@ class CategoryTree extends React.Component {
    * @param categories
    */
   generateTreeNodes = categories => categories.map(category => {
-    if (category.children.length > 0) {
+    if (category.children.length) {
       return (
         <Tree.TreeNode key={category.id} title={<span><Icon type="folder"/> {category.name}</span>} category={category}>
           {this.generateTreeNodes(category.children)}
@@ -34,12 +34,14 @@ class CategoryTree extends React.Component {
   });
 
   render() {
-    const {categories, expandedKeys, onExpand, onSelect, selectedKeys, ...treeProps} = this.props;
+    const {categories, expandedKeys, onDrop, onExpand, onSelect, selectedKeys, draggable, ...treeProps} = this.props;
 
     return (
       <Tree
         {...treeProps}
+        draggable={draggable}
         expandedKeys={expandedKeys}
+        onDrop={onDrop}
         onExpand={onExpand}
         onSelect={onSelect}
         selectedKeys={selectedKeys}
@@ -57,9 +59,19 @@ CategoryTree.propTypes = {
   categories: MobXPropTypes.observableArray.isRequired,
 
   /**
+   * Determines if tree nodes can be dragged.
+   */
+  draggable: PropTypes.bool.isRequired,
+
+  /**
    * The currently expanded keys.
    */
   expandedKeys: PropTypes.array.isRequired,
+
+  /**
+   * Callback function to handle drop events.
+   */
+  onDrop: PropTypes.func.isRequired,
 
   /**
    * Callback function to handle expand events.
@@ -70,6 +82,11 @@ CategoryTree.propTypes = {
    * Callback function to handle selection events.
    */
   onSelect: PropTypes.func.isRequired,
+
+  /**
+   * Determines the current processing status.
+   */
+  processing: PropTypes.bool.isRequired,
 
   /**
    * The currently selected keys.

@@ -1,13 +1,14 @@
 import React from "react";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import update from "immutability-helper";
-import {Button, Col, Row} from "antd";
+import {Button, Col, Row, Tooltip} from "antd";
 import CategoryTree from "./../../components/data/views/CategoryTree";
 import CategoryModal from "./../../components/data/CategoryModal";
 import {CATEGORY_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/row/style/css";
+import "antd/lib/tooltip/style/index.less";
 import "./CategoryAdministration.less";
 import "./../../BaseLayout.less";
 
@@ -28,6 +29,7 @@ class CategoryAdministration extends React.Component {
       categoryModalCreationMode: false,
       categoryModalLocked: true,
       categoryModalVisible: false,
+      categoryTreeDraggable: false,
       categoryTreeExpandedNodeKeys: [],
       categoryTreeAutoExpandParent: false,
       categoryTreeSelectedNode: null,
@@ -118,6 +120,21 @@ class CategoryAdministration extends React.Component {
   };
 
   /**
+   * Handles the category tree drop event.
+   *
+   * @callback handleCategoryTreeOnDrop
+   * @param event - The drop event
+   */
+  handleCategoryTreeOnDrop = (event) => {
+    if (event.dragNode && !event.dropToGap) {
+      this.setState({processing: true});
+      this.props.categoryStore.addChild(event.node.props.category.id, event.dragNode.props.category.id)
+        .then(() => this.setState({processing: false}))
+        .catch(() => this.setState({processing: false}));
+    }
+  };
+
+  /**
    * Handles the category tree expand event.
    *
    * @callback handleCategoryTreeOnExpand
@@ -184,6 +201,13 @@ class CategoryAdministration extends React.Component {
     this.setState(prevState => ({categoryModalLocked: !prevState.categoryModalLocked}));
   };
 
+  /**
+   * Toggles the category tree drag status.
+   */
+  toggleCategoryTreeDragStatus = () => {
+    this.setState(prevState => ({categoryTreeDraggable: !prevState.categoryTreeDraggable}));
+  };
+
   render() {
     const {categoryStore} = this.props;
     const {
@@ -191,11 +215,18 @@ class CategoryAdministration extends React.Component {
       categoryModalCreationMode,
       categoryModalLocked,
       categoryModalVisible,
+      categoryTreeDraggable,
       categoryTreeExpandedNodeKeys,
       categoryTreeAutoExpandParent,
       categoryTreeSelectedNodeKeys,
       processing
     } = this.state;
+
+    const dragStatusButton = () => (
+      <Tooltip title={categoryTreeDraggable ? "Disable dragging" : "Eanble dragging"} mouseEnterDelay={1}>
+        <Button key="categoryTreeDragStatus" type={categoryTreeDraggable ? "dashed" : "ghost"} onClick={this.toggleCategoryTreeDragStatus} icon="swap"/>
+      </Tooltip>
+    );
 
     return (
       <div className="cckey-base-layout-content-container">
@@ -205,6 +236,7 @@ class CategoryAdministration extends React.Component {
               <Col span={4} offset={20}>
                 <div className="operations">
                   <Button.Group>
+                    {dragStatusButton()}
                     <Button type="primary" ghost={true} icon="plus" onClick={this.handleCategoryModalCreation}/>
                   </Button.Group>
                 </div>
@@ -215,11 +247,14 @@ class CategoryAdministration extends React.Component {
             <Col>
               <CategoryTree
                 autoExpandParent={categoryTreeAutoExpandParent}
+                draggable={categoryTreeDraggable}
                 expandedKeys={categoryTreeExpandedNodeKeys}
                 categories={categoryStore.categories}
+                onDrop={this.handleCategoryTreeOnDrop}
                 onExpand={this.handleCategoryTreeOnExpand}
                 onSelect={this.handleCategoryTreeOnSelection}
                 selectedKeys={categoryTreeSelectedNodeKeys}
+                processing={processing}
                 className="category-tree"
               />
             </Col>
