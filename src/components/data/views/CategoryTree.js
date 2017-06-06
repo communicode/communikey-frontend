@@ -18,7 +18,7 @@ class CategoryTree extends React.Component {
   }
 
   /**
-   * Recursivly generates all tree nodes.
+   * Recursively generates all tree nodes.
    *
    * @param categories
    */
@@ -66,17 +66,17 @@ CategoryTree.propTypes = {
   /**
    * The currently expanded keys.
    */
-  expandedKeys: PropTypes.array.isRequired,
+  expandedKeys: PropTypes.array,
 
   /**
    * Callback function to handle drop events.
    */
-  onDrop: PropTypes.func.isRequired,
+  onDrop: PropTypes.func,
 
   /**
    * Callback function to handle expand events.
    */
-  onExpand: PropTypes.func.isRequired,
+  onExpand: PropTypes.func,
 
   /**
    * Callback function to handle selection events.
@@ -86,12 +86,12 @@ CategoryTree.propTypes = {
   /**
    * Determines the current processing status.
    */
-  processing: PropTypes.bool.isRequired,
+  processing: PropTypes.bool,
 
   /**
    * The currently selected keys.
    */
-  selectedKeys: PropTypes.array.isRequired
+  selectedKeys: PropTypes.array
 };
 
 export default CategoryTree;

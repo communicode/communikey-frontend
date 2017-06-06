@@ -21,13 +21,15 @@ class KeyStore {
    * Creates a new key with the specified attributes.
    *
    * @param {string} name - The name of the key to create
+   * @param {string} login - The login of the key
    * @param {string} password - The password of the key
    * @returns {Promise} - A promise
    */
   @action
-  createKey = (name, password) => {
+  create = (name, login, password) => {
     return apiService.post(KEYS, {
       name: name,
+      login: login,
       password: password
     }, {
       params: {
@@ -44,7 +46,7 @@ class KeyStore {
    * @returns {Promise} - A promise
    */
   @action
-  deleteKey = (keyId) => {
+  delete = (keyId) => {
     return apiService.delete(KEY({keyId: keyId}), {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
@@ -52,6 +54,15 @@ class KeyStore {
     })
       .then(action(() => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1)));
   };
+
+  /**
+   * Finds the key with the specified ID.
+   *
+   * @param {number} keyId - The ID of the key to find
+   * @returns {object} The key if found
+   */
+  @action
+  findOneById = (keyId) => this.keys.find(key =>key.id === keyId);
 
   /**
    * Gets all keys.
@@ -73,13 +84,15 @@ class KeyStore {
    *
    * @param {number} keyId - The ID of the key to update
    * @param {string} name - The name of the key
+   * @param {string} login - The login of the key
    * @param {string} password - The password of the key
    * @returns {Promise} - A promise
    */
   @action
-  updateKey = (keyId, name, password) => {
+  update = (keyId, name, login, password) => {
     return apiService.put(KEY({keyId: keyId}), {
       name: name,
+      login: login,
       password: password
     }, {
       params: {
