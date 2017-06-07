@@ -18,6 +18,7 @@ import {authStore} from "./stores/AuthStore";
 import {categoryStore} from "./stores/CategoryStore";
 import {keyStore} from "./stores/KeyStore";
 import {userStore} from "./stores/UserStore";
+import appConfig from "./config/app";
 import {
   ROUTE_ADMINISTRATION_CATEGORIES,
   ROUTE_ADMINISTRATION_KEYS,
@@ -102,4 +103,4 @@ class Communikey extends React.Component {
   }
 }
 
-ReactDOM.render((<Communikey/>), document.getElementById("communikey"));
+ReactDOM.render((<Communikey/>), document.getElementById(appConfig.name));
