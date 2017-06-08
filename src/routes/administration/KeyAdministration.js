@@ -1,11 +1,12 @@
 import React from "react";
 import update from "immutability-helper";
 import {Button, Col, Row} from "antd";
+import QueueAnim from "rc-queue-anim";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
 import KeyModal from "./../../components/data/KeyModal";
 import KeyTable from "../../components/data/views/KeyTable";
-import appConfig from "./../../config/app";
+import motionConfig from "./../../config/motion";
 import {CATEGORY_STORE, KEY_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -179,45 +180,47 @@ class KeyAdministration extends React.Component {
     const {keyStore} = this.props;
 
     return (
-      <div className="cckey-base-layout-content-container">
-        <div className="cckey-base-layout-content-container-inner">
-          <div className="header">
+      <QueueAnim duration={motionConfig.routes.duration} ease={motionConfig.routes.ease} type={motionConfig.routes.type}>
+        <div key="keyAdministrationAntMotionWrapper" className="cckey-base-layout-content-container">
+          <div className="cckey-base-layout-content-container-inner">
+            <div className="header">
+              <Row>
+                <Col span={4} offset={20}>
+                  <div className="operations">
+                    <Button.Group>
+                      <Button type="primary" ghost={true} icon="plus" onClick={this.handleKeyModalCreation}/>
+                    </Button.Group>
+                  </div>
+                </Col>
+              </Row>
+            </div>
             <Row>
-              <Col span={4} offset={20}>
-                <div className="operations">
-                  <Button.Group>
-                    <Button type="primary" ghost={true} icon="plus" onClick={this.handleKeyModalCreation}/>
-                  </Button.Group>
-                </div>
-              </Col>
+              <KeyTable
+                dataSource={toJS(keyStore.keys)}
+                onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
+                onRowDoubleClick={this.toggleKeyModal}
+                pagination={true}
+                size="middle"
+              />
             </Row>
-          </div>
-          <Row>
-            <KeyTable
-              dataSource={toJS(keyStore.keys)}
-              onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
-              onRowDoubleClick={this.toggleKeyModal}
-              pagination={true}
-              size="middle"
+            <KeyModal
+              visible={keyModalVisible}
+              key={key.id}
+              cckeyKey={key}
+              categories={this.props.categoryStore.categories}
+              locked={keyModalLocked}
+              creationMode={keyModalCreationMode}
+              loading={processing}
+              onCategoryTreeSelectionSave={this.handleKeyModalAddKeyToCategory}
+              onClose={this.handleKeyModalClose}
+              onDelete={this.handleKeyModalDelete}
+              onSave={this.handleKeyModalSave}
+              onValueChange={this.handleKeyModalValueChange}
+              toggleLockStatus={this.toggleKeyModalLockStatus}
             />
-          </Row>
-          <KeyModal
-            visible={keyModalVisible}
-            key={key.id}
-            cckeyKey={key}
-            categories={this.props.categoryStore.categories}
-            locked={keyModalLocked}
-            creationMode={keyModalCreationMode}
-            loading={processing}
-            onCategoryTreeSelectionSave={this.handleKeyModalAddKeyToCategory}
-            onClose={this.handleKeyModalClose}
-            onDelete={this.handleKeyModalDelete}
-            onSave={this.handleKeyModalSave}
-            onValueChange={this.handleKeyModalValueChange}
-            toggleLockStatus={this.toggleKeyModalLockStatus}
-          />
+          </div>
         </div>
-      </div>
+      </QueueAnim>
     );
   }
 }
