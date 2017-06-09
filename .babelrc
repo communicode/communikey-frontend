@@ -7,7 +7,11 @@
   "plugins": [
     "react-html-attrs",
     "transform-decorators-legacy",
-    "transform-class-properties"
+    "transform-class-properties",
+    ["import", {
+      "libraryName": "antd",
+      "style": "true"
+    }]
   ],
   "env": {
     "test": {
