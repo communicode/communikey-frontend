@@ -2,12 +2,10 @@ import React from "react";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
 import {Col, Icon, Row} from "antd";
-import QueueAnim from "rc-queue-anim";
 import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import KeyTable, {KEY_TABLE_DEFAULT_COLUMNS} from "./../components/data/views/KeyTable";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
-import motionConfig from "./../config/motion";
 import {CATEGORY_STORE} from "./../stores/storeConstants";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -141,7 +139,7 @@ class Keys extends React.Component {
           dataSource={toJS(category.keys)}
           onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
           onRowDoubleClick={this.toggleKeyModal}
-          show ={category.keys && !!category.keys.length}
+          show={category.keys && !!category.keys.length}
           columns={columns}
 
         />
@@ -169,14 +167,12 @@ class Keys extends React.Component {
     );
 
     return (
-      <QueueAnim duration={motionConfig.routes.duration} ease={motionConfig.routes.ease} type={motionConfig.routes.type}>
-        <div key="keysAntMotionWrapper" className="cckey-base-layout-content-container">
-          <div className="cckey-base-layout-content-container-inner">
-            {categoryStore.categories.length ? mainDataView() : noDataMessageBox()}
-            {keyModal()}
-          </div>
+      <div className="cckey-base-layout-content-container">
+        <div className="cckey-base-layout-content-container-inner">
+          {categoryStore.categories.length ? mainDataView() : noDataMessageBox()}
+          {keyModal()}
         </div>
-      </QueueAnim>
+      </div>
     );
   }
 }

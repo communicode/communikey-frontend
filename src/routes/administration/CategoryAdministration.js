@@ -2,11 +2,9 @@ import React from "react";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import update from "immutability-helper";
 import {Button, Col, Icon, Row, Tooltip} from "antd";
-import QueueAnim from "rc-queue-anim";
 import CategoryTree from "./../../components/data/views/CategoryTree";
 import CategoryModal from "./../../components/data/CategoryModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
-import motionConfig from "./../../config/motion";
 import {CATEGORY_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -294,14 +292,12 @@ class CategoryAdministration extends React.Component {
     );
 
     return (
-      <QueueAnim duration={motionConfig.routes.duration} ease={motionConfig.routes.ease} type={motionConfig.routes.type}>
-        <div key="categoryAdministrationAntMotionWrapper" className="cckey-base-layout-content-container">
-          <div className="cckey-base-layout-content-container-inner">
-            {categoryStore.categories.length ? mainDataView() : noDataMessageBox()}
-            {categoryModal()}
-          </div>
+      <div key="categoryAdministrationAntMotionWrapper" className="cckey-base-layout-content-container">
+        <div className="cckey-base-layout-content-container-inner">
+          {categoryStore.categories.length ? mainDataView() : noDataMessageBox()}
+          {categoryModal()}
         </div>
-      </QueueAnim>
+      </div>
     );
   }
 }

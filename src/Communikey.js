@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {Provider, observer} from "mobx-react";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {LocaleProvider, Spin} from "antd";
+import QueueAnim from "rc-queue-anim";
 import {useStrict} from "mobx";
 import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
@@ -20,6 +21,7 @@ import {categoryStore} from "./stores/CategoryStore";
 import {keyStore} from "./stores/KeyStore";
 import {userStore} from "./stores/UserStore";
 import appConfig from "./config/app";
+import motionConfig from "./config/motion";
 import {
   ROUTE_ADMINISTRATION_CATEGORIES,
   ROUTE_ADMINISTRATION_KEYS,
@@ -48,7 +50,7 @@ const stores = {authStore, categoryStore, keyStore, userStore};
  * The value can be injected through the {@linkcode COMMUNIKEY_VERSION} environment variable during the compile time.
  *
  * @constant
- * @default 0.0.0
+ * @default local-dev
  * @type {string}
  * @since 0.6.0
  */
@@ -82,22 +84,34 @@ class Communikey extends React.Component {
     const routes = () => {
       return <Provider {...stores}>
         <LocaleProvider locale={enUS}>
-        <BrowserRouter>
-          <Switch>
-            <Route path={ROUTE_SIGNOUT} component={SignOut}/>
-            <PublicRoute path={ROUTE_SIGNIN} component={SignIn} authorized={stores.authStore.isAuthorized}/>
-            <BaseLayout>
-              <Switch>
-                <AuthenticatedRoute path={ROUTE_DASHBOARD} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
-                <AuthenticatedRoute path={ROUTE_ADMINISTRATION_CATEGORIES} component={CategoryAdministration} authorized={stores.authStore.isAuthorized}/>
-                <AuthenticatedRoute path={ROUTE_ADMINISTRATION_KEYS} component={KeyAdministration} authorized={stores.authStore.isAuthorized}/>
-                <AuthenticatedRoute path={ROUTE_ADMINISTRATION_USERS} component={UserAdministration} authorized={stores.authStore.isAuthorized}/>
-                <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
-                <Redirect from={ROUTE_ROOT} to={ROUTE_DASHBOARD}/>
-              </Switch>
-            </BaseLayout>
-          </Switch>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Switch>
+              <Route path={ROUTE_SIGNOUT} component={SignOut}/>
+              <PublicRoute path={ROUTE_SIGNIN} component={SignIn} authorized={stores.authStore.isAuthorized}/>
+              <BaseLayout>
+                <Route render={({location}) => {
+                  return (
+                    <QueueAnim
+                      delay={motionConfig.routes.delay}
+                      duration={motionConfig.routes.duration}
+                      ease={motionConfig.routes.ease}
+                      type={motionConfig.routes.type}
+                    >
+                      <Switch key={location.key} location={location}>
+                        <AuthenticatedRoute path={ROUTE_DASHBOARD} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
+                        <AuthenticatedRoute path={ROUTE_ADMINISTRATION_CATEGORIES} component={CategoryAdministration}
+                                            authorized={stores.authStore.isAuthorized}/>
+                        <AuthenticatedRoute path={ROUTE_ADMINISTRATION_KEYS} component={KeyAdministration} authorized={stores.authStore.isAuthorized}/>
+                        <AuthenticatedRoute path={ROUTE_ADMINISTRATION_USERS} component={UserAdministration} authorized={stores.authStore.isAuthorized}/>
+                        <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
+                        <Redirect from={ROUTE_ROOT} to={ROUTE_DASHBOARD}/>
+                      </Switch>
+                    </QueueAnim>
+                  );
+                }}/>
+              </BaseLayout>
+            </Switch>
+          </BrowserRouter>
         </LocaleProvider>
       </Provider>;
     };

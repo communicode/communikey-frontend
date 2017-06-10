@@ -1,10 +1,11 @@
 module.exports = {
   routes: {
-    duration: [1000, 1000],
+    delay: [450, 0],
+    duration: [450, 450],
     /**
      * @see http://easings.net
      */
-    ease: ["easeOutQuad", "easeInOutCirc"],
+    ease: ["easeOutQuad", "easeInOutQuad"],
     type: ["left", "left"]
   }
 };

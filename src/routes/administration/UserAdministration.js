@@ -1,14 +1,12 @@
 import React from "react";
 import update from "immutability-helper";
 import {Button, Col, Icon, Row} from "antd";
-import QueueAnim from "rc-queue-anim";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
 import UserTable from "./../../components/data/views/UserTable";
 import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
-import motionConfig from "./../../config/motion";
 import {USER_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -294,14 +292,12 @@ class UserAdministration extends React.Component {
     );
 
     return (
-      <QueueAnim duration={motionConfig.routes.duration} ease={motionConfig.routes.ease} type={motionConfig.routes.type}>
-        <div key="userAdministrationAntMotionWrapper" className="cckey-base-layout-content-container">
-          <div className="cckey-base-layout-content-container-inner">
-            {userStore.users.length ? mainDataView() : noDataMessageBox()}
-            {userModal()}
-          </div>
+      <div className="cckey-base-layout-content-container">
+        <div className="cckey-base-layout-content-container-inner">
+          {userStore.users.length ? mainDataView() : noDataMessageBox()}
+          {userModal()}
         </div>
-      </QueueAnim>
+      </div>
     );
   }
 }

@@ -1,13 +1,11 @@
 import React from "react";
 import update from "immutability-helper";
 import {Button, Col, Icon, Row} from "antd";
-import QueueAnim from "rc-queue-anim";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
 import KeyModal from "./../../components/data/KeyModal";
 import KeyTable from "../../components/data/views/KeyTable";
 import NoDataMessageBox from "../../components/feedback/NoDataMessageBox";
-import motionConfig from "./../../config/motion";
 import {CATEGORY_STORE, KEY_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -235,14 +233,12 @@ class KeyAdministration extends React.Component {
     );
 
     return (
-      <QueueAnim duration={motionConfig.routes.duration} ease={motionConfig.routes.ease} type={motionConfig.routes.type}>
-        <div key="keyAdministrationAntMotionWrapper" className="cckey-base-layout-content-container">
-          <div className="cckey-base-layout-content-container-inner">
-            {keyStore.keys.length ? mainDataView() : noDataMessageBox()}
-            {keyModal()}
-          </div>
+      <div className="cckey-base-layout-content-container">
+        <div className="cckey-base-layout-content-container-inner">
+          {keyStore.keys.length ? mainDataView() : noDataMessageBox()}
+          {keyModal()}
         </div>
-      </QueueAnim>
+      </div>
     );
   }
 }
