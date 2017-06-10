@@ -52,7 +52,6 @@ class CategoryAdministration extends React.Component {
     this.setCategoryModalLockStatus(true);
     this.resetSelectedCategoryObject();
     this.resetSelectedNodeKeys();
-    this.setCategoryModalCreationMode(false);
   };
 
   /**
@@ -273,6 +272,7 @@ class CategoryAdministration extends React.Component {
         locked={categoryModalLocked}
         creationMode={categoryModalCreationMode}
         loading={processing}
+        afterClose={() => this.setCategoryModalCreationMode(false)}
         onClose={this.handleCategoryModalClose}
         onDelete={this.handleCategoryModalDelete}
         onSave={this.handleCategoryModalSave}

@@ -55,7 +55,6 @@ class UserAdministration extends React.Component {
     this.toggleUserModal();
     this.setUserModalLockStatus(true);
     this.resetUserObject();
-    this.setUserModalCreationMode(false);
   };
 
   /**
@@ -271,6 +270,7 @@ class UserAdministration extends React.Component {
         locked={userModalLocked}
         creationMode={userModalCreationMode}
         loading={processing}
+        afterClose={() => this.setUserModalCreationMode(false)}
         onClose={this.handleUserModalClose}
         onDelete={this.handleUserModalDelete}
         onGeneratePasswordResetToken={this.handleUserModalPasswordResetTokenGeneration}

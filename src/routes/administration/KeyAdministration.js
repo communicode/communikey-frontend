@@ -54,7 +54,6 @@ class KeyAdministration extends React.Component {
     this.toggleKeyModal();
     this.setKeyModalLockStatus(true);
     this.resetKeyObject();
-    this.setKeyModalCreationMode(false);
   };
 
   /**
@@ -215,6 +214,7 @@ class KeyAdministration extends React.Component {
         locked={keyModalLocked}
         creationMode={keyModalCreationMode}
         loading={processing}
+        afterClose={() => this.setKeyModalCreationMode(false)}
         onCategoryTreeSelectionSave={this.handleKeyModalAddKeyToCategory}
         onClose={this.handleKeyModalClose}
         onDelete={this.handleKeyModalDelete}
