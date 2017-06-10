@@ -255,8 +255,6 @@ class UserAdministration extends React.Component {
             dataSource={toJS(userStore.users)}
             onRowClick={(record) => this.handleUserTableRecordSelect(record)}
             onRowDoubleClick={this.toggleUserModal}
-            pagination={true}
-            size="middle"
           />
         </Row>
       </div>
@@ -267,6 +265,7 @@ class UserAdministration extends React.Component {
         visible={userModalVisible}
         key={user.id}
         user={user}
+        administrationMode={false}
         locked={userModalLocked}
         creationMode={userModalCreationMode}
         loading={processing}

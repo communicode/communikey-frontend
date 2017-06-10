@@ -7,9 +7,8 @@ import "antd/lib/table/style/index.less";
 /**
  * The default table column configuration.
  */
-const DEFAULT_COLUMNS = [
-  {title: "ID", dataIndex: "id", key: "id", fixed: "left", width: 100},
-  {title: "Name", dataIndex: "name", key: "name", fixed: "left", width: 100},
+export const KEY_TABLE_DEFAULT_COLUMNS = [
+  {title: "Name", dataIndex: "name", key: "name", fixed: true},
   {title: "Login", dataIndex: "login", key: "login"},
   {title: "Category", dataIndex: "category.name", key: "category.name"}
 ];
@@ -68,7 +67,7 @@ KeyTable.propTypes = {
 };
 
 KeyTable.defaultProps = {
-  columns: DEFAULT_COLUMNS,
+  columns: KEY_TABLE_DEFAULT_COLUMNS,
   scroll: {x: 992}
 };
 

@@ -114,6 +114,7 @@ class UserModal extends React.Component {
 
   render() {
     const {
+      administrationMode,
       creationMode,
       loading,
       locked,
@@ -189,7 +190,10 @@ class UserModal extends React.Component {
 
     const footerOperationsDropdownMenu = (
       <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
-        <Menu.Item key={OPERATION_TYPES.GENERATE_PASSWORD_RESET_TOKEN.keyName} disabled={!!(locked || user.resetKey || !user.activated)}>Generate password reset token</Menu.Item>
+        <Menu.Item
+          key={OPERATION_TYPES.GENERATE_PASSWORD_RESET_TOKEN.keyName}
+          disabled={!!(locked || user.resetKey || !user.activated)}>Generate password reset token
+        </Menu.Item>
         <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={locked || !user.resetKey}>Reset password</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_ACTIVATE.keyName} disabled={locked || user.activated}>Activate</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_DEACTIVATE.keyName} disabled={locked || !user.activated}>Deactivate</Menu.Item>
@@ -198,6 +202,15 @@ class UserModal extends React.Component {
 
     const formItems = () => (
       <div>
+        <Form.Item {...readOnlyFormItemLayout}>
+          <Input
+            name="id"
+            addonBefore="ID"
+            value={user.id}
+            readOnly={true}
+            disabled={!user.id}
+          />
+        </Form.Item>
         <Form.Item {...readOnlyFormItemLayout}>
           <Input
             name="activationKey"
@@ -268,7 +281,7 @@ class UserModal extends React.Component {
             addonAfter={appConfig.EMAIL_PREFIX}
             onChange={onValueChange}
             placeholder="Email"
-            readOnly={!creationMode}
+            readOnly={!creationMode && administrationMode}
             suffix={user.email ? copyToClipboardIcon(user.email) : null}
             value={
               creationMode
@@ -282,6 +295,7 @@ class UserModal extends React.Component {
             name="firstName"
             onChange={onValueChange}
             placeholder="First name"
+            readOnly={!administrationMode}
             value={user.firstName ? user.firstName : null}
           />
         </Form.Item>
@@ -305,7 +319,7 @@ class UserModal extends React.Component {
             />
           </Form.Item>
         }
-        {!creationMode && formItems()}
+        {!creationMode && administrationMode && formItems()}
       </Form>
     );
 
@@ -320,9 +334,10 @@ class UserModal extends React.Component {
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
-              {!creationMode && <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
+              {!creationMode && administrationMode &&
+              <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
               {
-                !creationMode &&
+                !creationMode && administrationMode &&
                 <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={locked}>
                   <Button key="more" type="primary" ghost={true} size="large" disabled={locked}><Icon type="down"/></Button>
                 </Dropdown>
@@ -415,7 +430,7 @@ class UserModal extends React.Component {
         <Row gutter={24}>
           <Col span={6}>
             {
-              !creationMode
+              !creationMode && administrationMode
                 ?
                 <Badge dot={true} className={user.activated ? "badge-activated" : "badge-deactivated"}>
                   {defaultUserAvatar()}
@@ -426,7 +441,7 @@ class UserModal extends React.Component {
           </Col>
           <Col span={18}>{form()}</Col>
         </Row>
-        {!creationMode && <Row span={4}>{lockStatusButton()}</Row>}
+        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
         <Row><Col>{footer()}</Col></Row>
         {passwordResetInnerModal()}
       </Modal>
@@ -436,11 +451,16 @@ class UserModal extends React.Component {
 
 UserModal.propTypes = {
   /**
+   * Indicates if the user modal is in administration mode.
+   */
+  administrationMode: PropTypes.bool,
+
+  /**
    * Indicates if the user modal is in creation mode.
    *
    * @type {boolean}
    */
-  creationMode: PropTypes.bool.isRequired,
+  creationMode: PropTypes.bool,
 
   /**
    * The current processing status.
@@ -468,56 +488,56 @@ UserModal.propTypes = {
    *
    * @type {function}
    */
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
 
   /**
    * Callback function to handle the password reset token generation events.
    *
    * @type {function}
    */
-  onGeneratePasswordResetToken: PropTypes.func.isRequired,
+  onGeneratePasswordResetToken: PropTypes.func,
 
   /**
    * Callback function to handle the save event.
    *
    * @type {function}
    */
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
 
   /**
    * Callback function to handle the user activation event.
    *
    * @type {function}
    */
-  onUserActivate: PropTypes.func.isRequired,
+  onUserActivate: PropTypes.func,
 
   /**
    * Callback function to handle the user deactivation event.
    *
    * @type {function}
    */
-  onUserDeactivate: PropTypes.func.isRequired,
+  onUserDeactivate: PropTypes.func,
 
   /**
    * Callback function to handle the user password reset event.
    *
    * @type {function}
    */
-  onUserPasswordReset: PropTypes.func.isRequired,
+  onUserPasswordReset: PropTypes.func,
 
   /**
    * Callback function to handle input value change events.
    *
    * @type {function}
    */
-  onValueChange: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func,
 
   /**
    * Callback function to toggle the user lock status.
    *
    * @type {function}
    */
-  toggleLockStatus: PropTypes.func.isRequired,
+  toggleLockStatus: PropTypes.func,
 
   /**
    * The user.
@@ -528,6 +548,8 @@ UserModal.propTypes = {
 };
 
 UserModal.defaultProps = {
+  administrationMode: false,
+  creationMode: false,
   loading: false
 };
 

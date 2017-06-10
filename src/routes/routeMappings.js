@@ -3,6 +3,7 @@ import {
   ADMINISTRATION_KEYS,
   ADMINISTRATION_USERS,
   DASHBOARD,
+  KEYS,
   SIGNIN,
   SIGNOUT,
   ROOT
@@ -77,3 +78,13 @@ export const ROUTE_ADMINISTRATION_KEYS = ROUTE_ROOT + ADMINISTRATION_KEYS;
  * @since 0.8.0
  */
 export const ROUTE_ADMINISTRATION_USERS = ROUTE_ROOT + ADMINISTRATION_USERS;
+
+/**
+ * The route mapping for the {@link Keys} component.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.8.0
+ */
+export const ROUTE_KEYS = ROUTE_ROOT + KEYS;

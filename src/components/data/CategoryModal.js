@@ -29,6 +29,7 @@ class CategoryModal extends React.Component {
 
   render() {
     const {
+      administrationMode,
       category,
       creationMode,
       loading,
@@ -109,10 +110,11 @@ class CategoryModal extends React.Component {
             onChange={onValueChange}
             placeholder="Name"
             suffix={category.name ? copyToClipboardIcon(category.name) : null}
+            readOnly={!administrationMode}
             value={category.name}
           />
         </Form.Item>
-        {!creationMode && formItems()}
+        {!creationMode && administrationMode && formItems()}
       </Form>
     );
 
@@ -127,9 +129,9 @@ class CategoryModal extends React.Component {
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
-              {!creationMode && <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
+              {!creationMode && administrationMode && <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
               {
-                !creationMode &&
+                !creationMode && administrationMode &&
                 <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={true}>
                   <Button key="more" type="primary" ghost={true} size="large" disabled={true}><Icon type="down"/></Button>
                 </Dropdown>
@@ -158,7 +160,7 @@ class CategoryModal extends React.Component {
         <Row type="flex" align="center">
           <Col span={18}>{form()}</Col>
         </Row>
-        {!creationMode && <Row span={4}>{lockStatusButton()}</Row>}
+        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
         <Row><Col>{footer()}</Col></Row>
       </Modal>
     );
@@ -167,11 +169,16 @@ class CategoryModal extends React.Component {
 
 CategoryModal.propTypes = {
   /**
+   * Indicates if the category modal is in administration mode.
+   */
+  administrationMode: PropTypes.bool,
+
+  /**
    * Indicates if the user modal is in creation mode.
    *
    * @type {boolean}
    */
-  creationMode: PropTypes.bool.isRequired,
+  creationMode: PropTypes.bool,
 
   /**
    * The current processing status.
@@ -199,28 +206,28 @@ CategoryModal.propTypes = {
    *
    * @type {function}
    */
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
 
   /**
    * Callback function to handle the save event.
    *
    * @type {function}
    */
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
 
   /**
    * Callback function to handle input value change events.
    *
    * @type {function}
    */
-  onValueChange: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func,
 
   /**
    * Callback function to toggle the user lock status.
    *
    * @type {function}
    */
-  toggleLockStatus: PropTypes.func.isRequired,
+  toggleLockStatus: PropTypes.func,
 
   /**
    * The category.
@@ -231,6 +238,8 @@ CategoryModal.propTypes = {
 };
 
 CategoryModal.defaultProps = {
+  administrationMode: false,
+  creationMode: false,
   loading: false
 };
 

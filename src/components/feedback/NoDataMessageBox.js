@@ -17,7 +17,15 @@ class NoDataMessageBox extends React.Component {
   }
 
   render() {
-    const {callToActionButtonDisabled, callToActionButtonIconType, headlineText, icon, onCallToActionButtonClick, subHeadlineText} = this.props;
+    const {
+      callToActionButtonDisabled,
+      callToActionButtonIconType,
+      callToActionButtonVisible,
+      headlineText,
+      icon,
+      onCallToActionButtonClick,
+      subHeadlineText
+    } = this.props;
 
     return (
       <div className="container">
@@ -28,12 +36,13 @@ class NoDataMessageBox extends React.Component {
             <p className="sub-headline">{subHeadlineText}</p>
           </div>
         </div>
-        <Button
-          className="call-to-action-button"
-          icon={callToActionButtonIconType}
-          onClick={onCallToActionButtonClick}
-          disabled={callToActionButtonDisabled}
-        />
+        {callToActionButtonVisible &&
+          <Button
+            className="call-to-action-button"
+            icon={callToActionButtonIconType}
+            onClick={onCallToActionButtonClick}
+            disabled={callToActionButtonDisabled}
+        />}
       </div>
     );
   }
@@ -51,6 +60,11 @@ NoDataMessageBox.propTypes = {
   callToActionButtonIconType: PropTypes.string,
 
   /**
+   * Determines whether the call-to-action button is visible.
+   */
+  callToActionButtonVisible: PropTypes.bool,
+
+  /**
    * The text of the headline.
    */
   headlineText: PropTypes.string,
@@ -63,7 +77,7 @@ NoDataMessageBox.propTypes = {
   /**
    * Callback function to handle call-to-action button click events.
    */
-  onCallToActionButtonClick: PropTypes.func.isRequired,
+  onCallToActionButtonClick: PropTypes.func,
 
   /**
    * The text of the sub-headline.
@@ -74,6 +88,7 @@ NoDataMessageBox.propTypes = {
 NoDataMessageBox.defaultProps = {
   callToActionButtonDisabled: false,
   callToActionButtonIconType: "plus",
+  callToActionButtonVisible: false,
   headlineText: "There is no data yet.",
   icon: null,
   subHeadlineText: ""

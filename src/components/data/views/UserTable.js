@@ -11,19 +11,19 @@ import "antd/lib/table/style/index.less";
  * @param {object} record - The user table record
  * @constructor
  */
-const DEFAULT_BADGE_COLUMN = (record) => <Badge status={record.activated ? "success" : "error"} text={record.activated ? "Activated" : "Deactivated"}/>;
+export const USER_TABLE_DEFAULT_ACTIVATION_BADGE_RECORD = (record) =>
+  <Badge status={record.activated ? "success" : "error"} text={record.activated ? "Activated" : "Deactivated"}/>;
 
 /**
  * The default table column configuration.
  */
-const DEFAULT_COLUMNS = [
-  {title: "ID", dataIndex: "id", key: "id", fixed: "left", width: 100},
-  {title: "Login", dataIndex: "login", key: "login", fixed: "left", width: 100},
+export const USER_TABLE_DEFAULT_COLUMNS = [
+  {title: "Login", dataIndex: "login", key: "login", fixed: true},
   {title: "Email", dataIndex: "email", key: "email"},
   {title: "First name", dataIndex: "firstName", key: "firstName"},
   {title: "Last name", dataIndex: "lastName", key: "lastName"},
   {
-    title: "Status", width: 100, render: DEFAULT_BADGE_COLUMN
+    title: "Status", render: USER_TABLE_DEFAULT_ACTIVATION_BADGE_RECORD
   }
 ];
 
@@ -81,7 +81,7 @@ UserTable.propTypes = {
 };
 
 UserTable.defaultProps = {
-  columns: DEFAULT_COLUMNS,
+  columns: USER_TABLE_DEFAULT_COLUMNS,
   scroll: {x: 992}
 };
 

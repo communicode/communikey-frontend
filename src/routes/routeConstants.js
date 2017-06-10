@@ -79,3 +79,13 @@ export const ADMINISTRATION_KEYS = ADMINISTRATION + pathSeparator + "keys";
  * @since 0.8.0
  */
 export const ADMINISTRATION_USERS = ADMINISTRATION + pathSeparator + "users";
+
+/**
+ * The route name of the {@link Keys} component.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.8.0
+ */
+export const KEYS = "keys";

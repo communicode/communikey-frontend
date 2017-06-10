@@ -226,7 +226,7 @@ class CategoryAdministration extends React.Component {
     } = this.state;
 
     const dragStatusButton = () => (
-      <Tooltip title={categoryTreeDraggable ? "Disable dragging" : "Eanble dragging"} mouseEnterDelay={1}>
+      <Tooltip title={categoryTreeDraggable ? "Disable dragging" : "Enable dragging"}>
         <Button key="categoryTreeDragStatus" type={categoryTreeDraggable ? "dashed" : "ghost"} onClick={this.toggleCategoryTreeDragStatus} icon="swap"/>
       </Tooltip>
     );
@@ -269,6 +269,7 @@ class CategoryAdministration extends React.Component {
         visible={categoryModalVisible}
         key={category.id}
         category={category}
+        administrationMode={true}
         locked={categoryModalLocked}
         creationMode={categoryModalCreationMode}
         loading={processing}

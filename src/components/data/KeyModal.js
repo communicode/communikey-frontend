@@ -112,6 +112,7 @@ class KeyModal extends React.Component {
 
   render() {
     const {
+      administrationMode,
       categories,
       cckeyKey,
       creationMode,
@@ -186,7 +187,6 @@ class KeyModal extends React.Component {
             value={cckeyKey.id}
             readOnly={true}
             disabled={!cckeyKey.id}
-            suffix={cckeyKey.id ? copyToClipboardIcon(cckeyKey.id) : null}
           />
         </Form.Item>
         <Form.Item {...readOnlyFormItemLayout}>
@@ -236,6 +236,7 @@ class KeyModal extends React.Component {
             onChange={onValueChange}
             placeholder="Name"
             suffix={cckeyKey.name ? copyToClipboardIcon(cckeyKey.name) : null}
+            readOnly={!administrationMode}
             value={cckeyKey.name}
           />
         </Form.Item>
@@ -244,6 +245,8 @@ class KeyModal extends React.Component {
             name="login"
             onChange={onValueChange}
             placeholder="Login"
+            suffix={cckeyKey.login ? copyToClipboardIcon(cckeyKey.login) : null}
+            readOnly={!administrationMode}
             value={cckeyKey.login}
           />
         </Form.Item>
@@ -253,12 +256,12 @@ class KeyModal extends React.Component {
             onChange={onValueChange}
             placeholder="Password"
             type={keyPasswordVisible ? "text" : "password"}
-            readOnly={creationMode ? false : locked}
+            readOnly={!administrationMode ? true : creationMode ? false : locked}
             suffix={cckeyKey.password ? copyToClipboardIcon(cckeyKey.password) : null}
             value={cckeyKey.password}
           />
         </Form.Item>
-        {!creationMode && formItems()}
+        {!creationMode && administrationMode && formItems()}
       </Form>
     );
 
@@ -270,7 +273,12 @@ class KeyModal extends React.Component {
 
     const passwordVisibilityModeButton = () => (
       <Tooltip title={keyPasswordVisible ? "Hide password" : "Show password"} mouseEnterDelay={1} placement="right">
-        <Button key="passwordVisibilityMode" type={keyPasswordVisible ? "dashed" : "ghost"} onClick={this.togglePasswordVisibility} icon={keyPasswordVisible ? "eye" : "eye-o"}/>
+        <Button
+          key="passwordVisibilityMode"
+          type={keyPasswordVisible ? "dashed" : "ghost"}
+          onClick={this.togglePasswordVisibility}
+          icon={keyPasswordVisible ? "eye" : "eye-o"}
+        />
       </Tooltip>
     );
 
@@ -279,9 +287,10 @@ class KeyModal extends React.Component {
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
-              {!creationMode && <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
+              {!creationMode && administrationMode &&
+              <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
               {
-                !creationMode &&
+                !creationMode && administrationMode &&
                 <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={locked} trigger={["click"]}>
                   <Button key="operations" type="primary" ghost={true} size="large" disabled={locked}><Icon type="down"/></Button>
                 </Dropdown>
@@ -357,12 +366,10 @@ class KeyModal extends React.Component {
           </Col>
           <Col span={18}>{form()}</Col>
         </Row>
-        {!creationMode &&
-          <Row span={4}>
-            {lockStatusButton()}
-            {passwordVisibilityModeButton()}
-          </Row>
-        }
+        <Row span={4}>
+          {!creationMode && administrationMode && lockStatusButton()}
+          {passwordVisibilityModeButton()}
+        </Row>
         <Row><Col>{footer()}</Col></Row>
         {categoryTreeSelectInnerModal()}
       </Modal>
@@ -371,6 +378,11 @@ class KeyModal extends React.Component {
 }
 
 KeyModal.propTypes = {
+  /**
+   * Indicates if the key modal is in administration mode.
+   */
+  administrationMode: PropTypes.bool,
+
   /**
    * The category store injected by the MobX provider.
    *
@@ -381,14 +393,14 @@ KeyModal.propTypes = {
   /**
    * The categories for the category tree select.
    */
-  categories: MobXPropTypes.observableArray.isRequired,
+  categories: MobXPropTypes.observableArray,
 
   /**
    * Indicates if the user modal is in creation mode.
    *
    * @type {boolean}
    */
-  creationMode: PropTypes.bool.isRequired,
+  creationMode: PropTypes.bool,
 
   /**
    * The current processing status.
@@ -409,7 +421,7 @@ KeyModal.propTypes = {
    *
    * @type {function}
    */
-  onCategoryTreeSelectionSave: PropTypes.func.isRequired,
+  onCategoryTreeSelectionSave: PropTypes.func,
 
   /**
    * Callback function to handle close events.
@@ -423,28 +435,28 @@ KeyModal.propTypes = {
    *
    * @type {function}
    */
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
 
   /**
    * Callback function to handle the save event.
    *
    * @type {function}
    */
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
 
   /**
    * Callback function to handle input value change events.
    *
    * @type {function}
    */
-  onValueChange: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func,
 
   /**
    * Callback function to toggle the user lock status.
    *
    * @type {function}
    */
-  toggleLockStatus: PropTypes.func.isRequired,
+  toggleLockStatus: PropTypes.func,
 
   /**
    * The passed communikey key.
@@ -455,6 +467,8 @@ KeyModal.propTypes = {
 };
 
 KeyModal.defaultProps = {
+  administrationMode: false,
+  creationMode: false,
   loading: false
 };
 

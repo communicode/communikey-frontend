@@ -61,7 +61,7 @@ CategoryTree.propTypes = {
   /**
    * Determines if tree nodes can be dragged.
    */
-  draggable: PropTypes.bool.isRequired,
+  draggable: PropTypes.bool,
 
   /**
    * The currently expanded keys.
@@ -92,6 +92,10 @@ CategoryTree.propTypes = {
    * The currently selected keys.
    */
   selectedKeys: PropTypes.array
+};
+
+CategoryTree.defaultProps = {
+  draggable: false
 };
 
 export default CategoryTree;

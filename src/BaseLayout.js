@@ -12,7 +12,8 @@ import {
   ROUTE_DASHBOARD,
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_ADMINISTRATION_CATEGORIES,
-  ROUTE_ADMINISTRATION_KEYS
+  ROUTE_ADMINISTRATION_KEYS,
+  ROUTE_KEYS
 } from "./routes/routeMappings";
 import {VERSION} from "./Communikey";
 import "antd/lib/layout/style/index.less";
@@ -105,6 +106,11 @@ class BaseLayout extends React.Component {
           <Menu.Item key={ROUTE_DASHBOARD}>
             <NavLink to={ROUTE_DASHBOARD} isActive={() => this.isActiveSidebarNavLink(ROUTE_DASHBOARD)}>
               <span><Icon type="laptop"/><span className="nav-text">Dashboard</span></span>
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={ROUTE_KEYS}>
+            <NavLink to={ROUTE_KEYS} isActive={() => this.isActiveSidebarNavLink(ROUTE_KEYS)}>
+              <span><Icon type="key"/><span className="nav-text">Keys</span></span>
             </NavLink>
           </Menu.Item>
           {

@@ -14,6 +14,7 @@ import CategoryAdministration from "./routes/administration/CategoryAdministrati
 import KeyAdministration from "./routes/administration/KeyAdministration";
 import UserAdministration from "./routes/administration/UserAdministration";
 import Dashboard from "./routes/Dashboard";
+import Keys from "./routes/Keys";
 import {authStore} from "./stores/AuthStore";
 import {categoryStore} from "./stores/CategoryStore";
 import {keyStore} from "./stores/KeyStore";
@@ -24,6 +25,7 @@ import {
   ROUTE_ADMINISTRATION_KEYS,
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_DASHBOARD,
+  ROUTE_KEYS,
   ROUTE_SIGNIN,
   ROUTE_SIGNOUT,
   ROUTE_ROOT
@@ -90,6 +92,7 @@ class Communikey extends React.Component {
                 <AuthenticatedRoute path={ROUTE_ADMINISTRATION_CATEGORIES} component={CategoryAdministration} authorized={stores.authStore.isAuthorized}/>
                 <AuthenticatedRoute path={ROUTE_ADMINISTRATION_KEYS} component={KeyAdministration} authorized={stores.authStore.isAuthorized}/>
                 <AuthenticatedRoute path={ROUTE_ADMINISTRATION_USERS} component={UserAdministration} authorized={stores.authStore.isAuthorized}/>
+                <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
                 <Redirect from={ROUTE_ROOT} to={ROUTE_DASHBOARD}/>
               </Switch>
             </BaseLayout>

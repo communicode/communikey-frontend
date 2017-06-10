@@ -198,8 +198,6 @@ class KeyAdministration extends React.Component {
             dataSource={toJS(keyStore.keys)}
             onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
             onRowDoubleClick={this.toggleKeyModal}
-            pagination={true}
-            size="middle"
           />
         </Row>
       </div>
@@ -211,6 +209,7 @@ class KeyAdministration extends React.Component {
         key={key.id}
         cckeyKey={key}
         categories={categoryStore.categories}
+        administrationMode={true}
         locked={keyModalLocked}
         creationMode={keyModalCreationMode}
         loading={processing}
