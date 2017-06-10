@@ -1,14 +1,16 @@
 import React from "react";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import update from "immutability-helper";
-import {Button, Col, Row, Tooltip} from "antd";
+import {Button, Col, Icon, Row, Tooltip} from "antd";
 import QueueAnim from "rc-queue-anim";
 import CategoryTree from "./../../components/data/views/CategoryTree";
 import CategoryModal from "./../../components/data/CategoryModal";
+import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import motionConfig from "./../../config/motion";
 import {CATEGORY_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
+import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "antd/lib/tooltip/style/index.less";
 import "./CategoryAdministration.less";
@@ -230,51 +232,72 @@ class CategoryAdministration extends React.Component {
       </Tooltip>
     );
 
+    const mainDataView = () => (
+      <div>
+        <div className="header">
+          <Row>
+            <Col span={4} offset={20}>
+              <div className="operations">
+                <Button.Group>
+                  {dragStatusButton()}
+                  <Button type="primary" ghost={true} icon="plus" onClick={this.handleCategoryModalCreation}/>
+                </Button.Group>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <Row>
+          <Col>
+            <CategoryTree
+              autoExpandParent={categoryTreeAutoExpandParent}
+              draggable={categoryTreeDraggable}
+              expandedKeys={categoryTreeExpandedNodeKeys}
+              categories={categoryStore.categories}
+              onDrop={this.handleCategoryTreeOnDrop}
+              onExpand={this.handleCategoryTreeOnExpand}
+              onSelect={this.handleCategoryTreeOnSelection}
+              selectedKeys={categoryTreeSelectedNodeKeys}
+              processing={processing}
+              className="category-tree"
+            />
+          </Col>
+        </Row>
+      </div>
+    );
+
+    const categoryModal = () => (
+      <CategoryModal
+        visible={categoryModalVisible}
+        key={category.id}
+        category={category}
+        locked={categoryModalLocked}
+        creationMode={categoryModalCreationMode}
+        loading={processing}
+        onClose={this.handleCategoryModalClose}
+        onDelete={this.handleCategoryModalDelete}
+        onSave={this.handleCategoryModalSave}
+        onValueChange={this.handleCategoryModalValueChange}
+        toggleLockStatus={this.toggleCategoryModalLockStatus}
+      />
+    );
+
+    const noDataMessageBox = () => (
+      <Row type="flex" justify="center">
+        <NoDataMessageBox
+          onCallToActionButtonClick={this.handleCategoryModalCreation}
+          icon={<Icon type="folder"/>}
+          headlineText="There are no categories yet."
+          subHeadlineText="You can create one by clicking on the button below."
+        />
+      </Row>
+    );
+
     return (
       <QueueAnim duration={motionConfig.routes.duration} ease={motionConfig.routes.ease} type={motionConfig.routes.type}>
         <div key="categoryAdministrationAntMotionWrapper" className="cckey-base-layout-content-container">
           <div className="cckey-base-layout-content-container-inner">
-            <div className="header">
-              <Row>
-                <Col span={4} offset={20}>
-                  <div className="operations">
-                    <Button.Group>
-                      {dragStatusButton()}
-                      <Button type="primary" ghost={true} icon="plus" onClick={this.handleCategoryModalCreation}/>
-                    </Button.Group>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-            <Row>
-              <Col>
-                <CategoryTree
-                  autoExpandParent={categoryTreeAutoExpandParent}
-                  draggable={categoryTreeDraggable}
-                  expandedKeys={categoryTreeExpandedNodeKeys}
-                  categories={categoryStore.categories}
-                  onDrop={this.handleCategoryTreeOnDrop}
-                  onExpand={this.handleCategoryTreeOnExpand}
-                  onSelect={this.handleCategoryTreeOnSelection}
-                  selectedKeys={categoryTreeSelectedNodeKeys}
-                  processing={processing}
-                  className="category-tree"
-                />
-              </Col>
-              <CategoryModal
-                visible={categoryModalVisible}
-                key={category.id}
-                category={category}
-                locked={categoryModalLocked}
-                creationMode={categoryModalCreationMode}
-                loading={processing}
-                onClose={this.handleCategoryModalClose}
-                onDelete={this.handleCategoryModalDelete}
-                onSave={this.handleCategoryModalSave}
-                onValueChange={this.handleCategoryModalValueChange}
-                toggleLockStatus={this.toggleCategoryModalLockStatus}
-              />
-            </Row>
+            {categoryStore.categories.length ? mainDataView() : noDataMessageBox()}
+            {categoryModal()}
           </div>
         </div>
       </QueueAnim>

@@ -1,16 +1,18 @@
 import React from "react";
 import update from "immutability-helper";
-import {Button, Col, Row} from "antd";
+import {Button, Col, Icon, Row} from "antd";
 import QueueAnim from "rc-queue-anim";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
 import UserTable from "./../../components/data/views/UserTable";
 import UserModal from "./../../components/data/UserModal";
+import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
 import motionConfig from "./../../config/motion";
 import {USER_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
+import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "./UserAdministration.less";
 import "./../../BaseLayout.less";
@@ -236,47 +238,68 @@ class UserAdministration extends React.Component {
     const {processing, user, userModalVisible, userModalCreationMode, userModalLocked} = this.state;
     const {userStore} = this.props;
 
+    const mainDataView = () => (
+      <div>
+        <div className="header">
+          <Row>
+            <Col span={4} offset={20}>
+              <div className="operations">
+                <Button.Group>
+                  <Button type="primary" ghost={true} icon="plus" onClick={this.handleUserModalCreation}/>
+                </Button.Group>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <Row>
+          <UserTable
+            dataSource={toJS(userStore.users)}
+            onRowClick={(record) => this.handleUserTableRecordSelect(record)}
+            onRowDoubleClick={this.toggleUserModal}
+            pagination={true}
+            size="middle"
+          />
+        </Row>
+      </div>
+    );
+
+    const userModal = () => (
+      <UserModal
+        visible={userModalVisible}
+        key={user.id}
+        user={user}
+        locked={userModalLocked}
+        creationMode={userModalCreationMode}
+        loading={processing}
+        onClose={this.handleUserModalClose}
+        onDelete={this.handleUserModalDelete}
+        onGeneratePasswordResetToken={this.handleUserModalPasswordResetTokenGeneration}
+        onSave={this.handleUserModalSave}
+        onUserActivate={this.handleUserModalUserActivation}
+        onUserDeactivate={this.handleUserModalUserDeactivation}
+        onUserPasswordReset={this.handleUserModalUserPasswordReset}
+        onValueChange={this.handleModalValueChange}
+        toggleLockStatus={this.toggleUserModalLockStatus}
+      />
+    );
+
+    const noDataMessageBox = () => (
+      <Row type="flex" justify="center">
+        <NoDataMessageBox
+          onCallToActionButtonClick={this.handleUserModalCreation}
+          icon={<Icon type="user"/>}
+          headlineText="There are no users yet."
+          subHeadlineText="You can create one by clicking on the button below."
+        />
+      </Row>
+    );
+
     return (
       <QueueAnim duration={motionConfig.routes.duration} ease={motionConfig.routes.ease} type={motionConfig.routes.type}>
         <div key="userAdministrationAntMotionWrapper" className="cckey-base-layout-content-container">
           <div className="cckey-base-layout-content-container-inner">
-            <div className="header">
-              <Row>
-                <Col span={4} offset={20}>
-                  <div className="operations">
-                    <Button.Group>
-                      <Button type="primary" ghost={true} icon="plus" onClick={this.handleUserModalCreation}/>
-                    </Button.Group>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-            <Row>
-              <UserTable
-                dataSource={toJS(userStore.users)}
-                onRowClick={(record) => this.handleUserTableRecordSelect(record)}
-                onRowDoubleClick={this.toggleUserModal}
-                pagination={true}
-                size="middle"
-              />
-            </Row>
-            <UserModal
-              visible={userModalVisible}
-              key={user.id}
-              user={user}
-              locked={userModalLocked}
-              creationMode={userModalCreationMode}
-              loading={processing}
-              onClose={this.handleUserModalClose}
-              onDelete={this.handleUserModalDelete}
-              onGeneratePasswordResetToken={this.handleUserModalPasswordResetTokenGeneration}
-              onSave={this.handleUserModalSave}
-              onUserActivate={this.handleUserModalUserActivation}
-              onUserDeactivate={this.handleUserModalUserDeactivation}
-              onUserPasswordReset={this.handleUserModalUserPasswordReset}
-              onValueChange={this.handleModalValueChange}
-              toggleLockStatus={this.toggleUserModalLockStatus}
-            />
+            {userStore.users.length ? mainDataView() : noDataMessageBox()}
+            {userModal()}
           </div>
         </div>
       </QueueAnim>
