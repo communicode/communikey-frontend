@@ -50,7 +50,7 @@ const stores = {authStore, categoryStore, keyStore, userStore};
  * @type {string}
  * @since 0.6.0
  */
-export const VERSION = process.env.COMMUNIKEY_VERSION || "0.0.0";
+export const VERSION = process.env.COMMUNIKEY_VERSION || "local-dev";
 
 /**
  * A simple centralized, cross-platform credential manager.
