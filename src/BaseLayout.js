@@ -14,6 +14,7 @@ import {
   ROUTE_ADMINISTRATION_CATEGORIES,
   ROUTE_ADMINISTRATION_KEYS
 } from "./routes/routeMappings";
+import {VERSION} from "./Communikey";
 import "antd/lib/layout/style/index.less";
 import "antd/lib/menu/style/index.less";
 import "antd/lib/icon/style/css";
@@ -139,6 +140,12 @@ class BaseLayout extends React.Component {
       </Layout.Header>
     );
 
+    const footer = () => (
+      <div className="cckey-base-layout-footer-container">
+        <p className="version">version {VERSION}</p>
+      </div>
+    );
+
     const spinner = () => {
       return <div className="cckey-layout-center-div"><Spin spinning={true} size="large"/></div>;
     };
@@ -151,6 +158,9 @@ class BaseLayout extends React.Component {
           <Layout.Content>
             {children}
           </Layout.Content>
+          <Layout.Footer>
+            {footer()}
+          </Layout.Footer>
         </Layout>
       </Layout>
     );

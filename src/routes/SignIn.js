@@ -3,6 +3,7 @@ import AuthService from "./../services/AuthService";
 import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
 import {Button, Form, Icon, Input, Row} from "antd";
 import appConfig from "../config/app";
+import {VERSION} from "./../Communikey";
 import {AUTH_STORE} from "../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/row/style/css";
@@ -79,38 +80,48 @@ class SignIn extends React.Component {
     const {login, processing} = this.state;
     const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : null;
 
+    const footer = () => (
+      <footer className="cckey-signin-footer-container">
+        <p>version {VERSION}</p>
+        <p>Made with <Icon type="heart" className="heart"/> by <a href="https://communicode.de">communicode</a></p>
+      </footer>
+    );
+
     return (
-      <div className="form">
-        <div className="logo">
-          <img src={appConfig.assets.logoLightDropshadow}/>
+      <div className="cckey-signin-form-wrapper">
+        <div className="form">
+          <div className="logo">
+            <img src={appConfig.assets.logoLightDropshadow}/>
+          </div>
+          <p className="app-title">{appConfig.name}</p>
+          <Form>
+            <Form.Item>
+              <Input
+                name="login"
+                prefix={<Icon type="mail"/>}
+                addonAfter={appConfig.EMAIL_PREFIX}
+                onChange={this.handleInputChange}
+                placeholder="Email"
+                value={login}
+                suffix={suffix}
+                ref={node => this.loginInput = node}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Input
+                name="password"
+                prefix={<Icon type="lock"/>}
+                type="password"
+                onChange={this.handleInputChange}
+                placeholder="Password"
+              />
+            </Form.Item>
+            <Row>
+              <Button type="primary" size="large" onClick={this.signIn} loading={processing}>Sign in</Button>
+            </Row>
+          </Form>
         </div>
-        <p className="app-title">{appConfig.name}</p>
-        <Form>
-          <Form.Item>
-            <Input
-              name="login"
-              prefix={<Icon type="mail"/>}
-              addonAfter={appConfig.EMAIL_PREFIX}
-              onChange={this.handleInputChange}
-              placeholder="Email"
-              value={login}
-              suffix={suffix}
-              ref={node => this.loginInput = node}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Input
-              name="password"
-              prefix={<Icon type="lock"/>}
-              type="password"
-              onChange={this.handleInputChange}
-              placeholder="Password"
-            />
-          </Form.Item>
-          <Row>
-            <Button type="primary" size="large" onClick={this.signIn} loading={processing}>Sign in</Button>
-          </Row>
-        </Form>
+        {footer()}
       </div>
     );
   }
