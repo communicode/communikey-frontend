@@ -72,6 +72,10 @@
   "version": "0.1.0",
   "main": "src/Communikey.js",
   "private": true,
-  "author": "communicode AG",
+  "description": "A simple centralized, cross-platform credential manager.",
+  "author": {
+    "name": "communicode AG",
+    "url": "https://communicode.de"
+  },
   "license": "communicode AG"
 }
