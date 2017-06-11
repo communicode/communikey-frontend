@@ -98,6 +98,7 @@ class Communikey extends React.Component {
                       type={motionConfig.routes.type}
                     >
                       <Switch key={location.key} location={location}>
+                        <AuthenticatedRoute exact path={ROUTE_ROOT} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_DASHBOARD} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_ADMINISTRATION_CATEGORIES} component={CategoryAdministration}
                                             authorized={stores.authStore.isAuthorized}/>
