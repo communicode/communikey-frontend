@@ -283,6 +283,7 @@ class CategoryAdministration extends React.Component {
     const noDataMessageBox = () => (
       <Row type="flex" justify="center">
         <NoDataMessageBox
+          callToActionButtonVisible={true}
           onCallToActionButtonClick={this.handleCategoryModalCreation}
           icon={<Icon type="folder"/>}
           headlineText="There are no categories yet."

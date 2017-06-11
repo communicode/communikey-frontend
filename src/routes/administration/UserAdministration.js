@@ -283,6 +283,7 @@ class UserAdministration extends React.Component {
     const noDataMessageBox = () => (
       <Row type="flex" justify="center">
         <NoDataMessageBox
+          callToActionButtonVisible={true}
           onCallToActionButtonClick={this.handleUserModalCreation}
           icon={<Icon type="user"/>}
           headlineText="There are no users yet."

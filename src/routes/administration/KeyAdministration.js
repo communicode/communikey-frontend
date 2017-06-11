@@ -224,6 +224,7 @@ class KeyAdministration extends React.Component {
     const noDataMessageBox = () => (
       <Row type="flex" justify="center">
         <NoDataMessageBox
+          callToActionButtonVisible={true}
           onCallToActionButtonClick={this.handleKeyModalCreation}
           icon={<Icon type="key"/>}
           headlineText="There are no keys yet."
