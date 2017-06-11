@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "antd": "2.10.1",
+    "antd": "2.11.0",
     "axios": "0.15.3",
     "babel-core": "6.22.1",
     "babel-eslint": "7.2.3",
