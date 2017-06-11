@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {Link, NavLink} from "react-router-dom";
 import {Layout, Menu, Icon, Row, Spin} from "antd";
+import QueueAnim from "rc-queue-anim";
 import appConfig from "./config/app";
+import motionConfig from "./config/motion";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE} from "./stores/storeConstants";
 import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
@@ -152,12 +154,25 @@ class BaseLayout extends React.Component {
       </div>
     );
 
-    const spinner = () => {
-      return <div className="cckey-layout-center-div"><Spin spinning={true} size="large"/></div>;
-    };
+    const spinner = () => (
+      <QueueAnim
+        delay={motionConfig.baseLayout.delay}
+        duration={motionConfig.baseLayout.duration}
+        ease={motionConfig.baseLayout.ease}
+        type={motionConfig.baseLayout.type}
+      >
+        <div key="cckey-base-layout-spinner" className="cckey-layout-center-div"><Spin spinning={true} size="large"/></div>
+      </QueueAnim>
+    );
 
     const renderBaseLayout = () => (
-      <Layout className="cckey-base-layout">
+      <QueueAnim
+        delay={motionConfig.baseLayout.delay}
+        duration={motionConfig.baseLayout.duration}
+        ease={motionConfig.baseLayout.ease}
+        type={motionConfig.baseLayout.type}
+      >
+      <Layout key="cckey-base-layout" className="cckey-base-layout">
         {sidebar()}
         <Layout className="cckey-base-layout">
           {header()}
@@ -169,6 +184,7 @@ class BaseLayout extends React.Component {
           </Layout.Footer>
         </Layout>
       </Layout>
+      </QueueAnim>
     );
 
     return storesInitialized || initialized ? renderBaseLayout() : spinner();
