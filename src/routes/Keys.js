@@ -136,7 +136,7 @@ class Keys extends React.Component {
 
       return (
         <KeyTable
-          dataSource={toJS(category.keys)}
+          dataSource={toJS(category.keys ? category.keys : [])}
           onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
           onRowDoubleClick={this.toggleKeyModal}
           show={category.keys && !!category.keys.length}
