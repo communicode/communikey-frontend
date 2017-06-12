@@ -5,7 +5,7 @@ import {Button, Col, Icon, Row, Tooltip} from "antd";
 import CategoryTree from "./../../components/data/views/CategoryTree";
 import CategoryModal from "./../../components/data/CategoryModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
-import {CATEGORY_STORE} from "./../../stores/storeConstants";
+import {AUTH_STORE, CATEGORY_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -22,7 +22,7 @@ import "./../../BaseLayout.less";
  * @author sgreb@communicode.de
  * @since 0.5.0
  */
-@inject(CATEGORY_STORE) @observer
+@inject(AUTH_STORE, CATEGORY_STORE) @observer
 class CategoryAdministration extends React.Component {
   constructor(props) {
     super(props);
@@ -210,7 +210,7 @@ class CategoryAdministration extends React.Component {
   };
 
   render() {
-    const {categoryStore} = this.props;
+    const {authStore, categoryStore} = this.props;
     const {
       category,
       categoryModalCreationMode,
@@ -267,7 +267,7 @@ class CategoryAdministration extends React.Component {
         visible={categoryModalVisible}
         key={category.id}
         category={category}
-        administrationMode={true}
+        administrationMode={authStore.privileged}
         locked={categoryModalLocked}
         creationMode={categoryModalCreationMode}
         loading={processing}
@@ -306,6 +306,13 @@ class CategoryAdministration extends React.Component {
 export default CategoryAdministration;
 
 CategoryAdministration.propTypes = {
+  /**
+   * The authentication store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  authStore: MobXPropTypes.observableArray,
+
   /**
    * The category store injected by the MobX provider.
    *

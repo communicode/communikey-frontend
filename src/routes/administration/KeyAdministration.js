@@ -6,7 +6,7 @@ import {toJS} from "mobx";
 import KeyModal from "./../../components/data/KeyModal";
 import KeyTable from "../../components/data/views/KeyTable";
 import NoDataMessageBox from "../../components/feedback/NoDataMessageBox";
-import {CATEGORY_STORE, KEY_STORE} from "./../../stores/storeConstants";
+import {AUTH_STORE, CATEGORY_STORE, KEY_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -22,7 +22,7 @@ import "./../../BaseLayout.less";
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
-@inject(CATEGORY_STORE, KEY_STORE) @observer
+@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE) @observer
 class KeyAdministration extends React.Component {
   constructor(props) {
     super(props);
@@ -176,7 +176,7 @@ class KeyAdministration extends React.Component {
 
   render() {
     const {key, keyModalVisible, keyModalCreationMode, keyModalLocked, processing} = this.state;
-    const {categoryStore, keyStore} = this.props;
+    const {authStore, categoryStore, keyStore} = this.props;
 
     const mainDataView = () => (
       <div>
@@ -207,7 +207,7 @@ class KeyAdministration extends React.Component {
         key={key.id}
         cckeyKey={key}
         categories={categoryStore.categories}
-        administrationMode={true}
+        administrationMode={authStore.privileged}
         locked={keyModalLocked}
         creationMode={keyModalCreationMode}
         loading={processing}
@@ -247,6 +247,13 @@ class KeyAdministration extends React.Component {
 export default KeyAdministration;
 
 KeyAdministration.propTypes = {
+  /**
+   * The authentication store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  authStore: MobXPropTypes.observableArray,
+
   /**
    * The category store injected by the MobX provider.
    *
