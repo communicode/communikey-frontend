@@ -222,7 +222,7 @@ class UserModal extends React.Component {
           />
         </Form.Item>
         <Form.Item {...readOnlyFormItemLayout}>
-          <Tooltip title={!!user.resetDate && new Date(user.resetDate).toLocaleString()} mouseEnterDelay={1} placement="left">
+          <Tooltip title={!!user.resetDate && new Date(user.resetDate).toLocaleString()} placement="left">
             <Input
               name="resetKey"
               addonBefore="Password reset token"
@@ -324,7 +324,7 @@ class UserModal extends React.Component {
     );
 
     const lockStatusButton = () => (
-      <Tooltip title={locked ? "Unlock" : "Lock"} mouseEnterDelay={1} placement="right">
+      <Tooltip title={locked ? "Unlock" : "Lock"}>
         <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "unlock" : "lock"}/>
       </Tooltip>
     );

@@ -119,7 +119,7 @@ class CategoryModal extends React.Component {
     );
 
     const lockStatusButton = () => (
-      <Tooltip title={locked ? "Unlock" : "Lock"} mouseEnterDelay={1} placement="right">
+      <Tooltip title={locked ? "Unlock" : "Lock"}>
         <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "unlock" : "lock"}/>
       </Tooltip>
     );
