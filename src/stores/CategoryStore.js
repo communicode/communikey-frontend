@@ -1,4 +1,5 @@
 import {action, observable} from "mobx";
+import _ from "lodash";
 import apiService from "../services/ApiService";
 import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_KEYS, CATEGORY_RESPONSIBLE} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
@@ -84,6 +85,30 @@ class CategoryStore {
     })
       .then(action(() => this.getAll()));
   };
+
+  /**
+   * Gets all categories as flattened array.
+   *
+   * @returns {Array} The categories as flattened array
+   * @since 0.8.0
+   */
+  getAllFlattened = (data) => {
+    let flatArray = [];
+    _.each(data, category => {
+      flatArray.push(category);
+      category.children && (flatArray = _.union(flatArray, this.getAllFlattened(category.children)));
+    });
+    return flatArray;
+  };
+
+  /**
+   * Finds the category with the specified ID.
+   *
+   * @param {number} categoryId - The ID of the category to find
+   * @returns {object} - The category if found
+   * @since 0.8.0
+   */
+  findById = (categoryId) => this.getAllFlattened(this.categories).find(category => category.id === categoryId);
 
   /**
    * Gets the category with the specified ID.
