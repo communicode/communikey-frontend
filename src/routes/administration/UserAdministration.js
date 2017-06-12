@@ -7,7 +7,7 @@ import UserTable from "./../../components/data/views/UserTable";
 import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
-import {USER_STORE} from "./../../stores/storeConstants";
+import {AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -23,7 +23,7 @@ import "./../../BaseLayout.less";
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
-@inject(USER_STORE) @observer
+@inject(AUTH_STORE, USER_STORE) @observer
 class UserAdministration extends React.Component {
   constructor(props) {
     super(props);
@@ -233,7 +233,7 @@ class UserAdministration extends React.Component {
 
   render() {
     const {processing, user, userModalVisible, userModalCreationMode, userModalLocked} = this.state;
-    const {userStore} = this.props;
+    const {authStore, userStore} = this.props;
 
     const mainDataView = () => (
       <div>
@@ -263,7 +263,7 @@ class UserAdministration extends React.Component {
         visible={userModalVisible}
         key={user.id}
         user={user}
-        administrationMode={false}
+        administrationMode={authStore.privileged}
         locked={userModalLocked}
         creationMode={userModalCreationMode}
         loading={processing}
@@ -306,6 +306,12 @@ class UserAdministration extends React.Component {
 export default UserAdministration;
 
 UserAdministration.propTypes = {
+  /**
+   * The authentication store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  authStore: MobXPropTypes.observableArray,
   /**
    * The user store injected by the MobX provider.
    *
