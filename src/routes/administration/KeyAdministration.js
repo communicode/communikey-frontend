@@ -38,10 +38,23 @@ class KeyAdministration extends React.Component {
   /**
    * Handles all key modal input value change events.
    *
-   * @callback handleKeyModalValueChange
-   * @param event - The change event
+   * @callback handleKeyModalInputValueChange
+   * @param event - The input change event
    */
-  handleKeyModalValueChange = (event) => this.setState({key: update(this.state.key, {[event.target.name]: {$set: event.target.value}})});
+  handleKeyModalInputValueChange = (event) => this.setState({key: update(this.state.key, {[event.target.name]: {$set: event.target.value}})});
+
+  /**
+   * Handles all key modal category tree select value change events.
+   *
+   * @callback handleKeyModalCategoryTreeSelectValueChange
+   * @param label - The label of the selected tree node
+   * @param selectValue - The value of the selection
+   * @param selectedTreeNode - The selected tree node
+   */
+  handleKeyModalCategoryTreeSelectValueChange = (label, selectValue, selectedTreeNode) => {
+    console.log(selectedTreeNode.triggerNode.props.category.id);
+    this.setState({key: update(this.state.key, {categoryId: {$set: selectedTreeNode.triggerNode.props.category.id}})});
+  };
 
   /**
    * Handles the key modal close event.
@@ -106,7 +119,7 @@ class KeyAdministration extends React.Component {
     this.setProcessingStatus(true);
     keyModalCreationMode
       ?
-      this.props.keyStore.create(key.name, key.login, key.password)
+      this.props.keyStore.create(key.categoryId, key.name, key.login, key.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
@@ -213,10 +226,11 @@ class KeyAdministration extends React.Component {
         loading={processing}
         afterClose={() => this.setKeyModalCreationMode(false)}
         onCategoryTreeSelectionSave={this.handleKeyModalAddKeyToCategory}
+        onCategoryTreeSelectValueChange={this.handleKeyModalCategoryTreeSelectValueChange}
         onClose={this.handleKeyModalClose}
         onDelete={this.handleKeyModalDelete}
+        onInputValueChange={this.handleKeyModalInputValueChange}
         onSave={this.handleKeyModalSave}
-        onValueChange={this.handleKeyModalValueChange}
         toggleLockStatus={this.toggleKeyModalLockStatus}
       />
     );

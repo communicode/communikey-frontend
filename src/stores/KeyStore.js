@@ -20,14 +20,16 @@ class KeyStore {
   /**
    * Creates a new key with the specified attributes.
    *
+   * @param {number} categoryId - The ID of the category to add the new created key to
    * @param {string} name - The name of the key to create
    * @param {string} login - The login of the key
    * @param {string} password - The password of the key
    * @returns {Promise} - A promise
    */
   @action
-  create = (name, login, password) => {
+  create = (categoryId, name, login, password) => {
     return apiService.post(KEYS, {
+      categoryId: categoryId,
       name: name,
       login: login,
       password: password
