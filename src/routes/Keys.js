@@ -36,6 +36,13 @@ class Keys extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({processing: true});
+    this.props.categoryStore.getAll()
+      .then(() => this.setState({processing: false}))
+      .catch(() => this.setState({processing: false}));
+  }
+
   /**
    * Handles the category tree expand event.
    *
