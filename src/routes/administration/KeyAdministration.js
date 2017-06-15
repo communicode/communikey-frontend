@@ -86,7 +86,7 @@ class KeyAdministration extends React.Component {
     this.setProcessingStatus(true);
     return this.props.categoryStore.addKey(category.id, this.state.key.id)
       .then(() => {
-        this.setState({key: this.props.keyStore.findOneById(this.state.key.id)});
+        this.setState({key: this.props.keyStore.filterOneById(this.state.key.id)});
         this.setProcessingStatus(false);
       })
       .catch(error => {

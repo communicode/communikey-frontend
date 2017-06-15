@@ -1,4 +1,5 @@
 import React from "react";
+import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
 import {PropTypes as MobXPropTypes} from "mobx-react";
 import CopyToClipboard from "react-copy-to-clipboard";
@@ -55,6 +56,14 @@ class KeyModal extends React.Component {
   }
 
   /**
+   * Generates the category tree from flat data.
+   *
+   * @param categories - The flat category data to generate the tree data of
+   * @since 0.9.0
+   */
+  generateTreeFromFlatData = categories => arrayToTree(categories, {id: "id", parentId: "parent"});
+
+  /**
    * Recursively generates all category tree select nodes.
    *
    * @param categories - The categories to generate the tree node structure of
@@ -62,12 +71,12 @@ class KeyModal extends React.Component {
   generateCategoryTreeSelectNodes = categories => categories.map(category => {
     if (category.children.length) {
       return (
-        <Tree.TreeNode key={category.id} value={category.name} category={category} title={<span><Icon type="folder"/> {category.name}</span>}>
+        <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={<span><Icon type="folder"/> {category.data.name}</span>}>
           {this.generateCategoryTreeSelectNodes(category.children)}
         </Tree.TreeNode>
       );
     }
-    return <Tree.TreeNode key={category.id} value={category.name} category={category} title={category.name}/>;
+    return <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={category.data.name}/>;
   });
 
   /**
@@ -320,7 +329,7 @@ class KeyModal extends React.Component {
                   onChange={this.handleCategoryTreeSelectModalChange}
                   size="large"
                 >
-                  {this.generateCategoryTreeSelectNodes(categories)}
+                  {this.generateCategoryTreeSelectNodes(this.generateTreeFromFlatData(categories))}
                 </TreeSelect>
               </Form.Item>
             </Form>

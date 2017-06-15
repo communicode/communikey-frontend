@@ -1,4 +1,5 @@
 import {action, observable} from "mobx";
+import _ from "lodash";
 import apiService from "../services/ApiService";
 import {KEY, KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
@@ -58,13 +59,22 @@ class KeyStore {
   };
 
   /**
-   * Finds the key with the specified ID.
+   * Filters all keys for the specified category ID.
+   *
+   * @param {number} categoryId - The ID of category to find all keys of
+   * @returns {array} A collection of filtered keys
+   * @since 0.9.0
+   */
+  filterAllByCategory = (categoryId) => _.filter(this.keys, key => key.category === categoryId);
+
+  /**
+   * Filters the key for the specified ID.
    *
    * @param {number} keyId - The ID of the key to find
-   * @returns {object} The key if found
+   * @returns {object} The key if filtered, undefined otherwise
+   * @since 0.9.0
    */
-  @action
-  findOneById = (keyId) => this.keys.find(key =>key.id === keyId);
+  filterOneById = (keyId) => this.keys.find(key =>key.id === keyId);
 
   /**
    * Gets all keys.
