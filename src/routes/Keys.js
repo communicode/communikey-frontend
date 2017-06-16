@@ -227,6 +227,18 @@ class Keys extends React.Component {
   };
 
   /**
+   * Handles all key modal category tree select value change events.
+   *
+   * @callback handleKeyModalCategoryTreeSelectValueChange
+   * @param label - The label of the selected tree node
+   * @param selectValue - The value of the selection
+   * @param selectedTreeNode - The selected tree node
+   */
+  handleKeyModalCategoryTreeSelectValueChange = (label, selectValue, selectedTreeNode) => {
+    this.setState({key: update(this.state.key, {categoryId: {$set: selectedTreeNode.triggerNode.props.category.id}})});
+  };
+
+  /**
    * Handles the key modal deletion event.
    *
    * @callback handleKeyModalDelete
@@ -250,7 +262,7 @@ class Keys extends React.Component {
     this.setProcessingStatus(true);
     keyModalCreationMode
       ?
-      this.props.keyStore.create(key.name, key.login, key.password)
+      this.props.keyStore.create(key.categoryId, key.name, key.login, key.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
@@ -482,6 +494,7 @@ class Keys extends React.Component {
     const categoryModal = () => (
       <CategoryModal
         visible={categoryModalVisible}
+        key={"categoryModal" + key.id}
         category={category}
         administrationMode={authStore.privileged}
         locked={categoryModalLocked}
@@ -499,6 +512,7 @@ class Keys extends React.Component {
     const keyModal = () => (
       <KeyModal
         visible={keyModalVisible}
+        key={"keyModal" + key.id}
         cckeyKey={key}
         categories={categoryStore.categories}
         administrationMode={authStore.privileged}

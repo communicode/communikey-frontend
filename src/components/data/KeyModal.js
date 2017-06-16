@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash";
 import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
 import {PropTypes as MobXPropTypes} from "mobx-react";
@@ -53,6 +54,17 @@ class KeyModal extends React.Component {
        */
       keyPasswordVisible: false
     };
+  }
+
+  /**
+   * Sets the selected category for the tree select modal if found in the passed categories.
+   * This allows to show the correct category tree node for the passed communikey key when not in creation mode.
+   *
+   * @since 0.9.0
+   */
+  componentDidMount() {
+    const category = _.find(this.props.categories, category => category.id === this.props.cckeyKey.category);
+    this.setState({categoryTreeSelectModalSelectedCategory: category});
   }
 
   /**
@@ -136,7 +148,7 @@ class KeyModal extends React.Component {
       ...modalProps
     } = this.props;
 
-    const {categoryTreeSelectModalVisible, keyPasswordVisible} = this.state;
+    const {categoryTreeSelectModalSelectedCategory, categoryTreeSelectModalVisible, keyPasswordVisible} = this.state;
 
     /**
      * Layout configurations for all editable form items.
@@ -264,7 +276,6 @@ class KeyModal extends React.Component {
       <Form.Item {...editableFormItemLayout} label="Category" colon={false}>
         <TreeSelect
           showSearch={true}
-          defaultValue={cckeyKey.category && cckeyKey.category.name}
           onChange={onCategoryTreeSelectValueChange}
           size="large"
         >
@@ -325,7 +336,7 @@ class KeyModal extends React.Component {
               <Form.Item>
                 <TreeSelect
                   showSearch={true}
-                  defaultValue={cckeyKey.category && cckeyKey.category.name}
+                  value={categoryTreeSelectModalSelectedCategory && categoryTreeSelectModalSelectedCategory.name}
                   onChange={this.handleCategoryTreeSelectModalChange}
                   size="large"
                 >
