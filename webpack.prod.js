@@ -1,7 +1,6 @@
-"use strict";
-
 const webpack = require("webpack");
 const BabiliPlugin = require("babili-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -20,12 +19,18 @@ if (typeof process.env.COMMUNIKEY_VERSION === "undefined") {
 }
 const COMMUNIKEY_VERSION = process.env.COMMUNIKEY_VERSION;
 
+const extractLess = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development",
+  allChunks: true
+});
+
 module.exports = {
-  entry: "./src/js/client.js",
+  entry: "./src/Communikey.js",
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "client.min.js"
+    filename: "communikey.min.js"
   },
 
   resolve: {
@@ -34,7 +39,7 @@ module.exports = {
 
   module: {
     rules: [
-/*      {
+      {
         enforce: "pre",
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -43,7 +48,7 @@ module.exports = {
           failOnError: true,
           failOnWarning: false
         }
-      },*/
+      },
       {
         test: /\.js?$/,
         exclude: /(node_modules)/,
@@ -52,6 +57,17 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.less$/,
+        use: extractLess.extract({
+          use: [{
+            loader: "css-loader"
+          }, {
+            loader: "less-loader"
+          }],
+          fallback: "style-loader"
+        })
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -72,6 +88,7 @@ module.exports = {
     new BabiliPlugin({
       comments: false
     }),
+    extractLess,
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),

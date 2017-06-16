@@ -1,0 +1,99 @@
+@import "./../../../node_modules/antd/lib/style/themes/default.less";
+
+.badge-activated {
+  .ant-badge-dot {
+    background-color: @success-color;
+  }
+}
+
+.badge-deactivated {
+  .ant-badge-dot {
+    background-color: @error-color;
+  }
+}
+
+.copy-to-clipboard-icon {
+  cursor: pointer;
+  color: #cccccc;
+  transition: color 0.3s;
+  font-size: 12px;
+
+  &:hover {
+    color: #999999;
+  }
+
+  &:active {
+    color: #666666;
+  }
+}
+
+.footer {
+  margin-top: 16px;
+  border-top: 1px solid #e9e9e9;
+  padding: 16px 16px 0 0;
+  border-radius: 0 0 4px 4px;
+
+  button {
+    margin-left: 8px;
+  }
+
+  .main {
+    text-align: right;
+  }
+
+  .operations {
+    text-align: left;
+  }
+}
+
+.user-avatar {
+  width: 100%;
+}
+
+@media (min-width: 769px) {
+  .ant-modal {
+    &.cckey-user-modal {
+      width: 700px !important;
+    }
+
+    &.password-reset-inner-modal {
+      width: 350px !important;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .ant-modal {
+    &.cckey-user-modal {
+      width: 800px !important;
+    }
+
+    &.password-reset-inner-modal {
+      width: 400px !important;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .ant-modal {
+    &.cckey-user-modal {
+      width: 860px !important;
+    }
+
+    &.password-reset-inner-modal {
+      width: 430px !important;
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .ant-modal {
+    &.cckey-user-modal {
+      width: 1000px !important;
+    }
+
+    &.password-reset-inner-modal {
+      width: 500px !important;
+    }
+  }
+}

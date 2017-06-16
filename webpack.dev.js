@@ -1,16 +1,14 @@
-"use strict";
-
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
   devtool: "cheap-module-source-map",
-  entry: "./src/js/client.js",
+  entry: "./src/Communikey.js",
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "client.min.js",
+    filename: "communikey.min.js",
     sourceMapFilename: "[file].map",
     publicPath: "/"
   },
@@ -39,7 +37,7 @@ module.exports = {
 
   module: {
     rules: [
-/*      {
+      {
         enforce: "pre",
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -48,7 +46,7 @@ module.exports = {
           failOnError: true,
           failOnWarning: false
         }
-      },*/
+      },
       {
         test: /\.js?$/,
         exclude: /(node_modules)/,
@@ -57,6 +55,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.less$/,
+        use: ["style-loader", "css-loader","less-loader"]
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -72,7 +74,8 @@ module.exports = {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       minimize: false,
-      debug: true
+      debug: true,
+      sourceMap: true
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html"

@@ -1,13 +1,15 @@
 /*
-[References]
-ESLint
-  http://eslint.org/docs/rules
-  http://eslint.org/docs/user-guide/configuring
-  http://eslint.org/docs/user-guide/configuring#using-configuration-files
-  http://eslint.org/docs/user-guide/configuring#specifying-environments
-  http://eslint.org/docs/user-guide/configuring.html#specifying-globals
-  https://github.com/yannickcr/eslint-plugin-react
-*/
+ [References]
+ ESLint
+ http://eslint.org/docs/rules
+ http://eslint.org/docs/user-guide/configuring
+ http://eslint.org/docs/user-guide/configuring#using-configuration-files
+ http://eslint.org/docs/user-guide/configuring#specifying-environments
+ http://eslint.org/docs/user-guide/configuring.html#specifying-globals
+ https://github.com/yannickcr/eslint-plugin-react
+ http://eslint.org/docs/user-guide/migrating-to-2.0.0#language-options
+ https://leanpub.com/understandinges6/read
+ */
 module.exports = {
   "env": {
     "browser": true,
@@ -16,12 +18,30 @@ module.exports = {
     "jest": true,
     "node": true,
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 6,
     "ecmaFeatures": {
-      "jsx": true
+      "modules": true,
+      "jsx": true,
+      "arrowFunctions": true,
+      "binaryLiterals": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": true,
+      "restParams": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true
     }
+  },
+  "globals": {
+    "describe": true,
+    "it": true
   },
   "plugins": [
     "jest",
@@ -54,24 +74,25 @@ module.exports = {
     "no-console": "off",
     // Code Performance
     "global-require": "warn",
+    "no-unused-vars": "warn",
     // Documentation
-    "require-jsdoc": ["warn", {
+    "require-jsdoc": ["off", {
       "require": {
-        "FunctionDeclaration": true,
+        "FunctionDeclaration": false,
         "MethodDefinition": false,
         "ClassDeclaration": true,
         "ArrowFunctionExpression": false
       }
     }],
-    "valid-jsdoc": ["error", {
+    "valid-jsdoc": ["off", {
       "prefer": {
         "arg": "param",
         "argument": "param",
-        "class": "constructor",
         "virtual": "abstract"
       },
-      "requireParamDescription": true,
-      "requireReturnDescription": true
+      "requireParamDescription": false,
+      "requireReturnDescription": false,
+      "requireReturnType": false
     }],
     // Unit Tests
     "jest/no-disabled-tests": "warn",

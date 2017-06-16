@@ -1,0 +1,17 @@
+<svg width="142" height="142" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+  <circle r="7" cx="10" cy="50" fill="#9cc125" data-svg-origin="43 43" transform="rotate(-94 43 43)">
+    <animateTransform attributeName="transform" attributeType="xml" type="rotate" from="-94 43 43" to="266 43 43" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="7" cx="10" cy="50" fill="#006d75" data-svg-origin="43 43" transform="rotate(-166 43 43)">
+    <animateTransform attributeName="transform" attributeType="xml" type="rotate" from="-166 43 43" to="194 43 43" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="7" cx="10" cy="50" fill="#f0e500" data-svg-origin="43 43" transform="rotate(122 43 43)">
+    <animateTransform attributeName="transform" attributeType="xml" type="rotate" from="122 43 43" to="482 43 43" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="7" cx="10" cy="50" fill="#cbdb00" data-svg-origin="43 43" transform="rotate(50 43 43)">
+    <animateTransform attributeName="transform" attributeType="xml" type="rotate" from="50 43 43" to="410 43 43" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="7" cx="10" cy="50" fill="#005f66" data-svg-origin="43 43" transform="rotate(-22 43 43)">
+    <animateTransform attributeName="transform" attributeType="xml" type="rotate" from="-22 43 43" to="338 43 43" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>
