@@ -118,10 +118,11 @@ class KeyModal extends React.Component {
       creationMode,
       loading,
       locked,
+      onCategoryTreeSelectValueChange,
       onClose,
       onDelete,
+      onInputValueChange,
       onSave,
-      onValueChange,
       toggleLockStatus,
       ...modalProps
     } = this.props;
@@ -233,7 +234,7 @@ class KeyModal extends React.Component {
         <Form.Item {...editableFormItemLayout} label="Name" colon={false}>
           <Input
             name="name"
-            onChange={onValueChange}
+            onChange={onInputValueChange}
             placeholder="Name"
             suffix={cckeyKey.name ? copyToClipboardIcon(cckeyKey.name) : null}
             readOnly={!administrationMode}
@@ -243,7 +244,7 @@ class KeyModal extends React.Component {
         <Form.Item {...editableFormItemLayout} label="Login" colon={false}>
           <Input
             name="login"
-            onChange={onValueChange}
+            onChange={onInputValueChange}
             placeholder="Login"
             suffix={cckeyKey.login ? copyToClipboardIcon(cckeyKey.login) : null}
             readOnly={!administrationMode}
@@ -253,7 +254,7 @@ class KeyModal extends React.Component {
         <Form.Item {...editableFormItemLayout} label="Password" colon={false}>
           <Input
             name="password"
-            onChange={onValueChange}
+            onChange={onInputValueChange}
             placeholder="Password"
             type={keyPasswordVisible ? "text" : "password"}
             readOnly={!administrationMode ? true : creationMode ? false : locked}
@@ -261,8 +262,22 @@ class KeyModal extends React.Component {
             value={cckeyKey.password}
           />
         </Form.Item>
+        {creationMode && administrationMode && categoryTreeSelect()}
         {!creationMode && administrationMode && formItems()}
       </Form>
+    );
+
+    const categoryTreeSelect = () => (
+      <Form.Item {...editableFormItemLayout} label="Category" colon={false}>
+        <TreeSelect
+          showSearch={true}
+          defaultValue={cckeyKey.category && cckeyKey.category.name}
+          onChange={onCategoryTreeSelectValueChange}
+          size="large"
+        >
+          {this.generateCategoryTreeSelectNodes(categories)}
+        </TreeSelect>
+      </Form.Item>
     );
 
     const lockStatusButton = () => (
@@ -424,6 +439,11 @@ KeyModal.propTypes = {
   onCategoryTreeSelectionSave: PropTypes.func,
 
   /**
+   * Callback function to handle category tree select value change events.
+   */
+  onCategoryTreeSelectValueChange: PropTypes.func,
+
+  /**
    * Callback function to handle close events.
    *
    * @type {function}
@@ -438,18 +458,18 @@ KeyModal.propTypes = {
   onDelete: PropTypes.func,
 
   /**
+   * Callback function to handle input value change events.
+   *
+   * @type {function}
+   */
+  onInputValueChange: PropTypes.func,
+
+  /**
    * Callback function to handle the save event.
    *
    * @type {function}
    */
   onSave: PropTypes.func,
-
-  /**
-   * Callback function to handle input value change events.
-   *
-   * @type {function}
-   */
-  onValueChange: PropTypes.func,
 
   /**
    * Callback function to toggle the user lock status.
