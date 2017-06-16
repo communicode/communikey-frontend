@@ -274,10 +274,10 @@ class Keys extends React.Component {
   /**
    * Handles all key modal input value change events.
    *
-   * @callback handleKeyModalValueChange
-   * @param event - The change event
+   * @callback handleKeyModalInputValueChange
+   * @param event - The input change event
    */
-  handleKeyModalValueChange = (event) => this.setState({key: update(this.state.key, {[event.target.name]: {$set: event.target.value}})});
+  handleKeyModalInputValueChange = (event) => this.setState({key: update(this.state.key, {[event.target.name]: {$set: event.target.value}})});
 
   /**
    * Handles a key table record selection event.
@@ -482,7 +482,6 @@ class Keys extends React.Component {
     const categoryModal = () => (
       <CategoryModal
         visible={categoryModalVisible}
-        key={category.id}
         category={category}
         administrationMode={authStore.privileged}
         locked={categoryModalLocked}
@@ -508,10 +507,11 @@ class Keys extends React.Component {
         loading={processing}
         afterClose={() => this.setKeyModalCreationMode(false)}
         onCategoryTreeSelectionSave={this.handleKeyModalAddKeyToCategory}
+        onCategoryTreeSelectValueChange={this.handleKeyModalCategoryTreeSelectValueChange}
         onClose={this.handleKeyModalClose}
         onDelete={this.handleKeyModalDelete}
+        onInputValueChange={this.handleKeyModalInputValueChange}
         onSave={this.handleKeyModalSave}
-        onValueChange={this.handleKeyModalValueChange}
         toggleLockStatus={this.toggleKeyModalLockStatus}
       />
     );
