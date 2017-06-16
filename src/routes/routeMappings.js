@@ -1,6 +1,4 @@
 import {
-  ADMINISTRATION_CATEGORIES,
-  ADMINISTRATION_KEYS,
   ADMINISTRATION_USERS,
   DASHBOARD,
   KEYS,
@@ -48,26 +46,6 @@ export const ROUTE_SIGNOUT = ROUTE_ROOT + SIGNOUT;
  * @since 0.8.0
  */
 export const ROUTE_DASHBOARD = ROUTE_ROOT + DASHBOARD;
-
-/**
- * The route mapping for the {@link CategoryAdministration} components.
- *
- * @constant
- * @default
- * @type {string}
- * @since 0.8.0
- */
-export const ROUTE_ADMINISTRATION_CATEGORIES = ROUTE_ROOT + ADMINISTRATION_CATEGORIES;
-
-/**
- * The route mapping for the {@link KeyAdministration} components.
- *
- * @constant
- * @default
- * @type {string}
- * @since 0.8.0
- */
-export const ROUTE_ADMINISTRATION_KEYS = ROUTE_ROOT + ADMINISTRATION_KEYS;
 
 /**
  * The route mapping for the {@link UserAdministration} components.

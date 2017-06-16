@@ -11,8 +11,6 @@ import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import PublicRoute from "./components/hoc/PublicRoute";
 import SignIn from "./routes/SignIn";
 import SignOut from "./routes/SignOut";
-import CategoryAdministration from "./routes/administration/CategoryAdministration";
-import KeyAdministration from "./routes/administration/KeyAdministration";
 import UserAdministration from "./routes/administration/UserAdministration";
 import Dashboard from "./routes/Dashboard";
 import Keys from "./routes/Keys";
@@ -23,8 +21,6 @@ import {userStore} from "./stores/UserStore";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
 import {
-  ROUTE_ADMINISTRATION_CATEGORIES,
-  ROUTE_ADMINISTRATION_KEYS,
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_DASHBOARD,
   ROUTE_KEYS,
@@ -100,9 +96,6 @@ class Communikey extends React.Component {
                       <Switch key={location.key} location={location}>
                         <AuthenticatedRoute exact path={ROUTE_ROOT} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_DASHBOARD} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
-                        <AuthenticatedRoute path={ROUTE_ADMINISTRATION_CATEGORIES} component={CategoryAdministration}
-                                            authorized={stores.authStore.isAuthorized}/>
-                        <AuthenticatedRoute path={ROUTE_ADMINISTRATION_KEYS} component={KeyAdministration} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_ADMINISTRATION_USERS} component={UserAdministration} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
                         <Redirect from={ROUTE_ROOT} to={ROUTE_DASHBOARD}/>
