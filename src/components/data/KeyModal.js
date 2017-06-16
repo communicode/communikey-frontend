@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {PropTypes as MobXPropTypes} from "mobx-react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Tooltip, Tree, TreeSelect} from "antd";
+import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect} from "antd";
 import appConfig from "./../../config/app";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -153,16 +153,6 @@ class KeyModal extends React.Component {
       }
     };
 
-    /**
-     * Operations name constants and the name of the callback function.
-     */
-    const OPERATION_TYPES = {
-      ADD_TO_CATEGORY: {
-        keyName: "ADD_TO_CATEGORY",
-        handler: this.toggleCategoryTreeSelectModal
-      }
-    };
-
     const copyToClipboardIcon = (value) => (
       <CopyToClipboard text={value}>
         <Tooltip title="Copied to clipboard" trigger="click">
@@ -172,12 +162,6 @@ class KeyModal extends React.Component {
     );
 
     const defaultKeyAvatar = () => <img src={appConfig.assets.logoTypographyGreen} className="key-logo"/>;
-
-    const footerOperationsDropdownMenu = (
-      <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
-        <Menu.Item key={OPERATION_TYPES.ADD_TO_CATEGORY.keyName} disabled={locked}>Add to category</Menu.Item>
-      </Menu>
-    );
 
     const formItems = () => (
       <div>
@@ -282,7 +266,7 @@ class KeyModal extends React.Component {
 
     const lockStatusButton = () => (
       <Tooltip title={locked ? "Unlock" : "Lock"}>
-        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "unlock" : "lock"}/>
+        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "lock" : "unlock"}/>
       </Tooltip>
     );
 
@@ -306,9 +290,7 @@ class KeyModal extends React.Component {
               <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
               {
                 !creationMode && administrationMode &&
-                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={locked} trigger={["click"]}>
-                  <Button key="operations" type="primary" ghost={true} size="large" disabled={locked}><Icon type="down"/></Button>
-                </Dropdown>
+                <Button key="addToCategory" size="large" onClick={this.toggleCategoryTreeSelectModal}>Select category</Button>
               }
             </div>
           </Col>

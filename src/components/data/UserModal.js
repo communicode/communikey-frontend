@@ -325,7 +325,7 @@ class UserModal extends React.Component {
 
     const lockStatusButton = () => (
       <Tooltip title={locked ? "Unlock" : "Lock"}>
-        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "unlock" : "lock"}/>
+        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "lock" : "unlock"}/>
       </Tooltip>
     );
 
