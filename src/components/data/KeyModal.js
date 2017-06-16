@@ -56,9 +56,9 @@ class KeyModal extends React.Component {
   }
 
   /**
-   * Generates the category tree from flat data.
+   * Generates the category tree from the specified flat category data array.
    *
-   * @param categories - The flat category data to generate the tree data of
+   * @param categories - The flat category data array to generate the tree structure of
    * @since 0.9.0
    */
   generateTreeFromFlatData = categories => arrayToTree(categories, {id: "id", parentId: "parent"});
@@ -268,7 +268,7 @@ class KeyModal extends React.Component {
           onChange={onCategoryTreeSelectValueChange}
           size="large"
         >
-          {this.generateCategoryTreeSelectNodes(categories)}
+          {this.generateCategoryTreeSelectNodes(this.generateTreeFromFlatData(categories))}
         </TreeSelect>
       </Form.Item>
     );

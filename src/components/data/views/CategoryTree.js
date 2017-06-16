@@ -19,9 +19,9 @@ class CategoryTree extends React.Component {
   }
 
   /**
-   * Generates the category tree from flat data.
+   * Generates the category tree from the specified flat category data array.
    *
-   * @param categories - The flat category data to generate the tree of
+   * @param categories - The flat category data array to generate the tree structure of
    * @since 0.9.0
    */
   generateTreeFromFlatData = categories => arrayToTree(categories, {id: "id", parentId: "parent"});
