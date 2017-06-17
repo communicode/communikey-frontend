@@ -13,6 +13,7 @@ import themeSizeConfig from "./../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
+import "antd/lib/pagination/style/index.less";
 import "antd/lib/row/style/css";
 import "antd/lib/tabs/style/index.less";
 import "antd/lib/table/style/index.less";
