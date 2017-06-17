@@ -84,6 +84,7 @@ class Keys extends React.Component {
    * @callback handleCategoryModalCreation
    */
   handleCategoryModalCreation = () => {
+    this.resetSelectedCategoryObject();
     this.setCategoryModalCreationMode(true);
     this.toggleCategoryModal();
   };
@@ -205,6 +206,7 @@ class Keys extends React.Component {
    * @callback handleKeyModalCreation
    */
   handleKeyModalCreation = () => {
+    this.resetKeyObject();
     this.setKeyModalCreationMode(true);
     this.toggleKeyModal();
   };
