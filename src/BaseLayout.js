@@ -12,6 +12,7 @@ import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
   ROUTE_SIGNOUT,
   ROUTE_DASHBOARD,
+  ROUTE_ADMINISTRATION_USER_GROUPS,
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_KEYS
 } from "./routes/routeMappings";
@@ -118,6 +119,12 @@ class BaseLayout extends React.Component {
             <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="setting"/><span className="nav-text">Administration</span></span>}>
               <Menu.Item key={ROUTE_ADMINISTRATION_USERS}>
                 <NavLink to={ROUTE_ADMINISTRATION_USERS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USERS)}>Users</NavLink>
+              </Menu.Item>
+              <Menu.Item key={ROUTE_ADMINISTRATION_USER_GROUPS}>
+                <NavLink
+                  to={ROUTE_ADMINISTRATION_USER_GROUPS}
+                  isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USER_GROUPS)}>User Groups
+                </NavLink>
               </Menu.Item>
             </Menu.SubMenu>
           }
