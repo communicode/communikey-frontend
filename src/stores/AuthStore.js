@@ -1,5 +1,4 @@
 import {action, observable} from "mobx";
-
 import apiService from "./../services/ApiService";
 import {API_ME} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";

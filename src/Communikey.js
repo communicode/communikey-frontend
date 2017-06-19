@@ -19,8 +19,8 @@ import Keys from "./routes/Keys";
 import AuthStore from "./stores/AuthStore";
 import CategoryStore from "./stores/CategoryStore";
 import KeyStore from "./stores/KeyStore";
-import UserStore from "./stores/UserStore";
 import UserGroupStore from "./stores/UserGroupStore";
+import UserStore from "./stores/UserStore";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
 import {
@@ -44,7 +44,7 @@ useStrict(true);
  * @type {AuthStore}
  * @since 0.9.0
  */
-const authStore = new AuthStore();
+export const authStore = new AuthStore();
 
 /**
  * The category store instance.
@@ -52,7 +52,7 @@ const authStore = new AuthStore();
  * @type {CategoryStore}
  * @since 0.9.0
  */
-const categoryStore = new CategoryStore();
+export const categoryStore = new CategoryStore();
 
 /**
  * The key store instance.
@@ -60,7 +60,15 @@ const categoryStore = new CategoryStore();
  * @type {KeyStore}
  * @since 0.9.0
  */
-const keyStore = new KeyStore();
+export const keyStore = new KeyStore();
+
+/**
+ * The user group store instance.
+ *
+ * @type {UserGroupStore}
+ * @since 0.9.0
+ */
+export const userGroupStore = new UserGroupStore();
 
 /**
  * The user store instance.
@@ -68,24 +76,14 @@ const keyStore = new KeyStore();
  * @type {UserStore}
  * @since 0.9.0
  */
-const userStore = new UserStore();
-
-/**
- * The user group store instance.
- *
- * @param {CategoryStore} categoryStore - The category store instance
- * @param {UserStore} userStore - The user store instance
- * @type {UserGroupStore}
- * @since 0.9.0
- */
-const userGroupStore = new UserGroupStore(categoryStore, userStore);
+export const userStore = new UserStore();
 
 /**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
  *
- * @type {Object.<{AuthStore}, {CategoryStore}, {KeyStore}, {UserStore}, {UserGroupStore}>}
+ * @type {Object.<{AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}>}
  */
-const stores = {authStore, categoryStore, keyStore, userStore, userGroupStore};
+const stores = {authStore, categoryStore, keyStore, userGroupStore, userStore};
 
 /**
  * The communikey version.

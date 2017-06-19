@@ -1,6 +1,7 @@
 import {action, observable} from "mobx";
 import axios from "axios";
 import _ from "lodash";
+import {categoryStore, userStore} from "./../Communikey";
 import apiService from "../services/ApiService";
 import {USER_GROUP, USER_GROUPS, USER_GROUPS_USERS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
@@ -15,19 +16,12 @@ import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
  */
 class UserGroupStore {
   @observable userGroups;
-  categoryStore;
-  userStore;
 
   /**
-   * Constructs the user group store and initializes the passed stores.
-   *
-   * @param {CategoryStore} categoryStore - The category store instance
-   * @param {UserStore} userStore - The user store instance
+   * Constructs the user group store.
    */
-  constructor(categoryStore, userStore) {
+  constructor() {
     this.userGroups = [];
-    this.categoryStore = categoryStore;
-    this.userStore = userStore;
   }
 
   /**
@@ -48,7 +42,7 @@ class UserGroupStore {
     })
       .then(action("UserGroupStore_addUser_synchronization", response => {
         this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === response.data.id), 1, response.data);
-        return this.userStore.fetchOne(login).then(() => response.data);
+        return userStore.fetchOne(login).then(() => response.data);
       }));
   };
 
@@ -90,10 +84,10 @@ class UserGroupStore {
       .then(action("UserGroupStore_deleteOne_fetch", () => {
         axios.all([
           _.forEach(
-            _.filter(this.categoryStore.categories, category => category.groups.includes(userGroupId)),
-            category => this.categoryStore.fetchOne(category.id)
+            _.filter(categoryStore.categories, category => category.groups.includes(userGroupId)),
+            category => categoryStore.fetchOne(category.id)
           ),
-          _.forEach(_.filter(this.userStore.users, user => user.groups.includes(userGroupId)), user => this.userStore.fetchOne(user.login))
+          _.forEach(_.filter(userStore.users, user => user.groups.includes(userGroupId)), user => userStore.fetchOne(user.login))
         ])
           .then(action("UserGroupStore_deleteOne_synchronization", () => _.remove(this.userGroups, userGroup => userGroup.id === userGroupId)));
       }));
@@ -151,7 +145,7 @@ class UserGroupStore {
     })
       .then(action("UserGroupStore_removeUser_synchronization", response => {
         this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === response.data.id), 1, response.data);
-        return this.userStore.fetchOne(login).then(() => response.data);
+        return userStore.fetchOne(login).then(() => response.data);
       }));
   };
 
