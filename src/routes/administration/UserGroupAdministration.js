@@ -7,7 +7,7 @@ import {toJS} from "mobx";
 import UserGroupModal from "./../../components/data/UserGroupModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import themeSizeConfig from "./../../config/theme/sizes";
-import {AUTH_STORE, USER_GROUP_STORE} from "./../../stores/storeConstants";
+import {AUTH_STORE, USER_STORE, USER_GROUP_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -17,7 +17,7 @@ import "./UserGroupAdministration.less";
 import "./../../BaseLayout.less";
 
 /**
- * The default table column configuration.
+ * The default user group table column configuration.
  */
 export const USER_GROUP_TABLE_DEFAULT_COLUMNS = [
   {title: "Name", dataIndex: "name", key: "name", fixed: true}
@@ -29,7 +29,7 @@ export const USER_GROUP_TABLE_DEFAULT_COLUMNS = [
  * @author sgreb@communicode.de
  * @since 0.9.0
  */
-@inject(AUTH_STORE, USER_GROUP_STORE) @observer
+@inject(AUTH_STORE, USER_STORE, USER_GROUP_STORE) @observer
 class UserGroupAdministration extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +79,7 @@ class UserGroupAdministration extends React.Component {
    */
   handleUserGroupModalDelete = () => {
     this.setProcessingStatus(true);
-    this.props.userGroupStore.delete(this.state.userGroup.name)
+    this.props.userGroupStore.deleteOne(this.state.userGroup.id)
       .then(() => {
         this.setProcessingStatus(false);
         this.handleUserGroupModalClose();
@@ -106,7 +106,7 @@ class UserGroupAdministration extends React.Component {
           this.setProcessingStatus(false);
         })
       :
-      this.props.userGroupStore.update(userGroup.name)
+      this.props.userGroupStore.update(userGroup.id, userGroup)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleUserGroupModalClose();
@@ -115,6 +115,42 @@ class UserGroupAdministration extends React.Component {
           console.error(error);
           this.setProcessingStatus(false);
         });
+
+  };
+
+  /**
+   * Handles the event to add a user to the user group.
+   *
+   * @callback handleUserGroupModalOnUserAdd
+   * @param {object} user - The user to add to the user group
+   */
+  handleUserGroupModalOnUserAdd = (user) => {
+    this.setProcessingStatus(true);
+    this.props.userGroupStore.addUser(this.state.userGroup.id, user.login)
+      .then(updatedUserGroup => {
+        this.setState({userGroup: update(this.state.userGroup, {$merge: updatedUserGroup})});
+        this.setProcessingStatus(false);
+      })
+      .catch(error => {
+        this.setProcessingStatus(false);
+        console.error(error);
+      });
+  };
+
+  /**
+   * Handles the event to remove a user from the user group.
+   *
+   * @callback handleUserGroupModalOnUserAdd
+   * @param {object} user - The user to add to the user group
+   */
+  handleUserGroupModalOnUserRemove = (user) => {
+    this.setProcessingStatus(true);
+    this.props.userGroupStore.removeUser(this.state.userGroup.id, user.login)
+      .then(updatedUserGroup => {
+        this.setState({userGroup: update(this.state.userGroup, {$merge: updatedUserGroup})});
+        this.setProcessingStatus(false);
+      })
+      .catch(()=> this.setProcessingStatus(false));
   };
 
   /**
@@ -166,7 +202,7 @@ class UserGroupAdministration extends React.Component {
 
   render() {
     const {processing, userGroup, userGroupModalCreationMode, userGroupModalLocked, userGroupModalVisible} = this.state;
-    const {authStore, userGroupStore} = this.props;
+    const {authStore, userStore, userGroupStore} = this.props;
 
     const mainDataView = () => (
       <div>
@@ -199,6 +235,7 @@ class UserGroupAdministration extends React.Component {
         visible={userGroupModalVisible}
         key={userGroup.id}
         userGroup={userGroup}
+        users={toJS(userStore.users)}
         administrationMode={authStore.privileged}
         locked={userGroupModalLocked}
         creationMode={userGroupModalCreationMode}
@@ -207,6 +244,8 @@ class UserGroupAdministration extends React.Component {
         onClose={this.handleUserGroupModalClose}
         onDelete={this.handleUserGroupModalDelete}
         onSave={this.handleUserGroupModalSave}
+        onUserAdd={this.handleUserGroupModalOnUserAdd}
+        onUserRemove={this.handleUserGroupModalOnUserRemove}
         onValueChange={this.handleModalValueChange}
         toggleLockStatus={this.toggleUserGroupModalLockStatus}
       />
@@ -244,6 +283,14 @@ UserGroupAdministration.propTypes = {
    * @type {ObservableArray}
    */
   authStore: MobXPropTypes.observableArray,
+
+  /**
+   * The user store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  userStore: MobXPropTypes.observableArray,
+
   /**
    * The user group store injected by the MobX provider.
    *

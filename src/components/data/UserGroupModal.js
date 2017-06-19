@@ -1,16 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip} from "antd";
+import _ from "lodash";
+import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip} from "antd";
+import themeSizeConfig from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
+import "antd/lib/checkbox/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/form/style/index.less";
 import "antd/lib/icon/style/css";
 import "antd/lib/input/style/index.less";
 import "antd/lib/modal/style/index.less";
 import "antd/lib/row/style/css";
+import "antd/lib/table/style/index.less";
+import "antd/lib/tabs/style/index.less";
 import "antd/lib/tooltip/style/index.less";
 import "./UserGroupModal.less";
+
+/**
+ * The default user table column configuration.
+ */
+export const USER_TABLE_DEFAULT_COLUMNS = [
+  {title: "Login", dataIndex: "login", key: "login", fixed: true},
+  {title: "Email", dataIndex: "email", key: "email"},
+  {title: "First name", dataIndex: "firstName", key: "firstName"},
+  {title: "Last name", dataIndex: "lastName", key: "lastName"}
+];
+
+const TAB_PANE_REACT_KEY_GENERAL = "general";
+const TAB_PANE_REACT_KEY_USERS = "users";
 
 /**
  * A modal for user groups.
@@ -23,7 +41,31 @@ import "./UserGroupModal.less";
 class UserGroupModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      /**
+       * The key of the active tab.
+       *
+       * @type {string}
+       */
+      activeTabViewKey: TAB_PANE_REACT_KEY_GENERAL,
+
+      /**
+       * The original user group object.
+       * Used to compare changes.
+       *
+       * @type {object}
+       */
+      originalUserGroup: props.userGroup
+    };
   }
+
+  /**
+   * Handles the table record selection event of the users tab view.
+   *
+   * @param {object} record - The selected user table record
+   * @param {boolean} selected - Determines whether the record has been selected or unselected
+   */
+  handleTabViewUsersOnRecordSelect = (record, selected) => selected ? this.props.onUserAdd(record) : this.props.onUserRemove(record);
 
   render() {
     const {
@@ -37,8 +79,15 @@ class UserGroupModal extends React.Component {
       onValueChange,
       toggleLockStatus,
       userGroup,
+      users,
       ...modalProps
     } = this.props;
+    const {activeTabViewKey, originalUserGroup} = this.state;
+
+    const tabViewUsersTableConfig = {
+      selectedRowKeys: userGroup.users,
+      onSelect: this.handleTabViewUsersOnRecordSelect
+    };
 
     /**
      * Layout configurations for all editable form items.
@@ -149,7 +198,7 @@ class UserGroupModal extends React.Component {
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
-              {!creationMode && administrationMode &&
+              {!creationMode && administrationMode && !_.isEqual(activeTabViewKey, TAB_PANE_REACT_KEY_USERS) &&
               <Button.Group>
                 <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
               </Button.Group>
@@ -159,11 +208,46 @@ class UserGroupModal extends React.Component {
           <Col span={8} offset={8}>
             <div className="main">
               <Button key="cancel" size="large" onClick={onClose}>Cancel</Button>
-              <Button key="save" type="primary" size="large" onClick={onSave} loading={loading}>{creationMode ? "Create" : "Done"}</Button>
+              <Button
+                key="save"
+                type="primary"
+                size="large"
+                onClick={_.isEqual(userGroup, originalUserGroup) ? onClose : onSave}
+                loading={loading}
+              >
+                {creationMode ? "Create" : "Done"}
+              </Button>
             </div>
           </Col>
         </Row>
       </div>
+    );
+
+    const tabViewUsers = () => (
+      <Tabs.TabPane tab="Users" key={TAB_PANE_REACT_KEY_USERS} disabled={creationMode}>
+        <Row>
+          <div>
+            <Col span={24}>
+              <Table
+                dataSource={users}
+                columns={USER_TABLE_DEFAULT_COLUMNS}
+                rowKey={record => record.id}
+                rowSelection={tabViewUsersTableConfig}
+                scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+              />
+            </Col>
+          </div>
+        </Row>
+      </Tabs.TabPane>
+    );
+
+    const tabViewGeneral = () => (
+      <Tabs.TabPane tab="General" key={TAB_PANE_REACT_KEY_GENERAL}>
+        <Row>
+          <Col span={24}>{form()}</Col>
+        </Row>
+        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
+      </Tabs.TabPane>
     );
 
     return (
@@ -175,10 +259,10 @@ class UserGroupModal extends React.Component {
         closable={false}
         className="cckey-user-group-modal"
         {...modalProps}>
-        <Row>
-          <Col span={24}>{form()}</Col>
-        </Row>
-        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
+        <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_GENERAL} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
+          {tabViewGeneral()}
+          {tabViewUsers()}
+        </Tabs>
         <Row><Col>{footer()}</Col></Row>
       </Modal>
     );
@@ -234,6 +318,20 @@ UserGroupModal.propTypes = {
   onSave: PropTypes.func,
 
   /**
+   * Callback function to handle the event to add a user to the user group.
+   *
+   * @type {function}
+   */
+  onUserAdd: PropTypes.func,
+
+  /**
+   * Callback function to handle the event to remove a user to from user group.
+   *
+   * @type {function}
+   */
+  onUserRemove: PropTypes.func,
+
+  /**
    * Callback function to handle input value change events.
    *
    * @type {function}
@@ -252,7 +350,14 @@ UserGroupModal.propTypes = {
    *
    * @type {object}
    */
-  userGroup: PropTypes.object.isRequired
+  userGroup: PropTypes.object.isRequired,
+
+  /**
+   * The users.
+   *
+   * @type {Array}
+   */
+  users: PropTypes.array.isRequired
 };
 
 UserGroupModal.defaultProps = {

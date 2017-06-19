@@ -16,10 +16,11 @@ import UserAdministration from "./routes/administration/UserAdministration";
 import UserGroupAdministration from "./routes/administration/UserGroupAdministration";
 import Dashboard from "./routes/Dashboard";
 import Keys from "./routes/Keys";
-import {authStore} from "./stores/AuthStore";
-import {categoryStore} from "./stores/CategoryStore";
-import {keyStore} from "./stores/KeyStore";
-import {userStore} from "./stores/UserStore";
+import AuthStore from "./stores/AuthStore";
+import CategoryStore from "./stores/CategoryStore";
+import KeyStore from "./stores/KeyStore";
+import UserStore from "./stores/UserStore";
+import UserGroupStore from "./stores/UserGroupStore";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
 import {
@@ -38,11 +39,53 @@ import "antd/lib/spin/style/index.less";
 useStrict(true);
 
 /**
+ * The authentication store instance.
+ *
+ * @type {AuthStore}
+ * @since 0.9.0
+ */
+const authStore = new AuthStore();
+
+/**
+ * The category store instance.
+ *
+ * @type {CategoryStore}
+ * @since 0.9.0
+ */
+const categoryStore = new CategoryStore();
+
+/**
+ * The key store instance.
+ *
+ * @type {KeyStore}
+ * @since 0.9.0
+ */
+const keyStore = new KeyStore();
+
+/**
+ * The user store instance.
+ *
+ * @type {UserStore}
+ * @since 0.9.0
+ */
+const userStore = new UserStore();
+
+/**
+ * The user group store instance.
+ *
+ * @param {CategoryStore} categoryStore - The category store instance
+ * @param {UserStore} userStore - The user store instance
+ * @type {UserGroupStore}
+ * @since 0.9.0
+ */
+const userGroupStore = new UserGroupStore(categoryStore, userStore);
+
+/**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
  *
- * @type {Object.<{Object}>} stores
+ * @type {Object.<{AuthStore}, {CategoryStore}, {KeyStore}, {UserStore}, {UserGroupStore}>}
  */
-const stores = {authStore, categoryStore, keyStore, userStore};
+const stores = {authStore, categoryStore, keyStore, userStore, userGroupStore};
 
 /**
  * The communikey version.
@@ -73,7 +116,7 @@ class Communikey extends React.Component {
 
   componentDidMount() {
     localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN) && AuthService.validateLocalStorageOAuth2AccessToken()
-      .then(() => stores.authStore.setIsAuthorized(true))
+      .then(() => stores.authStore._setIsAuthorized(true))
       .catch(error => console.error(error));
     this.setState({initialized: true});
   }

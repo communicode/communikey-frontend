@@ -22,8 +22,6 @@ export const CATEGORY_STORE = "categoryStore";
  */
 export const KEY_STORE = "keyStore";
 
-
-
 /**
  * The instance name of the global {@link UserStore} injected through the MobX React {@linkcode Provider}.
  *
@@ -31,3 +29,11 @@ export const KEY_STORE = "keyStore";
  * @since 0.8.0
  */
 export const USER_STORE = "userStore";
+
+/**
+ * The instance name of the global {@link UserGroupStore} injected through the MobX React {@linkcode Provider}.
+ *
+ * @type {string}
+ * @since 0.9.0
+ */
+export const USER_GROUP_STORE = "userGroupStore";

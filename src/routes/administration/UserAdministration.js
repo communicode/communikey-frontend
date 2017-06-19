@@ -96,7 +96,7 @@ class UserAdministration extends React.Component {
    */
   handleUserModalDelete = () => {
     this.setProcessingStatus(true);
-    this.props.userStore.delete(this.state.user.login)
+    this.props.userStore.deleteOne(this.state.user.login)
       .then(() => {
         this.setProcessingStatus(false);
         this.handleUserModalClose();
