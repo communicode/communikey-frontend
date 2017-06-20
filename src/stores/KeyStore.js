@@ -1,11 +1,13 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
+import axios from "axios";
 import apiService from "../services/ApiService";
+import {categoryStore, userStore} from "./../Communikey";
 import {KEY, KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
- * A observable store for {@linkcode key} entities.
+ * A observable store for key entities.
  *
  * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
@@ -14,6 +16,9 @@ import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 class KeyStore {
   @observable keys;
 
+  /**
+   * Constructs the key store.
+   */
   constructor() {
     this.keys = [];
   }
@@ -40,7 +45,14 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("KeyStore_create_synchronization", response => this.keys.push(response.data)));
+      .then(action("KeyStore_create_synchronization", response => {
+        this.keys.push(response.data);
+        return axios.all([
+          categoryId && categoryStore.fetchOne(categoryId),
+          userStore.fetchOneById(response.data.creator)
+        ])
+          .then(() => response.data);
+      }));
   };
 
   /**
@@ -52,12 +64,19 @@ class KeyStore {
    */
   @action("KeyStore_deleteOne")
   deleteOne = (keyId) => {
+    const key = this._findOneById(keyId);
     return apiService.delete(KEY({keyId: keyId}), {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("KeyStore_deleteOne_synchronization", () => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1)));
+      .then(action("KeyStore_deleteOne_fetch", () => {
+        return axios.all([
+          categoryStore.fetchOne(key.category),
+          userStore.fetchOneById(key.creator)
+        ])
+          .then(action("KeyStore_deleteOne_synchronization", () => this._deleteOne(keyId)));
+      }));
   };
 
   /**
@@ -92,8 +111,10 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("KeyStore_fetchOne_synchronization", response =>
-        this.keys.splice(_.findIndex(this.keys, key => key.id === response.data.id), 1, response.data)));
+      .then(action("KeyStore_fetchOne_synchronization", response => {
+        this._updateEntity(keyId, response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -117,14 +138,27 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("KeyStore_update_synchronization", response => this.keys[this.keys.findIndex(key => key.id === response.data.id)] = response.data));
+      .then(action("KeyStore_update_synchronization", response => {
+        this._updateEntity(keyId, response.data);
+        return response.data;
+      }));
   };
+
+  /**
+   * Deletes the key with the specified ID.
+   * This is a pure store synchronization action!
+   *
+   * @param {number} keyId - The ID of the key to delete
+   * @since 0.9.0
+   */
+  @action("KeyStore__deleteOne")
+  _deleteOne = (keyId) => this.keys.splice(_.findIndex(this.keys, key => key.id === keyId), 1);
 
   /**
    * Filters all keys for the specified category ID.
    * This is a pure store operation action!
    *
-   * @param {number} categoryId - The ID of category to find all keys of
+   * @param {number} categoryId - The ID of the category to find all keys of
    * @returns {array} A collection of filtered keys
    * @since 0.9.0
    */
@@ -139,6 +173,16 @@ class KeyStore {
    * @since 0.9.0
    */
   _findOneById = (keyId) => this.keys.find(key =>key.id === keyId);
+
+  /**
+   * Updates the key entity with the specified ID.
+   * This is a pure store operation action!
+   *
+   * @param {number} keyId - The ID of the key entity to update
+   * @param {object} updatedEntity - The updated key entity
+   * @since 0.9.0
+   */
+  _updateEntity = (keyId, updatedEntity) => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1, updatedEntity);
 }
 
 export default KeyStore;

@@ -41,7 +41,7 @@ class UserGroupStore {
       }
     })
       .then(action("UserGroupStore_addUser_synchronization", response => {
-        this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === response.data.id), 1, response.data);
+        this._updateEntity(userGroupId, response.data);
         return userStore.fetchOne(login).then(() => response.data);
       }));
   };
@@ -84,12 +84,11 @@ class UserGroupStore {
       .then(action("UserGroupStore_deleteOne_fetch", () => {
         axios.all([
           _.forEach(
-            _.filter(categoryStore.categories, category => category.groups.includes(userGroupId)),
-            category => categoryStore.fetchOne(category.id)
+            _.filter(categoryStore.categories, category => category.groups.includes(userGroupId)), category => categoryStore.fetchOne(category.id)
           ),
           _.forEach(_.filter(userStore.users, user => user.groups.includes(userGroupId)), user => userStore.fetchOne(user.login))
         ])
-          .then(action("UserGroupStore_deleteOne_synchronization", () => _.remove(this.userGroups, userGroup => userGroup.id === userGroupId)));
+          .then(action("UserGroupStore_deleteOne_synchronization", () => this._deleteOne(userGroupId)));
       }));
   };
 
@@ -123,8 +122,10 @@ class UserGroupStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("UserGroupStore_fetchOne_synchronization", response =>
-        this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === response.data.id), 1, response.data)));
+      .then(action("UserGroupStore_fetchOne_synchronization", response => {
+        this._updateEntity(userGroupId, response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -144,7 +145,7 @@ class UserGroupStore {
       }
     })
       .then(action("UserGroupStore_removeUser_synchronization", response => {
-        this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === response.data.id), 1, response.data);
+        this._updateEntity(userGroupId, response.data);
         return userStore.fetchOne(login).then(() => response.data);
       }));
   };
@@ -167,10 +168,30 @@ class UserGroupStore {
       }
     })
       .then(action("UserGroupStore_update_synchronization", response => {
-        this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === response.data.id), 1, response.data);
+        this._updateEntity(userGroupId, response.data);
         return response.data;
       }));
   };
+
+  /**
+   * Deletes the user group with the specified ID.
+   * This is a pure store synchronization action!
+   *
+   * @param {number} userGroupId - The ID of the user group to delete
+   * @since 0.9.0
+   */
+  @action("UserGroupStore__deleteOne")
+  _deleteOne = (userGroupId) => this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === userGroupId), 1);
+
+  /**
+   * Filters all groups assigned with the the specified category ID.
+   * This is a pure store operation action!
+   *
+   * @param {number} categoryId - The ID of the category to find all assigned groups of
+   * @returns {array} A collection of filtered groups
+   * @since 0.9.0
+   */
+  _filterAllByCategory = (categoryId) => _.filter(this.userGroups, userGroup => userGroup.categories.includes(categoryId));
 
   /**
    * Finds the user group with the specified ID.
@@ -180,7 +201,7 @@ class UserGroupStore {
    * @returns {object} - The user group if found
    * @since 0.9.0
    */
-  _findById = (userGroupId) => this.userGroups.find(userGroup => userGroup.id === userGroupId);
+  _findOneById = (userGroupId) => this.userGroups.find(userGroup => userGroup.id === userGroupId);
 
   /**
    * Finds the user group with the specified name.
@@ -190,7 +211,18 @@ class UserGroupStore {
    * @returns {object} - The user group if found
    * @since 0.9.0
    */
-  _findByName = (userGroupName) => this.userGroups.find(userGroup => userGroup.name === userGroupName);
+  _findOneByName = (userGroupName) => this.userGroups.find(userGroup => userGroup.name === userGroupName);
+
+  /**
+   * Updates the user group entity with the specified ID.
+   * This is a pure store operation action!
+   *
+   * @param {number} userGroupId - The ID of the user group entity to update
+   * @param {object} updatedEntity - The updated user group entity
+   * @since 0.9.0
+   */
+  _updateEntity = (userGroupId, updatedEntity) =>
+    this.userGroups.splice(this.userGroups.findIndex(userGroup => userGroup.id === userGroupId), 1, updatedEntity);
 }
 
 export default UserGroupStore;

@@ -1,11 +1,13 @@
 import {action, observable} from "mobx";
+import axios from "axios";
 import _ from "lodash";
 import apiService from "../services/ApiService";
-import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_GROUPS, CATEGORY_KEYS, CATEGORY_RESPONSIBLE} from "./../services/apiRequestMappings";
+import {keyStore, userGroupStore, userStore} from "./../Communikey";
+import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
- * A observable store for {@linkcode category} entities.
+ * A observable store for category entities.
  *
  * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
@@ -14,6 +16,9 @@ import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 class CategoryStore {
   @observable categories;
 
+  /**
+   * Constructs the category store.
+   */
   constructor() {
     this.categories = [];
   }
@@ -34,7 +39,7 @@ class CategoryStore {
         childKeyCategoryId: childId
       }
     })
-      .then(action("CategoryStore_addChild_synchronization", () => this.fetchAll()));
+      .then(action("CategoryStore_addChild_synchronization", response => this.fetchAll().then(() => response.data)));
   };
 
   /**
@@ -53,7 +58,10 @@ class CategoryStore {
         keyId: keyId
       }
     })
-      .then(action("CategoryStore_addKey_synchronization", () => this.fetchAll()));
+      .then(action("CategoryStore_addKey_synchronization", response => {
+        this._updateEntity(categoryId, response.data);
+        return keyStore.fetchOne(keyId).then(() => response.data);
+      }));
   };
 
   /**
@@ -70,7 +78,10 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("CategoryStore_create_synchronization", response => this.categories.push(response.data)));
+      .then(action("CategoryStore_create_synchronization", response => {
+        this.categories.push(response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -87,7 +98,14 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("CategoryStore_deleteOne_synchronization", () => this.fetchAll()));
+      .then(action("CategoryStore_deleteOne_fetch", () => {
+        return axios.all([
+          userStore.fetchAll(),
+          keyStore.fetchAll(),
+          userGroupStore.fetchAll()
+        ])
+          .then(action("CategoryStore_deleteOne_synchronization", () => this.fetchAll()));
+      }));
   };
 
   /**
@@ -123,8 +141,10 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("CategoryStore_fetchOne_synchronization", response =>
-        this.categories.splice(_.findIndex(this.categories, category => category.id === response.data.id), 1, response.data)));
+      .then(action("CategoryStore_fetchOne_synchronization", response => {
+        this._updateEntity(categoryId, response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -144,28 +164,7 @@ class CategoryStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("CategoryStore_update_synchronization", () => this.fetchAll()));
-  };
-
-  /**
-   * Updates the responsible user of the category with the specified ID.
-   * This is a API- and store synchronization action!
-   *
-   * @param {number} categoryId - The ID of the category to update
-   * @param {string} userLogin - The login of the user to set as responsible
-   * @returns {Promise} - A promise
-   * @since 0.6.0
-   */
-  @action("CategoryStore_updateResponsible")
-  updateResponsible = (categoryId, userLogin) => {
-    return apiService.put(CATEGORY_RESPONSIBLE({categoryId: categoryId}), {
-      userLogin: userLogin
-    }, {
-      params: {
-        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
-      }
-    })
-      .then(action("CategoryStore_updateResponsible_synchronization", () => this.fetchAll()));
+      .then(action("CategoryStore_update_synchronization", () => this.fetchOne(category.id)));
   };
 
   /**
@@ -179,15 +178,15 @@ class CategoryStore {
   _findById = (categoryId) => this.categories.find(category => category.id === categoryId);
 
   /**
-   * Removes the user group from a category specified by the ID.
-   * This is a pure store synchronization action!
+   * Updates the category entity with the specified ID.
+   * This is a pure store operation action!
    *
-   * @param {number} categoryId - The ID of the category to remove the user group from
-   * @param {number} userGroupId - The ID of the user group to remove
+   * @param {number} categoryId - The ID of the category entity to update
+   * @param {object} updatedEntity - The updated category entity
    * @since 0.9.0
    */
-  @action("CategoryStore__removeUserGroup")
-  _removeUserGroup = (categoryId, userGroupId) => _.remove(this._findById(categoryId).groups, id => id === userGroupId);
+  _updateEntity = (categoryId, updatedEntity) =>
+    this.categories.splice(this.categories.findIndex(category => category.id === categoryId), 1, updatedEntity);
 }
 
 export default CategoryStore;

@@ -1,6 +1,8 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
+import axios from "axios";
 import apiService from "../services/ApiService";
+import {categoryStore, keyStore, userGroupStore} from "./../Communikey";
 import {USER, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
@@ -33,7 +35,10 @@ class UserStore {
         activation_key: activationKey
       }
     })
-      .then(action("UserStore_activate_synchronization", response => this.users[this.users.findIndex(user => user.id === response.data.id)] = response.data));
+      .then(action("UserStore_activate_synchronization", response => {
+        this._updateEntity(response.data.id, response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -58,7 +63,10 @@ class UserStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("UserStore_create_synchronization", response => this.users.push(response.data)));
+      .then(action("UserStore_create_synchronization", response => {
+        this.users.push(response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -76,7 +84,10 @@ class UserStore {
         login: login
       }
     })
-      .then(action("UserStore_deactivate_synchronization", response => this.users[this.users.findIndex(user => user.id === response.data.id)] = response.data));
+      .then(action("UserStore_deactivate_synchronization", response => {
+        this._updateEntity(response.data.id, response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -93,7 +104,14 @@ class UserStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("UserStore_deleteOne_synchronization", () => this.users.splice(this.users.findIndex(user => user.login === login), 1)));
+      .then(action("UserStore_deleteOne_fetch", () => {
+        return axios.all([
+          categoryStore.fetchAll(),
+          keyStore.fetchAll(),
+          userGroupStore.fetchAll()
+        ])
+          .then(action("UserStore_deleteOne_synchronization", () => this._deleteOneByLogin(login)));
+      }));
   };
 
   /**
@@ -128,8 +146,32 @@ class UserStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("UserStore_fetchOne_synchronization", response =>
-        this.users.splice(_.findIndex(this.users, user => user.login === response.data.login), 1, response.data)));
+      .then(action("UserStore_fetchOne_synchronization", response => {
+        this._updateEntity(response.data.id, response.data);
+        return response.data;
+      }));
+  };
+
+  /**
+   * Fetches the user with the specified login.
+   * This is a API- and store synchronization action!
+   *
+   * @param {number} userId - The ID of the user to fetch
+   * @returns {Promise} - The user as a promise
+   * @since 0.9.0
+   */
+  @action("UserStore_fetchOneById")
+  fetchOneById = (userId) => {
+    const user = this._findOneById(userId);
+    return apiService.get(USER({login: user.login}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+      }
+    })
+      .then(action("UserStore_fetchOneById_synchronization", response => {
+        this._updateEntity(user.id, response.data);
+        return response.data;
+      }));
   };
 
   /**
@@ -149,7 +191,10 @@ class UserStore {
         email: email
       }
     })
-      .then(() => this.fetchOne(login));
+      .then(response => {
+        this.fetchOne(login);
+        return response.data;
+      });
   };
 
   /**
@@ -201,6 +246,26 @@ class UserStore {
   };
 
   /**
+   * Deletes the user with the specified ID.
+   * This is a pure store synchronization action!
+   *
+   * @param {number} userId - The ID of the user to delete
+   * @since 0.9.0
+   */
+  @action("UserStore__deleteOneById")
+  _deleteOneById = (userId) => this.users.splice(_.findIndex(this.users, user => user.id === userId), 1);
+
+  /**
+   * Deletes the user with the specified login.
+   * This is a pure store synchronization action!
+   *
+   * @param {string} login - The login of the user to delete
+   * @since 0.9.0
+   */
+  @action("UserStore__deleteOneByLogin")
+  _deleteOneByLogin = (login) => this.users.splice(_.findIndex(this.users, user => user.login === login), 1);
+
+  /**
    * Filters all users for the specified user group ID.
    * This is a pure store operation action!
    *
@@ -218,7 +283,7 @@ class UserStore {
    * @returns {object} - The user if found
    * @since 0.9.0
    */
-  _findById = (userId) => this.users.find(user => user.id === userId);
+  _findOneById = (userId) => this.users.find(user => user.id === userId);
 
   /**
    * Finds the user with the specified login.
@@ -228,18 +293,18 @@ class UserStore {
    * @returns {object} - The user if found
    * @since 0.9.0
    */
-  _findByLogin = (login) => this.users.find(user => user.login === login);
+  _findOneByLogin = (login) => this.users.find(user => user.login === login);
 
   /**
-   * Removes the user group from a user specified by the ID.
-   * This is a pure store synchronization action!
+   * Updates the user entity with the specified ID.
+   * This is a pure store operation action!
    *
-   * @param {string} login - The login of the user to remove the user group from
-   * @param {number} userGroupId - The ID of the user group to remove
+   * @param {number} userId - The ID of the user entity to update
+   * @param {object} updatedEntity - The updated user entity
    * @since 0.9.0
    */
-  @action
-  _removeUserGroup = (login, userGroupId) => _.remove(this._findByLogin(login).groups, id => id === userGroupId);
+  _updateEntity = (userId, updatedEntity) =>
+    this.users.splice(this.users.findIndex(user => user.id === userId), 1, updatedEntity);
 }
 
 export default UserStore;
