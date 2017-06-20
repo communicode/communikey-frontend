@@ -1,6 +1,5 @@
 import {action, observable} from "mobx";
 import axios from "axios";
-import _ from "lodash";
 import apiService from "../services/ApiService";
 import {keyStore, userGroupStore, userStore} from "./../Communikey";
 import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_KEYS} from "./../services/apiRequestMappings";
