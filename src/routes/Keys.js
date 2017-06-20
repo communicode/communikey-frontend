@@ -232,7 +232,9 @@ class Keys extends React.Component {
    * @param selectedTreeNode - The selected tree node
    */
   handleKeyModalCategoryTreeSelectValueChange = (label, selectValue, selectedTreeNode) => {
-    this.setState({key: update(this.state.key, {categoryId: {$set: selectedTreeNode.triggerNode.props.category.id}})});
+    selectedTreeNode.triggerNode && this.setState({
+      key: update(this.state.key, {categoryId: {$set: selectedTreeNode.triggerNode.props.category.id}})
+    });
   };
 
   /**
