@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Tooltip} from "antd";
+import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip} from "antd";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
-import "antd/lib/dropdown/style/index.less";
 import "antd/lib/form/style/index.less";
 import "antd/lib/icon/style/css";
 import "antd/lib/input/style/index.less";
-import "antd/lib/menu/style/index.less";
 import "antd/lib/modal/style/index.less";
 import "antd/lib/row/style/css";
 import "antd/lib/tooltip/style/index.less";
@@ -49,8 +47,6 @@ class CategoryModal extends React.Component {
         </Tooltip>
       </CopyToClipboard>
     );
-
-    const footerOperationsDropdownMenu = <Menu selectable={false}/>;
 
     const formItems = () => (
       <div>
@@ -130,12 +126,6 @@ class CategoryModal extends React.Component {
           <Col span={8}>
             <div className="operations">
               {!creationMode && administrationMode && <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
-              {
-                !creationMode && administrationMode &&
-                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={true}>
-                  <Button key="more" type="primary" ghost={true} size="large" disabled={true}><Icon type="down"/></Button>
-                </Dropdown>
-              }
             </div>
           </Col>
           <Col span={8} offset={8}>
