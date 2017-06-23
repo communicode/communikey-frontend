@@ -140,6 +140,7 @@ class CategoryModal extends React.Component {
 
     return (
       <Modal
+        id="cckey-components-data-views-category-modal"
         {...modalProps}
         onSave={onSave}
         onClose={onClose}
