@@ -1,16 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip} from "antd";
+import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip} from "antd";
+import themeSizeConfig from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/form/style/index.less";
 import "antd/lib/icon/style/css";
 import "antd/lib/input/style/index.less";
 import "antd/lib/modal/style/index.less";
+import "antd/lib/pagination/style/index.less";
 import "antd/lib/row/style/css";
+import "antd/lib/table/style/index.less";
+import "antd/lib/tabs/style/index.less";
 import "antd/lib/tooltip/style/index.less";
 import "./CategoryModal.less";
+
+/**
+ * The default user table column configuration.
+ *
+ * @since 0.10.0
+ */
+export const USER_GROUPS_TABLE_DEFAULT_COLUMNS = [{title: "Name", dataIndex: "name", key: "name", fixed: true}];
+
+/**
+ * The name of the React key for the general tab.
+ *
+ * @type {string}
+ * @since 0.10.0
+ */
+const TAB_PANE_REACT_KEY_GENERAL = "general";
+
+/**
+ * The name of the React key for the user groups tab.
+ *
+ * @type {string}
+ * @since 0.10.0
+ */
+const TAB_PANE_REACT_KEY_USER_GROUPS = "userGroups";
 
 /**
  * A modal for categories.
@@ -23,7 +51,25 @@ import "./CategoryModal.less";
 class CategoryModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      /**
+       * The React key of the active tab.
+       *
+       * @type {string}
+       * @since 0.10.0
+       */
+      activeTabViewKey: TAB_PANE_REACT_KEY_GENERAL
+    };
   }
+
+  /**
+   * Handles the table record selection event of the user groups tab view.
+   *
+   * @param {object} record - The selected user group table record
+   * @param {boolean} selected - Determines whether the record has been selected or unselected
+   * @since 0.10.0
+   */
+  handleTabViewUserGroupsOnRecordSelect = (record, selected) => selected ? this.props.onUserGroupAdd(record) : this.props.onUserGroupRemove(record);
 
   render() {
     const {
@@ -37,8 +83,20 @@ class CategoryModal extends React.Component {
       onSave,
       onValueChange,
       toggleLockStatus,
+      userGroups,
       ...modalProps
     } = this.props;
+    const {activeTabViewKey} = this.state;
+
+    /**
+     * The configuration object for the user group table of the user groups tab.
+     *
+     * @since 0.10.0
+     */
+    const tabViewUserGroupsTableConfig = {
+      selectedRowKeys: category.groups,
+      onSelect: this.handleTabViewUserGroupsOnRecordSelect
+    };
 
     const copyToClipboardIcon = (value) => (
       <CopyToClipboard text={value}>
@@ -125,7 +183,11 @@ class CategoryModal extends React.Component {
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
-              {!creationMode && administrationMode && <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
+              {!creationMode && administrationMode && !_.isEqual(activeTabViewKey, TAB_PANE_REACT_KEY_USER_GROUPS) &&
+                <Button.Group>
+                  <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
+                </Button.Group>
+              }
             </div>
           </Col>
           <Col span={8} offset={8}>
@@ -138,6 +200,33 @@ class CategoryModal extends React.Component {
       </div>
     );
 
+    const tabViewGeneral = () => (
+      <Tabs.TabPane tab="General" key={TAB_PANE_REACT_KEY_GENERAL}>
+        <Row type="flex" align="center">
+          <Col span={18}>{form()}</Col>
+        </Row>
+        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
+      </Tabs.TabPane>
+    );
+
+    const tabViewUserGroups = () => (
+      <Tabs.TabPane tab="User Groups" key={TAB_PANE_REACT_KEY_USER_GROUPS} disabled={creationMode}>
+        <Row>
+          <div>
+            <Col span={24}>
+              <Table
+                dataSource={userGroups}
+                columns={USER_GROUPS_TABLE_DEFAULT_COLUMNS}
+                rowKey={record => record.id}
+                rowSelection={tabViewUserGroupsTableConfig}
+                scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+              />
+            </Col>
+          </div>
+        </Row>
+      </Tabs.TabPane>
+    );
+
     return (
       <Modal
         id="cckey-components-data-views-category-modal"
@@ -148,10 +237,10 @@ class CategoryModal extends React.Component {
         closable={false}
         className="cckey-category-modal"
       >
-        <Row type="flex" align="center">
-          <Col span={18}>{form()}</Col>
-        </Row>
-        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
+        <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_GENERAL} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
+          {tabViewGeneral()}
+          {tabViewUserGroups()}
+        </Tabs>
         <Row><Col>{footer()}</Col></Row>
       </Modal>
     );
@@ -207,6 +296,22 @@ CategoryModal.propTypes = {
   onSave: PropTypes.func,
 
   /**
+   * Callback function to handle the event to add a user group to the category.
+   *
+   * @type {function}
+   * @since 0.10.0
+   */
+  onUserGroupAdd: PropTypes.func,
+
+  /**
+   * Callback function to handle the event to remove a user group from the category.
+   *
+   * @type {function}
+   * @since 0.10.0
+   */
+  onUserGroupRemove: PropTypes.func,
+
+  /**
    * Callback function to handle input value change events.
    *
    * @type {function}
@@ -225,7 +330,16 @@ CategoryModal.propTypes = {
    *
    * @type {object}
    */
-  category: PropTypes.object.isRequired
+  category: PropTypes.object.isRequired,
+
+  /**
+   * The user groups.
+   *
+   * @type {Array}
+   * @since 0.10.0
+   */
+  userGroups: PropTypes.array.isRequired
+
 };
 
 CategoryModal.defaultProps = {

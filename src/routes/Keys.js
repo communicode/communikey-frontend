@@ -8,7 +8,7 @@ import CategoryModal from "./../components/data/CategoryModal";
 import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
-import {AUTH_STORE, CATEGORY_STORE, KEY_STORE} from "./../stores/storeConstants";
+import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
 import themeSizeConfig from "./../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -37,7 +37,7 @@ const KEY_TABLE_DEFAULT_COLUMNS = [
  * @author sgreb@communicode.de
  * @since 0.5.0
  */
-@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE) @observer
+@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE,USER_GROUP_STORE) @observer
 class Keys extends React.Component {
   constructor(props) {
     super(props);
@@ -181,6 +181,40 @@ class Keys extends React.Component {
         categoryTreeSelectedNodeKeys: selectedNodeKeys
       });
     }
+  };
+
+  /**
+   * Handles the event to add a user group to the category.
+   *
+   * @callback handleCategoryModalOnUserGroupAdd
+   * @param {object} userGroup - The user group to add to the category
+   * @since 0.10.0
+   */
+  handleCategoryModalOnUserGroupAdd = (userGroup) => {
+    this.setProcessingStatus(true);
+    this.props.categoryStore.addUserGroup(this.state.category.id, userGroup.id)
+      .then(updatedCategory => {
+        this.setState({category: update(this.state.category, {$merge: updatedCategory})});
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
+  };
+
+  /**
+   * Handles the event to remove a user group from the category.
+   *
+   * @callback handleCategoryModalOnUserGroupRemove
+   * @param {object} userGroup - The user group to remove from the category
+   * @since 0.10.0
+   */
+  handleCategoryModalOnUserGroupRemove = (userGroup) => {
+    this.setProcessingStatus(true);
+    this.props.categoryStore.removeUserGroup(this.state.category.id, userGroup.id)
+      .then(updatedCategory => {
+        this.setState({category: update(this.state.category, {$merge: updatedCategory})});
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
   };
 
   /**
@@ -374,7 +408,7 @@ class Keys extends React.Component {
   };
 
   render() {
-    const {authStore, categoryStore, keyStore} = this.props;
+    const {authStore, categoryStore, keyStore, userGroupStore} = this.props;
     const {
       category,
       categoryModalCreationMode,
@@ -489,6 +523,7 @@ class Keys extends React.Component {
         visible={categoryModalVisible}
         key={"categoryModal" + key.id}
         category={category}
+        userGroups={toJS(userGroupStore.userGroups)}
         administrationMode={authStore.privileged}
         locked={categoryModalLocked}
         creationMode={categoryModalCreationMode}
@@ -497,6 +532,8 @@ class Keys extends React.Component {
         onClose={this.handleCategoryModalClose}
         onDelete={this.handleCategoryModalDelete}
         onSave={this.handleCategoryModalSave}
+        onUserGroupAdd={this.handleCategoryModalOnUserGroupAdd}
+        onUserGroupRemove={this.handleCategoryModalOnUserGroupRemove}
         onValueChange={this.handleCategoryModalValueChange}
         toggleLockStatus={this.toggleCategoryModalLockStatus}
       />
@@ -597,5 +634,12 @@ Keys.propTypes = {
    *
    * @type {ObservableArray}
    */
-  keyStore: MobXPropTypes.observableArray
+  keyStore: MobXPropTypes.observableArray,
+
+  /**
+   * The user group store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  userGroupStore: MobXPropTypes.observableArray
 };

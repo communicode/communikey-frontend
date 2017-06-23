@@ -11,6 +11,7 @@ import "antd/lib/form/style/index.less";
 import "antd/lib/icon/style/css";
 import "antd/lib/input/style/index.less";
 import "antd/lib/modal/style/index.less";
+import "antd/lib/pagination/style/index.less";
 import "antd/lib/row/style/css";
 import "antd/lib/table/style/index.less";
 import "antd/lib/tabs/style/index.less";
@@ -27,7 +28,20 @@ export const USER_TABLE_DEFAULT_COLUMNS = [
   {title: "Last name", dataIndex: "lastName", key: "lastName"}
 ];
 
+/**
+ * The name of the React key for the general tab.
+ *
+ * @type {string}
+ * @since 0.9.0
+ */
 const TAB_PANE_REACT_KEY_GENERAL = "general";
+
+/**
+ * The name of the React key for the users tab.
+ *
+ * @type {string}
+ * @since 0.9.0
+ */
 const TAB_PANE_REACT_KEY_USERS = "users";
 
 /**
