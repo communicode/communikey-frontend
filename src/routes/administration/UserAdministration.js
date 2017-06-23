@@ -96,7 +96,7 @@ class UserAdministration extends React.Component {
    */
   handleUserModalDelete = () => {
     this.setProcessingStatus(true);
-    this.props.userStore.delete(this.state.user.login)
+    this.props.userStore.deleteOne(this.state.user.login)
       .then(() => {
         this.setProcessingStatus(false);
         this.handleUserModalClose();
@@ -266,7 +266,7 @@ class UserAdministration extends React.Component {
             <Col span={4} offset={20}>
               <div className="operations">
                 <Button.Group>
-                  <Button type="primary" ghost={true} icon="plus" onClick={this.handleUserModalCreation}/>
+                  <Button type="primary" ghost={true} icon="plus" onClick={this.handleUserModalCreation}>User</Button>
                 </Button.Group>
               </div>
             </Col>

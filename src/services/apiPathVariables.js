@@ -29,14 +29,14 @@ export const CATEGORY_ID = "/${categoryId}";
 export const KEY_ID = "/${keyId}";
 
 /**
- * The path variable for a user group name.
+ * The path variable for a user group ID.
  *
  * @constant
  * @default
- * @type {string}
+ * @type {number}
  * @since 0.8.0
  */
-export const USER_GROUP_NAME = "/${userGroupName}";
+export const USER_GROUP_ID = "/${userGroupId}";
 
 /**
  * The path variable for a user login.

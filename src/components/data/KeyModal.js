@@ -277,6 +277,7 @@ class KeyModal extends React.Component {
         <TreeSelect
           showSearch={true}
           onChange={onCategoryTreeSelectValueChange}
+          allowClear={true}
           size="large"
         >
           {this.generateCategoryTreeSelectNodes(this.generateTreeFromFlatData(categories))}

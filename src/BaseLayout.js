@@ -7,11 +7,12 @@ import {Layout, Menu, Icon, Row, Spin} from "antd";
 import QueueAnim from "rc-queue-anim";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
-import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE} from "./stores/storeConstants";
+import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE} from "./stores/storeConstants";
 import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
   ROUTE_SIGNOUT,
   ROUTE_DASHBOARD,
+  ROUTE_ADMINISTRATION_USER_GROUPS,
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_KEYS
 } from "./routes/routeMappings";
@@ -22,7 +23,7 @@ import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "./BaseLayout.less";
 
-@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE) @observer
+@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE) @observer
 class BaseLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -48,9 +49,10 @@ class BaseLayout extends React.Component {
 
   initializeStores = () => {
     return axios.all([
-      this.props.categoryStore.getAll(),
-      this.props.userStore.getAll(),
-      this.props.keyStore.getAll()
+      this.props.categoryStore.fetchAll(),
+      this.props.keyStore.fetchAll(),
+      this.props.userStore.fetchAll(),
+      this.props.userGroupStore.fetchAll()
     ]);
   };
 
@@ -118,6 +120,12 @@ class BaseLayout extends React.Component {
             <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="setting"/><span className="nav-text">Administration</span></span>}>
               <Menu.Item key={ROUTE_ADMINISTRATION_USERS}>
                 <NavLink to={ROUTE_ADMINISTRATION_USERS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USERS)}>Users</NavLink>
+              </Menu.Item>
+              <Menu.Item key={ROUTE_ADMINISTRATION_USER_GROUPS}>
+                <NavLink
+                  to={ROUTE_ADMINISTRATION_USER_GROUPS}
+                  isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USER_GROUPS)}>User Groups
+                </NavLink>
               </Menu.Item>
             </Menu.SubMenu>
           }
@@ -212,7 +220,12 @@ BaseLayout.propTypes = {
   /**
    * @type {ObservableArray} userStore - The injected user store
    */
-  userStore: MobXPropTypes.observableArray
+  userStore: MobXPropTypes.observableArray,
+
+  /**
+   * @type {ObservableArray} userStore - The injected user group store
+   */
+  userGroupStore: MobXPropTypes.observableArray
 };
 
 export default BaseLayout;

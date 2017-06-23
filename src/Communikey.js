@@ -8,20 +8,24 @@ import {useStrict} from "mobx";
 import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
 import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
+import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
 import PublicRoute from "./components/hoc/PublicRoute";
 import SignIn from "./routes/SignIn";
 import SignOut from "./routes/SignOut";
 import UserAdministration from "./routes/administration/UserAdministration";
+import UserGroupAdministration from "./routes/administration/UserGroupAdministration";
 import Dashboard from "./routes/Dashboard";
 import Keys from "./routes/Keys";
-import {authStore} from "./stores/AuthStore";
-import {categoryStore} from "./stores/CategoryStore";
-import {keyStore} from "./stores/KeyStore";
-import {userStore} from "./stores/UserStore";
+import AuthStore from "./stores/AuthStore";
+import CategoryStore from "./stores/CategoryStore";
+import KeyStore from "./stores/KeyStore";
+import UserGroupStore from "./stores/UserGroupStore";
+import UserStore from "./stores/UserStore";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
 import {
   ROUTE_ADMINISTRATION_USERS,
+  ROUTE_ADMINISTRATION_USER_GROUPS,
   ROUTE_DASHBOARD,
   ROUTE_KEYS,
   ROUTE_SIGNIN,
@@ -35,11 +39,51 @@ import "antd/lib/spin/style/index.less";
 useStrict(true);
 
 /**
+ * The authentication store instance.
+ *
+ * @type {AuthStore}
+ * @since 0.9.0
+ */
+export const authStore = new AuthStore();
+
+/**
+ * The category store instance.
+ *
+ * @type {CategoryStore}
+ * @since 0.9.0
+ */
+export const categoryStore = new CategoryStore();
+
+/**
+ * The key store instance.
+ *
+ * @type {KeyStore}
+ * @since 0.9.0
+ */
+export const keyStore = new KeyStore();
+
+/**
+ * The user group store instance.
+ *
+ * @type {UserGroupStore}
+ * @since 0.9.0
+ */
+export const userGroupStore = new UserGroupStore();
+
+/**
+ * The user store instance.
+ *
+ * @type {UserStore}
+ * @since 0.9.0
+ */
+export const userStore = new UserStore();
+
+/**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
  *
- * @type {Object.<{Object}>} stores
+ * @type {Object.<{AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}>}
  */
-const stores = {authStore, categoryStore, keyStore, userStore};
+const stores = {authStore, categoryStore, keyStore, userGroupStore, userStore};
 
 /**
  * The communikey version.
@@ -70,7 +114,7 @@ class Communikey extends React.Component {
 
   componentDidMount() {
     localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN) && AuthService.validateLocalStorageOAuth2AccessToken()
-      .then(() => stores.authStore.setIsAuthorized(true))
+      .then(() => stores.authStore._setIsAuthorized(true))
       .catch(error => console.error(error));
     this.setState({initialized: true});
   }
@@ -96,7 +140,18 @@ class Communikey extends React.Component {
                       <Switch key={location.key} location={location}>
                         <AuthenticatedRoute exact path={ROUTE_ROOT} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_DASHBOARD} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
-                        <AuthenticatedRoute path={ROUTE_ADMINISTRATION_USERS} component={UserAdministration} authorized={stores.authStore.isAuthorized}/>
+                        <AuthenticatedPrivilegedRoute
+                          path={ROUTE_ADMINISTRATION_USERS}
+                          component={UserAdministration}
+                          authorized={stores.authStore.isAuthorized}
+                          privileged={stores.authStore.privileged}
+                        />
+                        <AuthenticatedPrivilegedRoute
+                          path={ROUTE_ADMINISTRATION_USER_GROUPS}
+                          component={UserGroupAdministration}
+                          authorized={stores.authStore.isAuthorized}
+                          privileged={stores.authStore.privileged}
+                        />
                         <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
                         <Redirect from={ROUTE_ROOT} to={ROUTE_DASHBOARD}/>
                       </Switch>

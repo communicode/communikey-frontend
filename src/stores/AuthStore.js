@@ -1,5 +1,4 @@
 import {action, observable} from "mobx";
-
 import apiService from "./../services/ApiService";
 import {API_ME} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
@@ -31,18 +30,19 @@ class AuthStore {
 
   /**
    * Fetches the data of the authenticated user.
+   * This is a API- and store synchronization action!
    *
    * @returns {Promise} - A promise
    * @since 0.8.0
    */
-  @action
+  @action("AuthStore_fetch")
   fetch = () => {
     return apiService.get(API_ME, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => {
+      .then(action("AuthStore_fetch_synchronization", response => {
         for (const key of Object.keys(response.data)) {
           this[key] = response.data[key];
         }
@@ -53,11 +53,12 @@ class AuthStore {
 
   /**
    * Resets all store attributes to their default values.
+   * This is a pure store synchronization action!
    *
    * @since 0.8.0
    */
-  @action
-  reset = () => {
+  @action("AuthStore__reset")
+  _reset = () => {
     this.login = "";
     this.privileged = false;
     this.firstName = "";
@@ -68,11 +69,13 @@ class AuthStore {
 
   /**
    * Sets the value of the {@link isAuthorized} attribute.
+   * This is a pure store synchronization action!
    *
    * @param {boolean} isAuthorized - The new value of the attribute
    * @since 0.8.0
    */
-  @action setIsAuthorized = (isAuthorized) => this.isAuthorized = isAuthorized;
+  @action("AuthStore__setIsAuthorized")
+  _setIsAuthorized = (isAuthorized) => this.isAuthorized = isAuthorized;
 }
 
-export let authStore = new AuthStore();
+export default AuthStore;

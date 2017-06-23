@@ -61,7 +61,7 @@ class Keys extends React.Component {
 
   componentDidMount() {
     this.setState({processing: true});
-    this.props.categoryStore.getAll()
+    this.props.categoryStore.fetchAll()
       .then(() => this.setState({processing: false}))
       .catch(() => this.setState({processing: false}));
   }
@@ -96,7 +96,7 @@ class Keys extends React.Component {
    */
   handleCategoryModalDelete = () => {
     this.setProcessingStatus(true);
-    this.props.categoryStore.delete(this.state.category.id)
+    this.props.categoryStore.deleteOne(this.state.category.id)
       .then(() => {
         this.setProcessingStatus(false);
         this.handleCategoryModalClose();
@@ -118,20 +118,14 @@ class Keys extends React.Component {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
         })
-        .catch(error => {
-          console.error(error);
-          this.setProcessingStatus(false);
-        })
+        .catch(() => this.setProcessingStatus(false))
       :
       this.props.categoryStore.update(category)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
         })
-        .catch(error => {
-          console.error(error);
-          this.setProcessingStatus(false);
-        });
+        .catch(() => this.setProcessingStatus(false));
   };
 
   /**
@@ -220,7 +214,7 @@ class Keys extends React.Component {
     this.setProcessingStatus(true);
     return this.props.categoryStore.addKey(category.id, this.state.key.id)
       .then(() => {
-        this.setState({key: this.props.keyStore.filterOneById(this.state.key.id)});
+        this.setState({key: this.props.keyStore._findOneById(this.state.key.id)});
         this.setProcessingStatus(false);
       })
       .catch(error => {
@@ -238,7 +232,9 @@ class Keys extends React.Component {
    * @param selectedTreeNode - The selected tree node
    */
   handleKeyModalCategoryTreeSelectValueChange = (label, selectValue, selectedTreeNode) => {
-    this.setState({key: update(this.state.key, {categoryId: {$set: selectedTreeNode.triggerNode.props.category.id}})});
+    selectedTreeNode.triggerNode && this.setState({
+      key: update(this.state.key, {categoryId: {$set: selectedTreeNode.triggerNode.props.category.id}})
+    });
   };
 
   /**
@@ -248,7 +244,7 @@ class Keys extends React.Component {
    */
   handleKeyModalDelete = () => {
     this.setProcessingStatus(true);
-    this.props.keyStore.delete(this.state.key.id)
+    this.props.keyStore.deleteOne(this.state.key.id)
       .then(() => {
         this.setProcessingStatus(false);
         this.handleKeyModalClose();
@@ -270,20 +266,14 @@ class Keys extends React.Component {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
-        .catch(error => {
-          console.error(error);
-          this.setProcessingStatus(false);
-        })
+        .catch(() => this.setProcessingStatus(false))
       :
       this.props.keyStore.update(key.id, key.name, key.login, key.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
-        .catch(error => {
-          console.error(error);
-          this.setProcessingStatus(false);
-        });
+        .catch(() => this.setProcessingStatus(false));
   };
 
   /**
@@ -474,7 +464,7 @@ class Keys extends React.Component {
 
     const tabViewCategorizedKeyTable = () => (
       <Table
-        dataSource={keyStore.filterAllByCategory(Number.parseInt(category.id))}
+        dataSource={keyStore._filterAllByCategory(category.id)}
         columns={KEY_TABLE_DEFAULT_COLUMNS}
         rowKey={record => record.id}
         onRowClick={(record) => this.handleKeyTableRecordSelect(record)}

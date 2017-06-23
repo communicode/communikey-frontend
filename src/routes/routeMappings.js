@@ -1,4 +1,5 @@
 import {
+  ADMINISTRATION_USER_GROUPS,
   ADMINISTRATION_USERS,
   DASHBOARD,
   KEYS,
@@ -46,6 +47,16 @@ export const ROUTE_SIGNOUT = ROUTE_ROOT + SIGNOUT;
  * @since 0.8.0
  */
 export const ROUTE_DASHBOARD = ROUTE_ROOT + DASHBOARD;
+
+/**
+ * The route mapping for the {@link UserGroupAdministration} components.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.9.0
+ */
+export const ROUTE_ADMINISTRATION_USER_GROUPS = ROUTE_ROOT + ADMINISTRATION_USER_GROUPS;
 
 /**
  * The route mapping for the {@link UserAdministration} components.

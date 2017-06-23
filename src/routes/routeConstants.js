@@ -51,6 +51,16 @@ export const DASHBOARD = "dashboard";
 export const ADMINISTRATION = "administration";
 
 /**
+ * The route name of the {@link UserGroupAdministration} component.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.9.0
+ */
+export const ADMINISTRATION_USER_GROUPS = ADMINISTRATION + pathSeparator + "userGroups";
+
+/**
  * The route name of the {@link UserAdministration} component.
  *
  * @constant

@@ -1,11 +1,13 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
+import axios from "axios";
 import apiService from "../services/ApiService";
+import {categoryStore, userStore} from "./../Communikey";
 import {KEY, KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
- * A observable store for {@linkcode key} entities.
+ * A observable store for key entities.
  *
  * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
@@ -14,12 +16,16 @@ import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 class KeyStore {
   @observable keys;
 
+  /**
+   * Constructs the key store.
+   */
   constructor() {
     this.keys = [];
   }
 
   /**
    * Creates a new key with the specified attributes.
+   * This is a API- and store synchronization action!
    *
    * @param {number} categoryId - The ID of the category to add the new created key to
    * @param {string} name - The name of the key to create
@@ -27,7 +33,7 @@ class KeyStore {
    * @param {string} password - The password of the key
    * @returns {Promise} - A promise
    */
-  @action
+  @action("KeyStore_create")
   create = (categoryId, name, login, password) => {
     return apiService.post(KEYS, {
       categoryId: categoryId,
@@ -39,60 +45,81 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.keys.push(response.data)));
+      .then(action("KeyStore_create_synchronization", response => {
+        this.keys.push(response.data);
+        return axios.all([
+          categoryId && categoryStore.fetchOne(categoryId),
+          userStore.fetchOneById(response.data.creator)
+        ])
+          .then(() => response.data);
+      }));
   };
 
   /**
    * Deletes the key with the specified ID.
+   * This is a API- and store synchronization action!
    *
    * @param {number} keyId - The ID of the key to delete
    * @returns {Promise} - A promise
    */
-  @action
-  delete = (keyId) => {
+  @action("KeyStore_deleteOne")
+  deleteOne = (keyId) => {
+    const key = this._findOneById(keyId);
     return apiService.delete(KEY({keyId: keyId}), {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(() => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1)));
+      .then(action("KeyStore_deleteOne_fetch", () => {
+        return axios.all([
+          categoryStore.fetchOne(key.category),
+          userStore.fetchOneById(key.creator)
+        ])
+          .then(action("KeyStore_deleteOne_synchronization", () => this._deleteOne(keyId)));
+      }));
   };
 
   /**
-   * Filters all keys for the specified category ID.
+   * Fetches all keys.
+   * This is a API- and store synchronization action!
    *
-   * @param {number} categoryId - The ID of category to find all keys of
-   * @returns {array} A collection of filtered keys
+   * @returns {Promise} - The keys as a promise
    * @since 0.9.0
    */
-  filterAllByCategory = (categoryId) => _.filter(this.keys, key => key.category === categoryId);
-
-  /**
-   * Filters the key for the specified ID.
-   *
-   * @param {number} keyId - The ID of the key to find
-   * @returns {object} The key if filtered, undefined otherwise
-   * @since 0.9.0
-   */
-  filterOneById = (keyId) => this.keys.find(key =>key.id === keyId);
-
-  /**
-   * Gets all keys.
-   *
-   * @returns {Promise} - A promise
-   */
-  @action
-  getAll = () => {
+  @action("KeyStore_fetchAll")
+  fetchAll = () => {
     return apiService.get(KEYS, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.keys = response.data));
+      .then(action("KeyStore_fetchAll_synchronization", response => this.keys = response.data));
+  };
+
+  /**
+   * Fetches the key with the specified ID.
+   * This is a API- and store synchronization action!
+   *
+   * @param {number} keyId - The ID of the key to fetch
+   * @returns {Promise} - The key as a promise
+   * @since 0.9.0
+   */
+  @action("KeyStore_fetchOne")
+  fetchOne = (keyId) => {
+    return apiService.get(KEY({keyId: keyId}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+      }
+    })
+      .then(action("KeyStore_fetchOne_synchronization", response => {
+        this._updateEntity(keyId, response.data);
+        return response.data;
+      }));
   };
 
   /**
    * Updates a new key with the specified attributes.
+   * This is a API- and store synchronization action!
    *
    * @param {number} keyId - The ID of the key to update
    * @param {string} name - The name of the key
@@ -100,7 +127,7 @@ class KeyStore {
    * @param {string} password - The password of the key
    * @returns {Promise} - A promise
    */
-  @action
+  @action("KeyStore_update")
   update = (keyId, name, login, password) => {
     return apiService.put(KEY({keyId: keyId}), {
       name: name,
@@ -111,8 +138,51 @@ class KeyStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action(response => this.keys[this.keys.findIndex(key => key.id === response.data.id)] = response.data));
+      .then(action("KeyStore_update_synchronization", response => {
+        this._updateEntity(keyId, response.data);
+        return response.data;
+      }));
   };
+
+  /**
+   * Deletes the key with the specified ID.
+   * This is a pure store synchronization action!
+   *
+   * @param {number} keyId - The ID of the key to delete
+   * @since 0.9.0
+   */
+  @action("KeyStore__deleteOne")
+  _deleteOne = (keyId) => this.keys.splice(_.findIndex(this.keys, key => key.id === keyId), 1);
+
+  /**
+   * Filters all keys for the specified category ID.
+   * This is a pure store operation action!
+   *
+   * @param {number} categoryId - The ID of the category to find all keys of
+   * @returns {array} A collection of filtered keys
+   * @since 0.9.0
+   */
+  _filterAllByCategory = (categoryId) => _.filter(this.keys, key => key.category === categoryId);
+
+  /**
+   * Finds the key with the specified ID.
+   * This is a pure store operation action!
+   *
+   * @param {number} keyId - The ID of the key to find
+   * @returns {object} The key if filtered, undefined otherwise
+   * @since 0.9.0
+   */
+  _findOneById = (keyId) => this.keys.find(key =>key.id === keyId);
+
+  /**
+   * Updates the key entity with the specified ID.
+   * This is a pure store operation action!
+   *
+   * @param {number} keyId - The ID of the key entity to update
+   * @param {object} updatedEntity - The updated key entity
+   * @since 0.9.0
+   */
+  _updateEntity = (keyId, updatedEntity) => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1, updatedEntity);
 }
 
-export let keyStore = new KeyStore();
+export default KeyStore;

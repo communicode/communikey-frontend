@@ -338,7 +338,7 @@ class UserModal extends React.Component {
               <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
               {
                 !creationMode && administrationMode &&
-                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={locked}>
+                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={locked} trigger={["click"]}>
                   <Button key="more" type="primary" ghost={true} size="large" disabled={locked}><Icon type="down"/></Button>
                 </Dropdown>
               }

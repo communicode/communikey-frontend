@@ -11,7 +11,7 @@ class SignOut extends React.Component {
 
   componentDidMount() {
     localStorage.clear();
-    this.props.authStore.reset();
+    this.props.authStore._reset();
   }
 
   render() {

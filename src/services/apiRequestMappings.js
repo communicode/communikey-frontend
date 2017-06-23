@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {CATEGORY_ID, USER_GROUP_NAME, USER_LOGIN, KEY_ID} from "./apiPathVariables";
+import {CATEGORY_ID, USER_GROUP_ID, USER_LOGIN, KEY_ID} from "./apiPathVariables";
 import {API_AUTHORIZE_PARAM, API_ME_PARAM} from "./apiRequestParameter";
 
 /**
@@ -123,6 +123,16 @@ export const USERS = API + "/users";
  * @since 0.8.0
  */
 export const USER_GROUPS = API + "/groups";
+
+/**
+ * The endpoint for user groups as compiled template.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.9.0
+ */
+export const USER_GROUP = _.template(USER_GROUPS + USER_GROUP_ID);
 
 /**
  * The endpoint for a category as compiled template.
@@ -262,4 +272,4 @@ export const USER_KEYS = _.template(USERS + USER_LOGIN + "/keys");
  * @type {function}
  * @since 0.8.0
  */
-export const USER_GROUPS_USERS = _.template(USER_GROUPS + USER_GROUP_NAME + "/users");
+export const USER_GROUPS_USERS = _.template(USER_GROUPS + USER_GROUP_ID + "/users");
