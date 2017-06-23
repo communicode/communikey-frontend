@@ -13,8 +13,6 @@ import {
   ROUTE_SIGNOUT,
   ROUTE_DASHBOARD,
   ROUTE_ADMINISTRATION_USERS,
-  ROUTE_ADMINISTRATION_CATEGORIES,
-  ROUTE_ADMINISTRATION_KEYS,
   ROUTE_KEYS
 } from "./routes/routeMappings";
 import {VERSION} from "./Communikey";
@@ -118,12 +116,6 @@ class BaseLayout extends React.Component {
           {
             authStore.privileged &&
             <Menu.SubMenu key={ADMINISTRATION} title={<span><Icon type="setting"/><span className="nav-text">Administration</span></span>}>
-              <Menu.Item key={ROUTE_ADMINISTRATION_CATEGORIES}>
-                <NavLink to={ROUTE_ADMINISTRATION_CATEGORIES} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_CATEGORIES)}>Categories</NavLink>
-              </Menu.Item>
-              <Menu.Item key={ROUTE_ADMINISTRATION_KEYS}>
-                <NavLink to={ROUTE_ADMINISTRATION_KEYS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_KEYS)}>Keys</NavLink>
-              </Menu.Item>
               <Menu.Item key={ROUTE_ADMINISTRATION_USERS}>
                 <NavLink to={ROUTE_ADMINISTRATION_USERS} isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USERS)}>Users</NavLink>
               </Menu.Item>

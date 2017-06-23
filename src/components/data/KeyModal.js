@@ -1,4 +1,6 @@
 import React from "react";
+import _ from "lodash";
+import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
 import {PropTypes as MobXPropTypes} from "mobx-react";
 import CopyToClipboard from "react-copy-to-clipboard";
@@ -55,6 +57,25 @@ class KeyModal extends React.Component {
   }
 
   /**
+   * Sets the selected category for the tree select modal if found in the passed categories.
+   * This allows to show the correct category tree node for the passed communikey key when not in creation mode.
+   *
+   * @since 0.9.0
+   */
+  componentDidMount() {
+    const category = _.find(this.props.categories, category => category.id === this.props.cckeyKey.category);
+    this.setState({categoryTreeSelectModalSelectedCategory: category});
+  }
+
+  /**
+   * Generates the category tree from the specified flat category data array.
+   *
+   * @param categories - The flat category data array to generate the tree structure of
+   * @since 0.9.0
+   */
+  generateTreeFromFlatData = categories => arrayToTree(categories, {id: "id", parentId: "parent"});
+
+  /**
    * Recursively generates all category tree select nodes.
    *
    * @param categories - The categories to generate the tree node structure of
@@ -62,12 +83,12 @@ class KeyModal extends React.Component {
   generateCategoryTreeSelectNodes = categories => categories.map(category => {
     if (category.children.length) {
       return (
-        <Tree.TreeNode key={category.id} value={category.name} category={category} title={<span><Icon type="folder"/> {category.name}</span>}>
+        <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={<span><Icon type="folder"/> {category.data.name}</span>}>
           {this.generateCategoryTreeSelectNodes(category.children)}
         </Tree.TreeNode>
       );
     }
-    return <Tree.TreeNode key={category.id} value={category.name} category={category} title={category.name}/>;
+    return <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={category.data.name}/>;
   });
 
   /**
@@ -127,7 +148,7 @@ class KeyModal extends React.Component {
       ...modalProps
     } = this.props;
 
-    const {categoryTreeSelectModalVisible, keyPasswordVisible} = this.state;
+    const {categoryTreeSelectModalSelectedCategory, categoryTreeSelectModalVisible, keyPasswordVisible} = this.state;
 
     /**
      * Layout configurations for all editable form items.
@@ -255,11 +276,10 @@ class KeyModal extends React.Component {
       <Form.Item {...editableFormItemLayout} label="Category" colon={false}>
         <TreeSelect
           showSearch={true}
-          defaultValue={cckeyKey.category && cckeyKey.category.name}
           onChange={onCategoryTreeSelectValueChange}
           size="large"
         >
-          {this.generateCategoryTreeSelectNodes(categories)}
+          {this.generateCategoryTreeSelectNodes(this.generateTreeFromFlatData(categories))}
         </TreeSelect>
       </Form.Item>
     );
@@ -316,11 +336,11 @@ class KeyModal extends React.Component {
               <Form.Item>
                 <TreeSelect
                   showSearch={true}
-                  defaultValue={cckeyKey.category && cckeyKey.category.name}
+                  value={categoryTreeSelectModalSelectedCategory && categoryTreeSelectModalSelectedCategory.name}
                   onChange={this.handleCategoryTreeSelectModalChange}
                   size="large"
                 >
-                  {this.generateCategoryTreeSelectNodes(categories)}
+                  {this.generateCategoryTreeSelectNodes(this.generateTreeFromFlatData(categories))}
                 </TreeSelect>
               </Form.Item>
             </Form>

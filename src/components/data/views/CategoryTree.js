@@ -1,4 +1,5 @@
 import React from "react";
+import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
 import {PropTypes as MobXPropTypes} from "mobx-react";
 import {Icon, Tree} from "antd";
@@ -18,6 +19,14 @@ class CategoryTree extends React.Component {
   }
 
   /**
+   * Generates the category tree from the specified flat category data array.
+   *
+   * @param categories - The flat category data array to generate the tree structure of
+   * @since 0.9.0
+   */
+  generateTreeFromFlatData = categories => arrayToTree(categories, {id: "id", parentId: "parent"});
+
+  /**
    * Recursively generates all tree nodes.
    *
    * @param categories
@@ -25,12 +34,12 @@ class CategoryTree extends React.Component {
   generateTreeNodes = categories => categories.map(category => {
     if (category.children.length) {
       return (
-        <Tree.TreeNode key={category.id} title={<span><Icon type="folder"/> {category.name}</span>} category={category}>
+        <Tree.TreeNode key={category.data.id} title={<span><Icon type="folder"/> {category.data.name}</span>} category={category.data}>
           {this.generateTreeNodes(category.children)}
         </Tree.TreeNode>
       );
     }
-    return <Tree.TreeNode key={category.id} title={category.name} category={category}/>;
+    return <Tree.TreeNode key={category.data.id} title={category.data.name} category={category.data}/>;
   });
 
   render() {
@@ -46,7 +55,7 @@ class CategoryTree extends React.Component {
         onSelect={onSelect}
         selectedKeys={selectedKeys}
       >
-        {this.generateTreeNodes(categories)}
+        {this.generateTreeNodes(this.generateTreeFromFlatData(categories))}
       </Tree>
     );
   }

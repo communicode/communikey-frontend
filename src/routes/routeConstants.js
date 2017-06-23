@@ -51,26 +51,6 @@ export const DASHBOARD = "dashboard";
 export const ADMINISTRATION = "administration";
 
 /**
- * The route name of the {@link CategoryAdministration} component.
- *
- * @constant
- * @default
- * @type {string}
- * @since 0.8.0
- */
-export const ADMINISTRATION_CATEGORIES = ADMINISTRATION + pathSeparator + "categories";
-
-/**
- * The route name of the {@link KeyAdministration} component.
- *
- * @constant
- * @default
- * @type {string}
- * @since 0.8.0
- */
-export const ADMINISTRATION_KEYS = ADMINISTRATION + pathSeparator + "keys";
-
-/**
  * The route name of the {@link UserAdministration} component.
  *
  * @constant

@@ -1,19 +1,43 @@
 import React from "react";
 import update from "immutability-helper";
-import {Button, Col, Icon, Row} from "antd";
+import {Badge, Button, Col, Icon, Row, Table} from "antd";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
-import UserTable from "./../../components/data/views/UserTable";
 import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
+import themeSizeConfig from "./../../config/theme/sizes";
 import {AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
+import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
+import "antd/lib/table/style/index.less";
 import "./UserAdministration.less";
 import "./../../BaseLayout.less";
+
+/**
+ * A badge component to show the current activation status of a user.
+ *
+ * @param {object} record - The user table record
+ * @constructor
+ */
+export const USER_TABLE_DEFAULT_ACTIVATION_BADGE_RECORD = (record) =>
+  <Badge status={record.activated ? "success" : "error"} text={record.activated ? "Activated" : "Deactivated"}/>;
+
+/**
+ * The default table column configuration.
+ */
+export const USER_TABLE_DEFAULT_COLUMNS = [
+  {title: "Login", dataIndex: "login", key: "login", fixed: true},
+  {title: "Email", dataIndex: "email", key: "email"},
+  {title: "First name", dataIndex: "firstName", key: "firstName"},
+  {title: "Last name", dataIndex: "lastName", key: "lastName"},
+  {
+    title: "Status", render: USER_TABLE_DEFAULT_ACTIVATION_BADGE_RECORD
+  }
+];
 
 /**
  * The administration for user.
@@ -249,10 +273,13 @@ class UserAdministration extends React.Component {
           </Row>
         </div>
         <Row>
-          <UserTable
+          <Table
             dataSource={toJS(userStore.users)}
+            columns={USER_TABLE_DEFAULT_COLUMNS}
+            rowKey={record => record.id}
             onRowClick={(record) => this.handleUserTableRecordSelect(record)}
             onRowDoubleClick={this.toggleUserModal}
+            scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
           />
         </Row>
       </div>
