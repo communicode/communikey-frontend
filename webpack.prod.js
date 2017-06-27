@@ -30,7 +30,8 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "communikey.min.js"
+    filename: "communikey.min.js",
+    publicPath: "/"
   },
 
   resolve: {
