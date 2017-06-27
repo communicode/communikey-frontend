@@ -320,7 +320,7 @@ class UserAdministration extends React.Component {
     );
 
     return (
-      <div className="cckey-base-layout-content-container">
+      <div id="cckey-routes-administration-user" className="cckey-base-layout-content-container">
         <div className="cckey-base-layout-content-container-inner">
           {userStore.users.length ? mainDataView() : noDataMessageBox()}
           {userModal()}
