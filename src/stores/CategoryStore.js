@@ -2,7 +2,7 @@ import {action, observable} from "mobx";
 import axios from "axios";
 import apiService from "../services/ApiService";
 import {keyStore, userGroupStore, userStore} from "./../Communikey";
-import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_KEYS} from "./../services/apiRequestMappings";
+import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_GROUPS, CATEGORY_KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -60,6 +60,29 @@ class CategoryStore {
       .then(action("CategoryStore_addKey_synchronization", response => {
         this._updateEntity(categoryId, response.data);
         return keyStore.fetchOne(keyId).then(() => response.data);
+      }));
+  };
+
+  /**
+   * Adds a user group to the category with the specified ID.
+   * This is a API- and store synchronization action!
+   *
+   * @param {number} categoryId - The ID of the category to add the user group to
+   * @param {number} userGroupId - The ID of the user group to be added to the category
+   * @returns {Promise} - The updated category as a promise
+   * @since 0.10.0
+   */
+  @action("CategoryStore_addUserGroup")
+  addUserGroup = (categoryId, userGroupId) => {
+    return apiService.get(CATEGORY_GROUPS({categoryId: categoryId}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        userGroupId: userGroupId
+      }
+    })
+      .then(action("CategoryStore_addUserGroup_synchronization", response => {
+        this._updateEntity(categoryId, response.data);
+        return userGroupStore.fetchOne(userGroupId).then(() => response.data);
       }));
   };
 
@@ -143,6 +166,29 @@ class CategoryStore {
       .then(action("CategoryStore_fetchOne_synchronization", response => {
         this._updateEntity(categoryId, response.data);
         return response.data;
+      }));
+  };
+
+  /**
+   * Removes a user group from the category with the specified ID.
+   * This is a API- and store synchronization action!
+   *
+   * @param {number} categoryId - The ID of the category to remove the user group from
+   * @param {number} userGroupId - The ID of the user group to be removed from the category
+   * @returns {Promise} - The updated category as a promise
+   * @since 0.10.0
+   */
+  @action("CategoryStore_removeUserGroup")
+  removeUserGroup = (categoryId, userGroupId) => {
+    return apiService.delete(CATEGORY_GROUPS({categoryId: categoryId}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        userGroupId: userGroupId
+      }
+    })
+      .then(action("CategoryStore_removeUserGroup_synchronization", response => {
+        this._updateEntity(categoryId, response.data);
+        return userGroupStore.fetchOne(userGroupId).then(() => response.data);
       }));
   };
 
