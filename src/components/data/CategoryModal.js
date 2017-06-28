@@ -18,6 +18,101 @@ import "antd/lib/tooltip/style/index.less";
 import "./CategoryModal.less";
 
 /**
+ * The managed form component.
+ *
+ * @since 0.10.0
+ */
+const ManagedForm = Form.create()(
+  (props) => {
+    const {administrationMode, category, creationMode, form} = props;
+    const {getFieldDecorator} = form;
+
+    return (
+      <Form hideRequiredMark={true}>
+        <Form.Item
+          validateStatus={form.getFieldError("name") ? "error" : ""}
+          label="Name"
+          colon={false}
+        >
+          {getFieldDecorator("name", {
+            initialValue: category.name,
+            rules: [{required: true, message: "Name is required"}]
+          })(
+          <Input
+            placeholder="Name"
+            suffix={category.name ? copyToClipboardIcon(category.name) : null}
+            readOnly={!administrationMode}
+          />)
+          }
+        </Form.Item>
+        {!creationMode && administrationMode &&
+        <div>
+          <Form.Item>
+            <Input
+              name="id"
+              addonBefore="ID"
+              value={category.id}
+              readOnly={true}
+              disabled={!category.id}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              name="createdBy"
+              addonBefore="Created by"
+              value={category.createdBy}
+              readOnly={true}
+              disabled={!category.createdBy}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              name="createdDate"
+              addonBefore="Created on"
+              value={category.createdDate && new Date(category.createdDate).toLocaleString()}
+              readOnly={true}
+              disabled={!category.createdDate}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              name="lastModifiedBy"
+              addonBefore="Modified by"
+              value={category.lastModifiedBy}
+              readOnly={true}
+              disabled={!category.lastModifiedBy}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              name="lastModifiedDate"
+              addonBefore="Modified on"
+              value={category.lastModifiedDate && new Date(category.lastModifiedDate).toLocaleString()}
+              readOnly={true}
+              disabled={!category.lastModifiedDate}
+            />
+          </Form.Item>
+        </div>
+        }
+      </Form>
+    );
+  }
+);
+
+/**
+ * The icon to copy a value to the clipboard.
+ *
+ * @param value - The value to copy
+ */
+const copyToClipboardIcon = (value) => (
+  <CopyToClipboard text={value}>
+    <Tooltip title="Copied to clipboard" trigger="click">
+      <Icon type="copy" className="copy-to-clipboard-icon"/>
+    </Tooltip>
+  </CopyToClipboard>
+);
+
+/**
  * The default user table column configuration.
  *
  * @since 0.10.0
@@ -63,6 +158,28 @@ class CategoryModal extends React.Component {
   }
 
   /**
+   * Handles the action button click event.
+   *
+   * @since 0.10.0
+   */
+  handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
+    if (!errors) {
+      this.props.onSave(payload);
+      this.form.resetFields();
+    }
+  });
+
+  /**
+   * Handles the close event.
+   *
+   * @since 0.10.0
+   */
+  handleOnClose = () => {
+    this.form.resetFields();
+    this.props.onClose();
+  };
+
+  /**
    * Handles the table record selection event of the user groups tab view.
    *
    * @param {object} record - The selected user group table record
@@ -70,6 +187,14 @@ class CategoryModal extends React.Component {
    * @since 0.10.0
    */
   handleTabViewUserGroupsOnRecordSelect = (record, selected) => selected ? this.props.onUserGroupAdd(record) : this.props.onUserGroupRemove(record);
+
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param form - The form to save the reference to
+   * @since 0.10.0
+   */
+  saveManagedFormRef = (form) => this.form = form;
 
   render() {
     const {
@@ -81,7 +206,6 @@ class CategoryModal extends React.Component {
       onClose,
       onDelete,
       onSave,
-      onValueChange,
       toggleLockStatus,
       userGroups,
       ...modalProps
@@ -97,80 +221,6 @@ class CategoryModal extends React.Component {
       selectedRowKeys: category.groups,
       onSelect: this.handleTabViewUserGroupsOnRecordSelect
     };
-
-    const copyToClipboardIcon = (value) => (
-      <CopyToClipboard text={value}>
-        <Tooltip title="Copied to clipboard" trigger="click">
-          <Icon type="copy" className="copy-to-clipboard-icon"/>
-        </Tooltip>
-      </CopyToClipboard>
-    );
-
-    const formItems = () => (
-      <div>
-        <Form.Item>
-          <Input
-            name="id"
-            addonBefore="ID"
-            value={category.id}
-            readOnly={true}
-            disabled={!category.id}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input
-            name="createdBy"
-            addonBefore="Created by"
-            value={category.createdBy}
-            readOnly={true}
-            disabled={!category.createdBy}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input
-            name="createdDate"
-            addonBefore="Created on"
-            value={category.createdDate && new Date(category.createdDate).toLocaleString()}
-            readOnly={true}
-            disabled={!category.createdDate}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input
-            name="lastModifiedBy"
-            addonBefore="Modified by"
-            value={category.lastModifiedBy}
-            readOnly={true}
-            disabled={!category.lastModifiedBy}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input
-            name="lastModifiedDate"
-            addonBefore="Modified on"
-            value={category.lastModifiedDate && new Date(category.lastModifiedDate).toLocaleString()}
-            readOnly={true}
-            disabled={!category.lastModifiedDate}
-          />
-        </Form.Item>
-      </div>
-    );
-
-    const form = () => (
-      <Form>
-        <Form.Item label="Name" colon={false}>
-          <Input
-            name="name"
-            onChange={onValueChange}
-            placeholder="Name"
-            suffix={category.name ? copyToClipboardIcon(category.name) : null}
-            readOnly={!administrationMode}
-            value={category.name}
-          />
-        </Form.Item>
-        {!creationMode && administrationMode && formItems()}
-      </Form>
-    );
 
     const lockStatusButton = () => (
       <Tooltip title={locked ? "Unlock" : "Lock"}>
@@ -192,8 +242,13 @@ class CategoryModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              <Button key="cancel" size="large" onClick={onClose}>Cancel</Button>
-              <Button key="save" type="primary" size="large" onClick={onSave} loading={loading}>{creationMode ? "Create" : "Done"}</Button>
+              <Button size="large" onClick={this.handleOnClose}>Cancel</Button>
+              <Button
+                type="primary"
+                size="large"
+                onClick={this.handleActionButtonOnClick}
+                loading={loading}>{creationMode ? "Create" : "Done"}
+              </Button>
             </div>
           </Col>
         </Row>
@@ -203,7 +258,14 @@ class CategoryModal extends React.Component {
     const tabViewGeneral = () => (
       <Tabs.TabPane tab="General" key={TAB_PANE_REACT_KEY_GENERAL}>
         <Row type="flex" align="center">
-          <Col span={18}>{form()}</Col>
+          <Col span={18}>
+            <ManagedForm
+              ref={this.saveManagedFormRef}
+              category={category}
+              administrationMode={administrationMode}
+              creationMode={creationMode}
+            />
+          </Col>
         </Row>
         {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
       </Tabs.TabPane>

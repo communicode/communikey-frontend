@@ -106,21 +106,24 @@ class Keys extends React.Component {
   /**
    * Handles the category modal save event.
    *
+   * @param {object} payload - The key payload
    * @callback handleCategoryModalSave
    */
-  handleCategoryModalSave = () => {
-    const {category, categoryModalCreationMode} = this.state;
+  handleCategoryModalSave = (payload) => {
     this.setProcessingStatus(true);
+    const {category, categoryModalCreationMode} = this.state;
+    const updatedCategory = update(category, {$merge: payload});
+    this.setState({category: updatedCategory});
     categoryModalCreationMode
       ?
-      this.props.categoryStore.create(category.name)
+      this.props.categoryStore.create(updatedCategory.name)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
         })
         .catch(() => this.setProcessingStatus(false))
       :
-      this.props.categoryStore.update(category)
+      this.props.categoryStore.update(updatedCategory)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
