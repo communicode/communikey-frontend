@@ -43,14 +43,6 @@ class UserGroupAdministration extends React.Component {
   }
 
   /**
-   * Handles all input value change events.
-   *
-   * @callback handleModalValueChange
-   * @param event - The change event
-   */
-  handleModalValueChange = (event) => this.setState({userGroup: update(this.state.userGroup, {[event.target.name]: {$set: event.target.value}})});
-
-  /**
    * Handles the user group modal close event.
    *
    * @callback handleUserGroupModalClose
@@ -249,7 +241,6 @@ class UserGroupAdministration extends React.Component {
         onSave={this.handleUserGroupModalSave}
         onUserAdd={this.handleUserGroupModalOnUserAdd}
         onUserRemove={this.handleUserGroupModalOnUserRemove}
-        onValueChange={this.handleModalValueChange}
         toggleLockStatus={this.toggleUserGroupModalLockStatus}
       />
     );

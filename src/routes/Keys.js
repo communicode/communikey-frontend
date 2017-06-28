@@ -132,19 +132,6 @@ class Keys extends React.Component {
   };
 
   /**
-   * Handles all category modal input value change events.
-   *
-   * @callback handleCategoryModalValueChange
-   * @param event - The change event
-   */
-  handleCategoryModalValueChange = (event) => {
-    this.setState({
-      category: update(this.state.category, {[event.target.name]: {$set: event.target.value}}),
-      categoryModalCategoryModified: true
-    });
-  };
-
-  /**
    * Handles the category tree drop event.
    *
    * @callback handleCategoryTreeOnDrop
@@ -315,14 +302,6 @@ class Keys extends React.Component {
         })
         .catch(() => this.setProcessingStatus(false));
   };
-
-  /**
-   * Handles all key modal input value change events.
-   *
-   * @callback handleKeyModalInputValueChange
-   * @param event - The input change event
-   */
-  handleKeyModalInputValueChange = (event) => this.setState({key: update(this.state.key, {[event.target.name]: {$set: event.target.value}})});
 
   /**
    * Handles a key table record selection event.
@@ -540,7 +519,6 @@ class Keys extends React.Component {
         onSave={this.handleCategoryModalSave}
         onUserGroupAdd={this.handleCategoryModalOnUserGroupAdd}
         onUserGroupRemove={this.handleCategoryModalOnUserGroupRemove}
-        onValueChange={this.handleCategoryModalValueChange}
         toggleLockStatus={this.toggleCategoryModalLockStatus}
       />
     );
@@ -560,7 +538,6 @@ class Keys extends React.Component {
         onCategoryTreeSelectValueChange={this.handleKeyModalCategoryTreeSelectValueChange}
         onClose={this.handleKeyModalClose}
         onDelete={this.handleKeyModalDelete}
-        onInputValueChange={this.handleKeyModalInputValueChange}
         onSave={this.handleKeyModalSave}
         toggleLockStatus={this.toggleKeyModalLockStatus}
       />

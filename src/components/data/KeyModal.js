@@ -543,13 +543,6 @@ KeyModal.propTypes = {
   onDelete: PropTypes.func,
 
   /**
-   * Callback function to handle input value change events.
-   *
-   * @type {function}
-   */
-  onInputValueChange: PropTypes.func,
-
-  /**
    * Callback function to handle the save event.
    *
    * @type {function}

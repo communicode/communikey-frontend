@@ -627,13 +627,6 @@ UserModal.propTypes = {
   onUserPasswordReset: PropTypes.func,
 
   /**
-   * Callback function to handle input value change events.
-   *
-   * @type {function}
-   */
-  onValueChange: PropTypes.func,
-
-  /**
    * Callback function to toggle the user lock status.
    *
    * @type {function}

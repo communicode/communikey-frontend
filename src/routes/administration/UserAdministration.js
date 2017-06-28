@@ -61,14 +61,6 @@ class UserAdministration extends React.Component {
   }
 
   /**
-   * Handles all input value change events.
-   *
-   * @callback handleModalValueChange
-   * @param event - The change event
-   */
-  handleModalValueChange = (event) => this.setState({user: update(this.state.user, {[event.target.name]: {$set: event.target.value}})});
-
-  /**
    * Handles the user modal close event.
    *
    * @callback handleUserModalClose
@@ -305,7 +297,6 @@ class UserAdministration extends React.Component {
         onUserActivate={this.handleUserModalUserActivation}
         onUserDeactivate={this.handleUserModalUserDeactivation}
         onUserPasswordReset={this.handleUserModalUserPasswordReset}
-        onValueChange={this.handleModalValueChange}
         toggleLockStatus={this.toggleUserModalLockStatus}
       />
     );
