@@ -132,28 +132,6 @@ const ManagedForm = Form.create()(
           </Form.Item>
           <Form.Item {...readOnlyFormItemLayout}>
             <Input
-              name="activationKey"
-              addonBefore="Activation token"
-              value={user.activationKey}
-              readOnly={true}
-              disabled={!user.activationKey}
-              suffix={user.activationKey ? copyToClipboardIcon(user.activationKey) : null}
-            />
-          </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
-            <Tooltip title={!!user.resetDate && new Date(user.resetDate).toLocaleString()} placement="left">
-              <Input
-                name="resetKey"
-                addonBefore="Password reset token"
-                value={user.resetKey}
-                readOnly={true}
-                disabled={!user.resetKey}
-                suffix={user.resetKey ? copyToClipboardIcon(user.resetKey) : null}
-              />
-            </Tooltip>
-          </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
-            <Input
               name="createdBy"
               addonBefore="Created by"
               value={user.createdBy}
