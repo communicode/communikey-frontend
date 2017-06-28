@@ -18,6 +18,221 @@ import "antd/lib/tooltip/style/index.less";
 import "./UserModal.less";
 
 /**
+ * The managed form component.
+ *
+ * @since 0.10.0
+ */
+const ManagedForm = Form.create()(
+  (props) => {
+    const {administrationMode, user, creationMode, form} = props;
+    const {getFieldDecorator} = form;
+
+    return (
+      <Form hideRequiredMark={true}>
+        {creationMode &&
+          <Form.Item
+            {...managedFormItemLayout}
+            validateStatus={form.getFieldError("email") ? "error" : ""}
+            label="Email"
+            colon={false}>
+            {getFieldDecorator("email", {
+              initialValue: user.email,
+              rules: [{required: true, message: "Email is required"}]
+            })(
+              <Input
+                prefix={<Icon type="mail"/>}
+                addonAfter={appConfig.EMAIL_PREFIX}
+                placeholder="Email"
+                readOnly={!creationMode && administrationMode}
+                suffix={user.email ? copyToClipboardIcon(user.email) : null}
+              />
+            )}
+          </Form.Item>
+        }
+        {!creationMode &&
+          <Form.Item
+            {...managedFormItemLayout}
+            validateStatus={form.getFieldError("login") ? "error" : ""}
+            label="Email"
+            colon={false}>
+            {getFieldDecorator("login", {
+              initialValue: user.login,
+              rules: [{required: true, message: "Email is required"}]
+            })(
+              <Input
+                prefix={<Icon type="mail"/>}
+                addonAfter={appConfig.EMAIL_PREFIX}
+                placeholder="Email"
+                readOnly={!creationMode && administrationMode}
+                suffix={user.email ? copyToClipboardIcon(user.email) : null}
+              />
+            )}
+          </Form.Item>
+        }
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("firstName") ? "error" : ""}
+          label="First name"
+          colon={false}
+        >
+          {getFieldDecorator("firstName", {
+            initialValue: user.firstName,
+            rules: [{required: true, message: "First name is required"}]
+          })(
+            <Input
+              placeholder="First name"
+              readOnly={!administrationMode}
+            />
+          )}
+        </Form.Item>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("lastName") ? "error" : ""}
+          label="Last name"
+          colon={false}
+        >
+          {getFieldDecorator("lastName", {
+            initialValue: user.lastName,
+            rules: [{required: true, message: "Last name is required"}]
+          })(
+            <Input
+              placeholder="Last name"
+              readOnly={!administrationMode}
+            />
+          )}
+        </Form.Item>
+        {creationMode &&
+          <Form.Item
+            {...managedFormItemLayout}
+            validateStatus={form.getFieldError("password") ? "error" : ""}
+            label="Password"
+            colon={false}>
+            {getFieldDecorator("password", {
+              initialValue: user.password,
+              rules: [{required: true, message: "Password is required"}]
+            })(
+              <Input
+                placeholder="Password"
+                type="password"
+                readOnly={!administrationMode}
+              />
+            )}
+          </Form.Item>
+        }
+        {!creationMode && administrationMode &&
+        <div>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="id"
+              addonBefore="ID"
+              value={user.id}
+              readOnly={true}
+              disabled={!user.id}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="activationKey"
+              addonBefore="Activation token"
+              value={user.activationKey}
+              readOnly={true}
+              disabled={!user.activationKey}
+              suffix={user.activationKey ? copyToClipboardIcon(user.activationKey) : null}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Tooltip title={!!user.resetDate && new Date(user.resetDate).toLocaleString()} placement="left">
+              <Input
+                name="resetKey"
+                addonBefore="Password reset token"
+                value={user.resetKey}
+                readOnly={true}
+                disabled={!user.resetKey}
+                suffix={user.resetKey ? copyToClipboardIcon(user.resetKey) : null}
+              />
+            </Tooltip>
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="createdBy"
+              addonBefore="Created by"
+              value={user.createdBy}
+              readOnly={true}
+              disabled={!user.createdBy}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="createdDate"
+              addonBefore="Created on"
+              value={user.createdDate && new Date(user.createdDate).toLocaleString()}
+              readOnly={true}
+              disabled={!user.createdDate}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="lastModifiedBy"
+              addonBefore="Modified by"
+              value={user.lastModifiedBy}
+              readOnly={true}
+              disabled={!user.lastModifiedBy}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="lastModifiedDate"
+              addonBefore="Modified on"
+              value={user.lastModifiedDate && new Date(user.lastModifiedDate).toLocaleString()}
+              readOnly={true}
+              disabled={!user.lastModifiedDate}
+            />
+          </Form.Item>
+        </div>
+        }
+      </Form>
+    );
+  }
+);
+
+/**
+ * The icon to copy a value to the clipboard.
+ *
+ * @param value - The value to copy
+ */
+const copyToClipboardIcon = (value) => (
+  <CopyToClipboard text={value}>
+    <Tooltip title="Copied to clipboard" trigger="click">
+      <Icon type="copy" className="copy-to-clipboard-icon"/>
+    </Tooltip>
+  </CopyToClipboard>
+);
+
+/**
+ * Layout configurations for all managed form items.
+ */
+const managedFormItemLayout = {
+  labelCol: {
+    xs: {span: 24},
+    sm: {span: 4}
+  },
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 18}
+  }
+};
+
+/**
+ * Layout configurations for all read-only form items.
+ */
+const readOnlyFormItemLayout = {
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 18, offset: 4}
+  }
+};
+
+/**
  * A modal for user.
  *
  * @author dvonderbey@communicode.de
@@ -62,6 +277,28 @@ class UserModal extends React.Component {
       passwordResetModalVisible: false
     };
   }
+
+  /**
+   * Handles the action button click event.
+   *
+   * @since 0.10.0
+   */
+  handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
+    if (!errors) {
+      this.props.onSave(payload);
+      this.form.resetFields();
+    }
+  });
+
+  /**
+   * Handles the close event.
+   *
+   * @since 0.10.0
+   */
+  handleOnClose = () => {
+    this.form.resetFields();
+    this.props.onClose();
+  };
 
   /**
    * Handles the user modal close event.
@@ -112,6 +349,14 @@ class UserModal extends React.Component {
     this.setState({passwordResetModalValuesValid: _.isEqual(newPassword, confirmedPassword) && !_.isEmpty(newPassword, confirmedPassword)});
   };
 
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param form - The form to save the reference to
+   * @since 0.10.0
+   */
+  saveManagedFormRef = (form) => this.form = form;
+
   render() {
     const {
       administrationMode,
@@ -124,37 +369,12 @@ class UserModal extends React.Component {
       onSave,
       onUserActivate,
       onUserDeactivate,
-      onValueChange,
       toggleLockStatus,
       user,
       ...modalProps
     } = this.props;
 
     const {passwordResetModalValuesValid, passwordResetModalVisible} = this.state;
-
-    /**
-     * Layout configurations for all editable form items.
-     */
-    const editableFormItemLayout = {
-      labelCol: {
-        xs: {span: 24},
-        sm: {span: 4}
-      },
-      wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 18}
-      }
-    };
-
-    /**
-     * Layout configurations for all read-only form items.
-     */
-    const readOnlyFormItemLayout = {
-      wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 18, offset: 4}
-      }
-    };
 
     /**
      * Operations name constants and the name of the callback function.
@@ -178,14 +398,6 @@ class UserModal extends React.Component {
       }
     };
 
-    const copyToClipboardIcon = (value) => (
-      <CopyToClipboard text={value}>
-        <Tooltip title="Copied to clipboard" trigger="click">
-          <Icon type="copy" className="copy-to-clipboard-icon"/>
-        </Tooltip>
-      </CopyToClipboard>
-    );
-
     const defaultUserAvatar = () => <img src={appConfig.assets.wireframe.avatars.matthew} className="user-avatar"/>;
 
     const footerOperationsDropdownMenu = (
@@ -198,129 +410,6 @@ class UserModal extends React.Component {
         <Menu.Item key={OPERATION_TYPES.USER_ACTIVATE.keyName} disabled={locked || user.activated}>Activate</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_DEACTIVATE.keyName} disabled={locked || !user.activated}>Deactivate</Menu.Item>
       </Menu>
-    );
-
-    const formItems = () => (
-      <div>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="id"
-            addonBefore="ID"
-            value={user.id}
-            readOnly={true}
-            disabled={!user.id}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="activationKey"
-            addonBefore="Activation token"
-            value={user.activationKey}
-            readOnly={true}
-            disabled={!user.activationKey}
-            suffix={user.activationKey ? copyToClipboardIcon(user.activationKey) : null}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Tooltip title={!!user.resetDate && new Date(user.resetDate).toLocaleString()} placement="left">
-            <Input
-              name="resetKey"
-              addonBefore="Password reset token"
-              value={user.resetKey}
-              readOnly={true}
-              disabled={!user.resetKey}
-              suffix={user.resetKey ? copyToClipboardIcon(user.resetKey) : null}
-            />
-          </Tooltip>
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="createdBy"
-            addonBefore="Created by"
-            value={user.createdBy}
-            readOnly={true}
-            disabled={!user.createdBy}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="createdDate"
-            addonBefore="Created on"
-            value={user.createdDate && new Date(user.createdDate).toLocaleString()}
-            readOnly={true}
-            disabled={!user.createdDate}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="lastModifiedBy"
-            addonBefore="Modified by"
-            value={user.lastModifiedBy}
-            readOnly={true}
-            disabled={!user.lastModifiedBy}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="lastModifiedDate"
-            addonBefore="Modified on"
-            value={user.lastModifiedDate && new Date(user.lastModifiedDate).toLocaleString()}
-            readOnly={true}
-            disabled={!user.lastModifiedDate}
-          />
-        </Form.Item>
-      </div>
-    );
-
-    const form = () => (
-      <Form>
-        <Form.Item {...editableFormItemLayout} label="Email" colon={false}>
-          <Input
-            name={creationMode ? "email" : "login"}
-            prefix={<Icon type="mail"/>}
-            addonAfter={appConfig.EMAIL_PREFIX}
-            onChange={onValueChange}
-            placeholder="Email"
-            readOnly={!creationMode && administrationMode}
-            suffix={user.email ? copyToClipboardIcon(user.email) : null}
-            value={
-              creationMode
-                ? user.email
-                : user.login ? user.login : null
-            }
-          />
-        </Form.Item>
-        <Form.Item {...editableFormItemLayout} label="First name" colon={false}>
-          <Input
-            name="firstName"
-            onChange={onValueChange}
-            placeholder="First name"
-            readOnly={!administrationMode}
-            value={user.firstName ? user.firstName : null}
-          />
-        </Form.Item>
-        <Form.Item {...editableFormItemLayout} label="Last name" colon={false}>
-          <Input
-            name="lastName"
-            onChange={onValueChange}
-            placeholder="Last name"
-            value={user.lastName ? user.lastName : null}
-          />
-        </Form.Item>
-        {
-          creationMode &&
-          <Form.Item {...editableFormItemLayout} label="Password" colon={false}>
-            <Input
-              name="password"
-              onChange={onValueChange}
-              placeholder="Password"
-              type="password"
-              value={user.password}
-            />
-          </Form.Item>
-        }
-        {!creationMode && administrationMode && formItems()}
-      </Form>
     );
 
     const lockStatusButton = () => (
@@ -346,8 +435,13 @@ class UserModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              <Button key="cancel" size="large" onClick={onClose}>Cancel</Button>
-              <Button key="save" type="primary" size="large" onClick={onSave} loading={loading}>{creationMode ? "Create" : "Done"}</Button>
+              <Button size="large" onClick={this.handleOnClose}>Cancel</Button>
+              <Button
+                type="primary"
+                size="large"
+                onClick={this.handleActionButtonOnClick}
+                loading={loading}>{creationMode ? "Create" : "Done"}
+              </Button>
             </div>
           </Col>
         </Row>
@@ -439,7 +533,14 @@ class UserModal extends React.Component {
                 defaultUserAvatar()
             }
           </Col>
-          <Col span={18}>{form()}</Col>
+          <Col span={18}>
+            <ManagedForm
+              ref={this.saveManagedFormRef}
+              user={user}
+              administrationMode={administrationMode}
+              creationMode={creationMode}
+            />
+          </Col>
         </Row>
         {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
         <Row><Col>{footer()}</Col></Row>

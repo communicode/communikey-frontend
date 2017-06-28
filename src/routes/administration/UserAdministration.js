@@ -124,14 +124,17 @@ class UserAdministration extends React.Component {
   /**
    * Handles the user modal save event.
    *
+   * @param {object} payload - The key payload
    * @callback handleUserModalSave
    */
-  handleUserModalSave = () => {
-    const {user, userModalCreationMode} = this.state;
+  handleUserModalSave = (payload) => {
     this.setProcessingStatus(true);
+    const {user, userModalCreationMode} = this.state;
+    const updatedUser = update(user, {$merge: payload});
+    this.setState({user: updatedUser});
     userModalCreationMode
       ?
-      this.props.userStore.create(user.firstName, user.lastName, user.email + appConfig.EMAIL_PREFIX, user.password)
+      this.props.userStore.create(updatedUser.firstName, updatedUser.lastName, updatedUser.email + appConfig.EMAIL_PREFIX, updatedUser.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleUserModalClose();
@@ -141,7 +144,7 @@ class UserAdministration extends React.Component {
           this.setProcessingStatus(false);
         })
       :
-      this.props.userStore.update(user.login, user.email, user.firstName, user.lastName)
+      this.props.userStore.update(updatedUser.login, updatedUser.email, updatedUser.firstName, updatedUser.lastName)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleUserModalClose();
