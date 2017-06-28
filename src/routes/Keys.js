@@ -288,21 +288,24 @@ class Keys extends React.Component {
   /**
    * Handles the key modal save event.
    *
+   * @param {object} payload - The key payload
    * @callback handleKeyModalSave
    */
-  handleKeyModalSave = () => {
-    const {key, keyModalCreationMode} = this.state;
+  handleKeyModalSave = (payload) => {
     this.setProcessingStatus(true);
+    const {key, keyModalCreationMode} = this.state;
+    const updatedKey = update(key, {$merge: payload});
+    this.setState({key: updatedKey});
     keyModalCreationMode
       ?
-      this.props.keyStore.create(key.categoryId, key.name, key.login, key.password)
+      this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, updatedKey.login, updatedKey.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
         .catch(() => this.setProcessingStatus(false))
       :
-      this.props.keyStore.update(key.id, key.name, key.login, key.password)
+      this.props.keyStore.update(updatedKey.id, updatedKey.name, updatedKey.login, updatedKey.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();

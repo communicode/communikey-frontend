@@ -22,6 +22,161 @@ import "antd/lib/tree-select/style/index.less";
 import "./KeyModal.less";
 
 /**
+ * The managed form component.
+ *
+ * @since 0.10.0
+ */
+const ManagedForm = Form.create()(
+  (props) => {
+    const {administrationMode, cckeyKey, creationMode, categoryTreeSelect, form, locked, keyPasswordVisible} = props;
+    const {getFieldDecorator} = form;
+
+    return (
+      <Form hideRequiredMark={true}>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("name") ? "error" : ""}
+          label="Name"
+          colon={false}
+        >
+          {getFieldDecorator("name", {
+            initialValue: cckeyKey.name,
+            rules: [{required: true, message: "Name is required"}]
+          })(
+            <Input
+              placeholder="Name"
+              suffix={cckeyKey.name ? copyToClipboardIcon(cckeyKey.name) : null}
+              readOnly={!administrationMode}
+            />)}
+        </Form.Item>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("login") ? "error" : ""}
+          label="Login"
+          colon={false}
+        >
+          {getFieldDecorator("login", {
+            initialValue: cckeyKey.login,
+            rules: [{required: true, message: "Login is required"}]
+          })(
+            <Input
+              placeholder="Login"
+              suffix={cckeyKey.login ? copyToClipboardIcon(cckeyKey.login) : null}
+              readOnly={!administrationMode}
+            />
+          )}
+        </Form.Item>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("password") ? "error" : ""}
+          label="Password"
+          colon={false}
+        >
+          {getFieldDecorator("password", {
+            initialValue: cckeyKey.password,
+            rules: [{required: true, message: "Password is required"}]
+          })(
+            <Input
+              placeholder="Password"
+              type={keyPasswordVisible ? "text" : "password"}
+              readOnly={!administrationMode ? true : creationMode ? false : locked}
+              suffix={cckeyKey.password ? copyToClipboardIcon(cckeyKey.password) : null}
+            />
+          )}
+        </Form.Item>
+        {creationMode && administrationMode && categoryTreeSelect()}
+        {!creationMode && administrationMode &&
+        <div>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="id"
+              addonBefore="ID"
+              value={cckeyKey.id}
+              readOnly={true}
+              disabled={!cckeyKey.id}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="createdBy"
+              addonBefore="Created by"
+              value={cckeyKey.createdBy}
+              readOnly={true}
+              disabled={!cckeyKey.createdBy}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="createdDate"
+              addonBefore="Created on"
+              value={cckeyKey.createdDate && new Date(cckeyKey.createdDate).toLocaleString()}
+              readOnly={true}
+              disabled={!cckeyKey.createdDate}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="lastModifiedBy"
+              addonBefore="Modified by"
+              value={cckeyKey.lastModifiedBy}
+              readOnly={true}
+              disabled={!cckeyKey.lastModifiedBy}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="lastModifiedDate"
+              addonBefore="Modified on"
+              value={cckeyKey.lastModifiedDate && new Date(cckeyKey.lastModifiedDate).toLocaleString()}
+              readOnly={true}
+              disabled={!cckeyKey.lastModifiedDate}
+            />
+          </Form.Item>
+        </div>
+        }
+      </Form>
+    );
+  }
+);
+
+/**
+ * The icon to copy a value to the clipboard.
+ *
+ * @param value - The value to copy
+ */
+const copyToClipboardIcon = (value) => (
+  <CopyToClipboard text={value}>
+    <Tooltip title="Copied to clipboard" trigger="click">
+      <Icon type="copy" className="copy-to-clipboard-icon"/>
+    </Tooltip>
+  </CopyToClipboard>
+);
+
+/**
+ * Layout configurations for all managed form items.
+ */
+const managedFormItemLayout = {
+  labelCol: {
+    xs: {span: 24},
+    sm: {span: 4}
+  },
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 18}
+  }
+};
+
+/**
+ * Layout configurations for all read-only form items.
+ */
+const readOnlyFormItemLayout = {
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 18, offset: 4}
+  }
+};
+
+/**
  * A modal for keys.
  *
  * @author dvonderbey@communicode.de
@@ -83,13 +238,40 @@ class KeyModal extends React.Component {
   generateCategoryTreeSelectNodes = categories => categories.map(category => {
     if (category.children.length) {
       return (
-        <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={<span><Icon type="folder"/> {category.data.name}</span>}>
+        <Tree.TreeNode
+          key={category.data.id}
+          value={category.data.name}
+          category={category.data}
+          title={<span><Icon type="folder"/>{category.data.name}</span>}
+        >
           {this.generateCategoryTreeSelectNodes(category.children)}
         </Tree.TreeNode>
       );
     }
     return <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={category.data.name}/>;
   });
+
+  /**
+   * Handles the action button click event.
+   *
+   * @since 0.10.0
+   */
+  handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
+    if (!errors) {
+      this.props.onSave(payload);
+      this.form.resetFields();
+    }
+  });
+
+  /**
+   * Handles the close event.
+   *
+   * @since 0.10.0
+   */
+  handleOnClose = () => {
+    this.form.resetFields();
+    this.props.onClose();
+  };
 
   /**
    * Handles the category tree select modal change event.
@@ -129,7 +311,18 @@ class KeyModal extends React.Component {
    */
   toggleCategoryTreeSelectModal = () => this.setState(prevState => ({categoryTreeSelectModalVisible: !prevState.categoryTreeSelectModalVisible}));
 
+  /**
+   * Toggles the password visibility.
+   */
   togglePasswordVisibility = () => this.setState(prevState => ({keyPasswordVisible: !prevState.keyPasswordVisible}));
+
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param form - The form to save the reference to
+   * @since 0.10.0
+   */
+  saveManagedFormRef = (form) => this.form = form;
 
   render() {
     const {
@@ -142,138 +335,16 @@ class KeyModal extends React.Component {
       onCategoryTreeSelectValueChange,
       onClose,
       onDelete,
-      onInputValueChange,
       onSave,
       toggleLockStatus,
       ...modalProps
     } = this.props;
-
     const {categoryTreeSelectModalSelectedCategory, categoryTreeSelectModalVisible, keyPasswordVisible} = this.state;
-
-    /**
-     * Layout configurations for all editable form items.
-     */
-    const editableFormItemLayout = {
-      labelCol: {
-        xs: {span: 24},
-        sm: {span: 4}
-      },
-      wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 18}
-      }
-    };
-
-    /**
-     * Layout configurations for all read-only form items.
-     */
-    const readOnlyFormItemLayout = {
-      wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 18, offset: 4}
-      }
-    };
-
-    const copyToClipboardIcon = (value) => (
-      <CopyToClipboard text={value}>
-        <Tooltip title="Copied to clipboard" trigger="click">
-          <Icon type="copy" className="copy-to-clipboard-icon"/>
-        </Tooltip>
-      </CopyToClipboard>
-    );
 
     const defaultKeyAvatar = () => <img src={appConfig.assets.logoTypographyGreen} className="key-logo"/>;
 
-    const formItems = () => (
-      <div>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="id"
-            addonBefore="ID"
-            value={cckeyKey.id}
-            readOnly={true}
-            disabled={!cckeyKey.id}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="createdBy"
-            addonBefore="Created by"
-            value={cckeyKey.createdBy}
-            readOnly={true}
-            disabled={!cckeyKey.createdBy}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="createdDate"
-            addonBefore="Created on"
-            value={cckeyKey.createdDate && new Date(cckeyKey.createdDate).toLocaleString()}
-            readOnly={true}
-            disabled={!cckeyKey.createdDate}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="lastModifiedBy"
-            addonBefore="Modified by"
-            value={cckeyKey.lastModifiedBy}
-            readOnly={true}
-            disabled={!cckeyKey.lastModifiedBy}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="lastModifiedDate"
-            addonBefore="Modified on"
-            value={cckeyKey.lastModifiedDate && new Date(cckeyKey.lastModifiedDate).toLocaleString()}
-            readOnly={true}
-            disabled={!cckeyKey.lastModifiedDate}
-          />
-        </Form.Item>
-      </div>
-    );
-
-    const form = () => (
-      <Form>
-        <Form.Item {...editableFormItemLayout} label="Name" colon={false}>
-          <Input
-            name="name"
-            onChange={onInputValueChange}
-            placeholder="Name"
-            suffix={cckeyKey.name ? copyToClipboardIcon(cckeyKey.name) : null}
-            readOnly={!administrationMode}
-            value={cckeyKey.name}
-          />
-        </Form.Item>
-        <Form.Item {...editableFormItemLayout} label="Login" colon={false}>
-          <Input
-            name="login"
-            onChange={onInputValueChange}
-            placeholder="Login"
-            suffix={cckeyKey.login ? copyToClipboardIcon(cckeyKey.login) : null}
-            readOnly={!administrationMode}
-            value={cckeyKey.login}
-          />
-        </Form.Item>
-        <Form.Item {...editableFormItemLayout} label="Password" colon={false}>
-          <Input
-            name="password"
-            onChange={onInputValueChange}
-            placeholder="Password"
-            type={keyPasswordVisible ? "text" : "password"}
-            readOnly={!administrationMode ? true : creationMode ? false : locked}
-            suffix={cckeyKey.password ? copyToClipboardIcon(cckeyKey.password) : null}
-            value={cckeyKey.password}
-          />
-        </Form.Item>
-        {creationMode && administrationMode && categoryTreeSelect()}
-        {!creationMode && administrationMode && formItems()}
-      </Form>
-    );
-
     const categoryTreeSelect = () => (
-      <Form.Item {...editableFormItemLayout} label="Category" colon={false}>
+      <Form.Item {...managedFormItemLayout} label="Category" colon={false}>
         <TreeSelect
           showSearch={true}
           onChange={onCategoryTreeSelectValueChange}
@@ -317,8 +388,9 @@ class KeyModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              <Button key="cancel" size="large" onClick={onClose}>Cancel</Button>
-              <Button key="save" type="primary" size="large" onClick={onSave} loading={loading}>{creationMode ? "Create" : "Done"}</Button>
+              <Button size="large" onClick={this.handleOnClose}>Cancel</Button>
+              <Button type="primary" size="large" onClick={this.handleActionButtonOnClick} loading={loading}>{creationMode ? "Create" : "Done"}
+              </Button>
             </div>
           </Col>
         </Row>
@@ -382,7 +454,17 @@ class KeyModal extends React.Component {
           <Col span={6}>
             {defaultKeyAvatar()}
           </Col>
-          <Col span={18}>{form()}</Col>
+          <Col span={18}>
+            <ManagedForm
+              ref={this.saveManagedFormRef}
+              cckeyKey={cckeyKey}
+              administrationMode={administrationMode}
+              locked={locked}
+              keyPasswordVisible={keyPasswordVisible}
+              creationMode={creationMode}
+              categoryTreeSelect={categoryTreeSelect}
+            />
+          </Col>
         </Row>
         <Row span={4}>
           {!creationMode && administrationMode && lockStatusButton()}
