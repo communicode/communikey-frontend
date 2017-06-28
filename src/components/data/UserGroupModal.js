@@ -19,6 +19,126 @@ import "antd/lib/tooltip/style/index.less";
 import "./UserGroupModal.less";
 
 /**
+ * The managed form component.
+ *
+ * @since 0.10.0
+ */
+const ManagedForm = Form.create()(
+  (props) => {
+    const {administrationMode, userGroup, creationMode, form} = props;
+    const {getFieldDecorator} = form;
+
+    return (
+      <Form hideRequiredMark={true}>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("name") ? "error" : ""}
+          label="Name"
+          colon={false}
+        >
+          {getFieldDecorator("name", {
+            initialValue: userGroup.name,
+            rules: [{required: true, message: "Name is required"}]
+          })(
+            <Input
+              placeholder="Name"
+              readOnly={!administrationMode}
+              suffix={userGroup.name ? copyToClipboardIcon(userGroup.name) : null}
+            />
+          )}
+        </Form.Item>
+        {!creationMode && administrationMode &&
+        <div>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="id"
+              addonBefore="ID"
+              value={userGroup.id}
+              readOnly={true}
+              disabled={!userGroup.id}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="createdBy"
+              addonBefore="Created by"
+              value={userGroup.createdBy}
+              readOnly={true}
+              disabled={!userGroup.createdBy}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="createdDate"
+              addonBefore="Created on"
+              value={userGroup.createdDate && new Date(userGroup.createdDate).toLocaleString()}
+              readOnly={true}
+              disabled={!userGroup.createdDate}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="lastModifiedBy"
+              addonBefore="Modified by"
+              value={userGroup.lastModifiedBy}
+              readOnly={true}
+              disabled={!userGroup.lastModifiedBy}
+            />
+          </Form.Item>
+          <Form.Item {...readOnlyFormItemLayout}>
+            <Input
+              name="lastModifiedDate"
+              addonBefore="Modified on"
+              value={userGroup.lastModifiedDate && new Date(userGroup.lastModifiedDate).toLocaleString()}
+              readOnly={true}
+              disabled={!userGroup.lastModifiedDate}
+            />
+          </Form.Item>
+        </div>
+        }
+      </Form>
+    );
+  }
+);
+
+/**
+ * The icon to copy a value to the clipboard.
+ *
+ * @param value - The value to copy
+ */
+const copyToClipboardIcon = (value) => (
+  <CopyToClipboard text={value}>
+    <Tooltip title="Copied to clipboard" trigger="click">
+      <Icon type="copy" className="copy-to-clipboard-icon"/>
+    </Tooltip>
+  </CopyToClipboard>
+);
+
+/**
+ * Layout configurations for all managed form items.
+ */
+const managedFormItemLayout = {
+  labelCol: {
+    xs: {span: 24},
+    sm: {span: 4}
+  },
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 18}
+  }
+};
+
+/**
+ * Layout configurations for all read-only form items.
+ */
+const readOnlyFormItemLayout = {
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 18, offset: 4}
+  }
+};
+
+/**
  * The default user table column configuration.
  */
 export const USER_TABLE_DEFAULT_COLUMNS = [
@@ -61,17 +181,31 @@ class UserGroupModal extends React.Component {
        *
        * @type {string}
        */
-      activeTabViewKey: TAB_PANE_REACT_KEY_GENERAL,
-
-      /**
-       * The original user group object.
-       * Used to compare changes.
-       *
-       * @type {object}
-       */
-      originalUserGroup: props.userGroup
+      activeTabViewKey: TAB_PANE_REACT_KEY_GENERAL
     };
   }
+
+  /**
+   * Handles the action button click event.
+   *
+   * @since 0.10.0
+   */
+  handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
+    if (!errors) {
+      this.props.onSave(payload);
+      this.form.resetFields();
+    }
+  });
+
+  /**
+   * Handles the close event.
+   *
+   * @since 0.10.0
+   */
+  handleOnClose = () => {
+    this.form.resetFields();
+    this.props.onClose();
+  };
 
   /**
    * Handles the table record selection event of the users tab view.
@@ -80,6 +214,14 @@ class UserGroupModal extends React.Component {
    * @param {boolean} selected - Determines whether the record has been selected or unselected
    */
   handleTabViewUsersOnRecordSelect = (record, selected) => selected ? this.props.onUserAdd(record) : this.props.onUserRemove(record);
+
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param form - The form to save the reference to
+   * @since 0.10.0
+   */
+  saveManagedFormRef = (form) => this.form = form;
 
   render() {
     const {
@@ -90,116 +232,17 @@ class UserGroupModal extends React.Component {
       onClose,
       onDelete,
       onSave,
-      onValueChange,
       toggleLockStatus,
       userGroup,
       users,
       ...modalProps
     } = this.props;
-    const {activeTabViewKey, originalUserGroup} = this.state;
+    const {activeTabViewKey} = this.state;
 
     const tabViewUsersTableConfig = {
       selectedRowKeys: userGroup.users,
       onSelect: this.handleTabViewUsersOnRecordSelect
     };
-
-    /**
-     * Layout configurations for all editable form items.
-     */
-    const editableFormItemLayout = {
-      labelCol: {
-        xs: {span: 24},
-        sm: {span: 4}
-      },
-      wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 18}
-      }
-    };
-
-    /**
-     * Layout configurations for all read-only form items.
-     */
-    const readOnlyFormItemLayout = {
-      wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 18, offset: 4}
-      }
-    };
-
-    const copyToClipboardIcon = (value) => (
-      <CopyToClipboard text={value}>
-        <Tooltip title="Copied to clipboard" trigger="click">
-          <Icon type="copy" className="copy-to-clipboard-icon"/>
-        </Tooltip>
-      </CopyToClipboard>
-    );
-
-    const formItems = () => (
-      <div>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="id"
-            addonBefore="ID"
-            value={userGroup.id}
-            readOnly={true}
-            disabled={!userGroup.id}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="createdBy"
-            addonBefore="Created by"
-            value={userGroup.createdBy}
-            readOnly={true}
-            disabled={!userGroup.createdBy}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="createdDate"
-            addonBefore="Created on"
-            value={userGroup.createdDate && new Date(userGroup.createdDate).toLocaleString()}
-            readOnly={true}
-            disabled={!userGroup.createdDate}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="lastModifiedBy"
-            addonBefore="Modified by"
-            value={userGroup.lastModifiedBy}
-            readOnly={true}
-            disabled={!userGroup.lastModifiedBy}
-          />
-        </Form.Item>
-        <Form.Item {...readOnlyFormItemLayout}>
-          <Input
-            name="lastModifiedDate"
-            addonBefore="Modified on"
-            value={userGroup.lastModifiedDate && new Date(userGroup.lastModifiedDate).toLocaleString()}
-            readOnly={true}
-            disabled={!userGroup.lastModifiedDate}
-          />
-        </Form.Item>
-      </div>
-    );
-
-    const form = () => (
-      <Form>
-        <Form.Item {...editableFormItemLayout} label="Name" colon={false}>
-          <Input
-            name="name"
-            onChange={onValueChange}
-            placeholder="Name"
-            readOnly={!administrationMode}
-            value={userGroup.name ? userGroup.name : null}
-            suffix={userGroup.name ? copyToClipboardIcon(userGroup.name) : null}
-          />
-        </Form.Item>
-        {!creationMode && administrationMode && formItems()}
-      </Form>
-    );
 
     const lockStatusButton = () => (
       <Tooltip title={locked ? "Unlock" : "Lock"}>
@@ -221,14 +264,8 @@ class UserGroupModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              <Button key="cancel" size="large" onClick={onClose}>Cancel</Button>
-              <Button
-                key="save"
-                type="primary"
-                size="large"
-                onClick={_.isEqual(userGroup, originalUserGroup) ? onClose : onSave}
-                loading={loading}
-              >
+              <Button size="large" onClick={this.handleOnClose}>Cancel</Button>
+              <Button type="primary" size="large" onClick={this.handleActionButtonOnClick} loading={loading}>
                 {creationMode ? "Create" : "Done"}
               </Button>
             </div>
@@ -258,7 +295,14 @@ class UserGroupModal extends React.Component {
     const tabViewGeneral = () => (
       <Tabs.TabPane tab="General" key={TAB_PANE_REACT_KEY_GENERAL}>
         <Row>
-          <Col span={24}>{form()}</Col>
+          <Col span={24}>
+            <ManagedForm
+              ref={this.saveManagedFormRef}
+              userGroup={userGroup}
+              administrationMode={administrationMode}
+              creationMode={creationMode}
+            />
+          </Col>
         </Row>
         {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
       </Tabs.TabPane>
