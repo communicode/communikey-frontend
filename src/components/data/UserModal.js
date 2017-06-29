@@ -343,7 +343,6 @@ class UserModal extends React.Component {
       locked,
       onClose,
       onDelete,
-      onGeneratePasswordResetToken,
       onSave,
       onUserActivate,
       onUserDeactivate,
@@ -358,10 +357,6 @@ class UserModal extends React.Component {
      * Operations name constants and the name of the callback function.
      */
     const OPERATION_TYPES = {
-      GENERATE_PASSWORD_RESET_TOKEN: {
-        keyName: "GENERATE_PASSWORD_RESET_TOKEN",
-        handler: onGeneratePasswordResetToken
-      },
       RESET_PASSWORD: {
         keyName: "RESET_PASSWORD",
         handler: this.togglePasswordResetModal
@@ -380,11 +375,7 @@ class UserModal extends React.Component {
 
     const footerOperationsDropdownMenu = (
       <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
-        <Menu.Item
-          key={OPERATION_TYPES.GENERATE_PASSWORD_RESET_TOKEN.keyName}
-          disabled={!!(locked || user.resetKey || !user.activated)}>Generate password reset token
-        </Menu.Item>
-        <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={locked || !user.resetKey}>Reset password</Menu.Item>
+        <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={locked || !user.activated}>Reset password</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_ACTIVATE.keyName} disabled={locked || user.activated}>Activate</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_DEACTIVATE.keyName} disabled={locked || !user.activated}>Deactivate</Menu.Item>
       </Menu>
@@ -568,13 +559,6 @@ UserModal.propTypes = {
    * @type {function}
    */
   onDelete: PropTypes.func,
-
-  /**
-   * Callback function to handle the password reset token generation events.
-   *
-   * @type {function}
-   */
-  onGeneratePasswordResetToken: PropTypes.func,
 
   /**
    * Callback function to handle the save event.
