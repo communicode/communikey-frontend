@@ -463,7 +463,7 @@ class Keys extends React.Component {
     );
 
     const tabViewPool = () => (
-      <Tabs.TabPane tab="Pool" key={TAB_PANE_REACT_KEY_POOL}>
+      <Tabs.TabPane tab="Key Pool" key={TAB_PANE_REACT_KEY_POOL}>
         <Row>
           <Col span={24}>
             {keyStore.keys.length
