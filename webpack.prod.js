@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const BabiliPlugin = require("babili-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const path = require("path");
 
 if (typeof process.env.COMMUNIKEY_BACKEND_URL === "undefined") {
@@ -92,6 +93,9 @@ module.exports = {
     extractLess,
     new HtmlWebpackPlugin({
       template: "./src/index.html"
+    }),
+    new FaviconsWebpackPlugin({
+      logo: "./src/assets/images/communikey-logo-light-dropshadow.svg"
     }),
     new webpack.DefinePlugin({
       "process.env": {
