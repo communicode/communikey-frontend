@@ -72,7 +72,7 @@
       "/dist/"
     ],
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/test/__mockData__/CSSStub.js"
+      "\\.(css|less)$": "<rootDir>/test/__mockData__/style.js"
     }
   },
   "name": "communikey",
