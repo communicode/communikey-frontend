@@ -45,7 +45,10 @@
     "webpack": "2.2.1"
   },
   "devDependencies": {
+    "enzyme": "^2.9.1",
     "mobx-react-devtools": "4.2.13",
+    "react-addons-test-utils": "^15.6.0",
+    "react-dom": "^15.4.2",
     "webpack-dev-server": "2.4.2"
   },
   "scripts": {
@@ -67,7 +70,10 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/dist/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/test/__mockData__/CSSStub.js"
+    }
   },
   "name": "communikey",
   "version": "0.1.0",
