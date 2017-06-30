@@ -43,14 +43,6 @@ class UserGroupAdministration extends React.Component {
   }
 
   /**
-   * Handles all input value change events.
-   *
-   * @callback handleModalValueChange
-   * @param event - The change event
-   */
-  handleModalValueChange = (event) => this.setState({userGroup: update(this.state.userGroup, {[event.target.name]: {$set: event.target.value}})});
-
-  /**
    * Handles the user group modal close event.
    *
    * @callback handleUserGroupModalClose
@@ -89,14 +81,17 @@ class UserGroupAdministration extends React.Component {
   /**
    * Handles the user group modal save event.
    *
+   * @param {object} payload - The key payload
    * @callback handleUserGroupModalSave
    */
-  handleUserGroupModalSave = () => {
-    const {userGroup, userGroupModalCreationMode} = this.state;
+  handleUserGroupModalSave = (payload) => {
     this.setProcessingStatus(true);
+    const {userGroup, userGroupModalCreationMode} = this.state;
+    const updatedUserGroup = update(userGroup, {$merge: payload});
+    this.setState({userGroup: updatedUserGroup});
     userGroupModalCreationMode
       ?
-      this.props.userGroupStore.create(userGroup.name)
+      this.props.userGroupStore.create(updatedUserGroup.name)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleUserGroupModalClose();
@@ -106,7 +101,7 @@ class UserGroupAdministration extends React.Component {
           this.setProcessingStatus(false);
         })
       :
-      this.props.userGroupStore.update(userGroup.id, userGroup)
+      this.props.userGroupStore.update(updatedUserGroup.id, updatedUserGroup)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleUserGroupModalClose();
@@ -246,7 +241,6 @@ class UserGroupAdministration extends React.Component {
         onSave={this.handleUserGroupModalSave}
         onUserAdd={this.handleUserGroupModalOnUserAdd}
         onUserRemove={this.handleUserGroupModalOnUserRemove}
-        onValueChange={this.handleModalValueChange}
         toggleLockStatus={this.toggleUserGroupModalLockStatus}
       />
     );
