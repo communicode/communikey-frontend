@@ -23,6 +23,7 @@
     "eslint-plugin-jest": "20.0.3",
     "eslint-plugin-react": "7.0.1",
     "extract-text-webpack-plugin": "2.1.0",
+    "favicons-webpack-plugin": "0.0.7",
     "file-loader": "0.10.1",
     "html-webpack-plugin": "2.28.0",
     "immutability-helper": "2.2.0",
