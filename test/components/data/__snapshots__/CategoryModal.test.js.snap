@@ -1,0 +1,631 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CategoryModal> should render correctly with sample data 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <Modal
+    className="cckey-category-modal"
+    closable={false}
+    confirmLoading={false}
+    footer={false}
+    maskTransitionName="fade"
+    onClose={[Function]}
+    onSave={undefined}
+    prefixCls="ant-modal"
+    transitionName="zoom"
+    visible={false}
+    width={520}
+>
+    <Row
+        align="center"
+        gutter={0}
+        type="flex"
+    >
+        <Col
+            span={18}
+        >
+            <Form
+                hideRequiredMark={false}
+                layout="horizontal"
+                onSubmit={[Function]}
+                prefixCls="ant-form"
+            >
+                <FormItem
+                    colon={false}
+                    hasFeedback={false}
+                    label="Name"
+                    prefixCls="ant-form"
+                >
+                    <Input
+                        autosize={false}
+                        disabled={false}
+                        name="name"
+                        onChange={undefined}
+                        placeholder="Name"
+                        prefixCls="ant-input"
+                        readOnly={true}
+                        suffix={
+                            <CopyToClipboard
+                                text="ssh"
+                            >
+                                <Tooltip
+                                    arrowPointAtCenter={false}
+                                    mouseEnterDelay={0.1}
+                                    mouseLeaveDelay={0.1}
+                                    placement="top"
+                                    prefixCls="ant-tooltip"
+                                    title="Copied to clipboard"
+                                    transitionName="zoom-big-fast"
+                                    trigger="click"
+                                >
+                                    <Icon
+                                        className="copy-to-clipboard-icon"
+                                        type="copy"
+                                    />
+                                </Tooltip>
+                            </CopyToClipboard>
+                        }
+                        type="text"
+                        value="ssh"
+                    />
+                </FormItem>
+            </Form>
+        </Col>
+    </Row>
+    <Row
+        gutter={0}
+    >
+        <Col>
+            <div
+                className="footer"
+            >
+                <Row
+                    align="middle"
+                    gutter={0}
+                    type="flex"
+                >
+                    <Col
+                        span={8}
+                    >
+                        <div
+                            className="operations"
+                        >
+                            
+                        </div>
+                    </Col>
+                    <Col
+                        offset={8}
+                        span={8}
+                    >
+                        <div
+                            className="main"
+                        >
+                            <Button
+                                clicked={false}
+                                ghost={false}
+                                loading={false}
+                                onClick={[Function]}
+                                prefixCls="ant-btn"
+                                size="large"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                clicked={false}
+                                ghost={false}
+                                loading={false}
+                                onClick={undefined}
+                                prefixCls="ant-btn"
+                                size="large"
+                                type="primary"
+                            >
+                                Done
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
+            </div>
+        </Col>
+    </Row>
+</Modal>,
+  "nodes": Array [
+    <Modal
+      className="cckey-category-modal"
+      closable={false}
+      confirmLoading={false}
+      footer={false}
+      maskTransitionName="fade"
+      onClose={[Function]}
+      onSave={undefined}
+      prefixCls="ant-modal"
+      transitionName="zoom"
+      visible={false}
+      width={520}
+>
+      <Row
+            align="center"
+            gutter={0}
+            type="flex"
+      >
+            <Col
+                  span={18}
+            >
+                  <Form
+                        hideRequiredMark={false}
+                        layout="horizontal"
+                        onSubmit={[Function]}
+                        prefixCls="ant-form"
+                  >
+                        <FormItem
+                              colon={false}
+                              hasFeedback={false}
+                              label="Name"
+                              prefixCls="ant-form"
+                        >
+                              <Input
+                                    autosize={false}
+                                    disabled={false}
+                                    name="name"
+                                    onChange={undefined}
+                                    placeholder="Name"
+                                    prefixCls="ant-input"
+                                    readOnly={true}
+                                    suffix={
+                                          <CopyToClipboard
+                                                text="ssh"
+                                          >
+                                                <Tooltip
+                                                      arrowPointAtCenter={false}
+                                                      mouseEnterDelay={0.1}
+                                                      mouseLeaveDelay={0.1}
+                                                      placement="top"
+                                                      prefixCls="ant-tooltip"
+                                                      title="Copied to clipboard"
+                                                      transitionName="zoom-big-fast"
+                                                      trigger="click"
+                                                >
+                                                      <Icon
+                                                            className="copy-to-clipboard-icon"
+                                                            type="copy"
+                                                      />
+                                                </Tooltip>
+                                          </CopyToClipboard>
+                                    }
+                                    type="text"
+                                    value="ssh"
+                              />
+                        </FormItem>
+                  </Form>
+            </Col>
+      </Row>
+      <Row
+            gutter={0}
+      >
+            <Col>
+                  <div
+                        className="footer"
+                  >
+                        <Row
+                              align="middle"
+                              gutter={0}
+                              type="flex"
+                        >
+                              <Col
+                                    span={8}
+                              >
+                                    <div
+                                          className="operations"
+                                    >
+                                          
+                                    </div>
+                              </Col>
+                              <Col
+                                    offset={8}
+                                    span={8}
+                              >
+                                    <div
+                                          className="main"
+                                    >
+                                          <Button
+                                                clicked={false}
+                                                ghost={false}
+                                                loading={false}
+                                                onClick={[Function]}
+                                                prefixCls="ant-btn"
+                                                size="large"
+                                          >
+                                                Cancel
+                                          </Button>
+                                          <Button
+                                                clicked={false}
+                                                ghost={false}
+                                                loading={false}
+                                                onClick={undefined}
+                                                prefixCls="ant-btn"
+                                                size="large"
+                                                type="primary"
+                                          >
+                                                Done
+                                          </Button>
+                                    </div>
+                              </Col>
+                        </Row>
+                  </div>
+            </Col>
+      </Row>
+</Modal>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <CategoryModal
+        administrationMode={false}
+        category={
+                Object {
+                        "children": Array [],
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T11:13:41.497+02:00",
+                        "creator": 1,
+                        "groups": Array [],
+                        "id": 3,
+                        "keys": Array [
+                          2,
+                        ],
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                        "name": "ssh",
+                        "parent": 2,
+                        "responsible": 1,
+                        "treeLevel": 2,
+                      }
+        }
+        creationMode={false}
+        loading={false}
+        onClose={[Function]}
+/>,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": CategoryModal {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "administrationMode": false,
+          "category": Object {
+            "children": Array [],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T11:13:41.497+02:00",
+            "creator": 1,
+            "groups": Array [],
+            "id": 3,
+            "keys": Array [
+              2,
+            ],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+            "name": "ssh",
+            "parent": 2,
+            "responsible": 1,
+            "treeLevel": 2,
+          },
+          "creationMode": false,
+          "loading": false,
+          "onClose": [Function],
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <Modal
+          className="cckey-category-modal"
+          closable={false}
+          confirmLoading={false}
+          footer={false}
+          maskTransitionName="fade"
+          onClose={[Function]}
+          onSave={undefined}
+          prefixCls="ant-modal"
+          transitionName="zoom"
+          visible={false}
+          width={520}
+>
+          <Row
+                    align="center"
+                    gutter={0}
+                    type="flex"
+          >
+                    <Col
+                              span={18}
+                    >
+                              <Form
+                                        hideRequiredMark={false}
+                                        layout="horizontal"
+                                        onSubmit={[Function]}
+                                        prefixCls="ant-form"
+                              >
+                                        <FormItem
+                                                  colon={false}
+                                                  hasFeedback={false}
+                                                  label="Name"
+                                                  prefixCls="ant-form"
+                                        >
+                                                  <Input
+                                                            autosize={false}
+                                                            disabled={false}
+                                                            name="name"
+                                                            onChange={undefined}
+                                                            placeholder="Name"
+                                                            prefixCls="ant-input"
+                                                            readOnly={true}
+                                                            suffix={
+                                                                      <CopyToClipboard
+                                                                                text="ssh"
+                                                                      >
+                                                                                <Tooltip
+                                                                                          arrowPointAtCenter={false}
+                                                                                          mouseEnterDelay={0.1}
+                                                                                          mouseLeaveDelay={0.1}
+                                                                                          placement="top"
+                                                                                          prefixCls="ant-tooltip"
+                                                                                          title="Copied to clipboard"
+                                                                                          transitionName="zoom-big-fast"
+                                                                                          trigger="click"
+                                                                                >
+                                                                                          <Icon
+                                                                                                    className="copy-to-clipboard-icon"
+                                                                                                    type="copy"
+                                                                                          />
+                                                                                </Tooltip>
+                                                                      </CopyToClipboard>
+                                                            }
+                                                            type="text"
+                                                            value="ssh"
+                                                  />
+                                        </FormItem>
+                              </Form>
+                    </Col>
+          </Row>
+          <Row
+                    gutter={0}
+          >
+                    <Col>
+                              <div
+                                        className="footer"
+                              >
+                                        <Row
+                                                  align="middle"
+                                                  gutter={0}
+                                                  type="flex"
+                                        >
+                                                  <Col
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="operations"
+                                                            >
+                                                                      
+                                                            </div>
+                                                  </Col>
+                                                  <Col
+                                                            offset={8}
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="main"
+                                                            >
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                      >
+                                                                                Cancel
+                                                                      </Button>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={undefined}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                                type="primary"
+                                                                      >
+                                                                                Done
+                                                                      </Button>
+                                                            </div>
+                                                  </Col>
+                                        </Row>
+                              </div>
+                    </Col>
+          </Row>
+</Modal>,
+        "_debugID": 2,
+        "_renderedOutput": <Modal
+          className="cckey-category-modal"
+          closable={false}
+          confirmLoading={false}
+          footer={false}
+          maskTransitionName="fade"
+          onClose={[Function]}
+          onSave={undefined}
+          prefixCls="ant-modal"
+          transitionName="zoom"
+          visible={false}
+          width={520}
+>
+          <Row
+                    align="center"
+                    gutter={0}
+                    type="flex"
+          >
+                    <Col
+                              span={18}
+                    >
+                              <Form
+                                        hideRequiredMark={false}
+                                        layout="horizontal"
+                                        onSubmit={[Function]}
+                                        prefixCls="ant-form"
+                              >
+                                        <FormItem
+                                                  colon={false}
+                                                  hasFeedback={false}
+                                                  label="Name"
+                                                  prefixCls="ant-form"
+                                        >
+                                                  <Input
+                                                            autosize={false}
+                                                            disabled={false}
+                                                            name="name"
+                                                            onChange={undefined}
+                                                            placeholder="Name"
+                                                            prefixCls="ant-input"
+                                                            readOnly={true}
+                                                            suffix={
+                                                                      <CopyToClipboard
+                                                                                text="ssh"
+                                                                      >
+                                                                                <Tooltip
+                                                                                          arrowPointAtCenter={false}
+                                                                                          mouseEnterDelay={0.1}
+                                                                                          mouseLeaveDelay={0.1}
+                                                                                          placement="top"
+                                                                                          prefixCls="ant-tooltip"
+                                                                                          title="Copied to clipboard"
+                                                                                          transitionName="zoom-big-fast"
+                                                                                          trigger="click"
+                                                                                >
+                                                                                          <Icon
+                                                                                                    className="copy-to-clipboard-icon"
+                                                                                                    type="copy"
+                                                                                          />
+                                                                                </Tooltip>
+                                                                      </CopyToClipboard>
+                                                            }
+                                                            type="text"
+                                                            value="ssh"
+                                                  />
+                                        </FormItem>
+                              </Form>
+                    </Col>
+          </Row>
+          <Row
+                    gutter={0}
+          >
+                    <Col>
+                              <div
+                                        className="footer"
+                              >
+                                        <Row
+                                                  align="middle"
+                                                  gutter={0}
+                                                  type="flex"
+                                        >
+                                                  <Col
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="operations"
+                                                            >
+                                                                      
+                                                            </div>
+                                                  </Col>
+                                                  <Col
+                                                            offset={8}
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="main"
+                                                            >
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                      >
+                                                                                Cancel
+                                                                      </Button>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={undefined}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                                type="primary"
+                                                                      >
+                                                                                Done
+                                                                      </Button>
+                                                            </div>
+                                                  </Col>
+                                        </Row>
+                              </div>
+                    </Col>
+          </Row>
+</Modal>,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <CategoryModal
+    administrationMode={false}
+    category={
+        Object {
+            "children": Array [],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T11:13:41.497+02:00",
+            "creator": 1,
+            "groups": Array [],
+            "id": 3,
+            "keys": Array [
+              2,
+            ],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+            "name": "ssh",
+            "parent": 2,
+            "responsible": 1,
+            "treeLevel": 2,
+          }
+    }
+    creationMode={false}
+    loading={false}
+    onClose={[Function]}
+/>,
+}
+`;

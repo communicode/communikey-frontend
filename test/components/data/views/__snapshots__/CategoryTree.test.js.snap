@@ -1,0 +1,975 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CategoryTree> should render correctly with sample data 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <Tree
+    checkable={false}
+    draggable={false}
+    expandedKeys={undefined}
+    onDrop={undefined}
+    onExpand={undefined}
+    onSelect={[Function]}
+    openAnimation={
+        Object {
+            "appear": [Function],
+            "enter": [Function],
+            "leave": [Function],
+          }
+    }
+    prefixCls="ant-tree"
+    selectedKeys={undefined}
+    showIcon={false}
+>
+    <TreeNode
+        category={
+            Object {
+                "children": Array [
+                  5,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:46.691+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 4,
+                "keys": Array [],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                "name": "intern",
+                "parent": null,
+                "responsible": 1,
+                "treeLevel": 0,
+              }
+        }
+        title={
+            <span>
+                <Icon
+                    type="folder"
+                />
+                 
+                intern
+            </span>
+        }
+    >
+        <TreeNode
+            category={
+                Object {
+                    "children": Array [],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T11:13:53.821+02:00",
+                    "creator": 1,
+                    "groups": Array [],
+                    "id": 5,
+                    "keys": Array [
+                      3,
+                    ],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                    "name": "projektron bcs",
+                    "parent": 4,
+                    "responsible": 1,
+                    "treeLevel": 1,
+                  }
+            }
+            title="projektron bcs"
+        />
+    </TreeNode>
+    <TreeNode
+        category={
+            Object {
+                "children": Array [
+                  2,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:33.274+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 1,
+                "keys": Array [],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                "name": "vorwerk",
+                "parent": null,
+                "responsible": 1,
+                "treeLevel": 0,
+              }
+        }
+        title={
+            <span>
+                <Icon
+                    type="folder"
+                />
+                 
+                vorwerk
+            </span>
+        }
+    >
+        <TreeNode
+            category={
+                Object {
+                    "children": Array [
+                      3,
+                    ],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T11:13:37.557+02:00",
+                    "creator": 1,
+                    "groups": Array [],
+                    "id": 2,
+                    "keys": Array [
+                      1,
+                    ],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                    "name": "servers",
+                    "parent": 1,
+                    "responsible": 1,
+                    "treeLevel": 1,
+                  }
+            }
+            title={
+                <span>
+                    <Icon
+                        type="folder"
+                    />
+                     
+                    servers
+                </span>
+            }
+        >
+            <TreeNode
+                category={
+                    Object {
+                        "children": Array [],
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T11:13:41.497+02:00",
+                        "creator": 1,
+                        "groups": Array [],
+                        "id": 3,
+                        "keys": Array [
+                          2,
+                        ],
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                        "name": "ssh",
+                        "parent": 2,
+                        "responsible": 1,
+                        "treeLevel": 2,
+                      }
+                }
+                title="ssh"
+            />
+        </TreeNode>
+    </TreeNode>
+</Tree>,
+  "nodes": Array [
+    <Tree
+      checkable={false}
+      draggable={false}
+      expandedKeys={undefined}
+      onDrop={undefined}
+      onExpand={undefined}
+      onSelect={[Function]}
+      openAnimation={
+            Object {
+                  "appear": [Function],
+                  "enter": [Function],
+                  "leave": [Function],
+                }
+      }
+      prefixCls="ant-tree"
+      selectedKeys={undefined}
+      showIcon={false}
+>
+      <TreeNode
+            category={
+                  Object {
+                        "children": Array [
+                          5,
+                        ],
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T11:13:46.691+02:00",
+                        "creator": 1,
+                        "groups": Array [],
+                        "id": 4,
+                        "keys": Array [],
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                        "name": "intern",
+                        "parent": null,
+                        "responsible": 1,
+                        "treeLevel": 0,
+                      }
+            }
+            title={
+                  <span>
+                        <Icon
+                              type="folder"
+                        />
+                         
+                        intern
+                  </span>
+            }
+      >
+            <TreeNode
+                  category={
+                        Object {
+                              "children": Array [],
+                              "createdBy": "root",
+                              "createdDate": "2017-06-30T11:13:53.821+02:00",
+                              "creator": 1,
+                              "groups": Array [],
+                              "id": 5,
+                              "keys": Array [
+                                3,
+                              ],
+                              "lastModifiedBy": "root",
+                              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                              "name": "projektron bcs",
+                              "parent": 4,
+                              "responsible": 1,
+                              "treeLevel": 1,
+                            }
+                  }
+                  title="projektron bcs"
+            />
+      </TreeNode>
+      <TreeNode
+            category={
+                  Object {
+                        "children": Array [
+                          2,
+                        ],
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T11:13:33.274+02:00",
+                        "creator": 1,
+                        "groups": Array [],
+                        "id": 1,
+                        "keys": Array [],
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                        "name": "vorwerk",
+                        "parent": null,
+                        "responsible": 1,
+                        "treeLevel": 0,
+                      }
+            }
+            title={
+                  <span>
+                        <Icon
+                              type="folder"
+                        />
+                         
+                        vorwerk
+                  </span>
+            }
+      >
+            <TreeNode
+                  category={
+                        Object {
+                              "children": Array [
+                                3,
+                              ],
+                              "createdBy": "root",
+                              "createdDate": "2017-06-30T11:13:37.557+02:00",
+                              "creator": 1,
+                              "groups": Array [],
+                              "id": 2,
+                              "keys": Array [
+                                1,
+                              ],
+                              "lastModifiedBy": "root",
+                              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                              "name": "servers",
+                              "parent": 1,
+                              "responsible": 1,
+                              "treeLevel": 1,
+                            }
+                  }
+                  title={
+                        <span>
+                              <Icon
+                                    type="folder"
+                              />
+                               
+                              servers
+                        </span>
+                  }
+            >
+                  <TreeNode
+                        category={
+                              Object {
+                                    "children": Array [],
+                                    "createdBy": "root",
+                                    "createdDate": "2017-06-30T11:13:41.497+02:00",
+                                    "creator": 1,
+                                    "groups": Array [],
+                                    "id": 3,
+                                    "keys": Array [
+                                      2,
+                                    ],
+                                    "lastModifiedBy": "root",
+                                    "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                                    "name": "ssh",
+                                    "parent": 2,
+                                    "responsible": 1,
+                                    "treeLevel": 2,
+                                  }
+                        }
+                        title="ssh"
+                  />
+            </TreeNode>
+      </TreeNode>
+</Tree>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <CategoryTree
+        categories={
+                Array [
+                        Object {
+                          "children": Array [],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T11:13:41.497+02:00",
+                          "creator": 1,
+                          "groups": Array [],
+                          "id": 3,
+                          "keys": Array [
+                            2,
+                          ],
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                          "name": "ssh",
+                          "parent": 2,
+                          "responsible": 1,
+                          "treeLevel": 2,
+                        },
+                        Object {
+                          "children": Array [
+                            5,
+                          ],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T11:13:46.691+02:00",
+                          "creator": 1,
+                          "groups": Array [],
+                          "id": 4,
+                          "keys": Array [],
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                          "name": "intern",
+                          "parent": null,
+                          "responsible": 1,
+                          "treeLevel": 0,
+                        },
+                        Object {
+                          "children": Array [
+                            2,
+                          ],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T11:13:33.274+02:00",
+                          "creator": 1,
+                          "groups": Array [],
+                          "id": 1,
+                          "keys": Array [],
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                          "name": "vorwerk",
+                          "parent": null,
+                          "responsible": 1,
+                          "treeLevel": 0,
+                        },
+                        Object {
+                          "children": Array [
+                            3,
+                          ],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T11:13:37.557+02:00",
+                          "creator": 1,
+                          "groups": Array [],
+                          "id": 2,
+                          "keys": Array [
+                            1,
+                          ],
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                          "name": "servers",
+                          "parent": 1,
+                          "responsible": 1,
+                          "treeLevel": 1,
+                        },
+                        Object {
+                          "children": Array [],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T11:13:53.821+02:00",
+                          "creator": 1,
+                          "groups": Array [],
+                          "id": 5,
+                          "keys": Array [
+                            3,
+                          ],
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                          "name": "projektron bcs",
+                          "parent": 4,
+                          "responsible": 1,
+                          "treeLevel": 1,
+                        },
+                      ]
+        }
+        draggable={false}
+        onSelect={[Function]}
+/>,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": CategoryTree {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "generateTreeFromFlatData": [Function],
+        "generateTreeNodes": [Function],
+        "props": Object {
+          "categories": Array [
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:41.497+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 3,
+              "keys": Array [
+                2,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+              "name": "ssh",
+              "parent": 2,
+              "responsible": 1,
+              "treeLevel": 2,
+            },
+            Object {
+              "children": Array [
+                5,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:46.691+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 4,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+              "name": "intern",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                2,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:33.274+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 1,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+              "name": "vorwerk",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                3,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:37.557+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 2,
+              "keys": Array [
+                1,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+              "name": "servers",
+              "parent": 1,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:53.821+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 5,
+              "keys": Array [
+                3,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+              "name": "projektron bcs",
+              "parent": 4,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+          ],
+          "draggable": false,
+          "onSelect": [Function],
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <Tree
+          checkable={false}
+          draggable={false}
+          expandedKeys={undefined}
+          onDrop={undefined}
+          onExpand={undefined}
+          onSelect={[Function]}
+          openAnimation={
+                    Object {
+                              "appear": [Function],
+                              "enter": [Function],
+                              "leave": [Function],
+                            }
+          }
+          prefixCls="ant-tree"
+          selectedKeys={undefined}
+          showIcon={false}
+>
+          <TreeNode
+                    category={
+                              Object {
+                                        "children": Array [
+                                          5,
+                                        ],
+                                        "createdBy": "root",
+                                        "createdDate": "2017-06-30T11:13:46.691+02:00",
+                                        "creator": 1,
+                                        "groups": Array [],
+                                        "id": 4,
+                                        "keys": Array [],
+                                        "lastModifiedBy": "root",
+                                        "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                                        "name": "intern",
+                                        "parent": null,
+                                        "responsible": 1,
+                                        "treeLevel": 0,
+                                      }
+                    }
+                    title={
+                              <span>
+                                        <Icon
+                                                  type="folder"
+                                        />
+                                         
+                                        intern
+                              </span>
+                    }
+          >
+                    <TreeNode
+                              category={
+                                        Object {
+                                                  "children": Array [],
+                                                  "createdBy": "root",
+                                                  "createdDate": "2017-06-30T11:13:53.821+02:00",
+                                                  "creator": 1,
+                                                  "groups": Array [],
+                                                  "id": 5,
+                                                  "keys": Array [
+                                                    3,
+                                                  ],
+                                                  "lastModifiedBy": "root",
+                                                  "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                                                  "name": "projektron bcs",
+                                                  "parent": 4,
+                                                  "responsible": 1,
+                                                  "treeLevel": 1,
+                                                }
+                              }
+                              title="projektron bcs"
+                    />
+          </TreeNode>
+          <TreeNode
+                    category={
+                              Object {
+                                        "children": Array [
+                                          2,
+                                        ],
+                                        "createdBy": "root",
+                                        "createdDate": "2017-06-30T11:13:33.274+02:00",
+                                        "creator": 1,
+                                        "groups": Array [],
+                                        "id": 1,
+                                        "keys": Array [],
+                                        "lastModifiedBy": "root",
+                                        "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                                        "name": "vorwerk",
+                                        "parent": null,
+                                        "responsible": 1,
+                                        "treeLevel": 0,
+                                      }
+                    }
+                    title={
+                              <span>
+                                        <Icon
+                                                  type="folder"
+                                        />
+                                         
+                                        vorwerk
+                              </span>
+                    }
+          >
+                    <TreeNode
+                              category={
+                                        Object {
+                                                  "children": Array [
+                                                    3,
+                                                  ],
+                                                  "createdBy": "root",
+                                                  "createdDate": "2017-06-30T11:13:37.557+02:00",
+                                                  "creator": 1,
+                                                  "groups": Array [],
+                                                  "id": 2,
+                                                  "keys": Array [
+                                                    1,
+                                                  ],
+                                                  "lastModifiedBy": "root",
+                                                  "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                                                  "name": "servers",
+                                                  "parent": 1,
+                                                  "responsible": 1,
+                                                  "treeLevel": 1,
+                                                }
+                              }
+                              title={
+                                        <span>
+                                                  <Icon
+                                                            type="folder"
+                                                  />
+                                                   
+                                                  servers
+                                        </span>
+                              }
+                    >
+                              <TreeNode
+                                        category={
+                                                  Object {
+                                                            "children": Array [],
+                                                            "createdBy": "root",
+                                                            "createdDate": "2017-06-30T11:13:41.497+02:00",
+                                                            "creator": 1,
+                                                            "groups": Array [],
+                                                            "id": 3,
+                                                            "keys": Array [
+                                                              2,
+                                                            ],
+                                                            "lastModifiedBy": "root",
+                                                            "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                                                            "name": "ssh",
+                                                            "parent": 2,
+                                                            "responsible": 1,
+                                                            "treeLevel": 2,
+                                                          }
+                                        }
+                                        title="ssh"
+                              />
+                    </TreeNode>
+          </TreeNode>
+</Tree>,
+        "_debugID": 2,
+        "_renderedOutput": <Tree
+          checkable={false}
+          draggable={false}
+          expandedKeys={undefined}
+          onDrop={undefined}
+          onExpand={undefined}
+          onSelect={[Function]}
+          openAnimation={
+                    Object {
+                              "appear": [Function],
+                              "enter": [Function],
+                              "leave": [Function],
+                            }
+          }
+          prefixCls="ant-tree"
+          selectedKeys={undefined}
+          showIcon={false}
+>
+          <TreeNode
+                    category={
+                              Object {
+                                        "children": Array [
+                                          5,
+                                        ],
+                                        "createdBy": "root",
+                                        "createdDate": "2017-06-30T11:13:46.691+02:00",
+                                        "creator": 1,
+                                        "groups": Array [],
+                                        "id": 4,
+                                        "keys": Array [],
+                                        "lastModifiedBy": "root",
+                                        "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                                        "name": "intern",
+                                        "parent": null,
+                                        "responsible": 1,
+                                        "treeLevel": 0,
+                                      }
+                    }
+                    title={
+                              <span>
+                                        <Icon
+                                                  type="folder"
+                                        />
+                                         
+                                        intern
+                              </span>
+                    }
+          >
+                    <TreeNode
+                              category={
+                                        Object {
+                                                  "children": Array [],
+                                                  "createdBy": "root",
+                                                  "createdDate": "2017-06-30T11:13:53.821+02:00",
+                                                  "creator": 1,
+                                                  "groups": Array [],
+                                                  "id": 5,
+                                                  "keys": Array [
+                                                    3,
+                                                  ],
+                                                  "lastModifiedBy": "root",
+                                                  "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                                                  "name": "projektron bcs",
+                                                  "parent": 4,
+                                                  "responsible": 1,
+                                                  "treeLevel": 1,
+                                                }
+                              }
+                              title="projektron bcs"
+                    />
+          </TreeNode>
+          <TreeNode
+                    category={
+                              Object {
+                                        "children": Array [
+                                          2,
+                                        ],
+                                        "createdBy": "root",
+                                        "createdDate": "2017-06-30T11:13:33.274+02:00",
+                                        "creator": 1,
+                                        "groups": Array [],
+                                        "id": 1,
+                                        "keys": Array [],
+                                        "lastModifiedBy": "root",
+                                        "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                                        "name": "vorwerk",
+                                        "parent": null,
+                                        "responsible": 1,
+                                        "treeLevel": 0,
+                                      }
+                    }
+                    title={
+                              <span>
+                                        <Icon
+                                                  type="folder"
+                                        />
+                                         
+                                        vorwerk
+                              </span>
+                    }
+          >
+                    <TreeNode
+                              category={
+                                        Object {
+                                                  "children": Array [
+                                                    3,
+                                                  ],
+                                                  "createdBy": "root",
+                                                  "createdDate": "2017-06-30T11:13:37.557+02:00",
+                                                  "creator": 1,
+                                                  "groups": Array [],
+                                                  "id": 2,
+                                                  "keys": Array [
+                                                    1,
+                                                  ],
+                                                  "lastModifiedBy": "root",
+                                                  "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                                                  "name": "servers",
+                                                  "parent": 1,
+                                                  "responsible": 1,
+                                                  "treeLevel": 1,
+                                                }
+                              }
+                              title={
+                                        <span>
+                                                  <Icon
+                                                            type="folder"
+                                                  />
+                                                   
+                                                  servers
+                                        </span>
+                              }
+                    >
+                              <TreeNode
+                                        category={
+                                                  Object {
+                                                            "children": Array [],
+                                                            "createdBy": "root",
+                                                            "createdDate": "2017-06-30T11:13:41.497+02:00",
+                                                            "creator": 1,
+                                                            "groups": Array [],
+                                                            "id": 3,
+                                                            "keys": Array [
+                                                              2,
+                                                            ],
+                                                            "lastModifiedBy": "root",
+                                                            "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                                                            "name": "ssh",
+                                                            "parent": 2,
+                                                            "responsible": 1,
+                                                            "treeLevel": 2,
+                                                          }
+                                        }
+                                        title="ssh"
+                              />
+                    </TreeNode>
+          </TreeNode>
+</Tree>,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <CategoryTree
+    categories={
+        Array [
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:41.497+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 3,
+              "keys": Array [
+                2,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+              "name": "ssh",
+              "parent": 2,
+              "responsible": 1,
+              "treeLevel": 2,
+            },
+            Object {
+              "children": Array [
+                5,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:46.691+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 4,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+              "name": "intern",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                2,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:33.274+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 1,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+              "name": "vorwerk",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                3,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:37.557+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 2,
+              "keys": Array [
+                1,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+              "name": "servers",
+              "parent": 1,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:53.821+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 5,
+              "keys": Array [
+                3,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+              "name": "projektron bcs",
+              "parent": 4,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+          ]
+    }
+    draggable={false}
+    onSelect={[Function]}
+/>,
+}
+`;

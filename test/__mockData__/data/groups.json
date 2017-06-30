@@ -1,0 +1,42 @@
+[
+  {
+    "id": 2,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T10:46:23.734+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+    "name": "vorwerk",
+    "users": [
+      1,
+      2,
+      3
+    ],
+    "categories": []
+  },
+  {
+    "id": 1,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T10:46:19.101+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+    "name": "ops",
+    "users": [
+      2,
+      3
+    ],
+    "categories": []
+  },
+  {
+    "id": 3,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T10:46:37.824+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+    "name": "administration",
+    "users": [
+      1,
+      2
+    ],
+    "categories": []
+  }
+]

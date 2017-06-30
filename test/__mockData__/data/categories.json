@@ -1,0 +1,89 @@
+[
+  {
+    "id": 3,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T11:13:41.497+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+    "name": "ssh",
+    "keys": [
+      2
+    ],
+    "parent": 2,
+    "children": [],
+    "treeLevel": 2,
+    "creator": 1,
+    "groups": [],
+    "responsible": 1
+  },
+  {
+    "id": 4,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T11:13:46.691+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+    "name": "intern",
+    "keys": [],
+    "parent": null,
+    "children": [
+      5
+    ],
+    "treeLevel": 0,
+    "creator": 1,
+    "groups": [],
+    "responsible": 1
+  },
+  {
+    "id": 1,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T11:13:33.274+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+    "name": "vorwerk",
+    "keys": [],
+    "parent": null,
+    "children": [
+      2
+    ],
+    "treeLevel": 0,
+    "creator": 1,
+    "groups": [],
+    "responsible": 1
+  },
+  {
+    "id": 2,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T11:13:37.557+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+    "name": "servers",
+    "keys": [
+      1
+    ],
+    "parent": 1,
+    "children": [
+      3
+    ],
+    "treeLevel": 1,
+    "creator": 1,
+    "groups": [],
+    "responsible": 1
+  },
+  {
+    "id": 5,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T11:13:53.821+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+    "name": "projektron bcs",
+    "keys": [
+      3
+    ],
+    "parent": 4,
+    "children": [],
+    "treeLevel": 1,
+    "creator": 1,
+    "groups": [],
+    "responsible": 1
+  }
+]
