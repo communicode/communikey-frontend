@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import CopyToClipboard from "react-copy-to-clipboard";
 import _ from "lodash";
-import {Badge, Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Tooltip} from "antd";
+import {Badge, Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Table, Tabs, Tooltip} from "antd";
 import appConfig from "./../../config/app";
+import themeSizeConfig from "./../../config/theme/sizes";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -14,6 +15,8 @@ import "antd/lib/input/style/index.less";
 import "antd/lib/menu/style/index.less";
 import "antd/lib/modal/style/index.less";
 import "antd/lib/row/style/css";
+import "antd/lib/table/style/index.less";
+import "antd/lib/tabs/style/index.less";
 import "antd/lib/tooltip/style/index.less";
 import "./UserModal.less";
 
@@ -211,6 +214,29 @@ const readOnlyFormItemLayout = {
 };
 
 /**
+ * The default authorities table column configuration.
+ *
+ * @since 0.11.0
+ */
+export const AUTHORITIES_TABLE_DEFAULT_COLUMNS = [{title: "Name", dataIndex: "name", key: "name", fixed: true}];
+
+/**
+ * The name of the React key for the general tab.
+ *
+ * @type {string}
+ * @since 0.11.0
+ */
+const TAB_PANE_REACT_KEY_GENERAL = "general";
+
+/**
+ * The name of the React key for the authorities tab.
+ *
+ * @type {string}
+ * @since 0.11.0
+ */
+const TAB_PANE_REACT_KEY_AUTHORITIES = "authorities";
+
+/**
  * A modal for user.
  *
  * @author dvonderbey@communicode.de
@@ -222,6 +248,14 @@ class UserModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      /**
+       * The React key of the active tab.
+       *
+       * @type {string}
+       * @since 0.11.0
+       */
+      activeTabViewKey: TAB_PANE_REACT_KEY_GENERAL,
+
       /**
        * The value of the password reset modal confirmation input.
        *
@@ -277,6 +311,15 @@ class UserModal extends React.Component {
     this.form.resetFields();
     this.props.onClose();
   };
+
+  /**
+   * Handles the table record selection event of the authorities tab view.
+   *
+   * @param {object} record - The selected authority table record
+   * @param {boolean} selected - Determines whether the record has been selected or unselected
+   * @since 0.11.0
+   */
+  handleTabViewAuthoritiesOnRecordSelect = (record, selected) => selected ? this.props.onAuthorityAdd(record) : this.props.onAuthorityRemove(record);
 
   /**
    * Handles the user modal close event.
@@ -338,6 +381,7 @@ class UserModal extends React.Component {
   render() {
     const {
       administrationMode,
+      authorities,
       creationMode,
       loading,
       locked,
@@ -350,8 +394,7 @@ class UserModal extends React.Component {
       user,
       ...modalProps
     } = this.props;
-
-    const {passwordResetModalValuesValid, passwordResetModalVisible} = this.state;
+    const {activeTabViewKey, passwordResetModalValuesValid, passwordResetModalVisible} = this.state;
 
     /**
      * Operations name constants and the name of the callback function.
@@ -369,6 +412,16 @@ class UserModal extends React.Component {
         keyName: "USER_DEACTIVATE",
         handler: onUserDeactivate
       }
+    };
+
+    /**
+     * The configuration object for the authority table of the authorities tab.
+     *
+     * @since 0.11.0
+     */
+    const tabViewAuthoritiesTableConfig = {
+      selectedRowKeys: user.authorities,
+      onSelect: this.handleTabViewAuthoritiesOnRecordSelect
     };
 
     const defaultUserAvatar = () => <img src={appConfig.assets.wireframe.avatars.matthew} className="user-avatar"/>;
@@ -392,13 +445,13 @@ class UserModal extends React.Component {
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
-              {!creationMode && administrationMode &&
-              <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
-              {
-                !creationMode && administrationMode &&
-                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={locked} trigger={["click"]}>
-                  <Button key="more" type="primary" ghost={true} size="large" disabled={locked}><Icon type="down"/></Button>
-                </Dropdown>
+              {!creationMode && administrationMode && !_.isEqual(activeTabViewKey, TAB_PANE_REACT_KEY_AUTHORITIES) &&
+                <div>
+                  <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
+                  <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" disabled={locked} trigger={["click"]}>
+                    <Button key="more" type="primary" ghost={true} size="large" disabled={locked}><Icon type="down"/></Button>
+                  </Dropdown>
+                </div>
               }
             </div>
           </Col>
@@ -415,6 +468,51 @@ class UserModal extends React.Component {
           </Col>
         </Row>
       </div>
+    );
+
+    const tabViewGeneral = () => (
+      <Tabs.TabPane tab="General" key={TAB_PANE_REACT_KEY_GENERAL}>
+        <Row type="flex" align="center">
+          <Col span={6}>
+            {
+              !creationMode && administrationMode
+                ?
+                <Badge dot={true} className={user.activated ? "badge-activated" : "badge-deactivated"}>
+                  {defaultUserAvatar()}
+                </Badge>
+                :
+                defaultUserAvatar()
+            }
+          </Col>
+          <Col span={18}>
+            <ManagedForm
+              ref={this.saveManagedFormRef}
+              user={user}
+              administrationMode={administrationMode}
+              creationMode={creationMode}
+            />
+          </Col>
+        </Row>
+        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
+      </Tabs.TabPane>
+    );
+
+    const tabViewAuthorities = () => (
+      <Tabs.TabPane tab="Authorities" key={TAB_PANE_REACT_KEY_AUTHORITIES} disabled={creationMode}>
+        <Row>
+          <div>
+            <Col span={24}>
+              <Table
+                dataSource={authorities}
+                columns={AUTHORITIES_TABLE_DEFAULT_COLUMNS}
+                rowKey={record => record.name}
+                rowSelection={tabViewAuthoritiesTableConfig}
+                scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+              />
+            </Col>
+          </div>
+        </Row>
+      </Tabs.TabPane>
     );
 
     const passwordResetInnerModal = () => (
@@ -484,38 +582,22 @@ class UserModal extends React.Component {
 
     return (
       <Modal
+        {...modalProps}
         onSave={onSave}
         onClose={onClose}
         footer={false}
         closable={false}
         className="cckey-user-modal"
-        {...modalProps}>
-        <Row gutter={24}>
-          <Col span={6}>
-            {
-              !creationMode && administrationMode
-                ?
-                <Badge dot={true} className={user.activated ? "badge-activated" : "badge-deactivated"}>
-                  {defaultUserAvatar()}
-                </Badge>
-                :
-                defaultUserAvatar()
-            }
-          </Col>
-          <Col span={18}>
-            <ManagedForm
-              ref={this.saveManagedFormRef}
-              user={user}
-              administrationMode={administrationMode}
-              creationMode={creationMode}
-            />
-          </Col>
-        </Row>
-        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
+      >
+        <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_GENERAL} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
+          {tabViewGeneral()}
+          {tabViewAuthorities()}
+        </Tabs>
         <Row><Col>{footer()}</Col></Row>
         {passwordResetInnerModal()}
       </Modal>
     );
+
   }
 }
 
@@ -524,6 +606,14 @@ UserModal.propTypes = {
    * Indicates if the user modal is in administration mode.
    */
   administrationMode: PropTypes.bool,
+
+  /**
+   * The authorities.
+   *
+   * @type {Array}
+   * @since 0.11.0
+   */
+  authorities: PropTypes.array.isRequired,
 
   /**
    * Indicates if the user modal is in creation mode.
@@ -545,6 +635,22 @@ UserModal.propTypes = {
    * @type {boolean}
    */
   locked: PropTypes.bool,
+
+  /**
+   * Callback function to handle the event to add a authority to the user.
+   *
+   * @type {function}
+   * @since 0.11.0
+   */
+  onAuthorityAdd: PropTypes.func,
+
+  /**
+   * Callback function to handle the event to remove a authority from the user.
+   *
+   * @type {function}
+   * @since 0.11.0
+   */
+  onAuthorityRemove: PropTypes.func,
 
   /**
    * Callback function to handle close events.
