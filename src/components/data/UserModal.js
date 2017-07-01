@@ -526,16 +526,6 @@ class UserModal extends React.Component {
             <Form>
               <Form.Item>
                 <Input
-                  name="resetKey"
-                  addonBefore={<Icon type="pay-circle-o"/>}
-                  value={user.resetKey}
-                  readOnly={true}
-                  disabled={!user.resetKey}
-                  suffix={user.resetKey ? copyToClipboardIcon(user.resetKey) : null}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Input
                   name="passwordResetModalNewPasswordValue"
                   onChange={this.handlePasswordResetModalValueChange}
                   placeholder="New password"
