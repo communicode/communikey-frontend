@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
-import {ROUTE_SIGNIN} from "./../../routes/routeMappings";
+import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
 
 /**
  * A Higher Order Component (HOC) for handling security restricted routes.
@@ -21,7 +21,7 @@ const AuthenticatedRoute = ({component: Component, authorized, ...rest}) => (
     render={props =>
       authorized
         ? <Component authorized={authorized} {...props} />
-        : <Redirect to={{pathname: ROUTE_SIGNIN}}/>}
+        : <Redirect to={{pathname: ROUTE_SIGNOUT}}/>}
   />
 );
 
