@@ -9,7 +9,7 @@ import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
-import themeSizeConfig from "./../config/theme/sizes";
+import { screenMD } from "./../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -488,7 +488,7 @@ class Keys extends React.Component {
         rowKey={record => record.id}
         onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
         onRowDoubleClick={this.toggleKeyModal}
-        scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+        scroll={{x: screenMD}}
       />
     );
 
@@ -499,7 +499,7 @@ class Keys extends React.Component {
         rowKey={record => record.id}
         onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
         onRowDoubleClick={this.toggleKeyModal}
-        scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+        scroll={{x: screenMD}}
       />
     );
 
