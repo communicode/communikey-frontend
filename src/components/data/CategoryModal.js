@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Tooltip} from "antd";
 import "antd/lib/button/style/index.less";
-import "antd/lib/col/style/css";
+// import "antd/lib/col/style/css";
 import "antd/lib/dropdown/style/index.less";
 import "antd/lib/form/style/index.less";
 import "antd/lib/icon/style/css";
