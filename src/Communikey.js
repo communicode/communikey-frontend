@@ -153,12 +153,12 @@ class Communikey extends React.Component {
                           privileged={stores.authStore.privileged}
                         />
                         <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
-                        <Redirect from={ROUTE_ROOT} to={ROUTE_DASHBOARD}/>
                       </Switch>
                     </QueueAnim>
                   );
                 }}/>
               </BaseLayout>
+              <Redirect from={ROUTE_ROOT} to={ROUTE_DASHBOARD}/>
             </Switch>
           </BrowserRouter>
         </LocaleProvider>

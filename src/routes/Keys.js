@@ -8,8 +8,8 @@ import CategoryModal from "./../components/data/CategoryModal";
 import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
-import {AUTH_STORE, CATEGORY_STORE, KEY_STORE} from "./../stores/storeConstants";
-import themeSizeConfig from "./../config/theme/sizes";
+import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
+import {screenMD} from "./../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -37,7 +37,7 @@ const KEY_TABLE_DEFAULT_COLUMNS = [
  * @author sgreb@communicode.de
  * @since 0.5.0
  */
-@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE) @observer
+@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE,USER_GROUP_STORE) @observer
 class Keys extends React.Component {
   constructor(props) {
     super(props);
@@ -106,39 +106,29 @@ class Keys extends React.Component {
   /**
    * Handles the category modal save event.
    *
+   * @param {object} payload - The key payload
    * @callback handleCategoryModalSave
    */
-  handleCategoryModalSave = () => {
-    const {category, categoryModalCreationMode} = this.state;
+  handleCategoryModalSave = (payload) => {
     this.setProcessingStatus(true);
+    const {category, categoryModalCreationMode} = this.state;
+    const updatedCategory = update(category, {$merge: payload});
+    this.setState({category: updatedCategory});
     categoryModalCreationMode
       ?
-      this.props.categoryStore.create(category.name)
+      this.props.categoryStore.create(updatedCategory.name)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
         })
         .catch(() => this.setProcessingStatus(false))
       :
-      this.props.categoryStore.update(category)
+      this.props.categoryStore.update(updatedCategory)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
         })
         .catch(() => this.setProcessingStatus(false));
-  };
-
-  /**
-   * Handles all category modal input value change events.
-   *
-   * @callback handleCategoryModalValueChange
-   * @param event - The change event
-   */
-  handleCategoryModalValueChange = (event) => {
-    this.setState({
-      category: update(this.state.category, {[event.target.name]: {$set: event.target.value}}),
-      categoryModalCategoryModified: true
-    });
   };
 
   /**
@@ -181,6 +171,40 @@ class Keys extends React.Component {
         categoryTreeSelectedNodeKeys: selectedNodeKeys
       });
     }
+  };
+
+  /**
+   * Handles the event to add a user group to the category.
+   *
+   * @callback handleCategoryModalOnUserGroupAdd
+   * @param {object} userGroup - The user group to add to the category
+   * @since 0.10.0
+   */
+  handleCategoryModalOnUserGroupAdd = (userGroup) => {
+    this.setProcessingStatus(true);
+    this.props.categoryStore.addUserGroup(this.state.category.id, userGroup.id)
+      .then(updatedCategory => {
+        this.setState({category: update(this.state.category, {$merge: updatedCategory})});
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
+  };
+
+  /**
+   * Handles the event to remove a user group from the category.
+   *
+   * @callback handleCategoryModalOnUserGroupRemove
+   * @param {object} userGroup - The user group to remove from the category
+   * @since 0.10.0
+   */
+  handleCategoryModalOnUserGroupRemove = (userGroup) => {
+    this.setProcessingStatus(true);
+    this.props.categoryStore.removeUserGroup(this.state.category.id, userGroup.id)
+      .then(updatedCategory => {
+        this.setState({category: update(this.state.category, {$merge: updatedCategory})});
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
   };
 
   /**
@@ -254,35 +278,30 @@ class Keys extends React.Component {
   /**
    * Handles the key modal save event.
    *
+   * @param {object} payload - The key payload
    * @callback handleKeyModalSave
    */
-  handleKeyModalSave = () => {
-    const {key, keyModalCreationMode} = this.state;
+  handleKeyModalSave = (payload) => {
     this.setProcessingStatus(true);
+    const {key, keyModalCreationMode} = this.state;
+    const updatedKey = update(key, {$merge: payload});
+    this.setState({key: updatedKey});
     keyModalCreationMode
       ?
-      this.props.keyStore.create(key.categoryId, key.name, key.login, key.password)
+      this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, updatedKey.login, updatedKey.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
         .catch(() => this.setProcessingStatus(false))
       :
-      this.props.keyStore.update(key.id, key.name, key.login, key.password)
+      this.props.keyStore.update(updatedKey.id, updatedKey.name, updatedKey.login, updatedKey.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
         .catch(() => this.setProcessingStatus(false));
   };
-
-  /**
-   * Handles all key modal input value change events.
-   *
-   * @callback handleKeyModalInputValueChange
-   * @param event - The input change event
-   */
-  handleKeyModalInputValueChange = (event) => this.setState({key: update(this.state.key, {[event.target.name]: {$set: event.target.value}})});
 
   /**
    * Handles a key table record selection event.
@@ -374,7 +393,7 @@ class Keys extends React.Component {
   };
 
   render() {
-    const {authStore, categoryStore, keyStore} = this.props;
+    const {authStore, categoryStore, keyStore, userGroupStore} = this.props;
     const {
       category,
       categoryModalCreationMode,
@@ -429,7 +448,7 @@ class Keys extends React.Component {
     );
 
     const tabViewPool = () => (
-      <Tabs.TabPane tab="Pool" key={TAB_PANE_REACT_KEY_POOL}>
+      <Tabs.TabPane tab="Key Pool" key={TAB_PANE_REACT_KEY_POOL}>
         <Row>
           <Col span={24}>
             {keyStore.keys.length
@@ -469,7 +488,7 @@ class Keys extends React.Component {
         rowKey={record => record.id}
         onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
         onRowDoubleClick={this.toggleKeyModal}
-        scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+        scroll={{x: screenMD}}
       />
     );
 
@@ -480,7 +499,7 @@ class Keys extends React.Component {
         rowKey={record => record.id}
         onRowClick={(record) => this.handleKeyTableRecordSelect(record)}
         onRowDoubleClick={this.toggleKeyModal}
-        scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+        scroll={{x: screenMD}}
       />
     );
 
@@ -489,6 +508,7 @@ class Keys extends React.Component {
         visible={categoryModalVisible}
         key={"categoryModal" + key.id}
         category={category}
+        userGroups={toJS(userGroupStore.userGroups)}
         administrationMode={authStore.privileged}
         locked={categoryModalLocked}
         creationMode={categoryModalCreationMode}
@@ -497,7 +517,8 @@ class Keys extends React.Component {
         onClose={this.handleCategoryModalClose}
         onDelete={this.handleCategoryModalDelete}
         onSave={this.handleCategoryModalSave}
-        onValueChange={this.handleCategoryModalValueChange}
+        onUserGroupAdd={this.handleCategoryModalOnUserGroupAdd}
+        onUserGroupRemove={this.handleCategoryModalOnUserGroupRemove}
         toggleLockStatus={this.toggleCategoryModalLockStatus}
       />
     );
@@ -517,7 +538,6 @@ class Keys extends React.Component {
         onCategoryTreeSelectValueChange={this.handleKeyModalCategoryTreeSelectValueChange}
         onClose={this.handleKeyModalClose}
         onDelete={this.handleKeyModalDelete}
-        onInputValueChange={this.handleKeyModalInputValueChange}
         onSave={this.handleKeyModalSave}
         toggleLockStatus={this.toggleKeyModalLockStatus}
       />
@@ -597,5 +617,12 @@ Keys.propTypes = {
    *
    * @type {ObservableArray}
    */
-  keyStore: MobXPropTypes.observableArray
+  keyStore: MobXPropTypes.observableArray,
+
+  /**
+   * The user group store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  userGroupStore: MobXPropTypes.observableArray
 };

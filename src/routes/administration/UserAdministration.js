@@ -6,7 +6,7 @@ import {toJS} from "mobx";
 import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
-import themeSizeConfig from "./../../config/theme/sizes";
+import {screenMD} from "./../../config/theme/sizes";
 import {AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
@@ -61,14 +61,6 @@ class UserAdministration extends React.Component {
   }
 
   /**
-   * Handles all input value change events.
-   *
-   * @callback handleModalValueChange
-   * @param event - The change event
-   */
-  handleModalValueChange = (event) => this.setState({user: update(this.state.user, {[event.target.name]: {$set: event.target.value}})});
-
-  /**
    * Handles the user modal close event.
    *
    * @callback handleUserModalClose
@@ -104,34 +96,19 @@ class UserAdministration extends React.Component {
   };
 
   /**
-   * Handles the user modal password reset token generation event.
-   *
-   * @callback handleUserModalDelete
-   */
-  handleUserModalPasswordResetTokenGeneration = () => {
-    this.setProcessingStatus(true);
-    this.props.userStore.getPasswordResetToken(this.state.user.email, this.state.user.login)
-      .then(updatedUser => {
-        this.setState({user: update(this.state.user, {$merge: updatedUser})});
-        this.setProcessingStatus(false);
-      })
-      .catch(error => {
-        console.error(error);
-        this.setProcessingStatus(false);
-      });
-  };
-
-  /**
    * Handles the user modal save event.
    *
+   * @param {object} payload - The key payload
    * @callback handleUserModalSave
    */
-  handleUserModalSave = () => {
-    const {user, userModalCreationMode} = this.state;
+  handleUserModalSave = (payload) => {
     this.setProcessingStatus(true);
+    const {user, userModalCreationMode} = this.state;
+    const updatedUser = update(user, {$merge: payload});
+    this.setState({user: updatedUser});
     userModalCreationMode
       ?
-      this.props.userStore.create(user.firstName, user.lastName, user.email + appConfig.EMAIL_PREFIX, user.password)
+      this.props.userStore.create(updatedUser.firstName, updatedUser.lastName, updatedUser.email + appConfig.EMAIL_PREFIX, updatedUser.password)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleUserModalClose();
@@ -141,7 +118,7 @@ class UserAdministration extends React.Component {
           this.setProcessingStatus(false);
         })
       :
-      this.props.userStore.update(user.login, user.email, user.firstName, user.lastName)
+      this.props.userStore.update(updatedUser.login, updatedUser.email, updatedUser.firstName, updatedUser.lastName)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleUserModalClose();
@@ -193,19 +170,31 @@ class UserAdministration extends React.Component {
    *
    * @callback handleUserModalUserPasswordReset
    * @param {string} newPassword - The new password
-   * @return {Promise}
    */
   handleUserModalUserPasswordReset = (newPassword) => {
     this.setProcessingStatus(true);
-    return this.props.userStore.resetPassword(this.state.user.resetKey, newPassword, this.state.user.login)
-      .then(updatedUser => {
-        this.setState({user: update(this.state.user, {$merge: updatedUser})});
-        this.setProcessingStatus(false);
-      })
-      .catch(error => {
-        this.setProcessingStatus(false);
-        return Promise.reject(error);
-      });
+    if (!this.state.user.resetKey) {
+      return this._generatePasswordResetToken(this.state.user.email, this.state.user.login)
+        .then(resetToken => {
+          return this._resetPassword(resetToken.resetKey, newPassword, this.state.user.login)
+            .then(() => this.setProcessingStatus(false))
+            .catch(error => {
+              this.setProcessingStatus(false);
+              return Promise.reject(error);
+            });
+        })
+        .catch(error => {
+          this.setProcessingStatus(false);
+          return Promise.reject(error);
+        });
+    } else {
+      return this._resetPassword(this.state.user.resetKey, newPassword, this.state.user.login)
+        .then(() => this.setProcessingStatus(false))
+        .catch(error => {
+          this.setProcessingStatus(false);
+          return Promise.reject(error);
+        });
+    }
   };
 
   /**
@@ -255,6 +244,42 @@ class UserAdministration extends React.Component {
     this.setState(prevState => ({userModalLocked: !prevState.userModalLocked}));
   };
 
+  /**
+   * Generates a password reset token.
+   *
+   * @param {string} email - The email of the user to get a password reset token for
+   * @param {string} login - The login of the user to get a password reset token for
+   * @return {Promise<R>|Promise.<T>|*} - The reset token as promise
+   * @private
+   * @since 0.10.0
+   */
+  _generatePasswordResetToken = (email, login) => {
+    return this.props.userStore.getPasswordResetToken(email, login)
+      .then(resetToken => resetToken);
+  };
+
+  /**
+   * Resets the password for the user with the specified login.
+   *
+   * @param {string} resetToken - The generated reset token
+   * @param {string} newPassword - The new password
+   * @param {string} login - The login of the user to reset the password of
+   * @return {Promise<R>|Promise.<T>|*} - The updated token as promise
+   * @private
+   * @since 0.10.0
+   */
+  _resetPassword = (resetToken, newPassword, login) => {
+    return this.props.userStore.resetPassword(resetToken, newPassword, login)
+      .then(updatedUser => {
+        this.setState({user: update(this.state.user, {$merge: updatedUser})});
+        this.setProcessingStatus(false);
+      })
+      .catch(error => {
+        this.setProcessingStatus(false);
+        return Promise.reject(error);
+      });
+  };
+
   render() {
     const {processing, user, userModalVisible, userModalCreationMode, userModalLocked} = this.state;
     const {authStore, userStore} = this.props;
@@ -279,7 +304,7 @@ class UserAdministration extends React.Component {
             rowKey={record => record.id}
             onRowClick={(record) => this.handleUserTableRecordSelect(record)}
             onRowDoubleClick={this.toggleUserModal}
-            scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+            scroll={{x: screenMD}}
           />
         </Row>
       </div>
@@ -297,12 +322,10 @@ class UserAdministration extends React.Component {
         afterClose={() => this.setUserModalCreationMode(false)}
         onClose={this.handleUserModalClose}
         onDelete={this.handleUserModalDelete}
-        onGeneratePasswordResetToken={this.handleUserModalPasswordResetTokenGeneration}
         onSave={this.handleUserModalSave}
         onUserActivate={this.handleUserModalUserActivation}
         onUserDeactivate={this.handleUserModalUserDeactivation}
         onUserPasswordReset={this.handleUserModalUserPasswordReset}
-        onValueChange={this.handleModalValueChange}
         toggleLockStatus={this.toggleUserModalLockStatus}
       />
     );
@@ -320,7 +343,7 @@ class UserAdministration extends React.Component {
     );
 
     return (
-      <div className="cckey-base-layout-content-container">
+      <div id="cckey-routes-administration-user" className="cckey-base-layout-content-container">
         <div className="cckey-base-layout-content-container-inner">
           {userStore.users.length ? mainDataView() : noDataMessageBox()}
           {userModal()}
