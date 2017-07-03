@@ -13,6 +13,7 @@ ShallowWrapper {
     closable={false}
     confirmLoading={false}
     footer={false}
+    id="cckey-components-data-views-category-modal"
     maskTransitionName="fade"
     onClose={[Function]}
     onSave={undefined}
@@ -21,62 +22,144 @@ ShallowWrapper {
     visible={false}
     width={520}
 >
-    <Row
-        align="center"
-        gutter={0}
-        type="flex"
+    <Tabs
+        defaultActiveKey="general"
+        hideAdd={false}
+        onChange={[Function]}
+        prefixCls="ant-tabs"
     >
-        <Col
-            span={18}
+        <TabPane
+            placeholder={null}
+            tab="General"
         >
-            <Form
-                hideRequiredMark={false}
-                layout="horizontal"
-                onSubmit={[Function]}
-                prefixCls="ant-form"
+            <Row
+                align="center"
+                gutter={0}
+                type="flex"
             >
-                <FormItem
-                    colon={false}
-                    hasFeedback={false}
-                    label="Name"
-                    prefixCls="ant-form"
+                <Col
+                    span={18}
                 >
-                    <Input
-                        autosize={false}
-                        disabled={false}
-                        name="name"
-                        onChange={undefined}
-                        placeholder="Name"
-                        prefixCls="ant-input"
-                        readOnly={true}
-                        suffix={
-                            <CopyToClipboard
-                                text="ssh"
-                            >
-                                <Tooltip
-                                    arrowPointAtCenter={false}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="top"
-                                    prefixCls="ant-tooltip"
-                                    title="Copied to clipboard"
-                                    transitionName="zoom-big-fast"
-                                    trigger="click"
-                                >
-                                    <Icon
-                                        className="copy-to-clipboard-icon"
-                                        type="copy"
-                                    />
-                                </Tooltip>
-                            </CopyToClipboard>
+                    <Form(WrappedComponent)
+                        administrationMode={false}
+                        category={
+                            Object {
+                                "children": Array [],
+                                "createdBy": "root",
+                                "createdDate": "2017-06-30T11:13:41.497+02:00",
+                                "creator": 1,
+                                "groups": Array [],
+                                "id": 3,
+                                "keys": Array [
+                                  2,
+                                ],
+                                "lastModifiedBy": "root",
+                                "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                                "name": "ssh",
+                                "parent": 2,
+                                "responsible": 1,
+                                "treeLevel": 2,
+                              }
                         }
-                        type="text"
-                        value="ssh"
+                        creationMode={false}
                     />
-                </FormItem>
-            </Form>
-        </Col>
-    </Row>
+                </Col>
+            </Row>
+        </TabPane>
+        <TabPane
+            disabled={false}
+            placeholder={null}
+            tab="User Groups"
+        >
+            <Row
+                gutter={0}
+            >
+                <div>
+                    <Col
+                        span={24}
+                    >
+                        <Table
+                            bordered={false}
+                            className=""
+                            columns={
+                                Array [
+                                    Object {
+                                      "dataIndex": "name",
+                                      "fixed": true,
+                                      "key": "name",
+                                      "title": "Name",
+                                    },
+                                  ]
+                            }
+                            dataSource={
+                                Array [
+                                    Object {
+                                      "categories": Array [],
+                                      "createdBy": "root",
+                                      "createdDate": "2017-06-30T10:46:23.734+02:00",
+                                      "id": 2,
+                                      "lastModifiedBy": "root",
+                                      "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                                      "name": "vorwerk",
+                                      "users": Array [
+                                        1,
+                                        2,
+                                        3,
+                                      ],
+                                    },
+                                    Object {
+                                      "categories": Array [],
+                                      "createdBy": "root",
+                                      "createdDate": "2017-06-30T10:46:19.101+02:00",
+                                      "id": 1,
+                                      "lastModifiedBy": "root",
+                                      "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+                                      "name": "ops",
+                                      "users": Array [
+                                        2,
+                                        3,
+                                      ],
+                                    },
+                                    Object {
+                                      "categories": Array [],
+                                      "createdBy": "root",
+                                      "createdDate": "2017-06-30T10:46:37.824+02:00",
+                                      "id": 3,
+                                      "lastModifiedBy": "root",
+                                      "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+                                      "name": "administration",
+                                      "users": Array [
+                                        1,
+                                        2,
+                                      ],
+                                    },
+                                  ]
+                            }
+                            indentSize={20}
+                            loading={false}
+                            locale={Object {}}
+                            prefixCls="ant-table"
+                            rowKey={[Function]}
+                            rowSelection={
+                                Object {
+                                    "onSelect": [Function],
+                                    "selectedRowKeys": Array [],
+                                  }
+                            }
+                            scroll={
+                                Object {
+                                    "x": 992,
+                                  }
+                            }
+                            showHeader={true}
+                            size="large"
+                            useFixedHeader={false}
+                        />
+                    </Col>
+                </div>
+            </Row>
+        </TabPane>
+    </Tabs>
     <Row
         gutter={0}
     >
@@ -94,9 +177,7 @@ ShallowWrapper {
                     >
                         <div
                             className="operations"
-                        >
-                            
-                        </div>
+                        />
                     </Col>
                     <Col
                         offset={8}
@@ -119,7 +200,7 @@ ShallowWrapper {
                                 clicked={false}
                                 ghost={false}
                                 loading={false}
-                                onClick={undefined}
+                                onClick={[Function]}
                                 prefixCls="ant-btn"
                                 size="large"
                                 type="primary"
@@ -139,6 +220,7 @@ ShallowWrapper {
       closable={false}
       confirmLoading={false}
       footer={false}
+      id="cckey-components-data-views-category-modal"
       maskTransitionName="fade"
       onClose={[Function]}
       onSave={undefined}
@@ -147,62 +229,144 @@ ShallowWrapper {
       visible={false}
       width={520}
 >
-      <Row
-            align="center"
-            gutter={0}
-            type="flex"
+      <Tabs
+            defaultActiveKey="general"
+            hideAdd={false}
+            onChange={[Function]}
+            prefixCls="ant-tabs"
       >
-            <Col
-                  span={18}
+            <TabPane
+                  placeholder={null}
+                  tab="General"
             >
-                  <Form
-                        hideRequiredMark={false}
-                        layout="horizontal"
-                        onSubmit={[Function]}
-                        prefixCls="ant-form"
+                  <Row
+                        align="center"
+                        gutter={0}
+                        type="flex"
                   >
-                        <FormItem
-                              colon={false}
-                              hasFeedback={false}
-                              label="Name"
-                              prefixCls="ant-form"
+                        <Col
+                              span={18}
                         >
-                              <Input
-                                    autosize={false}
-                                    disabled={false}
-                                    name="name"
-                                    onChange={undefined}
-                                    placeholder="Name"
-                                    prefixCls="ant-input"
-                                    readOnly={true}
-                                    suffix={
-                                          <CopyToClipboard
-                                                text="ssh"
-                                          >
-                                                <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="top"
-                                                      prefixCls="ant-tooltip"
-                                                      title="Copied to clipboard"
-                                                      transitionName="zoom-big-fast"
-                                                      trigger="click"
-                                                >
-                                                      <Icon
-                                                            className="copy-to-clipboard-icon"
-                                                            type="copy"
-                                                      />
-                                                </Tooltip>
-                                          </CopyToClipboard>
+                              <Form(WrappedComponent)
+                                    administrationMode={false}
+                                    category={
+                                          Object {
+                                                "children": Array [],
+                                                "createdBy": "root",
+                                                "createdDate": "2017-06-30T11:13:41.497+02:00",
+                                                "creator": 1,
+                                                "groups": Array [],
+                                                "id": 3,
+                                                "keys": Array [
+                                                  2,
+                                                ],
+                                                "lastModifiedBy": "root",
+                                                "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                                                "name": "ssh",
+                                                "parent": 2,
+                                                "responsible": 1,
+                                                "treeLevel": 2,
+                                              }
                                     }
-                                    type="text"
-                                    value="ssh"
+                                    creationMode={false}
                               />
-                        </FormItem>
-                  </Form>
-            </Col>
-      </Row>
+                        </Col>
+                  </Row>
+            </TabPane>
+            <TabPane
+                  disabled={false}
+                  placeholder={null}
+                  tab="User Groups"
+            >
+                  <Row
+                        gutter={0}
+                  >
+                        <div>
+                              <Col
+                                    span={24}
+                              >
+                                    <Table
+                                          bordered={false}
+                                          className=""
+                                          columns={
+                                                Array [
+                                                      Object {
+                                                        "dataIndex": "name",
+                                                        "fixed": true,
+                                                        "key": "name",
+                                                        "title": "Name",
+                                                      },
+                                                    ]
+                                          }
+                                          dataSource={
+                                                Array [
+                                                      Object {
+                                                        "categories": Array [],
+                                                        "createdBy": "root",
+                                                        "createdDate": "2017-06-30T10:46:23.734+02:00",
+                                                        "id": 2,
+                                                        "lastModifiedBy": "root",
+                                                        "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                                                        "name": "vorwerk",
+                                                        "users": Array [
+                                                          1,
+                                                          2,
+                                                          3,
+                                                        ],
+                                                      },
+                                                      Object {
+                                                        "categories": Array [],
+                                                        "createdBy": "root",
+                                                        "createdDate": "2017-06-30T10:46:19.101+02:00",
+                                                        "id": 1,
+                                                        "lastModifiedBy": "root",
+                                                        "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+                                                        "name": "ops",
+                                                        "users": Array [
+                                                          2,
+                                                          3,
+                                                        ],
+                                                      },
+                                                      Object {
+                                                        "categories": Array [],
+                                                        "createdBy": "root",
+                                                        "createdDate": "2017-06-30T10:46:37.824+02:00",
+                                                        "id": 3,
+                                                        "lastModifiedBy": "root",
+                                                        "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+                                                        "name": "administration",
+                                                        "users": Array [
+                                                          1,
+                                                          2,
+                                                        ],
+                                                      },
+                                                    ]
+                                          }
+                                          indentSize={20}
+                                          loading={false}
+                                          locale={Object {}}
+                                          prefixCls="ant-table"
+                                          rowKey={[Function]}
+                                          rowSelection={
+                                                Object {
+                                                      "onSelect": [Function],
+                                                      "selectedRowKeys": Array [],
+                                                    }
+                                          }
+                                          scroll={
+                                                Object {
+                                                      "x": 992,
+                                                    }
+                                          }
+                                          showHeader={true}
+                                          size="large"
+                                          useFixedHeader={false}
+                                    />
+                              </Col>
+                        </div>
+                  </Row>
+            </TabPane>
+      </Tabs>
       <Row
             gutter={0}
       >
@@ -220,9 +384,7 @@ ShallowWrapper {
                               >
                                     <div
                                           className="operations"
-                                    >
-                                          
-                                    </div>
+                                    />
                               </Col>
                               <Col
                                     offset={8}
@@ -245,7 +407,7 @@ ShallowWrapper {
                                                 clicked={false}
                                                 ghost={false}
                                                 loading={false}
-                                                onClick={undefined}
+                                                onClick={[Function]}
                                                 prefixCls="ant-btn"
                                                 size="large"
                                                 type="primary"
@@ -290,6 +452,50 @@ ShallowWrapper {
         creationMode={false}
         loading={false}
         onClose={[Function]}
+        userGroups={
+                Array [
+                        Object {
+                          "categories": Array [],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T10:46:23.734+02:00",
+                          "id": 2,
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                          "name": "vorwerk",
+                          "users": Array [
+                            1,
+                            2,
+                            3,
+                          ],
+                        },
+                        Object {
+                          "categories": Array [],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T10:46:19.101+02:00",
+                          "id": 1,
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+                          "name": "ops",
+                          "users": Array [
+                            2,
+                            3,
+                          ],
+                        },
+                        Object {
+                          "categories": Array [],
+                          "createdBy": "root",
+                          "createdDate": "2017-06-30T10:46:37.824+02:00",
+                          "id": 3,
+                          "lastModifiedBy": "root",
+                          "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+                          "name": "administration",
+                          "users": Array [
+                            1,
+                            2,
+                          ],
+                        },
+                      ]
+        }
 />,
       "_debugID": 1,
       "_hostContainerInfo": null,
@@ -297,6 +503,9 @@ ShallowWrapper {
       "_instance": CategoryModal {
         "_reactInternalInstance": [Circular],
         "context": Object {},
+        "handleActionButtonOnClick": [Function],
+        "handleOnClose": [Function],
+        "handleTabViewUserGroupsOnRecordSelect": [Function],
         "props": Object {
           "administrationMode": false,
           "category": Object {
@@ -319,9 +528,54 @@ ShallowWrapper {
           "creationMode": false,
           "loading": false,
           "onClose": [Function],
+          "userGroups": Array [
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:23.734+02:00",
+              "id": 2,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+              "name": "vorwerk",
+              "users": Array [
+                1,
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:19.101+02:00",
+              "id": 1,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+              "name": "ops",
+              "users": Array [
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:37.824+02:00",
+              "id": 3,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+              "name": "administration",
+              "users": Array [
+                1,
+                2,
+              ],
+            },
+          ],
         },
         "refs": Object {},
-        "state": null,
+        "saveManagedFormRef": [Function],
+        "state": Object {
+          "activeTabViewKey": "general",
+        },
         "updater": Object {
           "enqueueCallback": [Function],
           "enqueueCallbackInternal": [Function],
@@ -345,6 +599,7 @@ ShallowWrapper {
           closable={false}
           confirmLoading={false}
           footer={false}
+          id="cckey-components-data-views-category-modal"
           maskTransitionName="fade"
           onClose={[Function]}
           onSave={undefined}
@@ -353,62 +608,144 @@ ShallowWrapper {
           visible={false}
           width={520}
 >
-          <Row
-                    align="center"
-                    gutter={0}
-                    type="flex"
+          <Tabs
+                    defaultActiveKey="general"
+                    hideAdd={false}
+                    onChange={[Function]}
+                    prefixCls="ant-tabs"
           >
-                    <Col
-                              span={18}
+                    <TabPane
+                              placeholder={null}
+                              tab="General"
                     >
-                              <Form
-                                        hideRequiredMark={false}
-                                        layout="horizontal"
-                                        onSubmit={[Function]}
-                                        prefixCls="ant-form"
+                              <Row
+                                        align="center"
+                                        gutter={0}
+                                        type="flex"
                               >
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Name"
-                                                  prefixCls="ant-form"
+                                        <Col
+                                                  span={18}
                                         >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="name"
-                                                            onChange={undefined}
-                                                            placeholder="Name"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="ssh"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
+                                                  <Form(WrappedComponent)
+                                                            administrationMode={false}
+                                                            category={
+                                                                      Object {
+                                                                                "children": Array [],
+                                                                                "createdBy": "root",
+                                                                                "createdDate": "2017-06-30T11:13:41.497+02:00",
+                                                                                "creator": 1,
+                                                                                "groups": Array [],
+                                                                                "id": 3,
+                                                                                "keys": Array [
+                                                                                  2,
+                                                                                ],
+                                                                                "lastModifiedBy": "root",
+                                                                                "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                                                                                "name": "ssh",
+                                                                                "parent": 2,
+                                                                                "responsible": 1,
+                                                                                "treeLevel": 2,
+                                                                              }
                                                             }
-                                                            type="text"
-                                                            value="ssh"
+                                                            creationMode={false}
                                                   />
-                                        </FormItem>
-                              </Form>
-                    </Col>
-          </Row>
+                                        </Col>
+                              </Row>
+                    </TabPane>
+                    <TabPane
+                              disabled={false}
+                              placeholder={null}
+                              tab="User Groups"
+                    >
+                              <Row
+                                        gutter={0}
+                              >
+                                        <div>
+                                                  <Col
+                                                            span={24}
+                                                  >
+                                                            <Table
+                                                                      bordered={false}
+                                                                      className=""
+                                                                      columns={
+                                                                                Array [
+                                                                                          Object {
+                                                                                            "dataIndex": "name",
+                                                                                            "fixed": true,
+                                                                                            "key": "name",
+                                                                                            "title": "Name",
+                                                                                          },
+                                                                                        ]
+                                                                      }
+                                                                      dataSource={
+                                                                                Array [
+                                                                                          Object {
+                                                                                            "categories": Array [],
+                                                                                            "createdBy": "root",
+                                                                                            "createdDate": "2017-06-30T10:46:23.734+02:00",
+                                                                                            "id": 2,
+                                                                                            "lastModifiedBy": "root",
+                                                                                            "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                                                                                            "name": "vorwerk",
+                                                                                            "users": Array [
+                                                                                              1,
+                                                                                              2,
+                                                                                              3,
+                                                                                            ],
+                                                                                          },
+                                                                                          Object {
+                                                                                            "categories": Array [],
+                                                                                            "createdBy": "root",
+                                                                                            "createdDate": "2017-06-30T10:46:19.101+02:00",
+                                                                                            "id": 1,
+                                                                                            "lastModifiedBy": "root",
+                                                                                            "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+                                                                                            "name": "ops",
+                                                                                            "users": Array [
+                                                                                              2,
+                                                                                              3,
+                                                                                            ],
+                                                                                          },
+                                                                                          Object {
+                                                                                            "categories": Array [],
+                                                                                            "createdBy": "root",
+                                                                                            "createdDate": "2017-06-30T10:46:37.824+02:00",
+                                                                                            "id": 3,
+                                                                                            "lastModifiedBy": "root",
+                                                                                            "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+                                                                                            "name": "administration",
+                                                                                            "users": Array [
+                                                                                              1,
+                                                                                              2,
+                                                                                            ],
+                                                                                          },
+                                                                                        ]
+                                                                      }
+                                                                      indentSize={20}
+                                                                      loading={false}
+                                                                      locale={Object {}}
+                                                                      prefixCls="ant-table"
+                                                                      rowKey={[Function]}
+                                                                      rowSelection={
+                                                                                Object {
+                                                                                          "onSelect": [Function],
+                                                                                          "selectedRowKeys": Array [],
+                                                                                        }
+                                                                      }
+                                                                      scroll={
+                                                                                Object {
+                                                                                          "x": 992,
+                                                                                        }
+                                                                      }
+                                                                      showHeader={true}
+                                                                      size="large"
+                                                                      useFixedHeader={false}
+                                                            />
+                                                  </Col>
+                                        </div>
+                              </Row>
+                    </TabPane>
+          </Tabs>
           <Row
                     gutter={0}
           >
@@ -426,9 +763,7 @@ ShallowWrapper {
                                                   >
                                                             <div
                                                                       className="operations"
-                                                            >
-                                                                      
-                                                            </div>
+                                                            />
                                                   </Col>
                                                   <Col
                                                             offset={8}
@@ -451,7 +786,7 @@ ShallowWrapper {
                                                                                 clicked={false}
                                                                                 ghost={false}
                                                                                 loading={false}
-                                                                                onClick={undefined}
+                                                                                onClick={[Function]}
                                                                                 prefixCls="ant-btn"
                                                                                 size="large"
                                                                                 type="primary"
@@ -471,6 +806,7 @@ ShallowWrapper {
           closable={false}
           confirmLoading={false}
           footer={false}
+          id="cckey-components-data-views-category-modal"
           maskTransitionName="fade"
           onClose={[Function]}
           onSave={undefined}
@@ -479,62 +815,144 @@ ShallowWrapper {
           visible={false}
           width={520}
 >
-          <Row
-                    align="center"
-                    gutter={0}
-                    type="flex"
+          <Tabs
+                    defaultActiveKey="general"
+                    hideAdd={false}
+                    onChange={[Function]}
+                    prefixCls="ant-tabs"
           >
-                    <Col
-                              span={18}
+                    <TabPane
+                              placeholder={null}
+                              tab="General"
                     >
-                              <Form
-                                        hideRequiredMark={false}
-                                        layout="horizontal"
-                                        onSubmit={[Function]}
-                                        prefixCls="ant-form"
+                              <Row
+                                        align="center"
+                                        gutter={0}
+                                        type="flex"
                               >
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Name"
-                                                  prefixCls="ant-form"
+                                        <Col
+                                                  span={18}
                                         >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="name"
-                                                            onChange={undefined}
-                                                            placeholder="Name"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="ssh"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
+                                                  <Form(WrappedComponent)
+                                                            administrationMode={false}
+                                                            category={
+                                                                      Object {
+                                                                                "children": Array [],
+                                                                                "createdBy": "root",
+                                                                                "createdDate": "2017-06-30T11:13:41.497+02:00",
+                                                                                "creator": 1,
+                                                                                "groups": Array [],
+                                                                                "id": 3,
+                                                                                "keys": Array [
+                                                                                  2,
+                                                                                ],
+                                                                                "lastModifiedBy": "root",
+                                                                                "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                                                                                "name": "ssh",
+                                                                                "parent": 2,
+                                                                                "responsible": 1,
+                                                                                "treeLevel": 2,
+                                                                              }
                                                             }
-                                                            type="text"
-                                                            value="ssh"
+                                                            creationMode={false}
                                                   />
-                                        </FormItem>
-                              </Form>
-                    </Col>
-          </Row>
+                                        </Col>
+                              </Row>
+                    </TabPane>
+                    <TabPane
+                              disabled={false}
+                              placeholder={null}
+                              tab="User Groups"
+                    >
+                              <Row
+                                        gutter={0}
+                              >
+                                        <div>
+                                                  <Col
+                                                            span={24}
+                                                  >
+                                                            <Table
+                                                                      bordered={false}
+                                                                      className=""
+                                                                      columns={
+                                                                                Array [
+                                                                                          Object {
+                                                                                            "dataIndex": "name",
+                                                                                            "fixed": true,
+                                                                                            "key": "name",
+                                                                                            "title": "Name",
+                                                                                          },
+                                                                                        ]
+                                                                      }
+                                                                      dataSource={
+                                                                                Array [
+                                                                                          Object {
+                                                                                            "categories": Array [],
+                                                                                            "createdBy": "root",
+                                                                                            "createdDate": "2017-06-30T10:46:23.734+02:00",
+                                                                                            "id": 2,
+                                                                                            "lastModifiedBy": "root",
+                                                                                            "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                                                                                            "name": "vorwerk",
+                                                                                            "users": Array [
+                                                                                              1,
+                                                                                              2,
+                                                                                              3,
+                                                                                            ],
+                                                                                          },
+                                                                                          Object {
+                                                                                            "categories": Array [],
+                                                                                            "createdBy": "root",
+                                                                                            "createdDate": "2017-06-30T10:46:19.101+02:00",
+                                                                                            "id": 1,
+                                                                                            "lastModifiedBy": "root",
+                                                                                            "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+                                                                                            "name": "ops",
+                                                                                            "users": Array [
+                                                                                              2,
+                                                                                              3,
+                                                                                            ],
+                                                                                          },
+                                                                                          Object {
+                                                                                            "categories": Array [],
+                                                                                            "createdBy": "root",
+                                                                                            "createdDate": "2017-06-30T10:46:37.824+02:00",
+                                                                                            "id": 3,
+                                                                                            "lastModifiedBy": "root",
+                                                                                            "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+                                                                                            "name": "administration",
+                                                                                            "users": Array [
+                                                                                              1,
+                                                                                              2,
+                                                                                            ],
+                                                                                          },
+                                                                                        ]
+                                                                      }
+                                                                      indentSize={20}
+                                                                      loading={false}
+                                                                      locale={Object {}}
+                                                                      prefixCls="ant-table"
+                                                                      rowKey={[Function]}
+                                                                      rowSelection={
+                                                                                Object {
+                                                                                          "onSelect": [Function],
+                                                                                          "selectedRowKeys": Array [],
+                                                                                        }
+                                                                      }
+                                                                      scroll={
+                                                                                Object {
+                                                                                          "x": 992,
+                                                                                        }
+                                                                      }
+                                                                      showHeader={true}
+                                                                      size="large"
+                                                                      useFixedHeader={false}
+                                                            />
+                                                  </Col>
+                                        </div>
+                              </Row>
+                    </TabPane>
+          </Tabs>
           <Row
                     gutter={0}
           >
@@ -552,9 +970,7 @@ ShallowWrapper {
                                                   >
                                                             <div
                                                                       className="operations"
-                                                            >
-                                                                      
-                                                            </div>
+                                                            />
                                                   </Col>
                                                   <Col
                                                             offset={8}
@@ -577,7 +993,7 @@ ShallowWrapper {
                                                                                 clicked={false}
                                                                                 ghost={false}
                                                                                 loading={false}
-                                                                                onClick={undefined}
+                                                                                onClick={[Function]}
                                                                                 prefixCls="ant-btn"
                                                                                 size="large"
                                                                                 type="primary"
@@ -626,6 +1042,50 @@ ShallowWrapper {
     creationMode={false}
     loading={false}
     onClose={[Function]}
+    userGroups={
+        Array [
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:23.734+02:00",
+              "id": 2,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+              "name": "vorwerk",
+              "users": Array [
+                1,
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:19.101+02:00",
+              "id": 1,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+              "name": "ops",
+              "users": Array [
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:37.824+02:00",
+              "id": 3,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+              "name": "administration",
+              "users": Array [
+                1,
+                2,
+              ],
+            },
+          ]
+    }
 />,
 }
 `;

@@ -35,190 +35,27 @@ ShallowWrapper {
         <Col
             span={18}
         >
-            <Form
-                hideRequiredMark={false}
-                layout="horizontal"
-                onSubmit={[Function]}
-                prefixCls="ant-form"
-            >
-                <FormItem
-                    colon={false}
-                    hasFeedback={false}
-                    label="Name"
-                    labelCol={
-                        Object {
-                            "sm": Object {
-                              "span": 4,
-                            },
-                            "xs": Object {
-                              "span": 24,
-                            },
-                          }
-                    }
-                    prefixCls="ant-form"
-                    wrapperCol={
-                        Object {
-                            "sm": Object {
-                              "span": 18,
-                            },
-                            "xs": Object {
-                              "span": 24,
-                            },
-                          }
-                    }
-                >
-                    <Input
-                        autosize={false}
-                        disabled={false}
-                        name="name"
-                        onChange={undefined}
-                        placeholder="Name"
-                        prefixCls="ant-input"
-                        readOnly={true}
-                        suffix={
-                            <CopyToClipboard
-                                text="lecker"
-                            >
-                                <Tooltip
-                                    arrowPointAtCenter={false}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="top"
-                                    prefixCls="ant-tooltip"
-                                    title="Copied to clipboard"
-                                    transitionName="zoom-big-fast"
-                                    trigger="click"
-                                >
-                                    <Icon
-                                        className="copy-to-clipboard-icon"
-                                        type="copy"
-                                    />
-                                </Tooltip>
-                            </CopyToClipboard>
-                        }
-                        type="text"
-                        value="lecker"
-                    />
-                </FormItem>
-                <FormItem
-                    colon={false}
-                    hasFeedback={false}
-                    label="Login"
-                    labelCol={
-                        Object {
-                            "sm": Object {
-                              "span": 4,
-                            },
-                            "xs": Object {
-                              "span": 24,
-                            },
-                          }
-                    }
-                    prefixCls="ant-form"
-                    wrapperCol={
-                        Object {
-                            "sm": Object {
-                              "span": 18,
-                            },
-                            "xs": Object {
-                              "span": 24,
-                            },
-                          }
-                    }
-                >
-                    <Input
-                        autosize={false}
-                        disabled={false}
-                        name="login"
-                        onChange={undefined}
-                        placeholder="Login"
-                        prefixCls="ant-input"
-                        readOnly={true}
-                        suffix={
-                            <CopyToClipboard
-                                text="erdbeer"
-                            >
-                                <Tooltip
-                                    arrowPointAtCenter={false}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="top"
-                                    prefixCls="ant-tooltip"
-                                    title="Copied to clipboard"
-                                    transitionName="zoom-big-fast"
-                                    trigger="click"
-                                >
-                                    <Icon
-                                        className="copy-to-clipboard-icon"
-                                        type="copy"
-                                    />
-                                </Tooltip>
-                            </CopyToClipboard>
-                        }
-                        type="text"
-                        value="erdbeer"
-                    />
-                </FormItem>
-                <FormItem
-                    colon={false}
-                    hasFeedback={false}
-                    label="Password"
-                    labelCol={
-                        Object {
-                            "sm": Object {
-                              "span": 4,
-                            },
-                            "xs": Object {
-                              "span": 24,
-                            },
-                          }
-                    }
-                    prefixCls="ant-form"
-                    wrapperCol={
-                        Object {
-                            "sm": Object {
-                              "span": 18,
-                            },
-                            "xs": Object {
-                              "span": 24,
-                            },
-                          }
-                    }
-                >
-                    <Input
-                        autosize={false}
-                        disabled={false}
-                        name="password"
-                        onChange={undefined}
-                        placeholder="Password"
-                        prefixCls="ant-input"
-                        readOnly={true}
-                        suffix={
-                            <CopyToClipboard
-                                text="yogurt"
-                            >
-                                <Tooltip
-                                    arrowPointAtCenter={false}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="top"
-                                    prefixCls="ant-tooltip"
-                                    title="Copied to clipboard"
-                                    transitionName="zoom-big-fast"
-                                    trigger="click"
-                                >
-                                    <Icon
-                                        className="copy-to-clipboard-icon"
-                                        type="copy"
-                                    />
-                                </Tooltip>
-                            </CopyToClipboard>
-                        }
-                        type="password"
-                        value="yogurt"
-                    />
-                </FormItem>
-            </Form>
+            <Form(WrappedComponent)
+                administrationMode={false}
+                categoryTreeSelect={[Function]}
+                cckeyKey={
+                    Object {
+                        "category": 3,
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T10:47:35.095+02:00",
+                        "creator": 1,
+                        "id": 2,
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+                        "login": "erdbeer",
+                        "name": "lecker",
+                        "password": "yogurt",
+                      }
+                }
+                creationMode={false}
+                keyPasswordVisible={false}
+                locked={undefined}
+            />
         </Col>
     </Row>
     <Row
@@ -287,7 +124,7 @@ ShallowWrapper {
                                 clicked={false}
                                 ghost={false}
                                 loading={false}
-                                onClick={undefined}
+                                onClick={[Function]}
                                 prefixCls="ant-btn"
                                 size="large"
                                 type="primary"
@@ -365,7 +202,6 @@ ShallowWrapper {
                                         <Icon
                                             type="folder"
                                         />
-                                         
                                         intern
                                     </span>
                                 }
@@ -420,7 +256,6 @@ ShallowWrapper {
                                         <Icon
                                             type="folder"
                                         />
-                                         
                                         vorwerk
                                     </span>
                                 }
@@ -453,7 +288,6 @@ ShallowWrapper {
                                             <Icon
                                                 type="folder"
                                             />
-                                             
                                             servers
                                         </span>
                                     }
@@ -558,190 +392,27 @@ ShallowWrapper {
             <Col
                   span={18}
             >
-                  <Form
-                        hideRequiredMark={false}
-                        layout="horizontal"
-                        onSubmit={[Function]}
-                        prefixCls="ant-form"
-                  >
-                        <FormItem
-                              colon={false}
-                              hasFeedback={false}
-                              label="Name"
-                              labelCol={
-                                    Object {
-                                          "sm": Object {
-                                            "span": 4,
-                                          },
-                                          "xs": Object {
-                                            "span": 24,
-                                          },
-                                        }
-                              }
-                              prefixCls="ant-form"
-                              wrapperCol={
-                                    Object {
-                                          "sm": Object {
-                                            "span": 18,
-                                          },
-                                          "xs": Object {
-                                            "span": 24,
-                                          },
-                                        }
-                              }
-                        >
-                              <Input
-                                    autosize={false}
-                                    disabled={false}
-                                    name="name"
-                                    onChange={undefined}
-                                    placeholder="Name"
-                                    prefixCls="ant-input"
-                                    readOnly={true}
-                                    suffix={
-                                          <CopyToClipboard
-                                                text="lecker"
-                                          >
-                                                <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="top"
-                                                      prefixCls="ant-tooltip"
-                                                      title="Copied to clipboard"
-                                                      transitionName="zoom-big-fast"
-                                                      trigger="click"
-                                                >
-                                                      <Icon
-                                                            className="copy-to-clipboard-icon"
-                                                            type="copy"
-                                                      />
-                                                </Tooltip>
-                                          </CopyToClipboard>
-                                    }
-                                    type="text"
-                                    value="lecker"
-                              />
-                        </FormItem>
-                        <FormItem
-                              colon={false}
-                              hasFeedback={false}
-                              label="Login"
-                              labelCol={
-                                    Object {
-                                          "sm": Object {
-                                            "span": 4,
-                                          },
-                                          "xs": Object {
-                                            "span": 24,
-                                          },
-                                        }
-                              }
-                              prefixCls="ant-form"
-                              wrapperCol={
-                                    Object {
-                                          "sm": Object {
-                                            "span": 18,
-                                          },
-                                          "xs": Object {
-                                            "span": 24,
-                                          },
-                                        }
-                              }
-                        >
-                              <Input
-                                    autosize={false}
-                                    disabled={false}
-                                    name="login"
-                                    onChange={undefined}
-                                    placeholder="Login"
-                                    prefixCls="ant-input"
-                                    readOnly={true}
-                                    suffix={
-                                          <CopyToClipboard
-                                                text="erdbeer"
-                                          >
-                                                <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="top"
-                                                      prefixCls="ant-tooltip"
-                                                      title="Copied to clipboard"
-                                                      transitionName="zoom-big-fast"
-                                                      trigger="click"
-                                                >
-                                                      <Icon
-                                                            className="copy-to-clipboard-icon"
-                                                            type="copy"
-                                                      />
-                                                </Tooltip>
-                                          </CopyToClipboard>
-                                    }
-                                    type="text"
-                                    value="erdbeer"
-                              />
-                        </FormItem>
-                        <FormItem
-                              colon={false}
-                              hasFeedback={false}
-                              label="Password"
-                              labelCol={
-                                    Object {
-                                          "sm": Object {
-                                            "span": 4,
-                                          },
-                                          "xs": Object {
-                                            "span": 24,
-                                          },
-                                        }
-                              }
-                              prefixCls="ant-form"
-                              wrapperCol={
-                                    Object {
-                                          "sm": Object {
-                                            "span": 18,
-                                          },
-                                          "xs": Object {
-                                            "span": 24,
-                                          },
-                                        }
-                              }
-                        >
-                              <Input
-                                    autosize={false}
-                                    disabled={false}
-                                    name="password"
-                                    onChange={undefined}
-                                    placeholder="Password"
-                                    prefixCls="ant-input"
-                                    readOnly={true}
-                                    suffix={
-                                          <CopyToClipboard
-                                                text="yogurt"
-                                          >
-                                                <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="top"
-                                                      prefixCls="ant-tooltip"
-                                                      title="Copied to clipboard"
-                                                      transitionName="zoom-big-fast"
-                                                      trigger="click"
-                                                >
-                                                      <Icon
-                                                            className="copy-to-clipboard-icon"
-                                                            type="copy"
-                                                      />
-                                                </Tooltip>
-                                          </CopyToClipboard>
-                                    }
-                                    type="password"
-                                    value="yogurt"
-                              />
-                        </FormItem>
-                  </Form>
+                  <Form(WrappedComponent)
+                        administrationMode={false}
+                        categoryTreeSelect={[Function]}
+                        cckeyKey={
+                              Object {
+                                    "category": 3,
+                                    "createdBy": "root",
+                                    "createdDate": "2017-06-30T10:47:35.095+02:00",
+                                    "creator": 1,
+                                    "id": 2,
+                                    "lastModifiedBy": "root",
+                                    "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+                                    "login": "erdbeer",
+                                    "name": "lecker",
+                                    "password": "yogurt",
+                                  }
+                        }
+                        creationMode={false}
+                        keyPasswordVisible={false}
+                        locked={undefined}
+                  />
             </Col>
       </Row>
       <Row
@@ -810,7 +481,7 @@ ShallowWrapper {
                                                 clicked={false}
                                                 ghost={false}
                                                 loading={false}
-                                                onClick={undefined}
+                                                onClick={[Function]}
                                                 prefixCls="ant-btn"
                                                 size="large"
                                                 type="primary"
@@ -888,7 +559,6 @@ ShallowWrapper {
                                                             <Icon
                                                                   type="folder"
                                                             />
-                                                             
                                                             intern
                                                       </span>
                                                 }
@@ -943,7 +613,6 @@ ShallowWrapper {
                                                             <Icon
                                                                   type="folder"
                                                             />
-                                                             
                                                             vorwerk
                                                       </span>
                                                 }
@@ -976,7 +645,6 @@ ShallowWrapper {
                                                                   <Icon
                                                                         type="folder"
                                                                   />
-                                                                   
                                                                   servers
                                                             </span>
                                                       }
@@ -1179,9 +847,11 @@ ShallowWrapper {
         "context": Object {},
         "generateCategoryTreeSelectNodes": [Function],
         "generateTreeFromFlatData": [Function],
+        "handleActionButtonOnClick": [Function],
         "handleCategoryTreeSelectModalChange": [Function],
         "handleCategoryTreeSelectModalClose": [Function],
         "handleCategoryTreeSelectModalSave": [Function],
+        "handleOnClose": [Function],
         "props": Object {
           "administrationMode": false,
           "categories": Array [
@@ -1291,6 +961,7 @@ ShallowWrapper {
         },
         "refs": Object {},
         "resetCategoryTreeSelectObject": [Function],
+        "saveManagedFormRef": [Function],
         "state": Object {
           "categoryTreeSelectModalSelectedCategory": null,
           "categoryTreeSelectModalVisible": false,
@@ -1343,190 +1014,27 @@ ShallowWrapper {
                     <Col
                               span={18}
                     >
-                              <Form
-                                        hideRequiredMark={false}
-                                        layout="horizontal"
-                                        onSubmit={[Function]}
-                                        prefixCls="ant-form"
-                              >
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Name"
-                                                  labelCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 4,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                                  prefixCls="ant-form"
-                                                  wrapperCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 18,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                        >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="name"
-                                                            onChange={undefined}
-                                                            placeholder="Name"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="lecker"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
-                                                            }
-                                                            type="text"
-                                                            value="lecker"
-                                                  />
-                                        </FormItem>
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Login"
-                                                  labelCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 4,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                                  prefixCls="ant-form"
-                                                  wrapperCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 18,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                        >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="login"
-                                                            onChange={undefined}
-                                                            placeholder="Login"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="erdbeer"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
-                                                            }
-                                                            type="text"
-                                                            value="erdbeer"
-                                                  />
-                                        </FormItem>
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Password"
-                                                  labelCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 4,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                                  prefixCls="ant-form"
-                                                  wrapperCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 18,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                        >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="password"
-                                                            onChange={undefined}
-                                                            placeholder="Password"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="yogurt"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
-                                                            }
-                                                            type="password"
-                                                            value="yogurt"
-                                                  />
-                                        </FormItem>
-                              </Form>
+                              <Form(WrappedComponent)
+                                        administrationMode={false}
+                                        categoryTreeSelect={[Function]}
+                                        cckeyKey={
+                                                  Object {
+                                                            "category": 3,
+                                                            "createdBy": "root",
+                                                            "createdDate": "2017-06-30T10:47:35.095+02:00",
+                                                            "creator": 1,
+                                                            "id": 2,
+                                                            "lastModifiedBy": "root",
+                                                            "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+                                                            "login": "erdbeer",
+                                                            "name": "lecker",
+                                                            "password": "yogurt",
+                                                          }
+                                        }
+                                        creationMode={false}
+                                        keyPasswordVisible={false}
+                                        locked={undefined}
+                              />
                     </Col>
           </Row>
           <Row
@@ -1595,7 +1103,7 @@ ShallowWrapper {
                                                                                 clicked={false}
                                                                                 ghost={false}
                                                                                 loading={false}
-                                                                                onClick={undefined}
+                                                                                onClick={[Function]}
                                                                                 prefixCls="ant-btn"
                                                                                 size="large"
                                                                                 type="primary"
@@ -1673,7 +1181,6 @@ ShallowWrapper {
                                                                                                     <Icon
                                                                                                               type="folder"
                                                                                                     />
-                                                                                                     
                                                                                                     intern
                                                                                           </span>
                                                                                 }
@@ -1728,7 +1235,6 @@ ShallowWrapper {
                                                                                                     <Icon
                                                                                                               type="folder"
                                                                                                     />
-                                                                                                     
                                                                                                     vorwerk
                                                                                           </span>
                                                                                 }
@@ -1761,7 +1267,6 @@ ShallowWrapper {
                                                                                                               <Icon
                                                                                                                         type="folder"
                                                                                                               />
-                                                                                                               
                                                                                                               servers
                                                                                                     </span>
                                                                                           }
@@ -1866,190 +1371,27 @@ ShallowWrapper {
                     <Col
                               span={18}
                     >
-                              <Form
-                                        hideRequiredMark={false}
-                                        layout="horizontal"
-                                        onSubmit={[Function]}
-                                        prefixCls="ant-form"
-                              >
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Name"
-                                                  labelCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 4,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                                  prefixCls="ant-form"
-                                                  wrapperCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 18,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                        >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="name"
-                                                            onChange={undefined}
-                                                            placeholder="Name"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="lecker"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
-                                                            }
-                                                            type="text"
-                                                            value="lecker"
-                                                  />
-                                        </FormItem>
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Login"
-                                                  labelCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 4,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                                  prefixCls="ant-form"
-                                                  wrapperCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 18,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                        >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="login"
-                                                            onChange={undefined}
-                                                            placeholder="Login"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="erdbeer"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
-                                                            }
-                                                            type="text"
-                                                            value="erdbeer"
-                                                  />
-                                        </FormItem>
-                                        <FormItem
-                                                  colon={false}
-                                                  hasFeedback={false}
-                                                  label="Password"
-                                                  labelCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 4,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                                  prefixCls="ant-form"
-                                                  wrapperCol={
-                                                            Object {
-                                                                      "sm": Object {
-                                                                        "span": 18,
-                                                                      },
-                                                                      "xs": Object {
-                                                                        "span": 24,
-                                                                      },
-                                                                    }
-                                                  }
-                                        >
-                                                  <Input
-                                                            autosize={false}
-                                                            disabled={false}
-                                                            name="password"
-                                                            onChange={undefined}
-                                                            placeholder="Password"
-                                                            prefixCls="ant-input"
-                                                            readOnly={true}
-                                                            suffix={
-                                                                      <CopyToClipboard
-                                                                                text="yogurt"
-                                                                      >
-                                                                                <Tooltip
-                                                                                          arrowPointAtCenter={false}
-                                                                                          mouseEnterDelay={0.1}
-                                                                                          mouseLeaveDelay={0.1}
-                                                                                          placement="top"
-                                                                                          prefixCls="ant-tooltip"
-                                                                                          title="Copied to clipboard"
-                                                                                          transitionName="zoom-big-fast"
-                                                                                          trigger="click"
-                                                                                >
-                                                                                          <Icon
-                                                                                                    className="copy-to-clipboard-icon"
-                                                                                                    type="copy"
-                                                                                          />
-                                                                                </Tooltip>
-                                                                      </CopyToClipboard>
-                                                            }
-                                                            type="password"
-                                                            value="yogurt"
-                                                  />
-                                        </FormItem>
-                              </Form>
+                              <Form(WrappedComponent)
+                                        administrationMode={false}
+                                        categoryTreeSelect={[Function]}
+                                        cckeyKey={
+                                                  Object {
+                                                            "category": 3,
+                                                            "createdBy": "root",
+                                                            "createdDate": "2017-06-30T10:47:35.095+02:00",
+                                                            "creator": 1,
+                                                            "id": 2,
+                                                            "lastModifiedBy": "root",
+                                                            "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+                                                            "login": "erdbeer",
+                                                            "name": "lecker",
+                                                            "password": "yogurt",
+                                                          }
+                                        }
+                                        creationMode={false}
+                                        keyPasswordVisible={false}
+                                        locked={undefined}
+                              />
                     </Col>
           </Row>
           <Row
@@ -2118,7 +1460,7 @@ ShallowWrapper {
                                                                                 clicked={false}
                                                                                 ghost={false}
                                                                                 loading={false}
-                                                                                onClick={undefined}
+                                                                                onClick={[Function]}
                                                                                 prefixCls="ant-btn"
                                                                                 size="large"
                                                                                 type="primary"
@@ -2196,7 +1538,6 @@ ShallowWrapper {
                                                                                                     <Icon
                                                                                                               type="folder"
                                                                                                     />
-                                                                                                     
                                                                                                     intern
                                                                                           </span>
                                                                                 }
@@ -2251,7 +1592,6 @@ ShallowWrapper {
                                                                                                     <Icon
                                                                                                               type="folder"
                                                                                                     />
-                                                                                                     
                                                                                                     vorwerk
                                                                                           </span>
                                                                                 }
@@ -2284,7 +1624,6 @@ ShallowWrapper {
                                                                                                               <Icon
                                                                                                                         type="folder"
                                                                                                               />
-                                                                                                               
                                                                                                               servers
                                                                                                     </span>
                                                                                           }
