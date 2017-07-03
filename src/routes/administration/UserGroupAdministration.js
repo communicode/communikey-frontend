@@ -6,7 +6,7 @@ import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
 import UserGroupModal from "./../../components/data/UserGroupModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
-import { screenMD } from "./../../config/theme/sizes";
+import {screenMD} from "./../../config/theme/sizes";
 import {AUTH_STORE, USER_STORE, USER_GROUP_STORE} from "./../../stores/storeConstants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";

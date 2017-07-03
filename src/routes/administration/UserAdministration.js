@@ -6,7 +6,7 @@ import {toJS} from "mobx";
 import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
-import { screenMD } from "./../../config/theme/sizes";
+import {screenMD} from "./../../config/theme/sizes";
 import {AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";

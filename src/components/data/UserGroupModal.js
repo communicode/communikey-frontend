@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CopyToClipboard from "react-copy-to-clipboard";
 import _ from "lodash";
 import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip} from "antd";
-import { screenMD } from "./../../config/theme/sizes";
+import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/checkbox/style/index.less";
 import "antd/lib/col/style/css";
