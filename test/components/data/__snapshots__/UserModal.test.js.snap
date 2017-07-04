@@ -1,0 +1,1120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserModal> should render correctly with sample data 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <Modal
+    className="cckey-user-modal"
+    closable={false}
+    confirmLoading={false}
+    footer={false}
+    maskTransitionName="fade"
+    onClose={[Function]}
+    onSave={undefined}
+    prefixCls="ant-modal"
+    transitionName="zoom"
+    visible={false}
+    width={520}
+>
+    <Row
+        gutter={24}
+    >
+        <Col
+            span={6}
+        >
+            <img
+                className="user-avatar"
+                src="/assets/images/wireframe/avatars/matthew.png"
+            />
+        </Col>
+        <Col
+            span={18}
+        >
+            <Form(WrappedComponent)
+                administrationMode={false}
+                creationMode={false}
+                user={
+                    Object {
+                        "activated": false,
+                        "activationKey": "99315975298178909730",
+                        "authorities": Array [
+                          "ROLE_USER",
+                        ],
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T10:46:47.738+02:00",
+                        "email": "testuser@communicode.de",
+                        "firstName": "Peter",
+                        "groups": Array [
+                          3,
+                          2,
+                          1,
+                        ],
+                        "id": 2,
+                        "keyCategories": Array [],
+                        "keys": Array [],
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+                        "lastName": "Maffay",
+                        "login": "testuser",
+                        "resetDate": null,
+                        "resetKey": null,
+                        "responsibleKeyCategories": Array [],
+                      }
+                }
+            />
+        </Col>
+    </Row>
+    <Row
+        gutter={0}
+    >
+        <Col>
+            <div
+                className="footer"
+            >
+                <Row
+                    align="middle"
+                    gutter={0}
+                    type="flex"
+                >
+                    <Col
+                        span={8}
+                    >
+                        <div
+                            className="operations"
+                        >
+                            
+                        </div>
+                    </Col>
+                    <Col
+                        offset={8}
+                        span={8}
+                    >
+                        <div
+                            className="main"
+                        >
+                            <Button
+                                clicked={false}
+                                ghost={false}
+                                loading={false}
+                                onClick={[Function]}
+                                prefixCls="ant-btn"
+                                size="large"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                clicked={false}
+                                ghost={false}
+                                loading={false}
+                                onClick={[Function]}
+                                prefixCls="ant-btn"
+                                size="large"
+                                type="primary"
+                            >
+                                Done
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
+            </div>
+        </Col>
+    </Row>
+    <Modal
+        className="password-reset-inner-modal"
+        closable={false}
+        confirmLoading={false}
+        footer={false}
+        maskTransitionName="fade"
+        prefixCls="ant-modal"
+        transitionName="zoom"
+        visible={false}
+        width={520}
+    >
+        <Row
+            gutter={0}
+        >
+            <Col
+                span={24}
+            >
+                <Form
+                    hideRequiredMark={false}
+                    layout="horizontal"
+                    onSubmit={[Function]}
+                    prefixCls="ant-form"
+                >
+                    <FormItem
+                        colon={true}
+                        hasFeedback={false}
+                        prefixCls="ant-form"
+                    >
+                        <Input
+                            addonBefore={
+                                <Icon
+                                    type="pay-circle-o"
+                                />
+                            }
+                            autosize={false}
+                            disabled={true}
+                            name="resetKey"
+                            prefixCls="ant-input"
+                            readOnly={true}
+                            suffix={null}
+                            type="text"
+                            value={null}
+                        />
+                    </FormItem>
+                    <FormItem
+                        colon={true}
+                        hasFeedback={false}
+                        prefixCls="ant-form"
+                    >
+                        <Input
+                            autosize={false}
+                            disabled={false}
+                            name="passwordResetModalNewPasswordValue"
+                            onChange={[Function]}
+                            placeholder="New password"
+                            prefixCls="ant-input"
+                            type="password"
+                            value=""
+                        />
+                    </FormItem>
+                    <FormItem
+                        colon={true}
+                        hasFeedback={false}
+                        prefixCls="ant-form"
+                    >
+                        <Input
+                            autosize={false}
+                            disabled={false}
+                            name="passwordResetModalConfirmValue"
+                            onChange={[Function]}
+                            placeholder="Confirm new password"
+                            prefixCls="ant-input"
+                            type="password"
+                            value=""
+                        />
+                    </FormItem>
+                </Form>
+            </Col>
+        </Row>
+        <Row
+            gutter={0}
+        >
+            <Col>
+                <div
+                    className="footer"
+                >
+                    <Row
+                        gutter={0}
+                        justify="end"
+                        type="flex"
+                    >
+                        <Col>
+                            <Button
+                                clicked={false}
+                                ghost={false}
+                                loading={false}
+                                onClick={[Function]}
+                                prefixCls="ant-btn"
+                                size="large"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                clicked={false}
+                                disabled={true}
+                                ghost={false}
+                                loading={false}
+                                onClick={[Function]}
+                                prefixCls="ant-btn"
+                                size="large"
+                                type="primary"
+                            >
+                                Save
+                            </Button>
+                        </Col>
+                    </Row>
+                </div>
+            </Col>
+        </Row>
+    </Modal>
+</Modal>,
+  "nodes": Array [
+    <Modal
+      className="cckey-user-modal"
+      closable={false}
+      confirmLoading={false}
+      footer={false}
+      maskTransitionName="fade"
+      onClose={[Function]}
+      onSave={undefined}
+      prefixCls="ant-modal"
+      transitionName="zoom"
+      visible={false}
+      width={520}
+>
+      <Row
+            gutter={24}
+      >
+            <Col
+                  span={6}
+            >
+                  <img
+                        className="user-avatar"
+                        src="/assets/images/wireframe/avatars/matthew.png"
+                  />
+            </Col>
+            <Col
+                  span={18}
+            >
+                  <Form(WrappedComponent)
+                        administrationMode={false}
+                        creationMode={false}
+                        user={
+                              Object {
+                                    "activated": false,
+                                    "activationKey": "99315975298178909730",
+                                    "authorities": Array [
+                                      "ROLE_USER",
+                                    ],
+                                    "createdBy": "root",
+                                    "createdDate": "2017-06-30T10:46:47.738+02:00",
+                                    "email": "testuser@communicode.de",
+                                    "firstName": "Peter",
+                                    "groups": Array [
+                                      3,
+                                      2,
+                                      1,
+                                    ],
+                                    "id": 2,
+                                    "keyCategories": Array [],
+                                    "keys": Array [],
+                                    "lastModifiedBy": "root",
+                                    "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+                                    "lastName": "Maffay",
+                                    "login": "testuser",
+                                    "resetDate": null,
+                                    "resetKey": null,
+                                    "responsibleKeyCategories": Array [],
+                                  }
+                        }
+                  />
+            </Col>
+      </Row>
+      <Row
+            gutter={0}
+      >
+            <Col>
+                  <div
+                        className="footer"
+                  >
+                        <Row
+                              align="middle"
+                              gutter={0}
+                              type="flex"
+                        >
+                              <Col
+                                    span={8}
+                              >
+                                    <div
+                                          className="operations"
+                                    >
+                                          
+                                    </div>
+                              </Col>
+                              <Col
+                                    offset={8}
+                                    span={8}
+                              >
+                                    <div
+                                          className="main"
+                                    >
+                                          <Button
+                                                clicked={false}
+                                                ghost={false}
+                                                loading={false}
+                                                onClick={[Function]}
+                                                prefixCls="ant-btn"
+                                                size="large"
+                                          >
+                                                Cancel
+                                          </Button>
+                                          <Button
+                                                clicked={false}
+                                                ghost={false}
+                                                loading={false}
+                                                onClick={[Function]}
+                                                prefixCls="ant-btn"
+                                                size="large"
+                                                type="primary"
+                                          >
+                                                Done
+                                          </Button>
+                                    </div>
+                              </Col>
+                        </Row>
+                  </div>
+            </Col>
+      </Row>
+      <Modal
+            className="password-reset-inner-modal"
+            closable={false}
+            confirmLoading={false}
+            footer={false}
+            maskTransitionName="fade"
+            prefixCls="ant-modal"
+            transitionName="zoom"
+            visible={false}
+            width={520}
+      >
+            <Row
+                  gutter={0}
+            >
+                  <Col
+                        span={24}
+                  >
+                        <Form
+                              hideRequiredMark={false}
+                              layout="horizontal"
+                              onSubmit={[Function]}
+                              prefixCls="ant-form"
+                        >
+                              <FormItem
+                                    colon={true}
+                                    hasFeedback={false}
+                                    prefixCls="ant-form"
+                              >
+                                    <Input
+                                          addonBefore={
+                                                <Icon
+                                                      type="pay-circle-o"
+                                                />
+                                          }
+                                          autosize={false}
+                                          disabled={true}
+                                          name="resetKey"
+                                          prefixCls="ant-input"
+                                          readOnly={true}
+                                          suffix={null}
+                                          type="text"
+                                          value={null}
+                                    />
+                              </FormItem>
+                              <FormItem
+                                    colon={true}
+                                    hasFeedback={false}
+                                    prefixCls="ant-form"
+                              >
+                                    <Input
+                                          autosize={false}
+                                          disabled={false}
+                                          name="passwordResetModalNewPasswordValue"
+                                          onChange={[Function]}
+                                          placeholder="New password"
+                                          prefixCls="ant-input"
+                                          type="password"
+                                          value=""
+                                    />
+                              </FormItem>
+                              <FormItem
+                                    colon={true}
+                                    hasFeedback={false}
+                                    prefixCls="ant-form"
+                              >
+                                    <Input
+                                          autosize={false}
+                                          disabled={false}
+                                          name="passwordResetModalConfirmValue"
+                                          onChange={[Function]}
+                                          placeholder="Confirm new password"
+                                          prefixCls="ant-input"
+                                          type="password"
+                                          value=""
+                                    />
+                              </FormItem>
+                        </Form>
+                  </Col>
+            </Row>
+            <Row
+                  gutter={0}
+            >
+                  <Col>
+                        <div
+                              className="footer"
+                        >
+                              <Row
+                                    gutter={0}
+                                    justify="end"
+                                    type="flex"
+                              >
+                                    <Col>
+                                          <Button
+                                                clicked={false}
+                                                ghost={false}
+                                                loading={false}
+                                                onClick={[Function]}
+                                                prefixCls="ant-btn"
+                                                size="large"
+                                          >
+                                                Cancel
+                                          </Button>
+                                          <Button
+                                                clicked={false}
+                                                disabled={true}
+                                                ghost={false}
+                                                loading={false}
+                                                onClick={[Function]}
+                                                prefixCls="ant-btn"
+                                                size="large"
+                                                type="primary"
+                                          >
+                                                Save
+                                          </Button>
+                                    </Col>
+                              </Row>
+                        </div>
+                  </Col>
+            </Row>
+      </Modal>
+</Modal>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <UserModal
+        administrationMode={false}
+        creationMode={false}
+        loading={false}
+        onClose={[Function]}
+        user={
+                Object {
+                        "activated": false,
+                        "activationKey": "99315975298178909730",
+                        "authorities": Array [
+                          "ROLE_USER",
+                        ],
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T10:46:47.738+02:00",
+                        "email": "testuser@communicode.de",
+                        "firstName": "Peter",
+                        "groups": Array [
+                          3,
+                          2,
+                          1,
+                        ],
+                        "id": 2,
+                        "keyCategories": Array [],
+                        "keys": Array [],
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+                        "lastName": "Maffay",
+                        "login": "testuser",
+                        "resetDate": null,
+                        "resetKey": null,
+                        "responsibleKeyCategories": Array [],
+                      }
+        }
+/>,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": UserModal {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "handleActionButtonOnClick": [Function],
+        "handleOnClose": [Function],
+        "handlePasswordResetModalClose": [Function],
+        "handlePasswordResetModalValueChange": [Function],
+        "handleUserPasswordResetSave": [Function],
+        "props": Object {
+          "administrationMode": false,
+          "creationMode": false,
+          "loading": false,
+          "onClose": [Function],
+          "user": Object {
+            "activated": false,
+            "activationKey": "99315975298178909730",
+            "authorities": Array [
+              "ROLE_USER",
+            ],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T10:46:47.738+02:00",
+            "email": "testuser@communicode.de",
+            "firstName": "Peter",
+            "groups": Array [
+              3,
+              2,
+              1,
+            ],
+            "id": 2,
+            "keyCategories": Array [],
+            "keys": Array [],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+            "lastName": "Maffay",
+            "login": "testuser",
+            "resetDate": null,
+            "resetKey": null,
+            "responsibleKeyCategories": Array [],
+          },
+        },
+        "refs": Object {},
+        "resetPasswordResetModalValues": [Function],
+        "saveManagedFormRef": [Function],
+        "state": Object {
+          "passwordResetModalConfirmValue": "",
+          "passwordResetModalNewPasswordValue": "",
+          "passwordResetModalValuesValid": false,
+          "passwordResetModalVisible": false,
+        },
+        "togglePasswordResetModal": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+        "validatePasswordResetValues": [Function],
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <Modal
+          className="cckey-user-modal"
+          closable={false}
+          confirmLoading={false}
+          footer={false}
+          maskTransitionName="fade"
+          onClose={[Function]}
+          onSave={undefined}
+          prefixCls="ant-modal"
+          transitionName="zoom"
+          visible={false}
+          width={520}
+>
+          <Row
+                    gutter={24}
+          >
+                    <Col
+                              span={6}
+                    >
+                              <img
+                                        className="user-avatar"
+                                        src="/assets/images/wireframe/avatars/matthew.png"
+                              />
+                    </Col>
+                    <Col
+                              span={18}
+                    >
+                              <Form(WrappedComponent)
+                                        administrationMode={false}
+                                        creationMode={false}
+                                        user={
+                                                  Object {
+                                                            "activated": false,
+                                                            "activationKey": "99315975298178909730",
+                                                            "authorities": Array [
+                                                              "ROLE_USER",
+                                                            ],
+                                                            "createdBy": "root",
+                                                            "createdDate": "2017-06-30T10:46:47.738+02:00",
+                                                            "email": "testuser@communicode.de",
+                                                            "firstName": "Peter",
+                                                            "groups": Array [
+                                                              3,
+                                                              2,
+                                                              1,
+                                                            ],
+                                                            "id": 2,
+                                                            "keyCategories": Array [],
+                                                            "keys": Array [],
+                                                            "lastModifiedBy": "root",
+                                                            "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+                                                            "lastName": "Maffay",
+                                                            "login": "testuser",
+                                                            "resetDate": null,
+                                                            "resetKey": null,
+                                                            "responsibleKeyCategories": Array [],
+                                                          }
+                                        }
+                              />
+                    </Col>
+          </Row>
+          <Row
+                    gutter={0}
+          >
+                    <Col>
+                              <div
+                                        className="footer"
+                              >
+                                        <Row
+                                                  align="middle"
+                                                  gutter={0}
+                                                  type="flex"
+                                        >
+                                                  <Col
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="operations"
+                                                            >
+                                                                      
+                                                            </div>
+                                                  </Col>
+                                                  <Col
+                                                            offset={8}
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="main"
+                                                            >
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                      >
+                                                                                Cancel
+                                                                      </Button>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                                type="primary"
+                                                                      >
+                                                                                Done
+                                                                      </Button>
+                                                            </div>
+                                                  </Col>
+                                        </Row>
+                              </div>
+                    </Col>
+          </Row>
+          <Modal
+                    className="password-reset-inner-modal"
+                    closable={false}
+                    confirmLoading={false}
+                    footer={false}
+                    maskTransitionName="fade"
+                    prefixCls="ant-modal"
+                    transitionName="zoom"
+                    visible={false}
+                    width={520}
+          >
+                    <Row
+                              gutter={0}
+                    >
+                              <Col
+                                        span={24}
+                              >
+                                        <Form
+                                                  hideRequiredMark={false}
+                                                  layout="horizontal"
+                                                  onSubmit={[Function]}
+                                                  prefixCls="ant-form"
+                                        >
+                                                  <FormItem
+                                                            colon={true}
+                                                            hasFeedback={false}
+                                                            prefixCls="ant-form"
+                                                  >
+                                                            <Input
+                                                                      addonBefore={
+                                                                                <Icon
+                                                                                          type="pay-circle-o"
+                                                                                />
+                                                                      }
+                                                                      autosize={false}
+                                                                      disabled={true}
+                                                                      name="resetKey"
+                                                                      prefixCls="ant-input"
+                                                                      readOnly={true}
+                                                                      suffix={null}
+                                                                      type="text"
+                                                                      value={null}
+                                                            />
+                                                  </FormItem>
+                                                  <FormItem
+                                                            colon={true}
+                                                            hasFeedback={false}
+                                                            prefixCls="ant-form"
+                                                  >
+                                                            <Input
+                                                                      autosize={false}
+                                                                      disabled={false}
+                                                                      name="passwordResetModalNewPasswordValue"
+                                                                      onChange={[Function]}
+                                                                      placeholder="New password"
+                                                                      prefixCls="ant-input"
+                                                                      type="password"
+                                                                      value=""
+                                                            />
+                                                  </FormItem>
+                                                  <FormItem
+                                                            colon={true}
+                                                            hasFeedback={false}
+                                                            prefixCls="ant-form"
+                                                  >
+                                                            <Input
+                                                                      autosize={false}
+                                                                      disabled={false}
+                                                                      name="passwordResetModalConfirmValue"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Confirm new password"
+                                                                      prefixCls="ant-input"
+                                                                      type="password"
+                                                                      value=""
+                                                            />
+                                                  </FormItem>
+                                        </Form>
+                              </Col>
+                    </Row>
+                    <Row
+                              gutter={0}
+                    >
+                              <Col>
+                                        <div
+                                                  className="footer"
+                                        >
+                                                  <Row
+                                                            gutter={0}
+                                                            justify="end"
+                                                            type="flex"
+                                                  >
+                                                            <Col>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                      >
+                                                                                Cancel
+                                                                      </Button>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                disabled={true}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                                type="primary"
+                                                                      >
+                                                                                Save
+                                                                      </Button>
+                                                            </Col>
+                                                  </Row>
+                                        </div>
+                              </Col>
+                    </Row>
+          </Modal>
+</Modal>,
+        "_debugID": 2,
+        "_renderedOutput": <Modal
+          className="cckey-user-modal"
+          closable={false}
+          confirmLoading={false}
+          footer={false}
+          maskTransitionName="fade"
+          onClose={[Function]}
+          onSave={undefined}
+          prefixCls="ant-modal"
+          transitionName="zoom"
+          visible={false}
+          width={520}
+>
+          <Row
+                    gutter={24}
+          >
+                    <Col
+                              span={6}
+                    >
+                              <img
+                                        className="user-avatar"
+                                        src="/assets/images/wireframe/avatars/matthew.png"
+                              />
+                    </Col>
+                    <Col
+                              span={18}
+                    >
+                              <Form(WrappedComponent)
+                                        administrationMode={false}
+                                        creationMode={false}
+                                        user={
+                                                  Object {
+                                                            "activated": false,
+                                                            "activationKey": "99315975298178909730",
+                                                            "authorities": Array [
+                                                              "ROLE_USER",
+                                                            ],
+                                                            "createdBy": "root",
+                                                            "createdDate": "2017-06-30T10:46:47.738+02:00",
+                                                            "email": "testuser@communicode.de",
+                                                            "firstName": "Peter",
+                                                            "groups": Array [
+                                                              3,
+                                                              2,
+                                                              1,
+                                                            ],
+                                                            "id": 2,
+                                                            "keyCategories": Array [],
+                                                            "keys": Array [],
+                                                            "lastModifiedBy": "root",
+                                                            "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+                                                            "lastName": "Maffay",
+                                                            "login": "testuser",
+                                                            "resetDate": null,
+                                                            "resetKey": null,
+                                                            "responsibleKeyCategories": Array [],
+                                                          }
+                                        }
+                              />
+                    </Col>
+          </Row>
+          <Row
+                    gutter={0}
+          >
+                    <Col>
+                              <div
+                                        className="footer"
+                              >
+                                        <Row
+                                                  align="middle"
+                                                  gutter={0}
+                                                  type="flex"
+                                        >
+                                                  <Col
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="operations"
+                                                            >
+                                                                      
+                                                            </div>
+                                                  </Col>
+                                                  <Col
+                                                            offset={8}
+                                                            span={8}
+                                                  >
+                                                            <div
+                                                                      className="main"
+                                                            >
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                      >
+                                                                                Cancel
+                                                                      </Button>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                                type="primary"
+                                                                      >
+                                                                                Done
+                                                                      </Button>
+                                                            </div>
+                                                  </Col>
+                                        </Row>
+                              </div>
+                    </Col>
+          </Row>
+          <Modal
+                    className="password-reset-inner-modal"
+                    closable={false}
+                    confirmLoading={false}
+                    footer={false}
+                    maskTransitionName="fade"
+                    prefixCls="ant-modal"
+                    transitionName="zoom"
+                    visible={false}
+                    width={520}
+          >
+                    <Row
+                              gutter={0}
+                    >
+                              <Col
+                                        span={24}
+                              >
+                                        <Form
+                                                  hideRequiredMark={false}
+                                                  layout="horizontal"
+                                                  onSubmit={[Function]}
+                                                  prefixCls="ant-form"
+                                        >
+                                                  <FormItem
+                                                            colon={true}
+                                                            hasFeedback={false}
+                                                            prefixCls="ant-form"
+                                                  >
+                                                            <Input
+                                                                      addonBefore={
+                                                                                <Icon
+                                                                                          type="pay-circle-o"
+                                                                                />
+                                                                      }
+                                                                      autosize={false}
+                                                                      disabled={true}
+                                                                      name="resetKey"
+                                                                      prefixCls="ant-input"
+                                                                      readOnly={true}
+                                                                      suffix={null}
+                                                                      type="text"
+                                                                      value={null}
+                                                            />
+                                                  </FormItem>
+                                                  <FormItem
+                                                            colon={true}
+                                                            hasFeedback={false}
+                                                            prefixCls="ant-form"
+                                                  >
+                                                            <Input
+                                                                      autosize={false}
+                                                                      disabled={false}
+                                                                      name="passwordResetModalNewPasswordValue"
+                                                                      onChange={[Function]}
+                                                                      placeholder="New password"
+                                                                      prefixCls="ant-input"
+                                                                      type="password"
+                                                                      value=""
+                                                            />
+                                                  </FormItem>
+                                                  <FormItem
+                                                            colon={true}
+                                                            hasFeedback={false}
+                                                            prefixCls="ant-form"
+                                                  >
+                                                            <Input
+                                                                      autosize={false}
+                                                                      disabled={false}
+                                                                      name="passwordResetModalConfirmValue"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Confirm new password"
+                                                                      prefixCls="ant-input"
+                                                                      type="password"
+                                                                      value=""
+                                                            />
+                                                  </FormItem>
+                                        </Form>
+                              </Col>
+                    </Row>
+                    <Row
+                              gutter={0}
+                    >
+                              <Col>
+                                        <div
+                                                  className="footer"
+                                        >
+                                                  <Row
+                                                            gutter={0}
+                                                            justify="end"
+                                                            type="flex"
+                                                  >
+                                                            <Col>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                      >
+                                                                                Cancel
+                                                                      </Button>
+                                                                      <Button
+                                                                                clicked={false}
+                                                                                disabled={true}
+                                                                                ghost={false}
+                                                                                loading={false}
+                                                                                onClick={[Function]}
+                                                                                prefixCls="ant-btn"
+                                                                                size="large"
+                                                                                type="primary"
+                                                                      >
+                                                                                Save
+                                                                      </Button>
+                                                            </Col>
+                                                  </Row>
+                                        </div>
+                              </Col>
+                    </Row>
+          </Modal>
+</Modal>,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <UserModal
+    administrationMode={false}
+    creationMode={false}
+    loading={false}
+    onClose={[Function]}
+    user={
+        Object {
+            "activated": false,
+            "activationKey": "99315975298178909730",
+            "authorities": Array [
+              "ROLE_USER",
+            ],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T10:46:47.738+02:00",
+            "email": "testuser@communicode.de",
+            "firstName": "Peter",
+            "groups": Array [
+              3,
+              2,
+              1,
+            ],
+            "id": 2,
+            "keyCategories": Array [],
+            "keys": Array [],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+            "lastName": "Maffay",
+            "login": "testuser",
+            "resetDate": null,
+            "resetKey": null,
+            "responsibleKeyCategories": Array [],
+          }
+    }
+/>,
+}
+`;
