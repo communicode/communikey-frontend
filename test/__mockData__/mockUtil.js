@@ -30,4 +30,6 @@ export var mockStorage = {
   setItem() {}
 };
 
+export var VERSION = "0.0-code-coverage";
+
 export const emptyFunction = () => {};
