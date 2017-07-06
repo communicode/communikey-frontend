@@ -1,1811 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<KeyModal> should render correctly with sample data 1`] = `
-ShallowWrapper {
-  "complexSelector": ComplexSelector {
-    "buildPredicate": [Function],
-    "childrenOfNode": [Function],
-    "findWhereUnwrapped": [Function],
-  },
-  "length": 1,
-  "node": <Modal
-    className="cckey-key-modal"
-    closable={false}
-    confirmLoading={false}
-    footer={false}
-    maskTransitionName="fade"
-    onClose={[Function]}
-    onSave={undefined}
-    prefixCls="ant-modal"
-    transitionName="zoom"
-    visible={false}
-    width={520}
+<Modal
+  className="cckey-key-modal"
+  closable={false}
+  confirmLoading={false}
+  footer={false}
+  maskTransitionName="fade"
+  onClose={[Function]}
+  prefixCls="ant-modal"
+  transitionName="zoom"
+  visible={false}
+  width={520}
 >
-    <Row
-        gutter={24}
+  <Row
+    gutter={24}
+  >
+    <Col
+      span={6}
     >
-        <Col
-            span={6}
-        >
-            <img
-                className="key-logo"
-                src="/assets/images/communikey-logo-typography-green.svg"
-            />
-        </Col>
-        <Col
-            span={18}
-        >
-            <Form(WrappedComponent)
-                administrationMode={false}
-                categoryTreeSelect={[Function]}
-                cckeyKey={
-                    Object {
-                        "category": 3,
-                        "createdBy": "root",
-                        "createdDate": "2017-06-30T10:47:35.095+02:00",
-                        "creator": 1,
-                        "id": 2,
-                        "lastModifiedBy": "root",
-                        "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
-                        "login": "erdbeer",
-                        "name": "lecker",
-                        "password": "yogurt",
-                      }
-                }
-                creationMode={false}
-                keyPasswordVisible={false}
-                locked={undefined}
-            />
-        </Col>
-    </Row>
-    <Row
-        gutter={0}
-        span={4}
+      <img
+        className="key-logo"
+        src="/assets/images/communikey-logo-typography-green.svg"
+      />
+    </Col>
+    <Col
+      span={18}
     >
-        <Tooltip
-            arrowPointAtCenter={false}
-            mouseEnterDelay={0.1}
-            mouseLeaveDelay={0.1}
-            placement="top"
-            prefixCls="ant-tooltip"
-            title="Show password"
-            transitionName="zoom-big-fast"
-        >
-            <Button
-                clicked={false}
-                ghost={false}
-                icon="eye-o"
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                type="ghost"
-            />
-        </Tooltip>
-    </Row>
-    <Row
-        gutter={0}
-    >
-        <Col>
-            <div
-                className="footer"
-            >
-                <Row
-                    align="middle"
-                    gutter={0}
-                    type="flex"
-                >
-                    <Col
-                        span={8}
-                    >
-                        <div
-                            className="operations"
-                        >
-                            
-                        </div>
-                    </Col>
-                    <Col
-                        offset={8}
-                        span={8}
-                    >
-                        <div
-                            className="main"
-                        >
-                            <Button
-                                clicked={false}
-                                ghost={false}
-                                loading={false}
-                                onClick={[Function]}
-                                prefixCls="ant-btn"
-                                size="large"
-                            >
-                                Cancel
-                            </Button>
-                            <Button
-                                clicked={false}
-                                ghost={false}
-                                loading={false}
-                                onClick={[Function]}
-                                prefixCls="ant-btn"
-                                size="large"
-                                type="primary"
-                            >
-                                Done
-                            </Button>
-                        </div>
-                    </Col>
-                </Row>
-            </div>
-        </Col>
-    </Row>
-    <Modal
-        className="category-tree-select-inner-modal"
-        closable={false}
-        confirmLoading={false}
-        footer={false}
-        maskTransitionName="fade"
-        prefixCls="ant-modal"
-        transitionName="zoom"
-        visible={false}
-        width={520}
-    >
-        <Row
-            gutter={0}
-            justify="center"
-            type="flex"
-        >
-            <Col
-                span={24}
-            >
-                <Form
-                    hideRequiredMark={false}
-                    layout="horizontal"
-                    onSubmit={[Function]}
-                    prefixCls="ant-form"
-                >
-                    <FormItem
-                        colon={true}
-                        hasFeedback={false}
-                        prefixCls="ant-form"
-                    >
-                        <_a
-                            choiceTransitionName="zoom"
-                            dropdownClassName="ant-select-tree-dropdown"
-                            onChange={[Function]}
-                            prefixCls="ant-select"
-                            showSearch={true}
-                            size="large"
-                            transitionName="slide-up"
-                            value={null}
-                        >
-                            <TreeNode
-                                category={
-                                    Object {
-                                        "children": Array [
-                                          5,
-                                        ],
-                                        "createdBy": "root",
-                                        "createdDate": "2017-06-30T11:13:46.691+02:00",
-                                        "creator": 1,
-                                        "groups": Array [],
-                                        "id": 4,
-                                        "keys": Array [],
-                                        "lastModifiedBy": "root",
-                                        "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-                                        "name": "intern",
-                                        "parent": null,
-                                        "responsible": 1,
-                                        "treeLevel": 0,
-                                      }
-                                }
-                                title={
-                                    <span>
-                                        <Icon
-                                            type="folder"
-                                        />
-                                        intern
-                                    </span>
-                                }
-                                value="intern"
-                            >
-                                <TreeNode
-                                    category={
-                                        Object {
-                                            "children": Array [],
-                                            "createdBy": "root",
-                                            "createdDate": "2017-06-30T11:13:53.821+02:00",
-                                            "creator": 1,
-                                            "groups": Array [],
-                                            "id": 5,
-                                            "keys": Array [
-                                              3,
-                                            ],
-                                            "lastModifiedBy": "root",
-                                            "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-                                            "name": "projektron bcs",
-                                            "parent": 4,
-                                            "responsible": 1,
-                                            "treeLevel": 1,
-                                          }
-                                    }
-                                    title="projektron bcs"
-                                    value="projektron bcs"
-                                />
-                            </TreeNode>
-                            <TreeNode
-                                category={
-                                    Object {
-                                        "children": Array [
-                                          2,
-                                        ],
-                                        "createdBy": "root",
-                                        "createdDate": "2017-06-30T11:13:33.274+02:00",
-                                        "creator": 1,
-                                        "groups": Array [],
-                                        "id": 1,
-                                        "keys": Array [],
-                                        "lastModifiedBy": "root",
-                                        "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-                                        "name": "vorwerk",
-                                        "parent": null,
-                                        "responsible": 1,
-                                        "treeLevel": 0,
-                                      }
-                                }
-                                title={
-                                    <span>
-                                        <Icon
-                                            type="folder"
-                                        />
-                                        vorwerk
-                                    </span>
-                                }
-                                value="vorwerk"
-                            >
-                                <TreeNode
-                                    category={
-                                        Object {
-                                            "children": Array [
-                                              3,
-                                            ],
-                                            "createdBy": "root",
-                                            "createdDate": "2017-06-30T11:13:37.557+02:00",
-                                            "creator": 1,
-                                            "groups": Array [],
-                                            "id": 2,
-                                            "keys": Array [
-                                              1,
-                                            ],
-                                            "lastModifiedBy": "root",
-                                            "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-                                            "name": "servers",
-                                            "parent": 1,
-                                            "responsible": 1,
-                                            "treeLevel": 1,
-                                          }
-                                    }
-                                    title={
-                                        <span>
-                                            <Icon
-                                                type="folder"
-                                            />
-                                            servers
-                                        </span>
-                                    }
-                                    value="servers"
-                                >
-                                    <TreeNode
-                                        category={
-                                            Object {
-                                                "children": Array [],
-                                                "createdBy": "root",
-                                                "createdDate": "2017-06-30T11:13:41.497+02:00",
-                                                "creator": 1,
-                                                "groups": Array [],
-                                                "id": 3,
-                                                "keys": Array [
-                                                  2,
-                                                ],
-                                                "lastModifiedBy": "root",
-                                                "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-                                                "name": "ssh",
-                                                "parent": 2,
-                                                "responsible": 1,
-                                                "treeLevel": 2,
-                                              }
-                                        }
-                                        title="ssh"
-                                        value="ssh"
-                                    />
-                                </TreeNode>
-                            </TreeNode>
-                        </_a>
-                    </FormItem>
-                </Form>
-            </Col>
-        </Row>
-        <Row
-            gutter={0}
-        >
-            <Col>
-                <div
-                    className="footer"
-                >
-                    <Row
-                        gutter={0}
-                        justify="end"
-                        type="flex"
-                    >
-                        <Col>
-                            <Button
-                                clicked={false}
-                                ghost={false}
-                                loading={false}
-                                onClick={[Function]}
-                                prefixCls="ant-btn"
-                                size="large"
-                            >
-                                Cancel
-                            </Button>
-                            <Button
-                                clicked={false}
-                                ghost={false}
-                                loading={false}
-                                onClick={[Function]}
-                                prefixCls="ant-btn"
-                                size="large"
-                                type="primary"
-                            >
-                                Save
-                            </Button>
-                        </Col>
-                    </Row>
-                </div>
-            </Col>
-        </Row>
-    </Modal>
-</Modal>,
-  "nodes": Array [
-    <Modal
-      className="cckey-key-modal"
-      closable={false}
-      confirmLoading={false}
-      footer={false}
-      maskTransitionName="fade"
-      onClose={[Function]}
-      onSave={undefined}
-      prefixCls="ant-modal"
-      transitionName="zoom"
-      visible={false}
-      width={520}
->
-      <Row
-            gutter={24}
-      >
-            <Col
-                  span={6}
-            >
-                  <img
-                        className="key-logo"
-                        src="/assets/images/communikey-logo-typography-green.svg"
-                  />
-            </Col>
-            <Col
-                  span={18}
-            >
-                  <Form(WrappedComponent)
-                        administrationMode={false}
-                        categoryTreeSelect={[Function]}
-                        cckeyKey={
-                              Object {
-                                    "category": 3,
-                                    "createdBy": "root",
-                                    "createdDate": "2017-06-30T10:47:35.095+02:00",
-                                    "creator": 1,
-                                    "id": 2,
-                                    "lastModifiedBy": "root",
-                                    "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
-                                    "login": "erdbeer",
-                                    "name": "lecker",
-                                    "password": "yogurt",
-                                  }
-                        }
-                        creationMode={false}
-                        keyPasswordVisible={false}
-                        locked={undefined}
-                  />
-            </Col>
-      </Row>
-      <Row
-            gutter={0}
-            span={4}
-      >
-            <Tooltip
-                  arrowPointAtCenter={false}
-                  mouseEnterDelay={0.1}
-                  mouseLeaveDelay={0.1}
-                  placement="top"
-                  prefixCls="ant-tooltip"
-                  title="Show password"
-                  transitionName="zoom-big-fast"
-            >
-                  <Button
-                        clicked={false}
-                        ghost={false}
-                        icon="eye-o"
-                        loading={false}
-                        onClick={[Function]}
-                        prefixCls="ant-btn"
-                        type="ghost"
-                  />
-            </Tooltip>
-      </Row>
-      <Row
-            gutter={0}
-      >
-            <Col>
-                  <div
-                        className="footer"
-                  >
-                        <Row
-                              align="middle"
-                              gutter={0}
-                              type="flex"
-                        >
-                              <Col
-                                    span={8}
-                              >
-                                    <div
-                                          className="operations"
-                                    >
-                                          
-                                    </div>
-                              </Col>
-                              <Col
-                                    offset={8}
-                                    span={8}
-                              >
-                                    <div
-                                          className="main"
-                                    >
-                                          <Button
-                                                clicked={false}
-                                                ghost={false}
-                                                loading={false}
-                                                onClick={[Function]}
-                                                prefixCls="ant-btn"
-                                                size="large"
-                                          >
-                                                Cancel
-                                          </Button>
-                                          <Button
-                                                clicked={false}
-                                                ghost={false}
-                                                loading={false}
-                                                onClick={[Function]}
-                                                prefixCls="ant-btn"
-                                                size="large"
-                                                type="primary"
-                                          >
-                                                Done
-                                          </Button>
-                                    </div>
-                              </Col>
-                        </Row>
-                  </div>
-            </Col>
-      </Row>
-      <Modal
-            className="category-tree-select-inner-modal"
-            closable={false}
-            confirmLoading={false}
-            footer={false}
-            maskTransitionName="fade"
-            prefixCls="ant-modal"
-            transitionName="zoom"
-            visible={false}
-            width={520}
-      >
-            <Row
-                  gutter={0}
-                  justify="center"
-                  type="flex"
-            >
-                  <Col
-                        span={24}
-                  >
-                        <Form
-                              hideRequiredMark={false}
-                              layout="horizontal"
-                              onSubmit={[Function]}
-                              prefixCls="ant-form"
-                        >
-                              <FormItem
-                                    colon={true}
-                                    hasFeedback={false}
-                                    prefixCls="ant-form"
-                              >
-                                    <_a
-                                          choiceTransitionName="zoom"
-                                          dropdownClassName="ant-select-tree-dropdown"
-                                          onChange={[Function]}
-                                          prefixCls="ant-select"
-                                          showSearch={true}
-                                          size="large"
-                                          transitionName="slide-up"
-                                          value={null}
-                                    >
-                                          <TreeNode
-                                                category={
-                                                      Object {
-                                                            "children": Array [
-                                                              5,
-                                                            ],
-                                                            "createdBy": "root",
-                                                            "createdDate": "2017-06-30T11:13:46.691+02:00",
-                                                            "creator": 1,
-                                                            "groups": Array [],
-                                                            "id": 4,
-                                                            "keys": Array [],
-                                                            "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-                                                            "name": "intern",
-                                                            "parent": null,
-                                                            "responsible": 1,
-                                                            "treeLevel": 0,
-                                                          }
-                                                }
-                                                title={
-                                                      <span>
-                                                            <Icon
-                                                                  type="folder"
-                                                            />
-                                                            intern
-                                                      </span>
-                                                }
-                                                value="intern"
-                                          >
-                                                <TreeNode
-                                                      category={
-                                                            Object {
-                                                                  "children": Array [],
-                                                                  "createdBy": "root",
-                                                                  "createdDate": "2017-06-30T11:13:53.821+02:00",
-                                                                  "creator": 1,
-                                                                  "groups": Array [],
-                                                                  "id": 5,
-                                                                  "keys": Array [
-                                                                    3,
-                                                                  ],
-                                                                  "lastModifiedBy": "root",
-                                                                  "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-                                                                  "name": "projektron bcs",
-                                                                  "parent": 4,
-                                                                  "responsible": 1,
-                                                                  "treeLevel": 1,
-                                                                }
-                                                      }
-                                                      title="projektron bcs"
-                                                      value="projektron bcs"
-                                                />
-                                          </TreeNode>
-                                          <TreeNode
-                                                category={
-                                                      Object {
-                                                            "children": Array [
-                                                              2,
-                                                            ],
-                                                            "createdBy": "root",
-                                                            "createdDate": "2017-06-30T11:13:33.274+02:00",
-                                                            "creator": 1,
-                                                            "groups": Array [],
-                                                            "id": 1,
-                                                            "keys": Array [],
-                                                            "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-                                                            "name": "vorwerk",
-                                                            "parent": null,
-                                                            "responsible": 1,
-                                                            "treeLevel": 0,
-                                                          }
-                                                }
-                                                title={
-                                                      <span>
-                                                            <Icon
-                                                                  type="folder"
-                                                            />
-                                                            vorwerk
-                                                      </span>
-                                                }
-                                                value="vorwerk"
-                                          >
-                                                <TreeNode
-                                                      category={
-                                                            Object {
-                                                                  "children": Array [
-                                                                    3,
-                                                                  ],
-                                                                  "createdBy": "root",
-                                                                  "createdDate": "2017-06-30T11:13:37.557+02:00",
-                                                                  "creator": 1,
-                                                                  "groups": Array [],
-                                                                  "id": 2,
-                                                                  "keys": Array [
-                                                                    1,
-                                                                  ],
-                                                                  "lastModifiedBy": "root",
-                                                                  "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-                                                                  "name": "servers",
-                                                                  "parent": 1,
-                                                                  "responsible": 1,
-                                                                  "treeLevel": 1,
-                                                                }
-                                                      }
-                                                      title={
-                                                            <span>
-                                                                  <Icon
-                                                                        type="folder"
-                                                                  />
-                                                                  servers
-                                                            </span>
-                                                      }
-                                                      value="servers"
-                                                >
-                                                      <TreeNode
-                                                            category={
-                                                                  Object {
-                                                                        "children": Array [],
-                                                                        "createdBy": "root",
-                                                                        "createdDate": "2017-06-30T11:13:41.497+02:00",
-                                                                        "creator": 1,
-                                                                        "groups": Array [],
-                                                                        "id": 3,
-                                                                        "keys": Array [
-                                                                          2,
-                                                                        ],
-                                                                        "lastModifiedBy": "root",
-                                                                        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-                                                                        "name": "ssh",
-                                                                        "parent": 2,
-                                                                        "responsible": 1,
-                                                                        "treeLevel": 2,
-                                                                      }
-                                                            }
-                                                            title="ssh"
-                                                            value="ssh"
-                                                      />
-                                                </TreeNode>
-                                          </TreeNode>
-                                    </_a>
-                              </FormItem>
-                        </Form>
-                  </Col>
-            </Row>
-            <Row
-                  gutter={0}
-            >
-                  <Col>
-                        <div
-                              className="footer"
-                        >
-                              <Row
-                                    gutter={0}
-                                    justify="end"
-                                    type="flex"
-                              >
-                                    <Col>
-                                          <Button
-                                                clicked={false}
-                                                ghost={false}
-                                                loading={false}
-                                                onClick={[Function]}
-                                                prefixCls="ant-btn"
-                                                size="large"
-                                          >
-                                                Cancel
-                                          </Button>
-                                          <Button
-                                                clicked={false}
-                                                ghost={false}
-                                                loading={false}
-                                                onClick={[Function]}
-                                                prefixCls="ant-btn"
-                                                size="large"
-                                                type="primary"
-                                          >
-                                                Save
-                                          </Button>
-                                    </Col>
-                              </Row>
-                        </div>
-                  </Col>
-            </Row>
-      </Modal>
-</Modal>,
-  ],
-  "options": Object {},
-  "renderer": ReactShallowRenderer {
-    "_instance": ShallowComponentWrapper {
-      "_calledComponentWillUnmount": false,
-      "_compositeType": 0,
-      "_context": Object {},
-      "_currentElement": <KeyModal
+      <Form(WrappedComponent)
         administrationMode={false}
-        categories={
-                Array [
-                        Object {
-                          "children": Array [],
-                          "createdBy": "root",
-                          "createdDate": "2017-06-30T11:13:41.497+02:00",
-                          "creator": 1,
-                          "groups": Array [],
-                          "id": 3,
-                          "keys": Array [
-                            2,
-                          ],
-                          "lastModifiedBy": "root",
-                          "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-                          "name": "ssh",
-                          "parent": 2,
-                          "responsible": 1,
-                          "treeLevel": 2,
-                        },
-                        Object {
-                          "children": Array [
-                            5,
-                          ],
-                          "createdBy": "root",
-                          "createdDate": "2017-06-30T11:13:46.691+02:00",
-                          "creator": 1,
-                          "groups": Array [],
-                          "id": 4,
-                          "keys": Array [],
-                          "lastModifiedBy": "root",
-                          "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-                          "name": "intern",
-                          "parent": null,
-                          "responsible": 1,
-                          "treeLevel": 0,
-                        },
-                        Object {
-                          "children": Array [
-                            2,
-                          ],
-                          "createdBy": "root",
-                          "createdDate": "2017-06-30T11:13:33.274+02:00",
-                          "creator": 1,
-                          "groups": Array [],
-                          "id": 1,
-                          "keys": Array [],
-                          "lastModifiedBy": "root",
-                          "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-                          "name": "vorwerk",
-                          "parent": null,
-                          "responsible": 1,
-                          "treeLevel": 0,
-                        },
-                        Object {
-                          "children": Array [
-                            3,
-                          ],
-                          "createdBy": "root",
-                          "createdDate": "2017-06-30T11:13:37.557+02:00",
-                          "creator": 1,
-                          "groups": Array [],
-                          "id": 2,
-                          "keys": Array [
-                            1,
-                          ],
-                          "lastModifiedBy": "root",
-                          "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-                          "name": "servers",
-                          "parent": 1,
-                          "responsible": 1,
-                          "treeLevel": 1,
-                        },
-                        Object {
-                          "children": Array [],
-                          "createdBy": "root",
-                          "createdDate": "2017-06-30T11:13:53.821+02:00",
-                          "creator": 1,
-                          "groups": Array [],
-                          "id": 5,
-                          "keys": Array [
-                            3,
-                          ],
-                          "lastModifiedBy": "root",
-                          "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-                          "name": "projektron bcs",
-                          "parent": 4,
-                          "responsible": 1,
-                          "treeLevel": 1,
-                        },
-                      ]
-        }
+        categoryTreeSelect={[Function]}
         cckeyKey={
-                Object {
-                        "category": 3,
-                        "createdBy": "root",
-                        "createdDate": "2017-06-30T10:47:35.095+02:00",
-                        "creator": 1,
-                        "id": 2,
-                        "lastModifiedBy": "root",
-                        "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
-                        "login": "erdbeer",
-                        "name": "lecker",
-                        "password": "yogurt",
-                      }
-        }
-        creationMode={false}
-        loading={false}
-        onClose={[Function]}
-/>,
-      "_debugID": 1,
-      "_hostContainerInfo": null,
-      "_hostParent": null,
-      "_instance": KeyModal {
-        "_reactInternalInstance": [Circular],
-        "context": Object {},
-        "generateCategoryTreeSelectNodes": [Function],
-        "generateTreeFromFlatData": [Function],
-        "handleActionButtonOnClick": [Function],
-        "handleCategoryTreeSelectModalChange": [Function],
-        "handleCategoryTreeSelectModalClose": [Function],
-        "handleCategoryTreeSelectModalSave": [Function],
-        "handleOnClose": [Function],
-        "props": Object {
-          "administrationMode": false,
-          "categories": Array [
-            Object {
-              "children": Array [],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:41.497+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 3,
-              "keys": Array [
-                2,
-              ],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-              "name": "ssh",
-              "parent": 2,
-              "responsible": 1,
-              "treeLevel": 2,
-            },
-            Object {
-              "children": Array [
-                5,
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:46.691+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 4,
-              "keys": Array [],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-              "name": "intern",
-              "parent": null,
-              "responsible": 1,
-              "treeLevel": 0,
-            },
-            Object {
-              "children": Array [
-                2,
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:33.274+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 1,
-              "keys": Array [],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-              "name": "vorwerk",
-              "parent": null,
-              "responsible": 1,
-              "treeLevel": 0,
-            },
-            Object {
-              "children": Array [
-                3,
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:37.557+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 2,
-              "keys": Array [
-                1,
-              ],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-              "name": "servers",
-              "parent": 1,
-              "responsible": 1,
-              "treeLevel": 1,
-            },
-            Object {
-              "children": Array [],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:53.821+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 5,
-              "keys": Array [
-                3,
-              ],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-              "name": "projektron bcs",
-              "parent": 4,
-              "responsible": 1,
-              "treeLevel": 1,
-            },
-          ],
-          "cckeyKey": Object {
-            "category": 3,
-            "createdBy": "root",
-            "createdDate": "2017-06-30T10:47:35.095+02:00",
-            "creator": 1,
-            "id": 2,
-            "lastModifiedBy": "root",
-            "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
-            "login": "erdbeer",
-            "name": "lecker",
-            "password": "yogurt",
-          },
-          "creationMode": false,
-          "loading": false,
-          "onClose": [Function],
-        },
-        "refs": Object {},
-        "resetCategoryTreeSelectObject": [Function],
-        "saveManagedFormRef": [Function],
-        "state": Object {
-          "categoryTreeSelectModalSelectedCategory": null,
-          "categoryTreeSelectModalVisible": false,
-          "keyPasswordVisible": false,
-        },
-        "toggleCategoryTreeSelectModal": [Function],
-        "togglePasswordVisibility": [Function],
-        "updater": Object {
-          "enqueueCallback": [Function],
-          "enqueueCallbackInternal": [Function],
-          "enqueueElementInternal": [Function],
-          "enqueueForceUpdate": [Function],
-          "enqueueReplaceState": [Function],
-          "enqueueSetState": [Function],
-          "isMounted": [Function],
-          "validateCallback": [Function],
-        },
-      },
-      "_mountOrder": 1,
-      "_pendingCallbacks": null,
-      "_pendingElement": null,
-      "_pendingForceUpdate": false,
-      "_pendingReplaceState": false,
-      "_pendingStateQueue": null,
-      "_renderedComponent": NoopInternalComponent {
-        "_currentElement": <Modal
-          className="cckey-key-modal"
-          closable={false}
-          confirmLoading={false}
-          footer={false}
-          maskTransitionName="fade"
-          onClose={[Function]}
-          onSave={undefined}
-          prefixCls="ant-modal"
-          transitionName="zoom"
-          visible={false}
-          width={520}
->
-          <Row
-                    gutter={24}
-          >
-                    <Col
-                              span={6}
-                    >
-                              <img
-                                        className="key-logo"
-                                        src="/assets/images/communikey-logo-typography-green.svg"
-                              />
-                    </Col>
-                    <Col
-                              span={18}
-                    >
-                              <Form(WrappedComponent)
-                                        administrationMode={false}
-                                        categoryTreeSelect={[Function]}
-                                        cckeyKey={
-                                                  Object {
-                                                            "category": 3,
-                                                            "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:47:35.095+02:00",
-                                                            "creator": 1,
-                                                            "id": 2,
-                                                            "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
-                                                            "login": "erdbeer",
-                                                            "name": "lecker",
-                                                            "password": "yogurt",
-                                                          }
-                                        }
-                                        creationMode={false}
-                                        keyPasswordVisible={false}
-                                        locked={undefined}
-                              />
-                    </Col>
-          </Row>
-          <Row
-                    gutter={0}
-                    span={4}
-          >
-                    <Tooltip
-                              arrowPointAtCenter={false}
-                              mouseEnterDelay={0.1}
-                              mouseLeaveDelay={0.1}
-                              placement="top"
-                              prefixCls="ant-tooltip"
-                              title="Show password"
-                              transitionName="zoom-big-fast"
-                    >
-                              <Button
-                                        clicked={false}
-                                        ghost={false}
-                                        icon="eye-o"
-                                        loading={false}
-                                        onClick={[Function]}
-                                        prefixCls="ant-btn"
-                                        type="ghost"
-                              />
-                    </Tooltip>
-          </Row>
-          <Row
-                    gutter={0}
-          >
-                    <Col>
-                              <div
-                                        className="footer"
-                              >
-                                        <Row
-                                                  align="middle"
-                                                  gutter={0}
-                                                  type="flex"
-                                        >
-                                                  <Col
-                                                            span={8}
-                                                  >
-                                                            <div
-                                                                      className="operations"
-                                                            >
-                                                                      
-                                                            </div>
-                                                  </Col>
-                                                  <Col
-                                                            offset={8}
-                                                            span={8}
-                                                  >
-                                                            <div
-                                                                      className="main"
-                                                            >
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                      >
-                                                                                Cancel
-                                                                      </Button>
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                                type="primary"
-                                                                      >
-                                                                                Done
-                                                                      </Button>
-                                                            </div>
-                                                  </Col>
-                                        </Row>
-                              </div>
-                    </Col>
-          </Row>
-          <Modal
-                    className="category-tree-select-inner-modal"
-                    closable={false}
-                    confirmLoading={false}
-                    footer={false}
-                    maskTransitionName="fade"
-                    prefixCls="ant-modal"
-                    transitionName="zoom"
-                    visible={false}
-                    width={520}
-          >
-                    <Row
-                              gutter={0}
-                              justify="center"
-                              type="flex"
-                    >
-                              <Col
-                                        span={24}
-                              >
-                                        <Form
-                                                  hideRequiredMark={false}
-                                                  layout="horizontal"
-                                                  onSubmit={[Function]}
-                                                  prefixCls="ant-form"
-                                        >
-                                                  <FormItem
-                                                            colon={true}
-                                                            hasFeedback={false}
-                                                            prefixCls="ant-form"
-                                                  >
-                                                            <_a
-                                                                      choiceTransitionName="zoom"
-                                                                      dropdownClassName="ant-select-tree-dropdown"
-                                                                      onChange={[Function]}
-                                                                      prefixCls="ant-select"
-                                                                      showSearch={true}
-                                                                      size="large"
-                                                                      transitionName="slide-up"
-                                                                      value={null}
-                                                            >
-                                                                      <TreeNode
-                                                                                category={
-                                                                                          Object {
-                                                                                                    "children": Array [
-                                                                                                      5,
-                                                                                                    ],
-                                                                                                    "createdBy": "root",
-                                                                                                    "createdDate": "2017-06-30T11:13:46.691+02:00",
-                                                                                                    "creator": 1,
-                                                                                                    "groups": Array [],
-                                                                                                    "id": 4,
-                                                                                                    "keys": Array [],
-                                                                                                    "lastModifiedBy": "root",
-                                                                                                    "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-                                                                                                    "name": "intern",
-                                                                                                    "parent": null,
-                                                                                                    "responsible": 1,
-                                                                                                    "treeLevel": 0,
-                                                                                                  }
-                                                                                }
-                                                                                title={
-                                                                                          <span>
-                                                                                                    <Icon
-                                                                                                              type="folder"
-                                                                                                    />
-                                                                                                    intern
-                                                                                          </span>
-                                                                                }
-                                                                                value="intern"
-                                                                      >
-                                                                                <TreeNode
-                                                                                          category={
-                                                                                                    Object {
-                                                                                                              "children": Array [],
-                                                                                                              "createdBy": "root",
-                                                                                                              "createdDate": "2017-06-30T11:13:53.821+02:00",
-                                                                                                              "creator": 1,
-                                                                                                              "groups": Array [],
-                                                                                                              "id": 5,
-                                                                                                              "keys": Array [
-                                                                                                                3,
-                                                                                                              ],
-                                                                                                              "lastModifiedBy": "root",
-                                                                                                              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-                                                                                                              "name": "projektron bcs",
-                                                                                                              "parent": 4,
-                                                                                                              "responsible": 1,
-                                                                                                              "treeLevel": 1,
-                                                                                                            }
-                                                                                          }
-                                                                                          title="projektron bcs"
-                                                                                          value="projektron bcs"
-                                                                                />
-                                                                      </TreeNode>
-                                                                      <TreeNode
-                                                                                category={
-                                                                                          Object {
-                                                                                                    "children": Array [
-                                                                                                      2,
-                                                                                                    ],
-                                                                                                    "createdBy": "root",
-                                                                                                    "createdDate": "2017-06-30T11:13:33.274+02:00",
-                                                                                                    "creator": 1,
-                                                                                                    "groups": Array [],
-                                                                                                    "id": 1,
-                                                                                                    "keys": Array [],
-                                                                                                    "lastModifiedBy": "root",
-                                                                                                    "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-                                                                                                    "name": "vorwerk",
-                                                                                                    "parent": null,
-                                                                                                    "responsible": 1,
-                                                                                                    "treeLevel": 0,
-                                                                                                  }
-                                                                                }
-                                                                                title={
-                                                                                          <span>
-                                                                                                    <Icon
-                                                                                                              type="folder"
-                                                                                                    />
-                                                                                                    vorwerk
-                                                                                          </span>
-                                                                                }
-                                                                                value="vorwerk"
-                                                                      >
-                                                                                <TreeNode
-                                                                                          category={
-                                                                                                    Object {
-                                                                                                              "children": Array [
-                                                                                                                3,
-                                                                                                              ],
-                                                                                                              "createdBy": "root",
-                                                                                                              "createdDate": "2017-06-30T11:13:37.557+02:00",
-                                                                                                              "creator": 1,
-                                                                                                              "groups": Array [],
-                                                                                                              "id": 2,
-                                                                                                              "keys": Array [
-                                                                                                                1,
-                                                                                                              ],
-                                                                                                              "lastModifiedBy": "root",
-                                                                                                              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-                                                                                                              "name": "servers",
-                                                                                                              "parent": 1,
-                                                                                                              "responsible": 1,
-                                                                                                              "treeLevel": 1,
-                                                                                                            }
-                                                                                          }
-                                                                                          title={
-                                                                                                    <span>
-                                                                                                              <Icon
-                                                                                                                        type="folder"
-                                                                                                              />
-                                                                                                              servers
-                                                                                                    </span>
-                                                                                          }
-                                                                                          value="servers"
-                                                                                >
-                                                                                          <TreeNode
-                                                                                                    category={
-                                                                                                              Object {
-                                                                                                                        "children": Array [],
-                                                                                                                        "createdBy": "root",
-                                                                                                                        "createdDate": "2017-06-30T11:13:41.497+02:00",
-                                                                                                                        "creator": 1,
-                                                                                                                        "groups": Array [],
-                                                                                                                        "id": 3,
-                                                                                                                        "keys": Array [
-                                                                                                                          2,
-                                                                                                                        ],
-                                                                                                                        "lastModifiedBy": "root",
-                                                                                                                        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-                                                                                                                        "name": "ssh",
-                                                                                                                        "parent": 2,
-                                                                                                                        "responsible": 1,
-                                                                                                                        "treeLevel": 2,
-                                                                                                                      }
-                                                                                                    }
-                                                                                                    title="ssh"
-                                                                                                    value="ssh"
-                                                                                          />
-                                                                                </TreeNode>
-                                                                      </TreeNode>
-                                                            </_a>
-                                                  </FormItem>
-                                        </Form>
-                              </Col>
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <Col>
-                                        <div
-                                                  className="footer"
-                                        >
-                                                  <Row
-                                                            gutter={0}
-                                                            justify="end"
-                                                            type="flex"
-                                                  >
-                                                            <Col>
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                      >
-                                                                                Cancel
-                                                                      </Button>
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                                type="primary"
-                                                                      >
-                                                                                Save
-                                                                      </Button>
-                                                            </Col>
-                                                  </Row>
-                                        </div>
-                              </Col>
-                    </Row>
-          </Modal>
-</Modal>,
-        "_debugID": 2,
-        "_renderedOutput": <Modal
-          className="cckey-key-modal"
-          closable={false}
-          confirmLoading={false}
-          footer={false}
-          maskTransitionName="fade"
-          onClose={[Function]}
-          onSave={undefined}
-          prefixCls="ant-modal"
-          transitionName="zoom"
-          visible={false}
-          width={520}
->
-          <Row
-                    gutter={24}
-          >
-                    <Col
-                              span={6}
-                    >
-                              <img
-                                        className="key-logo"
-                                        src="/assets/images/communikey-logo-typography-green.svg"
-                              />
-                    </Col>
-                    <Col
-                              span={18}
-                    >
-                              <Form(WrappedComponent)
-                                        administrationMode={false}
-                                        categoryTreeSelect={[Function]}
-                                        cckeyKey={
-                                                  Object {
-                                                            "category": 3,
-                                                            "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:47:35.095+02:00",
-                                                            "creator": 1,
-                                                            "id": 2,
-                                                            "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
-                                                            "login": "erdbeer",
-                                                            "name": "lecker",
-                                                            "password": "yogurt",
-                                                          }
-                                        }
-                                        creationMode={false}
-                                        keyPasswordVisible={false}
-                                        locked={undefined}
-                              />
-                    </Col>
-          </Row>
-          <Row
-                    gutter={0}
-                    span={4}
-          >
-                    <Tooltip
-                              arrowPointAtCenter={false}
-                              mouseEnterDelay={0.1}
-                              mouseLeaveDelay={0.1}
-                              placement="top"
-                              prefixCls="ant-tooltip"
-                              title="Show password"
-                              transitionName="zoom-big-fast"
-                    >
-                              <Button
-                                        clicked={false}
-                                        ghost={false}
-                                        icon="eye-o"
-                                        loading={false}
-                                        onClick={[Function]}
-                                        prefixCls="ant-btn"
-                                        type="ghost"
-                              />
-                    </Tooltip>
-          </Row>
-          <Row
-                    gutter={0}
-          >
-                    <Col>
-                              <div
-                                        className="footer"
-                              >
-                                        <Row
-                                                  align="middle"
-                                                  gutter={0}
-                                                  type="flex"
-                                        >
-                                                  <Col
-                                                            span={8}
-                                                  >
-                                                            <div
-                                                                      className="operations"
-                                                            >
-                                                                      
-                                                            </div>
-                                                  </Col>
-                                                  <Col
-                                                            offset={8}
-                                                            span={8}
-                                                  >
-                                                            <div
-                                                                      className="main"
-                                                            >
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                      >
-                                                                                Cancel
-                                                                      </Button>
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                                type="primary"
-                                                                      >
-                                                                                Done
-                                                                      </Button>
-                                                            </div>
-                                                  </Col>
-                                        </Row>
-                              </div>
-                    </Col>
-          </Row>
-          <Modal
-                    className="category-tree-select-inner-modal"
-                    closable={false}
-                    confirmLoading={false}
-                    footer={false}
-                    maskTransitionName="fade"
-                    prefixCls="ant-modal"
-                    transitionName="zoom"
-                    visible={false}
-                    width={520}
-          >
-                    <Row
-                              gutter={0}
-                              justify="center"
-                              type="flex"
-                    >
-                              <Col
-                                        span={24}
-                              >
-                                        <Form
-                                                  hideRequiredMark={false}
-                                                  layout="horizontal"
-                                                  onSubmit={[Function]}
-                                                  prefixCls="ant-form"
-                                        >
-                                                  <FormItem
-                                                            colon={true}
-                                                            hasFeedback={false}
-                                                            prefixCls="ant-form"
-                                                  >
-                                                            <_a
-                                                                      choiceTransitionName="zoom"
-                                                                      dropdownClassName="ant-select-tree-dropdown"
-                                                                      onChange={[Function]}
-                                                                      prefixCls="ant-select"
-                                                                      showSearch={true}
-                                                                      size="large"
-                                                                      transitionName="slide-up"
-                                                                      value={null}
-                                                            >
-                                                                      <TreeNode
-                                                                                category={
-                                                                                          Object {
-                                                                                                    "children": Array [
-                                                                                                      5,
-                                                                                                    ],
-                                                                                                    "createdBy": "root",
-                                                                                                    "createdDate": "2017-06-30T11:13:46.691+02:00",
-                                                                                                    "creator": 1,
-                                                                                                    "groups": Array [],
-                                                                                                    "id": 4,
-                                                                                                    "keys": Array [],
-                                                                                                    "lastModifiedBy": "root",
-                                                                                                    "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-                                                                                                    "name": "intern",
-                                                                                                    "parent": null,
-                                                                                                    "responsible": 1,
-                                                                                                    "treeLevel": 0,
-                                                                                                  }
-                                                                                }
-                                                                                title={
-                                                                                          <span>
-                                                                                                    <Icon
-                                                                                                              type="folder"
-                                                                                                    />
-                                                                                                    intern
-                                                                                          </span>
-                                                                                }
-                                                                                value="intern"
-                                                                      >
-                                                                                <TreeNode
-                                                                                          category={
-                                                                                                    Object {
-                                                                                                              "children": Array [],
-                                                                                                              "createdBy": "root",
-                                                                                                              "createdDate": "2017-06-30T11:13:53.821+02:00",
-                                                                                                              "creator": 1,
-                                                                                                              "groups": Array [],
-                                                                                                              "id": 5,
-                                                                                                              "keys": Array [
-                                                                                                                3,
-                                                                                                              ],
-                                                                                                              "lastModifiedBy": "root",
-                                                                                                              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-                                                                                                              "name": "projektron bcs",
-                                                                                                              "parent": 4,
-                                                                                                              "responsible": 1,
-                                                                                                              "treeLevel": 1,
-                                                                                                            }
-                                                                                          }
-                                                                                          title="projektron bcs"
-                                                                                          value="projektron bcs"
-                                                                                />
-                                                                      </TreeNode>
-                                                                      <TreeNode
-                                                                                category={
-                                                                                          Object {
-                                                                                                    "children": Array [
-                                                                                                      2,
-                                                                                                    ],
-                                                                                                    "createdBy": "root",
-                                                                                                    "createdDate": "2017-06-30T11:13:33.274+02:00",
-                                                                                                    "creator": 1,
-                                                                                                    "groups": Array [],
-                                                                                                    "id": 1,
-                                                                                                    "keys": Array [],
-                                                                                                    "lastModifiedBy": "root",
-                                                                                                    "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-                                                                                                    "name": "vorwerk",
-                                                                                                    "parent": null,
-                                                                                                    "responsible": 1,
-                                                                                                    "treeLevel": 0,
-                                                                                                  }
-                                                                                }
-                                                                                title={
-                                                                                          <span>
-                                                                                                    <Icon
-                                                                                                              type="folder"
-                                                                                                    />
-                                                                                                    vorwerk
-                                                                                          </span>
-                                                                                }
-                                                                                value="vorwerk"
-                                                                      >
-                                                                                <TreeNode
-                                                                                          category={
-                                                                                                    Object {
-                                                                                                              "children": Array [
-                                                                                                                3,
-                                                                                                              ],
-                                                                                                              "createdBy": "root",
-                                                                                                              "createdDate": "2017-06-30T11:13:37.557+02:00",
-                                                                                                              "creator": 1,
-                                                                                                              "groups": Array [],
-                                                                                                              "id": 2,
-                                                                                                              "keys": Array [
-                                                                                                                1,
-                                                                                                              ],
-                                                                                                              "lastModifiedBy": "root",
-                                                                                                              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-                                                                                                              "name": "servers",
-                                                                                                              "parent": 1,
-                                                                                                              "responsible": 1,
-                                                                                                              "treeLevel": 1,
-                                                                                                            }
-                                                                                          }
-                                                                                          title={
-                                                                                                    <span>
-                                                                                                              <Icon
-                                                                                                                        type="folder"
-                                                                                                              />
-                                                                                                              servers
-                                                                                                    </span>
-                                                                                          }
-                                                                                          value="servers"
-                                                                                >
-                                                                                          <TreeNode
-                                                                                                    category={
-                                                                                                              Object {
-                                                                                                                        "children": Array [],
-                                                                                                                        "createdBy": "root",
-                                                                                                                        "createdDate": "2017-06-30T11:13:41.497+02:00",
-                                                                                                                        "creator": 1,
-                                                                                                                        "groups": Array [],
-                                                                                                                        "id": 3,
-                                                                                                                        "keys": Array [
-                                                                                                                          2,
-                                                                                                                        ],
-                                                                                                                        "lastModifiedBy": "root",
-                                                                                                                        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-                                                                                                                        "name": "ssh",
-                                                                                                                        "parent": 2,
-                                                                                                                        "responsible": 1,
-                                                                                                                        "treeLevel": 2,
-                                                                                                                      }
-                                                                                                    }
-                                                                                                    title="ssh"
-                                                                                                    value="ssh"
-                                                                                          />
-                                                                                </TreeNode>
-                                                                      </TreeNode>
-                                                            </_a>
-                                                  </FormItem>
-                                        </Form>
-                              </Col>
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <Col>
-                                        <div
-                                                  className="footer"
-                                        >
-                                                  <Row
-                                                            gutter={0}
-                                                            justify="end"
-                                                            type="flex"
-                                                  >
-                                                            <Col>
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                      >
-                                                                                Cancel
-                                                                      </Button>
-                                                                      <Button
-                                                                                clicked={false}
-                                                                                ghost={false}
-                                                                                loading={false}
-                                                                                onClick={[Function]}
-                                                                                prefixCls="ant-btn"
-                                                                                size="large"
-                                                                                type="primary"
-                                                                      >
-                                                                                Save
-                                                                      </Button>
-                                                            </Col>
-                                                  </Row>
-                                        </div>
-                              </Col>
-                    </Row>
-          </Modal>
-</Modal>,
-      },
-      "_renderedNodeType": 1,
-      "_rootNodeID": 0,
-      "_topLevelWrapper": null,
-      "_updateBatchNumber": null,
-      "_warnedAboutRefsInRender": false,
-    },
-    "getRenderOutput": [Function],
-    "render": [Function],
-  },
-  "root": [Circular],
-  "unrendered": <KeyModal
-    administrationMode={false}
-    categories={
-        Array [
-            Object {
-              "children": Array [],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:41.497+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 3,
-              "keys": Array [
-                2,
-              ],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-              "name": "ssh",
-              "parent": 2,
-              "responsible": 1,
-              "treeLevel": 2,
-            },
-            Object {
-              "children": Array [
-                5,
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:46.691+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 4,
-              "keys": Array [],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-              "name": "intern",
-              "parent": null,
-              "responsible": 1,
-              "treeLevel": 0,
-            },
-            Object {
-              "children": Array [
-                2,
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:33.274+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 1,
-              "keys": Array [],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-              "name": "vorwerk",
-              "parent": null,
-              "responsible": 1,
-              "treeLevel": 0,
-            },
-            Object {
-              "children": Array [
-                3,
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:37.557+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 2,
-              "keys": Array [
-                1,
-              ],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-              "name": "servers",
-              "parent": 1,
-              "responsible": 1,
-              "treeLevel": 1,
-            },
-            Object {
-              "children": Array [],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:13:53.821+02:00",
-              "creator": 1,
-              "groups": Array [],
-              "id": 5,
-              "keys": Array [
-                3,
-              ],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-              "name": "projektron bcs",
-              "parent": 4,
-              "responsible": 1,
-              "treeLevel": 1,
-            },
-          ]
-    }
-    cckeyKey={
-        Object {
+          Object {
             "category": 3,
             "createdBy": "root",
             "createdDate": "2017-06-30T10:47:35.095+02:00",
@@ -1817,10 +43,314 @@ ShallowWrapper {
             "name": "lecker",
             "password": "yogurt",
           }
-    }
-    creationMode={false}
-    loading={false}
-    onClose={[Function]}
-/>,
-}
+        }
+        creationMode={false}
+        keyPasswordVisible={false}
+      />
+    </Col>
+  </Row>
+  <Row
+    gutter={0}
+    span={4}
+  >
+    <Tooltip
+      arrowPointAtCenter={false}
+      mouseEnterDelay={0.1}
+      mouseLeaveDelay={0.1}
+      placement="top"
+      prefixCls="ant-tooltip"
+      title="Show password"
+      transitionName="zoom-big-fast"
+    >
+      <Button
+        clicked={false}
+        ghost={false}
+        icon="eye-o"
+        loading={false}
+        onClick={[Function]}
+        prefixCls="ant-btn"
+        type="ghost"
+      />
+    </Tooltip>
+  </Row>
+  <Row
+    gutter={0}
+  >
+    <Col>
+      <div
+        className="footer"
+      >
+        <Row
+          align="middle"
+          gutter={0}
+          type="flex"
+        >
+          <Col
+            span={8}
+          >
+            <div
+              className="operations"
+            />
+          </Col>
+          <Col
+            offset={8}
+            span={8}
+          >
+            <div
+              className="main"
+            >
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+              >
+                Cancel
+              </Button>
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+                type="primary"
+              >
+                Done
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </Col>
+  </Row>
+  <Modal
+    className="category-tree-select-inner-modal"
+    closable={false}
+    confirmLoading={false}
+    footer={false}
+    maskTransitionName="fade"
+    prefixCls="ant-modal"
+    transitionName="zoom"
+    visible={false}
+    width={520}
+  >
+    <Row
+      gutter={0}
+      justify="center"
+      type="flex"
+    >
+      <Col
+        span={24}
+      >
+        <Form
+          hideRequiredMark={false}
+          layout="horizontal"
+          onSubmit={[Function]}
+          prefixCls="ant-form"
+        >
+          <FormItem
+            colon={true}
+            hasFeedback={false}
+            prefixCls="ant-form"
+          >
+            <_a
+              choiceTransitionName="zoom"
+              dropdownClassName="ant-select-tree-dropdown"
+              onChange={[Function]}
+              prefixCls="ant-select"
+              showSearch={true}
+              size="large"
+              transitionName="slide-up"
+              value={null}
+            >
+              <TreeNode
+                category={
+                  Object {
+                    "children": Array [
+                      5,
+                    ],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T11:13:46.691+02:00",
+                    "creator": 1,
+                    "groups": Array [],
+                    "id": 4,
+                    "keys": Array [],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                    "name": "intern",
+                    "parent": null,
+                    "responsible": 1,
+                    "treeLevel": 0,
+                  }
+                }
+                title={
+                  <span>
+                    <Icon
+                      type="folder"
+                    />
+                    intern
+                  </span>
+                }
+                value="intern"
+              >
+                <TreeNode
+                  category={
+                    Object {
+                      "children": Array [],
+                      "createdBy": "root",
+                      "createdDate": "2017-06-30T11:13:53.821+02:00",
+                      "creator": 1,
+                      "groups": Array [],
+                      "id": 5,
+                      "keys": Array [
+                        3,
+                      ],
+                      "lastModifiedBy": "root",
+                      "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                      "name": "projektron bcs",
+                      "parent": 4,
+                      "responsible": 1,
+                      "treeLevel": 1,
+                    }
+                  }
+                  title="projektron bcs"
+                  value="projektron bcs"
+                />
+              </TreeNode>
+              <TreeNode
+                category={
+                  Object {
+                    "children": Array [
+                      2,
+                    ],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T11:13:33.274+02:00",
+                    "creator": 1,
+                    "groups": Array [],
+                    "id": 1,
+                    "keys": Array [],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                    "name": "vorwerk",
+                    "parent": null,
+                    "responsible": 1,
+                    "treeLevel": 0,
+                  }
+                }
+                title={
+                  <span>
+                    <Icon
+                      type="folder"
+                    />
+                    vorwerk
+                  </span>
+                }
+                value="vorwerk"
+              >
+                <TreeNode
+                  category={
+                    Object {
+                      "children": Array [
+                        3,
+                      ],
+                      "createdBy": "root",
+                      "createdDate": "2017-06-30T11:13:37.557+02:00",
+                      "creator": 1,
+                      "groups": Array [],
+                      "id": 2,
+                      "keys": Array [
+                        1,
+                      ],
+                      "lastModifiedBy": "root",
+                      "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                      "name": "servers",
+                      "parent": 1,
+                      "responsible": 1,
+                      "treeLevel": 1,
+                    }
+                  }
+                  title={
+                    <span>
+                      <Icon
+                        type="folder"
+                      />
+                      servers
+                    </span>
+                  }
+                  value="servers"
+                >
+                  <TreeNode
+                    category={
+                      Object {
+                        "children": Array [],
+                        "createdBy": "root",
+                        "createdDate": "2017-06-30T11:13:41.497+02:00",
+                        "creator": 1,
+                        "groups": Array [],
+                        "id": 3,
+                        "keys": Array [
+                          2,
+                        ],
+                        "lastModifiedBy": "root",
+                        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                        "name": "ssh",
+                        "parent": 2,
+                        "responsible": 1,
+                        "treeLevel": 2,
+                      }
+                    }
+                    title="ssh"
+                    value="ssh"
+                  />
+                </TreeNode>
+              </TreeNode>
+            </_a>
+          </FormItem>
+        </Form>
+      </Col>
+    </Row>
+    <Row
+      gutter={0}
+    >
+      <Col>
+        <div
+          className="footer"
+        >
+          <Row
+            gutter={0}
+            justify="end"
+            type="flex"
+          >
+            <Col>
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+              >
+                Cancel
+              </Button>
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+                type="primary"
+              >
+                Save
+              </Button>
+            </Col>
+          </Row>
+        </div>
+      </Col>
+    </Row>
+  </Modal>
+</Modal>
 `;
