@@ -5,5 +5,8 @@
 
 ### Concept
 
+### Getting Started
+  - [Buidling](getting-started/building.md)
+
 ### Development
   - [Requirements](development/requirements.md)
