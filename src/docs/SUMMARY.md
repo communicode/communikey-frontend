@@ -7,6 +7,5 @@
 
 ### Getting Started
   - [Buidling](getting-started/building.md)
-
-### Development
-  - [Requirements](development/requirements.md)
+  - [Configuration](getting-started/configuration.md)
+    - [Apache HTTP Server](getting-started/configuration.md#apache-http-server)
