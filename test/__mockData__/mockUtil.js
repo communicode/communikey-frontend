@@ -23,13 +23,6 @@ userStore.users = observable(require("./data/users.json"));
 
 export const stores = {authStore, categoryStore, keyStore, userGroupStore, userStore};
 
-export var mockStorage = {
-  getItem() {
-    return "mockedItem";
-  },
-  setItem() {}
-};
-
-export var VERSION = "0.0-code-coverage";
+export const VERSION = "0.0-code-coverage";
 
 export const emptyFunction = () => {};

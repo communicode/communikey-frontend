@@ -2,7 +2,8 @@ jest.mock("../../src/services/ApiService", () => require("../__mockData__/MockAp
 import React from "react";
 import {mount} from "enzyme";
 import Keys from "../../src/routes/Keys";
-import {mockStorage, stores} from "../__mockData__/mockUtil";
+import {stores} from "../__mockData__/mockUtil";
+import {mockStorage} from "../__mockData__/mockLocalStorage";
 import {Provider} from "mobx-react";
 
 describe("<Keys>", () => {
