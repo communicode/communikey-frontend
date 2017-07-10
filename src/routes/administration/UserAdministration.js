@@ -6,7 +6,7 @@ import {toJS} from "mobx";
 import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
-import themeSizeConfig from "./../../config/theme/sizes";
+import {screenMD} from "./../../config/theme/sizes";
 import {AUTHORITY_STORE, AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
@@ -338,7 +338,7 @@ class UserAdministration extends React.Component {
             rowKey={record => record.id}
             onRowClick={(record) => this.handleUserTableRecordSelect(record)}
             onRowDoubleClick={this.toggleUserModal}
-            scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+            scroll={{x: screenMD}}
           />
         </Row>
       </div>

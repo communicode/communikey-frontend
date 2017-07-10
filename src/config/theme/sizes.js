@@ -1,19 +1,15 @@
-module.exports = {
-  mediaQueryBreakpoints: {
-    screenXS: 480,
-    screenXSMin: this.screenXS,
-    screenXSMax: this.screenXSMin - 1,
-    screenSM: 768,
-    screenSMMin: this.screenSM,
-    screenSMMax: this.screenSMMin - 1,
-    screenMD: 992,
-    screenMDMin: this.screenMD,
-    screenMDMax: this.screenMDMin - 1,
-    screenLG: 1200,
-    screenLGMin: this.screenLG,
-    screenLGMax: this.screenLGMin - 1,
-    screenXL: 1600,
-    screenXLMin: this.screenXL,
-    screenXLMax: this.screenXLMin - 1
-  }
-};
+export const screenXS = 480;
+export const screenXSMin = screenXS;
+export const screenXSMax = screenXS - 1;
+export const screenSM = 768;
+export const screenSMMin = screenSM;
+export const screenSMMax = screenSM - 1;
+export const screenMD = 992;
+export const screenMDMin = screenMD;
+export const screenMDMax = screenMD - 1;
+export const screenLG = 992;
+export const screenLGMin = screenLG;
+export const screenLGMax = screenLG - 1;
+export const screenXL = 992;
+export const screenXLMin = screenXL;
+export const screenXLMax = screenXL - 1;
