@@ -28,6 +28,24 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                         }
                     ]
                 },
+                \\"authorityStore\\": {
+                    \\"authorities\\": [
+                        {
+                            \\"name\\": \\"ROLE_USER\\",
+                            \\"createdBy\\": \\"root\\",
+                            \\"createdDate\\": \\"2017-07-04T09:26:52.497+02:00\\",
+                            \\"lastModifiedBy\\": \\"root\\",
+                            \\"lastModifiedDate\\": \\"2017-07-04T09:26:52.497+02:00\\"
+                        },
+                        {
+                            \\"name\\": \\"ROLE_ADMIN\\",
+                            \\"createdBy\\": \\"root\\",
+                            \\"createdDate\\": \\"2017-07-04T09:26:52.537+02:00\\",
+                            \\"lastModifiedBy\\": \\"root\\",
+                            \\"lastModifiedDate\\": \\"2017-07-04T09:26:52.537+02:00\\"
+                        }
+                    ]
+                },
                 \\"categoryStore\\": {
                     \\"categories\\": [
                         {

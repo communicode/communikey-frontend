@@ -1,238 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<UserModal> should render correctly with sample data 1`] = `
-<Modal
-  className="cckey-user-modal"
-  closable={false}
-  confirmLoading={false}
-  footer={false}
-  maskTransitionName="fade"
+<UserModal
+  administrationMode={false}
+  authorities={
+    Array [
+      Object {
+        "createdBy": "root",
+        "createdDate": "2017-07-04T09:26:52.497+02:00",
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+        "name": "ROLE_USER",
+      },
+      Object {
+        "createdBy": "root",
+        "createdDate": "2017-07-04T09:26:52.537+02:00",
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+        "name": "ROLE_ADMIN",
+      },
+    ]
+  }
+  creationMode={false}
+  loading={false}
   onClose={[Function]}
-  prefixCls="ant-modal"
-  transitionName="zoom"
-  visible={false}
-  width={520}
+  user={
+    Object {
+      "activated": false,
+      "activationKey": "99315975298178909730",
+      "authorities": Array [
+        "ROLE_USER",
+      ],
+      "createdBy": "root",
+      "createdDate": "2017-06-30T10:46:47.738+02:00",
+      "email": "testuser@communicode.de",
+      "firstName": "Peter",
+      "groups": Array [
+        3,
+        2,
+        1,
+      ],
+      "id": 2,
+      "keyCategories": Array [],
+      "keys": Array [],
+      "lastModifiedBy": "root",
+      "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+      "lastName": "Maffay",
+      "login": "testuser",
+      "resetDate": null,
+      "resetKey": null,
+      "responsibleKeyCategories": Array [],
+    }
+  }
 >
-  <Row
-    gutter={24}
-  >
-    <Col
-      span={6}
-    >
-      <img
-        className="user-avatar"
-        src="/assets/images/wireframe/avatars/matthew.png"
-      />
-    </Col>
-    <Col
-      span={18}
-    >
-      <Form(WrappedComponent)
-        administrationMode={false}
-        creationMode={false}
-        user={
-          Object {
-            "activated": false,
-            "activationKey": "99315975298178909730",
-            "authorities": Array [
-              "ROLE_USER",
-            ],
-            "createdBy": "root",
-            "createdDate": "2017-06-30T10:46:47.738+02:00",
-            "email": "testuser@communicode.de",
-            "firstName": "Peter",
-            "groups": Array [
-              3,
-              2,
-              1,
-            ],
-            "id": 2,
-            "keyCategories": Array [],
-            "keys": Array [],
-            "lastModifiedBy": "root",
-            "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
-            "lastName": "Maffay",
-            "login": "testuser",
-            "resetDate": null,
-            "resetKey": null,
-            "responsibleKeyCategories": Array [],
-          }
-        }
-      />
-    </Col>
-  </Row>
-  <Row
-    gutter={0}
-  >
-    <Col>
-      <div
-        className="footer"
-      >
-        <Row
-          align="middle"
-          gutter={0}
-          type="flex"
-        >
-          <Col
-            span={8}
-          >
-            <div
-              className="operations"
-            />
-          </Col>
-          <Col
-            offset={8}
-            span={8}
-          >
-            <div
-              className="main"
-            >
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-              >
-                Cancel
-              </Button>
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-                type="primary"
-              >
-                Done
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </div>
-    </Col>
-  </Row>
   <Modal
-    className="password-reset-inner-modal"
+    className="cckey-user-modal"
     closable={false}
     confirmLoading={false}
     footer={false}
     maskTransitionName="fade"
+    onClose={[Function]}
     prefixCls="ant-modal"
     transitionName="zoom"
     visible={false}
     width={520}
   >
-    <Row
-      gutter={0}
-    >
-      <Col
-        span={24}
-      >
-        <Form
-          hideRequiredMark={false}
-          layout="horizontal"
-          onSubmit={[Function]}
-          prefixCls="ant-form"
-        >
-          <FormItem
-            colon={true}
-            hasFeedback={false}
-            prefixCls="ant-form"
-          >
-            <Input
-              addonBefore={
-                <Icon
-                  type="pay-circle-o"
-                />
-              }
-              autosize={false}
-              disabled={true}
-              name="resetKey"
-              prefixCls="ant-input"
-              readOnly={true}
-              suffix={null}
-              type="text"
-              value={null}
-            />
-          </FormItem>
-          <FormItem
-            colon={true}
-            hasFeedback={false}
-            prefixCls="ant-form"
-          >
-            <Input
-              autosize={false}
-              disabled={false}
-              name="passwordResetModalNewPasswordValue"
-              onChange={[Function]}
-              placeholder="New password"
-              prefixCls="ant-input"
-              type="password"
-              value=""
-            />
-          </FormItem>
-          <FormItem
-            colon={true}
-            hasFeedback={false}
-            prefixCls="ant-form"
-          >
-            <Input
-              autosize={false}
-              disabled={false}
-              name="passwordResetModalConfirmValue"
-              onChange={[Function]}
-              placeholder="Confirm new password"
-              prefixCls="ant-input"
-              type="password"
-              value=""
-            />
-          </FormItem>
-        </Form>
-      </Col>
-    </Row>
-    <Row
-      gutter={0}
-    >
-      <Col>
-        <div
-          className="footer"
-        >
-          <Row
-            gutter={0}
-            justify="end"
-            type="flex"
-          >
-            <Col>
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-              >
-                Cancel
-              </Button>
-              <Button
-                clicked={false}
-                disabled={true}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-                type="primary"
-              >
-                Save
-              </Button>
-            </Col>
-          </Row>
-        </div>
-      </Col>
-    </Row>
+    <DialogWrap
+      className="cckey-user-modal"
+      closable={false}
+      confirmLoading={false}
+      footer={false}
+      maskTransitionName="fade"
+      onClose={[Function]}
+      prefixCls="ant-modal"
+      transitionName="zoom"
+      visible={false}
+      width={520}
+    />
   </Modal>
-</Modal>
+</UserModal>
 `;

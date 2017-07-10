@@ -4,7 +4,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import _ from "lodash";
 import {Badge, Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Table, Tabs, Tooltip} from "antd";
 import appConfig from "./../../config/app";
-import themeSizeConfig from "./../../config/theme/sizes";
+import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -507,7 +507,7 @@ class UserModal extends React.Component {
                 columns={AUTHORITIES_TABLE_DEFAULT_COLUMNS}
                 rowKey={record => record.name}
                 rowSelection={tabViewAuthoritiesTableConfig}
-                scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+                scroll={{x: screenMD}}
               />
             </Col>
           </div>
