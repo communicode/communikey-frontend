@@ -12,7 +12,7 @@ npm run dist:prod
 npm run dist:test
 ```
 
-The distribution will be placed in the `dist` directory. Details on how to configure the artifact deployment can be found in the [configuration](configuration.md) chapter.
+The distribution will be placed in the `dist` directory.
 
 ## Documentation
 ![](../assets/gitbook-banner.png)
