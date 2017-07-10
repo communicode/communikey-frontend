@@ -10,12 +10,12 @@ import {LOCAL_STORAGE_ACCESS_TOKEN} from "../../src/config/constants";
 describe("<SignOut>", () => {
   test("should clear the local storage", () => {
     global.localStorage = mockStorage;
-    expect(mockStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)).toBe("mockedItem");
+    expect(mockStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)).toEqual("mockedItem");
     const wrapper = mount(
       <Provider {...stores}>
         <Dashboard/>
       </Provider>
     );
-    expect(mockStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)).toBe("clearedItem");
+    expect(mockStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)).toEqual("clearedItem");
   });
 });
