@@ -7,7 +7,7 @@ import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
 import {screenMD} from "./../../config/theme/sizes";
-import {AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
+import {AUTHORITY_STORE, AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -47,7 +47,7 @@ export const USER_TABLE_DEFAULT_COLUMNS = [
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
-@inject(AUTH_STORE, USER_STORE) @observer
+@inject(AUTHORITY_STORE, AUTH_STORE, USER_STORE) @observer
 class UserAdministration extends React.Component {
   constructor(props) {
     super(props);
@@ -163,6 +163,40 @@ class UserAdministration extends React.Component {
         console.error(error);
         this.setProcessingStatus(false);
       });
+  };
+
+  /**
+   * Handles the event to add a authority to the user.
+   *
+   * @callback handleUserModalOnAuthorityAdd
+   * @param {object} authority - The authority to add to the user
+   * @since 0.11.0
+   */
+  handleUserModalOnAuthorityAdd = (authority) => {
+    this.setProcessingStatus(true);
+    this.props.userStore.addAuthority(this.state.user.login, authority.name)
+      .then(updatedUser => {
+        this.setState({user: update(this.state.user, {$merge: updatedUser})});
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
+  };
+
+  /**
+   * Handles the event to remove a authority from the user.
+   *
+   * @callback handleUserModalOnAuthorityRemove
+   * @param {object} authority - The authority to remove from the user
+   * @since 0.11.0
+   */
+  handleUserModalOnAuthorityRemove = (authority) => {
+    this.setProcessingStatus(true);
+    this.props.userStore.removeAuthority(this.state.user.login, authority.name)
+      .then(updatedUser => {
+        this.setState({user: update(this.state.user, {$merge: updatedUser})});
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
   };
 
   /**
@@ -282,7 +316,7 @@ class UserAdministration extends React.Component {
 
   render() {
     const {processing, user, userModalVisible, userModalCreationMode, userModalLocked} = this.state;
-    const {authStore, userStore} = this.props;
+    const {authorityStore, authStore, userStore} = this.props;
 
     const mainDataView = () => (
       <div>
@@ -315,6 +349,7 @@ class UserAdministration extends React.Component {
         visible={userModalVisible}
         key={user.id}
         user={user}
+        authorities={toJS(authorityStore.authorities)}
         administrationMode={authStore.privileged}
         locked={userModalLocked}
         creationMode={userModalCreationMode}
@@ -324,6 +359,8 @@ class UserAdministration extends React.Component {
         onDelete={this.handleUserModalDelete}
         onSave={this.handleUserModalSave}
         onUserActivate={this.handleUserModalUserActivation}
+        onAuthorityAdd={this.handleUserModalOnAuthorityAdd}
+        onAuthorityRemove={this.handleUserModalOnAuthorityRemove}
         onUserDeactivate={this.handleUserModalUserDeactivation}
         onUserPasswordReset={this.handleUserModalUserPasswordReset}
         toggleLockStatus={this.toggleUserModalLockStatus}
@@ -356,6 +393,14 @@ class UserAdministration extends React.Component {
 export default UserAdministration;
 
 UserAdministration.propTypes = {
+  /**
+   * The authority store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   * @since 0.11.0
+   */
+  authorityStore: MobXPropTypes.observableArray,
+
   /**
    * The authentication store injected by the MobX provider.
    *

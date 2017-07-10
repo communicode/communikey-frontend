@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {CATEGORY_ID, USER_GROUP_ID, USER_LOGIN, KEY_ID} from "./apiPathVariables";
+import {AUTHORITY_NAME, CATEGORY_ID, USER_GROUP_ID, USER_LOGIN, KEY_ID} from "./apiPathVariables";
 import {API_AUTHORIZE_PARAM, API_ME_PARAM} from "./apiRequestParameter";
 
 /**
@@ -123,6 +123,16 @@ export const USERS = API + "/users";
  * @since 0.8.0
  */
 export const USER_GROUPS = API + "/groups";
+
+/**
+ * The endpoint for a authority as compiled template.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.11.0
+ */
+export const AUTHORITY = _.template(AUTHORITIES + AUTHORITY_NAME);
 
 /**
  * The endpoint for user groups as compiled template.
