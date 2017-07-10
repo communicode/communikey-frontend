@@ -1,4 +1,4 @@
-**Note**: Please make sure to complete the [NodeJS requirement](../development/requirements.md#nodejs) steps first!
+**Note**: Please make sure to complete the [NodeJS requirement](requirements.md#nodejs) steps first!
 
 The project can be build for the test- and production environments by running the specific `npm` scripts.
 
