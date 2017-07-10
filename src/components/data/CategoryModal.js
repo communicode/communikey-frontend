@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip} from "antd";
-import themeSizeConfig from "./../../config/theme/sizes";
+import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/form/style/index.less";
@@ -281,7 +281,7 @@ class CategoryModal extends React.Component {
                 columns={USER_GROUPS_TABLE_DEFAULT_COLUMNS}
                 rowKey={record => record.id}
                 rowSelection={tabViewUserGroupsTableConfig}
-                scroll={{x: themeSizeConfig.mediaQueryBreakpoints.screenMD}}
+                scroll={{x: screenMD}}
               />
             </Col>
           </div>
