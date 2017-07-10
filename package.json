@@ -25,6 +25,7 @@
     "extract-text-webpack-plugin": "2.1.0",
     "favicons-webpack-plugin": "0.0.7",
     "file-loader": "0.10.1",
+    "gitbook-cli": "2.3.0",
     "html-webpack-plugin": "2.28.0",
     "immutability-helper": "2.2.0",
     "jasmine-reporters": "2.2.1",
@@ -55,6 +56,9 @@
     "dist:copyAssets": "cp -rf ./src/assets ./dist",
     "dist:test": "npm run clean && node_modules/.bin/webpack --env=testing --progress --profile --colors && npm run dist:copyAssets",
     "dist:prod": "npm run clean && node_modules/.bin/webpack --env=prod --progress --profile --colors && npm run dist:copyAssets",
+    "docs:build": "npm run docs:clean && gitbook build ./src/docs ./dist/docs",
+    "docs:clean": "rm -rf ./dist/docs",
+    "docs:serve": "npm run docs:build && gitbook serve ./src/docs ./dist/docs",
     "test": "jest --no-cache",
     "test:cov": "jest --coverage --no-cache",
     "test:watch": "jest --watch --no-cache"

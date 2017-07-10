@@ -1,0 +1,30 @@
+{
+  "gitbook": "3.2.2",
+  "title": "communikey-docs-frontend",
+  "description": "A simple centralized, cross-platform credential manager.",
+  "author": "communicode AG",
+  "plugins": ["-sharing"],
+  "pluginsConfig": {
+    "theme-default": {
+      "styles": {
+        "website": "css/website.css"
+      }
+    }
+  },
+  "variables": {
+    "technologies": {
+      "node": {
+        "name": "NodeJS",
+        "version": "6.5"
+      },
+      "react": {
+        "name": "React",
+        "version": "15.4"
+      },
+      "antd": {
+        "name": "Ant Design",
+        "version": "2.11.0"
+      }
+    }
+  }
+}
