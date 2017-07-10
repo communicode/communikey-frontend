@@ -7,7 +7,7 @@ import {Layout, Menu, Icon, Row, Spin} from "antd";
 import QueueAnim from "rc-queue-anim";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
-import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE} from "./stores/storeConstants";
+import {AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE} from "./stores/storeConstants";
 import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
   ROUTE_SIGNOUT,
@@ -23,7 +23,7 @@ import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "./BaseLayout.less";
 
-@inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE) @observer
+@inject(AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE) @observer
 class BaseLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -49,6 +49,7 @@ class BaseLayout extends React.Component {
 
   initializeStores = () => {
     return axios.all([
+      this.props.authorityStore.fetchAll(),
       this.props.categoryStore.fetchAll(),
       this.props.keyStore.fetchAll(),
       this.props.userStore.fetchAll(),
@@ -192,6 +193,12 @@ class BaseLayout extends React.Component {
 }
 
 BaseLayout.propTypes = {
+  /**
+   * @type {ObservableArray} authorityStore - The injected authority store
+   * @since 0.11.0
+   */
+  authorityStore: MobXPropTypes.observableArray,
+
   /**
    * @type {ObservableArray} authStore - The injected authentication store
    */

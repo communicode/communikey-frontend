@@ -3,7 +3,7 @@ import _ from "lodash";
 import axios from "axios";
 import apiService from "../services/ApiService";
 import {categoryStore, keyStore, userGroupStore} from "./../Communikey";
-import {USER, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER} from "./../services/apiRequestMappings";
+import {USER, USER_AUTHORITIES, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -36,6 +36,29 @@ class UserStore {
       }
     })
       .then(action("UserStore_activate_synchronization", response => {
+        this._updateEntity(response.data.id, response.data);
+        return response.data;
+      }));
+  };
+
+  /**
+   * Adds a authority to the user with the specified login.
+   * This is a API- and store synchronization action!
+   *
+   * @param {string} login - The login of the user to add the authority to
+   * @param {string} authorityName - The name of the authority to be added to the user
+   * @returns {Promise} - The updated user as a promise
+   * @since 0.11.0
+   */
+  @action("UserStore_addAuthority")
+  addAuthority = (login, authorityName) => {
+    return apiService.get(USER_AUTHORITIES({login: login}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        authorityName: authorityName
+      }
+    })
+      .then(action("UserStore_addAuthority_synchronization", response => {
         this._updateEntity(response.data.id, response.data);
         return response.data;
       }));
@@ -195,6 +218,29 @@ class UserStore {
         this.fetchOne(login);
         return response.data;
       });
+  };
+
+  /**
+   * Removes a authority from the user with the specified login.
+   * This is a API- and store synchronization action!
+   *
+   * @param {string} login - The login of the user to remove the authority from
+   * @param {string} authorityName - The name of the authority to be removed from the user
+   * @returns {Promise} - The updated user as a promise
+   * @since 0.11.0
+   */
+  @action("UserStore_removeAuthority")
+  removeAuthority = (login, authorityName) => {
+    return apiService.delete(USER_AUTHORITIES({login: login}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        authorityName: authorityName
+      }
+    })
+      .then(action("UserStore_removeAuthority_synchronization", response => {
+        this._updateEntity(response.data.id, response.data);
+        return response.data;
+      }));
   };
 
   /**

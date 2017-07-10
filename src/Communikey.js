@@ -16,6 +16,7 @@ import UserAdministration from "./routes/administration/UserAdministration";
 import UserGroupAdministration from "./routes/administration/UserGroupAdministration";
 import Dashboard from "./routes/Dashboard";
 import Keys from "./routes/Keys";
+import AuthorityStore from "./stores/AuthorityStore";
 import AuthStore from "./stores/AuthStore";
 import CategoryStore from "./stores/CategoryStore";
 import KeyStore from "./stores/KeyStore";
@@ -45,6 +46,14 @@ useStrict(true);
  * @since 0.9.0
  */
 export const authStore = new AuthStore();
+
+/**
+ * The authority store instance.
+ *
+ * @type {AuthorityStore}
+ * @since 0.11.0
+ */
+export const authorityStore = new AuthorityStore();
 
 /**
  * The category store instance.
@@ -81,9 +90,9 @@ export const userStore = new UserStore();
 /**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
  *
- * @type {Object.<{AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}>}
+ * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}>}
  */
-const stores = {authStore, categoryStore, keyStore, userGroupStore, userStore};
+const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore};
 
 /**
  * The communikey version.
