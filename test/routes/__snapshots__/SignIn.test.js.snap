@@ -1,0 +1,640 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignIn> should render correctly with sample data 1`] = `
+<Provider
+  authStore={
+    AuthStore {
+      "authorities": Array [
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.497+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+          "name": "ROLE_USER",
+        },
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.537+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+          "name": "ROLE_ADMIN",
+        },
+      ],
+      "firstName": "",
+      "isAuthorized": false,
+      "lastName": "",
+      "login": "",
+      "privileged": false,
+    }
+  }
+  authorityStore={
+    AuthorityStore {
+      "_findOneByName": [Function],
+      "_updateEntity": [Function],
+      "authorities": Array [
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.497+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+          "name": "ROLE_USER",
+        },
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.537+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+          "name": "ROLE_ADMIN",
+        },
+      ],
+    }
+  }
+  categoryStore={
+    CategoryStore {
+      "_findById": [Function],
+      "_updateEntity": [Function],
+      "categories": Array [
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:41.497+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 3,
+          "keys": Array [
+            2,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+          "name": "ssh",
+          "parent": 2,
+          "responsible": 1,
+          "treeLevel": 2,
+        },
+        Object {
+          "children": Array [
+            5,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:46.691+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 4,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+          "name": "intern",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            2,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:33.274+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 1,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+          "name": "vorwerk",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            3,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:37.557+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 2,
+          "keys": Array [
+            1,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+          "name": "servers",
+          "parent": 1,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:53.821+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 5,
+          "keys": Array [
+            3,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+          "name": "projektron bcs",
+          "parent": 4,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+      ],
+    }
+  }
+  keyStore={
+    KeyStore {
+      "_filterAllByCategory": [Function],
+      "_findOneById": [Function],
+      "_updateEntity": [Function],
+      "keys": Array [
+        Object {
+          "category": 3,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:35.095+02:00",
+          "creator": 1,
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+        Object {
+          "category": 2,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:34.938+02:00",
+          "creator": 1,
+          "id": 1,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:33.771+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+        Object {
+          "category": 5,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:35.294+02:00",
+          "creator": 1,
+          "id": 3,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:18.388+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+      ],
+    }
+  }
+  userGroupStore={
+    UserGroupStore {
+      "_filterAllByCategory": [Function],
+      "_findOneById": [Function],
+      "_findOneByName": [Function],
+      "_updateEntity": [Function],
+      "userGroups": Array [
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:23.734+02:00",
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+          "name": "vorwerk",
+          "users": Array [
+            1,
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:19.101+02:00",
+          "id": 1,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+          "name": "ops",
+          "users": Array [
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:37.824+02:00",
+          "id": 3,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+          "name": "administration",
+          "users": Array [
+            1,
+            2,
+          ],
+        },
+      ],
+    }
+  }
+  userStore={
+    UserStore {
+      "_filterAllByGroup": [Function],
+      "_findOneById": [Function],
+      "_findOneByLogin": [Function],
+      "_updateEntity": [Function],
+      "users": Array [
+        Object {
+          "activated": false,
+          "activationKey": "99315975298178909730",
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:47.738+02:00",
+          "email": "testuser@communicode.de",
+          "firstName": "Peter",
+          "groups": Array [
+            3,
+            2,
+            1,
+          ],
+          "id": 2,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+          "lastName": "Maffay",
+          "login": "testuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+        Object {
+          "activated": true,
+          "activationKey": "28235331690590579877",
+          "authorities": Array [
+            "ROLE_USER",
+            "ROLE_ADMIN",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:45:12.934+02:00",
+          "email": "cckey_root@communicode.de",
+          "firstName": "communi",
+          "groups": Array [
+            3,
+            2,
+          ],
+          "id": 1,
+          "keyCategories": Array [
+            3,
+            1,
+            5,
+            4,
+            2,
+          ],
+          "keys": Array [
+            3,
+            2,
+            1,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
+          "lastName": "key",
+          "login": "root",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [
+            3,
+            1,
+            5,
+            4,
+            2,
+          ],
+        },
+        Object {
+          "activated": true,
+          "activationKey": null,
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:12:46.33+02:00",
+          "email": "reallynewtestuser@communicode.de",
+          "firstName": "really",
+          "groups": Array [],
+          "id": 4,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
+          "lastName": "new",
+          "login": "reallynewtestuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+        Object {
+          "activated": true,
+          "activationKey": null,
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:12:28.858+02:00",
+          "email": "newtestuser@communicode.de",
+          "firstName": "new",
+          "groups": Array [
+            2,
+            1,
+          ],
+          "id": 3,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
+          "lastName": "test",
+          "login": "newtestuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+      ],
+    }
+  }
+>
+  <inject-SignIn-with-authStore>
+    <SignIn
+      authStore={
+        AuthStore {
+          "authorities": Array [
+            Object {
+              "createdBy": "root",
+              "createdDate": "2017-07-04T09:26:52.497+02:00",
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+              "name": "ROLE_USER",
+            },
+            Object {
+              "createdBy": "root",
+              "createdDate": "2017-07-04T09:26:52.537+02:00",
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+              "name": "ROLE_ADMIN",
+            },
+          ],
+          "firstName": "",
+          "isAuthorized": false,
+          "lastName": "",
+          "login": "",
+          "privileged": false,
+        }
+      }
+    >
+      <div
+        className="cckey-signin-form-wrapper"
+      >
+        <div
+          className="form"
+        >
+          <div
+            className="logo"
+          >
+            <img
+              src="/assets/images/communikey-logo-light-dropshadow.svg"
+            />
+          </div>
+          <p
+            className="app-title"
+          >
+            communikey
+          </p>
+          <Form
+            hideRequiredMark={false}
+            layout="horizontal"
+            onSubmit={[Function]}
+            prefixCls="ant-form"
+          >
+            <form
+              className="ant-form ant-form-horizontal"
+              onSubmit={[Function]}
+            >
+              <FormItem
+                colon={true}
+                hasFeedback={false}
+                prefixCls="ant-form"
+              >
+                <Row
+                  className="ant-form-item"
+                  gutter={0}
+                >
+                  <div
+                    className="ant-row ant-form-item"
+                  >
+                    <Col
+                      className="ant-form-item-control-wrapper"
+                    >
+                      <div
+                        className="ant-form-item-control-wrapper"
+                      >
+                        <div
+                          className="ant-form-item-control "
+                        >
+                          <Input
+                            addonAfter="@communicode.de"
+                            autosize={false}
+                            disabled={false}
+                            name="login"
+                            onChange={[Function]}
+                            placeholder="Email"
+                            prefix={
+                              <Icon
+                                type="mail"
+                              />
+                            }
+                            prefixCls="ant-input"
+                            size="large"
+                            suffix={null}
+                            type="text"
+                            value=""
+                          >
+                            <span
+                              className="ant-input-group-wrapper"
+                            >
+                              <span
+                                className="ant-input-wrapper ant-input-group"
+                              >
+                                <span
+                                  className="ant-input-affix-wrapper"
+                                  style={null}
+                                >
+                                  <span
+                                    className="ant-input-prefix"
+                                  >
+                                    <Icon
+                                      type="mail"
+                                    >
+                                      <i
+                                        className="anticon anticon-mail"
+                                      />
+                                    </Icon>
+                                  </span>
+                                  <input
+                                    className="ant-input ant-input-lg"
+                                    disabled={false}
+                                    name="login"
+                                    onChange={[Function]}
+                                    onKeyDown={[Function]}
+                                    placeholder="Email"
+                                    size="large"
+                                    style={null}
+                                    type="text"
+                                    value=""
+                                  />
+                                </span>
+                                <span
+                                  className="ant-input-group-addon"
+                                >
+                                  @communicode.de
+                                </span>
+                              </span>
+                            </span>
+                          </Input>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+                </Row>
+              </FormItem>
+              <FormItem
+                colon={true}
+                hasFeedback={false}
+                prefixCls="ant-form"
+              >
+                <Row
+                  className="ant-form-item"
+                  gutter={0}
+                >
+                  <div
+                    className="ant-row ant-form-item"
+                  >
+                    <Col
+                      className="ant-form-item-control-wrapper"
+                    >
+                      <div
+                        className="ant-form-item-control-wrapper"
+                      >
+                        <div
+                          className="ant-form-item-control "
+                        >
+                          <Input
+                            autosize={false}
+                            disabled={false}
+                            name="password"
+                            onChange={[Function]}
+                            placeholder="Password"
+                            prefix={
+                              <Icon
+                                type="lock"
+                              />
+                            }
+                            prefixCls="ant-input"
+                            size="large"
+                            type="password"
+                          >
+                            <span
+                              className="ant-input-affix-wrapper"
+                            >
+                              <span
+                                className="ant-input-prefix"
+                              >
+                                <Icon
+                                  type="lock"
+                                >
+                                  <i
+                                    className="anticon anticon-lock"
+                                  />
+                                </Icon>
+                              </span>
+                              <input
+                                className="ant-input ant-input-lg"
+                                disabled={false}
+                                name="password"
+                                onChange={[Function]}
+                                onKeyDown={[Function]}
+                                placeholder="Password"
+                                size="large"
+                                style={null}
+                                type="password"
+                              />
+                            </span>
+                          </Input>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+                </Row>
+              </FormItem>
+              <Row
+                gutter={0}
+              >
+                <div
+                  className="ant-row"
+                >
+                  <Button
+                    clicked={false}
+                    ghost={false}
+                    loading={false}
+                    onClick={[Function]}
+                    prefixCls="ant-btn"
+                    size="large"
+                    type="primary"
+                  >
+                    <button
+                      className="ant-btn ant-btn-primary ant-btn-lg"
+                      onClick={[Function]}
+                      onMouseUp={[Function]}
+                      type="button"
+                    >
+                      <span>
+                        Sign in
+                      </span>
+                    </button>
+                  </Button>
+                </div>
+              </Row>
+            </form>
+          </Form>
+        </div>
+        <footer
+          className="cckey-signin-footer-container"
+        >
+          <p>
+            version 
+            0.0-code-coverage
+          </p>
+          <p>
+            Made with 
+            <Icon
+              className="heart"
+              type="heart"
+            >
+              <i
+                className="anticon anticon-heart heart"
+              />
+            </Icon>
+             by 
+            <a
+              href="https://communicode.de"
+            >
+              communicode
+            </a>
+          </p>
+        </footer>
+      </div>
+    </SignIn>
+  </inject-SignIn-with-authStore>
+</Provider>
+`;

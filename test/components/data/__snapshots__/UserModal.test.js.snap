@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserModal> should render correctly with sample data 1`] = `
+<UserModal
+  administrationMode={false}
+  authorities={
+    Array [
+      Object {
+        "createdBy": "root",
+        "createdDate": "2017-07-04T09:26:52.497+02:00",
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+        "name": "ROLE_USER",
+      },
+      Object {
+        "createdBy": "root",
+        "createdDate": "2017-07-04T09:26:52.537+02:00",
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+        "name": "ROLE_ADMIN",
+      },
+    ]
+  }
+  creationMode={false}
+  loading={false}
+  onClose={[Function]}
+  user={
+    Object {
+      "activated": false,
+      "activationKey": "99315975298178909730",
+      "authorities": Array [
+        "ROLE_USER",
+      ],
+      "createdBy": "root",
+      "createdDate": "2017-06-30T10:46:47.738+02:00",
+      "email": "testuser@communicode.de",
+      "firstName": "Peter",
+      "groups": Array [
+        3,
+        2,
+        1,
+      ],
+      "id": 2,
+      "keyCategories": Array [],
+      "keys": Array [],
+      "lastModifiedBy": "root",
+      "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+      "lastName": "Maffay",
+      "login": "testuser",
+      "resetDate": null,
+      "resetKey": null,
+      "responsibleKeyCategories": Array [],
+    }
+  }
+>
+  <Modal
+    className="cckey-user-modal"
+    closable={false}
+    confirmLoading={false}
+    footer={false}
+    maskTransitionName="fade"
+    onClose={[Function]}
+    prefixCls="ant-modal"
+    transitionName="zoom"
+    visible={false}
+    width={520}
+  >
+    <DialogWrap
+      className="cckey-user-modal"
+      closable={false}
+      confirmLoading={false}
+      footer={false}
+      maskTransitionName="fade"
+      onClose={[Function]}
+      prefixCls="ant-modal"
+      transitionName="zoom"
+      visible={false}
+      width={520}
+    />
+  </Modal>
+</UserModal>
+`;

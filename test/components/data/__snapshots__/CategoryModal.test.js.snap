@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CategoryModal> should render correctly with sample data 1`] = `
+<Modal
+  className="cckey-category-modal"
+  closable={false}
+  confirmLoading={false}
+  footer={false}
+  id="cckey-components-data-views-category-modal"
+  maskTransitionName="fade"
+  onClose={[Function]}
+  prefixCls="ant-modal"
+  transitionName="zoom"
+  visible={false}
+  width={520}
+>
+  <Tabs
+    defaultActiveKey="general"
+    hideAdd={false}
+    onChange={[Function]}
+    prefixCls="ant-tabs"
+  >
+    <TabPane
+      placeholder={null}
+      tab="General"
+    >
+      <Row
+        align="center"
+        gutter={0}
+        type="flex"
+      >
+        <Col
+          span={18}
+        >
+          <Form(WrappedComponent)
+            administrationMode={false}
+            category={
+              Object {
+                "children": Array [],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:41.497+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 3,
+                "keys": Array [
+                  2,
+                ],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                "name": "ssh",
+                "parent": 2,
+                "responsible": 1,
+                "treeLevel": 2,
+              }
+            }
+            creationMode={false}
+          />
+        </Col>
+      </Row>
+    </TabPane>
+    <TabPane
+      disabled={false}
+      placeholder={null}
+      tab="User Groups"
+    >
+      <Row
+        gutter={0}
+      >
+        <div>
+          <Col
+            span={24}
+          >
+            <Table
+              bordered={false}
+              className=""
+              columns={
+                Array [
+                  Object {
+                    "dataIndex": "name",
+                    "fixed": true,
+                    "key": "name",
+                    "title": "Name",
+                  },
+                ]
+              }
+              dataSource={
+                Array [
+                  Object {
+                    "categories": Array [],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T10:46:23.734+02:00",
+                    "id": 2,
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                    "name": "vorwerk",
+                    "users": Array [
+                      1,
+                      2,
+                      3,
+                    ],
+                  },
+                  Object {
+                    "categories": Array [],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T10:46:19.101+02:00",
+                    "id": 1,
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+                    "name": "ops",
+                    "users": Array [
+                      2,
+                      3,
+                    ],
+                  },
+                  Object {
+                    "categories": Array [],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T10:46:37.824+02:00",
+                    "id": 3,
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+                    "name": "administration",
+                    "users": Array [
+                      1,
+                      2,
+                    ],
+                  },
+                ]
+              }
+              indentSize={20}
+              loading={false}
+              locale={Object {}}
+              prefixCls="ant-table"
+              rowKey={[Function]}
+              rowSelection={
+                Object {
+                  "onSelect": [Function],
+                  "selectedRowKeys": Array [],
+                }
+              }
+              scroll={
+                Object {
+                  "x": 992,
+                }
+              }
+              showHeader={true}
+              size="large"
+              useFixedHeader={false}
+            />
+          </Col>
+        </div>
+      </Row>
+    </TabPane>
+  </Tabs>
+  <Row
+    gutter={0}
+  >
+    <Col>
+      <div
+        className="footer"
+      >
+        <Row
+          align="middle"
+          gutter={0}
+          type="flex"
+        >
+          <Col
+            span={8}
+          >
+            <div
+              className="operations"
+            />
+          </Col>
+          <Col
+            offset={8}
+            span={8}
+          >
+            <div
+              className="main"
+            >
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+              >
+                Cancel
+              </Button>
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+                type="primary"
+              >
+                Done
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </Col>
+  </Row>
+</Modal>
+`;

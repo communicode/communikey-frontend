@@ -1,0 +1,298 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserGroupModal> should render correctly with sample data 1`] = `
+<Modal
+  className="cckey-user-group-modal"
+  closable={false}
+  confirmLoading={false}
+  footer={false}
+  id="cckey-components-data-views-user-group-modal"
+  maskTransitionName="fade"
+  onClose={[Function]}
+  prefixCls="ant-modal"
+  transitionName="zoom"
+  visible={false}
+  width={520}
+>
+  <Tabs
+    defaultActiveKey="general"
+    hideAdd={false}
+    onChange={[Function]}
+    prefixCls="ant-tabs"
+  >
+    <TabPane
+      placeholder={null}
+      tab="General"
+    >
+      <Row
+        gutter={0}
+      >
+        <Col
+          span={24}
+        >
+          <Form(WrappedComponent)
+            administrationMode={false}
+            creationMode={false}
+            userGroup={
+              Object {
+                "categories": Array [],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T10:46:23.734+02:00",
+                "id": 2,
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                "name": "vorwerk",
+                "users": Array [
+                  1,
+                  2,
+                  3,
+                ],
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </TabPane>
+    <TabPane
+      disabled={false}
+      placeholder={null}
+      tab="Users"
+    >
+      <Row
+        gutter={0}
+      >
+        <div>
+          <Col
+            span={24}
+          >
+            <Table
+              bordered={false}
+              className=""
+              columns={
+                Array [
+                  Object {
+                    "dataIndex": "login",
+                    "fixed": true,
+                    "key": "login",
+                    "title": "Login",
+                  },
+                  Object {
+                    "dataIndex": "email",
+                    "key": "email",
+                    "title": "Email",
+                  },
+                  Object {
+                    "dataIndex": "firstName",
+                    "key": "firstName",
+                    "title": "First name",
+                  },
+                  Object {
+                    "dataIndex": "lastName",
+                    "key": "lastName",
+                    "title": "Last name",
+                  },
+                ]
+              }
+              dataSource={
+                Array [
+                  Object {
+                    "activated": false,
+                    "activationKey": "99315975298178909730",
+                    "authorities": Array [
+                      "ROLE_USER",
+                    ],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T10:46:47.738+02:00",
+                    "email": "testuser@communicode.de",
+                    "firstName": "Peter",
+                    "groups": Array [
+                      3,
+                      2,
+                      1,
+                    ],
+                    "id": 2,
+                    "keyCategories": Array [],
+                    "keys": Array [],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+                    "lastName": "Maffay",
+                    "login": "testuser",
+                    "resetDate": null,
+                    "resetKey": null,
+                    "responsibleKeyCategories": Array [],
+                  },
+                  Object {
+                    "activated": true,
+                    "activationKey": "28235331690590579877",
+                    "authorities": Array [
+                      "ROLE_USER",
+                      "ROLE_ADMIN",
+                    ],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T10:45:12.934+02:00",
+                    "email": "cckey_root@communicode.de",
+                    "firstName": "communi",
+                    "groups": Array [
+                      3,
+                      2,
+                    ],
+                    "id": 1,
+                    "keyCategories": Array [
+                      3,
+                      1,
+                      5,
+                      4,
+                      2,
+                    ],
+                    "keys": Array [
+                      3,
+                      2,
+                      1,
+                    ],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
+                    "lastName": "key",
+                    "login": "root",
+                    "resetDate": null,
+                    "resetKey": null,
+                    "responsibleKeyCategories": Array [
+                      3,
+                      1,
+                      5,
+                      4,
+                      2,
+                    ],
+                  },
+                  Object {
+                    "activated": true,
+                    "activationKey": null,
+                    "authorities": Array [
+                      "ROLE_USER",
+                    ],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T11:12:46.33+02:00",
+                    "email": "reallynewtestuser@communicode.de",
+                    "firstName": "really",
+                    "groups": Array [],
+                    "id": 4,
+                    "keyCategories": Array [],
+                    "keys": Array [],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
+                    "lastName": "new",
+                    "login": "reallynewtestuser",
+                    "resetDate": null,
+                    "resetKey": null,
+                    "responsibleKeyCategories": Array [],
+                  },
+                  Object {
+                    "activated": true,
+                    "activationKey": null,
+                    "authorities": Array [
+                      "ROLE_USER",
+                    ],
+                    "createdBy": "root",
+                    "createdDate": "2017-06-30T11:12:28.858+02:00",
+                    "email": "newtestuser@communicode.de",
+                    "firstName": "new",
+                    "groups": Array [
+                      2,
+                      1,
+                    ],
+                    "id": 3,
+                    "keyCategories": Array [],
+                    "keys": Array [],
+                    "lastModifiedBy": "root",
+                    "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
+                    "lastName": "test",
+                    "login": "newtestuser",
+                    "resetDate": null,
+                    "resetKey": null,
+                    "responsibleKeyCategories": Array [],
+                  },
+                ]
+              }
+              indentSize={20}
+              loading={false}
+              locale={Object {}}
+              prefixCls="ant-table"
+              rowKey={[Function]}
+              rowSelection={
+                Object {
+                  "onSelect": [Function],
+                  "selectedRowKeys": Array [
+                    1,
+                    2,
+                    3,
+                  ],
+                }
+              }
+              scroll={
+                Object {
+                  "x": 992,
+                }
+              }
+              showHeader={true}
+              size="large"
+              useFixedHeader={false}
+            />
+          </Col>
+        </div>
+      </Row>
+    </TabPane>
+  </Tabs>
+  <Row
+    gutter={0}
+  >
+    <Col>
+      <div
+        className="footer"
+      >
+        <Row
+          align="middle"
+          gutter={0}
+          type="flex"
+        >
+          <Col
+            span={8}
+          >
+            <div
+              className="operations"
+            />
+          </Col>
+          <Col
+            offset={8}
+            span={8}
+          >
+            <div
+              className="main"
+            >
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+              >
+                Cancel
+              </Button>
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+                type="primary"
+              >
+                Done
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </Col>
+  </Row>
+</Modal>
+`;

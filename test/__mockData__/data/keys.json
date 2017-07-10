@@ -1,0 +1,38 @@
+[
+  {
+    "id": 2,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T10:47:35.095+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+    "name": "lecker",
+    "category": 3,
+    "creator": 1,
+    "login": "erdbeer",
+    "password": "yogurt"
+  },
+  {
+    "id": 1,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T10:47:34.938+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:14:33.771+02:00",
+    "name": "lecker",
+    "category": 2,
+    "creator": 1,
+    "login": "erdbeer",
+    "password": "yogurt"
+  },
+  {
+    "id": 3,
+    "createdBy": "root",
+    "createdDate": "2017-06-30T10:47:35.294+02:00",
+    "lastModifiedBy": "root",
+    "lastModifiedDate": "2017-06-30T11:14:18.388+02:00",
+    "name": "lecker",
+    "category": 5,
+    "creator": 1,
+    "login": "erdbeer",
+    "password": "yogurt"
+  }
+]

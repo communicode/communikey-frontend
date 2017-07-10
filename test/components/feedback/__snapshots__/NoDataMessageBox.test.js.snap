@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NoDataMessageBox> should render correctly with sample data 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="wrapper"
+  >
+    <span
+      className="icon"
+    />
+    <div
+      className="text"
+    >
+      <div
+        className="headline"
+      >
+        There is no data yet.
+      </div>
+      <p
+        className="sub-headline"
+      />
+    </div>
+  </div>
+</div>
+`;
