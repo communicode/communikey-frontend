@@ -18,4 +18,14 @@ describe("<SignOut>", () => {
     );
     expect(mockStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)).toEqual("clearedItem");
   });
+  test("should reset the AuthStore", () => {
+    const spy = jest.spyOn(stores.authStore, '_reset');
+    global.localStorage = mockStorage;
+    const wrapper = mount(
+      <Provider {...stores}>
+        <Dashboard/>
+      </Provider>
+    );
+    expect(spy).toHaveBeenCalled();
+  });
 });
