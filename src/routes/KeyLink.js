@@ -18,7 +18,7 @@ class KeyLink extends React.Component {
   }
 
   render() {
-    const checkHash = (hash) => _.find(this.props.keyStore.keys, key => key.id == hash);
+    const checkHash = (hash) => _.find(this.props.keyStore.keys, key => key.id === hash);
     return <Keys cckey={this.props.match.params.id && checkHash(this.props.match.params.id)}/>;
   }
 }
