@@ -1,4 +1,5 @@
 const pathSeparator = "/";
+const parameterPrefix = ":";
 
 /**
  * The root route name.
@@ -79,3 +80,13 @@ export const ADMINISTRATION_USERS = ADMINISTRATION + pathSeparator + "users";
  * @since 0.8.0
  */
 export const KEYS = "keys";
+
+/**
+ * The dynamic route of the {@link KeyModal} component.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.12.0
+ */
+export const KEYSMODAL = pathSeparator + parameterPrefix + "id";

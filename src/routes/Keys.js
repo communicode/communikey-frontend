@@ -1,6 +1,7 @@
 import React from "react";
 import {toJS} from "mobx";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
+import {PropTypes} from "prop-types";
 import _ from "lodash";
 import update from "immutability-helper";
 import {Button, Col, Icon, Row, Tabs, Table, Tooltip} from "antd";
@@ -9,6 +10,7 @@ import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
+import {TAB_PANE_REACT_KEY_CATEGORIZED, TAB_PANE_REACT_KEY_POOL} from "../config/constants";
 import {screenMD} from "./../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -55,7 +57,8 @@ class Keys extends React.Component {
       keyModalCreationMode: false,
       keyModalLocked: true,
       keyModalVisible: false,
-      processing: false
+      processing: false,
+      activeTab: TAB_PANE_REACT_KEY_CATEGORIZED
     };
   }
 
@@ -64,6 +67,13 @@ class Keys extends React.Component {
     this.props.categoryStore.fetchAll()
       .then(() => this.setState({processing: false}))
       .catch(() => this.setState({processing: false}));
+    if(this.props.cckey) {
+      this.setState({
+        activeTab: TAB_PANE_REACT_KEY_POOL,
+        key: this.props.cckey,
+        keyModalVisible: true
+      });
+    }
   }
 
   /**
@@ -407,8 +417,6 @@ class Keys extends React.Component {
       keyModalLocked,
       processing
     } = this.state;
-    const TAB_PANE_REACT_KEY_CATEGORIZED = "categorized";
-    const TAB_PANE_REACT_KEY_POOL = "pool";
 
     const dragStatusButton = () => (
       <Tooltip title={categoryTreeDraggable ? "Disable dragging" : "Enable dragging"}>
@@ -578,10 +586,14 @@ class Keys extends React.Component {
       </div>
     );
 
+    const changeTab = (element) => {
+      this.setState({activeTab: element});
+    };
+
     return (
       <div id="cckey-routes-keys" className="cckey-base-layout-content-container">
         <div className="cckey-base-layout-content-container-inner">
-          <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_CATEGORIZED} tabBarExtraContent={authStore.privileged && tabBarOperations()}>
+          <Tabs activeKey={this.state.activeTab} onTabClick={changeTab} tabBarExtraContent={authStore.privileged && tabBarOperations()}>
             {tabViewCategorized()}
             {tabViewPool()}
           </Tabs>
@@ -622,5 +634,12 @@ Keys.propTypes = {
    *
    * @type {ObservableArray}
    */
-  userGroupStore: MobXPropTypes.observableArray
+  userGroupStore: MobXPropTypes.observableArray,
+
+  /**
+   * The key id for deep routes
+   *
+   * @type {integer}
+   */
+  cckey: PropTypes.object
 };
