@@ -105,6 +105,11 @@ class SignIn extends React.Component {
                 value={login}
                 suffix={suffix}
                 ref={node => this.loginInput = node}
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                    this.signIn();
+                  }
+                }}
               />
             </Form.Item>
             <Form.Item>
@@ -114,6 +119,11 @@ class SignIn extends React.Component {
                 type="password"
                 onChange={this.handleInputChange}
                 placeholder="Password"
+                onKeyPress={event => {
+                  if (event.key === "Enter") {
+                    this.signIn();
+                  }
+                }}
               />
             </Form.Item>
             <Row>
