@@ -1,6 +1,7 @@
 import React from "react";
 import AuthService from "./../services/AuthService";
 import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
+import keydown, {Keys}  from "react-keydown";
 import {Button, Form, Icon, Input, Row} from "antd";
 import appConfig from "../config/app";
 import {VERSION} from "./../Communikey";
@@ -59,6 +60,16 @@ class SignIn extends React.Component {
   };
 
   /**
+   * Calls the signIn function.
+   *
+   * @since 0.12.0
+   */
+  @keydown(Keys.ENTER)
+  signInOnKePress(event) {
+    this.signIn();
+  }
+
+  /**
    * Resets the value of the login input.
    *
    * @since 0.8.0
@@ -105,11 +116,6 @@ class SignIn extends React.Component {
                 value={login}
                 suffix={suffix}
                 ref={node => this.loginInput = node}
-                onKeyPress={event => {
-                  if (event.key === "Enter") {
-                    this.signIn();
-                  }
-                }}
               />
             </Form.Item>
             <Form.Item>
@@ -119,11 +125,6 @@ class SignIn extends React.Component {
                 type="password"
                 onChange={this.handleInputChange}
                 placeholder="Password"
-                onKeyPress={event => {
-                  if (event.key === "Enter") {
-                    this.signIn();
-                  }
-                }}
               />
             </Form.Item>
             <Row>
