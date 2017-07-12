@@ -1,9 +1,11 @@
 import React from "react";
 import {KEY_STORE} from "../stores/storeConstants";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
+import {Button, notification} from "antd";
 import {PropTypes} from "prop-types";
 import Keys from "./Keys";
 import _ from "lodash";
+import "antd/lib/notification/style/index.css";
 
 /**
  * The wrapper component for deep routed keys.
@@ -18,8 +20,38 @@ class KeyLink extends React.Component {
   }
 
   render() {
-    const checkHash = (hash) => _.find(this.props.keyStore.keys, key => key.id === hash);
-    return <Keys cckey={this.props.match.params.id && checkHash(this.props.match.params.id)}/>;
+    // const close = () => {
+    //   console.log("Notification was closed. Either the close button was clicked or duration time elapsed.");
+    // };
+    // const openErrorNotification = () => {
+    //   const key = `open${Date.now()}`;
+    //   const btnClick = function () {
+    //     notification.close(key);
+    //   };
+    //   const btn = (
+    //     <Button type="primary" size="small" onClick={btnClick}>
+    //       Confirm
+    //     </Button>
+    //   );
+    //   notification.open({
+    //     message: "Key not found!",
+    //     description: "The key has not been found. Please check the supplied link.",
+    //     btn,
+    //     key,
+    //     onClose: close
+    //   });
+    // };
+    //
+    // notification.config({
+    //   placement: "topRight",
+    //   bottom: 50,
+    //   duration: 0
+    // });
+
+    const checkHash = (hash) => _.find(this.props.keyStore.keys, key => key.id == hash);
+    let key = checkHash(this.props.match.params.id);
+    !key && openErrorNotification();
+    return <Keys cckey={this.props.match.params.id && key}/>;
   }
 }
 

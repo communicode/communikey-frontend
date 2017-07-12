@@ -10,13 +10,14 @@ import AuthService from "./services/AuthService";
 import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
 import PublicRoute from "./components/hoc/PublicRoute";
+import KeyDeepLinkAuthenticatedRoute from "./components/hoc/KeyDeepLinkAuthenticatedRoute";
 import SignIn from "./routes/SignIn";
 import SignOut from "./routes/SignOut";
 import UserAdministration from "./routes/administration/UserAdministration";
 import UserGroupAdministration from "./routes/administration/UserGroupAdministration";
 import Dashboard from "./routes/Dashboard";
 import Keys from "./routes/Keys";
-import KeyLink from "./routes/KeyLink";
+// import KeyLink from "./routes/KeyLink";
 import AuthorityStore from "./stores/AuthorityStore";
 import AuthStore from "./stores/AuthStore";
 import CategoryStore from "./stores/CategoryStore";
@@ -38,7 +39,6 @@ import {
 import enUS from "antd/lib/locale-provider/en_US";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "./config/constants";
 import "antd/lib/spin/style/index.less";
-
 useStrict(true);
 
 /**
@@ -163,7 +163,8 @@ class Communikey extends React.Component {
                           authorized={stores.authStore.isAuthorized}
                           privileged={stores.authStore.privileged}
                         />
-                        <AuthenticatedRoute path={ROUTE_KEYMODAL} component={KeyLink} authorized={stores.authStore.isAuthorized}/>
+                        <KeyDeepLinkAuthenticatedRoute path={ROUTE_KEYMODAL} keyStore={keyStore} component={Keys} authorized={stores.authStore.isAuthorized}/>
+                        {/*<AuthenticatedRoute path={ROUTE_KEYMODAL} component={KeyLink} authorized={stores.authStore.isAuthorized}/>*/}
                         <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
                       </Switch>
                     </QueueAnim>
