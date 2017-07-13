@@ -2,7 +2,7 @@ import React from "react";
 import AuthService from "./../services/AuthService";
 import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
 import keydown, {Keys}  from "react-keydown";
-import {Button, Form, Icon, Input, Row} from "antd";
+import {Button, Form, Icon, Input, Row, Tooltip} from "antd";
 import appConfig from "../config/app";
 import {VERSION} from "./../Communikey";
 import {AUTH_STORE} from "../stores/storeConstants";
@@ -65,7 +65,7 @@ class SignIn extends React.Component {
    * @since 0.12.0
    */
   @keydown(Keys.ENTER)
-  signInOnKePress(event) {
+  signInOnKePress() {
     this.signIn();
   }
 
@@ -89,7 +89,7 @@ class SignIn extends React.Component {
 
   render() {
     const {login, processing} = this.state;
-    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : null;
+    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : <Tooltip title="Only communicode-addresses allowed"> <Icon type="info-circle-o"/> </Tooltip>;
 
     const footer = () => (
       <footer className="cckey-signin-footer-container">
@@ -116,6 +116,7 @@ class SignIn extends React.Component {
                 value={login}
                 suffix={suffix}
                 ref={node => this.loginInput = node}
+                onPressEnter={this.signIn}
               />
             </Form.Item>
             <Form.Item>
@@ -125,6 +126,7 @@ class SignIn extends React.Component {
                 type="password"
                 onChange={this.handleInputChange}
                 placeholder="Password"
+                onPressEnter={this.signIn}
               />
             </Form.Item>
             <Row>
