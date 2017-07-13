@@ -66,7 +66,7 @@ class SignIn extends React.Component {
    * @since 0.12.0
    */
   @keydown(Keys.ENTER)
-  signInOnKePress() {
+  signInOnKeyPress() {
     this.signIn();
   }
 
@@ -90,7 +90,7 @@ class SignIn extends React.Component {
 
   render() {
     const {login, processing} = this.state;
-    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : <Tooltip title={LOGIN_INFORMATION_TEXT}> <Icon type="info-circle-o"/> </Tooltip>;
+    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : <Tooltip title={LOGIN_INFORMATION_TEXT}><Icon type="info-circle-o"/> </Tooltip>;
 
     const footer = () => (
       <footer className="cckey-signin-footer-container">
