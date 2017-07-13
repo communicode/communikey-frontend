@@ -467,7 +467,6 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                 title="No account? For access please send an email to key@communicode.de"
                                 transitionName="zoom-big-fast"
                               >
-                                 
                                 <Icon
                                   type="info-circle-o"
                                 />
@@ -1022,7 +1021,6 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                             onMouseEnter={[Function]}
                                             onMouseLeave={[Function]}
                                           >
-                                             
                                             <Icon
                                               type="info-circle-o"
                                             >
