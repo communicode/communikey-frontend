@@ -7,3 +7,4 @@
  * @since 0.8.0
  */
 export const LOCAL_STORAGE_ACCESS_TOKEN = "access_token";
+export const LOGIN_INFORMATION_TEXT = "No account? For access please send an email to key@communicode.de";

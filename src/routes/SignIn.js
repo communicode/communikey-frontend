@@ -6,6 +6,7 @@ import {Button, Form, Icon, Input, Row, Tooltip} from "antd";
 import appConfig from "../config/app";
 import {VERSION} from "./../Communikey";
 import {AUTH_STORE} from "../stores/storeConstants";
+import {LOGIN_INFORMATION_TEXT} from "../config/constants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/row/style/css";
 import "antd/lib/form/style/index.less";
@@ -89,7 +90,7 @@ class SignIn extends React.Component {
 
   render() {
     const {login, processing} = this.state;
-    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : <Tooltip title="Only communicode-addresses allowed"> <Icon type="info-circle-o"/> </Tooltip>;
+    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : <Tooltip title={LOGIN_INFORMATION_TEXT}> <Icon type="info-circle-o"/> </Tooltip>;
 
     const footer = () => (
       <footer className="cckey-signin-footer-container">
