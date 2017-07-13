@@ -4,7 +4,7 @@ import {Route, Redirect} from "react-router-dom";
 import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
 import {keyStore} from "../../Communikey";
 import _ from "lodash";
-import {Button, notification} from "antd";
+import {notification} from "antd";
 import "antd/lib/notification/style/index.css";
 import "antd/lib/button/style/index.css";
 
@@ -24,30 +24,17 @@ const KeyDeepLink = ({component: Component, authorized, ...rest}) => (
     {...rest}
     render={props => {
       if (authorized) {
-        const close = () => {
-          console.log("Notification was closed. Either the close button was clicked or duration time elapsed.");
-        };
         const openErrorNotification = () => {
           const key = `open${Date.now()}`;
-          const btnClick = function () {
-            notification.close(key);
-          };
-          const btn = (
-            <Button type="primary" size="small" onClick={btnClick}>
-              Confirm
-            </Button>
-          );
           notification.open({
             message: "Key not found!",
-            description: "The key has not been found. Please check the supplied link.",
-            btn,
-            key,
-            onClose: close
+            description: "The key has not been found. Please check the supplied link. You may have no access to it or it doesn't exist anymore.",
+            key
           });
         };
 
         notification.config({
-          placement: "bottomRight",
+          placement: "topRight",
           bottom: 50,
           duration: 0
         });

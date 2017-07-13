@@ -465,7 +465,8 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                 \\"keyModalCreationMode\\": false,
                                 \\"keyModalLocked\\": true,
                                 \\"keyModalVisible\\": false,
-                                \\"processing\\": true
+                                \\"processing\\": true,
+                                \\"activeTab\\": \\"categorized\\"
                             },
                             \\"_reactInternalInstance\\": {
                                 \\"_currentElement\\": {
@@ -500,7 +501,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                             \\"key\\": null,
                                                             \\"ref\\": null,
                                                             \\"props\\": {
-                                                                \\"defaultActiveKey\\": \\"categorized\\",
+                                                                \\"activeKey\\": \\"categorized\\",
                                                                 \\"tabBarExtraContent\\": false,
                                                                 \\"children\\": [
                                                                     {
@@ -819,7 +820,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                             \\"key\\": null,
                                                             \\"ref\\": null,
                                                             \\"props\\": {
-                                                                \\"defaultActiveKey\\": \\"categorized\\",
+                                                                \\"activeKey\\": \\"categorized\\",
                                                                 \\"tabBarExtraContent\\": false,
                                                                 \\"prefixCls\\": \\"ant-tabs\\",
                                                                 \\"hideAdd\\": false,
@@ -4922,379 +4923,132 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                     \\"_rootNodeID\\": 0,
                                                     \\"_compositeType\\": 0,
                                                     \\"_instance\\": {
-                                                        \\"state\\": {
-                                                            \\"categoryTreeSelectModalVisible\\": false,
-                                                            \\"keyPasswordVisible\\": false
-                                                        }
-                                                    },
-                                                    \\"_updateBatchNumber\\": null,
-                                                    \\"_pendingElement\\": null,
-                                                    \\"_pendingStateQueue\\": null,
-                                                    \\"_pendingReplaceState\\": false,
-                                                    \\"_pendingForceUpdate\\": false,
-                                                    \\"_renderedNodeType\\": 1,
-                                                    \\"_renderedComponent\\": {
-                                                        \\"_currentElement\\": {
-                                                            \\"key\\": null,
-                                                            \\"ref\\": null,
+                                                        \\"context\\": {},
+                                                        \\"state\\": null,
+                                                        \\"wrappedInstance\\": {
                                                             \\"props\\": {
                                                                 \\"visible\\": false,
-                                                                \\"footer\\": false,
-                                                                \\"closable\\": false,
-                                                                \\"className\\": \\"cckey-key-modal\\",
-                                                                \\"children\\": [
-                                                                    {
-                                                                        \\"key\\": null,
-                                                                        \\"ref\\": null,
-                                                                        \\"props\\": {
-                                                                            \\"gutter\\": 24,
-                                                                            \\"children\\": [
-                                                                                {
-                                                                                    \\"key\\": null,
-                                                                                    \\"ref\\": null,
-                                                                                    \\"props\\": {
-                                                                                        \\"span\\": 6,
-                                                                                        \\"children\\": {
-                                                                                            \\"type\\": \\"img\\",
-                                                                                            \\"key\\": null,
-                                                                                            \\"ref\\": null,
-                                                                                            \\"props\\": {
-                                                                                                \\"src\\": \\"/assets/images/communikey-logo-typography-green.svg\\",
-                                                                                                \\"className\\": \\"key-logo\\"
-                                                                                            },
-                                                                                            \\"_store\\": {}
-                                                                                        }
-                                                                                    },
-                                                                                    \\"_store\\": {}
-                                                                                },
-                                                                                {
-                                                                                    \\"key\\": null,
-                                                                                    \\"ref\\": null,
-                                                                                    \\"props\\": {
-                                                                                        \\"span\\": 18,
-                                                                                        \\"children\\": {
-                                                                                            \\"key\\": null,
-                                                                                            \\"props\\": {
-                                                                                                \\"administrationMode\\": false,
-                                                                                                \\"locked\\": true,
-                                                                                                \\"keyPasswordVisible\\": false,
-                                                                                                \\"creationMode\\": false
-                                                                                            },
-                                                                                            \\"_store\\": {}
-                                                                                        }
-                                                                                    },
-                                                                                    \\"_store\\": {}
-                                                                                }
-                                                                            ]
-                                                                        },
-                                                                        \\"_store\\": {}
-                                                                    },
-                                                                    {
-                                                                        \\"key\\": null,
-                                                                        \\"ref\\": null,
-                                                                        \\"props\\": {
-                                                                            \\"span\\": 4,
-                                                                            \\"children\\": [
-                                                                                false,
-                                                                                {
-                                                                                    \\"key\\": null,
-                                                                                    \\"ref\\": null,
-                                                                                    \\"props\\": {
-                                                                                        \\"title\\": \\"Show password\\",
-                                                                                        \\"children\\": {
-                                                                                            \\"key\\": \\"passwordVisibilityMode\\",
-                                                                                            \\"ref\\": null,
-                                                                                            \\"props\\": {
-                                                                                                \\"type\\": \\"ghost\\",
-                                                                                                \\"icon\\": \\"eye-o\\",
-                                                                                                \\"prefixCls\\": \\"ant-btn\\",
-                                                                                                \\"loading\\": false,
-                                                                                                \\"clicked\\": false,
-                                                                                                \\"ghost\\": false
-                                                                                            },
-                                                                                            \\"_store\\": {}
-                                                                                        },
-                                                                                        \\"prefixCls\\": \\"ant-tooltip\\",
-                                                                                        \\"placement\\": \\"top\\",
-                                                                                        \\"transitionName\\": \\"zoom-big-fast\\",
-                                                                                        \\"mouseEnterDelay\\": 0.1,
-                                                                                        \\"mouseLeaveDelay\\": 0.1,
-                                                                                        \\"arrowPointAtCenter\\": false
-                                                                                    },
-                                                                                    \\"_store\\": {}
-                                                                                }
-                                                                            ],
-                                                                            \\"gutter\\": 0
-                                                                        },
-                                                                        \\"_store\\": {}
-                                                                    },
-                                                                    {
-                                                                        \\"key\\": null,
-                                                                        \\"ref\\": null,
-                                                                        \\"props\\": {
-                                                                            \\"children\\": {
-                                                                                \\"key\\": null,
-                                                                                \\"ref\\": null,
-                                                                                \\"props\\": {
-                                                                                    \\"children\\": {
-                                                                                        \\"type\\": \\"div\\",
-                                                                                        \\"key\\": null,
-                                                                                        \\"ref\\": null,
-                                                                                        \\"props\\": {
-                                                                                            \\"className\\": \\"footer\\",
-                                                                                            \\"children\\": {
-                                                                                                \\"key\\": null,
-                                                                                                \\"ref\\": null,
-                                                                                                \\"props\\": {
-                                                                                                    \\"type\\": \\"flex\\",
-                                                                                                    \\"align\\": \\"middle\\",
-                                                                                                    \\"children\\": [
-                                                                                                        {
-                                                                                                            \\"key\\": null,
-                                                                                                            \\"ref\\": null,
-                                                                                                            \\"props\\": {
-                                                                                                                \\"span\\": 8,
-                                                                                                                \\"children\\": {
-                                                                                                                    \\"type\\": \\"div\\",
-                                                                                                                    \\"key\\": null,
-                                                                                                                    \\"ref\\": null,
-                                                                                                                    \\"props\\": {
-                                                                                                                        \\"className\\": \\"operations\\",
-                                                                                                                        \\"children\\": [
-                                                                                                                            false,
-                                                                                                                            false
-                                                                                                                        ]
-                                                                                                                    },
-                                                                                                                    \\"_store\\": {}
-                                                                                                                }
-                                                                                                            },
-                                                                                                            \\"_store\\": {}
-                                                                                                        },
-                                                                                                        {
-                                                                                                            \\"key\\": null,
-                                                                                                            \\"ref\\": null,
-                                                                                                            \\"props\\": {
-                                                                                                                \\"span\\": 8,
-                                                                                                                \\"offset\\": 8,
-                                                                                                                \\"children\\": {
-                                                                                                                    \\"type\\": \\"div\\",
-                                                                                                                    \\"key\\": null,
-                                                                                                                    \\"ref\\": null,
-                                                                                                                    \\"props\\": {
-                                                                                                                        \\"className\\": \\"main\\",
-                                                                                                                        \\"children\\": [
-                                                                                                                            {
-                                                                                                                                \\"key\\": null,
-                                                                                                                                \\"ref\\": null,
-                                                                                                                                \\"props\\": {
-                                                                                                                                    \\"size\\": \\"large\\",
-                                                                                                                                    \\"children\\": \\"Cancel\\",
-                                                                                                                                    \\"prefixCls\\": \\"ant-btn\\",
-                                                                                                                                    \\"loading\\": false,
-                                                                                                                                    \\"clicked\\": false,
-                                                                                                                                    \\"ghost\\": false
-                                                                                                                                },
-                                                                                                                                \\"_store\\": {}
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                                \\"key\\": null,
-                                                                                                                                \\"ref\\": null,
-                                                                                                                                \\"props\\": {
-                                                                                                                                    \\"type\\": \\"primary\\",
-                                                                                                                                    \\"size\\": \\"large\\",
-                                                                                                                                    \\"loading\\": true,
-                                                                                                                                    \\"children\\": \\"Done\\",
-                                                                                                                                    \\"prefixCls\\": \\"ant-btn\\",
-                                                                                                                                    \\"clicked\\": false,
-                                                                                                                                    \\"ghost\\": false
-                                                                                                                                },
-                                                                                                                                \\"_store\\": {}
-                                                                                                                            }
-                                                                                                                        ]
-                                                                                                                    },
-                                                                                                                    \\"_store\\": {}
-                                                                                                                }
-                                                                                                            },
-                                                                                                            \\"_store\\": {}
-                                                                                                        }
-                                                                                                    ],
-                                                                                                    \\"gutter\\": 0
-                                                                                                },
-                                                                                                \\"_store\\": {}
-                                                                                            }
-                                                                                        },
-                                                                                        \\"_store\\": {}
-                                                                                    }
-                                                                                },
-                                                                                \\"_store\\": {}
-                                                                            },
-                                                                            \\"gutter\\": 0
-                                                                        },
-                                                                        \\"_store\\": {}
-                                                                    },
-                                                                    {
+                                                                \\"categories\\": [
+                                                                    null,
+                                                                    null,
+                                                                    null,
+                                                                    null,
+                                                                    null
+                                                                ],
+                                                                \\"administrationMode\\": false,
+                                                                \\"locked\\": true,
+                                                                \\"creationMode\\": false,
+                                                                \\"loading\\": true
+                                                            },
+                                                            \\"state\\": {
+                                                                \\"categoryTreeSelectModalVisible\\": false,
+                                                                \\"keyPasswordVisible\\": false
+                                                            },
+                                                            \\"_reactInternalInstance\\": {
+                                                                \\"_currentElement\\": {
+                                                                    \\"key\\": null,
+                                                                    \\"_store\\": {}
+                                                                },
+                                                                \\"_rootNodeID\\": 0,
+                                                                \\"_compositeType\\": 0,
+                                                                \\"_updateBatchNumber\\": null,
+                                                                \\"_pendingElement\\": null,
+                                                                \\"_pendingStateQueue\\": null,
+                                                                \\"_pendingReplaceState\\": false,
+                                                                \\"_pendingForceUpdate\\": false,
+                                                                \\"_renderedNodeType\\": 1,
+                                                                \\"_renderedComponent\\": {
+                                                                    \\"_currentElement\\": {
                                                                         \\"key\\": null,
                                                                         \\"ref\\": null,
                                                                         \\"props\\": {
                                                                             \\"visible\\": false,
                                                                             \\"footer\\": false,
                                                                             \\"closable\\": false,
-                                                                            \\"className\\": \\"category-tree-select-inner-modal\\",
+                                                                            \\"className\\": \\"cckey-key-modal\\",
                                                                             \\"children\\": [
+                                                                                null,
                                                                                 {
                                                                                     \\"key\\": null,
                                                                                     \\"ref\\": null,
                                                                                     \\"props\\": {
-                                                                                        \\"type\\": \\"flex\\",
-                                                                                        \\"justify\\": \\"center\\",
-                                                                                        \\"children\\": {
-                                                                                            \\"key\\": null,
-                                                                                            \\"ref\\": null,
-                                                                                            \\"props\\": {
-                                                                                                \\"span\\": 24,
-                                                                                                \\"children\\": {
-                                                                                                    \\"key\\": null,
-                                                                                                    \\"ref\\": null,
-                                                                                                    \\"props\\": {
-                                                                                                        \\"children\\": {
-                                                                                                            \\"key\\": null,
-                                                                                                            \\"ref\\": null,
-                                                                                                            \\"props\\": {
-                                                                                                                \\"children\\": {
-                                                                                                                    \\"key\\": null,
-                                                                                                                    \\"ref\\": null,
-                                                                                                                    \\"props\\": {
-                                                                                                                        \\"showSearch\\": true,
-                                                                                                                        \\"size\\": \\"large\\",
-                                                                                                                        \\"children\\": [
-                                                                                                                            {
-                                                                                                                                \\"key\\": \\"4\\",
-                                                                                                                                \\"ref\\": null,
-                                                                                                                                \\"props\\": {
-                                                                                                                                    \\"value\\": \\"intern\\",
-                                                                                                                                    \\"title\\": {
-                                                                                                                                        \\"type\\": \\"span\\",
-                                                                                                                                        \\"key\\": null,
-                                                                                                                                        \\"ref\\": null,
-                                                                                                                                        \\"props\\": {
-                                                                                                                                            \\"children\\": [
-                                                                                                                                                {
-                                                                                                                                                    \\"key\\": null,
-                                                                                                                                                    \\"ref\\": null,
-                                                                                                                                                    \\"props\\": {
-                                                                                                                                                        \\"type\\": \\"folder\\"
-                                                                                                                                                    },
-                                                                                                                                                    \\"_store\\": {}
-                                                                                                                                                },
-                                                                                                                                                \\"intern\\"
-                                                                                                                                            ]
-                                                                                                                                        },
-                                                                                                                                        \\"_store\\": {}
-                                                                                                                                    },
-                                                                                                                                    \\"children\\": [
-                                                                                                                                        {
-                                                                                                                                            \\"key\\": \\"5\\",
-                                                                                                                                            \\"ref\\": null,
-                                                                                                                                            \\"props\\": {
-                                                                                                                                                \\"value\\": \\"projektron bcs\\",
-                                                                                                                                                \\"title\\": \\"projektron bcs\\"
-                                                                                                                                            },
-                                                                                                                                            \\"_store\\": {}
-                                                                                                                                        }
-                                                                                                                                    ]
-                                                                                                                                },
-                                                                                                                                \\"_store\\": {}
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                                \\"key\\": \\"1\\",
-                                                                                                                                \\"ref\\": null,
-                                                                                                                                \\"props\\": {
-                                                                                                                                    \\"value\\": \\"vorwerk\\",
-                                                                                                                                    \\"title\\": {
-                                                                                                                                        \\"type\\": \\"span\\",
-                                                                                                                                        \\"key\\": null,
-                                                                                                                                        \\"ref\\": null,
-                                                                                                                                        \\"props\\": {
-                                                                                                                                            \\"children\\": [
-                                                                                                                                                {
-                                                                                                                                                    \\"key\\": null,
-                                                                                                                                                    \\"ref\\": null,
-                                                                                                                                                    \\"props\\": {
-                                                                                                                                                        \\"type\\": \\"folder\\"
-                                                                                                                                                    },
-                                                                                                                                                    \\"_store\\": {}
-                                                                                                                                                },
-                                                                                                                                                \\"vorwerk\\"
-                                                                                                                                            ]
-                                                                                                                                        },
-                                                                                                                                        \\"_store\\": {}
-                                                                                                                                    },
-                                                                                                                                    \\"children\\": [
-                                                                                                                                        {
-                                                                                                                                            \\"key\\": \\"2\\",
-                                                                                                                                            \\"ref\\": null,
-                                                                                                                                            \\"props\\": {
-                                                                                                                                                \\"value\\": \\"servers\\",
-                                                                                                                                                \\"title\\": {
-                                                                                                                                                    \\"type\\": \\"span\\",
-                                                                                                                                                    \\"key\\": null,
-                                                                                                                                                    \\"ref\\": null,
-                                                                                                                                                    \\"props\\": {
-                                                                                                                                                        \\"children\\": [
-                                                                                                                                                            {
-                                                                                                                                                                \\"key\\": null,
-                                                                                                                                                                \\"ref\\": null,
-                                                                                                                                                                \\"props\\": {
-                                                                                                                                                                    \\"type\\": \\"folder\\"
-                                                                                                                                                                },
-                                                                                                                                                                \\"_store\\": {}
-                                                                                                                                                            },
-                                                                                                                                                            \\"servers\\"
-                                                                                                                                                        ]
-                                                                                                                                                    },
-                                                                                                                                                    \\"_store\\": {}
-                                                                                                                                                },
-                                                                                                                                                \\"children\\": [
-                                                                                                                                                    {
-                                                                                                                                                        \\"key\\": \\"3\\",
-                                                                                                                                                        \\"ref\\": null,
-                                                                                                                                                        \\"props\\": {
-                                                                                                                                                            \\"value\\": \\"ssh\\",
-                                                                                                                                                            \\"title\\": \\"ssh\\"
-                                                                                                                                                        },
-                                                                                                                                                        \\"_store\\": {}
-                                                                                                                                                    }
-                                                                                                                                                ]
-                                                                                                                                            },
-                                                                                                                                            \\"_store\\": {}
-                                                                                                                                        }
-                                                                                                                                    ]
-                                                                                                                                },
-                                                                                                                                \\"_store\\": {}
-                                                                                                                            }
-                                                                                                                        ],
-                                                                                                                        \\"prefixCls\\": \\"ant-select\\",
-                                                                                                                        \\"transitionName\\": \\"slide-up\\",
-                                                                                                                        \\"choiceTransitionName\\": \\"zoom\\",
-                                                                                                                        \\"dropdownClassName\\": \\"ant-select-tree-dropdown\\"
-                                                                                                                    },
-                                                                                                                    \\"_store\\": {}
-                                                                                                                },
-                                                                                                                \\"hasFeedback\\": false,
-                                                                                                                \\"prefixCls\\": \\"ant-form\\",
-                                                                                                                \\"colon\\": true
-                                                                                                            },
-                                                                                                            \\"_store\\": {}
+                                                                                        \\"gutter\\": 24,
+                                                                                        \\"children\\": [
+                                                                                            {
+                                                                                                \\"key\\": null,
+                                                                                                \\"ref\\": null,
+                                                                                                \\"props\\": {
+                                                                                                    \\"span\\": 6,
+                                                                                                    \\"children\\": {
+                                                                                                        \\"type\\": \\"img\\",
+                                                                                                        \\"key\\": null,
+                                                                                                        \\"ref\\": null,
+                                                                                                        \\"props\\": {
+                                                                                                            \\"src\\": \\"/assets/images/communikey-logo-typography-green.svg\\",
+                                                                                                            \\"className\\": \\"key-logo\\"
                                                                                                         },
-                                                                                                        \\"prefixCls\\": \\"ant-form\\",
-                                                                                                        \\"layout\\": \\"horizontal\\",
-                                                                                                        \\"hideRequiredMark\\": false
-                                                                                                    },
-                                                                                                    \\"_store\\": {}
-                                                                                                }
+                                                                                                        \\"_store\\": {}
+                                                                                                    }
+                                                                                                },
+                                                                                                \\"_store\\": {}
                                                                                             },
-                                                                                            \\"_store\\": {}
-                                                                                        },
+                                                                                            {
+                                                                                                \\"key\\": null,
+                                                                                                \\"ref\\": null,
+                                                                                                \\"props\\": {
+                                                                                                    \\"span\\": 18,
+                                                                                                    \\"children\\": {
+                                                                                                        \\"key\\": null,
+                                                                                                        \\"props\\": {
+                                                                                                            \\"administrationMode\\": false,
+                                                                                                            \\"locked\\": true,
+                                                                                                            \\"keyPasswordVisible\\": false,
+                                                                                                            \\"creationMode\\": false
+                                                                                                        },
+                                                                                                        \\"_store\\": {}
+                                                                                                    }
+                                                                                                },
+                                                                                                \\"_store\\": {}
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    \\"_store\\": {}
+                                                                                },
+                                                                                {
+                                                                                    \\"key\\": null,
+                                                                                    \\"ref\\": null,
+                                                                                    \\"props\\": {
+                                                                                        \\"span\\": 4,
+                                                                                        \\"children\\": [
+                                                                                            false,
+                                                                                            {
+                                                                                                \\"key\\": null,
+                                                                                                \\"ref\\": null,
+                                                                                                \\"props\\": {
+                                                                                                    \\"title\\": \\"Show password\\",
+                                                                                                    \\"children\\": {
+                                                                                                        \\"key\\": \\"passwordVisibilityMode\\",
+                                                                                                        \\"ref\\": null,
+                                                                                                        \\"props\\": {
+                                                                                                            \\"type\\": \\"ghost\\",
+                                                                                                            \\"icon\\": \\"eye-o\\",
+                                                                                                            \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                            \\"loading\\": false,
+                                                                                                            \\"clicked\\": false,
+                                                                                                            \\"ghost\\": false
+                                                                                                        },
+                                                                                                        \\"_store\\": {}
+                                                                                                    },
+                                                                                                    \\"prefixCls\\": \\"ant-tooltip\\",
+                                                                                                    \\"placement\\": \\"top\\",
+                                                                                                    \\"transitionName\\": \\"zoom-big-fast\\",
+                                                                                                    \\"mouseEnterDelay\\": 0.1,
+                                                                                                    \\"mouseLeaveDelay\\": 0.1,
+                                                                                                    \\"arrowPointAtCenter\\": false
+                                                                                                },
+                                                                                                \\"_store\\": {}
+                                                                                            }
+                                                                                        ],
                                                                                         \\"gutter\\": 0
                                                                                     },
                                                                                     \\"_store\\": {}
@@ -5318,43 +5072,77 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                             \\"ref\\": null,
                                                                                                             \\"props\\": {
                                                                                                                 \\"type\\": \\"flex\\",
-                                                                                                                \\"justify\\": \\"end\\",
-                                                                                                                \\"children\\": {
-                                                                                                                    \\"key\\": null,
-                                                                                                                    \\"ref\\": null,
-                                                                                                                    \\"props\\": {
-                                                                                                                        \\"children\\": [
-                                                                                                                            {
-                                                                                                                                \\"key\\": \\"cancel-category-tree-select\\",
+                                                                                                                \\"align\\": \\"middle\\",
+                                                                                                                \\"children\\": [
+                                                                                                                    {
+                                                                                                                        \\"key\\": null,
+                                                                                                                        \\"ref\\": null,
+                                                                                                                        \\"props\\": {
+                                                                                                                            \\"span\\": 8,
+                                                                                                                            \\"children\\": {
+                                                                                                                                \\"type\\": \\"div\\",
+                                                                                                                                \\"key\\": null,
                                                                                                                                 \\"ref\\": null,
                                                                                                                                 \\"props\\": {
-                                                                                                                                    \\"size\\": \\"large\\",
-                                                                                                                                    \\"children\\": \\"Cancel\\",
-                                                                                                                                    \\"prefixCls\\": \\"ant-btn\\",
-                                                                                                                                    \\"loading\\": false,
-                                                                                                                                    \\"clicked\\": false,
-                                                                                                                                    \\"ghost\\": false
-                                                                                                                                },
-                                                                                                                                \\"_store\\": {}
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                                \\"key\\": \\"save-category-tree-select\\",
-                                                                                                                                \\"ref\\": null,
-                                                                                                                                \\"props\\": {
-                                                                                                                                    \\"type\\": \\"primary\\",
-                                                                                                                                    \\"size\\": \\"large\\",
-                                                                                                                                    \\"loading\\": true,
-                                                                                                                                    \\"children\\": \\"Save\\",
-                                                                                                                                    \\"prefixCls\\": \\"ant-btn\\",
-                                                                                                                                    \\"clicked\\": false,
-                                                                                                                                    \\"ghost\\": false
+                                                                                                                                    \\"className\\": \\"operations\\",
+                                                                                                                                    \\"children\\": [
+                                                                                                                                        false,
+                                                                                                                                        false
+                                                                                                                                    ]
                                                                                                                                 },
                                                                                                                                 \\"_store\\": {}
                                                                                                                             }
-                                                                                                                        ]
+                                                                                                                        },
+                                                                                                                        \\"_store\\": {}
                                                                                                                     },
-                                                                                                                    \\"_store\\": {}
-                                                                                                                },
+                                                                                                                    {
+                                                                                                                        \\"key\\": null,
+                                                                                                                        \\"ref\\": null,
+                                                                                                                        \\"props\\": {
+                                                                                                                            \\"span\\": 8,
+                                                                                                                            \\"offset\\": 8,
+                                                                                                                            \\"children\\": {
+                                                                                                                                \\"type\\": \\"div\\",
+                                                                                                                                \\"key\\": null,
+                                                                                                                                \\"ref\\": null,
+                                                                                                                                \\"props\\": {
+                                                                                                                                    \\"className\\": \\"main\\",
+                                                                                                                                    \\"children\\": [
+                                                                                                                                        {
+                                                                                                                                            \\"key\\": null,
+                                                                                                                                            \\"ref\\": null,
+                                                                                                                                            \\"props\\": {
+                                                                                                                                                \\"size\\": \\"large\\",
+                                                                                                                                                \\"children\\": \\"Cancel\\",
+                                                                                                                                                \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                                                                \\"loading\\": false,
+                                                                                                                                                \\"clicked\\": false,
+                                                                                                                                                \\"ghost\\": false
+                                                                                                                                            },
+                                                                                                                                            \\"_store\\": {}
+                                                                                                                                        },
+                                                                                                                                        {
+                                                                                                                                            \\"key\\": null,
+                                                                                                                                            \\"ref\\": null,
+                                                                                                                                            \\"props\\": {
+                                                                                                                                                \\"type\\": \\"primary\\",
+                                                                                                                                                \\"size\\": \\"large\\",
+                                                                                                                                                \\"loading\\": true,
+                                                                                                                                                \\"children\\": \\"Done\\",
+                                                                                                                                                \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                                                                \\"clicked\\": false,
+                                                                                                                                                \\"ghost\\": false
+                                                                                                                                            },
+                                                                                                                                            \\"_store\\": {}
+                                                                                                                                        }
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                \\"_store\\": {}
+                                                                                                                            }
+                                                                                                                        },
+                                                                                                                        \\"_store\\": {}
+                                                                                                                    }
+                                                                                                                ],
                                                                                                                 \\"gutter\\": 0
                                                                                                             },
                                                                                                             \\"_store\\": {}
@@ -5368,6 +5156,252 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                         \\"gutter\\": 0
                                                                                     },
                                                                                     \\"_store\\": {}
+                                                                                },
+                                                                                {
+                                                                                    \\"key\\": null,
+                                                                                    \\"ref\\": null,
+                                                                                    \\"props\\": {
+                                                                                        \\"visible\\": false,
+                                                                                        \\"footer\\": false,
+                                                                                        \\"closable\\": false,
+                                                                                        \\"className\\": \\"category-tree-select-inner-modal\\",
+                                                                                        \\"children\\": [
+                                                                                            {
+                                                                                                \\"key\\": null,
+                                                                                                \\"ref\\": null,
+                                                                                                \\"props\\": {
+                                                                                                    \\"type\\": \\"flex\\",
+                                                                                                    \\"justify\\": \\"center\\",
+                                                                                                    \\"children\\": {
+                                                                                                        \\"key\\": null,
+                                                                                                        \\"ref\\": null,
+                                                                                                        \\"props\\": {
+                                                                                                            \\"span\\": 24,
+                                                                                                            \\"children\\": {
+                                                                                                                \\"key\\": null,
+                                                                                                                \\"ref\\": null,
+                                                                                                                \\"props\\": {
+                                                                                                                    \\"children\\": {
+                                                                                                                        \\"key\\": null,
+                                                                                                                        \\"ref\\": null,
+                                                                                                                        \\"props\\": {
+                                                                                                                            \\"children\\": {
+                                                                                                                                \\"key\\": null,
+                                                                                                                                \\"ref\\": null,
+                                                                                                                                \\"props\\": {
+                                                                                                                                    \\"showSearch\\": true,
+                                                                                                                                    \\"size\\": \\"large\\",
+                                                                                                                                    \\"children\\": [
+                                                                                                                                        {
+                                                                                                                                            \\"key\\": \\"4\\",
+                                                                                                                                            \\"ref\\": null,
+                                                                                                                                            \\"props\\": {
+                                                                                                                                                \\"value\\": \\"intern\\",
+                                                                                                                                                \\"title\\": {
+                                                                                                                                                    \\"type\\": \\"span\\",
+                                                                                                                                                    \\"key\\": null,
+                                                                                                                                                    \\"ref\\": null,
+                                                                                                                                                    \\"props\\": {
+                                                                                                                                                        \\"children\\": [
+                                                                                                                                                            {
+                                                                                                                                                                \\"key\\": null,
+                                                                                                                                                                \\"ref\\": null,
+                                                                                                                                                                \\"props\\": {
+                                                                                                                                                                    \\"type\\": \\"folder\\"
+                                                                                                                                                                },
+                                                                                                                                                                \\"_store\\": {}
+                                                                                                                                                            },
+                                                                                                                                                            \\"intern\\"
+                                                                                                                                                        ]
+                                                                                                                                                    },
+                                                                                                                                                    \\"_store\\": {}
+                                                                                                                                                },
+                                                                                                                                                \\"children\\": [
+                                                                                                                                                    {
+                                                                                                                                                        \\"key\\": \\"5\\",
+                                                                                                                                                        \\"ref\\": null,
+                                                                                                                                                        \\"props\\": {
+                                                                                                                                                            \\"value\\": \\"projektron bcs\\",
+                                                                                                                                                            \\"title\\": \\"projektron bcs\\"
+                                                                                                                                                        },
+                                                                                                                                                        \\"_store\\": {}
+                                                                                                                                                    }
+                                                                                                                                                ]
+                                                                                                                                            },
+                                                                                                                                            \\"_store\\": {}
+                                                                                                                                        },
+                                                                                                                                        {
+                                                                                                                                            \\"key\\": \\"1\\",
+                                                                                                                                            \\"ref\\": null,
+                                                                                                                                            \\"props\\": {
+                                                                                                                                                \\"value\\": \\"vorwerk\\",
+                                                                                                                                                \\"title\\": {
+                                                                                                                                                    \\"type\\": \\"span\\",
+                                                                                                                                                    \\"key\\": null,
+                                                                                                                                                    \\"ref\\": null,
+                                                                                                                                                    \\"props\\": {
+                                                                                                                                                        \\"children\\": [
+                                                                                                                                                            {
+                                                                                                                                                                \\"key\\": null,
+                                                                                                                                                                \\"ref\\": null,
+                                                                                                                                                                \\"props\\": {
+                                                                                                                                                                    \\"type\\": \\"folder\\"
+                                                                                                                                                                },
+                                                                                                                                                                \\"_store\\": {}
+                                                                                                                                                            },
+                                                                                                                                                            \\"vorwerk\\"
+                                                                                                                                                        ]
+                                                                                                                                                    },
+                                                                                                                                                    \\"_store\\": {}
+                                                                                                                                                },
+                                                                                                                                                \\"children\\": [
+                                                                                                                                                    {
+                                                                                                                                                        \\"key\\": \\"2\\",
+                                                                                                                                                        \\"ref\\": null,
+                                                                                                                                                        \\"props\\": {
+                                                                                                                                                            \\"value\\": \\"servers\\",
+                                                                                                                                                            \\"title\\": {
+                                                                                                                                                                \\"type\\": \\"span\\",
+                                                                                                                                                                \\"key\\": null,
+                                                                                                                                                                \\"ref\\": null,
+                                                                                                                                                                \\"props\\": {
+                                                                                                                                                                    \\"children\\": [
+                                                                                                                                                                        {
+                                                                                                                                                                            \\"key\\": null,
+                                                                                                                                                                            \\"ref\\": null,
+                                                                                                                                                                            \\"props\\": {
+                                                                                                                                                                                \\"type\\": \\"folder\\"
+                                                                                                                                                                            },
+                                                                                                                                                                            \\"_store\\": {}
+                                                                                                                                                                        },
+                                                                                                                                                                        \\"servers\\"
+                                                                                                                                                                    ]
+                                                                                                                                                                },
+                                                                                                                                                                \\"_store\\": {}
+                                                                                                                                                            },
+                                                                                                                                                            \\"children\\": [
+                                                                                                                                                                {
+                                                                                                                                                                    \\"key\\": \\"3\\",
+                                                                                                                                                                    \\"ref\\": null,
+                                                                                                                                                                    \\"props\\": {
+                                                                                                                                                                        \\"value\\": \\"ssh\\",
+                                                                                                                                                                        \\"title\\": \\"ssh\\"
+                                                                                                                                                                    },
+                                                                                                                                                                    \\"_store\\": {}
+                                                                                                                                                                }
+                                                                                                                                                            ]
+                                                                                                                                                        },
+                                                                                                                                                        \\"_store\\": {}
+                                                                                                                                                    }
+                                                                                                                                                ]
+                                                                                                                                            },
+                                                                                                                                            \\"_store\\": {}
+                                                                                                                                        }
+                                                                                                                                    ],
+                                                                                                                                    \\"prefixCls\\": \\"ant-select\\",
+                                                                                                                                    \\"transitionName\\": \\"slide-up\\",
+                                                                                                                                    \\"choiceTransitionName\\": \\"zoom\\",
+                                                                                                                                    \\"dropdownClassName\\": \\"ant-select-tree-dropdown\\"
+                                                                                                                                },
+                                                                                                                                \\"_store\\": {}
+                                                                                                                            },
+                                                                                                                            \\"hasFeedback\\": false,
+                                                                                                                            \\"prefixCls\\": \\"ant-form\\",
+                                                                                                                            \\"colon\\": true
+                                                                                                                        },
+                                                                                                                        \\"_store\\": {}
+                                                                                                                    },
+                                                                                                                    \\"prefixCls\\": \\"ant-form\\",
+                                                                                                                    \\"layout\\": \\"horizontal\\",
+                                                                                                                    \\"hideRequiredMark\\": false
+                                                                                                                },
+                                                                                                                \\"_store\\": {}
+                                                                                                            }
+                                                                                                        },
+                                                                                                        \\"_store\\": {}
+                                                                                                    },
+                                                                                                    \\"gutter\\": 0
+                                                                                                },
+                                                                                                \\"_store\\": {}
+                                                                                            },
+                                                                                            {
+                                                                                                \\"key\\": null,
+                                                                                                \\"ref\\": null,
+                                                                                                \\"props\\": {
+                                                                                                    \\"children\\": {
+                                                                                                        \\"key\\": null,
+                                                                                                        \\"ref\\": null,
+                                                                                                        \\"props\\": {
+                                                                                                            \\"children\\": {
+                                                                                                                \\"type\\": \\"div\\",
+                                                                                                                \\"key\\": null,
+                                                                                                                \\"ref\\": null,
+                                                                                                                \\"props\\": {
+                                                                                                                    \\"className\\": \\"footer\\",
+                                                                                                                    \\"children\\": {
+                                                                                                                        \\"key\\": null,
+                                                                                                                        \\"ref\\": null,
+                                                                                                                        \\"props\\": {
+                                                                                                                            \\"type\\": \\"flex\\",
+                                                                                                                            \\"justify\\": \\"end\\",
+                                                                                                                            \\"children\\": {
+                                                                                                                                \\"key\\": null,
+                                                                                                                                \\"ref\\": null,
+                                                                                                                                \\"props\\": {
+                                                                                                                                    \\"children\\": [
+                                                                                                                                        {
+                                                                                                                                            \\"key\\": \\"cancel-category-tree-select\\",
+                                                                                                                                            \\"ref\\": null,
+                                                                                                                                            \\"props\\": {
+                                                                                                                                                \\"size\\": \\"large\\",
+                                                                                                                                                \\"children\\": \\"Cancel\\",
+                                                                                                                                                \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                                                                \\"loading\\": false,
+                                                                                                                                                \\"clicked\\": false,
+                                                                                                                                                \\"ghost\\": false
+                                                                                                                                            },
+                                                                                                                                            \\"_store\\": {}
+                                                                                                                                        },
+                                                                                                                                        {
+                                                                                                                                            \\"key\\": \\"save-category-tree-select\\",
+                                                                                                                                            \\"ref\\": null,
+                                                                                                                                            \\"props\\": {
+                                                                                                                                                \\"type\\": \\"primary\\",
+                                                                                                                                                \\"size\\": \\"large\\",
+                                                                                                                                                \\"loading\\": true,
+                                                                                                                                                \\"children\\": \\"Save\\",
+                                                                                                                                                \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                                                                \\"clicked\\": false,
+                                                                                                                                                \\"ghost\\": false
+                                                                                                                                            },
+                                                                                                                                            \\"_store\\": {}
+                                                                                                                                        }
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                \\"_store\\": {}
+                                                                                                                            },
+                                                                                                                            \\"gutter\\": 0
+                                                                                                                        },
+                                                                                                                        \\"_store\\": {}
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                \\"_store\\": {}
+                                                                                                            }
+                                                                                                        },
+                                                                                                        \\"_store\\": {}
+                                                                                                    },
+                                                                                                    \\"gutter\\": 0
+                                                                                                },
+                                                                                                \\"_store\\": {}
+                                                                                            }
+                                                                                        ],
+                                                                                        \\"prefixCls\\": \\"ant-modal\\",
+                                                                                        \\"width\\": 520,
+                                                                                        \\"transitionName\\": \\"zoom\\",
+                                                                                        \\"maskTransitionName\\": \\"fade\\",
+                                                                                        \\"confirmLoading\\": false
+                                                                                    },
+                                                                                    \\"_store\\": {}
                                                                                 }
                                                                             ],
                                                                             \\"prefixCls\\": \\"ant-modal\\",
@@ -5377,83 +5411,91 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                             \\"confirmLoading\\": false
                                                                         },
                                                                         \\"_store\\": {}
-                                                                    }
-                                                                ],
-                                                                \\"prefixCls\\": \\"ant-modal\\",
-                                                                \\"width\\": 520,
-                                                                \\"transitionName\\": \\"zoom\\",
-                                                                \\"maskTransitionName\\": \\"fade\\",
-                                                                \\"confirmLoading\\": false
-                                                            },
-                                                            \\"_store\\": {}
-                                                        },
-                                                        \\"_rootNodeID\\": 0,
-                                                        \\"_compositeType\\": 0,
-                                                        \\"_instance\\": {
-                                                            \\"context\\": {},
-                                                            \\"state\\": null
-                                                        },
-                                                        \\"_updateBatchNumber\\": null,
-                                                        \\"_pendingElement\\": null,
-                                                        \\"_pendingStateQueue\\": null,
-                                                        \\"_pendingReplaceState\\": false,
-                                                        \\"_pendingForceUpdate\\": false,
-                                                        \\"_renderedNodeType\\": 1,
-                                                        \\"_renderedComponent\\": {
-                                                            \\"_currentElement\\": {
-                                                                \\"key\\": null,
-                                                                \\"ref\\": null,
-                                                                \\"props\\": {
-                                                                    \\"footer\\": false,
-                                                                    \\"visible\\": false,
-                                                                    \\"closable\\": false,
-                                                                    \\"className\\": \\"cckey-key-modal\\",
-                                                                    \\"prefixCls\\": \\"ant-modal\\",
-                                                                    \\"width\\": 520,
-                                                                    \\"transitionName\\": \\"zoom\\",
-                                                                    \\"maskTransitionName\\": \\"fade\\",
-                                                                    \\"confirmLoading\\": false
+                                                                    },
+                                                                    \\"_rootNodeID\\": 0,
+                                                                    \\"_compositeType\\": 0,
+                                                                    \\"_instance\\": {
+                                                                        \\"context\\": {},
+                                                                        \\"state\\": null
+                                                                    },
+                                                                    \\"_updateBatchNumber\\": null,
+                                                                    \\"_pendingElement\\": null,
+                                                                    \\"_pendingStateQueue\\": null,
+                                                                    \\"_pendingReplaceState\\": false,
+                                                                    \\"_pendingForceUpdate\\": false,
+                                                                    \\"_renderedNodeType\\": 1,
+                                                                    \\"_renderedComponent\\": {
+                                                                        \\"_currentElement\\": {
+                                                                            \\"key\\": null,
+                                                                            \\"ref\\": null,
+                                                                            \\"props\\": {
+                                                                                \\"footer\\": false,
+                                                                                \\"visible\\": false,
+                                                                                \\"closable\\": false,
+                                                                                \\"className\\": \\"cckey-key-modal\\",
+                                                                                \\"prefixCls\\": \\"ant-modal\\",
+                                                                                \\"width\\": 520,
+                                                                                \\"transitionName\\": \\"zoom\\",
+                                                                                \\"maskTransitionName\\": \\"fade\\",
+                                                                                \\"confirmLoading\\": false
+                                                                            },
+                                                                            \\"_store\\": {}
+                                                                        },
+                                                                        \\"_rootNodeID\\": 0,
+                                                                        \\"_compositeType\\": 0,
+                                                                        \\"_instance\\": {
+                                                                            \\"state\\": null,
+                                                                            \\"__isMounted\\": true
+                                                                        },
+                                                                        \\"_updateBatchNumber\\": null,
+                                                                        \\"_pendingElement\\": null,
+                                                                        \\"_pendingStateQueue\\": null,
+                                                                        \\"_pendingReplaceState\\": false,
+                                                                        \\"_pendingForceUpdate\\": false,
+                                                                        \\"_renderedNodeType\\": 2,
+                                                                        \\"_renderedComponent\\": {
+                                                                            \\"_currentElement\\": null,
+                                                                            \\"_hostNode\\": {},
+                                                                            \\"_domID\\": 78,
+                                                                            \\"_mountIndex\\": 0,
+                                                                            \\"_mountImage\\": null,
+                                                                            \\"_debugID\\": 0
+                                                                        },
+                                                                        \\"_mountOrder\\": 40,
+                                                                        \\"_topLevelWrapper\\": null,
+                                                                        \\"_pendingCallbacks\\": null,
+                                                                        \\"_calledComponentWillUnmount\\": false,
+                                                                        \\"_warnedAboutRefsInRender\\": false,
+                                                                        \\"_mountIndex\\": 0,
+                                                                        \\"_mountImage\\": null,
+                                                                        \\"_debugID\\": 113
+                                                                    },
+                                                                    \\"_mountOrder\\": 39,
+                                                                    \\"_topLevelWrapper\\": null,
+                                                                    \\"_pendingCallbacks\\": null,
+                                                                    \\"_calledComponentWillUnmount\\": false,
+                                                                    \\"_warnedAboutRefsInRender\\": false,
+                                                                    \\"_mountIndex\\": 0,
+                                                                    \\"_mountImage\\": null,
+                                                                    \\"_debugID\\": 112
                                                                 },
-                                                                \\"_store\\": {}
-                                                            },
-                                                            \\"_rootNodeID\\": 0,
-                                                            \\"_compositeType\\": 0,
-                                                            \\"_instance\\": {
-                                                                \\"state\\": null,
-                                                                \\"__isMounted\\": true
-                                                            },
-                                                            \\"_updateBatchNumber\\": null,
-                                                            \\"_pendingElement\\": null,
-                                                            \\"_pendingStateQueue\\": null,
-                                                            \\"_pendingReplaceState\\": false,
-                                                            \\"_pendingForceUpdate\\": false,
-                                                            \\"_renderedNodeType\\": 2,
-                                                            \\"_renderedComponent\\": {
-                                                                \\"_currentElement\\": null,
-                                                                \\"_hostNode\\": {},
-                                                                \\"_domID\\": 78,
+                                                                \\"_mountOrder\\": 38,
+                                                                \\"_topLevelWrapper\\": null,
+                                                                \\"_pendingCallbacks\\": null,
+                                                                \\"_calledComponentWillUnmount\\": false,
+                                                                \\"_warnedAboutRefsInRender\\": false,
                                                                 \\"_mountIndex\\": 0,
                                                                 \\"_mountImage\\": null,
-                                                                \\"_debugID\\": 0
-                                                            },
-                                                            \\"_mountOrder\\": 39,
-                                                            \\"_topLevelWrapper\\": null,
-                                                            \\"_pendingCallbacks\\": null,
-                                                            \\"_calledComponentWillUnmount\\": false,
-                                                            \\"_warnedAboutRefsInRender\\": false,
-                                                            \\"_mountIndex\\": 0,
-                                                            \\"_mountImage\\": null,
-                                                            \\"_debugID\\": 112
-                                                        },
-                                                        \\"_mountOrder\\": 38,
-                                                        \\"_topLevelWrapper\\": null,
-                                                        \\"_pendingCallbacks\\": null,
-                                                        \\"_calledComponentWillUnmount\\": false,
-                                                        \\"_warnedAboutRefsInRender\\": false,
-                                                        \\"_mountIndex\\": 0,
-                                                        \\"_mountImage\\": null,
-                                                        \\"_debugID\\": 111
+                                                                \\"_debugID\\": 111
+                                                            }
+                                                        }
                                                     },
+                                                    \\"_updateBatchNumber\\": null,
+                                                    \\"_pendingElement\\": null,
+                                                    \\"_pendingStateQueue\\": null,
+                                                    \\"_pendingReplaceState\\": false,
+                                                    \\"_pendingForceUpdate\\": false,
+                                                    \\"_renderedNodeType\\": 1,
                                                     \\"_mountOrder\\": 37,
                                                     \\"_topLevelWrapper\\": null,
                                                     \\"_pendingCallbacks\\": null,

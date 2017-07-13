@@ -17,7 +17,6 @@ import UserAdministration from "./routes/administration/UserAdministration";
 import UserGroupAdministration from "./routes/administration/UserGroupAdministration";
 import Dashboard from "./routes/Dashboard";
 import Keys from "./routes/Keys";
-// import KeyLink from "./routes/KeyLink";
 import AuthorityStore from "./stores/AuthorityStore";
 import AuthStore from "./stores/AuthStore";
 import CategoryStore from "./stores/CategoryStore";
@@ -164,7 +163,6 @@ class Communikey extends React.Component {
                           privileged={stores.authStore.privileged}
                         />
                         <KeyDeepLinkAuthenticatedRoute path={ROUTE_KEYMODAL} component={Keys} authorized={stores.authStore.isAuthorized}/>
-                        {/*<AuthenticatedRoute path={ROUTE_KEYMODAL} component={KeyLink} authorized={stores.authStore.isAuthorized}/>*/}
                         <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
                       </Switch>
                     </QueueAnim>

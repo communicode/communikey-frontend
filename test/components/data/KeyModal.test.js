@@ -1,11 +1,16 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {mount} from "enzyme";
 import KeyModal from "../../../src/components/data/KeyModal";
-import {categoryStore, keyStore, emptyFunction} from "../../__mockData__/mockUtil";
+import {categoryStore, keyStore, stores, emptyFunction} from "../../__mockData__/mockUtil";
+import {Provider} from "mobx-react";
 
 describe("<KeyModal>", () => {
   test("should render correctly with sample data", () => {
-    const wrapper = shallow(<KeyModal onClose={emptyFunction} cckeyKey={keyStore.keys[0]} categories={categoryStore.categories}/>);
+    const wrapper = mount(
+      <Provider {...stores}>
+        <KeyModal onClose={emptyFunction} cckeyKey={keyStore.keys[0]} categories={categoryStore.categories}/>
+      </Provider>
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });
