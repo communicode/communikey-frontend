@@ -5047,6 +5047,41 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                     \\"arrowPointAtCenter\\": false
                                                                                                 },
                                                                                                 \\"_store\\": {}
+                                                                                            },
+                                                                                            {
+                                                                                                \\"key\\": null,
+                                                                                                \\"ref\\": null,
+                                                                                                \\"props\\": {
+                                                                                                    \\"title\\": \\"Share key\\",
+                                                                                                    \\"children\\": {
+                                                                                                        \\"key\\": null,
+                                                                                                        \\"ref\\": null,
+                                                                                                        \\"props\\": {
+                                                                                                            \\"text\\": \\"http://localhost:8081/keys/undefined\\",
+                                                                                                            \\"children\\": {
+                                                                                                                \\"key\\": \\"shareButton\\",
+                                                                                                                \\"ref\\": null,
+                                                                                                                \\"props\\": {
+                                                                                                                    \\"type\\": \\"ghost\\",
+                                                                                                                    \\"icon\\": \\"share-alt\\",
+                                                                                                                    \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                                    \\"loading\\": false,
+                                                                                                                    \\"clicked\\": false,
+                                                                                                                    \\"ghost\\": false
+                                                                                                                },
+                                                                                                                \\"_store\\": {}
+                                                                                                            }
+                                                                                                        },
+                                                                                                        \\"_store\\": {}
+                                                                                                    },
+                                                                                                    \\"prefixCls\\": \\"ant-tooltip\\",
+                                                                                                    \\"placement\\": \\"top\\",
+                                                                                                    \\"transitionName\\": \\"zoom-big-fast\\",
+                                                                                                    \\"mouseEnterDelay\\": 0.1,
+                                                                                                    \\"mouseLeaveDelay\\": 0.1,
+                                                                                                    \\"arrowPointAtCenter\\": false
+                                                                                                },
+                                                                                                \\"_store\\": {}
                                                                                             }
                                                                                         ],
                                                                                         \\"gutter\\": 0
