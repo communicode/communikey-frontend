@@ -1,10 +1,12 @@
 import React from "react";
 import AuthService from "./../services/AuthService";
 import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
-import {Button, Form, Icon, Input, Row} from "antd";
+import keydown, {Keys}  from "react-keydown";
+import {Button, Form, Icon, Input, Row, Tooltip} from "antd";
 import appConfig from "../config/app";
 import {VERSION} from "./../Communikey";
 import {AUTH_STORE} from "../stores/storeConstants";
+import {LOGIN_INFORMATION_TEXT} from "../config/constants";
 import "antd/lib/button/style/index.less";
 import "antd/lib/row/style/css";
 import "antd/lib/form/style/index.less";
@@ -59,6 +61,16 @@ class SignIn extends React.Component {
   };
 
   /**
+   * Calls the signIn function.
+   *
+   * @since 0.12.0
+   */
+  @keydown(Keys.ENTER)
+  signInOnKeyPress() {
+    this.signIn();
+  }
+
+  /**
    * Resets the value of the login input.
    *
    * @since 0.8.0
@@ -78,7 +90,7 @@ class SignIn extends React.Component {
 
   render() {
     const {login, processing} = this.state;
-    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : null;
+    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : <Tooltip title={LOGIN_INFORMATION_TEXT}><Icon type="info-circle-o"/> </Tooltip>;
 
     const footer = () => (
       <footer className="cckey-signin-footer-container">
@@ -105,6 +117,7 @@ class SignIn extends React.Component {
                 value={login}
                 suffix={suffix}
                 ref={node => this.loginInput = node}
+                onPressEnter={this.signIn}
               />
             </Form.Item>
             <Form.Item>
@@ -114,6 +127,7 @@ class SignIn extends React.Component {
                 type="password"
                 onChange={this.handleInputChange}
                 placeholder="Password"
+                onPressEnter={this.signIn}
               />
             </Form.Item>
             <Row>
