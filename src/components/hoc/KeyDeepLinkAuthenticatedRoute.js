@@ -5,6 +5,7 @@ import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
 import {keyStore} from "../../Communikey";
 import _ from "lodash";
 import {notification} from "antd";
+import {ERROR_KEY_NOT_FOUND_TITLE, ERROR_KEY_NOT_FOUND} from "../../config/constants";
 import "antd/lib/notification/style/index.css";
 import "antd/lib/button/style/index.css";
 
@@ -27,8 +28,8 @@ const KeyDeepLink = ({component: Component, authorized, ...rest}) => (
         const openErrorNotification = () => {
           const key = `open${Date.now()}`;
           notification.open({
-            message: "Key not found!",
-            description: "The key has not been found. Please check the supplied link. You may have no access to it or it doesn't exist anymore.",
+            message: ERROR_KEY_NOT_FOUND_TITLE,
+            description: ERROR_KEY_NOT_FOUND,
             key
           });
         };
