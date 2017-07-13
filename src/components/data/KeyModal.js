@@ -2,9 +2,10 @@ import React from "react";
 import _ from "lodash";
 import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
-import {PropTypes as MobXPropTypes} from "mobx-react";
+import {inject, PropTypes as MobXPropTypes} from "mobx-react";
+import {CATEGORY_STORE} from "../../stores/storeConstants";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect} from "antd";
+import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb} from "antd";
 import appConfig from "./../../config/app";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -19,6 +20,7 @@ import "antd/lib/select/style/index.less";
 import "antd/lib/tooltip/style/index.less";
 import "antd/lib/tree/style/index.less";
 import "antd/lib/tree-select/style/index.less";
+import "antd/lib/breadcrumb/style/index.less";
 import "./KeyModal.less";
 
 /**
@@ -184,6 +186,7 @@ const readOnlyFormItemLayout = {
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
+@inject(CATEGORY_STORE)
 class KeyModal extends React.Component {
   constructor(props) {
     super(props);
@@ -443,6 +446,26 @@ class KeyModal extends React.Component {
       </Modal>
     );
 
+    const categoryBreadcrumb = (key) => {
+      let queue = [];
+      const findParents = (category) => {
+        queue.push(category);
+        category.parent && findParents(this.props.categoryStore._findById(category.parent));
+      };
+      findParents(this.props.categoryStore._findById(key.category));
+      queue.reverse();
+      return (
+        <div className="cckey-key-modal-breadcrumb">
+          <Breadcrumb separator="/">
+            <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
+            {queue.map(function(object, id){
+              return <Breadcrumb.Item key={id}>{object.name}</Breadcrumb.Item>;
+            })}
+          </Breadcrumb>
+        </div>
+      );
+    };
+
     return (
       <Modal
         {...modalProps}
@@ -452,6 +475,7 @@ class KeyModal extends React.Component {
         closable={false}
         className="cckey-key-modal"
       >
+        {cckeyKey.category && categoryBreadcrumb(cckeyKey)}
         <Row gutter={24}>
           <Col span={6}>
             {defaultKeyAvatar()}

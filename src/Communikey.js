@@ -163,7 +163,7 @@ class Communikey extends React.Component {
                           authorized={stores.authStore.isAuthorized}
                           privileged={stores.authStore.privileged}
                         />
-                        <KeyDeepLinkAuthenticatedRoute path={ROUTE_KEYMODAL} keyStore={keyStore} component={Keys} authorized={stores.authStore.isAuthorized}/>
+                        <KeyDeepLinkAuthenticatedRoute path={ROUTE_KEYMODAL} component={Keys} authorized={stores.authStore.isAuthorized}/>
                         {/*<AuthenticatedRoute path={ROUTE_KEYMODAL} component={KeyLink} authorized={stores.authStore.isAuthorized}/>*/}
                         <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
                       </Switch>
