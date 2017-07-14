@@ -1,7 +1,7 @@
 import React from "react";
 import {toJS} from "mobx";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import update from "immutability-helper";
 import {Button, Col, Icon, Row, Tabs, Table, Tooltip} from "antd";
