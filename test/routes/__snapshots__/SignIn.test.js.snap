@@ -1119,34 +1119,26 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                   </div>
                 </Row>
               </FormItem>
-              <Row
-                gutter={0}
+              <Button
+                clicked={false}
+                ghost={false}
+                loading={false}
+                onClick={[Function]}
+                prefixCls="ant-btn"
+                size="large"
+                type="primary"
               >
-                <div
-                  className="ant-row"
+                <button
+                  className="ant-btn ant-btn-primary ant-btn-lg"
+                  onClick={[Function]}
+                  onMouseUp={[Function]}
+                  type="button"
                 >
-                  <Button
-                    clicked={false}
-                    ghost={false}
-                    loading={false}
-                    onClick={[Function]}
-                    prefixCls="ant-btn"
-                    size="large"
-                    type="primary"
-                  >
-                    <button
-                      className="ant-btn ant-btn-primary ant-btn-lg"
-                      onClick={[Function]}
-                      onMouseUp={[Function]}
-                      type="button"
-                    >
-                      <span>
-                        Sign in
-                      </span>
-                    </button>
-                  </Button>
-                </div>
-              </Row>
+                  <span>
+                    Sign in
+                  </span>
+                </button>
+              </Button>
             </form>
           </Form>
         </div>
