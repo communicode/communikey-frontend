@@ -5052,7 +5052,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                 \\"key\\": null,
                                                                                                 \\"ref\\": null,
                                                                                                 \\"props\\": {
-                                                                                                    \\"title\\": \\"Share key\\",
+                                                                                                    \\"title\\": \\"Copy share link to clipboard\\",
                                                                                                     \\"children\\": {
                                                                                                         \\"key\\": null,
                                                                                                         \\"ref\\": null,
