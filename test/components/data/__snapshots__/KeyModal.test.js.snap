@@ -1,356 +1,903 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<KeyModal> should render correctly with sample data 1`] = `
-<Modal
-  className="cckey-key-modal"
-  closable={false}
-  confirmLoading={false}
-  footer={false}
-  maskTransitionName="fade"
-  onClose={[Function]}
-  prefixCls="ant-modal"
-  transitionName="zoom"
-  visible={false}
-  width={520}
+<Provider
+  authStore={
+    AuthStore {
+      "authorities": Array [
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.497+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+          "name": "ROLE_USER",
+        },
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.537+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+          "name": "ROLE_ADMIN",
+        },
+      ],
+      "firstName": "",
+      "isAuthorized": false,
+      "lastName": "",
+      "login": "",
+      "privileged": false,
+    }
+  }
+  authorityStore={
+    AuthorityStore {
+      "_findOneByName": [Function],
+      "_updateEntity": [Function],
+      "authorities": Array [
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.497+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+          "name": "ROLE_USER",
+        },
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.537+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+          "name": "ROLE_ADMIN",
+        },
+      ],
+    }
+  }
+  categoryStore={
+    CategoryStore {
+      "_findById": [Function],
+      "_updateEntity": [Function],
+      "categories": Array [
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:41.497+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 3,
+          "keys": Array [
+            2,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+          "name": "ssh",
+          "parent": 2,
+          "responsible": 1,
+          "treeLevel": 2,
+        },
+        Object {
+          "children": Array [
+            5,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:46.691+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 4,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+          "name": "intern",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            2,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:33.274+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 1,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+          "name": "vorwerk",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            3,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:37.557+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 2,
+          "keys": Array [
+            1,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+          "name": "servers",
+          "parent": 1,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:53.821+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 5,
+          "keys": Array [
+            3,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+          "name": "projektron bcs",
+          "parent": 4,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+      ],
+    }
+  }
+  keyStore={
+    KeyStore {
+      "_filterAllByCategory": [Function],
+      "_findOneById": [Function],
+      "_updateEntity": [Function],
+      "keys": Array [
+        Object {
+          "category": 3,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:35.095+02:00",
+          "creator": 1,
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+        Object {
+          "category": 2,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:34.938+02:00",
+          "creator": 1,
+          "id": 1,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:33.771+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+        Object {
+          "category": 5,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:35.294+02:00",
+          "creator": 1,
+          "id": 3,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:18.388+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+      ],
+    }
+  }
+  userGroupStore={
+    UserGroupStore {
+      "_filterAllByCategory": [Function],
+      "_findOneById": [Function],
+      "_findOneByName": [Function],
+      "_updateEntity": [Function],
+      "userGroups": Array [
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:23.734+02:00",
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+          "name": "vorwerk",
+          "users": Array [
+            1,
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:19.101+02:00",
+          "id": 1,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+          "name": "ops",
+          "users": Array [
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:37.824+02:00",
+          "id": 3,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+          "name": "administration",
+          "users": Array [
+            1,
+            2,
+          ],
+        },
+      ],
+    }
+  }
+  userStore={
+    UserStore {
+      "_filterAllByGroup": [Function],
+      "_findOneById": [Function],
+      "_findOneByLogin": [Function],
+      "_updateEntity": [Function],
+      "users": Array [
+        Object {
+          "activated": false,
+          "activationKey": "99315975298178909730",
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:47.738+02:00",
+          "email": "testuser@communicode.de",
+          "firstName": "Peter",
+          "groups": Array [
+            3,
+            2,
+            1,
+          ],
+          "id": 2,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+          "lastName": "Maffay",
+          "login": "testuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+        Object {
+          "activated": true,
+          "activationKey": "28235331690590579877",
+          "authorities": Array [
+            "ROLE_USER",
+            "ROLE_ADMIN",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:45:12.934+02:00",
+          "email": "cckey_root@communicode.de",
+          "firstName": "communi",
+          "groups": Array [
+            3,
+            2,
+          ],
+          "id": 1,
+          "keyCategories": Array [
+            3,
+            1,
+            5,
+            4,
+            2,
+          ],
+          "keys": Array [
+            3,
+            2,
+            1,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
+          "lastName": "key",
+          "login": "root",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [
+            3,
+            1,
+            5,
+            4,
+            2,
+          ],
+        },
+        Object {
+          "activated": true,
+          "activationKey": null,
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:12:46.33+02:00",
+          "email": "reallynewtestuser@communicode.de",
+          "firstName": "really",
+          "groups": Array [],
+          "id": 4,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
+          "lastName": "new",
+          "login": "reallynewtestuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+        Object {
+          "activated": true,
+          "activationKey": null,
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:12:28.858+02:00",
+          "email": "newtestuser@communicode.de",
+          "firstName": "new",
+          "groups": Array [
+            2,
+            1,
+          ],
+          "id": 3,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
+          "lastName": "test",
+          "login": "newtestuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+      ],
+    }
+  }
 >
-  <Row
-    gutter={24}
+  <inject-KeyModal-with-categoryStore
+    administrationMode={false}
+    categories={
+      Array [
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:41.497+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 3,
+          "keys": Array [
+            2,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+          "name": "ssh",
+          "parent": 2,
+          "responsible": 1,
+          "treeLevel": 2,
+        },
+        Object {
+          "children": Array [
+            5,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:46.691+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 4,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+          "name": "intern",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            2,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:33.274+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 1,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+          "name": "vorwerk",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            3,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:37.557+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 2,
+          "keys": Array [
+            1,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+          "name": "servers",
+          "parent": 1,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:53.821+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 5,
+          "keys": Array [
+            3,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+          "name": "projektron bcs",
+          "parent": 4,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+      ]
+    }
+    cckeyKey={
+      Object {
+        "category": 3,
+        "createdBy": "root",
+        "createdDate": "2017-06-30T10:47:35.095+02:00",
+        "creator": 1,
+        "id": 2,
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+        "login": "erdbeer",
+        "name": "lecker",
+        "password": "yogurt",
+      }
+    }
+    creationMode={false}
+    loading={false}
+    onClose={[Function]}
   >
-    <Col
-      span={6}
-    >
-      <img
-        className="key-logo"
-        src="/assets/images/communikey-logo-typography-green.svg"
-      />
-    </Col>
-    <Col
-      span={18}
-    >
-      <Form(WrappedComponent)
-        administrationMode={false}
-        categoryTreeSelect={[Function]}
-        cckeyKey={
+    <KeyModal
+      administrationMode={false}
+      categories={
+        Array [
           Object {
-            "category": 3,
+            "children": Array [],
             "createdBy": "root",
-            "createdDate": "2017-06-30T10:47:35.095+02:00",
+            "createdDate": "2017-06-30T11:13:41.497+02:00",
             "creator": 1,
-            "id": 2,
+            "groups": Array [],
+            "id": 3,
+            "keys": Array [
+              2,
+            ],
             "lastModifiedBy": "root",
-            "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
-            "login": "erdbeer",
-            "name": "lecker",
-            "password": "yogurt",
+            "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+            "name": "ssh",
+            "parent": 2,
+            "responsible": 1,
+            "treeLevel": 2,
+          },
+          Object {
+            "children": Array [
+              5,
+            ],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T11:13:46.691+02:00",
+            "creator": 1,
+            "groups": Array [],
+            "id": 4,
+            "keys": Array [],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+            "name": "intern",
+            "parent": null,
+            "responsible": 1,
+            "treeLevel": 0,
+          },
+          Object {
+            "children": Array [
+              2,
+            ],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T11:13:33.274+02:00",
+            "creator": 1,
+            "groups": Array [],
+            "id": 1,
+            "keys": Array [],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+            "name": "vorwerk",
+            "parent": null,
+            "responsible": 1,
+            "treeLevel": 0,
+          },
+          Object {
+            "children": Array [
+              3,
+            ],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T11:13:37.557+02:00",
+            "creator": 1,
+            "groups": Array [],
+            "id": 2,
+            "keys": Array [
+              1,
+            ],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+            "name": "servers",
+            "parent": 1,
+            "responsible": 1,
+            "treeLevel": 1,
+          },
+          Object {
+            "children": Array [],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T11:13:53.821+02:00",
+            "creator": 1,
+            "groups": Array [],
+            "id": 5,
+            "keys": Array [
+              3,
+            ],
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+            "name": "projektron bcs",
+            "parent": 4,
+            "responsible": 1,
+            "treeLevel": 1,
+          },
+        ]
+      }
+      categoryStore={
+        CategoryStore {
+          "_findById": [Function],
+          "_updateEntity": [Function],
+          "categories": Array [
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:41.497+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 3,
+              "keys": Array [
+                2,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+              "name": "ssh",
+              "parent": 2,
+              "responsible": 1,
+              "treeLevel": 2,
+            },
+            Object {
+              "children": Array [
+                5,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:46.691+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 4,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+              "name": "intern",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                2,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:33.274+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 1,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+              "name": "vorwerk",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                3,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:37.557+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 2,
+              "keys": Array [
+                1,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+              "name": "servers",
+              "parent": 1,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:53.821+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 5,
+              "keys": Array [
+                3,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+              "name": "projektron bcs",
+              "parent": 4,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+          ],
+        }
+      }
+      cckeyKey={
+        Object {
+          "category": 3,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:35.095+02:00",
+          "creator": 1,
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        }
+      }
+      creationMode={false}
+      loading={false}
+      onClose={[Function]}
+    >
+      <Modal
+        categoryStore={
+          CategoryStore {
+            "_findById": [Function],
+            "_updateEntity": [Function],
+            "categories": Array [
+              Object {
+                "children": Array [],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:41.497+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 3,
+                "keys": Array [
+                  2,
+                ],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                "name": "ssh",
+                "parent": 2,
+                "responsible": 1,
+                "treeLevel": 2,
+              },
+              Object {
+                "children": Array [
+                  5,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:46.691+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 4,
+                "keys": Array [],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                "name": "intern",
+                "parent": null,
+                "responsible": 1,
+                "treeLevel": 0,
+              },
+              Object {
+                "children": Array [
+                  2,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:33.274+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 1,
+                "keys": Array [],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                "name": "vorwerk",
+                "parent": null,
+                "responsible": 1,
+                "treeLevel": 0,
+              },
+              Object {
+                "children": Array [
+                  3,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:37.557+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 2,
+                "keys": Array [
+                  1,
+                ],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                "name": "servers",
+                "parent": 1,
+                "responsible": 1,
+                "treeLevel": 1,
+              },
+              Object {
+                "children": Array [],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:53.821+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 5,
+                "keys": Array [
+                  3,
+                ],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                "name": "projektron bcs",
+                "parent": 4,
+                "responsible": 1,
+                "treeLevel": 1,
+              },
+            ],
           }
         }
-        creationMode={false}
-        keyPasswordVisible={false}
-      />
-    </Col>
-  </Row>
-  <Row
-    gutter={0}
-    span={4}
-  >
-    <Tooltip
-      arrowPointAtCenter={false}
-      mouseEnterDelay={0.1}
-      mouseLeaveDelay={0.1}
-      placement="top"
-      prefixCls="ant-tooltip"
-      title="Show password"
-      transitionName="zoom-big-fast"
-    >
-      <Button
-        clicked={false}
-        ghost={false}
-        icon="eye-o"
-        loading={false}
-        onClick={[Function]}
-        prefixCls="ant-btn"
-        type="ghost"
-      />
-    </Tooltip>
-  </Row>
-  <Row
-    gutter={0}
-  >
-    <Col>
-      <div
-        className="footer"
+        className="cckey-key-modal"
+        closable={false}
+        confirmLoading={false}
+        footer={false}
+        maskTransitionName="fade"
+        onClose={[Function]}
+        prefixCls="ant-modal"
+        transitionName="zoom"
+        visible={false}
+        width={520}
       >
-        <Row
-          align="middle"
-          gutter={0}
-          type="flex"
-        >
-          <Col
-            span={8}
-          >
-            <div
-              className="operations"
-            />
-          </Col>
-          <Col
-            offset={8}
-            span={8}
-          >
-            <div
-              className="main"
-            >
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-              >
-                Cancel
-              </Button>
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-                type="primary"
-              >
-                Done
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </div>
-    </Col>
-  </Row>
-  <Modal
-    className="category-tree-select-inner-modal"
-    closable={false}
-    confirmLoading={false}
-    footer={false}
-    maskTransitionName="fade"
-    prefixCls="ant-modal"
-    transitionName="zoom"
-    visible={false}
-    width={520}
-  >
-    <Row
-      gutter={0}
-      justify="center"
-      type="flex"
-    >
-      <Col
-        span={24}
-      >
-        <Form
-          hideRequiredMark={false}
-          layout="horizontal"
-          onSubmit={[Function]}
-          prefixCls="ant-form"
-        >
-          <FormItem
-            colon={true}
-            hasFeedback={false}
-            prefixCls="ant-form"
-          >
-            <_a
-              choiceTransitionName="zoom"
-              dropdownClassName="ant-select-tree-dropdown"
-              onChange={[Function]}
-              prefixCls="ant-select"
-              showSearch={true}
-              size="large"
-              transitionName="slide-up"
-              value={null}
-            >
-              <TreeNode
-                category={
-                  Object {
-                    "children": Array [
-                      5,
-                    ],
-                    "createdBy": "root",
-                    "createdDate": "2017-06-30T11:13:46.691+02:00",
-                    "creator": 1,
-                    "groups": Array [],
-                    "id": 4,
-                    "keys": Array [],
-                    "lastModifiedBy": "root",
-                    "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
-                    "name": "intern",
-                    "parent": null,
-                    "responsible": 1,
-                    "treeLevel": 0,
-                  }
-                }
-                title={
-                  <span>
-                    <Icon
-                      type="folder"
-                    />
-                    intern
-                  </span>
-                }
-                value="intern"
-              >
-                <TreeNode
-                  category={
-                    Object {
-                      "children": Array [],
-                      "createdBy": "root",
-                      "createdDate": "2017-06-30T11:13:53.821+02:00",
-                      "creator": 1,
-                      "groups": Array [],
-                      "id": 5,
-                      "keys": Array [
-                        3,
-                      ],
-                      "lastModifiedBy": "root",
-                      "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
-                      "name": "projektron bcs",
-                      "parent": 4,
-                      "responsible": 1,
-                      "treeLevel": 1,
-                    }
-                  }
-                  title="projektron bcs"
-                  value="projektron bcs"
-                />
-              </TreeNode>
-              <TreeNode
-                category={
-                  Object {
-                    "children": Array [
-                      2,
-                    ],
-                    "createdBy": "root",
-                    "createdDate": "2017-06-30T11:13:33.274+02:00",
-                    "creator": 1,
-                    "groups": Array [],
-                    "id": 1,
-                    "keys": Array [],
-                    "lastModifiedBy": "root",
-                    "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
-                    "name": "vorwerk",
-                    "parent": null,
-                    "responsible": 1,
-                    "treeLevel": 0,
-                  }
-                }
-                title={
-                  <span>
-                    <Icon
-                      type="folder"
-                    />
-                    vorwerk
-                  </span>
-                }
-                value="vorwerk"
-              >
-                <TreeNode
-                  category={
-                    Object {
-                      "children": Array [
-                        3,
-                      ],
-                      "createdBy": "root",
-                      "createdDate": "2017-06-30T11:13:37.557+02:00",
-                      "creator": 1,
-                      "groups": Array [],
-                      "id": 2,
-                      "keys": Array [
-                        1,
-                      ],
-                      "lastModifiedBy": "root",
-                      "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
-                      "name": "servers",
-                      "parent": 1,
-                      "responsible": 1,
-                      "treeLevel": 1,
-                    }
-                  }
-                  title={
-                    <span>
-                      <Icon
-                        type="folder"
-                      />
-                      servers
-                    </span>
-                  }
-                  value="servers"
-                >
-                  <TreeNode
-                    category={
-                      Object {
-                        "children": Array [],
-                        "createdBy": "root",
-                        "createdDate": "2017-06-30T11:13:41.497+02:00",
-                        "creator": 1,
-                        "groups": Array [],
-                        "id": 3,
-                        "keys": Array [
-                          2,
-                        ],
-                        "lastModifiedBy": "root",
-                        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
-                        "name": "ssh",
-                        "parent": 2,
-                        "responsible": 1,
-                        "treeLevel": 2,
-                      }
-                    }
-                    title="ssh"
-                    value="ssh"
-                  />
-                </TreeNode>
-              </TreeNode>
-            </_a>
-          </FormItem>
-        </Form>
-      </Col>
-    </Row>
-    <Row
-      gutter={0}
-    >
-      <Col>
-        <div
-          className="footer"
-        >
-          <Row
-            gutter={0}
-            justify="end"
-            type="flex"
-          >
-            <Col>
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-              >
-                Cancel
-              </Button>
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-                type="primary"
-              >
-                Save
-              </Button>
-            </Col>
-          </Row>
-        </div>
-      </Col>
-    </Row>
-  </Modal>
-</Modal>
+        <DialogWrap
+          categoryStore={
+            CategoryStore {
+              "_findById": [Function],
+              "_updateEntity": [Function],
+              "categories": Array [
+                Object {
+                  "children": Array [],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:41.497+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 3,
+                  "keys": Array [
+                    2,
+                  ],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                  "name": "ssh",
+                  "parent": 2,
+                  "responsible": 1,
+                  "treeLevel": 2,
+                },
+                Object {
+                  "children": Array [
+                    5,
+                  ],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:46.691+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 4,
+                  "keys": Array [],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                  "name": "intern",
+                  "parent": null,
+                  "responsible": 1,
+                  "treeLevel": 0,
+                },
+                Object {
+                  "children": Array [
+                    2,
+                  ],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:33.274+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 1,
+                  "keys": Array [],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                  "name": "vorwerk",
+                  "parent": null,
+                  "responsible": 1,
+                  "treeLevel": 0,
+                },
+                Object {
+                  "children": Array [
+                    3,
+                  ],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:37.557+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 2,
+                  "keys": Array [
+                    1,
+                  ],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                  "name": "servers",
+                  "parent": 1,
+                  "responsible": 1,
+                  "treeLevel": 1,
+                },
+                Object {
+                  "children": Array [],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:53.821+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 5,
+                  "keys": Array [
+                    3,
+                  ],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                  "name": "projektron bcs",
+                  "parent": 4,
+                  "responsible": 1,
+                  "treeLevel": 1,
+                },
+              ],
+            }
+          }
+          className="cckey-key-modal"
+          closable={false}
+          confirmLoading={false}
+          footer={false}
+          maskTransitionName="fade"
+          onClose={[Function]}
+          prefixCls="ant-modal"
+          transitionName="zoom"
+          visible={false}
+          width={520}
+        />
+      </Modal>
+    </KeyModal>
+  </inject-KeyModal-with-categoryStore>
+</Provider>
 `;

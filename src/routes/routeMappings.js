@@ -3,6 +3,7 @@ import {
   ADMINISTRATION_USERS,
   DASHBOARD,
   KEYS,
+  KEYSMODAL,
   SIGNIN,
   SIGNOUT,
   ROOT
@@ -77,3 +78,13 @@ export const ROUTE_ADMINISTRATION_USERS = ROUTE_ROOT + ADMINISTRATION_USERS;
  * @since 0.8.0
  */
 export const ROUTE_KEYS = ROUTE_ROOT + KEYS;
+
+/**
+ * The deep route mapping for the {@link KeyModal} component inside {@link Keys}.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.12.0
+ */
+export const ROUTE_KEYMODAL = ROUTE_ROOT + KEYS + KEYSMODAL;
