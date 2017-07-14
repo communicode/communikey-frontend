@@ -2,7 +2,7 @@ import React from "react";
 import AuthService from "./../services/AuthService";
 import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
 import keydown, {Keys}  from "react-keydown";
-import {Button, Form, Icon, Input, Row, Tooltip} from "antd";
+import {Button, Form, Icon, Input, Tooltip} from "antd";
 import appConfig from "../config/app";
 import {VERSION} from "./../Communikey";
 import {AUTH_STORE} from "../stores/storeConstants";
@@ -130,9 +130,7 @@ class SignIn extends React.Component {
                 onPressEnter={this.signIn}
               />
             </Form.Item>
-            <Row>
-              <Button type="primary" size="large" onClick={this.signIn} loading={processing}>Sign in</Button>
-            </Row>
+            <Button type="primary" size="large" onClick={this.signIn} loading={processing}>Sign in</Button>
           </Form>
         </div>
         {footer()}
