@@ -21,18 +21,18 @@ class UserStore {
   }
 
   /**
-   * Activates a user with the specified activation key.
+   * Activates a user with the specified activation token.
    * This is a API- and store synchronization action!
    *
-   * @param {string} activationKey - The activation key to activate a user with
+   * @param {string} activationToken - The activation token to activate a user with
    * @returns {Promise} - A promise
    */
   @action("UserStore_activate")
-  activate = (activationKey) => {
+  activate = (activationToken) => {
     return apiService.get(USERS_ACTIVATE, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
-        activation_key: activationKey
+        activation_token: activationToken
       }
     })
       .then(action("UserStore_activate_synchronization", response => {
@@ -256,7 +256,7 @@ class UserStore {
   @action("UserStore_resetPassword")
   resetPassword = (resetToken, newPassword, login) => {
     return apiService.post(USERS_PASSWORD_RESET, {
-      resetKey: resetToken,
+      resetToken: resetToken,
       password: newPassword
     }, {
       params: {

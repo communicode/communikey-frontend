@@ -136,7 +136,7 @@ class UserAdministration extends React.Component {
    */
   handleUserModalUserActivation = () => {
     this.setProcessingStatus(true);
-    this.props.userStore.activate(this.state.user.activationKey)
+    this.props.userStore.activate(this.state.user.activationToken)
       .then(updatedUser => {
         this.setState({user: update(this.state.user, {$merge: updatedUser})});
         this.setProcessingStatus(false);
@@ -207,10 +207,10 @@ class UserAdministration extends React.Component {
    */
   handleUserModalUserPasswordReset = (newPassword) => {
     this.setProcessingStatus(true);
-    if (!this.state.user.resetKey) {
+    if (!this.state.user.resetToken) {
       return this._generatePasswordResetToken(this.state.user.email, this.state.user.login)
         .then(resetToken => {
-          return this._resetPassword(resetToken.resetKey, newPassword, this.state.user.login)
+          return this._resetPassword(resetToken.resetToken, newPassword, this.state.user.login)
             .then(() => this.setProcessingStatus(false))
             .catch(error => {
               this.setProcessingStatus(false);
@@ -222,7 +222,7 @@ class UserAdministration extends React.Component {
           return Promise.reject(error);
         });
     } else {
-      return this._resetPassword(this.state.user.resetKey, newPassword, this.state.user.login)
+      return this._resetPassword(this.state.user.resetToken, newPassword, this.state.user.login)
         .then(() => this.setProcessingStatus(false))
         .catch(error => {
           this.setProcessingStatus(false);
