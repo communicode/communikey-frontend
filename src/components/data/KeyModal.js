@@ -371,7 +371,7 @@ class KeyModal extends React.Component {
     const shareLink = LINK_KEY_SHARE + cckeyKey.id;
 
     const shareButton = () => (
-      <Tooltip title="Share key">
+      <Tooltip title="Copy share link to clipboard">
         <CopyToClipboard text={shareLink}>
           <Button key="shareButton" type="ghost" icon="share-alt"/>
         </CopyToClipboard>
