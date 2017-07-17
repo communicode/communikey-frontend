@@ -368,14 +368,14 @@ class KeyModal extends React.Component {
       </Tooltip>
     );
 
-    const shareLink = LINK_KEY_SHARE + cckeyKey.id;
-
-    const shareButton = () => (
-      <Tooltip title="Copy share link to clipboard">
-        <CopyToClipboard text={shareLink}>
-          <Button key="shareButton" type="ghost" icon="share-alt"/>
-        </CopyToClipboard>
-      </Tooltip>
+    const shareButton = (value) => (
+      <CopyToClipboard text={value}>
+        <Tooltip title="Copied link to clipboard" trigger="click">
+          <Button key="shareButton" size="large" icon="share-alt">
+            Copy link
+          </Button>
+        </Tooltip>
+      </CopyToClipboard>
     );
 
     const passwordVisibilityModeButton = () => (
@@ -400,6 +400,7 @@ class KeyModal extends React.Component {
                 !creationMode && administrationMode &&
                 <Button key="addToCategory" size="large" onClick={this.toggleCategoryTreeSelectModal}>Select category</Button>
               }
+              {!creationMode && shareButton(LINK_KEY_SHARE + cckeyKey.id)}
             </div>
           </Col>
           <Col span={8} offset={8}>
@@ -506,7 +507,6 @@ class KeyModal extends React.Component {
         <Row span={4}>
           {!creationMode && administrationMode && lockStatusButton()}
           {passwordVisibilityModeButton()}
-          {shareButton()}
         </Row>
         <Row><Col>{footer()}</Col></Row>
         {categoryTreeSelectInnerModal()}
