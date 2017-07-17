@@ -5104,7 +5104,6 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                                             \\"ref\\": null,
                                                                                                                                                             \\"props\\": {
                                                                                                                                                                 \\"size\\": \\"large\\",
-                                                                                                                                                                \\"icon\\": \\"share-alt\\",
                                                                                                                                                                 \\"children\\": \\"Copy link\\",
                                                                                                                                                                 \\"prefixCls\\": \\"ant-btn\\",
                                                                                                                                                                 \\"loading\\": false,

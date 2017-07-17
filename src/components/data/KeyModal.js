@@ -371,7 +371,7 @@ class KeyModal extends React.Component {
     const shareButton = (value) => (
       <CopyToClipboard text={value}>
         <Tooltip title="Copied link to clipboard" trigger="click">
-          <Button key="shareButton" size="large" icon="share-alt">
+          <Button key="shareButton" size="large">
             Copy link
           </Button>
         </Tooltip>
