@@ -31,7 +31,6 @@ const ManagedForm = Form.create()(
       <Form hideRequiredMark={true}>
         <Form.Item
           validateStatus={form.getFieldError("name") ? "error" : ""}
-          label="Name"
           colon={false}
         >
           {getFieldDecorator("name", {
@@ -39,7 +38,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Name is required"}]
           })(
           <Input
-            placeholder="Name"
+            addonBefore="Name"
             suffix={category.name ? copyToClipboardIcon(category.name) : null}
             readOnly={!administrationMode}
           />)

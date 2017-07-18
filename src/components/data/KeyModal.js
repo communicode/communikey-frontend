@@ -39,7 +39,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("name") ? "error" : ""}
-          label="Name"
           colon={false}
         >
           {getFieldDecorator("name", {
@@ -47,7 +46,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Name is required"}]
           })(
             <Input
-              placeholder="Name"
+              addonBefore="Name"
               suffix={cckeyKey.name ? copyToClipboardIcon(cckeyKey.name) : null}
               readOnly={!administrationMode}
             />)}
@@ -55,7 +54,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("login") ? "error" : ""}
-          label="Login"
           colon={false}
         >
           {getFieldDecorator("login", {
@@ -63,7 +61,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Login is required"}]
           })(
             <Input
-              placeholder="Login"
+              addonBefore="Login"
               suffix={cckeyKey.login ? copyToClipboardIcon(cckeyKey.login) : null}
               readOnly={!administrationMode}
             />
@@ -72,7 +70,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("password") ? "error" : ""}
-          label="Password"
           colon={false}
         >
           {getFieldDecorator("password", {
@@ -80,7 +77,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Password is required"}]
           })(
             <Input
-              placeholder="Password"
+              addonBefore="Password"
               type={keyPasswordVisible ? "text" : "password"}
               readOnly={!administrationMode ? true : creationMode ? false : locked}
               suffix={cckeyKey.password ? copyToClipboardIcon(cckeyKey.password) : null}
@@ -90,7 +87,7 @@ const ManagedForm = Form.create()(
         {creationMode && administrationMode && categoryTreeSelect()}
         {!creationMode && administrationMode &&
         <div>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="id"
               addonBefore="ID"
@@ -99,7 +96,7 @@ const ManagedForm = Form.create()(
               disabled={!cckeyKey.id}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdBy"
               addonBefore="Created by"
@@ -108,7 +105,7 @@ const ManagedForm = Form.create()(
               disabled={!cckeyKey.createdBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdDate"
               addonBefore="Created on"
@@ -117,7 +114,7 @@ const ManagedForm = Form.create()(
               disabled={!cckeyKey.createdDate}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedBy"
               addonBefore="Modified by"
@@ -126,7 +123,7 @@ const ManagedForm = Form.create()(
               disabled={!cckeyKey.lastModifiedBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedDate"
               addonBefore="Modified on"
@@ -163,16 +160,6 @@ const managedFormItemLayout = {
     xs: {span: 24},
     sm: {span: 4}
   },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 18}
-  }
-};
-
-/**
- * Layout configurations for all read-only form items.
- */
-const readOnlyFormItemLayout = {
   wrapperCol: {
     xs: {span: 24},
     sm: {span: 18, offset: 4}
@@ -350,8 +337,9 @@ class KeyModal extends React.Component {
     const defaultKeyAvatar = () => <img src={appConfig.assets.logoTypographyGreen} className="key-logo"/>;
 
     const categoryTreeSelect = () => (
-      <Form.Item {...managedFormItemLayout} label="Category" colon={false}>
+      <Form.Item {...managedFormItemLayout} colon={false}>
         <TreeSelect
+          placeholder="Category"
           showSearch={true}
           onChange={onCategoryTreeSelectValueChange}
           allowClear={true}
