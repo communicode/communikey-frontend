@@ -82,11 +82,21 @@ export const ADMINISTRATION_USERS = ADMINISTRATION + pathSeparator + "users";
 export const KEYS = "keys";
 
 /**
- * The dynamic route of the {@link KeyModal} component.
+ * A route constant for an id variable inside a route.
  *
  * @constant
  * @default
  * @type {string}
  * @since 0.12.0
  */
-export const KEYSMODAL = pathSeparator + parameterPrefix + "id";
+export const VARIABLE_ID = pathSeparator + parameterPrefix + "id";
+
+/**
+ * The route name of the {@link Keys} component for deep linked categories.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.13.0
+ */
+export const CATEGORIES = "categories";
