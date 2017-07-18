@@ -6,7 +6,7 @@ import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_KEY_SHARE} from "../../config/constants";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb} from "antd";
+import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb, Menu, Dropdown} from "antd";
 import appConfig from "./../../config/app";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -153,6 +153,19 @@ const copyToClipboardIcon = (value) => (
       <Icon type="copy" className="copy-to-clipboard-icon"/>
     </Tooltip>
   </CopyToClipboard>
+);
+
+const OPERATION_TYPES = {
+  RESET_PASSWORD: {
+    keyName: "RESET_PASSWORD",
+    handler: console.log("test")
+  }
+};
+
+const footerOperationsDropdownMenu = (
+  <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
+    <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName}>Test</Menu.Item>
+  </Menu>
 );
 
 /**
@@ -400,7 +413,9 @@ class KeyModal extends React.Component {
                 !creationMode && administrationMode &&
                 <Button key="addToCategory" size="large" onClick={this.toggleCategoryTreeSelectModal}>Select category</Button>
               }
-              {!creationMode && shareButton(LINK_KEY_SHARE + cckeyKey.id)}
+              <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" trigger={["click"]}>
+                <Button key="more" type="primary" ghost={true} size="large" ><Icon type="down"/></Button>
+              </Dropdown>
             </div>
           </Col>
           <Col span={8} offset={8}>
