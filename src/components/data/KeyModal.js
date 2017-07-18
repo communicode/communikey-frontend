@@ -155,19 +155,6 @@ const copyToClipboardIcon = (value) => (
   </CopyToClipboard>
 );
 
-const OPERATION_TYPES = {
-  RESET_PASSWORD: {
-    keyName: "RESET_PASSWORD",
-    handler: console.log("test")
-  }
-};
-
-const footerOperationsDropdownMenu = (
-  <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
-    <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName}>Test</Menu.Item>
-  </Menu>
-);
-
 /**
  * Layout configurations for all managed form items.
  */
@@ -381,14 +368,17 @@ class KeyModal extends React.Component {
       </Tooltip>
     );
 
-    const shareButton = (value) => (
-      <CopyToClipboard text={value}>
-        <Tooltip title="Copied link to clipboard" trigger="click">
-          <Button key="shareButton" size="large">
-            Copy link
-          </Button>
-        </Tooltip>
-      </CopyToClipboard>
+    const shareLink = LINK_KEY_SHARE + cckeyKey.id;
+    const footerOperationsDropdownMenu = (
+      <Menu selectable={false}>
+        <Menu.Item>
+          <CopyToClipboard text={shareLink}>
+            <Tooltip title="Copied link to clipboard!" trigger="click">
+              Copy link
+            </Tooltip>
+          </CopyToClipboard>
+        </Menu.Item>
+      </Menu>
     );
 
     const passwordVisibilityModeButton = () => (
@@ -413,9 +403,14 @@ class KeyModal extends React.Component {
                 !creationMode && administrationMode &&
                 <Button key="addToCategory" size="large" onClick={this.toggleCategoryTreeSelectModal}>Select category</Button>
               }
-              <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" trigger={["click"]}>
-                <Button key="more" type="primary" ghost={true} size="large" ><Icon type="down"/></Button>
-              </Dropdown>
+              {
+                !creationMode &&
+                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" trigger={["click"]}>
+                  <Button key="more" type="primary" ghost={true} size="large">
+                    <Icon type="down"/>
+                  </Button>
+                </Dropdown>
+              }
             </div>
           </Col>
           <Col span={8} offset={8}>
