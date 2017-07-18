@@ -121,6 +121,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="id"
+              prefix={<Icon type="lock"/>}
               addonBefore="ID"
               value={user.id}
               readOnly={true}
@@ -130,6 +131,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created by"
               value={user.createdBy}
               readOnly={true}
@@ -139,6 +141,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created on"
               value={user.createdDate && new Date(user.createdDate).toLocaleString()}
               readOnly={true}
@@ -148,6 +151,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified by"
               value={user.lastModifiedBy}
               readOnly={true}
@@ -157,6 +161,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified on"
               value={user.lastModifiedDate && new Date(user.lastModifiedDate).toLocaleString()}
               readOnly={true}

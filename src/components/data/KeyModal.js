@@ -90,6 +90,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="id"
+              prefix={<Icon type="lock"/>}
               addonBefore="ID"
               value={cckeyKey.id}
               readOnly={true}
@@ -99,6 +100,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created by"
               value={cckeyKey.createdBy}
               readOnly={true}
@@ -108,6 +110,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created on"
               value={cckeyKey.createdDate && new Date(cckeyKey.createdDate).toLocaleString()}
               readOnly={true}
@@ -117,6 +120,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified by"
               value={cckeyKey.lastModifiedBy}
               readOnly={true}
@@ -126,6 +130,7 @@ const ManagedForm = Form.create()(
           <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified on"
               value={cckeyKey.lastModifiedDate && new Date(cckeyKey.lastModifiedDate).toLocaleString()}
               readOnly={true}
