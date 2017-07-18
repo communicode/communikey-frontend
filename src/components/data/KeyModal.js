@@ -472,7 +472,6 @@ class KeyModal extends React.Component {
             <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
             {queue.map(function(object, id){
               let shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
-              console.log("ShareLink:", shareLink);
               return (
                 <Breadcrumb.Item key={id}>
                   <Link to={shareLink}>
