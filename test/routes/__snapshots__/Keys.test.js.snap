@@ -5092,35 +5092,77 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                             \\"key\\": null,
                                                                                                                                             \\"ref\\": null,
                                                                                                                                             \\"props\\": {
-                                                                                                                                                \\"text\\": \\"http://localhost:8081/keys/undefined\\",
-                                                                                                                                                \\"children\\": {
+                                                                                                                                                \\"overlay\\": {
                                                                                                                                                     \\"key\\": null,
                                                                                                                                                     \\"ref\\": null,
                                                                                                                                                     \\"props\\": {
-                                                                                                                                                        \\"title\\": \\"Copied link to clipboard\\",
-                                                                                                                                                        \\"trigger\\": \\"click\\",
+                                                                                                                                                        \\"selectable\\": false,
                                                                                                                                                         \\"children\\": {
-                                                                                                                                                            \\"key\\": \\"shareButton\\",
+                                                                                                                                                            \\"key\\": null,
                                                                                                                                                             \\"ref\\": null,
                                                                                                                                                             \\"props\\": {
-                                                                                                                                                                \\"size\\": \\"large\\",
-                                                                                                                                                                \\"children\\": \\"Copy link\\",
-                                                                                                                                                                \\"prefixCls\\": \\"ant-btn\\",
-                                                                                                                                                                \\"loading\\": false,
-                                                                                                                                                                \\"clicked\\": false,
-                                                                                                                                                                \\"ghost\\": false
+                                                                                                                                                                \\"children\\": {
+                                                                                                                                                                    \\"key\\": null,
+                                                                                                                                                                    \\"ref\\": null,
+                                                                                                                                                                    \\"props\\": {
+                                                                                                                                                                        \\"text\\": \\"http://localhost:8081/keys/undefined\\",
+                                                                                                                                                                        \\"children\\": {
+                                                                                                                                                                            \\"key\\": null,
+                                                                                                                                                                            \\"ref\\": null,
+                                                                                                                                                                            \\"props\\": {
+                                                                                                                                                                                \\"title\\": \\"Copied link to clipboard!\\",
+                                                                                                                                                                                \\"trigger\\": \\"click\\",
+                                                                                                                                                                                \\"children\\": \\"Copy link\\",
+                                                                                                                                                                                \\"prefixCls\\": \\"ant-tooltip\\",
+                                                                                                                                                                                \\"placement\\": \\"top\\",
+                                                                                                                                                                                \\"transitionName\\": \\"zoom-big-fast\\",
+                                                                                                                                                                                \\"mouseEnterDelay\\": 0.1,
+                                                                                                                                                                                \\"mouseLeaveDelay\\": 0.1,
+                                                                                                                                                                                \\"arrowPointAtCenter\\": false
+                                                                                                                                                                            },
+                                                                                                                                                                            \\"_store\\": {}
+                                                                                                                                                                        }
+                                                                                                                                                                    },
+                                                                                                                                                                    \\"_store\\": {}
+                                                                                                                                                                }
                                                                                                                                                             },
                                                                                                                                                             \\"_store\\": {}
                                                                                                                                                         },
-                                                                                                                                                        \\"prefixCls\\": \\"ant-tooltip\\",
-                                                                                                                                                        \\"placement\\": \\"top\\",
-                                                                                                                                                        \\"transitionName\\": \\"zoom-big-fast\\",
-                                                                                                                                                        \\"mouseEnterDelay\\": 0.1,
-                                                                                                                                                        \\"mouseLeaveDelay\\": 0.1,
-                                                                                                                                                        \\"arrowPointAtCenter\\": false
+                                                                                                                                                        \\"prefixCls\\": \\"ant-menu\\",
+                                                                                                                                                        \\"className\\": \\"\\",
+                                                                                                                                                        \\"theme\\": \\"light\\"
                                                                                                                                                     },
                                                                                                                                                     \\"_store\\": {}
-                                                                                                                                                }
+                                                                                                                                                },
+                                                                                                                                                \\"size\\": \\"large\\",
+                                                                                                                                                \\"placement\\": \\"topLeft\\",
+                                                                                                                                                \\"trigger\\": [
+                                                                                                                                                    \\"click\\"
+                                                                                                                                                ],
+                                                                                                                                                \\"children\\": {
+                                                                                                                                                    \\"key\\": \\"more\\",
+                                                                                                                                                    \\"ref\\": null,
+                                                                                                                                                    \\"props\\": {
+                                                                                                                                                        \\"type\\": \\"primary\\",
+                                                                                                                                                        \\"ghost\\": true,
+                                                                                                                                                        \\"size\\": \\"large\\",
+                                                                                                                                                        \\"children\\": {
+                                                                                                                                                            \\"key\\": null,
+                                                                                                                                                            \\"ref\\": null,
+                                                                                                                                                            \\"props\\": {
+                                                                                                                                                                \\"type\\": \\"down\\"
+                                                                                                                                                            },
+                                                                                                                                                            \\"_store\\": {}
+                                                                                                                                                        },
+                                                                                                                                                        \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                                                                        \\"loading\\": false,
+                                                                                                                                                        \\"clicked\\": false
+                                                                                                                                                    },
+                                                                                                                                                    \\"_store\\": {}
+                                                                                                                                                },
+                                                                                                                                                \\"prefixCls\\": \\"ant-dropdown\\",
+                                                                                                                                                \\"mouseEnterDelay\\": 0.15,
+                                                                                                                                                \\"mouseLeaveDelay\\": 0.1
                                                                                                                                             },
                                                                                                                                             \\"_store\\": {}
                                                                                                                                         }
