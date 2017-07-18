@@ -86,3 +86,11 @@ export const ERROR_CATEGORY_NOT_FOUND = "The category has not been found. Please
  * @since 0.13.0
  */
 export const LINK_CATEGORY_SHARE = FRONTEND_URL + ROUTE_CATEGORIES + pathSeparator;
+
+/**
+ * The link for the category breadcrumbs.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const LINK_CATEGORY_BREADCRUMB = ROUTE_CATEGORIES + pathSeparator;

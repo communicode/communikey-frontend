@@ -80,8 +80,7 @@ class Keys extends React.Component {
         parents.push(category.id);
         category.parent && findParents(this.props.categoryStore._findById(category.parent));
       };
-      findParents(this.props.categoryStore._findById(this.props.category.parent));
-
+      this.props.category.parent && findParents(this.props.categoryStore._findById(this.props.category.parent));
       this.setState({
         category: this.props.category,
         categoryTreeExpandedNodeKeys: parents
