@@ -33,7 +33,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("name") ? "error" : ""}
-          label="Name"
           colon={false}
         >
           {getFieldDecorator("name", {
@@ -41,7 +40,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Name is required"}]
           })(
             <Input
-              placeholder="Name"
+              addonBefore="Name"
               readOnly={!administrationMode}
               suffix={userGroup.name ? copyToClipboardIcon(userGroup.name) : null}
             />
@@ -49,7 +48,7 @@ const ManagedForm = Form.create()(
         </Form.Item>
         {!creationMode && administrationMode &&
         <div>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="id"
               addonBefore="ID"
@@ -58,7 +57,7 @@ const ManagedForm = Form.create()(
               disabled={!userGroup.id}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdBy"
               addonBefore="Created by"
@@ -67,7 +66,7 @@ const ManagedForm = Form.create()(
               disabled={!userGroup.createdBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdDate"
               addonBefore="Created on"
@@ -76,7 +75,7 @@ const ManagedForm = Form.create()(
               disabled={!userGroup.createdDate}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedBy"
               addonBefore="Modified by"
@@ -85,7 +84,7 @@ const ManagedForm = Form.create()(
               disabled={!userGroup.lastModifiedBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedDate"
               addonBefore="Modified on"
@@ -122,16 +121,6 @@ const managedFormItemLayout = {
     xs: {span: 24},
     sm: {span: 4}
   },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 18}
-  }
-};
-
-/**
- * Layout configurations for all read-only form items.
- */
-const readOnlyFormItemLayout = {
   wrapperCol: {
     xs: {span: 24},
     sm: {span: 18, offset: 4}
