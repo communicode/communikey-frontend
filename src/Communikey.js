@@ -9,7 +9,7 @@ import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
 import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
-import PublicRoute from "./components/hoc/PublicRoute";
+import PublicForwardRoute from "./components/hoc/PublicForwardRoute";
 import KeyDeepLinkAuthenticatedRoute from "./components/hoc/KeyDeepLinkAuthenticatedRoute";
 import SignIn from "./routes/SignIn";
 import SignOut from "./routes/SignOut";
@@ -137,7 +137,7 @@ class Communikey extends React.Component {
           <BrowserRouter>
             <Switch>
               <Route path={ROUTE_SIGNOUT} component={SignOut}/>
-              <PublicRoute path={ROUTE_SIGNIN} component={SignIn} authorized={stores.authStore.isAuthorized}/>
+              <PublicForwardRoute path={ROUTE_SIGNIN} component={SignIn} authorized={stores.authStore.isAuthorized}/>
               <BaseLayout>
                 <Route render={({location}) => {
                   return (
