@@ -4,8 +4,9 @@ import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
-import {LINK_CATEGORY_SHARE} from "../../config/constants";
+import {LINK_CATEGORY_SHARE, LINK_CATEGORY_BREADCRUMB} from "../../config/constants";
 import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip, Breadcrumb} from "antd";
+import {Link} from "react-router-dom";
 import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -317,8 +318,15 @@ class CategoryModal extends React.Component {
         <div className="cckey-category-modal-breadcrumb">
           <Breadcrumb separator="/">
             <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
-            {queue.map(function(object, id){
-              return <Breadcrumb.Item key={id}>{object.name}</Breadcrumb.Item>;
+            {queue.map(function(object, id) {
+              const shareLink = LINK_CATEGORY_BREADCRUMB + id;
+              return (
+                <Breadcrumb.Item key={id}>
+                  <Link to={shareLink}>
+                    {object.name}
+                  </Link>
+                </Breadcrumb.Item>
+              );
             })}
           </Breadcrumb>
         </div>
