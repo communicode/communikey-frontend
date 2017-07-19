@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Route, Redirect} from "react-router-dom";
-import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
+import {Route} from "react-router-dom";
+import {redirectUnloggedToLogin, redirectUnauthorizedToLogin} from "../../services/AuthService";
+import "antd/lib/notification/style/index.css";
 
 /**
  * A Higher Order Component (HOC) for handling security restricted routes requiring administrative privileges.
@@ -19,10 +20,18 @@ import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
 const AuthenticatedPrivilegedRoute = ({component: Component, authorized, privileged, ...rest}) => (
   <Route
     {...rest}
-    render={props =>
-      authorized && privileged
-        ? <Component authorized={authorized} privileged={privileged} {...props} />
-        : <Redirect to={{pathname: ROUTE_SIGNOUT}}/>}
+    render={props => {
+      if (authorized) {
+        if (privileged) {
+          return <Component authorized={authorized} privileged={privileged} {...props}/>;
+        } else {
+          return redirectUnauthorizedToLogin(props.location.pathname);
+        }
+      } else {
+        return redirectUnloggedToLogin(props.location.pathname);
+      }
+    }
+  }
   />
 );
 
@@ -42,5 +51,10 @@ AuthenticatedPrivilegedRoute.propTypes = {
   /**
    * Determines if the user is privileged
    */
-  privileged: PropTypes.bool.isRequired
+  privileged: PropTypes.bool.isRequired,
+
+  /**
+   * @type {object} location - The location object of the react router
+   */
+  location: PropTypes.object
 };

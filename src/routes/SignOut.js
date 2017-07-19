@@ -1,6 +1,8 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 import {inject, PropTypes as MobxPropTypes} from "mobx-react";
+import {ROUTE_SIGNIN} from "./routeMappings";
+import PropTypes from "prop-types";
 import {AUTH_STORE} from "../stores/storeConstants";
 
 @inject(AUTH_STORE)
@@ -15,7 +17,16 @@ class SignOut extends React.Component {
   }
 
   render() {
-    return <Redirect to="/signin"/>;
+    if (this.props.location.state) {
+      return (
+        <Redirect to={{
+          pathname: ROUTE_SIGNIN,
+          state: { forward: this.props.location.state.forward }
+        }}/>
+      );
+    } else {
+      return <Redirect to={ROUTE_SIGNIN}/>;
+    }
   }
 }
 
@@ -25,6 +36,11 @@ SignOut.propTypes = {
   /**
    * @type {ObservableArray} authStore - The injected authentication store
    */
-  authStore: MobxPropTypes.observableArray
+  authStore: MobxPropTypes.observableArray,
+
+  /**
+   * @type {object} location - The location object of the react router
+   */
+  location: PropTypes.object
 };
 

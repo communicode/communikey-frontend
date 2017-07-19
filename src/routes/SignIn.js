@@ -1,6 +1,7 @@
 import React from "react";
 import AuthService from "./../services/AuthService";
 import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
+import PropTypes from "prop-types";
 import keydown, {Keys}  from "react-keydown";
 import {Button, Form, Icon, Input, Tooltip} from "antd";
 import appConfig from "../config/app";
@@ -145,5 +146,10 @@ SignIn.propTypes = {
   /**
    * @type {ObservableArray} authStore - The injected authentication store
    */
-  authStore: MobxPropTypes.observableArray
+  authStore: MobxPropTypes.observableArray,
+
+  /**
+   * @type {object} location - The location object of the react router
+   */
+  location: PropTypes.object
 };
