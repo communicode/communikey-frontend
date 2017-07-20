@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Route, Redirect} from "react-router-dom";
-import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
-import {categoryStore} from "../../Communikey";
+import {Route} from "react-router-dom";
+import {categoryStore, notificationService} from "../../Communikey";
+import {redirectUnloggedToLogin} from "../../services/AuthService";
 import _ from "lodash";
-import {notification} from "antd";
-import {ERROR_CATEGORY_NOT_FOUND_TITLE, ERROR_CATEGORY_NOT_FOUND} from "../../config/constants";
+import {
+  ERROR_CATEGORY_NOT_FOUND_TITLE,
+  ERROR_CATEGORY_NOT_FOUND
+} from "../../config/constants";
 import "antd/lib/notification/style/index.css";
 import "antd/lib/button/style/index.css";
 
@@ -25,26 +27,12 @@ const CategoryDeepLink = ({component: Component, authorized, ...rest}) => (
     {...rest}
     render={props => {
       if (authorized) {
-        const openErrorNotification = () => {
-          const key = `open${Date.now()}`;
-          notification.open({
-            message: ERROR_CATEGORY_NOT_FOUND_TITLE,
-            description: ERROR_CATEGORY_NOT_FOUND,
-            key
-          });
-        };
-
-        notification.config({
-          placement: "topRight",
-          bottom: 50,
-          duration: 0
-        });
         const checkHash = (hash) => _.find(categoryStore.categories, category => category.id === hash);
         let category = checkHash(props.match.params.id);
-        !category && openErrorNotification();
+        !category && notificationService.error(ERROR_CATEGORY_NOT_FOUND_TITLE, ERROR_CATEGORY_NOT_FOUND);
         return <Component component={Component} category={category} authorized={authorized} {...props}/>;
       } else {
-        return <Redirect to={{pathname: ROUTE_SIGNOUT}}/>;
+        return redirectUnloggedToLogin(props.location.pathname);
       }
     }}
   />
@@ -68,5 +56,10 @@ CategoryDeepLink.propTypes = {
    *
    * @type {object}
    */
-  match: PropTypes.object
+  match: PropTypes.object,
+
+  /**
+   * @type {object} location - The location object of the react router
+   */
+  location: PropTypes.object
 };

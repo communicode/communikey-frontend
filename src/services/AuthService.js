@@ -1,5 +1,11 @@
+import React from "react";
 import axios from "axios";
 import {API_AUTHORIZE, OAUTH_CHECK_TOKEN} from "../services/apiRequestMappings";
+import {notificationService} from "../Communikey";
+import {ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN, ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED} from "../config/constants";
+import {Redirect} from "react-router-dom";
+import {ROUTE_SIGNOUT} from "../routes/routeMappings";
+import "antd/lib/notification/style/index.css";
 
 /**
  * Provides static functions for user authentications.
@@ -49,5 +55,43 @@ class AuthService {
     return AuthService.resolveOAuth2AccessToken(localStorage.getItem("access_token"));
   };
 }
+
+/**
+ * Redirects the user to the login page
+ *
+ * @return {object} - The redirect to the login page
+ * @since 0.13.0
+ */
+const redirectToLogin = (currentPathname) => {
+  return (
+    <Redirect to={{
+      pathname: ROUTE_SIGNOUT,
+      state: {forward: currentPathname}
+    }}/>
+  );
+};
+
+/**
+ * Redirects the logged out user to the login page with an error notification
+ *
+ * @return {object} - The redirect to the login page
+ * @since 0.13.0
+ */
+export const redirectUnloggedToLogin = (currentPathname) => {
+  notificationService.error(ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN);
+  return redirectToLogin(currentPathname);
+};
+
+/**
+ * Redirects the unauthorized user to the login page with an error notification
+ *
+ * @return {object} - The redirect to the login page
+ * @since 0.8.0
+ */
+export const redirectUnauthorizedToLogin = (currentPathname) => {
+  notificationService.error(ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED);
+  console.log("Unauthorized:", currentPathname);
+  return redirectToLogin(currentPathname);
+};
 
 export default AuthService;

@@ -56,6 +56,38 @@ export const ERROR_KEY_NOT_FOUND_TITLE = "Key not found!";
 export const ERROR_KEY_NOT_FOUND = "The key has not been found. Please check the link. You may have no access to it or it doesn't exist anymore.";
 
 /**
+ * The message title for when a deep linked key wasn't found.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ERROR_NOT_LOGGED_IN_TITLE = "Not logged in!";
+
+/**
+ * The message for when a deep linked key wasn't found.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ERROR_NOT_LOGGED_IN = "You are currently not logged in. Please log in first to access this page.";
+
+/**
+ * The message title for when a deep linked key wasn't found.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ERROR_NOT_AUTHORIZED_TITLE = "Missing authorization!";
+
+/**
+ * The message for when a deep linked key wasn't found.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ERROR_NOT_AUTHORIZED = "You are not authorized to view this page. Please log in with an authorized account or contact key@communicode.de.";
+
+/**
  * The link for the key share button.
  *
  * @type {string}

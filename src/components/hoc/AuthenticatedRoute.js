@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Route, Redirect} from "react-router-dom";
-import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
+import {Route} from "react-router-dom";
+import {redirectUnloggedToLogin} from "../../services/AuthService";
+import "antd/lib/notification/style/index.css";
 
 /**
  * A Higher Order Component (HOC) for handling security restricted routes.
@@ -18,10 +19,14 @@ import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
 const AuthenticatedRoute = ({component: Component, authorized, ...rest}) => (
   <Route
     {...rest}
-    render={props =>
-      authorized
-        ? <Component authorized={authorized} {...props} />
-        : <Redirect to={{pathname: ROUTE_SIGNOUT}}/>}
+    render={props => {
+      if (authorized) {
+        return <Component authorized={authorized} {...props} />;
+      } else {
+        return redirectUnloggedToLogin(props.location.pathname);
+      }
+    }
+    }
   />
 );
 
@@ -36,5 +41,10 @@ AuthenticatedRoute.propTypes = {
   /**
    * @type component - The React component to be wrapped
    */
-  component: PropTypes.any.isRequired
+  component: PropTypes.any.isRequired,
+
+  /**
+   * @type {object} location - The location object of the react router
+   */
+  location: PropTypes.object
 };

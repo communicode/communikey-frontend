@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Route, Redirect} from "react-router-dom";
-import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
-import {keyStore} from "../../Communikey";
+import {Route} from "react-router-dom";
+import {keyStore, notificationService} from "../../Communikey";
 import _ from "lodash";
-import {notification} from "antd";
-import {ERROR_KEY_NOT_FOUND_TITLE, ERROR_KEY_NOT_FOUND} from "../../config/constants";
+import {redirectUnloggedToLogin} from "../../services/AuthService";
+import {
+  ERROR_KEY_NOT_FOUND_TITLE,
+  ERROR_KEY_NOT_FOUND
+} from "../../config/constants";
 import "antd/lib/notification/style/index.css";
 import "antd/lib/button/style/index.css";
 
@@ -25,26 +27,12 @@ const KeyDeepLink = ({component: Component, authorized, ...rest}) => (
     {...rest}
     render={props => {
       if (authorized) {
-        const openErrorNotification = () => {
-          const key = `open${Date.now()}`;
-          notification.open({
-            message: ERROR_KEY_NOT_FOUND_TITLE,
-            description: ERROR_KEY_NOT_FOUND,
-            key
-          });
-        };
-
-        notification.config({
-          placement: "topRight",
-          bottom: 50,
-          duration: 0
-        });
         const checkHash = (hash) => _.find(keyStore.keys, key => key.id === hash);
         let key = checkHash(props.match.params.id);
-        !key && openErrorNotification();
+        !key && notificationService.error(ERROR_KEY_NOT_FOUND_TITLE, ERROR_KEY_NOT_FOUND);
         return <Component component={Component} cckey={key} authorized={authorized} {...props}/>;
       } else {
-        return <Redirect to={{pathname: ROUTE_SIGNOUT}}/>;
+        return redirectUnloggedToLogin(props.location.pathname);
       }
     }}
   />
@@ -68,5 +56,10 @@ KeyDeepLink.propTypes = {
    *
    * @type {object}
    */
-  match: PropTypes.object
+  match: PropTypes.object,
+
+  /**
+   * @type {object} location - The location object of the react router
+   */
+  location: PropTypes.object
 };
