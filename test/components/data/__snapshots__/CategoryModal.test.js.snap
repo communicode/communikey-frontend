@@ -1,40 +1,609 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CategoryModal> should render correctly with sample data 1`] = `
-<Modal
-  className="cckey-category-modal"
-  closable={false}
-  confirmLoading={false}
-  footer={false}
-  id="cckey-components-data-views-category-modal"
-  maskTransitionName="fade"
-  onClose={[Function]}
-  prefixCls="ant-modal"
-  transitionName="zoom"
-  visible={false}
-  width={520}
+<Provider
+  authStore={
+    AuthStore {
+      "authorities": Array [
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.497+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+          "name": "ROLE_USER",
+        },
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.537+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+          "name": "ROLE_ADMIN",
+        },
+      ],
+      "firstName": "",
+      "isAuthorized": false,
+      "lastName": "",
+      "login": "",
+      "privileged": false,
+    }
+  }
+  authorityStore={
+    AuthorityStore {
+      "_findOneByName": [Function],
+      "_updateEntity": [Function],
+      "authorities": Array [
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.497+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+          "name": "ROLE_USER",
+        },
+        Object {
+          "createdBy": "root",
+          "createdDate": "2017-07-04T09:26:52.537+02:00",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+          "name": "ROLE_ADMIN",
+        },
+      ],
+    }
+  }
+  categoryStore={
+    CategoryStore {
+      "_findById": [Function],
+      "_updateEntity": [Function],
+      "categories": Array [
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:41.497+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 3,
+          "keys": Array [
+            2,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+          "name": "ssh",
+          "parent": 2,
+          "responsible": 1,
+          "treeLevel": 2,
+        },
+        Object {
+          "children": Array [
+            5,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:46.691+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 4,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+          "name": "intern",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            2,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:33.274+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 1,
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+          "name": "vorwerk",
+          "parent": null,
+          "responsible": 1,
+          "treeLevel": 0,
+        },
+        Object {
+          "children": Array [
+            3,
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:37.557+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 2,
+          "keys": Array [
+            1,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+          "name": "servers",
+          "parent": 1,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:53.821+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 5,
+          "keys": Array [
+            3,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+          "name": "projektron bcs",
+          "parent": 4,
+          "responsible": 1,
+          "treeLevel": 1,
+        },
+      ],
+    }
+  }
+  keyStore={
+    KeyStore {
+      "_filterAllByCategory": [Function],
+      "_findOneById": [Function],
+      "_updateEntity": [Function],
+      "keys": Array [
+        Object {
+          "category": 3,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:35.095+02:00",
+          "creator": 1,
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+        Object {
+          "category": 2,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:34.938+02:00",
+          "creator": 1,
+          "id": 1,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:33.771+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+        Object {
+          "category": 5,
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:47:35.294+02:00",
+          "creator": 1,
+          "id": 3,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:18.388+02:00",
+          "login": "erdbeer",
+          "name": "lecker",
+          "password": "yogurt",
+        },
+      ],
+    }
+  }
+  userGroupStore={
+    UserGroupStore {
+      "_filterAllByCategory": [Function],
+      "_findOneById": [Function],
+      "_findOneByName": [Function],
+      "_updateEntity": [Function],
+      "userGroups": Array [
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:23.734+02:00",
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+          "name": "vorwerk",
+          "users": Array [
+            1,
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:19.101+02:00",
+          "id": 1,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+          "name": "ops",
+          "users": Array [
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:37.824+02:00",
+          "id": 3,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+          "name": "administration",
+          "users": Array [
+            1,
+            2,
+          ],
+        },
+      ],
+    }
+  }
+  userStore={
+    UserStore {
+      "_filterAllByGroup": [Function],
+      "_findOneById": [Function],
+      "_findOneByLogin": [Function],
+      "_updateEntity": [Function],
+      "users": Array [
+        Object {
+          "activated": false,
+          "activationKey": "99315975298178909730",
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:47.738+02:00",
+          "email": "testuser@communicode.de",
+          "firstName": "Peter",
+          "groups": Array [
+            3,
+            2,
+            1,
+          ],
+          "id": 2,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+          "lastName": "Maffay",
+          "login": "testuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+        Object {
+          "activated": true,
+          "activationKey": "28235331690590579877",
+          "authorities": Array [
+            "ROLE_USER",
+            "ROLE_ADMIN",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:45:12.934+02:00",
+          "email": "cckey_root@communicode.de",
+          "firstName": "communi",
+          "groups": Array [
+            3,
+            2,
+          ],
+          "id": 1,
+          "keyCategories": Array [
+            3,
+            1,
+            5,
+            4,
+            2,
+          ],
+          "keys": Array [
+            3,
+            2,
+            1,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
+          "lastName": "key",
+          "login": "root",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [
+            3,
+            1,
+            5,
+            4,
+            2,
+          ],
+        },
+        Object {
+          "activated": true,
+          "activationKey": null,
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:12:46.33+02:00",
+          "email": "reallynewtestuser@communicode.de",
+          "firstName": "really",
+          "groups": Array [],
+          "id": 4,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
+          "lastName": "new",
+          "login": "reallynewtestuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+        Object {
+          "activated": true,
+          "activationKey": null,
+          "authorities": Array [
+            "ROLE_USER",
+          ],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:12:28.858+02:00",
+          "email": "newtestuser@communicode.de",
+          "firstName": "new",
+          "groups": Array [
+            2,
+            1,
+          ],
+          "id": 3,
+          "keyCategories": Array [],
+          "keys": Array [],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
+          "lastName": "test",
+          "login": "newtestuser",
+          "resetDate": null,
+          "resetKey": null,
+          "responsibleKeyCategories": Array [],
+        },
+      ],
+    }
+  }
 >
-  <Tabs
-    defaultActiveKey="general"
-    hideAdd={false}
-    onChange={[Function]}
-    prefixCls="ant-tabs"
+  <inject-CategoryModal-with-categoryStore
+    administrationMode={false}
+    category={
+      Object {
+        "children": Array [],
+        "createdBy": "root",
+        "createdDate": "2017-06-30T11:13:41.497+02:00",
+        "creator": 1,
+        "groups": Array [],
+        "id": 3,
+        "keys": Array [
+          2,
+        ],
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+        "name": "ssh",
+        "parent": 2,
+        "responsible": 1,
+        "treeLevel": 2,
+      }
+    }
+    creationMode={false}
+    loading={false}
+    onClose={[Function]}
+    userGroups={
+      Array [
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:23.734+02:00",
+          "id": 2,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+          "name": "vorwerk",
+          "users": Array [
+            1,
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:19.101+02:00",
+          "id": 1,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+          "name": "ops",
+          "users": Array [
+            2,
+            3,
+          ],
+        },
+        Object {
+          "categories": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T10:46:37.824+02:00",
+          "id": 3,
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+          "name": "administration",
+          "users": Array [
+            1,
+            2,
+          ],
+        },
+      ]
+    }
   >
-    <TabPane
-      placeholder={null}
-      tab="General"
+    <CategoryModal
+      administrationMode={false}
+      category={
+        Object {
+          "children": Array [],
+          "createdBy": "root",
+          "createdDate": "2017-06-30T11:13:41.497+02:00",
+          "creator": 1,
+          "groups": Array [],
+          "id": 3,
+          "keys": Array [
+            2,
+          ],
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+          "name": "ssh",
+          "parent": 2,
+          "responsible": 1,
+          "treeLevel": 2,
+        }
+      }
+      categoryStore={
+        CategoryStore {
+          "_findById": [Function],
+          "_updateEntity": [Function],
+          "categories": Array [
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:41.497+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 3,
+              "keys": Array [
+                2,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+              "name": "ssh",
+              "parent": 2,
+              "responsible": 1,
+              "treeLevel": 2,
+            },
+            Object {
+              "children": Array [
+                5,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:46.691+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 4,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+              "name": "intern",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                2,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:33.274+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 1,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+              "name": "vorwerk",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                3,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:37.557+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 2,
+              "keys": Array [
+                1,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+              "name": "servers",
+              "parent": 1,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:53.821+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 5,
+              "keys": Array [
+                3,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+              "name": "projektron bcs",
+              "parent": 4,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+          ],
+        }
+      }
+      creationMode={false}
+      loading={false}
+      onClose={[Function]}
+      userGroups={
+        Array [
+          Object {
+            "categories": Array [],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T10:46:23.734+02:00",
+            "id": 2,
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+            "name": "vorwerk",
+            "users": Array [
+              1,
+              2,
+              3,
+            ],
+          },
+          Object {
+            "categories": Array [],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T10:46:19.101+02:00",
+            "id": 1,
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+            "name": "ops",
+            "users": Array [
+              2,
+              3,
+            ],
+          },
+          Object {
+            "categories": Array [],
+            "createdBy": "root",
+            "createdDate": "2017-06-30T10:46:37.824+02:00",
+            "id": 3,
+            "lastModifiedBy": "root",
+            "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+            "name": "administration",
+            "users": Array [
+              1,
+              2,
+            ],
+          },
+        ]
+      }
     >
-      <Row
-        align="center"
-        gutter={0}
-        type="flex"
-      >
-        <Col
-          span={18}
-        >
-          <Form(WrappedComponent)
-            administrationMode={false}
-            category={
+      <Modal
+        categoryStore={
+          CategoryStore {
+            "_findById": [Function],
+            "_updateEntity": [Function],
+            "categories": Array [
               Object {
                 "children": Array [],
                 "createdBy": "root",
@@ -51,159 +620,202 @@ exports[`<CategoryModal> should render correctly with sample data 1`] = `
                 "parent": 2,
                 "responsible": 1,
                 "treeLevel": 2,
-              }
+              },
+              Object {
+                "children": Array [
+                  5,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:46.691+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 4,
+                "keys": Array [],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                "name": "intern",
+                "parent": null,
+                "responsible": 1,
+                "treeLevel": 0,
+              },
+              Object {
+                "children": Array [
+                  2,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:33.274+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 1,
+                "keys": Array [],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                "name": "vorwerk",
+                "parent": null,
+                "responsible": 1,
+                "treeLevel": 0,
+              },
+              Object {
+                "children": Array [
+                  3,
+                ],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:37.557+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 2,
+                "keys": Array [
+                  1,
+                ],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                "name": "servers",
+                "parent": 1,
+                "responsible": 1,
+                "treeLevel": 1,
+              },
+              Object {
+                "children": Array [],
+                "createdBy": "root",
+                "createdDate": "2017-06-30T11:13:53.821+02:00",
+                "creator": 1,
+                "groups": Array [],
+                "id": 5,
+                "keys": Array [
+                  3,
+                ],
+                "lastModifiedBy": "root",
+                "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                "name": "projektron bcs",
+                "parent": 4,
+                "responsible": 1,
+                "treeLevel": 1,
+              },
+            ],
+          }
+        }
+        className="cckey-category-modal"
+        closable={false}
+        confirmLoading={false}
+        footer={false}
+        id="cckey-components-data-views-category-modal"
+        maskTransitionName="fade"
+        onClose={[Function]}
+        prefixCls="ant-modal"
+        transitionName="zoom"
+        visible={false}
+        width={520}
+      >
+        <DialogWrap
+          categoryStore={
+            CategoryStore {
+              "_findById": [Function],
+              "_updateEntity": [Function],
+              "categories": Array [
+                Object {
+                  "children": Array [],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:41.497+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 3,
+                  "keys": Array [
+                    2,
+                  ],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+                  "name": "ssh",
+                  "parent": 2,
+                  "responsible": 1,
+                  "treeLevel": 2,
+                },
+                Object {
+                  "children": Array [
+                    5,
+                  ],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:46.691+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 4,
+                  "keys": Array [],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+                  "name": "intern",
+                  "parent": null,
+                  "responsible": 1,
+                  "treeLevel": 0,
+                },
+                Object {
+                  "children": Array [
+                    2,
+                  ],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:33.274+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 1,
+                  "keys": Array [],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+                  "name": "vorwerk",
+                  "parent": null,
+                  "responsible": 1,
+                  "treeLevel": 0,
+                },
+                Object {
+                  "children": Array [
+                    3,
+                  ],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:37.557+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 2,
+                  "keys": Array [
+                    1,
+                  ],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+                  "name": "servers",
+                  "parent": 1,
+                  "responsible": 1,
+                  "treeLevel": 1,
+                },
+                Object {
+                  "children": Array [],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T11:13:53.821+02:00",
+                  "creator": 1,
+                  "groups": Array [],
+                  "id": 5,
+                  "keys": Array [
+                    3,
+                  ],
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+                  "name": "projektron bcs",
+                  "parent": 4,
+                  "responsible": 1,
+                  "treeLevel": 1,
+                },
+              ],
             }
-            creationMode={false}
-          />
-        </Col>
-      </Row>
-    </TabPane>
-    <TabPane
-      disabled={false}
-      placeholder={null}
-      tab="User Groups"
-    >
-      <Row
-        gutter={0}
-      >
-        <div>
-          <Col
-            span={24}
-          >
-            <Table
-              bordered={false}
-              className=""
-              columns={
-                Array [
-                  Object {
-                    "dataIndex": "name",
-                    "fixed": true,
-                    "key": "name",
-                    "title": "Name",
-                  },
-                ]
-              }
-              dataSource={
-                Array [
-                  Object {
-                    "categories": Array [],
-                    "createdBy": "root",
-                    "createdDate": "2017-06-30T10:46:23.734+02:00",
-                    "id": 2,
-                    "lastModifiedBy": "root",
-                    "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                    "name": "vorwerk",
-                    "users": Array [
-                      1,
-                      2,
-                      3,
-                    ],
-                  },
-                  Object {
-                    "categories": Array [],
-                    "createdBy": "root",
-                    "createdDate": "2017-06-30T10:46:19.101+02:00",
-                    "id": 1,
-                    "lastModifiedBy": "root",
-                    "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                    "name": "ops",
-                    "users": Array [
-                      2,
-                      3,
-                    ],
-                  },
-                  Object {
-                    "categories": Array [],
-                    "createdBy": "root",
-                    "createdDate": "2017-06-30T10:46:37.824+02:00",
-                    "id": 3,
-                    "lastModifiedBy": "root",
-                    "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                    "name": "administration",
-                    "users": Array [
-                      1,
-                      2,
-                    ],
-                  },
-                ]
-              }
-              indentSize={20}
-              loading={false}
-              locale={Object {}}
-              prefixCls="ant-table"
-              rowKey={[Function]}
-              rowSelection={
-                Object {
-                  "onSelect": [Function],
-                  "selectedRowKeys": Array [],
-                }
-              }
-              scroll={
-                Object {
-                  "x": 992,
-                }
-              }
-              showHeader={true}
-              size="large"
-              useFixedHeader={false}
-            />
-          </Col>
-        </div>
-      </Row>
-    </TabPane>
-  </Tabs>
-  <Row
-    gutter={0}
-  >
-    <Col>
-      <div
-        className="footer"
-      >
-        <Row
-          align="middle"
-          gutter={0}
-          type="flex"
-        >
-          <Col
-            span={8}
-          >
-            <div
-              className="operations"
-            />
-          </Col>
-          <Col
-            offset={8}
-            span={8}
-          >
-            <div
-              className="main"
-            >
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-              >
-                Cancel
-              </Button>
-              <Button
-                clicked={false}
-                ghost={false}
-                loading={false}
-                onClick={[Function]}
-                prefixCls="ant-btn"
-                size="large"
-                type="primary"
-              >
-                Done
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </div>
-    </Col>
-  </Row>
-</Modal>
+          }
+          className="cckey-category-modal"
+          closable={false}
+          confirmLoading={false}
+          footer={false}
+          id="cckey-components-data-views-category-modal"
+          maskTransitionName="fade"
+          onClose={[Function]}
+          prefixCls="ant-modal"
+          transitionName="zoom"
+          visible={false}
+          width={520}
+        />
+      </Modal>
+    </CategoryModal>
+  </inject-CategoryModal-with-categoryStore>
+</Provider>
 `;

@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip} from "antd";
+import {CATEGORY_STORE} from "../../stores/storeConstants";
+import {LINK_CATEGORY_SHARE, LINK_CATEGORY_BREADCRUMB} from "../../config/constants";
+import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip, Breadcrumb} from "antd";
+import {Link} from "react-router-dom";
 import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -15,6 +19,7 @@ import "antd/lib/row/style/css";
 import "antd/lib/table/style/index.less";
 import "antd/lib/tabs/style/index.less";
 import "antd/lib/tooltip/style/index.less";
+import "antd/lib/breadcrumb/style/index.less";
 import "./CategoryModal.less";
 
 /**
@@ -143,6 +148,7 @@ const TAB_PANE_REACT_KEY_USER_GROUPS = "userGroups";
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
+@inject(CATEGORY_STORE)
 class CategoryModal extends React.Component {
   constructor(props) {
     super(props);
@@ -228,6 +234,16 @@ class CategoryModal extends React.Component {
       </Tooltip>
     );
 
+    const shareLink = LINK_CATEGORY_SHARE + category.id;
+
+    const shareButton = () => (
+      <CopyToClipboard text={shareLink}>
+        <Tooltip title="Copied link to clipboard!" trigger="click">
+            <Button key="shareButton" type="ghost" icon="share-alt" size="large"/>
+        </Tooltip>
+      </CopyToClipboard>
+    );
+
     const footer = () => (
       <div className="footer">
         <Row type="flex" align="middle">
@@ -238,6 +254,7 @@ class CategoryModal extends React.Component {
                   <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
                 </Button.Group>
               }
+              {!creationMode && shareButton()}
             </div>
           </Col>
           <Col span={8} offset={8}>
@@ -289,6 +306,33 @@ class CategoryModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    const breadcrumb = () => {
+      let queue = [];
+      const findParents = (category) => {
+        queue.push(category);
+        category.parent && findParents(this.props.categoryStore._findById(category.parent));
+      };
+      findParents(category);
+      queue.reverse();
+      return (
+        <div className="cckey-category-modal-breadcrumb">
+          <Breadcrumb separator="/">
+            <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
+            {queue.map(function(object, id) {
+              const shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
+              return (
+                <Breadcrumb.Item key={id}>
+                  <Link to={shareLink}>
+                    {object.name}
+                  </Link>
+                </Breadcrumb.Item>
+              );
+            })}
+          </Breadcrumb>
+        </div>
+      );
+    };
+
     return (
       <Modal
         id="cckey-components-data-views-category-modal"
@@ -299,6 +343,7 @@ class CategoryModal extends React.Component {
         closable={false}
         className="cckey-category-modal"
       >
+        {category.parent && breadcrumb(category)}
         <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_GENERAL} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
           {tabViewGeneral()}
           {tabViewUserGroups()}
@@ -314,6 +359,13 @@ CategoryModal.propTypes = {
    * Indicates if the category modal is in administration mode.
    */
   administrationMode: PropTypes.bool,
+
+  /**
+   * The category store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  categoryStore: MobXPropTypes.observableArray,
 
   /**
    * Indicates if the user modal is in creation mode.

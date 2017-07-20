@@ -4,9 +4,10 @@ import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
-import {LINK_KEY_SHARE} from "../../config/constants";
+import {LINK_CATEGORY_BREADCRUMB, LINK_KEY_SHARE} from "../../config/constants";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb} from "antd";
+import {Link} from "react-router-dom";
 import appConfig from "./../../config/app";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -470,7 +471,14 @@ class KeyModal extends React.Component {
           <Breadcrumb separator="/">
             <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
             {queue.map(function(object, id){
-              return <Breadcrumb.Item key={id}>{object.name}</Breadcrumb.Item>;
+              const shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
+              return (
+                <Breadcrumb.Item key={id}>
+                  <Link to={shareLink}>
+                    {object.name}
+                  </Link>
+                </Breadcrumb.Item>
+              );
             })}
           </Breadcrumb>
         </div>

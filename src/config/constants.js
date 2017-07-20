@@ -1,4 +1,4 @@
-import {ROUTE_KEYS} from "../routes/routeMappings";
+import {ROUTE_KEYS, ROUTE_CATEGORIES} from "../routes/routeMappings";
 import {FRONTEND_URL} from "../services/apiRequestMappings";
 
 const pathSeparator = "/";
@@ -53,7 +53,7 @@ export const ERROR_KEY_NOT_FOUND_TITLE = "Key not found!";
  * @type {string}
  * @since 0.12.0
  */
-export const ERROR_KEY_NOT_FOUND = "The key has not been found. Please check the supplied link. You may have no access to it or it doesn't exist anymore.";
+export const ERROR_KEY_NOT_FOUND = "The key has not been found. Please check the link. You may have no access to it or it doesn't exist anymore.";
 
 /**
  * The link for the key share button.
@@ -62,3 +62,35 @@ export const ERROR_KEY_NOT_FOUND = "The key has not been found. Please check the
  * @since 0.12.0
  */
 export const LINK_KEY_SHARE = FRONTEND_URL + ROUTE_KEYS + pathSeparator;
+
+/**
+ * The message title for when a deep linked category wasn't found.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ERROR_CATEGORY_NOT_FOUND_TITLE = "Category not found!";
+
+/**
+ * The message for when a deep linked category wasn't found.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ERROR_CATEGORY_NOT_FOUND = "The category has not been found. Please check the link. You may have no access to it or it doesn't exist anymore.";
+
+/**
+ * The link for the category share button.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const LINK_CATEGORY_SHARE = FRONTEND_URL + ROUTE_CATEGORIES + pathSeparator;
+
+/**
+ * The link for the category breadcrumbs.
+ *
+ * @type {string}
+ * @since 0.13.0
+ */
+export const LINK_CATEGORY_BREADCRUMB = ROUTE_CATEGORIES + pathSeparator;
