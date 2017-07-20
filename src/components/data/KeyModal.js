@@ -365,13 +365,13 @@ class KeyModal extends React.Component {
     const shareLink = LINK_KEY_SHARE + cckeyKey.id;
     const footerOperationsDropdownMenu = (
       <Menu selectable={false}>
-        <Menu.Item>
-          <CopyToClipboard text={shareLink}>
+        <CopyToClipboard text={shareLink}>
+          <Menu.Item>
             <Tooltip title="Copied link to clipboard!" trigger="click">
               Copy link
             </Tooltip>
-          </CopyToClipboard>
-        </Menu.Item>
+          </Menu.Item>
+        </CopyToClipboard>
       </Menu>
     );
 
@@ -392,7 +392,7 @@ class KeyModal extends React.Component {
           <Col span={8}>
             <div className="operations">
               {!creationMode && administrationMode &&
-              <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
+                <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
               {
                 !creationMode && administrationMode &&
                 <Button key="addToCategory" size="large" onClick={this.toggleCategoryTreeSelectModal}>Select category</Button>

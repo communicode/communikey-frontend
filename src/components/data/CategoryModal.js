@@ -5,7 +5,7 @@ import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_SHARE, LINK_CATEGORY_BREADCRUMB} from "../../config/constants";
-import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip, Breadcrumb} from "antd";
+import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip, Breadcrumb, Menu, Dropdown} from "antd";
 import {Link} from "react-router-dom";
 import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
@@ -20,6 +20,8 @@ import "antd/lib/table/style/index.less";
 import "antd/lib/tabs/style/index.less";
 import "antd/lib/tooltip/style/index.less";
 import "antd/lib/breadcrumb/style/index.less";
+import "antd/lib/menu/style/index.less";
+import "antd/lib/dropdown/style/index.less";
 import "./CategoryModal.less";
 
 /**
@@ -239,13 +241,16 @@ class CategoryModal extends React.Component {
     );
 
     const shareLink = LINK_CATEGORY_SHARE + category.id;
-
-    const shareButton = () => (
-      <CopyToClipboard text={shareLink}>
-        <Tooltip title="Copied link to clipboard!" trigger="click">
-            <Button key="shareButton" type="ghost" icon="share-alt" size="large"/>
-        </Tooltip>
-      </CopyToClipboard>
+    const footerOperationsDropdownMenu = (
+      <Menu selectable={false}>
+        <CopyToClipboard text={shareLink}>
+          <Menu.Item>
+            <Tooltip title="Copied link to clipboard!" trigger="click">
+              Copy link
+            </Tooltip>
+          </Menu.Item>
+        </CopyToClipboard>
+      </Menu>
     );
 
     const footer = () => (
@@ -254,11 +259,16 @@ class CategoryModal extends React.Component {
           <Col span={8}>
             <div className="operations">
               {!creationMode && administrationMode && !_.isEqual(activeTabViewKey, TAB_PANE_REACT_KEY_USER_GROUPS) &&
-                <Button.Group>
-                  <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
-                </Button.Group>
+                <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
               }
-              {!creationMode && shareButton()}
+              {
+                !creationMode &&
+                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" trigger={["click"]}>
+                  <Button key="more" type="primary" ghost={true} size="large">
+                    <Icon type="down"/>
+                  </Button>
+                </Dropdown>
+              }
             </div>
           </Col>
           <Col span={8} offset={8}>
