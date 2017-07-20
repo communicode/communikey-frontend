@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route} from "react-router-dom";
-import {notification} from "antd";
+import {categoryStore, notificationService} from "../../Communikey";
 import {redirectUnloggedToLogin} from "../../services/AuthService";
-import {categoryStore} from "../../Communikey";
 import _ from "lodash";
 import {
   ERROR_CATEGORY_NOT_FOUND_TITLE,
@@ -28,23 +27,9 @@ const CategoryDeepLink = ({component: Component, authorized, ...rest}) => (
     {...rest}
     render={props => {
       if (authorized) {
-        const openErrorNotification = () => {
-          const key = `open${Date.now()}`;
-          notification.open({
-            message: ERROR_CATEGORY_NOT_FOUND_TITLE,
-            description: ERROR_CATEGORY_NOT_FOUND,
-            key
-          });
-        };
-
-        notification.config({
-          placement: "topRight",
-          bottom: 50,
-          duration: 0
-        });
         const checkHash = (hash) => _.find(categoryStore.categories, category => category.id === hash);
         let category = checkHash(props.match.params.id);
-        !category && openErrorNotification();
+        !category && notificationService.error(ERROR_CATEGORY_NOT_FOUND_TITLE, ERROR_CATEGORY_NOT_FOUND);
         return <Component component={Component} category={category} authorized={authorized} {...props}/>;
       } else {
         return redirectUnloggedToLogin(props.location.pathname);

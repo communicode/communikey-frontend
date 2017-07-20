@@ -7,6 +7,7 @@ import QueueAnim from "rc-queue-anim";
 import {useStrict} from "mobx";
 import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
+import NotificationService from "./services/NotificationService";
 import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
 import PublicForwardRoute from "./components/hoc/PublicForwardRoute";
@@ -96,6 +97,14 @@ export const userStore = new UserStore();
  * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}>}
  */
 const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore};
+
+/**
+ * The notification service instance.
+ *
+ * @type {NotificationService}
+ * @since 0.13.0
+ */
+export const notificationService = new NotificationService();
 
 /**
  * The communikey version.

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {API_AUTHORIZE, OAUTH_CHECK_TOKEN} from "../services/apiRequestMappings";
-import {notification} from "antd";
+import {notificationService} from "../Communikey";
 import {ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN, ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED} from "../config/constants";
 import {Redirect} from "react-router-dom";
 import {ROUTE_SIGNOUT} from "../routes/routeMappings";
@@ -57,23 +57,6 @@ class AuthService {
 }
 
 /**
- * Opens a notification with the supplied message and description
- *
- * @param {string} message - The message of the notification
- * @param {string} description - The description of the notification
- * @return {object} - The redirect to the login page
- * @since 0.13.0
- */
-const openNotification = (message, description) => {
-  const key = `open${Date.now()}`;
-  notification.open({
-    message: message,
-    description: description,
-    key
-  });
-};
-
-/**
  * Redirects the user to the login page
  *
  * @return {object} - The redirect to the login page
@@ -95,7 +78,7 @@ const redirectToLogin = (currentPathname) => {
  * @since 0.13.0
  */
 export const redirectUnloggedToLogin = (currentPathname) => {
-  openNotification(ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN);
+  notificationService.error(ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN);
   return redirectToLogin(currentPathname);
 };
 
@@ -106,7 +89,8 @@ export const redirectUnloggedToLogin = (currentPathname) => {
  * @since 0.8.0
  */
 export const redirectUnauthorizedToLogin = (currentPathname) => {
-  openNotification(ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED);
+  notificationService.error(ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED);
+  console.log("Unauthorized:", currentPathname);
   return redirectToLogin(currentPathname);
 };
 

@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route} from "react-router-dom";
-import {keyStore} from "../../Communikey";
+import {keyStore, notificationService} from "../../Communikey";
 import _ from "lodash";
-import {notification} from "antd";
 import {redirectUnloggedToLogin} from "../../services/AuthService";
 import {
   ERROR_KEY_NOT_FOUND_TITLE,
@@ -28,22 +27,9 @@ const KeyDeepLink = ({component: Component, authorized, ...rest}) => (
     {...rest}
     render={props => {
       if (authorized) {
-        const openErrorNotification = () => {
-          const key = `open${Date.now()}`;
-          notification.open({
-            message: ERROR_KEY_NOT_FOUND_TITLE,
-            description: ERROR_KEY_NOT_FOUND,
-            key
-          });
-        };
-        notification.config({
-          placement: "topRight",
-          bottom: 50,
-          duration: 0
-        });
         const checkHash = (hash) => _.find(keyStore.keys, key => key.id === hash);
         let key = checkHash(props.match.params.id);
-        !key && openErrorNotification();
+        !key && notificationService.error(ERROR_KEY_NOT_FOUND_TITLE, ERROR_KEY_NOT_FOUND);
         return <Component component={Component} cckey={key} authorized={authorized} {...props}/>;
       } else {
         return redirectUnloggedToLogin(props.location.pathname);
