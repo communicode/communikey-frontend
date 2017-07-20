@@ -11,6 +11,7 @@ import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
 import PublicForwardRoute from "./components/hoc/PublicForwardRoute";
 import KeyDeepLinkAuthenticatedRoute from "./components/hoc/KeyDeepLinkAuthenticatedRoute";
+import CategoryDeepLinkAuthenticatedRoute from "./components/hoc/CategoryDeepLinkAuthenticatedRoute";
 import SignIn from "./routes/SignIn";
 import SignOut from "./routes/SignOut";
 import UserAdministration from "./routes/administration/UserAdministration";
@@ -30,7 +31,8 @@ import {
   ROUTE_ADMINISTRATION_USER_GROUPS,
   ROUTE_DASHBOARD,
   ROUTE_KEYS,
-  ROUTE_KEYMODAL,
+  ROUTE_LINKED_KEY,
+  ROUTE_LINKED_CATEGORY,
   ROUTE_SIGNIN,
   ROUTE_SIGNOUT,
   ROUTE_ROOT
@@ -162,7 +164,8 @@ class Communikey extends React.Component {
                           authorized={stores.authStore.isAuthorized}
                           privileged={stores.authStore.privileged}
                         />
-                        <KeyDeepLinkAuthenticatedRoute path={ROUTE_KEYMODAL} component={Keys} authorized={stores.authStore.isAuthorized}/>
+                        <KeyDeepLinkAuthenticatedRoute path={ROUTE_LINKED_KEY} component={Keys} authorized={stores.authStore.isAuthorized}/>
+                        <CategoryDeepLinkAuthenticatedRoute path={ROUTE_LINKED_CATEGORY} component={Keys} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_KEYS} component={Keys} authorized={stores.authStore.isAuthorized}/>
                       </Switch>
                     </QueueAnim>

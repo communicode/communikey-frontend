@@ -36,16 +36,14 @@ const ManagedForm = Form.create()(
           <Form.Item
             {...managedFormItemLayout}
             validateStatus={form.getFieldError("email") ? "error" : ""}
-            label="Email"
             colon={false}>
             {getFieldDecorator("email", {
               initialValue: user.email,
               rules: [{required: true, message: "Email is required"}]
             })(
               <Input
-                prefix={<Icon type="mail"/>}
+                addonBefore="Email"
                 addonAfter={appConfig.EMAIL_PREFIX}
-                placeholder="Email"
                 readOnly={!creationMode && administrationMode}
                 suffix={user.email ? copyToClipboardIcon(user.email) : null}
               />
@@ -56,7 +54,6 @@ const ManagedForm = Form.create()(
           <Form.Item
             {...managedFormItemLayout}
             validateStatus={form.getFieldError("login") ? "error" : ""}
-            label="Email"
             colon={false}>
             {getFieldDecorator("login", {
               initialValue: user.login,
@@ -64,8 +61,8 @@ const ManagedForm = Form.create()(
             })(
               <Input
                 prefix={<Icon type="mail"/>}
+                addonBefore="Email"
                 addonAfter={appConfig.EMAIL_PREFIX}
-                placeholder="Email"
                 readOnly={!creationMode && administrationMode}
                 suffix={user.email ? copyToClipboardIcon(user.email) : null}
               />
@@ -75,7 +72,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("firstName") ? "error" : ""}
-          label="First name"
           colon={false}
         >
           {getFieldDecorator("firstName", {
@@ -83,7 +79,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "First name is required"}]
           })(
             <Input
-              placeholder="First name"
+              addonBefore="First name"
               readOnly={!administrationMode}
             />
           )}
@@ -91,7 +87,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("lastName") ? "error" : ""}
-          label="Last name"
           colon={false}
         >
           {getFieldDecorator("lastName", {
@@ -99,7 +94,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Last name is required"}]
           })(
             <Input
-              placeholder="Last name"
+              addonBefore="Last name"
               readOnly={!administrationMode}
             />
           )}
@@ -108,14 +103,13 @@ const ManagedForm = Form.create()(
           <Form.Item
             {...managedFormItemLayout}
             validateStatus={form.getFieldError("password") ? "error" : ""}
-            label="Password"
             colon={false}>
             {getFieldDecorator("password", {
               initialValue: user.password,
               rules: [{required: true, message: "Password is required"}]
             })(
               <Input
-                placeholder="Password"
+                addonBefore="Password"
                 type="password"
                 readOnly={!administrationMode}
               />
@@ -124,45 +118,50 @@ const ManagedForm = Form.create()(
         }
         {!creationMode && administrationMode &&
         <div>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="id"
+              prefix={<Icon type="lock"/>}
               addonBefore="ID"
               value={user.id}
               readOnly={true}
               disabled={!user.id}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created by"
               value={user.createdBy}
               readOnly={true}
               disabled={!user.createdBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created on"
               value={user.createdDate && new Date(user.createdDate).toLocaleString()}
               readOnly={true}
               disabled={!user.createdDate}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified by"
               value={user.lastModifiedBy}
               readOnly={true}
               disabled={!user.lastModifiedBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified on"
               value={user.lastModifiedDate && new Date(user.lastModifiedDate).toLocaleString()}
               readOnly={true}
@@ -199,20 +198,9 @@ const managedFormItemLayout = {
   },
   wrapperCol: {
     xs: {span: 24},
-    sm: {span: 18}
-  }
-};
-
-/**
- * Layout configurations for all read-only form items.
- */
-const readOnlyFormItemLayout = {
-  wrapperCol: {
-    xs: {span: 24},
     sm: {span: 18, offset: 4}
   }
 };
-
 /**
  * The default authorities table column configuration.
  *

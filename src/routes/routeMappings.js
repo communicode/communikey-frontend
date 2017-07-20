@@ -3,7 +3,8 @@ import {
   ADMINISTRATION_USERS,
   DASHBOARD,
   KEYS,
-  KEYSMODAL,
+  CATEGORIES,
+  VARIABLE_ID,
   SIGNIN,
   SIGNOUT,
   ROOT
@@ -80,6 +81,16 @@ export const ROUTE_ADMINISTRATION_USERS = ROUTE_ROOT + ADMINISTRATION_USERS;
 export const ROUTE_KEYS = ROUTE_ROOT + KEYS;
 
 /**
+ * The route mapping categories links
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ROUTE_CATEGORIES = ROUTE_ROOT + CATEGORIES;
+
+/**
  * The deep route mapping for the {@link KeyModal} component inside {@link Keys}.
  *
  * @constant
@@ -87,4 +98,14 @@ export const ROUTE_KEYS = ROUTE_ROOT + KEYS;
  * @type {string}
  * @since 0.12.0
  */
-export const ROUTE_KEYMODAL = ROUTE_ROOT + KEYS + KEYSMODAL;
+export const ROUTE_LINKED_KEY = ROUTE_ROOT + KEYS + VARIABLE_ID;
+
+/**
+ * The deep route mapping for the component inside {@link Keys}.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.13.0
+ */
+export const ROUTE_LINKED_CATEGORY = ROUTE_ROOT + CATEGORIES + VARIABLE_ID;

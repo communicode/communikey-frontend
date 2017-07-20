@@ -74,6 +74,18 @@ class Keys extends React.Component {
         keyModalVisible: true
       });
     }
+    if(this.props.category) {
+      let parents = [];
+      const findParents = (category) => {
+        parents.push(category.id);
+        category.parent && findParents(this.props.categoryStore._findById(category.parent));
+      };
+      this.props.category.parent && findParents(this.props.categoryStore._findById(this.props.category.parent));
+      this.setState({
+        category: this.props.category,
+        categoryTreeExpandedNodeKeys: parents
+      });
+    }
   }
 
   /**
@@ -641,5 +653,12 @@ Keys.propTypes = {
    *
    * @type {integer}
    */
-  cckey: PropTypes.object
+  cckey: PropTypes.object,
+
+  /**
+   * The category id for deep routes
+   *
+   * @type {integer}
+   */
+  category: PropTypes.object
 };

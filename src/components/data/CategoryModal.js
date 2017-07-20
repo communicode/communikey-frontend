@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip} from "antd";
+import {CATEGORY_STORE} from "../../stores/storeConstants";
+import {LINK_CATEGORY_SHARE, LINK_CATEGORY_BREADCRUMB} from "../../config/constants";
+import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip, Breadcrumb, Menu, Dropdown} from "antd";
+import {Link} from "react-router-dom";
 import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -15,6 +19,9 @@ import "antd/lib/row/style/css";
 import "antd/lib/table/style/index.less";
 import "antd/lib/tabs/style/index.less";
 import "antd/lib/tooltip/style/index.less";
+import "antd/lib/breadcrumb/style/index.less";
+import "antd/lib/menu/style/index.less";
+import "antd/lib/dropdown/style/index.less";
 import "./CategoryModal.less";
 
 /**
@@ -31,7 +38,6 @@ const ManagedForm = Form.create()(
       <Form hideRequiredMark={true}>
         <Form.Item
           validateStatus={form.getFieldError("name") ? "error" : ""}
-          label="Name"
           colon={false}
         >
           {getFieldDecorator("name", {
@@ -39,7 +45,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Name is required"}]
           })(
           <Input
-            placeholder="Name"
+            addonBefore="Name"
             suffix={category.name ? copyToClipboardIcon(category.name) : null}
             readOnly={!administrationMode}
           />)
@@ -50,6 +56,7 @@ const ManagedForm = Form.create()(
           <Form.Item>
             <Input
               name="id"
+              prefix={<Icon type="lock"/>}
               addonBefore="ID"
               value={category.id}
               readOnly={true}
@@ -59,6 +66,7 @@ const ManagedForm = Form.create()(
           <Form.Item>
             <Input
               name="createdBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created by"
               value={category.createdBy}
               readOnly={true}
@@ -68,6 +76,7 @@ const ManagedForm = Form.create()(
           <Form.Item>
             <Input
               name="createdDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created on"
               value={category.createdDate && new Date(category.createdDate).toLocaleString()}
               readOnly={true}
@@ -77,6 +86,7 @@ const ManagedForm = Form.create()(
           <Form.Item>
             <Input
               name="lastModifiedBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified by"
               value={category.lastModifiedBy}
               readOnly={true}
@@ -86,6 +96,7 @@ const ManagedForm = Form.create()(
           <Form.Item>
             <Input
               name="lastModifiedDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified on"
               value={category.lastModifiedDate && new Date(category.lastModifiedDate).toLocaleString()}
               readOnly={true}
@@ -143,6 +154,7 @@ const TAB_PANE_REACT_KEY_USER_GROUPS = "userGroups";
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
+@inject(CATEGORY_STORE)
 class CategoryModal extends React.Component {
   constructor(props) {
     super(props);
@@ -228,15 +240,34 @@ class CategoryModal extends React.Component {
       </Tooltip>
     );
 
+    const shareLink = LINK_CATEGORY_SHARE + category.id;
+    const footerOperationsDropdownMenu = (
+      <Menu selectable={false}>
+        <CopyToClipboard text={shareLink}>
+          <Menu.Item>
+            <Tooltip title="Copied link to clipboard!" trigger="click">
+              Copy link
+            </Tooltip>
+          </Menu.Item>
+        </CopyToClipboard>
+      </Menu>
+    );
+
     const footer = () => (
       <div className="footer">
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
               {!creationMode && administrationMode && !_.isEqual(activeTabViewKey, TAB_PANE_REACT_KEY_USER_GROUPS) &&
-                <Button.Group>
-                  <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
-                </Button.Group>
+                <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
+              }
+              {
+                !creationMode &&
+                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" trigger={["click"]}>
+                  <Button key="more" type="primary" ghost={true} size="large">
+                    <Icon type="down"/>
+                  </Button>
+                </Dropdown>
               }
             </div>
           </Col>
@@ -289,6 +320,33 @@ class CategoryModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    const breadcrumb = () => {
+      let queue = [];
+      const findParents = (category) => {
+        queue.push(category);
+        category.parent && findParents(this.props.categoryStore._findById(category.parent));
+      };
+      findParents(category);
+      queue.reverse();
+      return (
+        <div className="cckey-category-modal-breadcrumb">
+          <Breadcrumb separator="/">
+            <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
+            {queue.map(function(object, id) {
+              const shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
+              return (
+                <Breadcrumb.Item key={id}>
+                  <Link to={shareLink}>
+                    {object.name}
+                  </Link>
+                </Breadcrumb.Item>
+              );
+            })}
+          </Breadcrumb>
+        </div>
+      );
+    };
+
     return (
       <Modal
         id="cckey-components-data-views-category-modal"
@@ -299,6 +357,7 @@ class CategoryModal extends React.Component {
         closable={false}
         className="cckey-category-modal"
       >
+        {category.parent && breadcrumb(category)}
         <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_GENERAL} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
           {tabViewGeneral()}
           {tabViewUserGroups()}
@@ -314,6 +373,13 @@ CategoryModal.propTypes = {
    * Indicates if the category modal is in administration mode.
    */
   administrationMode: PropTypes.bool,
+
+  /**
+   * The category store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   */
+  categoryStore: MobXPropTypes.observableArray,
 
   /**
    * Indicates if the user modal is in creation mode.
