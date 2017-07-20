@@ -1,11 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Route, Redirect} from "react-router-dom";
-import {ROUTE_SIGNOUT} from "./../../routes/routeMappings";
+import {Route} from "react-router-dom";
+import {notification} from "antd";
+import {redirectUnloggedToLogin} from "../../services/AuthService";
 import {categoryStore} from "../../Communikey";
 import _ from "lodash";
-import {notification} from "antd";
-import {ERROR_CATEGORY_NOT_FOUND_TITLE, ERROR_CATEGORY_NOT_FOUND} from "../../config/constants";
+import {
+  ERROR_CATEGORY_NOT_FOUND_TITLE,
+  ERROR_CATEGORY_NOT_FOUND
+} from "../../config/constants";
 import "antd/lib/notification/style/index.css";
 import "antd/lib/button/style/index.css";
 
@@ -44,7 +47,7 @@ const CategoryDeepLink = ({component: Component, authorized, ...rest}) => (
         !category && openErrorNotification();
         return <Component component={Component} category={category} authorized={authorized} {...props}/>;
       } else {
-        return <Redirect to={{pathname: ROUTE_SIGNOUT}}/>;
+        return redirectUnloggedToLogin(props.location.pathname);
       }
     }}
   />
@@ -68,5 +71,10 @@ CategoryDeepLink.propTypes = {
    *
    * @type {object}
    */
-  match: PropTypes.object
+  match: PropTypes.object,
+
+  /**
+   * @type {object} location - The location object of the react router
+   */
+  location: PropTypes.object
 };
