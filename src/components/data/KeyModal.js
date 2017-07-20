@@ -6,7 +6,7 @@ import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_BREADCRUMB, LINK_KEY_SHARE} from "../../config/constants";
 import CopyToClipboard from "react-copy-to-clipboard";
-import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb} from "antd";
+import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb, Menu, Dropdown} from "antd";
 import {Link} from "react-router-dom";
 import appConfig from "./../../config/app";
 import "antd/lib/button/style/index.less";
@@ -40,7 +40,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("name") ? "error" : ""}
-          label="Name"
           colon={false}
         >
           {getFieldDecorator("name", {
@@ -48,7 +47,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Name is required"}]
           })(
             <Input
-              placeholder="Name"
+              addonBefore="Name"
               suffix={cckeyKey.name ? copyToClipboardIcon(cckeyKey.name) : null}
               readOnly={!administrationMode}
             />)}
@@ -56,7 +55,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("login") ? "error" : ""}
-          label="Login"
           colon={false}
         >
           {getFieldDecorator("login", {
@@ -64,7 +62,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Login is required"}]
           })(
             <Input
-              placeholder="Login"
+              addonBefore="Login"
               suffix={cckeyKey.login ? copyToClipboardIcon(cckeyKey.login) : null}
               readOnly={!administrationMode}
             />
@@ -73,7 +71,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("password") ? "error" : ""}
-          label="Password"
           colon={false}
         >
           {getFieldDecorator("password", {
@@ -81,7 +78,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Password is required"}]
           })(
             <Input
-              placeholder="Password"
+              addonBefore="Password"
               type={keyPasswordVisible ? "text" : "password"}
               readOnly={!administrationMode ? true : creationMode ? false : locked}
               suffix={cckeyKey.password ? copyToClipboardIcon(cckeyKey.password) : null}
@@ -91,45 +88,50 @@ const ManagedForm = Form.create()(
         {creationMode && administrationMode && categoryTreeSelect()}
         {!creationMode && administrationMode &&
         <div>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="id"
+              prefix={<Icon type="lock"/>}
               addonBefore="ID"
               value={cckeyKey.id}
               readOnly={true}
               disabled={!cckeyKey.id}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created by"
               value={cckeyKey.createdBy}
               readOnly={true}
               disabled={!cckeyKey.createdBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created on"
               value={cckeyKey.createdDate && new Date(cckeyKey.createdDate).toLocaleString()}
               readOnly={true}
               disabled={!cckeyKey.createdDate}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified by"
               value={cckeyKey.lastModifiedBy}
               readOnly={true}
               disabled={!cckeyKey.lastModifiedBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified on"
               value={cckeyKey.lastModifiedDate && new Date(cckeyKey.lastModifiedDate).toLocaleString()}
               readOnly={true}
@@ -164,16 +166,6 @@ const managedFormItemLayout = {
     xs: {span: 24},
     sm: {span: 4}
   },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 18}
-  }
-};
-
-/**
- * Layout configurations for all read-only form items.
- */
-const readOnlyFormItemLayout = {
   wrapperCol: {
     xs: {span: 24},
     sm: {span: 18, offset: 4}
@@ -351,8 +343,9 @@ class KeyModal extends React.Component {
     const defaultKeyAvatar = () => <img src={appConfig.assets.logoTypographyGreen} className="key-logo"/>;
 
     const categoryTreeSelect = () => (
-      <Form.Item {...managedFormItemLayout} label="Category" colon={false}>
+      <Form.Item {...managedFormItemLayout} colon={false}>
         <TreeSelect
+          placeholder="Category"
           showSearch={true}
           onChange={onCategoryTreeSelectValueChange}
           allowClear={true}
@@ -370,13 +363,16 @@ class KeyModal extends React.Component {
     );
 
     const shareLink = LINK_KEY_SHARE + cckeyKey.id;
-
-    const shareButton = () => (
-      <Tooltip title="Copy share link to clipboard">
+    const footerOperationsDropdownMenu = (
+      <Menu selectable={false}>
         <CopyToClipboard text={shareLink}>
-          <Button key="shareButton" type="ghost" icon="share-alt"/>
+          <Menu.Item>
+            <Tooltip title="Copied link to clipboard!" trigger="click">
+              Copy link
+            </Tooltip>
+          </Menu.Item>
         </CopyToClipboard>
-      </Tooltip>
+      </Menu>
     );
 
     const passwordVisibilityModeButton = () => (
@@ -396,10 +392,18 @@ class KeyModal extends React.Component {
           <Col span={8}>
             <div className="operations">
               {!creationMode && administrationMode &&
-              <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
+                <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>}
               {
                 !creationMode && administrationMode &&
                 <Button key="addToCategory" size="large" onClick={this.toggleCategoryTreeSelectModal}>Select category</Button>
+              }
+              {
+                !creationMode &&
+                <Dropdown overlay={footerOperationsDropdownMenu} size="large" placement="topLeft" trigger={["click"]}>
+                  <Button key="more" type="primary" ghost={true} size="large">
+                    <Icon type="down"/>
+                  </Button>
+                </Dropdown>
               }
             </div>
           </Col>
@@ -514,7 +518,6 @@ class KeyModal extends React.Component {
         <Row span={4}>
           {!creationMode && administrationMode && lockStatusButton()}
           {passwordVisibilityModeButton()}
-          {shareButton()}
         </Row>
         <Row><Col>{footer()}</Col></Row>
         {categoryTreeSelectInnerModal()}

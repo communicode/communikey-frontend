@@ -33,7 +33,6 @@ const ManagedForm = Form.create()(
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("name") ? "error" : ""}
-          label="Name"
           colon={false}
         >
           {getFieldDecorator("name", {
@@ -41,7 +40,7 @@ const ManagedForm = Form.create()(
             rules: [{required: true, message: "Name is required"}]
           })(
             <Input
-              placeholder="Name"
+              addonBefore="Name"
               readOnly={!administrationMode}
               suffix={userGroup.name ? copyToClipboardIcon(userGroup.name) : null}
             />
@@ -49,45 +48,50 @@ const ManagedForm = Form.create()(
         </Form.Item>
         {!creationMode && administrationMode &&
         <div>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="id"
+              prefix={<Icon type="lock"/>}
               addonBefore="ID"
               value={userGroup.id}
               readOnly={true}
               disabled={!userGroup.id}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created by"
               value={userGroup.createdBy}
               readOnly={true}
               disabled={!userGroup.createdBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="createdDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Created on"
               value={userGroup.createdDate && new Date(userGroup.createdDate).toLocaleString()}
               readOnly={true}
               disabled={!userGroup.createdDate}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedBy"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified by"
               value={userGroup.lastModifiedBy}
               readOnly={true}
               disabled={!userGroup.lastModifiedBy}
             />
           </Form.Item>
-          <Form.Item {...readOnlyFormItemLayout}>
+          <Form.Item {...managedFormItemLayout}>
             <Input
               name="lastModifiedDate"
+              prefix={<Icon type="lock"/>}
               addonBefore="Modified on"
               value={userGroup.lastModifiedDate && new Date(userGroup.lastModifiedDate).toLocaleString()}
               readOnly={true}
@@ -122,16 +126,6 @@ const managedFormItemLayout = {
     xs: {span: 24},
     sm: {span: 4}
   },
-  wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 18}
-  }
-};
-
-/**
- * Layout configurations for all read-only form items.
- */
-const readOnlyFormItemLayout = {
   wrapperCol: {
     xs: {span: 24},
     sm: {span: 18, offset: 4}
