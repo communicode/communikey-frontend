@@ -4,7 +4,7 @@ import {API_AUTHORIZE, OAUTH_CHECK_TOKEN} from "../services/apiRequestMappings";
 import {notificationService} from "../Communikey";
 import {ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN, ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED} from "../config/constants";
 import {Redirect} from "react-router-dom";
-import {ROUTE_SIGNOUT} from "../routes/routeMappings";
+import {ROUTE_SIGNOUT, ROUTE_ROOT} from "../routes/routeMappings";
 import "antd/lib/notification/style/index.css";
 
 /**
@@ -78,7 +78,7 @@ const redirectToLogin = (currentPathname) => {
  * @since 0.13.0
  */
 export const redirectUnloggedToLogin = (currentPathname) => {
-  notificationService.error(ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN);
+  currentPathname !== ROUTE_ROOT && notificationService.error(ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN);
   return redirectToLogin(currentPathname);
 };
 
