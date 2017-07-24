@@ -523,7 +523,9 @@ class Keys extends React.Component {
                     </Breadcrumb.Item>
                   );
                 })}
-                <Breadcrumb separator="/"/>
+                <Breadcrumb.Item>
+                  &nbsp;
+                </Breadcrumb.Item>
               </Breadcrumb>
             </div>
 
