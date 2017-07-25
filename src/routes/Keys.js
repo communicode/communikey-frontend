@@ -35,7 +35,7 @@ import "./../BaseLayout.less";
  * The default key table column configuration.
  */
 const KEY_TABLE_DEFAULT_COLUMNS = [
-  {title: "Name", dataIndex: "name", key: "name", fixed: true, width: 100},
+  {title: "Name", dataIndex: "name", key: "name", fixed: true, width: 400},
   {title: "Login", dataIndex: "login", key: "login"}
 ];
 
@@ -104,7 +104,6 @@ class Keys extends React.Component {
   handleCategoryModalClose = () => {
     this.toggleCategoryModal();
     this.setCategoryModalLockStatus(true);
-    this.resetSelectedCategoryObject();
     this.resetSelectedNodeKeys();
   };
 
@@ -130,6 +129,7 @@ class Keys extends React.Component {
       .then(() => {
         this.setProcessingStatus(false);
         this.handleCategoryModalClose();
+        this.resetSelectedCategoryObject();
       });
   };
 
@@ -157,6 +157,7 @@ class Keys extends React.Component {
         .then(() => {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
+          this.resetSelectedCategoryObject();
         })
         .catch(() => this.setProcessingStatus(false));
   };
