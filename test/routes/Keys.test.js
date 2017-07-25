@@ -17,14 +17,13 @@ describe("<Keys>", () => {
           <Keys/>
         </Provider>
       </StaticRouter>
-    );
+    );console
 
     // Filtering the rendered output from circular references and random generated ids
     let cache = [];
     let result = JSON.stringify(wrapper, function(key, value) {
       if (typeof value === "object" && value !== null) {
         if (cache.indexOf(value) !== -1 || key.toString().startsWith("__reactInternalInstance") || key.toString().startsWith("_ownerDocument")) {
-          // console.log("Circular!");
           return;
         }
         cache.push(value);
