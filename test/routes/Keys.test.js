@@ -17,7 +17,7 @@ describe("<Keys>", () => {
           <Keys/>
         </Provider>
       </StaticRouter>
-    );console
+    );
 
     // Filtering the rendered output from circular references and random generated ids
     let cache = [];
