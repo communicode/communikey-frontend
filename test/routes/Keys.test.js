@@ -5,21 +5,26 @@ import Keys from "../../src/routes/Keys";
 import {stores} from "../__mockData__/mockUtil";
 import {mockStorage} from "../__mockData__/mockLocalStorage";
 import {Provider} from "mobx-react";
+import {StaticRouter} from "react-router-dom";
 
 describe("<Keys>", () => {
   test("should render correctly with sample data", () => {
     global.localStorage = mockStorage;
+    const context = {};
     const wrapper = mount(
-      <Provider {...stores}>
-        <Keys/>
-      </Provider>
+      <StaticRouter location="/keys" context={context}>
+        <Provider {...stores}>
+          <Keys/>
+        </Provider>
+      </StaticRouter>
     );
 
     // Filtering the rendered output from circular references and random generated ids
-    var cache = [];
-    var result = JSON.stringify(wrapper, function(key, value) {
+    let cache = [];
+    let result = JSON.stringify(wrapper, function(key, value) {
       if (typeof value === "object" && value !== null) {
         if (cache.indexOf(value) !== -1 || key.toString().startsWith("__reactInternalInstance") || key.toString().startsWith("_ownerDocument")) {
+          // console.log("Circular!");
           return;
         }
         cache.push(value);
