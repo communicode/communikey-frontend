@@ -85,6 +85,22 @@ const ManagedForm = Form.create()(
             />
           )}
         </Form.Item>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("notes") ? "error" : ""}
+          colon={false}
+        >
+          {getFieldDecorator("notes", {
+            initialValue: cckeyKey.notes
+          })(
+            <Input
+              placeholder="Notes"
+              type="textarea"
+              autosize={{minRows: 2, maxRows: 6}}
+              readOnly={!administrationMode}
+            />
+          )}
+        </Form.Item>
         {creationMode && administrationMode && categoryTreeSelect()}
         {!creationMode && administrationMode &&
         <div>
@@ -409,7 +425,7 @@ class KeyModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              <Button size="large" onClick={this.handleOnClose}>Cancel</Button>
+              {administrationMode && <Button size="large" onClick={this.handleOnClose}>Cancel</Button>}
               <Button type="primary" size="large" onClick={this.handleActionButtonOnClick} loading={loading}>{creationMode ? "Create" : "Done"}
               </Button>
             </div>
