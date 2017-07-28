@@ -1,6 +1,5 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
-import axios from "axios";
 import apiService from "../services/ApiService";
 import {categoryStore, userStore} from "./../Communikey";
 import {KEY, KEYS} from "./../services/apiRequestMappings";
@@ -47,7 +46,7 @@ class KeyStore {
     })
       .then(action("KeyStore_create_synchronization", response => {
         this.keys.push(response.data);
-        return axios.all([
+        return apiService.all([
           categoryId && categoryStore.fetchOne(categoryId),
           userStore.fetchOneById(response.data.creator)
         ])
@@ -71,7 +70,7 @@ class KeyStore {
       }
     })
       .then(action("KeyStore_deleteOne_fetch", () => {
-        return axios.all([
+        return apiService.all([
           categoryStore.fetchOne(key.category),
           userStore.fetchOneById(key.creator)
         ])

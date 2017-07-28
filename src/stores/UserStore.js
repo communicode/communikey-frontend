@@ -1,6 +1,5 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
-import axios from "axios";
 import apiService from "../services/ApiService";
 import {categoryStore, keyStore, userGroupStore} from "./../Communikey";
 import {USER, USER_AUTHORITIES, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER} from "./../services/apiRequestMappings";
@@ -128,7 +127,7 @@ class UserStore {
       }
     })
       .then(action("UserStore_deleteOne_fetch", () => {
-        return axios.all([
+        return apiService.all([
           categoryStore.fetchAll(),
           keyStore.fetchAll(),
           userGroupStore.fetchAll()

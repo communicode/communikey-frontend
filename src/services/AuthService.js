@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import apiService from "./ApiService";
 import {API_AUTHORIZE, OAUTH_CHECK_TOKEN} from "../services/apiRequestMappings";
 import {notificationService} from "../Communikey";
 import {ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN, ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED} from "../config/constants";
@@ -25,7 +25,7 @@ class AuthService {
    * @since 0.8.0
    */
   static getOAuth2AccessToken = (login, password) => {
-    return axios.post(API_AUTHORIZE, {
+    return apiService.post(API_AUTHORIZE, {
       login: login,
       password: password
     }).then(response => response.data);
@@ -39,7 +39,7 @@ class AuthService {
    * @since 0.8.0
    */
   static resolveOAuth2AccessToken = (oAuth2AccessToken) => {
-    return axios.get(OAUTH_CHECK_TOKEN, {
+    return apiService.get(OAUTH_CHECK_TOKEN, {
       params: {
         token: oAuth2AccessToken
       }
@@ -78,7 +78,7 @@ const redirectToLogin = (currentPathname) => {
  * @since 0.13.0
  */
 export const redirectUnloggedToLogin = (currentPathname) => {
-  currentPathname !== ROUTE_ROOT && notificationService.error(ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN);
+  currentPathname !== ROUTE_ROOT && notificationService.error(ERROR_NOT_LOGGED_IN_TITLE, ERROR_NOT_LOGGED_IN, 5);
   return redirectToLogin(currentPathname);
 };
 
@@ -89,7 +89,7 @@ export const redirectUnloggedToLogin = (currentPathname) => {
  * @since 0.8.0
  */
 export const redirectUnauthorizedToLogin = (currentPathname) => {
-  notificationService.error(ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED);
+  notificationService.error(ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED, 5);
   console.log("Unauthorized:", currentPathname);
   return redirectToLogin(currentPathname);
 };

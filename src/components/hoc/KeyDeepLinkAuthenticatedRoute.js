@@ -29,7 +29,7 @@ const KeyDeepLink = ({component: Component, authorized, ...rest}) => (
       if (authorized) {
         const checkHash = (hash) => _.find(keyStore.keys, key => key.id === hash);
         let key = checkHash(props.match.params.id);
-        !key && notificationService.error(ERROR_KEY_NOT_FOUND_TITLE, ERROR_KEY_NOT_FOUND);
+        !key && notificationService.error(ERROR_KEY_NOT_FOUND_TITLE, ERROR_KEY_NOT_FOUND, 5);
         return <Component component={Component} cckey={key} authorized={authorized} {...props}/>;
       } else {
         return redirectUnloggedToLogin(props.location.pathname);
