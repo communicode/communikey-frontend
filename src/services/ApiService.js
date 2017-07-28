@@ -15,9 +15,8 @@ apiService.interceptors.response.use(function (response) {
     break;
   }
   case 401: {
-    error.response.config.url === API_AUTHORIZE
-      ? notificationService.error("Error: ", "Login failed. Please try again.", 5)
-      : notificationService.error("Error: ", "Your user token is not correct. Please repeat the login process.", 5);
+    error.response.config.url === API_AUTHORIZE &&
+      notificationService.error("Error: ", "Login failed. Please try again.", 5);
     break;
   }
   case 504: {
