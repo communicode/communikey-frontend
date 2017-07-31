@@ -11,7 +11,7 @@ apiService.interceptors.response.use(function (response) {
   switch (error.response.status) {
   case 400: {
     error.response.data.errors.map((errorMessage) => {
-      notificationService.error("Error: ", errorMessage, 5);
+      notificationService.error("Error: ", errorMessage, 10);
     });
     break;
   }
@@ -21,11 +21,11 @@ apiService.interceptors.response.use(function (response) {
     break;
   }
   case 504: {
-    notificationService.error("Error: ", "No connection the the server possible. If the error persists contact key@communicode.de", 5);
+    notificationService.error("Error: ", "No connection the the server possible. If the error persists contact key@communicode.de", 10);
     break;
   }
   default: {
-    notificationService.error("Error: " + error.response.status, error.response.data.error, 3);
+    notificationService.error("Error: " + error.response.status, error.response.data.error, 10);
     break;
   }}
   return Promise.reject(error);
