@@ -3,6 +3,7 @@ import {notificationService} from "../Communikey";
 import {API_AUTHORIZE} from "../services/apiRequestMappings";
 
 const apiService = axios.create({timeout: 5000});
+apiService.all = axios.all;
 
 apiService.interceptors.response.use(function (response) {
   return response;
