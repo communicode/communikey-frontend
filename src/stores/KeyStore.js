@@ -30,15 +30,17 @@ class KeyStore {
    * @param {string} name - The name of the key to create
    * @param {string} login - The login of the key
    * @param {string} password - The password of the key
+   * @param {string} notes - The notes for the key
    * @returns {Promise} - A promise
    */
   @action("KeyStore_create")
-  create = (categoryId, name, login, password) => {
+  create = (categoryId, name, login, password, notes) => {
     return apiService.post(KEYS, {
       categoryId: categoryId,
       name: name,
       login: login,
-      password: password
+      password: password,
+      notes: notes
     }, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
@@ -124,14 +126,16 @@ class KeyStore {
    * @param {string} name - The name of the key
    * @param {string} login - The login of the key
    * @param {string} password - The password of the key
+   * @param {string} notes - The notes of the key
    * @returns {Promise} - A promise
    */
   @action("KeyStore_update")
-  update = (keyId, name, login, password) => {
+  update = (keyId, name, login, password, notes) => {
     return apiService.put(KEY({keyId: keyId}), {
       name: name,
       login: login,
-      password: password
+      password: password,
+      notes: notes
     }, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)

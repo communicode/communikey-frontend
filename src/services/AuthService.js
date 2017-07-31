@@ -90,7 +90,6 @@ export const redirectUnloggedToLogin = (currentPathname) => {
  */
 export const redirectUnauthorizedToLogin = (currentPathname) => {
   notificationService.error(ERROR_NOT_AUTHORIZED_TITLE, ERROR_NOT_AUTHORIZED, 5);
-  console.log("Unauthorized:", currentPathname);
   return redirectToLogin(currentPathname);
 };
 

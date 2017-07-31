@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_BREADCRUMB, LINK_KEY_SHARE} from "../../config/constants";
+import {ROUTE_KEYS} from "../../routes/routeMappings";
 import CopyToClipboard from "react-copy-to-clipboard";
+import {getAncestors} from "../../services/StoreService";
 import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb, Menu, Dropdown} from "antd";
 import {Link} from "react-router-dom";
 import appConfig from "./../../config/app";
@@ -82,6 +84,22 @@ const ManagedForm = Form.create()(
               type={keyPasswordVisible ? "text" : "password"}
               readOnly={!administrationMode ? true : creationMode ? false : locked}
               suffix={cckeyKey.password ? copyToClipboardIcon(cckeyKey.password) : null}
+            />
+          )}
+        </Form.Item>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("notes") ? "error" : ""}
+          colon={false}
+        >
+          {getFieldDecorator("notes", {
+            initialValue: cckeyKey.notes
+          })(
+            <Input
+              placeholder="Notes"
+              type="textarea"
+              autosize={{minRows: 2, maxRows: 6}}
+              readOnly={!administrationMode}
             />
           )}
         </Form.Item>
@@ -409,7 +427,7 @@ class KeyModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              <Button size="large" onClick={this.handleOnClose}>Cancel</Button>
+              {administrationMode && <Button size="large" onClick={this.handleOnClose}>Cancel</Button>}
               <Button type="primary" size="large" onClick={this.handleActionButtonOnClick} loading={loading}>{creationMode ? "Create" : "Done"}
               </Button>
             </div>
@@ -463,18 +481,15 @@ class KeyModal extends React.Component {
     );
 
     const categoryBreadcrumb = (key) => {
-      let queue = [];
-      const findParents = (category) => {
-        queue.push(category);
-        category.parent && findParents(this.props.categoryStore._findById(category.parent));
-      };
-      findParents(this.props.categoryStore._findById(key.category));
-      queue.reverse();
       return (
         <div className="cckey-key-modal-breadcrumb">
           <Breadcrumb separator="/">
-            <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
-            {queue.map(function(object, id){
+            <Breadcrumb.Item>
+              <Link to={ROUTE_KEYS}>
+                <Icon type="home"/>
+              </Link>
+            </Breadcrumb.Item>
+            {getAncestors(this.props.categoryStore.categories, this.props.categoryStore._findById(key.category), "parent", false, true).map(function(object, id) {
               const shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
               return (
                 <Breadcrumb.Item key={id}>

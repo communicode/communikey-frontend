@@ -4,13 +4,20 @@ import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import update from "immutability-helper";
-import {Button, Col, Icon, Row, Tabs, Table, Tooltip} from "antd";
+import {Button, Col, Icon, Row, Tabs, Table, Tooltip, Breadcrumb} from "antd";
 import CategoryModal from "./../components/data/CategoryModal";
 import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
+import {getAncestors} from "../services/StoreService";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
-import {TAB_PANE_REACT_KEY_CATEGORIZED, TAB_PANE_REACT_KEY_POOL} from "../config/constants";
+import {
+  TAB_PANE_REACT_KEY_CATEGORIZED,
+  TAB_PANE_REACT_KEY_POOL,
+  LINK_CATEGORY_BREADCRUMB
+} from "../config/constants";
+import {ROUTE_KEYS} from "../routes/routeMappings";
+import {Link} from "react-router-dom";
 import {screenMD} from "./../config/theme/sizes";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -20,6 +27,7 @@ import "antd/lib/row/style/css";
 import "antd/lib/tabs/style/index.less";
 import "antd/lib/table/style/index.less";
 import "antd/lib/tooltip/style/index.less";
+import "antd/lib/breadcrumb/style/index.less";
 import "./Keys.less";
 import "./../BaseLayout.less";
 
@@ -27,7 +35,7 @@ import "./../BaseLayout.less";
  * The default key table column configuration.
  */
 const KEY_TABLE_DEFAULT_COLUMNS = [
-  {title: "Name", dataIndex: "name", key: "name", fixed: true, width: 100},
+  {title: "Name", dataIndex: "name", key: "name", fixed: true, width: 400},
   {title: "Login", dataIndex: "login", key: "login"}
 ];
 
@@ -96,7 +104,6 @@ class Keys extends React.Component {
   handleCategoryModalClose = () => {
     this.toggleCategoryModal();
     this.setCategoryModalLockStatus(true);
-    this.resetSelectedCategoryObject();
     this.resetSelectedNodeKeys();
   };
 
@@ -122,6 +129,7 @@ class Keys extends React.Component {
       .then(() => {
         this.setProcessingStatus(false);
         this.handleCategoryModalClose();
+        this.resetSelectedCategoryObject();
       });
   };
 
@@ -149,6 +157,7 @@ class Keys extends React.Component {
         .then(() => {
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
+          this.resetSelectedCategoryObject();
         })
         .catch(() => this.setProcessingStatus(false));
   };
@@ -309,13 +318,13 @@ class Keys extends React.Component {
     const updatedKey = update(key, {$merge: payload});
     this.setState({key: updatedKey});
     if(keyModalCreationMode) {
-      return this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, updatedKey.login, updatedKey.password)
+      return this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, updatedKey.login, updatedKey.password, updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
         })
         .catch(() => this.setProcessingStatus(false));
     } else {
-      return this.props.keyStore.update(updatedKey.id, updatedKey.name, updatedKey.login, updatedKey.password)
+      return this.props.keyStore.update(updatedKey.id, updatedKey.name, updatedKey.login, updatedKey.password, updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
         })
@@ -431,9 +440,23 @@ class Keys extends React.Component {
     } = this.state;
 
     const dragStatusButton = () => (
-      <Tooltip title={categoryTreeDraggable ? "Disable dragging" : "Enable dragging"}>
-        <Button key="categoryTreeDragStatus" type={categoryTreeDraggable ? "dashed" : "ghost"} onClick={this.toggleCategoryTreeDragStatus} icon="swap"/>
-      </Tooltip>
+      <Button key="categoryTreeDragStatus" type={categoryTreeDraggable ? "dashed" : "ghost"} onClick={this.toggleCategoryTreeDragStatus} icon="swap">
+        {categoryTreeDraggable ? "Disable dragging" : "Enable dragging"}
+      </Button>
+    );
+
+    const selectedCategory = () => (
+      <div>
+        {this.state.category.name}
+        {
+        authStore.privileged &&
+        <Tooltip title="Edit category">
+          <Button shape="circle" onClick={this.toggleCategoryModal}>
+            <Icon type="edit"/>
+          </Button>
+        </Tooltip>
+        }
+      </div>
     );
 
     const tabViewCategorized = () => (
@@ -483,12 +506,45 @@ class Keys extends React.Component {
     const tabViewCategorizedOperationHeaderSection = () => (
       <div className="tab-view-categorized-operation-header-section">
         <Row>
-          <Col span={24}>
+          <Col span={16}>
+            <div className="category-breadcrumbs">
+              <Breadcrumb separator="/">
+                <Breadcrumb.Item>
+                  <Link to={ROUTE_KEYS}>
+                    <Icon type="home"/>
+                  </Link>
+                </Breadcrumb.Item>
+                {getAncestors(this.props.categoryStore.categories, this.state.category, "parent", true, true).map(function(object, id) {
+                  const shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
+                  return (
+                    <Breadcrumb.Item key={id}>
+                      <Link to={shareLink}>
+                        {object.name}
+                      </Link>
+                    </Breadcrumb.Item>
+                  );
+                })}
+                <Breadcrumb.Item>
+                  &nbsp;
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+
+            <div className="header-category-name">
+              {this.state.category.name
+                ? selectedCategory()
+                : "No category selected"
+              }
+            </div>
+          </Col>
+          <Col span={8}>
             {authStore.privileged &&
             <div className="action-button-bar">
-              <Button.Group>
-                <Button type="primary" ghost={true} icon="edit" onClick={this.toggleCategoryModal} disabled={!categoryTreeSelectedNodeKeys.length}/>
-              </Button.Group>
+              {/*<Button.Group>*/}
+                {/*<Button type="primary" ghost={true} icon="edit" onClick={this.toggleCategoryModal} disabled={!categoryTreeSelectedNodeKeys.length}>*/}
+                  {/*Edit*/}
+                {/*</Button>*/}
+              {/*</Button.Group>*/}
               <Button.Group>
                 {dragStatusButton()}
               </Button.Group>
