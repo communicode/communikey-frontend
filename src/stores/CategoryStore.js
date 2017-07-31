@@ -1,5 +1,4 @@
 import {action, observable} from "mobx";
-import axios from "axios";
 import apiService from "../services/ApiService";
 import {keyStore, userGroupStore, userStore} from "./../Communikey";
 import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_GROUPS, CATEGORY_KEYS} from "./../services/apiRequestMappings";
@@ -121,7 +120,7 @@ class CategoryStore {
       }
     })
       .then(action("CategoryStore_deleteOne_fetch", () => {
-        return axios.all([
+        return apiService.all([
           userStore.fetchAll(),
           keyStore.fetchAll(),
           userGroupStore.fetchAll()

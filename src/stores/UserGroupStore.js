@@ -1,5 +1,4 @@
 import {action, observable} from "mobx";
-import axios from "axios";
 import _ from "lodash";
 import {categoryStore, userStore} from "./../Communikey";
 import apiService from "../services/ApiService";
@@ -82,7 +81,7 @@ class UserGroupStore {
       }
     })
       .then(action("UserGroupStore_deleteOne_fetch", () => {
-        axios.all([
+        apiService.all([
           _.forEach(
             _.filter(categoryStore.categories, category => category.groups.includes(userGroupId)), category => categoryStore.fetchOne(category.id)
           ),

@@ -16,30 +16,33 @@ class NotificationService {
     });
   }
 
-  error = (message, description) => {
+  error = (message, description, duration) => {
     const key = `open${Date.now()}`;
     notification.error({
       message: message,
       description: description,
+      duration: duration,
       key
     });
   };
 
-  warn = (message, description) => {
+  warn = (message, description, duration) => {
     const key = `open${Date.now()}`;
     notification.warn({
       message: message,
       description: description,
+      duration: duration,
       key
     });
   };
 
-  info = (message, description) => {
+  info = (message, description, duration) => {
     const key = `open${Date.now()}`;
     notification.info({
       placement: "bottomRight",
       message: message,
       description: description,
+      duration: duration,
       key
     });
   };

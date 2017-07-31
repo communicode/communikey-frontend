@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import apiService from "./services/ApiService";
 import PropTypes from "prop-types";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {Link, NavLink} from "react-router-dom";
@@ -40,20 +40,31 @@ class BaseLayout extends React.Component {
   componentDidMount() {
     this.props.authStore.fetch()
       .then(() => {
-        this.initializeStores()
-          .then(() => this.setState({storesInitialized: true}))
-          .catch(() => this.setState({initialized: true}));
+        this.props.authStore.privileged
+          ? this.initializeStores()
+              .then(() => this.setState({storesInitialized: true}))
+              .catch(() => this.setState({initialized: false}))
+          : this.initializeUserStores()
+              .then(() => this.setState({storesInitialized: true}))
+              .catch(() => this.setState({initialized: false}));
       })
       .catch(() => this.setState({initialized: true}));
   }
 
   initializeStores = () => {
-    return axios.all([
+    return apiService.all([
       this.props.authorityStore.fetchAll(),
       this.props.categoryStore.fetchAll(),
       this.props.keyStore.fetchAll(),
       this.props.userStore.fetchAll(),
       this.props.userGroupStore.fetchAll()
+    ]);
+  };
+
+  initializeUserStores = () => {
+    return apiService.all([
+      this.props.categoryStore.fetchAll(),
+      this.props.keyStore.fetchAll()
     ]);
   };
 
