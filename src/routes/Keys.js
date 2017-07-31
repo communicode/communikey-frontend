@@ -321,7 +321,6 @@ class Keys extends React.Component {
       return this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, updatedKey.login, updatedKey.password, updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
-          this.handleKeyModalClose();
         })
         .catch(() => this.setProcessingStatus(false)
         );
@@ -329,7 +328,6 @@ class Keys extends React.Component {
       return this.props.keyStore.update(updatedKey.id, updatedKey.name, updatedKey.login, updatedKey.password, updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
-          this.handleKeyModalClose();
         })
         .catch(() => this.setProcessingStatus(false));
     }
