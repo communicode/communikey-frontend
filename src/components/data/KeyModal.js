@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_BREADCRUMB, LINK_KEY_SHARE} from "../../config/constants";
+import {ROUTE_KEYS} from "../../routes/routeMappings";
 import CopyToClipboard from "react-copy-to-clipboard";
+import {getAncestors} from "../../services/StoreService";
 import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb, Menu, Dropdown} from "antd";
 import {Link} from "react-router-dom";
 import appConfig from "./../../config/app";
@@ -479,18 +481,15 @@ class KeyModal extends React.Component {
     );
 
     const categoryBreadcrumb = (key) => {
-      let queue = [];
-      const findParents = (category) => {
-        queue.push(category);
-        category.parent && findParents(this.props.categoryStore._findById(category.parent));
-      };
-      findParents(this.props.categoryStore._findById(key.category));
-      queue.reverse();
       return (
         <div className="cckey-key-modal-breadcrumb">
           <Breadcrumb separator="/">
-            <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
-            {queue.map(function(object, id){
+            <Breadcrumb.Item>
+              <Link to={ROUTE_KEYS}>
+                <Icon type="home"/>
+              </Link>
+            </Breadcrumb.Item>
+            {getAncestors(this.props.categoryStore.categories, this.props.categoryStore._findById(key.category), "parent", false, true).map(function(object, id) {
               const shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
               return (
                 <Breadcrumb.Item key={id}>

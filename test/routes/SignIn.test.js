@@ -1,4 +1,3 @@
-// jest.mock("../../src/services/ApiService", () => require("../__mockData__/MockApiService"));
 jest.mock("../../src/Communikey", () => require("../__mockData__/mockUtil"));
 import React from "react";
 import {mount} from "enzyme";

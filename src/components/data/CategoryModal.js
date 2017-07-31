@@ -5,9 +5,11 @@ import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_SHARE, LINK_CATEGORY_BREADCRUMB} from "../../config/constants";
+import {ROUTE_KEYS} from "../../routes/routeMappings";
 import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip, Breadcrumb, Menu, Dropdown} from "antd";
 import {Link} from "react-router-dom";
 import {screenMD} from "./../../config/theme/sizes";
+import {getAncestors} from "../../services/StoreService";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/form/style/index.less";
@@ -321,18 +323,15 @@ class CategoryModal extends React.Component {
     );
 
     const breadcrumb = () => {
-      let queue = [];
-      const findParents = (category) => {
-        queue.push(category);
-        category.parent && findParents(this.props.categoryStore._findById(category.parent));
-      };
-      findParents(category);
-      queue.reverse();
       return (
         <div className="cckey-category-modal-breadcrumb">
           <Breadcrumb separator="/">
-            <Breadcrumb.Item><Icon type="home"/></Breadcrumb.Item>
-            {queue.map(function(object, id) {
+            <Breadcrumb.Item>
+              <Link to={ROUTE_KEYS}>
+                <Icon type="home"/>
+              </Link>
+            </Breadcrumb.Item>
+            {getAncestors(this.props.categoryStore.categories, category, "parent", false, true).map(function(object, id) {
               const shareLink = LINK_CATEGORY_BREADCRUMB + object.id;
               return (
                 <Breadcrumb.Item key={id}>
