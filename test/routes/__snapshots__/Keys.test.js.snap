@@ -6049,19 +6049,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                         \\"props\\": {
                                                                                                                                             \\"className\\": \\"main\\",
                                                                                                                                             \\"children\\": [
-                                                                                                                                                {
-                                                                                                                                                    \\"key\\": null,
-                                                                                                                                                    \\"ref\\": null,
-                                                                                                                                                    \\"props\\": {
-                                                                                                                                                        \\"size\\": \\"large\\",
-                                                                                                                                                        \\"children\\": \\"Cancel\\",
-                                                                                                                                                        \\"prefixCls\\": \\"ant-btn\\",
-                                                                                                                                                        \\"loading\\": false,
-                                                                                                                                                        \\"clicked\\": false,
-                                                                                                                                                        \\"ghost\\": false
-                                                                                                                                                    },
-                                                                                                                                                    \\"_store\\": {}
-                                                                                                                                                },
+                                                                                                                                                false,
                                                                                                                                                 {
                                                                                                                                                     \\"key\\": null,
                                                                                                                                                     \\"ref\\": null,
