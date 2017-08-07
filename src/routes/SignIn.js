@@ -112,8 +112,12 @@ class SignIn extends React.Component {
         this.props.authStore.fetch()
           .catch(error => console.error(error));
       })
-      .catch(error => console.error(error))
-      .then(() => this.setState({processing: false, signInFailed: true}));
+      .catch(() => {
+        this.setState({
+          processing: false,
+          signInFailed: true
+        });
+      });
   };
 
   /**
