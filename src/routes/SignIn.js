@@ -24,11 +24,14 @@ import "./SignIn.less";
  */
 const ManagedForm = Form.create()(
   (props) => {
-    const {form, handleSubmit, signInFailed} = props;
+    const {form, handleSubmit, signInFailed, login} = props;
     const {getFieldDecorator} = form;
+    const suffix = login
+      ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/>
+      : <Tooltip title={LOGIN_INFORMATION_TEXT}><Icon type="info-circle-o"/> </Tooltip>;
 
     return (
-      <Form hideRequiredMark={true} onSubmit={this.SignIn}>
+      <Form hideRequiredMark={true}>
         <div>
           <Form.Item
             validateStatus={form.getFieldError("login") || signInFailed ? "error"  : ""}
@@ -39,11 +42,10 @@ const ManagedForm = Form.create()(
             })(
             <Input
               name="login"
+              suffix={suffix}
               prefix={<Icon type="mail"/>}
               addonAfter={appConfig.EMAIL_PREFIX}
-              onChange={this.handleInputChange}
               placeholder="Email"
-              ref={node => this.loginInput = node}
               onPressEnter={handleSubmit}
             />)
             }
@@ -53,13 +55,12 @@ const ManagedForm = Form.create()(
             colon={false}
           >
             {getFieldDecorator("password", {
-              rules: [{required: true, message: "Passwords is required"}]
+              rules: [{required: true, message: "Password is required"}]
             })(
               <Input
                 name="password"
                 prefix={<Icon type="lock"/>}
                 type="password"
-                onChange={this.handleInputChange}
                 placeholder="Password"
                 onPressEnter={handleSubmit}
               />)
@@ -155,21 +156,8 @@ class SignIn extends React.Component {
     this.setState({login: ""});
   };
 
-
-  /**
-   * Handles all input value change events.
-   *
-   * @param event - The change event
-   * @since 0.8.0
-   */
-  handleInputChange = (event) => this.setState({[event.target.name]: event.target.value});
-
   render() {
     const {login, processing} = this.state;
-    const suffix = login
-      ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/>
-      : <Tooltip title={LOGIN_INFORMATION_TEXT}><Icon type="info-circle-o"/> </Tooltip>;
-
     const footer = () => (
       <footer className="cckey-signin-footer-container">
         <p>version {VERSION}</p>
@@ -188,6 +176,7 @@ class SignIn extends React.Component {
             ref={this.saveManagedFormRef}
             handleSubmit={this.handleSubmit}
             signInFailed={this.state.signInFailed}
+            login={login}
           />
           <Button
             type="primary"
