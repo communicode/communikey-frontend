@@ -1,7 +1,7 @@
 import React from "react";
 import AuthService from "./../services/AuthService";
 import {inject, observer, PropTypes as MobxPropTypes} from "mobx-react";
-import keydown, {Keys}  from "react-keydown";
+import keydown, {Keys} from "react-keydown";
 import {Button, Form, Icon, Input, Tooltip} from "antd";
 import appConfig from "../config/app";
 import {VERSION} from "./../Communikey";
@@ -19,8 +19,59 @@ import "./SignIn.less";
  * @author dvonderbey@communicode.de
  * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
+ * @author lleifermann@communicode.de
  * @since 0.3.0
  */
+const ManagedForm = Form.create()(
+  (props) => {
+    const {form, handleSubmit, signInFailed, login} = props;
+    const {getFieldDecorator} = form;
+    const suffix = login
+      ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/>
+      : <Tooltip title={LOGIN_INFORMATION_TEXT}><Icon type="info-circle-o"/> </Tooltip>;
+
+    return (
+      <Form hideRequiredMark={true}>
+        <div>
+          <Form.Item
+            validateStatus={form.getFieldError("login") || signInFailed ? "error"  : ""}
+            colon={false}
+          >
+            {getFieldDecorator("login", {
+              rules: [{required: true, message: "Email is required"}]
+            })(
+            <Input
+              name="login"
+              suffix={suffix}
+              prefix={<Icon type="mail"/>}
+              addonAfter={appConfig.EMAIL_PREFIX}
+              placeholder="Email"
+              onPressEnter={handleSubmit}
+            />)
+            }
+          </Form.Item>
+          <Form.Item
+            validateStatus={form.getFieldError("password") || signInFailed ? "error" : ""}
+            colon={false}
+          >
+            {getFieldDecorator("password", {
+              rules: [{required: true, message: "Password is required"}]
+            })(
+              <Input
+                name="password"
+                prefix={<Icon type="lock"/>}
+                type="password"
+                placeholder="Password"
+                onPressEnter={handleSubmit}
+              />)
+            }
+          </Form.Item>
+        </div>
+      </Form>
+    );
+  }
+);
+
 @inject(AUTH_STORE) @observer
 class SignIn extends React.Component {
   constructor(props) {
@@ -39,7 +90,12 @@ class SignIn extends React.Component {
       /**
        * @type {boolean} processing - The current processing status
        */
-      processing: false
+      processing: false,
+
+      /**
+       * @type {boolean} signInFailed - The status of the last request
+       */
+      signInFailed: false
     };
   }
 
@@ -48,17 +104,41 @@ class SignIn extends React.Component {
    *
    * @since 0.8.0
    */
-  signIn = () => {
+  signIn = (login, password) => {
     this.setState({processing: true});
-    AuthService.getOAuth2AccessToken(this.state.login, this.state.password)
+    AuthService.getOAuth2AccessToken(login, password)
       .then(oAuth2Data => {
         Object.entries(oAuth2Data).map(([key, value]) => localStorage.setItem(key, value));
         this.props.authStore.fetch()
           .catch(error => console.error(error));
       })
-      .catch(error => console.error(error))
-      .then(() => this.setState({processing: false}));
+      .catch(() => {
+        this.setState({
+          processing: false,
+          signInFailed: true
+        });
+      });
   };
+
+  /**
+   * Handles the action button click event.
+   *
+   * @since 0.15.0
+   */
+  handleSubmit = () => this.form.validateFields((errors, payload) => {
+    if (!errors) {
+      this.setState({processing: true});
+      this.signIn(payload.login, payload.password);
+    }
+  });
+
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param form - The form to save the reference to
+   * @since 0.15.0
+   */
+  saveManagedFormRef = (form) => this.form = form;
 
   /**
    * Calls the signIn function.
@@ -67,7 +147,7 @@ class SignIn extends React.Component {
    */
   @keydown(Keys.ENTER)
   signInOnKeyPress() {
-    this.signIn();
+    this.handleSubmit();
   }
 
   /**
@@ -80,18 +160,8 @@ class SignIn extends React.Component {
     this.setState({login: ""});
   };
 
-  /**
-   * Handles all input value change events.
-   *
-   * @param event - The change event
-   * @since 0.8.0
-   */
-  handleInputChange = (event) => this.setState({[event.target.name]: event.target.value});
-
   render() {
     const {login, processing} = this.state;
-    const suffix = login ? <Icon type="close-circle" onClick={this.resetLoginInputValue}/> : <Tooltip title={LOGIN_INFORMATION_TEXT}><Icon type="info-circle-o"/> </Tooltip>;
-
     const footer = () => (
       <footer className="cckey-signin-footer-container">
         <p>version {VERSION}</p>
@@ -106,32 +176,20 @@ class SignIn extends React.Component {
             <img src={appConfig.assets.logoLightDropshadow}/>
           </div>
           <p className="app-title">{appConfig.name}</p>
-          <Form>
-            <Form.Item>
-              <Input
-                name="login"
-                prefix={<Icon type="mail"/>}
-                addonAfter={appConfig.EMAIL_PREFIX}
-                onChange={this.handleInputChange}
-                placeholder="Email"
-                value={login}
-                suffix={suffix}
-                ref={node => this.loginInput = node}
-                onPressEnter={this.signIn}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Input
-                name="password"
-                prefix={<Icon type="lock"/>}
-                type="password"
-                onChange={this.handleInputChange}
-                placeholder="Password"
-                onPressEnter={this.signIn}
-              />
-            </Form.Item>
-            <Button type="primary" size="large" onClick={this.signIn} loading={processing}>Sign in</Button>
-          </Form>
+          <ManagedForm
+            ref={this.saveManagedFormRef}
+            handleSubmit={this.handleSubmit}
+            signInFailed={this.state.signInFailed}
+            login={login}
+          />
+          <Button
+            type="primary"
+            size="large"
+            onClick={this.handleSubmit}
+            loading={processing}
+          >
+            Sign in
+          </Button>
         </div>
         {footer()}
       </div>
