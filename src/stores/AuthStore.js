@@ -18,6 +18,7 @@ class AuthStore {
   @observable lastName;
   @observable isAuthorized;
   @observable authorities;
+  @observable publicKey;
 
   constructor() {
     this.login = "";
@@ -26,6 +27,7 @@ class AuthStore {
     this.lastName = "";
     this.isAuthorized = false;
     this.authorities = [];
+    this.publicKey = "";
   }
 
   /**
@@ -65,6 +67,7 @@ class AuthStore {
     this.lastName = "";
     this.isAuthorized = false;
     this.authorities = [];
+    this.publicKey = "";
   };
 
   /**

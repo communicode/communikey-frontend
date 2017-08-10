@@ -14,9 +14,11 @@ import {
   ROUTE_DASHBOARD,
   ROUTE_ADMINISTRATION_USER_GROUPS,
   ROUTE_ADMINISTRATION_USERS,
-  ROUTE_KEYS
+  ROUTE_KEYS,
+  ROUTE_SETTINGS
 } from "./routes/routeMappings";
 import {VERSION} from "./Communikey";
+import ProfileModal from "./components/data/ProfileModal";
 import "antd/lib/layout/style/index.less";
 import "antd/lib/menu/style/index.less";
 import "antd/lib/icon/style/css";
@@ -33,7 +35,9 @@ class BaseLayout extends React.Component {
       isSidebarCollapsed: false,
       sidebarMenuMode: "inline",
       sidebarCurrentSelected: props.location.pathname === ROOT ? ROUTE_DASHBOARD : props.location.pathname,
-      sidebarOpenKeys: []
+      sidebarOpenKeys: [],
+      profileModalVisible: false,
+      processing: false
     };
   }
 
@@ -99,6 +103,52 @@ class BaseLayout extends React.Component {
 
   isActiveSidebarNavLink = (menuItemKeyName) => this.state.sidebarCurrentSelected === menuItemKeyName;
 
+  /**
+   * Toggles the user modal.
+   */
+  toggleProfileModal = () => this.setState(prevState => ({profileModalVisible: !prevState.profileModalVisible}));
+
+  /**
+   * Handles the user modal close event.
+   *
+   * @callback handleProfileModalClose
+   */
+  handleProfileModalClose = () => {
+    this.toggleProfileModal();
+  };
+
+  /**
+   * Handles the profile modal password reset event.
+   *
+   * @callback handleProfileModalUserPasswordReset
+   * @param {string} newPassword - The new password
+   */
+  handleProfileModalUserPasswordReset = (newPassword) => {
+    this.setProcessingStatus(true);
+    if (!this.state.user.resetToken) {
+      return this._generatePasswordResetToken(this.state.user.email, this.state.user.login)
+        .then(resetToken => {
+          return this._resetPassword(resetToken.resetToken, newPassword, this.state.user.login)
+            .then(() => this.setProcessingStatus(false))
+            .catch(error => {
+              this.setProcessingStatus(false);
+              return Promise.reject(error);
+            });
+        })
+        .catch(error => {
+          this.setProcessingStatus(false);
+          return Promise.reject(error);
+        });
+    } else {
+      return this._resetPassword(this.state.user.resetToken, newPassword, this.state.user.login)
+        .then(() => this.setProcessingStatus(false))
+        .catch(error => {
+          this.setProcessingStatus(false);
+          return Promise.reject(error);
+        });
+    }
+  };
+
   render() {
     const {initialized, isSidebarCollapsed, sidebarCurrentSelected, sidebarMenuMode, sidebarOpenKeys, storesInitialized} = this.state;
     const {authStore, children} = this.props;
@@ -146,11 +196,22 @@ class BaseLayout extends React.Component {
     );
     sidebar.__ANT_LAYOUT_SIDER = true;
 
+    /**
+     * Operations name constants and the name of the callback function.
+     */
+    const OPERATION_TYPES = {
+      SETTINGS_PAGE: {
+        keyName: "SETTINGS_PAGE",
+        handler: this.toggleProfileModal
+      }
+    };
+
     const header = () => (
       <Layout.Header className="cckey-base-layout-header">
         <Row type="flex" justify="end" align="bottom">
-          <Menu mode="horizontal">
+          <Menu mode="horizontal" onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
             <Menu.SubMenu title={authStore.firstName}>
+              <Menu.Item key={OPERATION_TYPES.SETTINGS_PAGE.keyName}>Settings</Menu.Item>
               <Menu.Item key="sign-out">
                 <Link to={ROUTE_SIGNOUT}>Sign out</Link>
               </Menu.Item>
@@ -189,6 +250,12 @@ class BaseLayout extends React.Component {
         <Layout className="cckey-base-layout">
           {header()}
           <Layout.Content>
+            <ProfileModal
+              visible={this.state.profileModalVisible}
+              onClose={this.handleProfileModalClose}
+              onUserPasswordReset={this.handleProfileModalUserPasswordReset}
+              loading={this.state.processing}
+            />
             {children}
           </Layout.Content>
           <Layout.Footer>
