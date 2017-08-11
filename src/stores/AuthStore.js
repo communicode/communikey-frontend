@@ -1,5 +1,6 @@
 import {action, observable} from "mobx";
 import apiService from "./../services/ApiService";
+import {encryptionService} from "../Communikey";
 import {API_ME} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
@@ -48,6 +49,7 @@ class AuthStore {
         for (const key of Object.keys(response.data)) {
           this[key] = response.data[key];
         }
+        encryptionService.loadPrivateKey();
         this.isAuthorized = true;
         return response;
       }));

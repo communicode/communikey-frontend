@@ -8,6 +8,7 @@ import {useStrict} from "mobx";
 import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
 import NotificationService from "./services/NotificationService";
+import EncryptionService from "./services/EncryptionService";
 import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
 import PublicForwardRoute from "./components/hoc/PublicForwardRoute";
@@ -105,6 +106,14 @@ const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupSto
  * @since 0.13.0
  */
 export const notificationService = new NotificationService();
+
+/**
+ * The encryption service instance.
+ *
+ * @type {EncryptionService}
+ * @since 0.15.0
+ */
+export const encryptionService = new EncryptionService();
 
 /**
  * The communikey version.
