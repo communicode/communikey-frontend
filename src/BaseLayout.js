@@ -14,8 +14,7 @@ import {
   ROUTE_DASHBOARD,
   ROUTE_ADMINISTRATION_USER_GROUPS,
   ROUTE_ADMINISTRATION_USERS,
-  ROUTE_KEYS,
-  ROUTE_SETTINGS
+  ROUTE_KEYS
 } from "./routes/routeMappings";
 import {VERSION} from "./Communikey";
 import ProfileModal from "./components/data/ProfileModal";
