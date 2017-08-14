@@ -13,9 +13,14 @@
 }
 
 .keypairSetup {
-  .ant-row {
-    padding-top: 10px;
+  margin-top: 15px;
+  .ant-row:not(:last-child) {
     padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .ant-form-item {
+    margin-bottom: 0;
   }
 
   .actionRow {
@@ -25,6 +30,7 @@
   .buttonPrevious {
     float: left;
   }
+
   .buttonNext {
     float: right;
     &:hover {
@@ -32,6 +38,11 @@
       border-color: green;
     }
   }
+
+  .buttonGenerate {
+    font-size: 1rem;
+  }
+
   .uploader {
     text-align: center;
 

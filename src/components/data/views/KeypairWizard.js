@@ -24,6 +24,7 @@ const ManagedForm = Form.create()(
     return (
       <Form hideRequiredMark={true}>
           <Form.Item
+            {...managedFormItemLayout}
             validateStatus={form.getFieldError("password") ? "error"  : ""}
             colon={false}
           >
@@ -41,6 +42,7 @@ const ManagedForm = Form.create()(
             }
           </Form.Item>
           <Form.Item
+            {...managedFormItemLayout}
             validateStatus={form.getFieldError("passwordConfirmation") ? "error"  : ""}
             colon={false}
           >
@@ -62,6 +64,20 @@ const ManagedForm = Form.create()(
   }
 );
 
+/**
+ * Layout configurations for all managed form items.
+ */
+const managedFormItemLayout = {
+  labelCol: {
+    xs: {span: 24},
+    sm: {span: 4}
+  },
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 12, offset: 6}
+  }
+};
+
 class KeypairWizard extends React.Component {
   constructor(props) {
     super(props);
@@ -71,7 +87,8 @@ class KeypairWizard extends React.Component {
       useUpload: true,
       pasteContent: "",
       selectedMethod: "upload",
-      generatorDone: false
+      generatorDone: false,
+      processing: false
     };
   }
 
@@ -168,12 +185,24 @@ class KeypairWizard extends React.Component {
       return (
           <div className="keypairSetup">
             <Row>
-              Please specify a passphrase and then generate a key by pressing the button.
-              <ManagedForm
-                ref={this.saveManagedFormRef}
-                handleSubmit={this.handleSubmit}
-                checkPassword={this.checkPassword}
-              />
+              <Card>
+                <Row>
+                  Please specify a passphrase and then generate a key by pressing the button.
+                </Row>
+                <Row>
+                  <ManagedForm
+                    ref={this.saveManagedFormRef}
+                    handleSubmit={this.handleSubmit}
+                    checkPassword={this.checkPassword}
+                  />
+                </Row>
+                <Row class="actionRow">
+                  <Button onClick={this.handleSubmit} class="buttonGenerate" loading={this.state.processing}>
+                    <Icon type="calculator"/>
+                    Generate!
+                  </Button>
+                </Row>
+              </Card>
             </Row>
             <Row className="actionRow">
               <Col span={12}>
@@ -182,7 +211,7 @@ class KeypairWizard extends React.Component {
                 </Button>
               </Col>
               <Col span={12}>
-                <Button class="buttonNext" onClick={this.handleSubmit}>
+                <Button class="buttonNext"  onClick={this.finishProcedure} disabled={!this.state.generatorDone && "true"}>
                   <Icon type="check"/>
                   Finish
                 </Button>
@@ -254,12 +283,10 @@ class KeypairWizard extends React.Component {
               </RadioGroup>
             </Col>
             <Col span={8}>
-              { !this.state.useUpload && this.state.pasteContent &&
-                <Button class="buttonNext" onClick={this.finishProcedure}>
-                  <Icon type="check"/>
-                  Finish
-                </Button>
-              }
+              <Button class="buttonNext" onClick={this.finishProcedure} disabled={!this.state.pasteContent && "true"}>
+                <Icon type="check"/>
+                Finish
+              </Button>
             </Col>
           </Row>
         </div>
