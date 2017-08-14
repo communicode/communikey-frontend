@@ -23,9 +23,16 @@ class KeypairWizard extends React.Component {
       current: 0,
       useGenerator: true,
       useUpload: true,
-      pasteContent: ""
+      pasteContent: "",
+      selectedMethod: "upload"
     };
   }
+
+  updateInputValue = (event) => {
+    this.setState({
+      pasteContent: event.target.value
+    });
+  };
 
   /**
    * Switches to the next page.
@@ -64,6 +71,13 @@ class KeypairWizard extends React.Component {
   };
 
   /**
+   * Finishes the key generation/upload procedure
+   */
+  finishProcedure = () => {
+    this.next();
+  };
+
+  /**
    * Switches between the upload and paste input boxes.
    */
   generateKeypairWithPassphrase = () => {
@@ -93,7 +107,8 @@ class KeypairWizard extends React.Component {
         this.setState(
           {
             useUpload: false,
-            pasteContent: progress.target.result
+            pasteContent: progress.target.result,
+            selectedMethod: "paste"
           }
         );
       });
@@ -121,9 +136,11 @@ class KeypairWizard extends React.Component {
                   </div>
                 : <div className="paster">
                     <Input
+                      value={this.state.pasteContent}
+                      onChange={this.updateInputValue}
                       placeholder="Please paste your private key in PEM format."
                       type="textarea"
-                      value={this.state.pasteContent}
+                      defaultValue={this.state.pasteContent}
                       autosize={{minRows: 10, maxRows: 20}}
                     />
                   </div>
@@ -133,14 +150,16 @@ class KeypairWizard extends React.Component {
             <Button onClick={this.prev}>
               <Icon type="left"/>
             </Button>
-            <RadioGroup defaultValue="upload" size="large">
-              <RadioButton value="upload" onClick={() => this.setState({useUpload: true})}>Upload</RadioButton>
-              <RadioButton value="paste" onClick={() => this.setState({useUpload: false})}>Paste</RadioButton>
+            <RadioGroup value={this.state.selectedMethod} size="large">
+              <RadioButton value="upload" onClick={() => this.setState({useUpload: true, selectedMethod: "upload"})}>Upload</RadioButton>
+              <RadioButton value="paste" onClick={() => this.setState({useUpload: false, selectedMethod: "paste"})}>Paste</RadioButton>
             </RadioGroup>
-            <Button onClick={this.next}>
-              <Icon type="check"/>
-              Finish
-            </Button>
+            { !this.state.useUpload && this.state.pasteContent &&
+              <Button onClick={this.finishProcedure}>
+                <Icon type="check"/>
+                Finish
+              </Button>
+            }
           </Row>
         </div>
       );
