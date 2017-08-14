@@ -62,11 +62,7 @@ class EncryptionService {
   };
 
   encryptForUser = (value) => {
-    let encrypted = publicKey.encrypt(value, "RSAES-PKCS1-V1_5", {
-      md: forge.md.sha256.create(),
-      encoding: "base64"
-    });
-    return new Buffer(encrypted, "binary").toString("base64");
+    return this.encrypt(value, publicKey);
   };
 
 }

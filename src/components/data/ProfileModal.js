@@ -212,6 +212,12 @@ class ProfileModal extends React.Component {
     this.setState({passwordResetModalValuesValid: _.isEqual(newPassword, confirmedPassword) && !_.isEmpty(newPassword, confirmedPassword)});
   };
 
+  handleOnClose = () => {
+    console.log("Closing!");
+    this.setState({activeTabViewKey: TAB_PANE_REACT_KEY_PROFILE});
+    this.props.onClose();
+  };
+
   render() {
     const {
       loading,
@@ -255,7 +261,7 @@ class ProfileModal extends React.Component {
               <Button
                 type="primary"
                 size="large"
-                onClick={this.props.onClose}
+                onClick={this.handleOnClose}
                 loading={loading}
               >
                 Done

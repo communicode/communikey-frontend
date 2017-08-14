@@ -35,7 +35,7 @@ class BaseLayout extends React.Component {
       sidebarMenuMode: "inline",
       sidebarCurrentSelected: props.location.pathname === ROOT ? ROUTE_DASHBOARD : props.location.pathname,
       sidebarOpenKeys: [],
-      profileModalVisible: false,
+      profileModalVisible: true,
       processing: false
     };
   }
