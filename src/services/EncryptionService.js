@@ -1,4 +1,5 @@
 import forge from "node-forge";
+import {notificationService} from "../Communikey";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -11,37 +12,55 @@ const rsa = forge.pki.rsa;
  * @since 0.15.0
  */
 
-let privateKey = "";
-let publicKey = "";
-let passphrase = "passphrase";
-
-const generate = () => {
-  return new Promise(function (resolve, reject) {
-    let keypair = rsa.generateKeyPair({bits: 512, e: 0x10001});
-    resolve(keypair);
-  });
-};
-
 class EncryptionService {
+  privateKey;
+  publicKey;
+  passphrase;
+
+  constructor() {
+    this.privateKey = "";
+    this.publicKey = "";
+    this.passphrase = "";
+  }
+
   loadPrivateKey = () => {
     let encryptedPem = localStorage.getItem("privateKey");
     if (encryptedPem) {
-      console.log("Key found!");
-      let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, passphrase);
+      let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
       let decryptedPrivatePem = forge.pki.privateKeyToPem(decryptedPrivate);
-      privateKey = pki.privateKeyFromPem(decryptedPrivatePem);
-      publicKey = pki.rsa.setPublicKey(privateKey.n, privateKey.e);
+      this.privateKey = pki.privateKeyFromPem(decryptedPrivatePem);
+      this.publicKey = pki.rsa.setPublicKey(this.privateKey.n, this.privateKey.e);
+      notificationService.info("Created Key", "Your private key has been successfully loaded.", 5);
     } else {
-      console.log("No key found!");
+      notificationService.error("No key found", "There is no key installed on your system.", 5);
     }
   };
 
+  generate = () => {
+    return new Promise((resolve) => {
+      let state = rsa.createKeyPairGenerationState(512, 0x10001);
+      let step = () => {
+        if (!rsa.stepKeyPairGenerationState(state, 100)) {
+          setTimeout(step, 1);
+        } else {
+          resolve(state);
+          return state;
+        }
+      };
+      setTimeout(step);
+    });
+  };
+
   generateKeypair = (passphrase) => {
-    generate().then((keypair) => {
-      console.log("Generating keypair!");
-      let encryptedPrivatePem = pki.encryptRsaPrivateKey(keypair.privateKey, passphrase);
-      localStorage.setItem("privateKey", encryptedPrivatePem);
-      this.loadPrivateKey();
+    return new Promise((resolve) => {
+      this.generate().then((keypair) => {
+        let encryptedPrivatePem = pki.encryptRsaPrivateKey(keypair.keys.privateKey, passphrase);
+        localStorage.setItem("privateKey", encryptedPrivatePem);
+        this.passphrase = passphrase;
+        resolve();
+        notificationService.info("Calculated Key", "Your private key has been successfully calculated.", 5);
+        this.loadPrivateKey();
+      });
     });
   };
 
@@ -55,14 +74,14 @@ class EncryptionService {
 
   decrypt = (value) => {
     const binary = new Buffer(value, "base64").toString("binary");
-    return privateKey.decrypt(binary, "RSAES-PKCS1-V1_5", {
+    return this.privateKey.decrypt(binary, "RSAES-PKCS1-V1_5", {
       md: forge.md.sha256.create(),
       encoding: "base64"
     });
   };
 
   encryptForUser = (value) => {
-    return this.encrypt(value, publicKey);
+    return this.encrypt(value, this.publicKey);
   };
 
 }

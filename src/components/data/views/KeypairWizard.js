@@ -1,5 +1,5 @@
 import React from "react";
-import {Steps, Button, Row, Col, Card, Icon, Input, Radio, Form} from "antd";
+import {Steps, Button, Row, Col, Card, Icon, Input, Radio, Form, Spin} from "antd";
 import FileReaderInput from "react-file-reader-input";
 import {encryptionService} from "../../../Communikey";
 import "antd/lib/radio/style/index.less";
@@ -11,6 +11,7 @@ import "antd/lib/card/style/index.less";
 import "antd/lib/upload/style/index.less";
 import "antd/lib/message/style/index.less";
 import "antd/lib/form/style/index.less";
+import "antd/lib/spin/style/index.less";
 import "./KeypairWizard.less";
 
 const Step = Steps.Step;
@@ -107,10 +108,14 @@ class KeypairWizard extends React.Component {
    */
   handleSubmit = () => this.form.validateFields((errors, payload) => {
     if (!errors) {
-      encryptionService.generateKeypair(payload.password);
-      this.setState({
-        generatorDone: true
-      });
+      this.setState({processing: true});
+      encryptionService.generateKeypair(payload.password)
+        .then(() => {
+          this.setState({
+            generatorDone: true,
+            processing: false
+          });
+        });
     }
   });
 
@@ -186,7 +191,7 @@ class KeypairWizard extends React.Component {
           <div className="keypairSetup">
             <Row>
               <Card>
-                <Row>
+                <Row class="descriptionTextRow">
                   Please specify a passphrase and then generate a key by pressing the button.
                 </Row>
                 <Row>
@@ -197,8 +202,11 @@ class KeypairWizard extends React.Component {
                   />
                 </Row>
                 <Row class="actionRow">
-                  <Button onClick={this.handleSubmit} class="buttonGenerate" loading={this.state.processing}>
-                    <Icon type="calculator"/>
+                  <Button onClick={this.handleSubmit}
+                    class="buttonGenerate"
+                    icon="calculator"
+                    loading={this.state.processing}
+                  >
                     Generate!
                   </Button>
                 </Row>
@@ -227,7 +235,6 @@ class KeypairWizard extends React.Component {
     const handleFileResult = (e, results) => {
       results.forEach(result => {
         const [progress] = result;
-        console.log("Content:", progress.target.result);
         this.setState(
           {
             useUpload: false,
@@ -254,7 +261,7 @@ class KeypairWizard extends React.Component {
                           <Icon type="inbox" />
                         </p>
                         <p className="ant-upload-text">Click to select your private key file</p>
-                        <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                        <p className="ant-upload-hint">Support for a single PEM formatted encrypted key file.</p>
                       </Card>
                     </FileReaderInput>
                   </div>
