@@ -30,6 +30,7 @@ const ManagedProfileForm = Form.create()(
         >
           <Input
             addonBefore="Email"
+            prefix={<Icon type="lock"/>}
             addonAfter={appConfig.EMAIL_PREFIX}
             readOnly={true}
             value={authStore.login}
@@ -41,6 +42,7 @@ const ManagedProfileForm = Form.create()(
         >
           <Input
             addonBefore="Firstname"
+            prefix={<Icon type="lock"/>}
             readOnly={true}
             value={authStore.firstName}
           />
@@ -51,6 +53,7 @@ const ManagedProfileForm = Form.create()(
         >
           <Input
             addonBefore="Lastname"
+            prefix={<Icon type="lock"/>}
             readOnly={true}
             value={authStore.lastName}
           />
