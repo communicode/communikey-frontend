@@ -49,7 +49,6 @@ class AuthStore {
         for (const key of Object.keys(response.data)) {
           this[key] = response.data[key];
         }
-        encryptionService.loadPrivateKey();
         this.isAuthorized = true;
         return response;
       }));
