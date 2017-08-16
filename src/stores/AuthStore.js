@@ -1,8 +1,8 @@
 import {action, observable} from "mobx";
 import apiService from "./../services/ApiService";
-import {encryptionService} from "../Communikey";
 import {API_ME} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
+import {USERS_PASSWORD_RESET} from "../services/apiRequestMappings";
 
 /**
  * A observable store for data of a authenticated user.
@@ -20,6 +20,8 @@ class AuthStore {
   @observable isAuthorized;
   @observable authorities;
   @observable publicKey;
+  @observable publicKeyResetToken;
+  @observable passwordResetToken;
 
   constructor() {
     this.login = "";
@@ -29,6 +31,8 @@ class AuthStore {
     this.isAuthorized = false;
     this.authorities = [];
     this.publicKey = "";
+    this.publicKeyResetToken = "";
+    this.passwordResetToken = "";
   }
 
   /**
@@ -49,7 +53,6 @@ class AuthStore {
         for (const key of Object.keys(response.data)) {
           this[key] = response.data[key];
         }
-        encryptionService.loadPrivateKey();
         this.isAuthorized = true;
         return response;
       }));
@@ -81,6 +84,27 @@ class AuthStore {
    */
   @action("AuthStore__setIsAuthorized")
   _setIsAuthorized = (isAuthorized) => this.isAuthorized = isAuthorized;
+
+  /**
+   * Resets a user password with the specified reset token and new password.
+   * This is a API- and store synchronization action!
+   *
+   * @param {string} newPassword - The new password
+   * @returns {Promise} - A promise
+   * @since 0.8.0
+   */
+  @action("UserStore_resetPassword")
+  resetPassword = (newPassword) => {
+    return apiService.post(USERS_PASSWORD_RESET, {
+      resetToken: this.passwordResetToken,
+      password: newPassword
+    }, {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+      }
+    })
+      .then(() => this.fetch());
+  };
 }
 
 export default AuthStore;

@@ -75,6 +75,51 @@ const ManagedProfileForm = Form.create()(
   }
 );
 
+const ManagedPasswordForm = Form.create()(
+  (props) => {
+    const {form, checkPassword} = props;
+    const {getFieldDecorator} = form;
+    return (
+      <Form hideRequiredMark={true}>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("password") ? "error"  : ""}
+          colon={false}
+        >
+          {getFieldDecorator("password", {
+            rules: [{
+              required: true, message: "Password is required"}]
+          })(
+            <Input
+              name="password"
+              prefix={<Icon type="lock"/>}
+              type="password"
+              placeholder="Password"
+            />)
+          }
+        </Form.Item>
+        <Form.Item
+          {...managedFormItemLayout}
+          validateStatus={form.getFieldError("passwordConfirmation") ? "error"  : ""}
+          colon={false}
+        >
+          {getFieldDecorator("passwordConfirmation", {
+            rules: [{required: true, message: "Password confirmation is required"},
+              {validator: checkPassword}]
+          })(
+            <Input
+              name="passwordConfirmation"
+              prefix={<Icon type="lock"/>}
+              type="password"
+              placeholder="Password confirmation"
+            />)
+          }
+        </Form.Item>
+      </Form>
+    );
+  }
+);
+
 /**
  * Layout configurations for all managed form items.
  */
@@ -162,7 +207,15 @@ class ProfileModal extends React.Component {
        * @default false
        * @type {boolean}
        */
-      passwordResetModalVisible: false
+      passwordResetModalVisible: false,
+
+      /**
+       * The default processing status.
+       *
+       * @default false
+       * @type {boolean}
+       */
+      processing: false
     };
   }
 
@@ -177,24 +230,54 @@ class ProfileModal extends React.Component {
   };
 
   /**
-   * Handles all input value change events.
+   * Handles the action button click event.
    *
-   * @callback handleModalValueChange
-   * @param event - The change event
+   * @since 0.15.0
    */
-  handlePasswordResetModalValueChange = (event) => {
-    this.setState({[event.target.name]: event.target.value});
-    this.validatePasswordResetValues();
-  };
+  handleSubmit = () => this.form.validateFields((errors, payload) => {
+    if (!errors) {
+      this.setState({processing: true});
+      authStore.resetPassword(payload.password)
+        .then(() => {
+          this.setState({
+            processing: false,
+            passwordResetModalVisible: false
+          });
+          this.form.resetFields();
+        });
+    }
+  });
 
   /**
-   * Handles the password reset modal save event.
+   * Validator for the form to check the equality of both password input fields
+   *
+   * @since 0.15.0
    */
-  handleUserPasswordResetSave = () => {
-    this.props.onUserPasswordReset(this.state.passwordResetModalNewPasswordValue)
-      .then(() => this.togglePasswordResetModal())
-      .catch(error => console.error(error));
-  };
+  checkPassword = (rule, value, callback) => {
+    const form = this.form;
+    if (value && value !== form.getFieldValue("password")) {
+      callback("The passwords don't match. Please try again.");
+    } else {
+      callback();
+      this.setState({passwordResetModalValuesValid: true});
+    }
+  }
+
+
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param form - The form to save the reference to
+   * @since 0.15.0
+   */
+  saveManagedFormRef = (form) => this.form = form;
+
+  /**
+   * Sets the processing status.
+   *
+   * @param {boolean} status - The new processing status value
+   */
+  setProcessingStatus = (status) => this.setState({processing: status});
 
   /**
    * Resets the state user object.
@@ -205,15 +288,6 @@ class ProfileModal extends React.Component {
    * Toggles the password reset modal.
    */
   togglePasswordResetModal = () => this.setState(prevState => ({passwordResetModalVisible: !prevState.passwordResetModalVisible}));
-
-  /**
-   * Validates the password reset input values.
-   */
-  validatePasswordResetValues = () => {
-    let newPassword = this.passwordResetModalNewPasswordInput.refs.input.value;
-    let confirmedPassword = this.passwordResetModalConfirmInput.refs.input.value;
-    this.setState({passwordResetModalValuesValid: _.isEqual(newPassword, confirmedPassword) && !_.isEmpty(newPassword, confirmedPassword)});
-  };
 
   handleOnClose = () => {
     console.log("Closing!");
@@ -304,6 +378,43 @@ class ProfileModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    const passwordResetInnerModal = () => (
+      <Modal
+        visible={passwordResetModalVisible}
+        footer={false}
+        closable={false}
+        className="password-reset-inner-modal">
+        <Row>
+          <Col span={24}>
+            <ManagedPasswordForm
+              checkPassword={this.checkPassword}
+              ref={this.saveManagedFormRef}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="footer">
+              <Row type="flex" justify="end">
+                <Col>
+                  <Button key="cancel-password-reset" size="large" onClick={this.handlePasswordResetModalClose}>Cancel</Button>
+                  <Button
+                    key="save-password-reset"
+                    type="primary" size="large"
+                    onClick={this.handleSubmit}
+                    loading={loading}
+                    disabled={!passwordResetModalValuesValid}
+                  >
+                    Save
+                  </Button>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+        </Row>
+      </Modal>
+    );
+
     return (
       <Modal
         {...modalProps}
@@ -318,6 +429,7 @@ class ProfileModal extends React.Component {
           {tabViewWizard()}
         </Tabs>
         <Row><Col>{footer()}</Col></Row>
+        {passwordResetInnerModal()}
       </Modal>
     );
 
@@ -331,13 +443,6 @@ ProfileModal.propTypes = {
    * @type {function}
    */
   onClose: PropTypes.func.isRequired,
-
-  /**
-   * Callback function to handle the user password reset event.
-   *
-   * @type {function}
-   */
-  onUserPasswordReset: PropTypes.func,
 
   /**
    * The current processing status.
