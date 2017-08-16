@@ -22,6 +22,7 @@ class EncryptionService {
     this.privateKey = "";
     this.privateKeyPem = "";
     this.publicKey = "";
+    this.publicKeyPem = "";
     this.passphrase = "";
   }
 
@@ -40,6 +41,7 @@ class EncryptionService {
           this.privateKeyPem = decryptedPrivatePem;
           this.privateKey = pki.privateKeyFromPem(decryptedPrivatePem);
           this.publicKey = pki.rsa.setPublicKey(this.privateKey.n, this.privateKey.e);
+          this.publicKeyPem = pki.publicKeyToPem(this.publicKey);
           resolve();
         } catch (e) {
           reject({title: "Key loading failed", message: "The key on your system seems to be corrupted or the passphrase is wrong."});
