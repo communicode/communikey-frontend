@@ -1,4 +1,5 @@
 import forge from "node-forge";
+import fileDownload from "react-file-download";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -71,6 +72,10 @@ class EncryptionService {
         resolve({title: "Calculated Key", message: "Your private key has been successfully calculated."});
       });
     });
+  };
+
+  downloadPrivateKey = () => {
+    fileDownload(this.privateKey, "privateKey.pem");
   };
 
   encrypt = (value, publicKey) => {
