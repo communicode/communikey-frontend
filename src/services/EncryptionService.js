@@ -1,5 +1,6 @@
 import forge from "node-forge";
-import {notificationService} from "../Communikey";
+import fileDownload from "react-file-download";
+import _ from "lodash";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -19,21 +20,36 @@ class EncryptionService {
 
   constructor() {
     this.privateKey = "";
+    this.privateKeyPem = "";
     this.publicKey = "";
+    this.publicKeyPem = "";
     this.passphrase = "";
   }
 
-  loadPrivateKey = () => {
-    let encryptedPem = localStorage.getItem("privateKey");
-    if (encryptedPem) {
-      let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
-      let decryptedPrivatePem = forge.pki.privateKeyToPem(decryptedPrivate);
-      this.privateKey = pki.privateKeyFromPem(decryptedPrivatePem);
-      this.publicKey = pki.rsa.setPublicKey(this.privateKey.n, this.privateKey.e);
-      notificationService.info("Created Key", "Your private key has been successfully loaded.", 5);
-    } else {
-      notificationService.error("No key found", "There is no key installed on your system.", 5);
-    }
+  setPassphrase = (passphrase) => {
+    this.passphrase = passphrase;
+  };
+
+  loadPrivateKey = (privateKey) => {
+    return new Promise((resolve, reject) => {
+      privateKey && localStorage.setItem("privateKey", privateKey);
+      let encryptedPem = localStorage.getItem("privateKey");
+      if (encryptedPem) {
+        try {
+          let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
+          let decryptedPrivatePem = forge.pki.privateKeyToPem(decryptedPrivate);
+          this.privateKeyPem = decryptedPrivatePem;
+          this.privateKey = pki.privateKeyFromPem(decryptedPrivatePem);
+          this.publicKey = pki.rsa.setPublicKey(this.privateKey.n, this.privateKey.e);
+          this.publicKeyPem = pki.publicKeyToPem(this.publicKey);
+          resolve();
+        } catch (e) {
+          reject({title: "Key loading failed", message: "The key on your system seems to be corrupted or the passphrase is wrong."});
+        }
+      } else {
+        reject({title: "No key found", message: "There is no key installed on your system."});
+      }
+    });
   };
 
   generate = () => {
@@ -52,16 +68,21 @@ class EncryptionService {
   };
 
   generateKeypair = (passphrase) => {
+    this.setPassphrase(passphrase);
     return new Promise((resolve) => {
       this.generate().then((keypair) => {
         let encryptedPrivatePem = pki.encryptRsaPrivateKey(keypair.keys.privateKey, passphrase);
         localStorage.setItem("privateKey", encryptedPrivatePem);
         this.passphrase = passphrase;
-        resolve();
-        notificationService.info("Calculated Key", "Your private key has been successfully calculated.", 5);
-        this.loadPrivateKey();
+        resolve({title: "Calculated Key", message: "Your private key has been successfully calculated."});
       });
     });
+  };
+
+  downloadPrivateKey = () => {
+    if (this.privateKeyPem) {
+      fileDownload(localStorage.getItem("privateKey"), "privateKey.pem");
+    }
   };
 
   encrypt = (value, publicKey) => {

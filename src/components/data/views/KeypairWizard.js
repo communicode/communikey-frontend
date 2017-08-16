@@ -1,7 +1,8 @@
 import React from "react";
-import {Steps, Button, Row, Col, Card, Icon, Input, Radio, Form, Spin} from "antd";
+import {Steps, Button, Row, Col, Card, Icon, Input, Radio, Form} from "antd";
+import _ from "lodash";
 import FileReaderInput from "react-file-reader-input";
-import {encryptionService} from "../../../Communikey";
+import {encryptionService, notificationService} from "../../../Communikey";
 import "antd/lib/radio/style/index.less";
 import "antd/lib/input/style/index.less";
 import "antd/lib/icon/style/css";
@@ -89,12 +90,13 @@ class KeypairWizard extends React.Component {
       pasteContent: "",
       selectedMethod: "upload",
       generatorDone: false,
-      processing: false
+      processing: false,
+      passphrase: ""
     };
   }
 
   /**
-   * Saves the reference to the managed form component.
+   * Saves the reference to the generator form component.
    *
    * @param form - The form to save the reference to
    * @since 0.15.0
@@ -108,9 +110,13 @@ class KeypairWizard extends React.Component {
    */
   handleSubmit = () => this.form.validateFields((errors, payload) => {
     if (!errors) {
-      this.setState({processing: true});
+      this.setState({
+        processing: true,
+        passphrase: payload.password
+      });
       encryptionService.generateKeypair(payload.password)
-        .then(() => {
+        .then((info) => {
+          notificationService.info(info.title, info.message, 5);
           this.setState({
             generatorDone: true,
             processing: false
@@ -139,6 +145,15 @@ class KeypairWizard extends React.Component {
   updateInputValue = (event) => {
     this.setState({
       pasteContent: event.target.value
+    });
+  };
+
+  /**
+   * Updates the state item of the passphrase input box
+   */
+  updatePassphraseValue = (event) => {
+    this.setState({
+      passphrase: event.target.value
     });
   };
 
@@ -182,7 +197,15 @@ class KeypairWizard extends React.Component {
    * Finishes the key generation/upload procedure
    */
   finishProcedure = () => {
-    this.next();
+    encryptionService.setPassphrase(this.state.passphrase);
+    encryptionService.loadPrivateKey(!_.isEmpty(this.state.pasteContent) && this.state.pasteContent)
+      .then(() => {
+        notificationService.info("Created Key", "Your private key has been successfully loaded.", 5);
+        this.next();
+      })
+      .catch((info) => {
+        notificationService.error(info.title, info.message, 5);
+      });
   };
 
   render() {
@@ -219,8 +242,12 @@ class KeypairWizard extends React.Component {
                 </Button>
               </Col>
               <Col span={12}>
-                <Button class="buttonNext"  onClick={this.finishProcedure} disabled={!this.state.generatorDone && "true"}>
-                  <Icon type="check"/>
+                <Button
+                  class="buttonNext"
+                  onClick={this.finishProcedure}
+                  disabled={!this.state.generatorDone && "true"}
+                  icon={"check"}
+                >
                   Finish
                 </Button>
               </Col>
@@ -266,14 +293,24 @@ class KeypairWizard extends React.Component {
                     </FileReaderInput>
                   </div>
                 : <div className="paster">
-                    <Input
-                      value={this.state.pasteContent}
-                      onChange={this.updateInputValue}
-                      placeholder="Please paste your private key in PEM format."
-                      type="textarea"
-                      defaultValue={this.state.pasteContent}
-                      autosize={{minRows: 10, maxRows: 20}}
-                    />
+                    <Row>
+                      <Input
+                        value={this.state.pasteContent}
+                        onChange={this.updateInputValue}
+                        placeholder="Please paste your private key in here (must be PEM formatted)."
+                        type="textarea"
+                        defaultValue={this.state.pasteContent}
+                        autosize={{minRows: 10, maxRows: 20}}
+                      />
+                    </Row>
+                    <Row>
+                      <Input
+                        placeholder="Passphrase"
+                        type="password"
+                        value={this.state.passphrase}
+                        onChange={this.updatePassphraseValue}
+                      />
+                    </Row>
                   </div>
             }
           </Row>
@@ -290,8 +327,12 @@ class KeypairWizard extends React.Component {
               </RadioGroup>
             </Col>
             <Col span={8}>
-              <Button class="buttonNext" onClick={this.finishProcedure} disabled={!this.state.pasteContent && "true"}>
-                <Icon type="check"/>
+              <Button
+                class="buttonNext"
+                onClick={this.finishProcedure}
+                disabled={!this.state.pasteContent || _.isEmpty(this.state.passphrase) && "true"}
+                icon="check"
+              >
                 Finish
               </Button>
             </Col>
@@ -335,9 +376,19 @@ class KeypairWizard extends React.Component {
     );
 
     const finishContent = (
-      <div>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        <Button onClick={this.prev}>Prev</Button>
+      <div className="finishContent">
+        <Row>
+          <Card>
+            <Row>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </Row>
+            <Row>
+              <Button icon="download" onClick={encryptionService.downloadPrivateKey}>
+                Download encrypted private key
+              </Button>
+            </Row>
+          </Card>
+        </Row>
       </div>
     );
 
