@@ -330,7 +330,7 @@ class KeypairWizard extends React.Component {
               <Button
                 class="buttonNext"
                 onClick={this.finishProcedure}
-                disabled={!this.state.pasteContent && "true"}
+                disabled={!this.state.pasteContent || _.isEmpty(this.state.passphrase) && "true"}
                 icon="check"
               >
                 Finish
@@ -376,9 +376,19 @@ class KeypairWizard extends React.Component {
     );
 
     const finishContent = (
-      <div>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        <Button onClick={this.prev}>Prev</Button>
+      <div className="finishContent">
+        <Row>
+          <Card>
+            <Row>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </Row>
+            <Row>
+              <Button icon="download">
+                Download encrypted private key
+              </Button>
+            </Row>
+          </Card>
+        </Row>
       </div>
     );
 
