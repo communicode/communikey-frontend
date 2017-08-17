@@ -370,7 +370,7 @@ class ProfileModal extends React.Component {
     );
 
     const tabViewSettings = () => (
-      <Tabs.TabPane tab="Settings" key={TAB_PANE_REACT_KEY_SETTINGS}>
+      <Tabs.TabPane disabled={true} tab="Settings" key={TAB_PANE_REACT_KEY_SETTINGS}>
         <Row type="flex" align="center">
           <Col span={18}>
           </Col>
