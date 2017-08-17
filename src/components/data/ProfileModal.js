@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 import {Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Tabs} from "antd";
 import appConfig from "./../../config/app";
-import {authStore} from "../../Communikey";
+import {authStore, notificationService} from "../../Communikey";
 import KeypairWizard from "./views/KeypairWizard";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
@@ -243,6 +243,7 @@ class ProfileModal extends React.Component {
             processing: false,
             passwordResetModalVisible: false
           });
+          notificationService.success("Password changed", "Your password has been changed successfully", 5);
           this.form.resetFields();
         });
     }
@@ -290,7 +291,6 @@ class ProfileModal extends React.Component {
   togglePasswordResetModal = () => this.setState(prevState => ({passwordResetModalVisible: !prevState.passwordResetModalVisible}));
 
   handleOnClose = () => {
-    console.log("Closing!");
     this.setState({activeTabViewKey: TAB_PANE_REACT_KEY_PROFILE});
     this.props.onClose();
   };
@@ -315,7 +315,7 @@ class ProfileModal extends React.Component {
 
     const footerOperationsDropdownMenu = (
       <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
-        <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName}>Reset password</Menu.Item>
+        <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={!authStore.passwordResetToken}>Reset password</Menu.Item>
       </Menu>
     );
 
