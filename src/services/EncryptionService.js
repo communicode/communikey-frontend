@@ -1,6 +1,5 @@
 import forge from "node-forge";
 import fileDownload from "react-file-download";
-import _ from "lodash";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -37,7 +36,7 @@ class EncryptionService {
       if (encryptedPem) {
         try {
           let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
-          let decryptedPrivatePem = forge.pki.privateKeyToPem(decryptedPrivate);
+          let decryptedPrivatePem = pki.privateKeyToPem(decryptedPrivate);
           this.privateKeyPem = decryptedPrivatePem;
           this.privateKey = pki.privateKeyFromPem(decryptedPrivatePem);
           this.publicKey = pki.rsa.setPublicKey(this.privateKey.n, this.privateKey.e);

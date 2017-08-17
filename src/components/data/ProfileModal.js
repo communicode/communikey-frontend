@@ -63,7 +63,7 @@ const ManagedProfileForm = Form.create()(
           colon={false}
         >
           <Input
-            placeholder="No Key avaiable"
+            placeholder="No Key available"
             type="textarea"
             autosize={{minRows: 2, maxRows: 6}}
             readOnly={true}
