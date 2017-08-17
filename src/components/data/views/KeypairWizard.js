@@ -2,7 +2,11 @@ import React from "react";
 import {Steps, Button, Row, Col, Card, Icon, Input, Radio, Form} from "antd";
 import _ from "lodash";
 import FileReaderInput from "react-file-reader-input";
-import {encryptionService, notificationService} from "../../../Communikey";
+import {
+  encryptionService,
+  notificationService,
+  authStore
+} from "../../../Communikey";
 import "antd/lib/radio/style/index.less";
 import "antd/lib/input/style/index.less";
 import "antd/lib/icon/style/css";
@@ -200,8 +204,11 @@ class KeypairWizard extends React.Component {
     encryptionService.setPassphrase(this.state.passphrase);
     encryptionService.loadPrivateKey(!_.isEmpty(this.state.pasteContent) && this.state.pasteContent)
       .then(() => {
-        notificationService.info("Created Key", "Your private key has been successfully loaded.", 5);
-        this.next();
+        notificationService.success("Created Key", "Your private key has been successfully loaded.", 5);
+        authStore.resetPublicKey(encryptionService.publicKeyPem)
+          .then(() => {
+            this.next();
+          });
       })
       .catch((info) => {
         notificationService.error(info.title, info.message, 5);

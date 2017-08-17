@@ -2,7 +2,7 @@ import {action, observable} from "mobx";
 import apiService from "./../services/ApiService";
 import {API_ME} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
-import {USERS_PASSWORD_RESET} from "../services/apiRequestMappings";
+import {USERS_PASSWORD_RESET, USERS_PUBLICKEY_RESET} from "../services/apiRequestMappings";
 
 /**
  * A observable store for data of a authenticated user.
@@ -91,13 +91,34 @@ class AuthStore {
    *
    * @param {string} newPassword - The new password
    * @returns {Promise} - A promise
-   * @since 0.8.0
+   * @since 0.15.0
    */
-  @action("UserStore_resetPassword")
+  @action("AuthStore_resetPassword")
   resetPassword = (newPassword) => {
     return apiService.post(USERS_PASSWORD_RESET, {
       resetToken: this.passwordResetToken,
       password: newPassword
+    }, {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+      }
+    })
+      .then(() => this.fetch());
+  };
+
+  /**
+   * Resets a user public key with the specified reset token and new public key.
+   * This is a API- and store synchronization action!
+   *
+   * @param {string} newPublicKey - The new public key
+   * @returns {Promise} - A promise
+   * @since 0.15.0
+   */
+  @action("AuthStore_resetPublicKey")
+  resetPublicKey = (newPublicKey) => {
+    return apiService.post(USERS_PUBLICKEY_RESET, {
+      resetToken: this.publicKeyResetToken,
+      publicKey: newPublicKey
     }, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
