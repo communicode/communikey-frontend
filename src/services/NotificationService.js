@@ -46,6 +46,17 @@ class NotificationService {
       key
     });
   };
+
+  success = (message, description, duration) => {
+    const key = `open${Date.now()}`;
+    notification.success({
+      placement: "topRight",
+      message: message,
+      description: description,
+      duration: duration,
+      key
+    });
+  };
 }
 
 export default NotificationService;
