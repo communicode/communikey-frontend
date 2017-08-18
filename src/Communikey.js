@@ -139,8 +139,26 @@ export const VERSION = process.env.COMMUNIKEY_VERSION || "local-dev";
 class Communikey extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {initialized: false};
+    this.state = {
+      initialized: false,
+      passphraseNeeded: false
+    };
+    encryptionService.passphraseNeeded = (this.setPassphraseNeeded);
   }
+
+  setPassphraseNeeded = (state, resolve, reject) => {
+    this.setState({
+      passphraseNeeded: state,
+      passphraseNeededResolve: resolve,
+      passphraseNeededReject: reject
+    });
+  };
+
+  onPassphraseModalClose = () => {
+    this.setState({
+      passphraseNeeded: false
+    });
+  };
 
   componentDidMount() {
     localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN) && AuthService.validateLocalStorageOAuth2AccessToken()
@@ -158,7 +176,12 @@ class Communikey extends React.Component {
             <Switch>
               <Route path={ROUTE_SIGNOUT} component={SignOut}/>
               <PublicForwardRoute path={ROUTE_SIGNIN} component={SignIn} authorized={stores.authStore.isAuthorized}/>
-              <BaseLayout>
+              <BaseLayout
+                passphraseNeeded={this.state.passphraseNeeded}
+                passphraseNeededResolve={this.state.passphraseNeededResolve}
+                passphraseNeededReject={this.state.passphraseNeededReject}
+                onPassphraseModalClose={this.onPassphraseModalClose}
+              >
                 <Route render={({location}) => {
                   return (
                     <QueueAnim

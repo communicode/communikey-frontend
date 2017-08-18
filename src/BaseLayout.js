@@ -18,6 +18,7 @@ import {
 } from "./routes/routeMappings";
 import {VERSION} from "./Communikey";
 import ProfileModal from "./components/data/ProfileModal";
+import PassphraseModal from "./components/data/PassphraseModal";
 import "antd/lib/layout/style/index.less";
 import "antd/lib/menu/style/index.less";
 import "antd/lib/icon/style/css";
@@ -114,6 +115,15 @@ class BaseLayout extends React.Component {
    */
   handleProfileModalClose = () => {
     this.toggleProfileModal();
+  };
+
+  /**
+   * Handles the passphrase modal close event.
+   *
+   * @callback handlePassphraseModalClose
+   */
+  handlePassphraseModalClose = () => {
+    this.props.onPassphraseModalClose();
   };
 
   /**
@@ -249,6 +259,12 @@ class BaseLayout extends React.Component {
         <Layout className="cckey-base-layout">
           {header()}
           <Layout.Content>
+            <PassphraseModal
+              visible={this.props.passphraseNeeded}
+              onClose={this.handlePassphraseModalClose}
+              passphraseNeededResolve={this.props.passphraseNeededResolve}
+              passphraseNeededReject={this.props.passphraseNeededReject}
+            />
             <ProfileModal
               visible={this.state.profileModalVisible}
               onClose={this.handleProfileModalClose}
@@ -309,7 +325,27 @@ BaseLayout.propTypes = {
   /**
    * @type {ObservableArray} userStore - The injected user group store
    */
-  userGroupStore: MobXPropTypes.observableArray
+  userGroupStore: MobXPropTypes.observableArray,
+
+  /**
+   * @type {object} passphraseNeeded - The state object that invokes a passphrase modal
+   */
+  passphraseNeeded: PropTypes.bool,
+
+  /**
+   * @type {object} passphraseNeededResolve - The state object that resolves the passphraseNeeded promise
+   */
+  passphraseNeededResolve: PropTypes.func,
+
+  /**
+   * @type {object} passphraseNeededReject - The state object that rejects the passphraseNeeded promise
+   */
+  passphraseNeededReject: PropTypes.func,
+
+  /**
+   * @type {object} onModalClose - The function that closes the modal
+   */
+  onPassphraseModalClose: PropTypes.func
 };
 
 export default BaseLayout;

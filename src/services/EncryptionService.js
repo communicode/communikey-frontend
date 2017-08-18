@@ -1,5 +1,6 @@
 import forge from "node-forge";
 import fileDownload from "react-file-download";
+import _ from "lodash";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -18,28 +19,54 @@ class EncryptionService {
   passphrase;
 
   constructor() {
-    this.privateKey = "";
-    this.privateKeyPem = "";
+    this.encryptedPrivateKeyPem = "";
     this.publicKey = "";
     this.publicKeyPem = "";
     this.passphrase = "";
+    this.passphraseNeeded = function () {};
   }
 
   setPassphrase = (passphrase) => {
     this.passphrase = passphrase;
   };
 
-  loadPrivateKey = (privateKey) => {
+  checkPassphrase = () => {
     return new Promise((resolve, reject) => {
-      privateKey && localStorage.setItem("privateKey", privateKey);
       let encryptedPem = localStorage.getItem("privateKey");
+      this.encryptedPrivateKeyPem = encryptedPem;
       if (encryptedPem) {
         try {
           let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
           let decryptedPrivatePem = pki.privateKeyToPem(decryptedPrivate);
-          this.privateKeyPem = decryptedPrivatePem;
-          this.privateKey = pki.privateKeyFromPem(decryptedPrivatePem);
-          this.publicKey = pki.rsa.setPublicKey(this.privateKey.n, this.privateKey.e);
+          this.privateKeyPem = encryptedPem;
+          resolve({
+            title: "Passphrase correct",
+            message: "The passphrase is saved for 30 minutes."
+          });
+        } catch (e) {
+          reject({
+            title: "Passphrase wrong",
+            message: "The passphrase couldn't be used to successfuly decrypt your private key."
+          });
+        }
+      } else {
+        reject({title: "No key found", message: "There is no key installed on your system."});
+      }
+    });
+  };
+
+  loadPrivateKey = (privateKey) => {
+    return new Promise((resolve, reject) => {
+      this.checkForPassphrase();
+      privateKey && localStorage.setItem("privateKey", privateKey);
+      let encryptedPem = localStorage.getItem("privateKey");
+      this.encryptedPrivateKeyPem = encryptedPem;
+      if (encryptedPem) {
+        try {
+          let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
+          let decryptedPrivatePem = pki.privateKeyToPem(decryptedPrivate);
+          this.privateKeyPem = encryptedPem;
+          this.publicKey = pki.rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
           this.publicKeyPem = pki.publicKeyToPem(this.publicKey);
           resolve();
         } catch (e) {
@@ -84,6 +111,14 @@ class EncryptionService {
     }
   };
 
+  checkForPassphrase = () => {
+    return new Promise((resolve, reject) => {
+      if (_.isEmpty(this.passphrase)) {
+        this.passphraseNeeded(true, resolve, reject);
+      }
+    });
+  };
+
   encrypt = (value, publicKey) => {
     let encrypted = publicKey.encrypt(value, "RSAES-PKCS1-V1_5", {
       md: forge.md.sha256.create(),
@@ -93,10 +128,21 @@ class EncryptionService {
   };
 
   decrypt = (value) => {
-    const binary = new Buffer(value, "base64").toString("binary");
-    return this.privateKey.decrypt(binary, "RSAES-PKCS1-V1_5", {
-      md: forge.md.sha256.create(),
-      encoding: "base64"
+    return new Promise((resolve, reject) => {
+      this.checkForPassphrase()
+        .then(() => {
+          let decryptedPrivate = pki.decryptRsaPrivateKey(this.encryptedPrivateKeyPem, this.passphrase);
+          const binary = new Buffer(value, "base64").toString("binary");
+          let decrypted = decryptedPrivate.decrypt(binary, "RSAES-PKCS1-V1_5", {
+            md: forge.md.sha256.create(),
+            encoding: "base64"
+          });
+          resolve(decrypted);
+        })
+        .catch(() => {
+          console.log("Catch!");
+          reject();
+        });
     });
   };
 
