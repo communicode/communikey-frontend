@@ -28,6 +28,9 @@ class EncryptionService {
 
   setPassphrase = (passphrase) => {
     this.passphrase = passphrase;
+    setInterval(() => {
+      passphrase = "";
+    }, 30 * 60 * 1000);
   };
 
   checkPassphrase = () => {
