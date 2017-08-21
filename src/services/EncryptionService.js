@@ -106,8 +106,17 @@ class EncryptionService {
               this.initialized = true;
               resolve();
             } catch (e) {
-              reject({title: "Key loading failed", message: "The key on your system seems to be corrupted or the passphrase is wrong."});
+              reject({
+                title: "Key loading failed",
+                message: "The key on your system seems to be corrupted or the passphrase is wrong."
+              });
             }
+          })
+          .catch(() => {
+            reject({
+              title: "Key loading failed",
+              message: "The passphrase is needed to decrypt your local private key."
+            });
           });
       } else {
         if(authStore.publicKey) {
