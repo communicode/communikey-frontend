@@ -216,22 +216,30 @@ class KeypairWizard extends React.Component {
    * Finishes the key generation/upload procedure
    */
   finishProcedure = () => {
-    encryptionService.setPassphrase(this.state.passphrase);
-    encryptionService.loadPrivateKey(!_.isEmpty(this.state.pasteContent) && this.state.pasteContent)
-      .then(() => {
-        notificationService.success("Created Key", "Your private key has been successfully loaded.", 5);
-        if(authStore.publicKeyResetToken) {
-          authStore.resetPublicKey(encryptionService.publicKeyPem)
-            .then(() => {
-              this.next();
-            });
-        } else {
-          this.next();
-        }
-      })
-      .catch((info) => {
-        notificationService.error(info.title, info.message, 5);
-      });
+    if(this.state.pasteContent.includes("-----BEGIN ENCRYPTED PRIVATE KEY-----") &&
+       this.state.pasteContent.includes("-----END ENCRYPTED PRIVATE KEY-----")) {
+      encryptionService.setPassphrase(this.state.passphrase);
+      encryptionService.loadPrivateKey(!_.isEmpty(this.state.pasteContent) && this.state.pasteContent)
+        .then(() => {
+          notificationService.success("Created Key", "Your private key has been successfully loaded.", 5);
+          if(authStore.publicKeyResetToken) {
+            authStore.resetPublicKey(encryptionService.publicKeyPem)
+              .then(() => {
+                this.next();
+              });
+          } else {
+            this.next();
+          }
+        })
+        .catch((info) => {
+          notificationService.error(info.title, info.message, 5);
+        });
+    } else {
+      notificationService.error(
+        "Key loading failed",
+        "The key you specified doesn't seem to be valid. Please ensure that the key is formatted in PEM.",
+        5);
+    }
   };
 
   render() {
