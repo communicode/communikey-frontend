@@ -92,16 +92,15 @@ class EncryptionService {
             this.encryptedPrivateKeyPem = encryptedPem;
             try {
               let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
-              let decryptedPrivatePem = pki.privateKeyToPem(decryptedPrivate);
+              pki.privateKeyToPem(decryptedPrivate);
               this.privateKeyPem = encryptedPem;
               this.publicKey = pki.rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
               this.publicKeyPem = pki.publicKeyToPem(this.publicKey);
-              if (authStore.publicKey && (this.publicKeyPem != authStore.publicKey)) {
+              if (authStore.publicKey && (!_.isEqual(this.publicKeyPem, authStore.publicKey))) {
                 this.keyMismatch = true;
                 reject({
                   title: "Key loading failed",
-                  message: "The key on your system doesn't match your public key on the server. " +
-                  "Please reset your key in the user settings."
+                  message: "The key on your system doesn't match your public key on the server. "
                 });
               }
               this.initialized = true;
@@ -111,7 +110,17 @@ class EncryptionService {
             }
           });
       } else {
-        reject({title: "No key found", message: "There is no key installed on your system."});
+        if(authStore.publicKey) {
+          reject({
+            title: "No key found",
+            message: "There is no key installed on your system. Please use the wizard to install one"}
+          );
+        } else {
+          reject({
+            title: "No key found",
+            message: "There is no key installed on your system."
+          });
+        }
       }
     });
   };
