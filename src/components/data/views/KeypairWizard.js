@@ -375,7 +375,17 @@ class KeypairWizard extends React.Component {
       <div className="introductionContent">
         <Row>
           <Card>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            Have you already generated your own keypair and do you want to use it on this platform? No problem!<br/>
+            Select this option and we will guide you through uploading your own private key. Please ensure that
+            your keypair is at least 4096 bits long and uses secure passhrase, to ensure a high security standard.
+            In addition to a secure keypair, make sure that you upload your private key
+            in the common encrypted PEM format.<br/>
+            Please note that communikey never stores any confidential data unencrypted on its servers. Your private key
+            stays your private key. It&apos;s only stored locally and will only be decrypted with your interaction
+            if needed. The passphrase needed to decrypt your private key is also only saved for a maximum of 30 minutes.
+            That way we minimize the risks of a potential attacker gaining access to your passwords. If you lose your
+            private key you lose your only method of true identification to this service. Please store it with
+            uttermost importance.<br/>
           </Card>
         </Row>
         <Row>
@@ -385,7 +395,8 @@ class KeypairWizard extends React.Component {
         </Row>
         <Row>
           <Card>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            You dont know what a keypair exactly is and don&apos;t want to bother with it any further? We&apos;ve got you
+            covered! Communikey is able to generate a secure keypair with a passphrase for you. Only one click needed.
           </Card>
         </Row>
         <Row>
