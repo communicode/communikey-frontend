@@ -134,7 +134,7 @@ class EncryptionService {
    */
   generate = () => {
     return new Promise((resolve) => {
-      let state = rsa.createKeyPairGenerationState(512, 0x10001);
+      let state = rsa.createKeyPairGenerationState(4096, 0x10001);
       let step = () => {
         if (!rsa.stepKeyPairGenerationState(state, 100)) {
           setTimeout(step, 1);
