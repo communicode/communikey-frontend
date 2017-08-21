@@ -173,7 +173,6 @@ class ProfileModal extends React.Component {
        * The React key of the active tab.
        *
        * @type {string}
-       * @since 0.11.0
        */
       activeTabViewKey: TAB_PANE_REACT_KEY_PROFILE,
 
@@ -231,8 +230,6 @@ class ProfileModal extends React.Component {
 
   /**
    * Handles the action button click event.
-   *
-   * @since 0.15.0
    */
   handleSubmit = () => this.form.validateFields((errors, payload) => {
     if (!errors) {
@@ -251,8 +248,6 @@ class ProfileModal extends React.Component {
 
   /**
    * Validator for the form to check the equality of both password input fields
-   *
-   * @since 0.15.0
    */
   checkPassword = (rule, value, callback) => {
     const form = this.form;
@@ -269,7 +264,6 @@ class ProfileModal extends React.Component {
    * Saves the reference to the managed form component.
    *
    * @param form - The form to save the reference to
-   * @since 0.15.0
    */
   saveManagedFormRef = (form) => this.form = form;
 
@@ -281,7 +275,7 @@ class ProfileModal extends React.Component {
   setProcessingStatus = (status) => this.setState({processing: status});
 
   /**
-   * Resets the state user object.
+   * Resets the state password ereset value.
    */
   resetPasswordResetModalValues = () => this.setState({passwordResetModalConfirmValue: "", passwordResetModalNewPasswordValue: ""});
 
@@ -304,7 +298,7 @@ class ProfileModal extends React.Component {
     const {activeTabViewKey, passwordResetModalValuesValid, passwordResetModalVisible} = this.state;
 
     /**
-     * Operations name constants and the name of the callback function.
+     * Operations name constants and the name of the callback function. Builds the footer drop down.
      */
     const OPERATION_TYPES = {
       RESET_PASSWORD: {
@@ -313,12 +307,18 @@ class ProfileModal extends React.Component {
       }
     };
 
+    /**
+     * The footer drop down
+     */
     const footerOperationsDropdownMenu = (
       <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
         <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={!authStore.passwordResetToken}>Reset password</Menu.Item>
       </Menu>
     );
 
+    /**
+     * The footer
+     */
     const footer = () => (
       <div className="footer">
         <Row type="flex" align="middle">
@@ -349,6 +349,9 @@ class ProfileModal extends React.Component {
       </div>
     );
 
+    /**
+     * The content of the profile tab.
+     */
     const tabViewProfile = () => (
       <Tabs.TabPane tab="Profile" key={TAB_PANE_REACT_KEY_PROFILE}>
         <Row type="flex" align="center">
@@ -359,6 +362,9 @@ class ProfileModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    /**
+     * The content of the wizard tab.
+     */
     const tabViewWizard = () => (
       <Tabs.TabPane tab="Wizard" key={TAB_PANE_REACT_KEY_WIZARD}>
         <Row type="flex" align="center">
@@ -369,6 +375,9 @@ class ProfileModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    /**
+     * The content of the settings tab.
+     */
     const tabViewSettings = () => (
       <Tabs.TabPane disabled={true} tab="Settings" key={TAB_PANE_REACT_KEY_SETTINGS}>
         <Row type="flex" align="center">
@@ -378,6 +387,9 @@ class ProfileModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    /**
+     * The password reset modal.
+     */
     const passwordResetInnerModal = () => (
       <Modal
         visible={passwordResetModalVisible}
