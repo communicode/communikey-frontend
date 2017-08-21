@@ -435,7 +435,11 @@ class KeypairWizard extends React.Component {
         <Row>
           <Card>
             <Row>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              Well done! You&apos;ve finished the keypair setup for your account. Please download your private key
+              and store it safely. If you lose your key you lose your only way of identifying yourself with this
+              service.<br/> A lost keypair will result in invalidating all your encrypted passwords and losing access to
+              them until they&apos;ve been reencrypted with a newly generated key by the system. Should this happen,
+              please contact an administrator at key@communicode.de. They will be able to help you out.
             </Row>
             <Row>
               <Button icon="download" onClick={encryptionService.downloadPrivateKey}>
