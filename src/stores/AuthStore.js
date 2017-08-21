@@ -3,7 +3,6 @@ import apiService from "./../services/ApiService";
 import {API_ME} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 import {USERS_PASSWORD_RESET, USERS_PUBLICKEY_RESET} from "../services/apiRequestMappings";
-import {encryptionService} from "../Communikey";
 
 /**
  * A observable store for data of a authenticated user.

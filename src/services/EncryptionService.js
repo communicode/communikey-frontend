@@ -169,6 +169,8 @@ class EncryptionService {
     return new Promise((resolve, reject) => {
       if (_.isEmpty(this.passphrase)) {
         this.passphraseNeeded(true, resolve, reject);
+      } else {
+        resolve();
       }
     });
   };

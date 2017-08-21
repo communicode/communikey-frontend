@@ -99,6 +99,14 @@ class KeypairWizard extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if(_.isEmpty(authStore.publicKeyResetToken) && !_.isEmpty(authStore.publicKey)) {
+      this.setState({
+        current: 2
+      });
+    }
+  }
+
   /**
    * Saves the reference to the generator form component.
    *
