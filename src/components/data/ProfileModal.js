@@ -21,7 +21,7 @@ import "antd/lib/tooltip/style/index.less";
 import "./ProfileModal.less";
 
 const ManagedProfileForm = Form.create()(
-  (props) => {
+  () => {
     return (
       <Form hideRequiredMark={true}>
         <Form.Item

@@ -100,7 +100,6 @@ class PassphraseModal extends React.Component {
           this.setState({
             error: true
           });
-          console.log(this.form);
           notificationService.error(info.title, info.message, 3);
         });
     }
@@ -156,14 +155,14 @@ PassphraseModal.propTypes = {
    *
    * @type {function}
    */
-  passphraseNeededResolve: PropTypes.func.isRequired,
+  passphraseNeededResolve: PropTypes.func,
 
   /**
    * Callback function to handle unsuccesful close events.
    *
    * @type {function}
    */
-  passphraseNeededReject: PropTypes.func.isRequired,
+  passphraseNeededReject: PropTypes.func,
 
   /**
    * Callback function to handle unsuccesful close events.
