@@ -173,7 +173,6 @@ class KeypairWizard extends React.Component {
    * Saves the reference to the generator form component.
    *
    * @param form - The form to save the reference to
-   * @since 0.15.0
    */
   saveManagedFormRef = (form) => this.form = form;
 

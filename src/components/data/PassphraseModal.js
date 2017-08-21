@@ -64,7 +64,7 @@ class PassphraseModal extends React.Component {
       /**
        * The result of the last passphrase check
        *
-       * @default {""}
+       * @default false
        * @type {boolean}
        */
       error: false
@@ -75,14 +75,11 @@ class PassphraseModal extends React.Component {
    * Saves the reference to the managed form component.
    *
    * @param form - The form to save the reference to
-   * @since 0.15.0
    */
   saveManagedFormRef = (form) => this.form = form;
 
   /**
    * Handles the action button click event.
-   *
-   * @since 0.15.0
    */
   handleSubmit = () => this.form.validateFields((errors, payload) => {
     if (!errors) {
@@ -105,14 +102,22 @@ class PassphraseModal extends React.Component {
     }
   });
 
+  /**
+   * Handles the cancel button event.
+   */
   handleCancel = () => {
     this.props.passphraseNeededReject();
     this.props.onClose();
   };
 
-  handleInputValueChange = (newValue) => {
+  /**
+   * Handles the input box value change
+   *
+   * @param event - the event of the input box value change
+   */
+  handleInputValueChange = (event) => {
     this.setState({
-      passphrase: newValue.target.value
+      passphrase: event.target.value
     });
   };
 
