@@ -84,6 +84,13 @@ const managedFormItemLayout = {
   }
 };
 
+/**
+ * The keypair wizard component used in the profile modal
+ *
+ * @author dvonderbey@communicode.de
+ * @author lleifermann@communicode.de
+ * @since 0.15.0
+ */
 class KeypairWizard extends React.Component {
   constructor(props) {
     super(props);
@@ -360,6 +367,10 @@ class KeypairWizard extends React.Component {
       );
     };
 
+
+    /**
+     * The content of the introduction step
+     */
     const introductionContent = (
       <div className="introductionContent">
         <Row>
@@ -385,6 +396,9 @@ class KeypairWizard extends React.Component {
       </div>
     );
 
+    /**
+     * The content of the keypair generation page
+     */
     const keypairContent = (
       <div>
         { this.state.useGenerator
@@ -394,6 +408,9 @@ class KeypairWizard extends React.Component {
       </div>
     );
 
+    /**
+     * The content of the finish step
+     */
     const finishContent = (
       <div className="finishContent">
         <Row>
@@ -411,6 +428,9 @@ class KeypairWizard extends React.Component {
       </div>
     );
 
+    /**
+     * The steps for the ant design steps component
+     */
     const steps = [
       {
         title: "Introduction",
