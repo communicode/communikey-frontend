@@ -100,7 +100,7 @@ class KeypairWizard extends React.Component {
   }
 
   componentDidMount() {
-    if(_.isEmpty(authStore.publicKeyResetToken) && !_.isEmpty(authStore.publicKey)) {
+    if(encryptionService.initialized && !encryptionService.keyMismatch) {
       this.setState({
         current: 2
       });
@@ -213,10 +213,14 @@ class KeypairWizard extends React.Component {
     encryptionService.loadPrivateKey(!_.isEmpty(this.state.pasteContent) && this.state.pasteContent)
       .then(() => {
         notificationService.success("Created Key", "Your private key has been successfully loaded.", 5);
-        authStore.resetPublicKey(encryptionService.publicKeyPem)
-          .then(() => {
-            this.next();
-          });
+        if(authStore.publicKeyResetToken) {
+          authStore.resetPublicKey(encryptionService.publicKeyPem)
+            .then(() => {
+              this.next();
+            });
+        } else {
+          this.next();
+        }
       })
       .catch((info) => {
         notificationService.error(info.title, info.message, 5);

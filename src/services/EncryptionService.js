@@ -1,6 +1,7 @@
 import forge from "node-forge";
 import fileDownload from "react-file-download";
 import _ from "lodash";
+import {authStore} from "../Communikey";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -16,6 +17,7 @@ class EncryptionService {
   privateKey;
   publicKey;
   passphrase;
+  keyCorrupt;
 
   constructor() {
     this.initialized = false;
@@ -24,6 +26,7 @@ class EncryptionService {
     this.publicKeyPem = "";
     this.passphrase = "";
     this.passphraseNeeded = function () {};
+    this.keyMismatch = false;
   }
 
   /**
@@ -81,27 +84,35 @@ class EncryptionService {
    */
   loadPrivateKey = (privateKey) => {
     return new Promise((resolve, reject) => {
-      this.checkForPassphrase()
-        .then(() => {
-          privateKey && localStorage.setItem("privateKey", privateKey);
-          let encryptedPem = localStorage.getItem("privateKey");
-          this.encryptedPrivateKeyPem = encryptedPem;
-          if (encryptedPem) {
+      privateKey && localStorage.setItem("privateKey", privateKey);
+      let encryptedPem = localStorage.getItem("privateKey");
+      if (encryptedPem) {
+        this.checkForPassphrase()
+          .then(() => {
+            this.encryptedPrivateKeyPem = encryptedPem;
             try {
               let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
               let decryptedPrivatePem = pki.privateKeyToPem(decryptedPrivate);
               this.privateKeyPem = encryptedPem;
               this.publicKey = pki.rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
               this.publicKeyPem = pki.publicKeyToPem(this.publicKey);
+              if (authStore.publicKey && (this.publicKeyPem != authStore.publicKey)) {
+                this.keyMismatch = true;
+                reject({
+                  title: "Key loading failed",
+                  message: "The key on your system doesn't match your public key on the server. " +
+                  "Please reset your key in the user settings."
+                });
+              }
               this.initialized = true;
               resolve();
             } catch (e) {
               reject({title: "Key loading failed", message: "The key on your system seems to be corrupted or the passphrase is wrong."});
             }
-          } else {
-            reject({title: "No key found", message: "There is no key installed on your system."});
-          }
-        });
+          });
+      } else {
+        reject({title: "No key found", message: "There is no key installed on your system."});
+      }
     });
   };
 
