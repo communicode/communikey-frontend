@@ -14,13 +14,64 @@ const rsa = forge.pki.rsa;
  * @since 0.15.0
  */
 class EncryptionService {
+  /**
+   * The state if a private key has successfully been loaded.
+   *
+   * @default false
+   * @type {boolean}
+   */
   initialized;
+
+  /**
+   * The encrypted private key object that node forge uses.
+   *
+   * @type {object}
+   */
   privateKey;
+
+  /**
+   * The encrypted private key formatted in PEM.
+   *
+   * @default ""
+   * @type {string}
+   */
   encryptedPrivateKeyPem;
+
+  /**
+   * The public key object that node forge uses.
+   *
+   * @type {object}
+   */
   publicKey;
+
+  /**
+   * The public key formatted in PEM.
+   *
+   * @default ""
+   * @type {string}
+   */
   publicKeyPem;
+
+  /**
+   * The passphrase entered by the user.
+   *
+   * @default ""
+   * @type {string}
+   */
   passphrase;
+
+  /**
+   * The passphrase needed callback set by the parent component
+   *
+   * @type {function}
+   */
   passphraseNeeded;
+
+  /**
+   * The flag that indicates that the private key doesn't fit the one saved to the server.
+   *
+   * @type {boolean}
+   */
   keyMismatch;
 
   constructor() {

@@ -95,13 +95,68 @@ class KeypairWizard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      /**
+       * The current step in the ant design steps component.
+       *
+       * @default 0
+       * @type {int}
+       */
       current: 0,
+
+      /**
+       * The flag that indicates the use of the key generator.
+       *
+       * @default true
+       * @type {boolean}
+       */
       useGenerator: true,
+
+      /**
+       * The flag that indicates the use of the key upload.
+       *
+       * @default true
+       * @type {boolean}
+       */
       useUpload: true,
+
+      /**
+       * The flag that indicates the use of the key generator.
+       *
+       * @default ""
+       * @type {string}
+       */
       pasteContent: "",
+
+      /**
+       * The state object that controls the radio group selection.
+       *
+       * @default "upload"
+       * @type {string}
+       */
       selectedMethod: "upload",
+
+      /**
+       * The flag that indicates that the generator is done.
+       *
+       * @default false
+       * @type {boolean}
+       */
       generatorDone: false,
+
+      /**
+       * The flag that indicates something is loading.
+       *
+       * @default false
+       * @type {boolean}
+       */
       processing: false,
+
+      /**
+       * The state item that contains the entered passphrase.
+       *
+       * @default ""
+       * @type {string}
+       */
       passphrase: ""
     };
   }
