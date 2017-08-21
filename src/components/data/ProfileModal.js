@@ -130,7 +130,7 @@ const managedFormItemLayout = {
   },
   wrapperCol: {
     xs: {span: 24},
-    sm: {span: 18, offset: 4}
+    sm: {span: 20, offset: 2}
   }
 };
 
