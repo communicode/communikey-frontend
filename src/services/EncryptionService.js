@@ -14,10 +14,14 @@ const rsa = forge.pki.rsa;
  * @since 0.15.0
  */
 class EncryptionService {
+  initialized;
   privateKey;
+  encryptedPrivateKeyPem;
   publicKey;
+  publicKeyPem;
   passphrase;
-  keyCorrupt;
+  passphraseNeeded;
+  keyMismatch;
 
   constructor() {
     this.initialized = false;
@@ -25,7 +29,6 @@ class EncryptionService {
     this.publicKey = "";
     this.publicKeyPem = "";
     this.passphrase = "";
-    this.passphraseNeeded = function () {};
     this.keyMismatch = false;
   }
 
@@ -56,7 +59,7 @@ class EncryptionService {
       if (encryptedPem) {
         try {
           let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
-          let decryptedPrivatePem = pki.privateKeyToPem(decryptedPrivate);
+          pki.privateKeyToPem(decryptedPrivate);
           this.privateKeyPem = encryptedPem;
           resolve({
             title: "Passphrase correct",
@@ -94,7 +97,7 @@ class EncryptionService {
               let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
               pki.privateKeyToPem(decryptedPrivate);
               this.privateKeyPem = encryptedPem;
-              this.publicKey = pki.rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
+              this.publicKey = rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
               this.publicKeyPem = pki.publicKeyToPem(this.publicKey);
               if (authStore.publicKey && (!_.isEqual(this.publicKeyPem, authStore.publicKey))) {
                 this.keyMismatch = true;
