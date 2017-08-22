@@ -24,7 +24,10 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
       "isAuthorized": false,
       "lastName": "",
       "login": "",
+      "passwordResetToken": "",
       "privileged": false,
+      "publicKey": "",
+      "publicKeyResetToken": "",
     }
   }
   authorityStore={
@@ -389,7 +392,10 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
           "isAuthorized": false,
           "lastName": "",
           "login": "",
+          "passwordResetToken": "",
           "privileged": false,
+          "publicKey": "",
+          "publicKeyResetToken": "",
         }
       }
       authorityStore={

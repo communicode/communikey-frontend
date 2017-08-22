@@ -255,6 +255,16 @@ export const USERS_REGISTER = USERS + "/register";
 export const USERS_PASSWORD_RESET = USERS + "/reset_password";
 
 /**
+ * The endpoint to reset user public keys.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const USERS_PUBLICKEY_RESET = USERS + "/reset_publickey";
+
+/**
  * The endpoint for authorities of a user as compiled template.
  *
  * @constant

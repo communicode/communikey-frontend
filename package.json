@@ -35,12 +35,15 @@
     "lodash": "4.17.4",
     "mobx": "3.1.0",
     "mobx-react": "4.1.0",
+    "node-forge": "0.7.1",
     "performant-array-to-tree": "1.0.3",
     "prop-type": "latest",
     "rc-queue-anim": "1.0.4",
     "react": "15.4.2",
     "react-copy-to-clipboard": "5.0.0",
     "react-dom": "15.4.2",
+    "react-file-download": "0.3.4",
+    "react-file-reader-input": "1.1.4",
     "react-keydown": "1.7.4",
     "react-router-dom": "4.1.1",
     "style-loader": "0.13.1",
@@ -79,7 +82,9 @@
       "/node_modules/",
       "/dist/"
     ],
-    "collectCoverageFrom": ["src/**/*.js"],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/test/__mockData__/style.js"
     },
