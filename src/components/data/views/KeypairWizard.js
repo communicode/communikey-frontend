@@ -201,6 +201,9 @@ class KeypairWizard extends React.Component {
   /**
    * Validator for the form to check the equality of both password input fields
    *
+   * @param rule - Rule from the field decorator
+   * @param value - Value from the field decorator
+   * @param callback - Callback from the field decorator
    * @since 0.15.0
    */
   checkPassword = (rule, value, callback) => {
@@ -214,6 +217,8 @@ class KeypairWizard extends React.Component {
 
   /**
    * Updates the state item of the private key input box
+   *
+   * @param event - The update event
    */
   updateInputValue = (event) => {
     this.setState({
@@ -223,6 +228,8 @@ class KeypairWizard extends React.Component {
 
   /**
    * Updates the state item of the passphrase input box
+   *
+   * @param event - The update event
    */
   updatePassphraseValue = (event) => {
     this.setState({
@@ -345,7 +352,10 @@ class KeypairWizard extends React.Component {
     };
 
     /**
-     * Handles the uploaded file
+     * Handles the uploaded file callback by FileReaderInput
+     *
+     * @param e
+     * @param results - The result of the file content
      */
     const handleFileResult = (e, results) => {
       results.forEach(result => {
