@@ -55,7 +55,7 @@ class AuthStore {
           this[key] = response.data[key];
         }
         this.isAuthorized = true;
-        encryptionService.loadPrivateKey()
+        !this.publicKeyResetToken && encryptionService.loadPrivateKey()
           .catch((info) => notificationService.error(info.title, info.message, 10));
         return response;
       }));
