@@ -450,7 +450,7 @@ class KeypairWizard extends React.Component {
             uttermost importance.<br/>
           </Card>
         </Row>
-        <Row>
+        <Row className="buttonRow">
           <Button type="primary" ghost onClick={this.selectOwnKeypair}>
             <Icon type="tool"/>
             I want to use my own key!</Button>
@@ -461,7 +461,7 @@ class KeypairWizard extends React.Component {
             covered! Communikey is able to generate a secure keypair with a passphrase for you. Only one click needed.
           </Card>
         </Row>
-        <Row>
+        <Row className="buttonRow">
           <Button type="primary" ghost onClick={this.selectGenerateKeypair}>
             <Icon type="calculator"/>
             Generate one for me, please.</Button>
@@ -495,7 +495,7 @@ class KeypairWizard extends React.Component {
               them until they&apos;ve been reencrypted with a newly generated key by the system. Should this happen,
               please contact an administrator at key@communicode.de. They will be able to help you out.
             </Row>
-            <Row>
+            <Row className="buttonRow">
               <Button icon="download" onClick={encryptionService.downloadPrivateKey}>
                 Download encrypted private key
               </Button>
