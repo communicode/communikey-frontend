@@ -156,21 +156,21 @@ PassphraseModal.propTypes = {
   onClose: PropTypes.func.isRequired,
 
   /**
-   * Callback function to handle successful close events.
+   * Callback function to resolve the passphrase modal promise
    *
    * @type {function}
    */
   passphraseNeededResolve: PropTypes.func,
 
   /**
-   * Callback function to handle unsuccesful close events.
+   * Callback function to reject the passphrase modal promise
    *
    * @type {function}
    */
   passphraseNeededReject: PropTypes.func,
 
   /**
-   * Callback function to handle unsuccesful close events.
+   * Visibility state of the modal
    *
    * @type {function}
    */
