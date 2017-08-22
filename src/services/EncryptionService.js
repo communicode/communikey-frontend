@@ -87,6 +87,7 @@ class EncryptionService {
    * A setter for the passphrase, handles the variable expiration by deleting it after 30 minutes.
    *
    * @author dvonderbey@communicode.de
+   * @param passphrase - The passphrase
    * @since 0.15.0
    */
   setPassphrase = (passphrase) => {
@@ -133,6 +134,7 @@ class EncryptionService {
    * Checks for the passphrase beforehand.
    *
    * @author dvonderbey@communicode.de
+   * @param privateKey - A privateKey if none is set in the localStorage
    * @return {Promise} - The promise for the private key loading process
    * @since 0.15.0
    */
@@ -214,6 +216,7 @@ class EncryptionService {
    * Generates a keypair & encrypts it before saving it to the local storage.
    *
    * @author dvonderbey@communicode.de
+   * @param passphrase - The passphrase to use for the key encryption
    * @return {Promise} - The promise for the keypair generation & encryption process
    * @since 0.15.0
    */
@@ -259,9 +262,11 @@ class EncryptionService {
   };
 
   /**
-   * Encrypts the given value with the given public key.
+   * Encrypts the given value with the given public key to a base64 encoded string.
    *
    * @author dvonderbey@communicode.de
+   * @param value - The string to encrypt
+   * @param publicKey - The public key of the user to encrypt the content for
    * @return {string} - The encrypted value as a base64 encoded string.
    * @since 0.15.0
    */
@@ -277,6 +282,7 @@ class EncryptionService {
    * Decrypts the given value with the local private key. Uses a promise because of the passphrase modal invocation.
    *
    * @author dvonderbey@communicode.de
+   * @param value - The base64 string to decrypt with the user's private key
    * @return {Promise} - The promise for the decryption process
    * @since 0.15.0
    */
@@ -304,6 +310,7 @@ class EncryptionService {
    * Shortcut to encrypt for the local user's public key.
    *
    * @author dvonderbey@communicode.de
+   * @param value - The string for the user to encrypt
    * @return {string} - The encrypted value as a base64 encoded string.
    * @since 0.15.0
    */
