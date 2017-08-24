@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
-import {encryptionService, keyStore, notificationService} from "../../Communikey";
+import {keyStore, notificationService} from "../../Communikey";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_BREADCRUMB, LINK_KEY_SHARE} from "../../config/constants";
