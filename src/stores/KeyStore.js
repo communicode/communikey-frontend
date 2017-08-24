@@ -1,8 +1,8 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
 import apiService from "../services/ApiService";
-import {categoryStore, userStore} from "./../Communikey";
-import {KEY, KEYS} from "./../services/apiRequestMappings";
+import {authStore, categoryStore, userStore, encryptionService} from "./../Communikey";
+import {KEY, KEYS, ENCRYPTED_PASSWORD} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -10,6 +10,7 @@ import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
  *
  * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
+ * @author lleifermann@communicode.de
  * @since 0.5.0
  */
 class KeyStore {
@@ -28,18 +29,23 @@ class KeyStore {
    *
    * @param {number} categoryId - The ID of the category to add the new created key to
    * @param {string} name - The name of the key to create
-   * @param {string} login - The login of the key
    * @param {string} password - The password of the key
+   * @param {string} login - The login of the key
    * @param {string} notes - The notes for the key
    * @returns {Promise} - A promise
    */
   @action("KeyStore_create")
-  create = (categoryId, name, login, password, notes) => {
+  create = (categoryId, name, password, login, notes) => {
     return apiService.post(KEYS, {
       categoryId: categoryId,
       name: name,
       login: login,
-      password: password,
+      encryptedPasswords: [
+        {
+          "login" : authStore.login,
+          "encryptedPassword" : encryptionService.encryptForUser(password)
+        }
+      ],
       notes: notes
     }, {
       params: {
@@ -98,6 +104,31 @@ class KeyStore {
   };
 
   /**
+   * Fetches one key and decrypts it
+   *
+   * @returns {Promise} - The keys as a promise
+   * @since 0.15.0
+   */
+  getPassword = (keyId) => {
+    return new Promise((resolve, reject) => {
+      apiService.get(ENCRYPTED_PASSWORD({keyId: keyId}), {
+        params: {
+          access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+        }
+      })
+        .then((response) => {
+          return encryptionService.decrypt(response.data.password)
+            .then((response) => {
+              resolve(response);
+            })
+            .catch(() => {
+              reject();
+            });
+        });
+    });
+  };
+
+  /**
    * Fetches the key with the specified ID.
    * This is a API- and store synchronization action!
    *
@@ -124,17 +155,22 @@ class KeyStore {
    *
    * @param {number} keyId - The ID of the key to update
    * @param {string} name - The name of the key
-   * @param {string} login - The login of the key
    * @param {string} password - The password of the key
+   * @param {string} login - The login of the key
    * @param {string} notes - The notes of the key
    * @returns {Promise} - A promise
    */
   @action("KeyStore_update")
-  update = (keyId, name, login, password, notes) => {
+  update = (keyId, name, password, login, notes) => {
     return apiService.put(KEY({keyId: keyId}), {
       name: name,
       login: login,
-      password: password,
+      encryptedPasswords: [
+        {
+          "login" : authStore.login,
+          "encryptedPassword" : encryptionService.encryptForUser(password)
+        }
+      ],
       notes: notes
     }, {
       params: {

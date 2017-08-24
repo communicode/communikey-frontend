@@ -2,11 +2,13 @@ import React from "react";
 import _ from "lodash";
 import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
+import {encryptionService, keyStore, notificationService} from "../../Communikey";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_BREADCRUMB, LINK_KEY_SHARE} from "../../config/constants";
 import {ROUTE_KEYS} from "../../routes/routeMappings";
 import CopyToClipboard from "react-copy-to-clipboard";
+import copy from "copy-to-clipboard";
 import {getAncestors} from "../../services/StoreService";
 import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip, Tree, TreeSelect, Breadcrumb, Menu, Dropdown} from "antd";
 import {Link} from "react-router-dom";
@@ -34,7 +36,8 @@ import "./KeyModal.less";
  */
 const ManagedForm = Form.create()(
   (props) => {
-    const {administrationMode, cckeyKey, creationMode, categoryTreeSelect, form, locked, keyPasswordVisible} = props;
+    const {administrationMode, cckeyKey, creationMode, categoryTreeSelect,
+           form, locked, keyPasswordVisible, decryptedPassword} = props;
     const {getFieldDecorator} = form;
 
     return (
@@ -76,14 +79,14 @@ const ManagedForm = Form.create()(
           colon={false}
         >
           {getFieldDecorator("password", {
-            initialValue: cckeyKey.password,
+            initialValue: creationMode ? "" : decryptedPassword,
             rules: [{required: true, message: "Password is required"}]
           })(
             <Input
               addonBefore="Password"
               type={keyPasswordVisible ? "text" : "password"}
               readOnly={!administrationMode ? true : creationMode ? false : locked}
-              suffix={cckeyKey.password ? copyToClipboardIcon(cckeyKey.password) : null}
+              suffix={creationMode ? null : copyPasswordToClipboardIcon(cckeyKey.id)}
             />
           )}
         </Form.Item>
@@ -166,6 +169,34 @@ const ManagedForm = Form.create()(
 /**
  * The icon to copy a value to the clipboard.
  *
+ * @param keyId - The keyId to copy
+ * @since 0.15.0
+ */
+const copyPasswordToClipboardIcon = (keyId) => (
+  <Tooltip title="Copied to clipboard" trigger="click">
+    <Icon type="copy" className="copy-to-clipboard-icon" onClick={() => handlePasswordCopy(keyId)}/>
+  </Tooltip>
+);
+
+/**
+ * The function to copy the decrypted password to the clipboard
+ *
+ * @param keyId - The keyId to copy
+ * @since 0.15.0
+ */
+const handlePasswordCopy = (keyId) => {
+  keyStore.getPassword(keyId)
+  .then((password) =>{
+    copy(password);
+  })
+  .catch(() => {
+    notificationService.error("Decrypting failed", "You need to enter your passphrase to copy the password.", 5);
+  });
+};
+
+/**
+ * The icon to copy a value to the clipboard.
+ *
  * @param value - The value to copy
  */
 const copyToClipboardIcon = (value) => (
@@ -222,7 +253,12 @@ class KeyModal extends React.Component {
       /**
        * Determines if the the key password is visible.
        */
-      keyPasswordVisible: false
+      keyPasswordVisible: false,
+
+      /**
+       * Holds the current decrypted password if requested
+       */
+      decryptedPassword: "Decrypting password..."
     };
   }
 
@@ -273,7 +309,8 @@ class KeyModal extends React.Component {
    */
   handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
     if (!errors && this.props.administrationMode) {
-      this.props.onSave(payload).then(() => this.form.resetFields());
+      this.props.onSave(payload);
+      this.form.resetFields();
     }
   });
 
@@ -284,6 +321,9 @@ class KeyModal extends React.Component {
    */
   handleOnClose = () => {
     this.form.resetFields();
+    this.setState({
+      decryptedPassword: "Decrypting password..."
+    });
     this.props.onClose();
   };
 
@@ -328,7 +368,22 @@ class KeyModal extends React.Component {
   /**
    * Toggles the password visibility.
    */
-  togglePasswordVisibility = () => this.setState(prevState => ({keyPasswordVisible: !prevState.keyPasswordVisible}));
+  togglePasswordVisibility = () => {
+    this.setState(prevState => ({keyPasswordVisible: !prevState.keyPasswordVisible}));
+    !this.state.keyPasswordVisible &&
+      keyStore.getPassword(this.props.cckeyKey.id)
+        .then((password) => {
+          this.setState({
+            decryptedPassword: password
+          });
+        })
+        .catch(() => {
+          this.setState({
+            keyPasswordVisible: false
+          });
+          notificationService.error("Decrypting failed", "You need to enter your passphrase to show the password.", 5);
+        });
+  };
 
   /**
    * Saves the reference to the managed form component.
@@ -353,7 +408,8 @@ class KeyModal extends React.Component {
       toggleLockStatus,
       ...modalProps
     } = this.props;
-    const {categoryTreeSelectModalSelectedCategory, categoryTreeSelectModalVisible, keyPasswordVisible} = this.state;
+    const {categoryTreeSelectModalSelectedCategory, categoryTreeSelectModalVisible,
+           keyPasswordVisible, decryptedPassword} = this.state;
 
     const defaultKeyAvatar = () => <img src={appConfig.assets.logoTypographyGreen} className="key-logo"/>;
 
@@ -522,6 +578,7 @@ class KeyModal extends React.Component {
               administrationMode={administrationMode}
               locked={locked}
               keyPasswordVisible={keyPasswordVisible}
+              decryptedPassword={decryptedPassword}
               creationMode={creationMode}
               categoryTreeSelect={categoryTreeSelect}
             />

@@ -10,6 +10,7 @@ import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
 import {getAncestors} from "../services/StoreService";
+import {encryptionService} from "../Communikey";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
 import {
   TAB_PANE_REACT_KEY_CATEGORIZED,
@@ -45,6 +46,7 @@ const KEY_TABLE_DEFAULT_COLUMNS = [
  * @author dvonderbey@communicode.de
  * @author mskyschally@communicode.de
  * @author sgreb@communicode.de
+ * @author lleifermann@communicode.de
  * @since 0.5.0
  */
 @inject(AUTH_STORE, CATEGORY_STORE, KEY_STORE,USER_GROUP_STORE) @observer
@@ -260,7 +262,7 @@ class Keys extends React.Component {
     this.toggleKeyModal();
   };
 
-  /**
+  /**password
    * Handles the key modal event to add a key to a category.
    *
    * @callback handleKeyModalDelete
@@ -315,10 +317,10 @@ class Keys extends React.Component {
   handleKeyModalSave = (payload) => {
     this.setProcessingStatus(true);
     const {key, keyModalCreationMode} = this.state;
-    const updatedKey = update(key, {$merge: payload});
+    const updatedKey = update(key, {$merge: payload}); // console.log Change me
     this.setState({key: updatedKey});
     if(keyModalCreationMode) {
-      return this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, updatedKey.login, updatedKey.password, updatedKey.notes)
+      return this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, payload.password, updatedKey.login, updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
@@ -326,7 +328,7 @@ class Keys extends React.Component {
         .catch(() => this.setProcessingStatus(false)
         );
     } else {
-      return this.props.keyStore.update(updatedKey.id, updatedKey.name, updatedKey.login, updatedKey.password, updatedKey.notes)
+      return this.props.keyStore.update(updatedKey.id, updatedKey.name, payload.password, updatedKey.login, updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();

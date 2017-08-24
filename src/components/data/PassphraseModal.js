@@ -124,6 +124,7 @@ class PassphraseModal extends React.Component {
   render() {
     return (
       <Modal
+        wrapClassName="passphrase-modal-wrap"
         type="confirm"
         className="passphrase-modal"
         visible={this.props.visible}

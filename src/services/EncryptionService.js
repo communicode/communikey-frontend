@@ -299,8 +299,7 @@ class EncryptionService {
           });
           resolve(decrypted);
         })
-        .catch(() => {
-          console.log("Catch!");
+        .catch((error) => {
           reject();
         });
     });
