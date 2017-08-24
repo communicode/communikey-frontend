@@ -157,8 +157,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                     \\"name\\": \\"lecker\\",
                                     \\"category\\": 3,
                                     \\"creator\\": 1,
-                                    \\"login\\": \\"erdbeer\\",
-                                    \\"password\\": \\"yogurt\\"
+                                    \\"login\\": \\"erdbeer\\"
                                 },
                                 {
                                     \\"id\\": 1,
@@ -169,8 +168,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                     \\"name\\": \\"lecker\\",
                                     \\"category\\": 2,
                                     \\"creator\\": 1,
-                                    \\"login\\": \\"erdbeer\\",
-                                    \\"password\\": \\"yogurt\\"
+                                    \\"login\\": \\"erdbeer\\"
                                 },
                                 {
                                     \\"id\\": 3,
@@ -181,8 +179,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                     \\"name\\": \\"lecker\\",
                                     \\"category\\": 5,
                                     \\"creator\\": 1,
-                                    \\"login\\": \\"erdbeer\\",
-                                    \\"password\\": \\"yogurt\\"
+                                    \\"login\\": \\"erdbeer\\"
                                 }
                             ]
                         },
@@ -803,8 +800,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                     \\"name\\": \\"lecker\\",
                                                                                                                     \\"category\\": 3,
                                                                                                                     \\"creator\\": 1,
-                                                                                                                    \\"login\\": \\"erdbeer\\",
-                                                                                                                    \\"password\\": \\"yogurt\\"
+                                                                                                                    \\"login\\": \\"erdbeer\\"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     \\"id\\": 1,
@@ -815,8 +811,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                     \\"name\\": \\"lecker\\",
                                                                                                                     \\"category\\": 2,
                                                                                                                     \\"creator\\": 1,
-                                                                                                                    \\"login\\": \\"erdbeer\\",
-                                                                                                                    \\"password\\": \\"yogurt\\"
+                                                                                                                    \\"login\\": \\"erdbeer\\"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     \\"id\\": 3,
@@ -827,8 +822,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                     \\"name\\": \\"lecker\\",
                                                                                                                     \\"category\\": 5,
                                                                                                                     \\"creator\\": 1,
-                                                                                                                    \\"login\\": \\"erdbeer\\",
-                                                                                                                    \\"password\\": \\"yogurt\\"
+                                                                                                                    \\"login\\": \\"erdbeer\\"
                                                                                                                 }
                                                                                                             ],
                                                                                                             \\"scroll\\": {
@@ -5808,7 +5802,8 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                     },
                                                                     \\"state\\": {
                                                                         \\"categoryTreeSelectModalVisible\\": false,
-                                                                        \\"keyPasswordVisible\\": false
+                                                                        \\"keyPasswordVisible\\": false,
+                                                                        \\"decryptedPassword\\": \\"Decrypting password...\\"
                                                                     },
                                                                     \\"_reactInternalInstance\\": {
                                                                         \\"_currentElement\\": {
@@ -5869,6 +5864,7 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                     \\"administrationMode\\": false,
                                                                                                                     \\"locked\\": true,
                                                                                                                     \\"keyPasswordVisible\\": false,
+                                                                                                                    \\"decryptedPassword\\": \\"Decrypting password...\\",
                                                                                                                     \\"creationMode\\": false
                                                                                                                 },
                                                                                                                 \\"_store\\": {}

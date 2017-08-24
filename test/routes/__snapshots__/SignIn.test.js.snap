@@ -152,6 +152,7 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
       "_filterAllByCategory": [Function],
       "_findOneById": [Function],
       "_updateEntity": [Function],
+      "getPassword": [Function],
       "keys": Array [
         Object {
           "category": 3,
@@ -163,7 +164,6 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
           "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
           "login": "erdbeer",
           "name": "lecker",
-          "password": "yogurt",
         },
         Object {
           "category": 2,
@@ -175,7 +175,6 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
           "lastModifiedDate": "2017-06-30T11:14:33.771+02:00",
           "login": "erdbeer",
           "name": "lecker",
-          "password": "yogurt",
         },
         Object {
           "category": 5,
@@ -187,7 +186,6 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
           "lastModifiedDate": "2017-06-30T11:14:18.388+02:00",
           "login": "erdbeer",
           "name": "lecker",
-          "password": "yogurt",
         },
       ],
     }

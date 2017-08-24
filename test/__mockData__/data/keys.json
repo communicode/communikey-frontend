@@ -8,8 +8,7 @@
     "name": "lecker",
     "category": 3,
     "creator": 1,
-    "login": "erdbeer",
-    "password": "yogurt"
+    "login": "erdbeer"
   },
   {
     "id": 1,
@@ -20,8 +19,7 @@
     "name": "lecker",
     "category": 2,
     "creator": 1,
-    "login": "erdbeer",
-    "password": "yogurt"
+    "login": "erdbeer"
   },
   {
     "id": 3,
@@ -32,7 +30,6 @@
     "name": "lecker",
     "category": 5,
     "creator": 1,
-    "login": "erdbeer",
-    "password": "yogurt"
+    "login": "erdbeer"
   }
 ]

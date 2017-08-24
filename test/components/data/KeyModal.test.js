@@ -1,3 +1,4 @@
+jest.mock("../../../src/Communikey", () => require("../../__mockData__/mockUtil"));
 import React from "react";
 import {mount} from "enzyme";
 import KeyModal from "../../../src/components/data/KeyModal";
