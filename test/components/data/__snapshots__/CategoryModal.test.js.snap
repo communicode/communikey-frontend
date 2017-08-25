@@ -152,6 +152,7 @@ exports[`<CategoryModal> should render correctly with sample data 1`] = `
       "_filterAllByCategory": [Function],
       "_findOneById": [Function],
       "_updateEntity": [Function],
+      "encryptForSubscribers": [Function],
       "getPassword": [Function],
       "keys": Array [
         Object {
