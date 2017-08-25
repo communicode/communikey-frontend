@@ -215,6 +215,16 @@ export const KEY = _.template(KEYS + KEY_ID);
 export const ENCRYPTED_PASSWORD = _.template(KEYS + KEY_ID + "/password");
 
 /**
+ * The endpoint for the subscribers of a key
+ *
+ * @constant
+ * @default
+ * @type {function}
+ * @since 0.15.0
+ */
+export const KEY_SUBSCRIBERS = _.template(KEYS + KEY_ID + "/subscribers");
+
+/**
  * The endpoint for a user as compiled template.
  *
  * @constant

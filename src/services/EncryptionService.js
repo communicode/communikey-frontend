@@ -267,11 +267,12 @@ class EncryptionService {
    *
    * @author dvonderbey@communicode.de
    * @param value - The string to encrypt
-   * @param publicKey - The public key of the user to encrypt the content for
+   * @param publicKeyPem - The public key in PEM format of the user to encrypt the content for
    * @return {string} - The encrypted value as a base64 encoded string.
    * @since 0.15.0
    */
-  encrypt = (value, publicKey) => {
+  encrypt = (value, publicKeyPem) => {
+    const publicKey = pki.publicKeyFromPem(publicKeyPem);
     let encrypted = publicKey.encrypt(value, "RSAES-PKCS1-V1_5", {
       md: forge.md.sha256.create(),
       encoding: "base64"
@@ -315,7 +316,7 @@ class EncryptionService {
    * @since 0.15.0
    */
   encryptForUser = (value) => {
-    return this.encrypt(value, this.publicKey);
+    return this.encrypt(value, this.publicKeyPem);
   };
 
 }
