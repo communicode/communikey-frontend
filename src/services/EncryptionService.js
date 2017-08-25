@@ -151,8 +151,9 @@ class EncryptionService {
               pki.privateKeyToPem(decryptedPrivate);
               this.privateKeyPem = encryptedPem;
               this.publicKey = rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
-              this.publicKeyPem = pki.publicKeyToPem(this.publicKey);
-              if (authStore.publicKey && (!_.isEqual(this.publicKeyPem, authStore.publicKey))) {
+              let publicKeyPem = pki.publicKeyToPem(this.publicKey);
+              this.publicKeyPem = publicKeyPem.replace(/[\r]+/g, "");
+              if (authStore.publicKey && !_.isEqual(this.publicKeyPem, authStore.publicKey)) {
                 this.keyMismatch = true;
                 reject({
                   title: "Key loading failed",
