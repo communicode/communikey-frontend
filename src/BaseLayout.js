@@ -36,6 +36,7 @@ class BaseLayout extends React.Component {
       sidebarMenuMode: "inline",
       sidebarCurrentSelected: props.location.pathname === ROOT ? ROUTE_DASHBOARD : props.location.pathname,
       sidebarOpenKeys: [],
+      sidebarLastOpenedKeys: [],
       profileModalVisible: false,
       processing: false
     };
@@ -75,6 +76,8 @@ class BaseLayout extends React.Component {
   onSidebarCollapse = () => {
     this.setState(prevState => ({
       isSidebarCollapsed: !prevState.isSidebarCollapsed,
+      sidebarLastOpenedKeys: prevState.sidebarOpenKeys,
+      sidebarOpenKeys: !prevState.isSidebarCollapsed ? [] : prevState.sidebarLastOpenedKeys,
       sidebarMenuMode: prevState.isSidebarCollapsed ? "inline" : "vertical"
     }));
   };
