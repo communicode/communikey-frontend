@@ -302,7 +302,7 @@ class EncryptionService {
           resolve(decrypted);
         })
         .catch((error) => {
-          reject();
+          reject(error);
         });
     });
   };

@@ -10,7 +10,6 @@ import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
 import {getAncestors} from "../services/StoreService";
-import {encryptionService} from "../Communikey";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
 import {
   TAB_PANE_REACT_KEY_CATEGORIZED,
