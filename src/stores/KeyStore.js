@@ -36,6 +36,7 @@ class KeyStore {
    */
   @action("KeyStore_create")
   create = (categoryId, name, password, login, notes) => {
+    console.log("Notes: ", notes);
     return apiService.post(KEYS, {
       categoryId: categoryId,
       name: name,
@@ -93,7 +94,8 @@ class KeyStore {
           apiService.put(KEY({keyId: key.id}), {
             login: key.login,
             name: key.name,
-            encryptedPasswords: encryptedPasswords
+            encryptedPasswords: encryptedPasswords,
+            notes: key.notes
           }, {
             params: {
               access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)

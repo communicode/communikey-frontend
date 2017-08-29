@@ -319,7 +319,11 @@ class Keys extends React.Component {
     const updatedKey = update(key, {$merge: payload}); // console.log Change me
     this.setState({key: updatedKey});
     if(keyModalCreationMode) {
-      return this.props.keyStore.create(updatedKey.categoryId, updatedKey.name, payload.password, updatedKey.login, updatedKey.notes)
+      return this.props.keyStore.create(updatedKey.categoryId,
+                                        updatedKey.name,
+                                        payload.password,
+                                        updatedKey.login,
+                                        updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
@@ -327,7 +331,11 @@ class Keys extends React.Component {
         .catch(() => this.setProcessingStatus(false)
         );
     } else {
-      return this.props.keyStore.update(updatedKey.id, updatedKey.name, payload.password, updatedKey.login, updatedKey.notes)
+      return this.props.keyStore.update(updatedKey.id,
+                                        updatedKey.name,
+                                        payload.password,
+                                        updatedKey.login,
+                                        updatedKey.notes)
         .then(() => {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
