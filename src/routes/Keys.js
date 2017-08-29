@@ -316,7 +316,7 @@ class Keys extends React.Component {
   handleKeyModalSave = (payload) => {
     this.setProcessingStatus(true);
     const {key, keyModalCreationMode} = this.state;
-    const updatedKey = update(key, {$merge: payload}); // console.log Change me
+    const updatedKey = update(key, {$merge: payload});
     this.setState({key: updatedKey});
     if(keyModalCreationMode) {
       return this.props.keyStore.create(updatedKey.categoryId,
