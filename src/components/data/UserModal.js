@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import CopyToClipboard from "react-copy-to-clipboard";
 import _ from "lodash";
 import {Badge, Button, Col, Dropdown, Form, Icon, Input, Menu, Modal, Row, Table, Tabs, Tooltip} from "antd";
+import {authStore} from "../../Communikey";
 import appConfig from "./../../config/app";
 import {screenMD} from "./../../config/theme/sizes";
 import "antd/lib/badge/style/index.less";
@@ -378,6 +379,7 @@ class UserModal extends React.Component {
       onSave,
       onUserActivate,
       onUserDeactivate,
+      onUserInvalidateKeypair,
       toggleLockStatus,
       user,
       ...modalProps
@@ -399,6 +401,10 @@ class UserModal extends React.Component {
       USER_DEACTIVATE: {
         keyName: "USER_DEACTIVATE",
         handler: onUserDeactivate
+      },
+      USER_INVALIDATE_KEYPAIR: {
+        keyName: "USER_INVALIDATE_KEYPAIR",
+        handler: onUserInvalidateKeypair
       }
     };
 
@@ -416,6 +422,7 @@ class UserModal extends React.Component {
 
     const footerOperationsDropdownMenu = (
       <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
+        <Menu.Item key={OPERATION_TYPES.USER_INVALIDATE_KEYPAIR.keyName} disabled={authStore.publicKeyResetToken ? true : locked}>Reset Keypair</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={locked || !user.activated}>Reset password</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_ACTIVATE.keyName} disabled={locked || user.activated}>Activate</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_DEACTIVATE.keyName} disabled={locked || !user.activated}>Deactivate</Menu.Item>
@@ -664,6 +671,13 @@ UserModal.propTypes = {
    * @type {function}
    */
   onUserDeactivate: PropTypes.func,
+
+  /**
+   * Callback function to handle invalidation of private key for user
+   *
+   * @type {function}
+   */
+  onUserInvalidateKeypair: PropTypes.func,
 
   /**
    * Callback function to handle the user password reset event.
