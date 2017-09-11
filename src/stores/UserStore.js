@@ -2,7 +2,7 @@ import {action, observable} from "mobx";
 import _ from "lodash";
 import apiService from "../services/ApiService";
 import {categoryStore, keyStore, userGroupStore} from "./../Communikey";
-import {USER, USER_AUTHORITIES, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER} from "./../services/apiRequestMappings";
+import {USER, USER_AUTHORITIES, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER, USERS_PUBLICKEY_RESET} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -265,6 +265,25 @@ class UserStore {
       .then(() => this.fetchOne(login));
   };
 
+  /**
+   * Generates a public key reset token
+   *
+   * @returns {Promise} - A promise
+   * @since 0.8.0
+   */
+  @action("UserStore_resetPublicKey")
+  resetPublicKey = (email) => {
+    return apiService.get(USERS_PUBLICKEY_RESET, {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        email: email
+      }
+    })
+      .then(action("UserStore_activate_synchronization", response => {
+        this._updateEntity(response.data.id, response.data);
+        return response.data;
+      }));
+  };
   /**
    * Updates the user with the specified login.
    * This is a API- and store synchronization action!
