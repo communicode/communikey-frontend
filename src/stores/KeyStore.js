@@ -36,34 +36,36 @@ class KeyStore {
    */
   @action("KeyStore_create")
   create = (categoryId, name, password, login, notes) => {
-    console.log("Notes: ", notes);
-    return apiService.post(KEYS, {
-      categoryId: categoryId,
-      name: name,
-      login: login,
-      encryptedPasswords: [
-        {
-          "login" : authStore.login,
-          "encryptedPassword" : encryptionService.encryptForUser(password)
-        }
-      ],
-      notes: notes
-    }, {
-      params: {
-        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
-      }
-    })
-      .then(action("KeyStore_create_synchronization", response => {
-        this.keys.push(response.data);
-        return apiService.all([
-          categoryId && categoryStore.fetchOne(categoryId),
-          userStore.fetchOneById(response.data.creator)
-        ])
-          .then(() => {
-            this.encryptForSubscribers(response.data, password)
-              .then(() => response.data);
-          });
-      }));
+    return encryptionService.encryptForUser(password)
+      .then((encryptedPassword) => {
+        return apiService.post(KEYS, {
+          categoryId: categoryId,
+          name: name,
+          login: login,
+          encryptedPasswords: [
+            {
+              "login" : authStore.login,
+              "encryptedPassword" : encryptedPassword
+            }
+          ],
+          notes: notes
+        }, {
+          params: {
+            access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+          }
+        })
+          .then(action("KeyStore_create_synchronization", response => {
+            this.keys.push(response.data);
+            return apiService.all([
+              categoryId && categoryStore.fetchOne(categoryId),
+              userStore.fetchOneById(response.data.creator)
+            ])
+              .then(() => {
+                this.encryptForSubscribers(response.data, password)
+                  .then(() => response.data);
+              });
+          }));
+      });
   };
 
   /**
@@ -206,22 +208,30 @@ class KeyStore {
    */
   @action("KeyStore_update")
   update = (keyId, name, password, login, notes) => {
-    return apiService.put(KEY({keyId: keyId}), {
-      name: name,
-      login: login,
-      encryptedPasswords: [],
-      notes: notes
-    }, {
-      params: {
-        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
-      }
-    })
-      .then(action("KeyStore_update_synchronization", response => {
-        this.encryptForSubscribers(response.data, password)
-          .then(() => response.data);
-        this._updateEntity(keyId, response.data);
-        return response.data;
-      }));
+    return encryptionService.encryptForUser(password)
+      .then((encryptedPassword) => {
+        return apiService.put(KEY({keyId: keyId}), {
+          name: name,
+          login: login,
+          encryptedPasswords: [
+            {
+              "login" : authStore.login,
+              "encryptedPassword" : encryptedPassword
+            }
+          ],
+          notes: notes
+        }, {
+          params: {
+            access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+          }
+        })
+          .then(action("KeyStore_update_synchronization", response => {
+            this.encryptForSubscribers(response.data, password)
+              .then(() => response.data);
+            this._updateEntity(keyId, response.data);
+            return response.data;
+          }));
+      });
   };
 
   /**

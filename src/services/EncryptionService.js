@@ -113,6 +113,9 @@ class EncryptionService {
           let decryptedPrivate = pki.decryptRsaPrivateKey(encryptedPem, this.passphrase);
           pki.privateKeyToPem(decryptedPrivate);
           this.privateKeyPem = encryptedPem;
+          this.publicKey = rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
+          let publicKeyPem = pki.publicKeyToPem(this.publicKey);
+          this.publicKeyPem = publicKeyPem.replace(/[\r]+/g, "");
           resolve({
             title: "Passphrase correct",
             message: "The passphrase is saved for 30 minutes."
@@ -312,11 +315,17 @@ class EncryptionService {
    *
    * @author dvonderbey@communicode.de
    * @param value - The string for the user to encrypt
-   * @return {string} - The encrypted value as a base64 encoded string.
+   * @return {Promise} - The encrypted value as a base64 encoded string.
    * @since 0.15.0
    */
   encryptForUser = (value) => {
-    return this.encrypt(value, this.publicKeyPem);
+    return new Promise((resolve, reject) => {
+      this.checkForPassphrase()
+        .then(() => {
+          let encrypted = this.encrypt(value, this.publicKeyPem);
+          resolve(encrypted);
+        });
+    });
   };
 
 }
