@@ -10,6 +10,7 @@ import CategoryTree from "./../components/data/views/CategoryTree";
 import KeyModal from "./../components/data/KeyModal";
 import NoDataMessageBox from "./../components/feedback/NoDataMessageBox";
 import {getAncestors} from "../services/StoreService";
+import {notificationService} from "../Communikey";
 import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stores/storeConstants";
 import {
   TAB_PANE_REACT_KEY_CATEGORIZED,
@@ -328,8 +329,10 @@ class Keys extends React.Component {
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
-        .catch(() => this.setProcessingStatus(false)
-        );
+        .catch(() => {
+          this.setProcessingStatus(false);
+          notificationService.error("Error creating key", "Your private key has to be decrypted to create this key.", 5);
+        });
     } else {
       return this.props.keyStore.update(updatedKey.id,
                                         updatedKey.name,
@@ -337,10 +340,15 @@ class Keys extends React.Component {
                                         updatedKey.login,
                                         updatedKey.notes)
         .then(() => {
+          console.log("here 1");
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
-        .catch(() => this.setProcessingStatus(false));
+        .catch(() => {
+          console.log("here 2");
+          this.setProcessingStatus(false);
+          notificationService.error("Error updating key", "Your private key has to be decrypted to update this key.", 5);
+        });
     }
   };
 

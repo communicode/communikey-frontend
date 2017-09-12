@@ -324,6 +324,9 @@ class EncryptionService {
         .then(() => {
           let encrypted = this.encrypt(value, this.publicKeyPem);
           resolve(encrypted);
+        })
+        .catch(() => {
+          reject();
         });
     });
   };
