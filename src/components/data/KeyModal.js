@@ -310,7 +310,6 @@ class KeyModal extends React.Component {
   handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
     if (!errors && this.props.administrationMode) {
       this.props.onSave(payload);
-      this.form.resetFields();
     }
   });
 
