@@ -340,12 +340,10 @@ class Keys extends React.Component {
                                         updatedKey.login,
                                         updatedKey.notes)
         .then(() => {
-          console.log("here 1");
           this.setProcessingStatus(false);
           this.handleKeyModalClose();
         })
         .catch(() => {
-          console.log("here 2");
           this.setProcessingStatus(false);
           notificationService.error("Error updating key", "Your private key has to be decrypted to update this key.", 5);
         });
