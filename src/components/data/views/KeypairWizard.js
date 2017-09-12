@@ -277,8 +277,10 @@ class KeypairWizard extends React.Component {
    * Finishes the key generation/upload procedure
    */
   finishProcedure = () => {
-    if(this.state.pasteContent.includes("-----BEGIN ENCRYPTED PRIVATE KEY-----") &&
-       this.state.pasteContent.includes("-----END ENCRYPTED PRIVATE KEY-----")) {
+    if(!_.isEmpty(this.state.pasteContent) && (
+          this.state.pasteContent.includes("-----BEGIN ENCRYPTED PRIVATE KEY-----") &&
+          this.state.pasteContent.includes("-----END ENCRYPTED PRIVATE KEY-----")) ||
+      _.isEmpty(this.state.pasteContent)) {
       encryptionService.setPassphrase(this.state.passphrase);
       encryptionService.loadPrivateKey(!_.isEmpty(this.state.pasteContent) && this.state.pasteContent)
         .then(() => {
