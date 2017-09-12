@@ -165,6 +165,11 @@ class UserAdministration extends React.Component {
       });
   };
 
+  /**
+   * Handles the user key pair reset and invalidation event.
+   *
+   * @callback handleUserKeypairInvalidation
+   */
   handleUserKeypairInvalidation = () => {
     this.setProcessingStatus(true);
     this.props.userStore.resetPublicKey(this.state.user.email)
