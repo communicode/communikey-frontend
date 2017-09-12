@@ -2,8 +2,9 @@ import React from "react";
 import {mount} from "enzyme";
 import UserModal from "../../../src/components/data/UserModal";
 import {authorityStore, userStore, emptyFunction} from "../../__mockData__/mockUtil";
+jest.mock("../../../src/Communikey", () => require("../../__mockData__/mockUtil"));
 import {Provider} from "mobx-react";
-import {toJS} from 'mobx';
+import {toJS} from "mobx";
 
 describe("<UserModal>", () => {
   test("should render correctly with sample data", () => {

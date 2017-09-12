@@ -4389,6 +4389,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
             onSave={[Function]}
             onUserActivate={[Function]}
             onUserDeactivate={[Function]}
+            onUserInvalidateKeypair={[Function]}
             onUserPasswordReset={[Function]}
             toggleLockStatus={[Function]}
             user={Object {}}
