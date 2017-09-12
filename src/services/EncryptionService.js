@@ -203,14 +203,7 @@ class EncryptionService {
    */
   generate = () => {
     return new Promise((resolve) => {
-      let state = rsa.createKeyPairGenerationState(128, 0x10001);
-      console.log("REMOVE ME BEFORE PUSHING");
-      console.log("REMOVE ME BEFORE PUSHING");
-      console.log("REMOVE ME BEFORE PUSHING");
-      console.log("REMOVE ME BEFORE PUSHING");
-      console.log("REMOVE ME BEFORE PUSHING");
-      console.log("REMOVE ME BEFORE PUSHING");
-      console.log("REMOVE ME BEFORE PUSHING");
+      let state = rsa.createKeyPairGenerationState(4096, 0x10001);
       let step = () => {
         if (!rsa.stepKeyPairGenerationState(state, 100)) {
           setTimeout(step, 1);
