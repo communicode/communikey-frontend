@@ -408,6 +408,7 @@ class KeypairWizard extends React.Component {
                         placeholder="Passphrase"
                         type="password"
                         value={this.state.passphrase}
+                        onPressEnter={this.finishProcedure}
                         onChange={this.updatePassphraseValue}
                       />
                     </Row>
