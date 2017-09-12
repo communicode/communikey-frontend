@@ -269,7 +269,7 @@ class UserStore {
    * Generates a public key reset token
    *
    * @returns {Promise} - A promise
-   * @since 0.8.0
+   * @since 0.15.0
    */
   @action("UserStore_resetPublicKey")
   resetPublicKey = (email) => {
@@ -279,9 +279,8 @@ class UserStore {
         email: email
       }
     })
-      .then(action("UserStore_activate_synchronization", response => {
-        this._updateEntity(response.data.id, response.data);
-        return response.data;
+      .then(action("UserStore_resetPublicKey_synchronization", response => {
+        this._findOneByEmail(email).publicKeyResetToken = response.data.publicKeyResetToken;
       }));
   };
   /**
@@ -358,6 +357,17 @@ class UserStore {
    * @since 0.9.0
    */
   _findOneByLogin = (login) => this.users.find(user => user.login === login);
+
+  /**
+   * Finds the user with the specified email.
+   * This is a pure store operation action!
+   *
+   * @param {string} email - The login of the user to find
+   * @returns {object} - The user if found
+   * @since 0.15.0
+   * @author dvonderbey@communicode.de
+   */
+  _findOneByEmail = (email) => this.users.find(user => user.email === email);
 
   /**
    * Updates the user entity with the specified ID.
