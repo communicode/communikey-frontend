@@ -401,6 +401,7 @@ class KeypairWizard extends React.Component {
                         type="textarea"
                         defaultValue={this.state.pasteContent}
                         autosize={{minRows: 10, maxRows: 20}}
+                        onPressEnter={this.finishProcedure}
                       />
                     </Row>
                     <Row>
