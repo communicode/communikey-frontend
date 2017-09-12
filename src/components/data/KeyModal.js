@@ -370,7 +370,7 @@ class KeyModal extends React.Component {
    */
   togglePasswordVisibility = () => {
     this.setState(prevState => ({keyPasswordVisible: !prevState.keyPasswordVisible}));
-    !this.state.keyPasswordVisible &&
+    !this.state.keyPasswordVisible && !this.props.creationMode &&
       keyStore.getPassword(this.props.cckeyKey.id)
         .then((password) => {
           this.setState({
