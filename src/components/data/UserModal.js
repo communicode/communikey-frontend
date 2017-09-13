@@ -168,6 +168,18 @@ const ManagedForm = Form.create()(
               disabled={!user.lastModifiedDate}
             />
           </Form.Item>
+          <Form.Item
+            {...managedFormItemLayout}
+            colon={false}
+          >
+            <Input
+              placeholder="No Key set"
+              type="textarea"
+              autosize={{minRows: 2, maxRows: 6}}
+              readOnly={true}
+              value={user.publicKey}
+            />
+          </Form.Item>
         </div>
         }
       </Form>
