@@ -121,6 +121,7 @@ class EncryptionService {
             message: "The passphrase is saved for 30 minutes."
           });
         } catch (e) {
+          this.passphrase = "";
           reject({
             title: "Passphrase wrong",
             message: "The passphrase couldn't be used to successfuly decrypt your private key."
@@ -166,6 +167,7 @@ class EncryptionService {
               this.initialized = true;
               resolve();
             } catch (e) {
+              this.passphrase = "";
               reject({
                 title: "Key loading failed",
                 message: "The key on your system seems to be corrupted or the passphrase is wrong."

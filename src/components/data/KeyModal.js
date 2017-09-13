@@ -186,12 +186,12 @@ const copyPasswordToClipboardIcon = (keyId) => (
  */
 const handlePasswordCopy = (keyId) => {
   keyStore.getPassword(keyId)
-  .then((password) =>{
-    copy(password);
-  })
-  .catch(() => {
-    notificationService.error("Decrypting failed", "You need to enter your passphrase to copy the password.", 5);
-  });
+    .then((password) =>{
+      copy(password);
+    })
+    .catch(error => {
+      notificationService.error(error.title, error.message, 5);
+    });
 };
 
 /**
