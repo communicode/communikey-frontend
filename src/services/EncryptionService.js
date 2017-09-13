@@ -160,7 +160,7 @@ class EncryptionService {
                 this.keyMismatch = true;
                 reject({
                   title: "Key loading failed",
-                  message: "The key on your system doesn't match your public key on the server. "
+                  message: "The key on your system doesn't match your public key on the server."
                 });
               }
               this.initialized = true;
@@ -195,7 +195,7 @@ class EncryptionService {
   };
 
   /**
-   * Generates a 512 bit RSA keypair. Uses a rudimentary way to not block 100% of the thread.
+   * Generates a 4096 bit RSA keypair. Uses a rudimentary way to not block 100% of the thread.
    *
    * @author dvonderbey@communicode.de
    * @return {Promise} - The promise for the keypair generation process
