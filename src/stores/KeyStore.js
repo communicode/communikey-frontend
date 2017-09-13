@@ -167,10 +167,10 @@ class KeyStore {
             .then((response) => {
               resolve(response);
             })
-            .catch(() => {
-              reject();
-            });
-        });
+            .catch(error => reject(error));
+        })
+        .catch(() => reject({title: "Key loading failed",
+          message: "This key has not yet been encrypted for you. Please try again later."}));
     });
   };
 

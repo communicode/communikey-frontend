@@ -376,11 +376,11 @@ class KeyModal extends React.Component {
             decryptedPassword: password
           });
         })
-        .catch(() => {
+        .catch((message) => {
           this.setState({
             keyPasswordVisible: false
           });
-          notificationService.error("Decrypting failed", "You need to enter your passphrase to show the password.", 5);
+          notificationService.error(message.title, message.message, 5);
         });
   };
 

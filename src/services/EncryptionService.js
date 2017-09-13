@@ -182,12 +182,12 @@ class EncryptionService {
         if(authStore.publicKey) {
           reject({
             title: "No key found",
-            message: "There is no key installed on your system. Please use the wizard to install one"}
+            message: "There is no key installed on your system. Please use the wizard to reinstall your key."}
           );
         } else {
           reject({
             title: "No key found",
-            message: "There is no key installed on your system."
+            message: "You haven't setup a key for your account yet. Please use the wizard to install one."
           });
         }
       }
@@ -284,7 +284,8 @@ class EncryptionService {
   };
 
   /**
-   * Decrypts the given value with the local private key. Uses a promise because of the passphrase modal invocation.
+   * starts the decryption process by checking for the initialization state and triggering the loading
+   * of a key if none has been loaded before.
    *
    * @author dvonderbey@communicode.de
    * @param value - The base64 string to decrypt with the user's private key
@@ -292,7 +293,31 @@ class EncryptionService {
    * @since 0.15.0
    */
   decrypt = (value) => {
-    !this.initialized && this.loadPrivateKey();
+    return new Promise((resolve, reject) => {
+      !this.initialized
+        ? this.loadPrivateKey()
+            .then(() => {
+              this._decryptPassword(value)
+                .then(decrypted => resolve(decrypted))
+                .catch(error => reject(error));
+            })
+          .catch(error => reject(error))
+        : this._decryptPassword(value)
+            .then(decrypted => resolve(decrypted))
+            .catch(error => reject(error));
+    });
+  };
+
+  /**
+   * Decrypts the given value with the local private key. Uses a promise because of the passphrase modal invocation.
+   * For internal use in the decrypt method.
+   *
+   * @author dvonderbey@communicode.de
+   * @param value - The base64 string to decrypt with the user's private key
+   * @return {Promise} - The promise for the decryption process
+   * @since 0.15.0
+   */
+  _decryptPassword = (value) => {
     return new Promise((resolve, reject) => {
       this.checkForPassphrase()
         .then(() => {
@@ -304,9 +329,7 @@ class EncryptionService {
           });
           resolve(decrypted);
         })
-        .catch((error) => {
-          reject(error);
-        });
+        .catch(error => reject(error));
     });
   };
 
