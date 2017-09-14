@@ -244,6 +244,7 @@ exports[`<KeyModal> should render correctly with sample data 1`] = `
   userStore={
     UserStore {
       "_filterAllByGroup": [Function],
+      "_findOneByEmail": [Function],
       "_findOneById": [Function],
       "_findOneByLogin": [Function],
       "_updateEntity": [Function],
