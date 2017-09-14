@@ -162,7 +162,8 @@ class KeypairWizard extends React.Component {
   }
 
   componentDidMount() {
-    if((encryptionService.initialized && !encryptionService.keyMismatch) && !authStore.publicKeyResetToken) {
+    if((encryptionService.initialized && !encryptionService.keyMismatch) && !authStore.publicKeyResetToken ||
+        !encryptionService.wizardEnabled) {
       this.setState({
         current: 2
       });

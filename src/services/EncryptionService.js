@@ -1,7 +1,7 @@
 import forge from "node-forge";
 import fileDownload from "react-file-download";
 import _ from "lodash";
-import {authStore} from "../Communikey";
+import {authStore, notificationService} from "../Communikey";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -74,6 +74,13 @@ class EncryptionService {
    */
   keyMismatch;
 
+  /**
+   * The flag that enables the wizard because a keypair has to be set by the user.
+   *
+   * @type {boolean}
+   */
+  wizardEnabled;
+
   constructor() {
     this.initialized = false;
     this.encryptedPrivateKeyPem = "";
@@ -81,6 +88,7 @@ class EncryptionService {
     this.publicKeyPem = "";
     this.passphrase = "";
     this.keyMismatch = false;
+    this.wizardEnabled = false;
   }
 
   /**
@@ -164,6 +172,7 @@ class EncryptionService {
                   message: "The key on your system doesn't match your public key on the server."
                 });
               }
+              this.wizardEnabled = false;
               this.initialized = true;
               resolve();
             } catch (e) {
@@ -188,7 +197,7 @@ class EncryptionService {
           );
         } else {
           reject({
-            title: "No key found",
+            title: "No key set",
             message: "You haven't setup a key for your account yet. Please use the wizard to install one."
           });
         }
@@ -197,11 +206,34 @@ class EncryptionService {
   };
 
   /**
+   * Checks for an existing key in the local storage and on the server. Sends notifications if user actions are needed
+   * and sets the flag for the wizard.
+   *
+   * @author dvonderbey@communicode.de
+   * @since 0.15.0
+   */
+  checkKeyStatus = () => {
+    if(_.isEmpty(localStorage.getItem("privateKey"))) {
+      if(_.isEmpty(authStore.publicKey)) {
+        notificationService.info("No key set", "You haven't setup a key for your account yet. Please use the wizard to install one.", 10);
+        this.wizardEnabled = true;
+      } else {
+        notificationService.info("No key found", "There is no key installed on your system. Please use the wizard to reinstall your key.", 10);
+        this.wizardEnabled = true;
+      }
+    } else {
+      if(_.isEmpty(authStore.publicKey)) {
+        localStorage.removeItem("privateKey");
+        this.checkKeyStatus();
+      }
+    }
+  };
+
+  /**
    * Generates a 4096 bit RSA keypair. Uses a rudimentary way to not block 100% of the thread.
    *
    * @author dvonderbey@communicode.de
    * @return {Promise} - The promise for the keypair generation process
-   * @since 0.15.0
    */
   generate = () => {
     return new Promise((resolve) => {
@@ -224,7 +256,6 @@ class EncryptionService {
    * @author dvonderbey@communicode.de
    * @param passphrase - The passphrase to use for the key encryption
    * @return {Promise} - The promise for the keypair generation & encryption process
-   * @since 0.15.0
    */
   generateKeypair = (passphrase) => {
     this.setPassphrase(passphrase);
@@ -242,7 +273,6 @@ class EncryptionService {
    * Starts a download of the encrypted private key as a file.
    *
    * @author dvonderbey@communicode.de
-   * @since 0.15.0
    */
   downloadPrivateKey = () => {
     if (this.privateKeyPem) {
@@ -255,7 +285,6 @@ class EncryptionService {
    *
    * @author dvonderbey@communicode.de
    * @return {Promise} - The promise for the passphrase invocation.
-   * @since 0.15.0
    */
   checkForPassphrase = () => {
     return new Promise((resolve, reject) => {
@@ -274,7 +303,6 @@ class EncryptionService {
    * @param value - The string to encrypt
    * @param publicKeyPem - The public key in PEM format of the user to encrypt the content for
    * @return {string} - The encrypted value as a base64 encoded string.
-   * @since 0.15.0
    */
   encrypt = (value, publicKeyPem) => {
     const publicKey = pki.publicKeyFromPem(publicKeyPem);
@@ -292,7 +320,6 @@ class EncryptionService {
    * @author dvonderbey@communicode.de
    * @param value - The base64 string to decrypt with the user's private key
    * @return {Promise} - The promise for the decryption process
-   * @since 0.15.0
    */
   decrypt = (value) => {
     return new Promise((resolve, reject) => {
@@ -317,7 +344,6 @@ class EncryptionService {
    * @author dvonderbey@communicode.de
    * @param value - The base64 string to decrypt with the user's private key
    * @return {Promise} - The promise for the decryption process
-   * @since 0.15.0
    */
   _decryptPassword = (value) => {
     return new Promise((resolve, reject) => {
@@ -341,7 +367,6 @@ class EncryptionService {
    * @author dvonderbey@communicode.de
    * @param value - The string for the user to encrypt
    * @return {Promise} - The encrypted value as a base64 encoded string.
-   * @since 0.15.0
    */
   encryptForUser = (value) => {
     return new Promise((resolve, reject) => {
