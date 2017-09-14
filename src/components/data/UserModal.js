@@ -168,6 +168,18 @@ const ManagedForm = Form.create()(
               disabled={!user.lastModifiedDate}
             />
           </Form.Item>
+          <Form.Item
+            {...managedFormItemLayout}
+            colon={false}
+          >
+            <Input
+              placeholder="No Key set"
+              type="textarea"
+              autosize={{minRows: 2, maxRows: 6}}
+              readOnly={true}
+              value={user.publicKey}
+            />
+          </Form.Item>
         </div>
         }
       </Form>
@@ -378,6 +390,7 @@ class UserModal extends React.Component {
       onSave,
       onUserActivate,
       onUserDeactivate,
+      onUserInvalidateKeypair,
       toggleLockStatus,
       user,
       ...modalProps
@@ -399,6 +412,10 @@ class UserModal extends React.Component {
       USER_DEACTIVATE: {
         keyName: "USER_DEACTIVATE",
         handler: onUserDeactivate
+      },
+      USER_INVALIDATE_KEYPAIR: {
+        keyName: "USER_INVALIDATE_KEYPAIR",
+        handler: onUserInvalidateKeypair
       }
     };
 
@@ -416,6 +433,7 @@ class UserModal extends React.Component {
 
     const footerOperationsDropdownMenu = (
       <Menu onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
+        <Menu.Item key={OPERATION_TYPES.USER_INVALIDATE_KEYPAIR.keyName} disabled={user.publicKeyResetToken ? true : locked}>Reset Keypair</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.RESET_PASSWORD.keyName} disabled={locked || !user.activated}>Reset password</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_ACTIVATE.keyName} disabled={locked || user.activated}>Activate</Menu.Item>
         <Menu.Item key={OPERATION_TYPES.USER_DEACTIVATE.keyName} disabled={locked || !user.activated}>Deactivate</Menu.Item>
@@ -664,6 +682,13 @@ UserModal.propTypes = {
    * @type {function}
    */
   onUserDeactivate: PropTypes.func,
+
+  /**
+   * Callback function to handle invalidation of private key for user
+   *
+   * @type {function}
+   */
+  onUserInvalidateKeypair: PropTypes.func,
 
   /**
    * Callback function to handle the user password reset event.

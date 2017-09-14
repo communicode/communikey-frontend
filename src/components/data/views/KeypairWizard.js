@@ -162,7 +162,8 @@ class KeypairWizard extends React.Component {
   }
 
   componentDidMount() {
-    if((encryptionService.initialized && !encryptionService.keyMismatch) && !authStore.publicKeyResetToken) {
+    if((encryptionService.initialized && !encryptionService.keyMismatch) && !authStore.publicKeyResetToken ||
+        !encryptionService.wizardEnabled) {
       this.setState({
         current: 2
       });
@@ -277,8 +278,10 @@ class KeypairWizard extends React.Component {
    * Finishes the key generation/upload procedure
    */
   finishProcedure = () => {
-    if(this.state.pasteContent.includes("-----BEGIN ENCRYPTED PRIVATE KEY-----") &&
-       this.state.pasteContent.includes("-----END ENCRYPTED PRIVATE KEY-----")) {
+    if(!_.isEmpty(this.state.pasteContent) && (
+          this.state.pasteContent.includes("-----BEGIN ENCRYPTED PRIVATE KEY-----") &&
+          this.state.pasteContent.includes("-----END ENCRYPTED PRIVATE KEY-----")) ||
+      _.isEmpty(this.state.pasteContent)) {
       encryptionService.setPassphrase(this.state.passphrase);
       encryptionService.loadPrivateKey(!_.isEmpty(this.state.pasteContent) && this.state.pasteContent)
         .then(() => {
@@ -399,6 +402,7 @@ class KeypairWizard extends React.Component {
                         type="textarea"
                         defaultValue={this.state.pasteContent}
                         autosize={{minRows: 10, maxRows: 20}}
+                        onPressEnter={this.finishProcedure}
                       />
                     </Row>
                     <Row>
@@ -406,6 +410,7 @@ class KeypairWizard extends React.Component {
                         placeholder="Passphrase"
                         type="password"
                         value={this.state.passphrase}
+                        onPressEnter={this.finishProcedure}
                         onChange={this.updatePassphraseValue}
                       />
                     </Row>

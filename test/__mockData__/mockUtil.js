@@ -6,6 +6,7 @@ import CategoryStore from "../../src/stores/CategoryStore";
 import KeyStore from "../../src/stores/KeyStore";
 import UserGroupStore from "../../src/stores/UserGroupStore";
 import UserStore from "../../src/stores/UserStore";
+import NotificationService from "../../src/services/NotificationService";
 
 export const authStore = new AuthStore();
 authStore.authorities = observable(require("./data/authorities.json"));
@@ -26,6 +27,8 @@ export const userStore = new UserStore();
 userStore.users = observable(require("./data/users.json"));
 
 export const stores = {authStore, authorityStore, categoryStore, keyStore, userGroupStore, userStore};
+
+export const notificationService = new NotificationService();
 
 export const VERSION = "0.0-code-coverage";
 

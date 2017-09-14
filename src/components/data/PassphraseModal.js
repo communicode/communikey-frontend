@@ -27,7 +27,7 @@ const ManagedForm = Form.create()(
             <Input
               name="passphrase"
               type="password"
-              onPressEnter={props.handleSubmit}
+              // onPressEnter={props.handleSubmit}
             />)
           }
         </Form.Item>
@@ -124,6 +124,7 @@ class PassphraseModal extends React.Component {
   render() {
     return (
       <Modal
+        wrapClassName="passphrase-modal-wrap"
         type="confirm"
         className="passphrase-modal"
         visible={this.props.visible}

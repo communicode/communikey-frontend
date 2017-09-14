@@ -166,6 +166,23 @@ class UserAdministration extends React.Component {
   };
 
   /**
+   * Handles the user key pair reset and invalidation event.
+   *
+   * @callback handleUserKeypairInvalidation
+   */
+  handleUserKeypairInvalidation = () => {
+    this.setProcessingStatus(true);
+    this.props.userStore.resetPublicKey(this.state.user.email)
+      .then(() => {
+        this.setProcessingStatus(false);
+      })
+      .catch(error => {
+        console.error(error);
+        this.setProcessingStatus(false);
+      });
+  };
+
+  /**
    * Handles the event to add a authority to the user.
    *
    * @callback handleUserModalOnAuthorityAdd
@@ -362,6 +379,7 @@ class UserAdministration extends React.Component {
         onAuthorityAdd={this.handleUserModalOnAuthorityAdd}
         onAuthorityRemove={this.handleUserModalOnAuthorityRemove}
         onUserDeactivate={this.handleUserModalUserDeactivation}
+        onUserInvalidateKeypair={this.handleUserKeypairInvalidation}
         onUserPasswordReset={this.handleUserModalUserPasswordReset}
         toggleLockStatus={this.toggleUserModalLockStatus}
       />

@@ -2,7 +2,7 @@ import {action, observable} from "mobx";
 import _ from "lodash";
 import apiService from "../services/ApiService";
 import {categoryStore, keyStore, userGroupStore} from "./../Communikey";
-import {USER, USER_AUTHORITIES, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER} from "./../services/apiRequestMappings";
+import {USER, USER_AUTHORITIES, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER, USERS_PUBLICKEY_RESET} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -266,6 +266,24 @@ class UserStore {
   };
 
   /**
+   * Generates a public key reset token
+   *
+   * @returns {Promise} - A promise
+   * @since 0.15.0
+   */
+  @action("UserStore_resetPublicKey")
+  resetPublicKey = (email) => {
+    return apiService.get(USERS_PUBLICKEY_RESET, {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        email: email
+      }
+    })
+      .then(action("UserStore_resetPublicKey_synchronization", response => {
+        this._findOneByEmail(email).publicKeyResetToken = response.data.publicKeyResetToken;
+      }));
+  };
+  /**
    * Updates the user with the specified login.
    * This is a API- and store synchronization action!
    *
@@ -339,6 +357,17 @@ class UserStore {
    * @since 0.9.0
    */
   _findOneByLogin = (login) => this.users.find(user => user.login === login);
+
+  /**
+   * Finds the user with the specified email.
+   * This is a pure store operation action!
+   *
+   * @param {string} email - The login of the user to find
+   * @returns {object} - The user if found
+   * @since 0.15.0
+   * @author dvonderbey@communicode.de
+   */
+  _findOneByEmail = (email) => this.users.find(user => user.email === email);
 
   /**
    * Updates the user entity with the specified ID.
