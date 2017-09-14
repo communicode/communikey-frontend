@@ -27,7 +27,7 @@ const ManagedForm = Form.create()(
             <Input
               name="passphrase"
               type="password"
-              onPressEnter={props.handleSubmit}
+              // onPressEnter={props.handleSubmit}
             />)
           }
         </Form.Item>
