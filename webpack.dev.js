@@ -28,6 +28,10 @@ module.exports = {
       "/oauth/**": {
         "target": "http://localhost:8080",
         "secure": false
+      },
+      "/wss/**": {
+        "target": "http://localhost:8080",
+        "secure": false
       }
     }
   },
@@ -70,6 +74,11 @@ module.exports = {
         use: "url-loader"
       }
     ]
+  },
+
+  node: {
+    console: true,
+    net: "empty"
   },
 
   plugins: [

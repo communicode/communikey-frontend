@@ -9,6 +9,8 @@ import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
 import NotificationService from "./services/NotificationService";
 import EncryptionService from "./services/EncryptionService";
+import WebSocketService from "./services/WebSocketService";
+import CrowdEncryptionService from "./services/CrowdEncryptionService";
 import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
 import PublicForwardRoute from "./components/hoc/PublicForwardRoute";
@@ -114,6 +116,22 @@ export const notificationService = new NotificationService();
  * @since 0.15.0
  */
 export const encryptionService = new EncryptionService();
+
+/**
+ * The websocket service instance
+ *
+ * @type {EncryptionService}
+ * @since 0.15.0
+ */
+export const webSocketService = new WebSocketService();
+
+/**
+ * The crowd encryption logic service instance
+ *
+ * @type {EncryptionService}
+ * @since 0.15.0
+ */
+export const crowdEncryptionService = new CrowdEncryptionService();
 
 /**
  * The communikey version.

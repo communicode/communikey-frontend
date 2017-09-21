@@ -275,8 +275,8 @@ class EncryptionService {
    * @author dvonderbey@communicode.de
    */
   downloadPrivateKey = () => {
-    if (this.privateKeyPem) {
-      fileDownload(localStorage.getItem("privateKey"), "privateKey.pem");
+    if (localStorage.getItem("privateKey")) {
+      fileDownload(localStorage.getItem("privateKey"), "privateKey-" + authStore.login + ".pem");
     }
   };
 

@@ -16,7 +16,7 @@ import {
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_KEYS
 } from "./routes/routeMappings";
-import {VERSION} from "./Communikey";
+import {VERSION, webSocketService, crowdEncryptionService, notificationService} from "./Communikey";
 import ProfileModal from "./components/data/ProfileModal";
 import PassphraseModal from "./components/data/PassphraseModal";
 import "antd/lib/layout/style/index.less";
@@ -47,14 +47,35 @@ class BaseLayout extends React.Component {
       .then(() => {
         this.props.authStore.privileged
           ? this.initializeStores()
-              .then(() => this.setState({storesInitialized: true}))
+              .then(() => {
+                this.setState({storesInitialized: true});
+                this.initializeWebSocket();
+              })
               .catch(() => this.setState({initialized: false}))
           : this.initializeUserStores()
-              .then(() => this.setState({storesInitialized: true}))
+              .then(() => {
+                this.setState({storesInitialized: true});
+                this.initializeWebSocket();
+              })
               .catch(() => this.setState({initialized: false}));
       })
       .catch(() => this.setState({initialized: true}));
   }
+
+  /**
+   * Initializes websocket and the crowd encryption service
+   *
+   * @since 0.15.0
+   */
+  initializeWebSocket = () => {
+    webSocketService.initialize()
+      .then(() => {
+        crowdEncryptionService.initialize();
+      })
+      .catch((error) => {
+        notificationService.error("Websocket connection failed", error, 10);
+      });
+  };
 
   initializeStores = () => {
     return apiService.all([

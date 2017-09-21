@@ -4,6 +4,7 @@ import {inject, PropTypes as MobxPropTypes} from "mobx-react";
 import {ROUTE_SIGNIN} from "./routeMappings";
 import PropTypes from "prop-types";
 import {AUTH_STORE} from "../stores/storeConstants";
+import {webSocketService} from "../Communikey";
 
 @inject(AUTH_STORE)
 class SignOut extends React.Component {
@@ -12,6 +13,7 @@ class SignOut extends React.Component {
   }
 
   componentDidMount() {
+    webSocketService.close();
     localStorage.clear();
     this.props.authStore._reset();
   }
