@@ -3,6 +3,13 @@ import {
   encryptionService,
   keyStore
 } from "../Communikey";
+import {
+  USER_JOBS,
+  JOB_ABORT,
+  USER_REPLY,
+  USER_ERRORS,
+  JOB_FULFILL
+} from "./wssRequestMappings";
 
 /**
  * Provides the crowd encryption functionality using the websocket connection
@@ -19,9 +26,10 @@ class CrowdEncryptionService {
    */
   initialize = () => {
     if(webSocketService.initialized) {
-      webSocketService.subscribe("/user/queue/encryption/jobs", this.encryptionJobsCallback);
-      webSocketService.subscribe("/queue/encryption/jobs/aborts", this.encryptionJobAbortCallback);
-      webSocketService.subscribe("/user/queue/reply", this.replyCallback);
+      webSocketService.subscribe(USER_JOBS, this.encryptionJobsCallback);
+      webSocketService.subscribe(JOB_ABORT, this.encryptionJobAbortCallback);
+      webSocketService.subscribe(USER_REPLY, this.replyCallback);
+      webSocketService.subscribe(USER_ERRORS, this.errorCallback);
     }
   };
 
@@ -32,11 +40,10 @@ class CrowdEncryptionService {
    */
   encryptionJobsCallback = (message) => {
     const encryptionJob = JSON.parse(message.body);
-    encryptionService.passphrase = "";
     keyStore.getPassword(encryptionJob.key).then((password) => {
       let encrypted = encryptionService.encrypt(password, encryptionJob.publicKey);
-      let fulfillment = {token: encryptionJob.token, encryptedPassword: encrypted};
-      webSocketService.send("/app/jobs/fulfill", fulfillment);
+      let fulfillment = {encryptedPassword: encrypted};
+      webSocketService.send(JOB_FULFILL({token: encryptionJob.token}), fulfillment);
     });
   };
 
@@ -45,14 +52,27 @@ class CrowdEncryptionService {
    *
    * @param message the callback message parameter of the stomp client
    */
-  encryptionJobAbortCallback = (message) => {};
+  encryptionJobAbortCallback = (message) => {
+    console.log("Abort received:", JSON.parse(message.body));
+  };
 
   /**
    * Callback for the personal reply subscription
    *
    * @param message the callback message parameter of the stomp client
    */
-  replyCallback = (message) => {};
+  replyCallback = (message) => {
+    console.log("Reply received:", JSON.parse(message.body));
+  };
+
+  /**
+   * Callback for the personal reply subscription
+   *
+   * @param message the callback message parameter of the stomp client
+   */
+  errorCallback = (message) => {
+    console.log("Error received:", JSON.parse(message.body));
+  };
 }
 
 export default CrowdEncryptionService;

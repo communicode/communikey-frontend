@@ -1,6 +1,7 @@
 import SockJS from "sockjs-client";
 import StompJS from "stompjs";
 import {notificationService} from "../Communikey";
+import {WSS_REGISTRY_TOKEN} from "./wssRequestMappings";
 
 /**
  * Provides the websocket functionality
@@ -31,7 +32,7 @@ class WebSocketService {
    */
   initialize = () => {
     return new Promise((resolve, reject) => {
-      this.webSocket = new SockJS("/wss/registry?access_token=" + localStorage.getItem("access_token"));
+      this.webSocket = new SockJS(WSS_REGISTRY_TOKEN({accessToken: localStorage.getItem("access_token")}));
       this.stompClient = StompJS.over(this.webSocket);
       try {
         this.stompClient.connect({}, () => {
