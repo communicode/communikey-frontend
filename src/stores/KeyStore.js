@@ -265,6 +265,30 @@ class KeyStore {
   _findOneById = (keyId) => this.keys.find(key =>key.id === keyId);
 
   /**
+   * Searches for the keyId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} keyId - The ID of the key to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (keyId) => {
+    return this.keys.findIndex(key => key.id === keyId) !== null;
+  };
+
+  /**
+   * Pushes a new key to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} key - The key object
+   * @since 0.15.0
+   */
+  @action("KeyStore_pushEntity")
+  _push = (key) => {
+    return this.keys.push(key);
+  };
+
+  /**
    * Updates the key entity with the specified ID.
    * This is a pure store operation action!
    *
@@ -272,7 +296,16 @@ class KeyStore {
    * @param {object} updatedEntity - The updated key entity
    * @since 0.9.0
    */
-  _updateEntity = (keyId, updatedEntity) => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1, updatedEntity);
+  @action("KeyStore_updateEntity")
+  _updateEntity = (keyId, updatedEntity) => {
+    console.log("Updating key");
+    let index = this.keys.findIndex(key => key.id === keyId);
+    if(index >= 0) {
+      this.keys.splice(index, 1, updatedEntity);
+    } else {
+      this.keys.push(updatedEntity);
+    }
+  }
 }
 
 export default KeyStore;

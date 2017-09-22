@@ -92,6 +92,85 @@ export const USER_ERRORS = USER + "/errors";
  */
 export const USER_JOBS = USER + "/encryption/jobs";
 
+/**
+ * The WSS category update endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_CATEGORIES = USER + "/updates/categories";
+
+/**
+ * The WSS category delete endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_CATEGORIES_DELETE = UPDATES_CATEGORIES + "/delete";
+
+/**
+ * The WSS key update endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_KEYS = USER + "/updates/keys";
+
+/**
+ * The WSS key delete endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_KEYS_DELETE = UPDATES_KEYS + "/delete";
+
+/**
+ * The WSS user update endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_USERS = QUEUE + "/updates/users";
+
+/**
+ * The WSS user delete endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_USERS_DELETE = UPDATES_KEYS + "/delete";
+
+/**
+ * The WSS user update endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_GROUPS = QUEUE + "/updates/groups";
+
+/**
+ * The WSS user delete endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const UPDATES_GROUPS_DELETE = UPDATES_GROUPS + "/delete";
 
 /**
  * The WSS app endpoint.

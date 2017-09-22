@@ -29,7 +29,8 @@ import {
   webSocketService,
   crowdEncryptionService,
   notificationService,
-  encryptionService
+  encryptionService,
+  liveEntityUpdateService
 } from "./Communikey";
 import ProfileModal from "./components/data/ProfileModal";
 import PassphraseModal from "./components/data/PassphraseModal";
@@ -86,6 +87,8 @@ class BaseLayout extends React.Component {
     webSocketService.initialize()
       .then(() => {
         crowdEncryptionService.initialize();
+        liveEntityUpdateService.initialize();
+        this.props.authStore.privileged && crowdEncryptionService.initializeAdminSubscriptions();
       })
       .catch((error) => {
         notificationService.error("Websocket connection failed", error, 10);
