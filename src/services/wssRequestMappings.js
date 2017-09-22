@@ -1,5 +1,4 @@
 import _ from "lodash";
-import {BACKEND_URL} from "./apiRequestMappings";
 import {TOKEN, ACCESS_TOKEN} from "./wssPathVariables";
 import {WSS_ACCESS_TOKEN} from "./wssRequestParameter";
 
@@ -11,7 +10,7 @@ import {WSS_ACCESS_TOKEN} from "./wssRequestParameter";
  * @type {string}
  * @since 0.15.0
  */
-export const WSS_PREFIX = BACKEND_URL + "/wss";
+export const WSS_PREFIX = "/wss";
 
 /**
  * The WSS registry endpoint.

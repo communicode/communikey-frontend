@@ -34,6 +34,7 @@ class WebSocketService {
     return new Promise((resolve, reject) => {
       this.webSocket = new SockJS(WSS_REGISTRY_TOKEN({accessToken: localStorage.getItem("access_token")}));
       this.stompClient = StompJS.over(this.webSocket);
+      this.stompClient.debug = () => {};
       try {
         this.stompClient.connect({}, () => {
           this.initialized = true;
@@ -52,7 +53,7 @@ class WebSocketService {
   close = () => {
     this.unsubscribe();
     this.stompClient.disconnect();
-  }
+  };
 
   /**
    * Initializes a subscription and adds the ID of it to the subscriptions array for later use.

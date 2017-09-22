@@ -1,6 +1,8 @@
+import _ from "lodash";
 import {
   webSocketService,
   encryptionService,
+  encryptionJobStore,
   keyStore
 } from "../Communikey";
 import {
@@ -19,7 +21,11 @@ import {
  */
 class CrowdEncryptionService {
 
-  constructor() {}
+  encrypting;
+
+  constructor() {
+    this.encrypting = false;
+  }
 
   /**
    * Initializes the subscriptions
@@ -40,11 +46,9 @@ class CrowdEncryptionService {
    */
   encryptionJobsCallback = (message) => {
     const encryptionJob = JSON.parse(message.body);
-    keyStore.getPassword(encryptionJob.key).then((password) => {
-      let encrypted = encryptionService.encrypt(password, encryptionJob.publicKey);
-      let fulfillment = {encryptedPassword: encrypted};
-      webSocketService.send(JOB_FULFILL({token: encryptionJob.token}), fulfillment);
-    });
+    console.log("Incoming job", encryptionJob);
+    encryptionJobStore.add(encryptionJob);
+    this.fulfillJob(encryptionJob);
   };
 
   /**
@@ -54,6 +58,8 @@ class CrowdEncryptionService {
    */
   encryptionJobAbortCallback = (message) => {
     console.log("Abort received:", JSON.parse(message.body));
+    const encryptionJobAbort = JSON.parse(message.body);
+    encryptionJobStore.remove(encryptionJobAbort.token);
   };
 
   /**
@@ -72,6 +78,37 @@ class CrowdEncryptionService {
    */
   errorCallback = (message) => {
     console.log("Error received:", JSON.parse(message.body));
+  };
+
+  /**
+   * Starts to work on the encryption jobs that are available.
+   */
+  fulfillJobs = () => {
+    console.log("Starting to work on job queue");
+    if (!this.encrypting && !_.isEmpty(encryptionService.passphrase)) {
+      encryptionJobStore.hideJobNotice();
+      this.encrypting = true;
+      console.log("Not locked");
+      encryptionJobStore.encryptionJobs.forEach(job => {
+        this.fulfillJob(job);
+      });
+      this.encrypting = false;
+    }
+  };
+
+  /**
+   * Fulfills one encryption job by encrypting it and sending it to the server.
+   *
+   * @param job the job that should be worked on
+   */
+  fulfillJob = (job) => {
+    !_.isEmpty(encryptionService.passphrase) &&
+      keyStore.getPassword(job.key).then((password) => {
+        let encrypted = encryptionService.encrypt(password, job.publicKey);
+        let fulfillment = {encryptedPassword: encrypted};
+        webSocketService.send(JOB_FULFILL({token: job.token}), fulfillment);
+        console.log("Fulfilled job with token", job.token);
+      });
   };
 }
 

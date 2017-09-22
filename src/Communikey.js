@@ -28,6 +28,7 @@ import CategoryStore from "./stores/CategoryStore";
 import KeyStore from "./stores/KeyStore";
 import UserGroupStore from "./stores/UserGroupStore";
 import UserStore from "./stores/UserStore";
+import EncryptionJobStore from "./stores/EncryptionJobStore";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
 import {
@@ -95,11 +96,19 @@ export const userGroupStore = new UserGroupStore();
 export const userStore = new UserStore();
 
 /**
+ * The encryption job store instance.
+ *
+ * @type {EncryptionJobStore}
+ * @since 0.15.0
+ */
+export const encryptionJobStore = new EncryptionJobStore();
+
+/**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
  *
- * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}>}
+ * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}, {EncryptionJobStore}>}
  */
-const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore};
+const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore, encryptionJobStore};
 
 /**
  * The notification service instance.

@@ -53,6 +53,26 @@ html {
   background-color: #ffffff;
   z-index: 999;
 
+  .ant-btn {
+    @keyframes breath {
+      to {
+        background-color: #e2ed2f;
+        border-color: #e2ed2f;
+      }
+    }
+    
+    animation-name: breath;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    margin: auto 10px auto 10px;
+  }
+  
+  .ant-btn:hover {
+    border-color: black;
+    color: black;
+  }
+
   .ant-menu-horizontal {
     border: none;
   }

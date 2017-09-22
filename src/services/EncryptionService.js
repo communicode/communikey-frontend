@@ -1,7 +1,7 @@
 import forge from "node-forge";
 import fileDownload from "react-file-download";
 import _ from "lodash";
-import {authStore, notificationService} from "../Communikey";
+import {authStore, crowdEncryptionService, notificationService} from "../Communikey";
 
 const pki = forge.pki;
 const rsa = forge.pki.rsa;
@@ -124,6 +124,7 @@ class EncryptionService {
           this.publicKey = rsa.setPublicKey(decryptedPrivate.n, decryptedPrivate.e);
           let publicKeyPem = pki.publicKeyToPem(this.publicKey);
           this.publicKeyPem = publicKeyPem.replace(/[\r]+/g, "");
+          crowdEncryptionService.fulfillJobs();
           resolve({
             title: "Passphrase correct",
             message: "The passphrase is saved for 30 minutes."

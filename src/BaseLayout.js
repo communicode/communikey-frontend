@@ -3,11 +3,19 @@ import apiService from "./services/ApiService";
 import PropTypes from "prop-types";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {Link, NavLink} from "react-router-dom";
-import {Layout, Menu, Icon, Row, Spin} from "antd";
+import {Layout, Menu, Icon, Row, Spin, Button} from "antd";
 import QueueAnim from "rc-queue-anim";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
-import {AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE} from "./stores/storeConstants";
+import {
+  AUTHORITY_STORE,
+  AUTH_STORE,
+  CATEGORY_STORE,
+  KEY_STORE,
+  USER_STORE,
+  USER_GROUP_STORE,
+  ENCRYPTION_JOB_STORE
+} from "./stores/storeConstants";
 import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
   ROUTE_SIGNOUT,
@@ -16,16 +24,23 @@ import {
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_KEYS
 } from "./routes/routeMappings";
-import {VERSION, webSocketService, crowdEncryptionService, notificationService} from "./Communikey";
+import {
+  VERSION,
+  webSocketService,
+  crowdEncryptionService,
+  notificationService,
+  encryptionService
+} from "./Communikey";
 import ProfileModal from "./components/data/ProfileModal";
 import PassphraseModal from "./components/data/PassphraseModal";
 import "antd/lib/layout/style/index.less";
+import "antd/lib/button/style/index.less";
 import "antd/lib/menu/style/index.less";
 import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "./BaseLayout.less";
 
-@inject(AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE) @observer
+@inject(AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE, ENCRYPTION_JOB_STORE) @observer
 class BaseLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -242,6 +257,17 @@ class BaseLayout extends React.Component {
     const header = () => (
       <Layout.Header className="cckey-base-layout-header">
         <Row type="flex" justify="end" align="bottom">
+          {
+            this.props.encryptionJobStore.jobNotice &&
+            <Button
+              type="dashed"
+              size="large"
+              icon="exclamation-circle-o"
+              onClick={encryptionService.checkForPassphrase}
+            >
+              Interaction required
+            </Button>
+          }
           <Menu mode="horizontal" onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
             <Menu.SubMenu title={authStore.firstName}>
               <Menu.Item key={OPERATION_TYPES.SETTINGS_PAGE.keyName}>Settings</Menu.Item>
@@ -350,6 +376,11 @@ BaseLayout.propTypes = {
    * @type {ObservableArray} userStore - The injected user group store
    */
   userGroupStore: MobXPropTypes.observableArray,
+
+  /**
+   * @type {ObservableArray} encryptionJobStore - The injected encryption job store
+   */
+  encryptionJobStore: MobXPropTypes.objectOrObservableObject,
 
   /**
    * @type {object} passphraseNeeded - The state object that invokes a passphrase modal
