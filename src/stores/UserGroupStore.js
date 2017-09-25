@@ -222,7 +222,7 @@ class UserGroupStore {
    * @since 0.15.0
    */
   _contains = (userGroupId) => {
-    return this.userGroups.findIndex(userGroup => userGroup.id === userGroup) !== null;
+    return this.userGroups.findIndex(userGroup => userGroup.id === userGroupId) !== null;
   };
 
   /**
