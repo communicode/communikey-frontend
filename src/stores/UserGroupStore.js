@@ -249,9 +249,7 @@ class UserGroupStore {
   _updateEntity = (userGroupId, updatedEntity) => {
     console.log("Updating group");
     let index = this.userGroups.findIndex(userGroup => userGroup.id === userGroupId);
-    index >= 0
-      ? this.userGroups.splice(index, 1, updatedEntity)
-      : this.userGroups.push(updatedEntity);
+    index >= 0 && this.userGroups.splice(index, 1, updatedEntity);
   };
 }
 
