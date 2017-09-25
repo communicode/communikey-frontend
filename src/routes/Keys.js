@@ -558,11 +558,6 @@ class Keys extends React.Component {
           <Col span={8}>
             {authStore.privileged &&
             <div className="action-button-bar">
-              {/*<Button.Group>*/}
-                {/*<Button type="primary" ghost={true} icon="edit" onClick={this.toggleCategoryModal} disabled={!categoryTreeSelectedNodeKeys.length}>*/}
-                  {/*Edit*/}
-                {/*</Button>*/}
-              {/*</Button.Group>*/}
               <Button.Group>
                 {dragStatusButton()}
               </Button.Group>
