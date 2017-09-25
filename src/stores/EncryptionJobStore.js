@@ -1,5 +1,4 @@
 import {observable, action} from "mobx";
-import {encryptionService} from "../Communikey";
 
 /**
  * A observable store for encryption job entities.
