@@ -299,11 +299,9 @@ class KeyStore {
   @action("KeyStore_updateEntity")
   _updateEntity = (keyId, updatedEntity) => {
     let index = this.keys.findIndex(key => key.id === keyId);
-    if(index >= 0) {
-      this.keys.splice(index, 1, updatedEntity);
-    } else {
-      this.keys.push(updatedEntity);
-    }
+    index >= 0
+      ? this.keys.splice(index, 1, updatedEntity)
+      : this.keys.push(updatedEntity);
   }
 }
 

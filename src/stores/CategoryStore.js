@@ -257,11 +257,9 @@ class CategoryStore {
   _updateEntity = (categoryId, updatedEntity) => {
     console.log("Updating category");
     let index = this.categories.findIndex(category => category.id === categoryId);
-    if(index >= 0) {
-      this.categories.splice(index, 1, updatedEntity);
-    } else {
-      this.categories.push(updatedEntity);
-    }
+    index >= 0
+      ? this.categories.splice(index, 1, updatedEntity)
+      : this.categories.push(updatedEntity);
   };
 }
 

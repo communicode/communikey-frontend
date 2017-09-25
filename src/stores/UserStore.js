@@ -405,11 +405,9 @@ class UserStore {
   _updateEntity = (userId, updatedEntity) => {
     console.log("Updating user");
     let index = this.users.findIndex(user => user.id === userId);
-    if(index >= 0) {
-      this.users.splice(index, 1, updatedEntity);
-    } else {
-      this.users.push(updatedEntity);
-    }
+    index >= 0
+      ? this.users.splice(index, 1, updatedEntity)
+      : this.users.push(updatedEntity);
   };
 }
 
