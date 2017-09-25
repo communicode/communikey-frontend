@@ -370,15 +370,47 @@ class UserStore {
   _findOneByEmail = (email) => this.users.find(user => user.email === email);
 
   /**
+   * Searches for the userId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} userId - The ID of the user to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (userId) => {
+    return this.users.findIndex(user => user.id === userId) !== null;
+  };
+
+  /**
+   * Pushes a new user to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} user - The user object
+   * @since 0.15.0
+   */
+  @action("UserStore_pushEntity")
+  _push = (user) => {
+    return this.users.push(user);
+  };
+
+  /**
    * Updates the user entity with the specified ID.
    * This is a pure store operation action!
    *
    * @param {number} userId - The ID of the user entity to update
-   * @param {object} updatedEntity - The updated user entity
+   * @param {object} updatedEntity - The updated category entity
    * @since 0.9.0
    */
-  _updateEntity = (userId, updatedEntity) =>
-    this.users.splice(this.users.findIndex(user => user.id === userId), 1, updatedEntity);
+  @action("UserStore_updateEntity")
+  _updateEntity = (userId, updatedEntity) => {
+    console.log("Updating user");
+    let index = this.users.findIndex(user => user.id === userId);
+    if(index >= 0) {
+      this.users.splice(index, 1, updatedEntity);
+    } else {
+      this.users.push(updatedEntity);
+    }
+  };
 }
 
 export default UserStore;

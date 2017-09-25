@@ -212,16 +212,49 @@ class UserGroupStore {
    */
   _findOneByName = (userGroupName) => this.userGroups.find(userGroup => userGroup.name === userGroupName);
 
+
+  /**
+   * Searches for the userGroupId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} userGroupId - The ID of the user group to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (userGroupId) => {
+    return this.userGroups.findIndex(userGroup => userGroup.id === userGroup) !== null;
+  };
+
+  /**
+   * Pushes a new user group to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} userGroup - The user group object
+   * @since 0.15.0
+   */
+  @action("UserGroupStore_pushEntity")
+  _push = (userGroup) => {
+    return this.userGroups.push(userGroup);
+  };
+
   /**
    * Updates the user group entity with the specified ID.
    * This is a pure store operation action!
    *
    * @param {number} userGroupId - The ID of the user group entity to update
-   * @param {object} updatedEntity - The updated user group entity
+   * @param {object} updatedEntity - The updated category entity
    * @since 0.9.0
    */
-  _updateEntity = (userGroupId, updatedEntity) =>
-    this.userGroups.splice(this.userGroups.findIndex(userGroup => userGroup.id === userGroupId), 1, updatedEntity);
+  @action("UserGroupStore_updateEntity")
+  _updateEntity = (userGroupId, updatedEntity) => {
+    console.log("Updating group");
+    let index = this.userGroups.findIndex(userGroup => userGroup.id === userGroupId);
+    if(index >= 0) {
+      this.userGroups.splice(index, 1, updatedEntity);
+    } else {
+      this.userGroups.push(updatedEntity);
+    }
+  };
 }
 
 export default UserGroupStore;

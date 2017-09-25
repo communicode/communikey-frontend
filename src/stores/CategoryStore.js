@@ -222,6 +222,30 @@ class CategoryStore {
   _findById = (categoryId) => this.categories.find(category => category.id === categoryId);
 
   /**
+   * Searches for the categoryId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} categoryId - The ID of the category to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (categoryId) => {
+    return this.categories.findIndex(category => category.id === categoryId) !== null;
+  };
+
+  /**
+   * Pushes a new category to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} category - The category object
+   * @since 0.15.0
+   */
+  @action("CategoryStore_pushEntity")
+  _push = (category) => {
+    return this.categories.push(category);
+  };
+
+  /**
    * Updates the category entity with the specified ID.
    * This is a pure store operation action!
    *
@@ -229,8 +253,16 @@ class CategoryStore {
    * @param {object} updatedEntity - The updated category entity
    * @since 0.9.0
    */
-  _updateEntity = (categoryId, updatedEntity) =>
-    this.categories.splice(this.categories.findIndex(category => category.id === categoryId), 1, updatedEntity);
+  @action("CategoryStore_updateEntity")
+  _updateEntity = (categoryId, updatedEntity) => {
+    console.log("Updating category");
+    let index = this.categories.findIndex(category => category.id === categoryId);
+    if(index >= 0) {
+      this.categories.splice(index, 1, updatedEntity);
+    } else {
+      this.categories.push(updatedEntity);
+    }
+  };
 }
 
 export default CategoryStore;

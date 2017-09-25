@@ -1,7 +1,9 @@
-import _ from "lodash";
 import {
   webSocketService,
-  keyStore
+  keyStore,
+  categoryStore,
+  userStore,
+  userGroupStore
 } from "../Communikey";
 import {
   UPDATES_CATEGORIES,
@@ -80,6 +82,9 @@ class LiveEntityUpdateService {
   categoryUpdateCallback = (message) => {
     let category = JSON.parse(message.body);
     console.log("Category update received:", category);
+    categoryStore._contains(category.id)
+      ? categoryStore._updateEntity(category.id, category)
+      : categoryStore._push(category);
   };
 
   /**
@@ -100,6 +105,9 @@ class LiveEntityUpdateService {
   userUpdateCallback = (message) => {
     let user = JSON.parse(message.body);
     console.log("User update received:", user);
+    userStore._contains(user.id)
+      ? userStore._updateEntity(user.id, user)
+      : userStore._push(user);
   };
 
   /**
@@ -118,8 +126,11 @@ class LiveEntityUpdateService {
    * @param message the callback message parameter of the stomp client
    */
   groupUpdateCallback = (message) => {
-    let group = JSON.parse(message.body);
-    console.log("Group update received:", group);
+    let userGroup = JSON.parse(message.body);
+    console.log("Group update received:", userGroup);
+    userGroupStore._contains(userGroup.id)
+      ? userGroupStore._updateEntity(userGroup.id, userGroup)
+      : userGroupStore._push(userGroup);
   };
 
   /**

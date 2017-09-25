@@ -88,7 +88,7 @@ class BaseLayout extends React.Component {
       .then(() => {
         crowdEncryptionService.initialize();
         liveEntityUpdateService.initialize();
-        this.props.authStore.privileged && crowdEncryptionService.initializeAdminSubscriptions();
+        this.props.authStore.privileged && liveEntityUpdateService.initializeAdminSubscriptions();
       })
       .catch((error) => {
         notificationService.error("Websocket connection failed", error, 10);
