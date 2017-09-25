@@ -222,7 +222,7 @@ class UserGroupStore {
    * @since 0.15.0
    */
   _contains = (userGroupId) => {
-    return this.userGroups.findIndex(userGroup => userGroup.id === userGroupId) !== null;
+    return this.userGroups.findIndex(userGroup => userGroup.id === userGroupId) !== -1;
   };
 
   /**
@@ -249,7 +249,7 @@ class UserGroupStore {
   _updateEntity = (userGroupId, updatedEntity) => {
     console.log("Updating group");
     let index = this.userGroups.findIndex(userGroup => userGroup.id === userGroupId);
-    index >= 0 && this.userGroups.splice(index, 1, updatedEntity);
+    index !== -1 && this.userGroups.splice(index, 1, updatedEntity);
   };
 }
 

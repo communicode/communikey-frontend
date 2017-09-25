@@ -230,7 +230,7 @@ class CategoryStore {
    * @since 0.15.0
    */
   _contains = (categoryId) => {
-    return this.categories.findIndex(category => category.id === categoryId) !== null;
+    return this.categories.findIndex(category => category.id === categoryId) !== -1;
   };
 
   /**
@@ -257,7 +257,7 @@ class CategoryStore {
   _updateEntity = (categoryId, updatedEntity) => {
     console.log("Updating category");
     let index = this.categories.findIndex(category => category.id === categoryId);
-    index >= 0 && this.categories.splice(index, 1, updatedEntity);
+    index !== -1 && this.categories.splice(index, 1, updatedEntity);
   };
 }
 

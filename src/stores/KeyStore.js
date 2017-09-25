@@ -273,7 +273,7 @@ class KeyStore {
    * @since 0.15.0
    */
   _contains = (keyId) => {
-    return this.keys.findIndex(key => key.id === keyId) !== null;
+    return this.keys.findIndex(key => key.id === keyId) !== -1;
   };
 
   /**
@@ -299,7 +299,7 @@ class KeyStore {
   @action("KeyStore_updateEntity")
   _updateEntity = (keyId, updatedEntity) => {
     let index = this.keys.findIndex(key => key.id === keyId);
-    index >= 0 && this.keys.splice(index, 1, updatedEntity);
+    index !== -1 && this.keys.splice(index, 1, updatedEntity);
   }
 }
 
