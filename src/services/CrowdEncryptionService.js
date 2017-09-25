@@ -88,7 +88,6 @@ class CrowdEncryptionService {
     if (!this.encrypting && !_.isEmpty(encryptionService.passphrase)) {
       encryptionJobStore.hideJobNotice();
       this.encrypting = true;
-      console.log("Not locked");
       encryptionJobStore.encryptionJobs.forEach(job => {
         this.fulfillJob(job);
       });
