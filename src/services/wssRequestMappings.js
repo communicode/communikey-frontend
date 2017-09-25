@@ -100,7 +100,7 @@ export const USER_JOBS = USER + "/encryption/jobs";
  * @type {string}
  * @since 0.15.0
  */
-export const UPDATES_CATEGORIES = USER + "/updates/categories";
+export const UPDATES_CATEGORIES = QUEUE + "/updates/categories";
 
 /**
  * The WSS category delete endpoint.
@@ -150,7 +150,7 @@ export const UPDATES_USERS = QUEUE + "/updates/users";
  * @type {string}
  * @since 0.15.0
  */
-export const UPDATES_USERS_DELETE = UPDATES_KEYS + "/delete";
+export const UPDATES_USERS_DELETE = UPDATES_USERS + "/delete";
 
 /**
  * The WSS user update endpoint.
