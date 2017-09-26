@@ -69,9 +69,9 @@ class LiveEntityUpdateService {
    * @param message the callback message parameter of the stomp client
    */
   keyDeleteCallback = (message) => {
-    let deletion = JSON.parse(message.body);
-    console.log("Key delete received:", deletion);
-    keyStore._contains(deletion.id) && keyStore._deleteOne(deletion.id);
+    let key = JSON.parse(message.body);
+    console.log("Key delete received:", key);
+    keyStore._contains(key.id) && keyStore._deleteOne(key.id);
   };
 
   /**
@@ -93,8 +93,9 @@ class LiveEntityUpdateService {
    * @param message the callback message parameter of the stomp client
    */
   categoryDeleteCallback = (message) => {
-    let deletion = JSON.parse(message.body);
-    console.log("Category delete received:", deletion);
+    let category = JSON.parse(message.body);
+    console.log("Category delete received:", category);
+    categoryStore._contains(category.id) && categoryStore.deleteOne(category.id);
   };
 
   /**
@@ -116,8 +117,9 @@ class LiveEntityUpdateService {
    * @param message the callback message parameter of the stomp client
    */
   userDeleteCallback = (message) => {
-    let deletion = JSON.parse(message.body);
-    console.log("User delete received:", deletion);
+    let user = JSON.parse(message.body);
+    console.log("User delete received:", user);
+    userStore._contains(user.id) && userStore.deleteOne(user.id);
   };
 
   /**
@@ -139,8 +141,9 @@ class LiveEntityUpdateService {
    * @param message the callback message parameter of the stomp client
    */
   groupDeleteCallback = (message) => {
-    let deletion = JSON.parse(message.body);
-    console.log("Group delete received:", deletion);
+    let userGroup = JSON.parse(message.body);
+    console.log("Group delete received:", userGroup);
+    userGroupStore._contains(userGroup.id) && userGroupStore.deleteOne(userGroup.id);
   };
 }
 
