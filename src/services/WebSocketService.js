@@ -1,6 +1,6 @@
 import SockJS from "sockjs-client";
 import StompJS from "stompjs";
-import {notificationService} from "../Communikey";
+import {notificationService, liveEntityUpdateService, crowdEncryptionService} from "../Communikey";
 import {WSS_REGISTRY_TOKEN} from "./wssRequestMappings";
 
 /**
@@ -53,6 +53,7 @@ class WebSocketService {
   close = () => {
     this.unsubscribe();
     this.stompClient.disconnect();
+    this.initialized = false;
   };
 
   /**
@@ -72,6 +73,8 @@ class WebSocketService {
     this.subscriptions.forEach((subscription) => {
       this.stompClient.unsubscribe(subscription);
     });
+    liveEntityUpdateService.close();
+    crowdEncryptionService.close();
   };
 
   /**

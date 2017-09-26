@@ -20,10 +20,11 @@ import {
  * @since 0.15.0
  */
 class CrowdEncryptionService {
-
   encrypting;
+  initialized;
 
   constructor() {
+    this.initialized = false;
     this.encrypting = false;
   }
 
@@ -36,7 +37,15 @@ class CrowdEncryptionService {
       webSocketService.subscribe(JOB_ABORT, this.encryptionJobAbortCallback);
       webSocketService.subscribe(USER_REPLY, this.replyCallback);
       webSocketService.subscribe(USER_ERRORS, this.errorCallback);
+      this.initialized = true;
     }
+  };
+
+  /**
+   * In case of the WSS connection closing.
+   */
+  close = () => {
+    this.initialized = false;
   };
 
   /**

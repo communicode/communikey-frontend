@@ -23,8 +23,13 @@ import {
  * @since 0.15.0
  */
 class LiveEntityUpdateService {
+  userSubscriptionsInitialized;
+  adminSubscriptionsInitialized;
 
-  constructor() {}
+  constructor() {
+    this.userSubscriptionsInitialized = false;
+    this.adminSubscriptionsInitialized = false;
+  }
 
   /**
    * Initializes the subscriptions
@@ -35,6 +40,7 @@ class LiveEntityUpdateService {
       webSocketService.subscribe(UPDATES_CATEGORIES_DELETE, this.categoryDeleteCallback);
       webSocketService.subscribe(UPDATES_KEYS, this.keyUpdateCallback);
       webSocketService.subscribe(UPDATES_KEYS_DELETE, this.keyDeleteCallback);
+      this.userSubscriptionsInitialized = true;
     }
   };
 
@@ -47,7 +53,16 @@ class LiveEntityUpdateService {
       webSocketService.subscribe(UPDATES_USERS_DELETE, this.userDeleteCallback);
       webSocketService.subscribe(UPDATES_GROUPS, this.groupUpdateCallback);
       webSocketService.subscribe(UPDATES_GROUPS_DELETE, this.groupDeleteCallback);
+      this.adminSubscriptionsInitialized = true;
     }
+  };
+
+  /**
+   * In case of the WSS connection closing.
+   */
+  close = () => {
+    this.userSubscriptionsInitialized = false;
+    this.adminSubscriptionsInitialized = false;
   };
 
   /**
