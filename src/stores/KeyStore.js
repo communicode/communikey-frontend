@@ -1,7 +1,12 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
 import apiService from "../services/ApiService";
-import {authStore, categoryStore, userStore, encryptionService} from "./../Communikey";
+import {authStore,
+  categoryStore,
+  userStore,
+  encryptionService,
+  liveEntityUpdateService
+} from "./../Communikey";
 import {KEY, KEYS, ENCRYPTED_PASSWORD, KEY_SUBSCRIBERS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
@@ -55,7 +60,7 @@ class KeyStore {
           }
         })
           .then(action("KeyStore_create_synchronization", response => {
-            this.keys.push(response.data);
+            !liveEntityUpdateService.userSubscriptionsInitialized && this.keys.push(response.data);
             return apiService.all([
               categoryId && categoryStore.fetchOne(categoryId),
               userStore.fetchOneById(response.data.creator)

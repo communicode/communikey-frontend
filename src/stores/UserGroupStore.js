@@ -1,6 +1,6 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
-import {categoryStore, userStore} from "./../Communikey";
+import {categoryStore, userStore, liveEntityUpdateService} from "./../Communikey";
 import apiService from "../services/ApiService";
 import {USER_GROUP, USER_GROUPS, USER_GROUPS_USERS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
@@ -61,7 +61,9 @@ class UserGroupStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("UserGroupStore_create_synchronization", response => this.userGroups.push(response.data)));
+      .then(action("UserGroupStore_create_synchronization", response => {
+        !liveEntityUpdateService.adminSubscriptionsInitialized && this.userGroups.push(response.data);
+      }));
   };
 
   /**

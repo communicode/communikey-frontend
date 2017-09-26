@@ -1,6 +1,10 @@
 import {action, observable} from "mobx";
 import apiService from "../services/ApiService";
-import {keyStore, userGroupStore, userStore} from "./../Communikey";
+import {keyStore,
+  userGroupStore,
+  userStore,
+  liveEntityUpdateService
+} from "./../Communikey";
 import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_GROUPS, CATEGORY_KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
@@ -100,7 +104,7 @@ class CategoryStore {
       }
     })
       .then(action("CategoryStore_create_synchronization", response => {
-        this.categories.push(response.data);
+        !liveEntityUpdateService.userSubscriptionsInitialized && this.categories.push(response.data);
         return response.data;
       }));
   };
