@@ -58,7 +58,6 @@ class EncryptionJobStore {
   @action("EncryptionJobStore_remove")
   remove = (token) => {
     console.log("Removing job with token", token);
-    let index = this.encryptionJobs.findIndex(job => job.token === token);
     this._contains(token) && this._deleteOneByToken(token);
     if(this.encryptionJobs.length === 0) {
       this.hideJobNotice();
