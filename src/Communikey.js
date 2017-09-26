@@ -201,6 +201,15 @@ class Communikey extends React.Component {
       .then(() => stores.authStore._setIsAuthorized(true))
       .catch(error => console.error(error));
     this.setState({initialized: true});
+    window.addEventListener("beforeunload", this.keepOnPage);
+  }
+
+  keepOnPage = () => {
+    webSocketService.initialized && webSocketService.close();
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", this.keepOnPage);
   }
 
   render() {
