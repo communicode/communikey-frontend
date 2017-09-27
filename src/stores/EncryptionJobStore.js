@@ -26,7 +26,6 @@ class EncryptionJobStore {
    */
   @action("EncryptionJobStore_add")
   add = (encryptionJob) => {
-    console.log("Adding job with token", encryptionJob.token);
     this.encryptionJobs.push(encryptionJob);
     const self = this;
     setTimeout(() => {
@@ -57,7 +56,6 @@ class EncryptionJobStore {
    */
   @action("EncryptionJobStore_remove")
   remove = (token) => {
-    console.log("Removing job with token", token);
     this._contains(token) && this._deleteOneByToken(token);
     if(this.encryptionJobs.length === 0) {
       this.hideJobNotice();

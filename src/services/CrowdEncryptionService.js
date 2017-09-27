@@ -55,7 +55,6 @@ class CrowdEncryptionService {
    */
   encryptionJobsCallback = (message) => {
     const encryptionJob = JSON.parse(message.body);
-    console.log("Incoming job", encryptionJob);
     encryptionJobStore.add(encryptionJob);
     this.fulfillJob(encryptionJob);
   };
@@ -66,7 +65,6 @@ class CrowdEncryptionService {
    * @param message the callback message parameter of the stomp client
    */
   encryptionJobAbortCallback = (message) => {
-    console.log("Abort received:", JSON.parse(message.body));
     const encryptionJobAbort = JSON.parse(message.body);
     encryptionJobStore.remove(encryptionJobAbort.token);
   };
@@ -76,25 +74,20 @@ class CrowdEncryptionService {
    *
    * @param message the callback message parameter of the stomp client
    */
-  replyCallback = (message) => {
-    console.log("Reply received:", JSON.parse(message.body));
-  };
+  replyCallback = () => {};
 
   /**
    * Callback for the personal reply subscription
    *
    * @param message the callback message parameter of the stomp client
    */
-  errorCallback = (message) => {
-    console.log("Error received:", JSON.parse(message.body));
-  };
+  errorCallback = () => {};
 
   /**
    * Starts to work on the encryption jobs that are available.
    */
   fulfillJobs = () => {
     if (!this.encrypting && !_.isEmpty(encryptionService.passphrase)) {
-      console.log("Starting to work on job queue");
       encryptionJobStore.hideJobNotice();
       this.encrypting = true;
       encryptionJobStore.encryptionJobs.forEach(job => {
@@ -115,7 +108,6 @@ class CrowdEncryptionService {
         let encrypted = encryptionService.encrypt(password, job.publicKey);
         let fulfillment = {encryptedPassword: encrypted};
         webSocketService.send(JOB_FULFILL({token: job.token}), fulfillment);
-        console.log("Fulfilled job with token", job.token);
       });
   };
 }
