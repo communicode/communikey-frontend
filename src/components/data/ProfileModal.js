@@ -323,6 +323,7 @@ class ProfileModal extends React.Component {
   };
 
   handleOnClose = () => {
+    this.setState({activeTabViewKey: TAB_PANE_REACT_KEY_PROFILE});
     this.props.onClose();
   };
 
