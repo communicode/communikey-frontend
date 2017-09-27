@@ -146,7 +146,8 @@ class UserStore {
           keyStore.fetchAll(),
           userGroupStore.fetchAll()
         ])
-          .then(action("UserStore_deleteOne_synchronization", () => this._deleteOneByLogin(login)));
+          .then(action("UserStore_deleteOne_synchronization", () =>
+            !liveEntityUpdateService.adminSubscriptionsInitialized && this._deleteOneByLogin(login)));
       }));
   };
 

@@ -93,8 +93,8 @@ class CrowdEncryptionService {
    * Starts to work on the encryption jobs that are available.
    */
   fulfillJobs = () => {
-    console.log("Starting to work on job queue");
     if (!this.encrypting && !_.isEmpty(encryptionService.passphrase)) {
+      console.log("Starting to work on job queue");
       encryptionJobStore.hideJobNotice();
       this.encrypting = true;
       encryptionJobStore.encryptionJobs.forEach(job => {

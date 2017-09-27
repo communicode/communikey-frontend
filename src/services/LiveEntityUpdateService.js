@@ -110,7 +110,7 @@ class LiveEntityUpdateService {
   categoryDeleteCallback = (message) => {
     let category = JSON.parse(message.body);
     console.log("Category delete received:", category);
-    categoryStore._contains(category.id) && categoryStore.deleteOne(category.id);
+    categoryStore._contains(category.id) && categoryStore._deleteOneById(category.id);
   };
 
   /**
@@ -134,7 +134,7 @@ class LiveEntityUpdateService {
   userDeleteCallback = (message) => {
     let user = JSON.parse(message.body);
     console.log("User delete received:", user);
-    userStore._contains(user.id) && userStore.deleteOne(user.id);
+    userStore._contains(user.id) && userStore._deleteOneByLogin(user.id);
   };
 
   /**
@@ -158,7 +158,7 @@ class LiveEntityUpdateService {
   groupDeleteCallback = (message) => {
     let userGroup = JSON.parse(message.body);
     console.log("Group delete received:", userGroup);
-    userGroupStore._contains(userGroup.id) && userGroupStore.deleteOne(userGroup.id);
+    userGroupStore._contains(userGroup.id) && userGroupStore._deleteOneById(userGroup.id);
   };
 }
 

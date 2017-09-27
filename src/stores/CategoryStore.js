@@ -1,4 +1,5 @@
 import {action, observable} from "mobx";
+import _ from "lodash";
 import apiService from "../services/ApiService";
 import {keyStore,
   userGroupStore,
@@ -224,6 +225,16 @@ class CategoryStore {
    * @since 0.8.0
    */
   _findById = (categoryId) => this.categories.find(category => category.id === categoryId);
+
+  /**
+   * Deletes the category with the specified id.
+   * This is a pure store synchronization action!
+   *
+   * @param {number} categoryId - The id of the category to delete
+   * @since 0.15.0
+   */
+  @action("CategoryStore__deleteOneById")
+  _deleteOneById = (categoryId) => this.categories.splice(_.findIndex(this.categories, category => category.id === categoryId), 1);
 
   /**
    * Searches for the categoryId in the store

@@ -205,6 +205,17 @@ class UserGroupStore {
   _findOneById = (userGroupId) => this.userGroups.find(userGroup => userGroup.id === userGroupId);
 
   /**
+   * Deletes the user group with the specified id.
+   * This is a pure store synchronization action!
+   *
+   * @param {number} userGroupId - The id of the user group to delete
+   * @since 0.15.0
+   */
+  @action("UserGroupStore__deleteOneById")
+  _deleteOneById = (userGroupId) =>
+    this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === userGroupId), 1);
+
+  /**
    * Finds the user group with the specified name.
    * This is a pure store operation action!
    *
