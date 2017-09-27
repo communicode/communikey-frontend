@@ -1,5 +1,6 @@
 import React from "react";
-import {Steps, Button, Row, Col, Card, Icon, Input, Radio, Form} from "antd";
+import PropTypes from "prop-types";
+import {Steps, Button, Row, Col, Collapse, Card, Icon, Input, Radio, Form} from "antd";
 import _ from "lodash";
 import FileReaderInput from "react-file-reader-input";
 import {
@@ -17,11 +18,13 @@ import "antd/lib/upload/style/index.less";
 import "antd/lib/message/style/index.less";
 import "antd/lib/form/style/index.less";
 import "antd/lib/spin/style/index.less";
+import "antd/lib/collapse/style/index.less";
 import "./KeypairWizard.less";
 
 const Step = Steps.Step;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
+const Panel = Collapse.Panel;
 
 const ManagedForm = Form.create()(
   (props) => {
@@ -167,6 +170,9 @@ class KeypairWizard extends React.Component {
       this.setState({
         current: 2
       });
+      this.props.onStepChange(2);
+    } else {
+      this.props.onStepChange(0);
     }
   }
 
@@ -244,6 +250,7 @@ class KeypairWizard extends React.Component {
   next = () => {
     const current = this.state.current + 1;
     this.setState({ current });
+    this.props.onStepChange(current);
   };
 
   /**
@@ -252,6 +259,7 @@ class KeypairWizard extends React.Component {
   prev = () => {
     const current = this.state.current - 1;
     this.setState({ current });
+    this.props.onStepChange(current);
   };
 
   /**
@@ -335,7 +343,10 @@ class KeypairWizard extends React.Component {
             </Row>
             <Row className="actionRow">
               <Col span={12}>
-                <Button class="buttonPrevious" onClick={this.prev}>
+                <Button class="buttonPrevious"
+                        onClick={this.prev}
+                        disabled={this.state.processing}
+                >
                   <Icon type="left"/>
                 </Button>
               </Col>
@@ -451,35 +462,48 @@ class KeypairWizard extends React.Component {
     const introductionContent = (
       <div className="introductionContent">
         <Row>
-          <Card>
-            Have you already generated your own keypair and do you want to use it on this platform? No problem!<br/>
-            Select this option and we will guide you through uploading your own private key. Please ensure that
-            your keypair is at least 4096 bits long and uses secure passhrase, to ensure a high security standard.
-            In addition to a secure keypair, make sure that you upload your private key
-            in the common encrypted PEM format.<br/>
-            Please note that communikey never stores any confidential data unencrypted on its servers. Your private key
-            stays your private key. It&apos;s only stored locally and will only be decrypted with your interaction
-            if needed. The passphrase needed to decrypt your private key is also only saved for a maximum of 30 minutes.
-            That way we minimize the risks of a potential attacker gaining access to your passwords. If you lose your
-            private key you lose your only method of true identification to this service. Please store it with
-            uttermost importance.<br/>
+          <Card className="uploadCard">
+            <Icon type="key" className="key" />
+            <div onClick={this.selectOwnKeypair} className="insidePadding">
+              <h1>
+                Install my own key
+              </h1>
+              <p>
+                Have you already generated your own keypair and do you want to use it on this platform? No problem!
+                Select this option and we will guide you through installing your own private key
+                in the common encrypted PEM format.
+              </p>
+            </div>
+            <Collapse bordered={false}>
+              <Panel header="More information" key="1" className="test">
+                <p>
+                  Please ensure that your keypair is at least 4096 bits long and uses secure passhrase, to ensure a high security standard.
+                  In addition to a secure keypair, make sure that you select your private key.<br/>
+                  Please note that communikey never stores any confidential data unencrypted on its servers. Your private key
+                  stays your private key. It&apos;s only stored locally and will only be decrypted with your interaction
+                  if needed.<br/>
+                  The passphrase needed to decrypt your private key is also only saved for a maximum of 30 minutes.
+                  That way, we minimize the risks of a potential attacker gaining access to your passwords. If you lose your
+                  private key you lose your only method of true identification to this service.<br/>
+                  Please store it with uttermost importance.<br/>
+                </p>
+              </Panel>
+            </Collapse>
           </Card>
-        </Row>
-        <Row className="buttonRow">
-          <Button type="primary" ghost onClick={this.selectOwnKeypair}>
-            <Icon type="tool"/>
-            I want to use my own key!</Button>
         </Row>
         <Row>
-          <Card>
-            You dont know what a keypair exactly is and don&apos;t want to bother with it any further? We&apos;ve got you
-            covered! Communikey is able to generate a secure keypair with a passphrase for you. Only one click needed.
+          <Card className="generateCard">
+            <Icon type="setting" className="turningGears"/>
+            <div onClick={this.selectGenerateKeypair} className="insidePadding">
+              <h1>
+                Generate a keypair for me
+              </h1>
+              <p>
+                You dont know what a keypair exactly is and don&apos;t want to bother with it any further? We&apos;ve got you
+                covered! Communikey is able to generate a secure keypair with a passphrase for you. Only one click needed.
+              </p>
+            </div>
           </Card>
-        </Row>
-        <Row className="buttonRow">
-          <Button type="primary" ghost onClick={this.selectGenerateKeypair}>
-            <Icon type="calculator"/>
-            Generate one for me, please.</Button>
         </Row>
       </div>
     );
@@ -503,16 +527,20 @@ class KeypairWizard extends React.Component {
       <div className="finishContent">
         <Row>
           <Card>
-            <Row>
-              Well done! You&apos;ve finished the keypair setup for your account. Please download your private key
-              and store it safely. If you lose your key you lose your only way of identifying yourself with this
-              service.<br/> A lost keypair will result in invalidating all your encrypted passwords and losing access to
+            <h1>
+              Well done!
+            </h1>
+            <p>
+              You&apos;ve finished the keypair setup for your account. Please download your private key
+              and store it safely. If you lose your key, you lose your only way of identifying yourself with this
+              service.<br/><br/>
+              A lost keypair will result in invalidating all your encrypted passwords and losing access to
               them until they&apos;ve been reencrypted with a newly generated key by the system. Should this happen,
               please contact an administrator at key@communicode.de. They will be able to help you out.
-            </Row>
+            </p>
             <Row className="buttonRow">
               <Button icon="download" onClick={encryptionService.downloadPrivateKey}>
-                Download encrypted private key
+                Save encrypted private key
               </Button>
             </Row>
           </Card>
@@ -552,5 +580,14 @@ class KeypairWizard extends React.Component {
     );
   }
 }
+
+KeypairWizard.propTypes = {
+  /**
+   * Callback function on step change
+   *
+   * @type {function}
+   */
+  onStepChange: PropTypes.func.isRequired
+};
 
 export default KeypairWizard;

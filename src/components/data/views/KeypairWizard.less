@@ -4,7 +4,73 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  p{
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .ant-collapse-item {
+    border-bottom-width: 0 !important;
+  }
+
+  .generateCard:hover {
+    .turningGears{
+      animation: spin 4s 1 linear;
+      animation-iteration-count:infinite;
+    }
+    border-top-width: 5px;
+    cursor: pointer;
+  }
+
+  .uploadCard:hover {
+    .key{
+      transition: all 1s linear;
+    }
+    border-top-width: 5px;
+    cursor: pointer;
+  }
+
+  .ant-card {
+    border-color: #49A9EE;
+  }
+
+  .ant-card-body {
+    padding: 0 0 0 0;
+  }
+
+  .insidePadding {
+    padding: 20px 24px 0 24px;
+  }
+
+  .key {
+    z-index: 0;
+    font-size: 150px;
+    position: absolute;
+    right: 0;
+    top: 10%;
+    opacity: 0.15;
+    color: grey;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+  }
+
+  .turningGears {
+    z-index: 0;
+    font-size: 200px;
+    position: absolute;
+    right: -15%;
+    top: 20%;
+    opacity: 0.2;
+    color: grey;
+    animation-iteration-count:infinite;
+  }
 }
+
 
 .buttonRow {
   text-align: center;
@@ -56,8 +122,7 @@
       padding-top: 40px;
       height: 238px;
       &:hover {
-        border-color: #49A9EE;
-        border-style: dashed;
+        border: dashed #49A9EE;
       }
     }
 
@@ -82,4 +147,11 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  p {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
 }

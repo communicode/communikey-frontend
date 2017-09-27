@@ -209,12 +209,36 @@ class ProfileModal extends React.Component {
       passwordResetModalVisible: false,
 
       /**
+       * The visibility status of the cancel wizard modal.
+       *
+       * @default false
+       * @type {boolean}
+       */
+      cancelModalVisible: false,
+
+      /**
        * The default processing status.
        *
        * @default false
        * @type {boolean}
        */
-      processing: false
+      processing: false,
+
+      /**
+       * The default tabs lock status.
+       *
+       * @default false
+       * @type {boolean}
+       */
+      tabsLocked: false,
+
+      /**
+       * The current step in the wizard
+       *
+       * @default 0
+       * @type {number}
+       */
+      currentWizardStep: 0
     };
   }
 
@@ -284,9 +308,42 @@ class ProfileModal extends React.Component {
    */
   togglePasswordResetModal = () => this.setState(prevState => ({passwordResetModalVisible: !prevState.passwordResetModalVisible}));
 
+  /**
+   * Toggles the cancel wizard modal.
+   */
+  toggleCancelModal = () => this.setState(prevState => ({cancelModalVisible: !prevState.cancelModalVisible}));
+
+  handleCancelOnClose = () => {
+    this.setState(
+      {
+        tabsLocked: false
+      });
+    this.toggleCancelModal();
+    this.changeTab(TAB_PANE_REACT_KEY_PROFILE);
+  };
+
   handleOnClose = () => {
-    this.setState({activeTabViewKey: TAB_PANE_REACT_KEY_PROFILE});
     this.props.onClose();
+  };
+
+  handleCancel = () => {
+    this.toggleCancelModal();
+  };
+
+  handleCancelOnCancel = () => {
+    this.toggleCancelModal();
+  };
+
+  changeTab = (activeTabViewKey) => {
+    this.setState({activeTabViewKey});
+    if(activeTabViewKey === TAB_PANE_REACT_KEY_WIZARD) {
+      if(this.state.currentWizardStep !== 2) {
+        this.props.setCloseable(false);
+        this.setState({tabsLocked: true});
+      }
+    } else {
+      this.props.setCloseable(true);
+    }
   };
 
   render() {
@@ -295,7 +352,7 @@ class ProfileModal extends React.Component {
       onClose,
       ...modalProps
     } = this.props;
-    const {activeTabViewKey, passwordResetModalValuesValid, passwordResetModalVisible} = this.state;
+    const {activeTabViewKey, passwordResetModalValuesValid, passwordResetModalVisible, cancelModalVisible} = this.state;
 
     /**
      * Operations name constants and the name of the callback function. Builds the footer drop down.
@@ -335,6 +392,7 @@ class ProfileModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
+              {this.props.maskClosable &&
               <Button
                 type="primary"
                 size="large"
@@ -343,6 +401,17 @@ class ProfileModal extends React.Component {
               >
                 Done
               </Button>
+              }
+              {!this.props.maskClosable &&
+              <Button
+                type="danger"
+                size="large"
+                onClick={this.handleCancel}
+                loading={loading}
+              >
+                Cancel
+              </Button>
+              }
             </div>
           </Col>
         </Row>
@@ -353,7 +422,7 @@ class ProfileModal extends React.Component {
      * The content of the profile tab.
      */
     const tabViewProfile = () => (
-      <Tabs.TabPane tab="Profile" key={TAB_PANE_REACT_KEY_PROFILE}>
+      <Tabs.TabPane tab="Profile" disabled={this.state.tabsLocked} key={TAB_PANE_REACT_KEY_PROFILE}>
         <Row type="flex" align="center">
           <Col span={18}>
             <ManagedProfileForm/>
@@ -362,6 +431,17 @@ class ProfileModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    const changeStep = (step) => {
+      this.setState({currentWizardStep: step});
+      if(step === 2) {
+        this.props.setCloseable(true);
+        this.setState({tabsLocked: false});
+      } else {
+        this.props.setCloseable(false);
+        this.setState({tabsLocked: true});
+      }
+    };
+
     /**
      * The content of the wizard tab.
      */
@@ -369,7 +449,9 @@ class ProfileModal extends React.Component {
       <Tabs.TabPane tab="Wizard" key={TAB_PANE_REACT_KEY_WIZARD}>
         <Row type="flex" align="center">
           <Col span={18}>
-            <KeypairWizard/>
+            <KeypairWizard
+              onStepChange={changeStep}
+            />
           </Col>
         </Row>
       </Tabs.TabPane>
@@ -427,6 +509,42 @@ class ProfileModal extends React.Component {
       </Modal>
     );
 
+    /**
+     * The wizard cancel modal.
+     * Tries to hinder the user from cancelling the wizard
+     */
+    const cancelModal = () => (
+      <Modal
+        visible={cancelModalVisible}
+        footer={false}
+        closable={false}
+        className="cancel-reset-inner-modal">
+        <Row>
+          <Col span={24}>
+            <h1>
+              Are you sure you want to leave the setup early?
+            </h1>
+            <p>
+              This might result in not being able to read or write passwords.
+              We suggest you to set your keypair before doing anything else.
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="footer">
+              <Row type="flex" justify="end">
+                <Col>
+                  <Button key="cancel-cancel-keypair-wizard" size="large" onClick={this.handleCancelOnCancel}>Stay</Button>
+                  <Button key="cancel-keypair-wizard" size="large" type="danger" onClick={this.handleCancelOnClose}>Leave</Button>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+        </Row>
+      </Modal>
+    );
+
     return (
       <Modal
         {...modalProps}
@@ -435,13 +553,17 @@ class ProfileModal extends React.Component {
         closable={false}
         className="cckey-user-modal"
       >
-        <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_PROFILE} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
+        <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_PROFILE}
+              activeKey={this.state.activeTabViewKey}
+              onChange={this.changeTab}
+        >
           {tabViewProfile()}
           {tabViewSettings()}
           {tabViewWizard()}
         </Tabs>
         <Row><Col>{footer()}</Col></Row>
         {passwordResetInnerModal()}
+        {cancelModal()}
       </Modal>
     );
 
@@ -461,7 +583,21 @@ ProfileModal.propTypes = {
    *
    * @type {boolean}
    */
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+
+  /**
+   * Is mask closable
+   *
+   * @type {boolean}
+   */
+  maskClosable: PropTypes.bool.isRequired,
+
+  /**
+   * Callback function to set the modal closeable
+   *
+   * @type {function}
+   */
+  setCloseable: PropTypes.func.isRequired
 };
 
 export default ProfileModal;
