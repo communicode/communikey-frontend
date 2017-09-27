@@ -13,7 +13,7 @@ class SignOut extends React.Component {
   }
 
   componentDidMount() {
-    webSocketService.close();
+    webSocketService.initialized && webSocketService.close();
     localStorage.clear();
     this.props.authStore._reset();
   }
