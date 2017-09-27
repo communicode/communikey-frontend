@@ -462,6 +462,20 @@ class KeypairWizard extends React.Component {
     const introductionContent = (
       <div className="introductionContent">
         <Row>
+          <Card className="generateCard">
+            <Icon type="setting" className="turningGears"/>
+            <div onClick={this.selectGenerateKeypair} className="insidePadding">
+              <h1>
+                Generate a keypair for me
+              </h1>
+              <p>
+                You dont know what a keypair exactly is and don&apos;t want to bother with it any further? We&apos;ve got you
+                covered! Communikey is able to generate a secure keypair with a passphrase for you. Only one click needed.
+              </p>
+            </div>
+          </Card>
+        </Row>
+        <Row>
           <Card className="uploadCard">
             <Icon type="key" className="key" />
             <div onClick={this.selectOwnKeypair} className="insidePadding">
@@ -489,20 +503,6 @@ class KeypairWizard extends React.Component {
                 </p>
               </Panel>
             </Collapse>
-          </Card>
-        </Row>
-        <Row>
-          <Card className="generateCard">
-            <Icon type="setting" className="turningGears"/>
-            <div onClick={this.selectGenerateKeypair} className="insidePadding">
-              <h1>
-                Generate a keypair for me
-              </h1>
-              <p>
-                You dont know what a keypair exactly is and don&apos;t want to bother with it any further? We&apos;ve got you
-                covered! Communikey is able to generate a secure keypair with a passphrase for you. Only one click needed.
-              </p>
-            </div>
           </Card>
         </Row>
       </div>
