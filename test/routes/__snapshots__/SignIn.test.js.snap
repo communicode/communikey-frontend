@@ -54,8 +54,8 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
   }
   categoryStore={
     CategoryStore {
+      "_contains": [Function],
       "_findById": [Function],
-      "_updateEntity": [Function],
       "categories": Array [
         Object {
           "children": Array [],
@@ -149,9 +149,9 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
   }
   keyStore={
     KeyStore {
+      "_contains": [Function],
       "_filterAllByCategory": [Function],
       "_findOneById": [Function],
-      "_updateEntity": [Function],
       "encryptForSubscribers": [Function],
       "getPassword": [Function],
       "keys": Array [
@@ -193,10 +193,10 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
   }
   userGroupStore={
     UserGroupStore {
+      "_contains": [Function],
       "_filterAllByCategory": [Function],
       "_findOneById": [Function],
       "_findOneByName": [Function],
-      "_updateEntity": [Function],
       "userGroups": Array [
         Object {
           "categories": Array [],
@@ -243,11 +243,11 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
   }
   userStore={
     UserStore {
+      "_contains": [Function],
       "_filterAllByGroup": [Function],
       "_findOneByEmail": [Function],
       "_findOneById": [Function],
       "_findOneByLogin": [Function],
-      "_updateEntity": [Function],
       "users": Array [
         Object {
           "activated": false,
