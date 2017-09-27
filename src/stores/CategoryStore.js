@@ -130,7 +130,8 @@ class CategoryStore {
           keyStore.fetchAll(),
           userGroupStore.fetchAll()
         ])
-          .then(action("CategoryStore_deleteOne_synchronization", () => this.fetchAll()));
+          .then(action("CategoryStore_deleteOne_synchronization", () =>
+            !liveEntityUpdateService.userSubscriptionsInitialized && this.fetchAll()));
       }));
   };
 

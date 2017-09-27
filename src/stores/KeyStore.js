@@ -129,11 +129,14 @@ class KeyStore {
       }
     })
       .then(action("KeyStore_deleteOne_fetch", () => {
-        return apiService.all([
-          categoryStore.fetchOne(key.category),
-          userStore.fetchOneById(key.creator)
-        ])
-          .then(action("KeyStore_deleteOne_synchronization", () => this._deleteOne(keyId)));
+        if(!liveEntityUpdateService.userSubscriptionsInitialized) {
+          return apiService.all([
+            categoryStore.fetchOne(key.category),
+            userStore.fetchOneById(key.creator)
+          ])
+            .then(action("KeyStore_deleteOne_synchronization", () =>
+              !liveEntityUpdateService.userSubscriptionsInitialized && this._deleteOne(keyId)));
+        }
       }));
   };
 

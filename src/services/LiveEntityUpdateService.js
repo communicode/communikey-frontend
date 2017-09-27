@@ -158,7 +158,7 @@ class LiveEntityUpdateService {
   groupDeleteCallback = (message) => {
     let userGroup = JSON.parse(message.body);
     console.log("Group delete received:", userGroup);
-    userGroupStore._contains(userGroup.id) && userGroupStore._deleteOneById(userGroup.id);
+    userGroupStore._contains(userGroup.id) && userGroupStore._deleteOne(userGroup.id);
   };
 }
 

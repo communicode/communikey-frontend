@@ -89,7 +89,8 @@ class UserGroupStore {
           ),
           _.forEach(_.filter(userStore.users, user => user.groups.includes(userGroupId)), user => userStore.fetchOne(user.login))
         ])
-          .then(action("UserGroupStore_deleteOne_synchronization", () => this._deleteOne(userGroupId)));
+          .then(action("UserGroupStore_deleteOne_synchronization", () =>
+            !liveEntityUpdateService.adminSubscriptionsInitialized && this._deleteOne(userGroupId)));
       }));
   };
 
@@ -203,17 +204,6 @@ class UserGroupStore {
    * @since 0.9.0
    */
   _findOneById = (userGroupId) => this.userGroups.find(userGroup => userGroup.id === userGroupId);
-
-  /**
-   * Deletes the user group with the specified id.
-   * This is a pure store synchronization action!
-   *
-   * @param {number} userGroupId - The id of the user group to delete
-   * @since 0.15.0
-   */
-  @action("UserGroupStore__deleteOneById")
-  _deleteOneById = (userGroupId) =>
-    this.userGroups.splice(_.findIndex(this.userGroups, userGroup => userGroup.id === userGroupId), 1);
 
   /**
    * Finds the user group with the specified name.
