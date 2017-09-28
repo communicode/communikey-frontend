@@ -38,7 +38,9 @@ class BaseLayout extends React.Component {
       sidebarOpenKeys: [],
       sidebarLastOpenedKeys: [],
       profileModalVisible: false,
-      processing: false
+      processing: false,
+      wizardSelected: false,
+      maskClosable: true
     };
   }
 
@@ -218,6 +220,10 @@ class BaseLayout extends React.Component {
       }
     };
 
+    const setCloseable = (state) => {
+      this.setState({maskClosable: state});
+    };
+
     const header = () => (
       <Layout.Header className="cckey-base-layout-header">
         <Row type="flex" justify="end" align="bottom">
@@ -271,8 +277,10 @@ class BaseLayout extends React.Component {
             <ProfileModal
               visible={this.state.profileModalVisible}
               onClose={this.handleProfileModalClose}
+              maskClosable={this.state.maskClosable}
               onUserPasswordReset={this.handleProfileModalUserPasswordReset}
               loading={this.state.processing}
+              setCloseable={setCloseable}
             />
             {children}
           </Layout.Content>
