@@ -1,8 +1,22 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
 import apiService from "../services/ApiService";
-import {categoryStore, keyStore, userGroupStore} from "./../Communikey";
-import {USER, USER_AUTHORITIES, USERS, USERS_ACTIVATE, USERS_DEACTIVATE, USERS_PASSWORD_RESET, USERS_REGISTER, USERS_PUBLICKEY_RESET} from "./../services/apiRequestMappings";
+import {
+  categoryStore,
+  keyStore,
+  userGroupStore,
+  liveEntityUpdateService
+} from "./../Communikey";
+import {
+  USER,
+  USER_AUTHORITIES,
+  USERS,
+  USERS_ACTIVATE,
+  USERS_DEACTIVATE,
+  USERS_PASSWORD_RESET,
+  USERS_REGISTER,
+  USERS_PUBLICKEY_RESET
+} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -86,7 +100,7 @@ class UserStore {
       }
     })
       .then(action("UserStore_create_synchronization", response => {
-        this.users.push(response.data);
+        !liveEntityUpdateService.adminSubscriptionsInitialized && this.users.push(response.data);
         return response.data;
       }));
   };
@@ -132,7 +146,8 @@ class UserStore {
           keyStore.fetchAll(),
           userGroupStore.fetchAll()
         ])
-          .then(action("UserStore_deleteOne_synchronization", () => this._deleteOneByLogin(login)));
+          .then(action("UserStore_deleteOne_synchronization", () =>
+            !liveEntityUpdateService.adminSubscriptionsInitialized && this._deleteOneByLogin(login)));
       }));
   };
 
@@ -370,15 +385,42 @@ class UserStore {
   _findOneByEmail = (email) => this.users.find(user => user.email === email);
 
   /**
+   * Searches for the userId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} userId - The ID of the user to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (userId) => {
+    return this.users.findIndex(user => user.id === userId) !== -1;
+  };
+
+  /**
+   * Pushes a new user to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} user - The user object
+   * @since 0.15.0
+   */
+  @action("UserStore_pushEntity")
+  _push = (user) => {
+    return this.users.push(user);
+  };
+
+  /**
    * Updates the user entity with the specified ID.
    * This is a pure store operation action!
    *
    * @param {number} userId - The ID of the user entity to update
-   * @param {object} updatedEntity - The updated user entity
+   * @param {object} updatedEntity - The updated category entity
    * @since 0.9.0
    */
-  _updateEntity = (userId, updatedEntity) =>
-    this.users.splice(this.users.findIndex(user => user.id === userId), 1, updatedEntity);
+  @action("UserStore_updateEntity")
+  _updateEntity = (userId, updatedEntity) => {
+    let index = this.users.findIndex(user => user.id === userId);
+    index !== -1 && this.users.splice(index, 1, updatedEntity);
+  };
 }
 
 export default UserStore;

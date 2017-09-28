@@ -82,6 +82,11 @@ module.exports = {
     ]
   },
 
+  node: {
+    console: true,
+    net: "empty"
+  },
+
   plugins: [
     new webpack.LoaderOptionsPlugin({
       minimize: true,

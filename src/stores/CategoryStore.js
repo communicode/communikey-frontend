@@ -1,6 +1,11 @@
 import {action, observable} from "mobx";
+import _ from "lodash";
 import apiService from "../services/ApiService";
-import {keyStore, userGroupStore, userStore} from "./../Communikey";
+import {keyStore,
+  userGroupStore,
+  userStore,
+  liveEntityUpdateService
+} from "./../Communikey";
 import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_GROUPS, CATEGORY_KEYS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
@@ -100,7 +105,7 @@ class CategoryStore {
       }
     })
       .then(action("CategoryStore_create_synchronization", response => {
-        this.categories.push(response.data);
+        !liveEntityUpdateService.userSubscriptionsInitialized && this.categories.push(response.data);
         return response.data;
       }));
   };
@@ -125,7 +130,8 @@ class CategoryStore {
           keyStore.fetchAll(),
           userGroupStore.fetchAll()
         ])
-          .then(action("CategoryStore_deleteOne_synchronization", () => this.fetchAll()));
+          .then(action("CategoryStore_deleteOne_synchronization", () =>
+            !liveEntityUpdateService.userSubscriptionsInitialized && this.fetchAll()));
       }));
   };
 
@@ -222,6 +228,40 @@ class CategoryStore {
   _findById = (categoryId) => this.categories.find(category => category.id === categoryId);
 
   /**
+   * Deletes the category with the specified id.
+   * This is a pure store synchronization action!
+   *
+   * @param {number} categoryId - The id of the category to delete
+   * @since 0.15.0
+   */
+  @action("CategoryStore__deleteOneById")
+  _deleteOneById = (categoryId) => this.categories.splice(_.findIndex(this.categories, category => category.id === categoryId), 1);
+
+  /**
+   * Searches for the categoryId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} categoryId - The ID of the category to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (categoryId) => {
+    return this.categories.findIndex(category => category.id === categoryId) !== -1;
+  };
+
+  /**
+   * Pushes a new category to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} category - The category object
+   * @since 0.15.0
+   */
+  @action("CategoryStore_pushEntity")
+  _push = (category) => {
+    return this.categories.push(category);
+  };
+
+  /**
    * Updates the category entity with the specified ID.
    * This is a pure store operation action!
    *
@@ -229,8 +269,11 @@ class CategoryStore {
    * @param {object} updatedEntity - The updated category entity
    * @since 0.9.0
    */
-  _updateEntity = (categoryId, updatedEntity) =>
-    this.categories.splice(this.categories.findIndex(category => category.id === categoryId), 1, updatedEntity);
+  @action("CategoryStore_updateEntity")
+  _updateEntity = (categoryId, updatedEntity) => {
+    let index = this.categories.findIndex(category => category.id === categoryId);
+    index !== -1 && this.categories.splice(index, 1, updatedEntity);
+  };
 }
 
 export default CategoryStore;

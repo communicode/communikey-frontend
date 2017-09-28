@@ -9,6 +9,9 @@ import BaseLayout from "./BaseLayout";
 import AuthService from "./services/AuthService";
 import NotificationService from "./services/NotificationService";
 import EncryptionService from "./services/EncryptionService";
+import WebSocketService from "./services/WebSocketService";
+import CrowdEncryptionService from "./services/CrowdEncryptionService";
+import LiveEntityUpdateService from "./services/LiveEntityUpdateService";
 import AuthenticatedRoute from "./components/hoc/AuthenticatedRoute";
 import AuthenticatedPrivilegedRoute from "./components/hoc/AuthenticatedPrivilegedRoute";
 import PublicForwardRoute from "./components/hoc/PublicForwardRoute";
@@ -26,6 +29,7 @@ import CategoryStore from "./stores/CategoryStore";
 import KeyStore from "./stores/KeyStore";
 import UserGroupStore from "./stores/UserGroupStore";
 import UserStore from "./stores/UserStore";
+import EncryptionJobStore from "./stores/EncryptionJobStore";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
 import {
@@ -93,11 +97,19 @@ export const userGroupStore = new UserGroupStore();
 export const userStore = new UserStore();
 
 /**
+ * The encryption job store instance.
+ *
+ * @type {EncryptionJobStore}
+ * @since 0.15.0
+ */
+export const encryptionJobStore = new EncryptionJobStore();
+
+/**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
  *
- * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}>}
+ * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}, {EncryptionJobStore}>}
  */
-const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore};
+const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore, encryptionJobStore};
 
 /**
  * The notification service instance.
@@ -114,6 +126,30 @@ export const notificationService = new NotificationService();
  * @since 0.15.0
  */
 export const encryptionService = new EncryptionService();
+
+/**
+ * The websocket service instance
+ *
+ * @type {WebSocketService}
+ * @since 0.15.0
+ */
+export const webSocketService = new WebSocketService();
+
+/**
+ * The crowd encryption logic service instance
+ *
+ * @type {CrowdEncryptionService}
+ * @since 0.15.0
+ */
+export const crowdEncryptionService = new CrowdEncryptionService();
+
+/**
+ * The live entity update service instance
+ *
+ * @type {LiveEntityUpdateService}
+ * @since 0.15.0
+ */
+export const liveEntityUpdateService = new LiveEntityUpdateService();
 
 /**
  * The communikey version.
@@ -165,6 +201,15 @@ class Communikey extends React.Component {
       .then(() => stores.authStore._setIsAuthorized(true))
       .catch(error => console.error(error));
     this.setState({initialized: true});
+    window.addEventListener("beforeunload", this.keepOnPage);
+  }
+
+  keepOnPage = () => {
+    webSocketService.initialized && webSocketService.close();
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", this.keepOnPage);
   }
 
   render() {

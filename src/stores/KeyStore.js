@@ -1,7 +1,12 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
 import apiService from "../services/ApiService";
-import {authStore, categoryStore, userStore, encryptionService} from "./../Communikey";
+import {authStore,
+  categoryStore,
+  userStore,
+  encryptionService,
+  liveEntityUpdateService
+} from "./../Communikey";
 import {KEY, KEYS, ENCRYPTED_PASSWORD, KEY_SUBSCRIBERS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
@@ -55,7 +60,7 @@ class KeyStore {
           }
         })
           .then(action("KeyStore_create_synchronization", response => {
-            this.keys.push(response.data);
+            !liveEntityUpdateService.userSubscriptionsInitialized && this.keys.push(response.data);
             return apiService.all([
               categoryId && categoryStore.fetchOne(categoryId),
               userStore.fetchOneById(response.data.creator)
@@ -124,11 +129,14 @@ class KeyStore {
       }
     })
       .then(action("KeyStore_deleteOne_fetch", () => {
-        return apiService.all([
-          categoryStore.fetchOne(key.category),
-          userStore.fetchOneById(key.creator)
-        ])
-          .then(action("KeyStore_deleteOne_synchronization", () => this._deleteOne(keyId)));
+        if(!liveEntityUpdateService.userSubscriptionsInitialized) {
+          return apiService.all([
+            categoryStore.fetchOne(key.category),
+            userStore.fetchOneById(key.creator)
+          ])
+            .then(action("KeyStore_deleteOne_synchronization", () =>
+              !liveEntityUpdateService.userSubscriptionsInitialized && this._deleteOne(keyId)));
+        }
       }));
   };
 
@@ -265,6 +273,30 @@ class KeyStore {
   _findOneById = (keyId) => this.keys.find(key =>key.id === keyId);
 
   /**
+   * Searches for the keyId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} keyId - The ID of the key to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (keyId) => {
+    return this.keys.findIndex(key => key.id === keyId) !== -1;
+  };
+
+  /**
+   * Pushes a new key to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} key - The key object
+   * @since 0.15.0
+   */
+  @action("KeyStore_pushEntity")
+  _push = (key) => {
+    return this.keys.push(key);
+  };
+
+  /**
    * Updates the key entity with the specified ID.
    * This is a pure store operation action!
    *
@@ -272,7 +304,11 @@ class KeyStore {
    * @param {object} updatedEntity - The updated key entity
    * @since 0.9.0
    */
-  _updateEntity = (keyId, updatedEntity) => this.keys.splice(this.keys.findIndex(key => key.id === keyId), 1, updatedEntity);
+  @action("KeyStore_updateEntity")
+  _updateEntity = (keyId, updatedEntity) => {
+    let index = this.keys.findIndex(key => key.id === keyId);
+    index !== -1 && this.keys.splice(index, 1, updatedEntity);
+  }
 }
 
 export default KeyStore;

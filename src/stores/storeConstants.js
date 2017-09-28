@@ -45,3 +45,11 @@ export const USER_STORE = "userStore";
  * @since 0.9.0
  */
 export const USER_GROUP_STORE = "userGroupStore";
+
+/**
+ * The instance name of the global {@link EncryptionJobStore} injected through the MobX React {@linkcode Provider}.
+ *
+ * @type {string}
+ * @since 0.15.0
+ */
+export const ENCRYPTION_JOB_STORE = "encryptionJobStore";

@@ -281,7 +281,7 @@ class ProfileModal extends React.Component {
       callback();
       this.setState({passwordResetModalValuesValid: true});
     }
-  }
+  };
 
 
   /**
@@ -567,7 +567,6 @@ class ProfileModal extends React.Component {
         {cancelModal()}
       </Modal>
     );
-
   }
 }
 

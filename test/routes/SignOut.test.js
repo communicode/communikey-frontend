@@ -1,4 +1,5 @@
 jest.mock("react-router-dom", () => require("../__mockData__/mockReactRouterDOM"));
+jest.mock("../../src/Communikey", () => require("../__mockData__/mockUtil"));
 import React from "react";
 import {mount} from "enzyme";
 import SignOut from "../../src/routes/SignOut";

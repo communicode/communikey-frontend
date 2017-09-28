@@ -30,6 +30,8 @@ export const stores = {authStore, authorityStore, categoryStore, keyStore, userG
 
 export const notificationService = new NotificationService();
 
+export const webSocketService = {};
+
 export const VERSION = "0.0-code-coverage";
 
 export const emptyFunction = () => {};

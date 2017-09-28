@@ -1,6 +1,6 @@
 import {action, observable} from "mobx";
 import _ from "lodash";
-import {categoryStore, userStore} from "./../Communikey";
+import {categoryStore, userStore, liveEntityUpdateService} from "./../Communikey";
 import apiService from "../services/ApiService";
 import {USER_GROUP, USER_GROUPS, USER_GROUPS_USERS} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
@@ -61,7 +61,9 @@ class UserGroupStore {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
     })
-      .then(action("UserGroupStore_create_synchronization", response => this.userGroups.push(response.data)));
+      .then(action("UserGroupStore_create_synchronization", response => {
+        !liveEntityUpdateService.adminSubscriptionsInitialized && this.userGroups.push(response.data);
+      }));
   };
 
   /**
@@ -87,7 +89,8 @@ class UserGroupStore {
           ),
           _.forEach(_.filter(userStore.users, user => user.groups.includes(userGroupId)), user => userStore.fetchOne(user.login))
         ])
-          .then(action("UserGroupStore_deleteOne_synchronization", () => this._deleteOne(userGroupId)));
+          .then(action("UserGroupStore_deleteOne_synchronization", () =>
+            !liveEntityUpdateService.adminSubscriptionsInitialized && this._deleteOne(userGroupId)));
       }));
   };
 
@@ -212,16 +215,44 @@ class UserGroupStore {
    */
   _findOneByName = (userGroupName) => this.userGroups.find(userGroup => userGroup.name === userGroupName);
 
+
+  /**
+   * Searches for the userGroupId in the store
+   * This is a pure store operation action!
+   *
+   * @param {number} userGroupId - The ID of the user group to find
+   * @returns {Boolean} The statement if the store contains the key
+   * @since 0.15.0
+   */
+  _contains = (userGroupId) => {
+    return this.userGroups.findIndex(userGroup => userGroup.id === userGroupId) !== -1;
+  };
+
+  /**
+   * Pushes a new user group to the store.
+   * This is a pure store operation action!
+   *
+   * @param {object} userGroup - The user group object
+   * @since 0.15.0
+   */
+  @action("UserGroupStore_pushEntity")
+  _push = (userGroup) => {
+    return this.userGroups.push(userGroup);
+  };
+
   /**
    * Updates the user group entity with the specified ID.
    * This is a pure store operation action!
    *
    * @param {number} userGroupId - The ID of the user group entity to update
-   * @param {object} updatedEntity - The updated user group entity
+   * @param {object} updatedEntity - The updated category entity
    * @since 0.9.0
    */
-  _updateEntity = (userGroupId, updatedEntity) =>
-    this.userGroups.splice(this.userGroups.findIndex(userGroup => userGroup.id === userGroupId), 1, updatedEntity);
+  @action("UserGroupStore_updateEntity")
+  _updateEntity = (userGroupId, updatedEntity) => {
+    let index = this.userGroups.findIndex(userGroup => userGroup.id === userGroupId);
+    index !== -1 && this.userGroups.splice(index, 1, updatedEntity);
+  };
 }
 
 export default UserGroupStore;
