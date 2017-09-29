@@ -25,14 +25,35 @@ import "./LiveFeedWidget.less";
 class LiveFeedWidget extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      /**
+       * @type {object} time - The current time updated live
+       */
+      time: moment().format()
+    };
   }
+
+  componentDidMount() {
+    this.updateTime();
+  }
+
+  updateTime = () => {
+    this.setState({
+      time: moment().format()
+    });
+    setTimeout(() => {
+      this.updateTime();
+    }, 2000);
+  };
 
   render() {
     const {eventStore} = this.props;
 
     const getEventItem = (event, id) => {
       let timestampDetailed = moment(event.timestamp).format("MMMM Do YYYY, h:mm:ss a");
-      let timestampRelative = moment(event.timestamp).startOf("minute").fromNow();
+      let timestampRelative = moment(event.timestamp).startOf("second").from(this.state.time);
+
       const timestamp = (
         <Tooltip title={timestampDetailed}>
           <div className="relative-timestamp">

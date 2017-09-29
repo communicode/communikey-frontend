@@ -1,4 +1,5 @@
 import {action, observable} from "mobx";
+import moment from "moment";
 import _ from "lodash";
 
 /**
@@ -29,7 +30,7 @@ class EventStore {
     return this._push({
       type: "category-create",
       responsible: category.lastModifiedBy,
-      timestamp: category.lastModifiedDate,
+      timestamp: moment().format(),
       id: category.id,
       name: category.name
     });
@@ -46,7 +47,7 @@ class EventStore {
     return this._push({
       type: "category-update",
       responsible: category.lastModifiedBy,
-      timestamp: category.lastModifiedDate,
+      timestamp: moment().format(),
       id: category.id,
       name: category.name
     });
@@ -63,7 +64,7 @@ class EventStore {
     return this._push({
       type: "category-delete",
       responsible: category.lastModifiedBy,
-      timestamp: category.lastModifiedDate,
+      timestamp: moment().format(),
       id: category.id,
       name: category.name
     });
@@ -80,7 +81,7 @@ class EventStore {
     return this._push({
       type: "key-create",
       responsible: key.lastModifiedBy,
-      timestamp: key.lastModifiedDate,
+      timestamp: moment().format(),
       id: key.id,
       name: key.name
     });
@@ -97,7 +98,7 @@ class EventStore {
     return this._push({
       type: "key-update",
       responsible: key.lastModifiedBy,
-      timestamp: key.lastModifiedDate,
+      timestamp: moment().format(),
       id: key.id,
       name: key.name
     });
@@ -114,7 +115,7 @@ class EventStore {
     return this._push({
       type: "key-delete",
       responsible: key.lastModifiedBy,
-      timestamp: key.lastModifiedDate,
+      timestamp: moment().format(),
       id: key.id,
       name: key.name
     });
@@ -131,7 +132,7 @@ class EventStore {
     return this._push({
       type: "user-create",
       responsible: user.lastModifiedBy,
-      timestamp: user.lastModifiedDate,
+      timestamp: moment().format(),
       id: user.id,
       name: user.login
     });
@@ -148,7 +149,7 @@ class EventStore {
     return this._push({
       type: "user-update",
       responsible: user.lastModifiedBy,
-      timestamp: user.lastModifiedDate,
+      timestamp: moment().format(),
       id: user.id,
       name: user.login
     });
@@ -165,7 +166,7 @@ class EventStore {
     return this._push({
       type: "user-delete",
       responsible: user.lastModifiedBy,
-      timestamp: user.lastModifiedDate,
+      timestamp: moment().format(),
       id: user.id,
       name: user.login
     });
@@ -182,7 +183,7 @@ class EventStore {
     return this._push({
       type: "usergroup-create",
       responsible: userGroup.lastModifiedBy,
-      timestamp: userGroup.lastModifiedDate,
+      timestamp: moment().format(),
       id: userGroup.id,
       name: userGroup.name
     });
@@ -199,7 +200,7 @@ class EventStore {
     return this._push({
       type: "usergroup-update",
       responsible: userGroup.lastModifiedBy,
-      timestamp: userGroup.lastModifiedDate,
+      timestamp: moment().format(),
       id: userGroup.id,
       name: userGroup.name
     });
@@ -216,7 +217,7 @@ class EventStore {
     return this._push({
       type: "usergroup-delete",
       responsible: userGroup.lastModifiedBy,
-      timestamp: userGroup.lastModifiedDate,
+      timestamp: moment().format(),
       id: userGroup.id,
       name: userGroup.name
     });
