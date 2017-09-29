@@ -1,5 +1,50 @@
 .widget-tutorial {
-  .ant-card {
-    height: 250px
+  .info-card {
+    margin-right: 8px;
+    margin-top: 8px;
+    height: 25%;
+    border-top-color: #49A9EE;
+    border-top-width: 3px;
+
+    .ant-card-body {
+      padding-top: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    .icon {
+      z-index: 0;
+      font-size: 350px;
+      position: absolute;
+      right: 30%;
+      top: -20%;
+      opacity: 0;
+      color: grey;
+      transition: all 0.4s linear;
+    }
   }
+
+  .info-card:hover {
+    cursor: pointer;
+    border-top-width: 10px;
+    transition: all 0.2s linear;
+    .icon {
+      opacity: 0.13;
+    }
+  }
+}
+
+a {
+  all: unset;
+}
+
+a:hover {
+  all: unset;
 }
