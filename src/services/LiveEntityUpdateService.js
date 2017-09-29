@@ -3,7 +3,8 @@ import {
   keyStore,
   categoryStore,
   userStore,
-  userGroupStore
+  userGroupStore,
+  eventStore
 } from "../Communikey";
 import {
   UPDATES_CATEGORIES,
@@ -94,6 +95,7 @@ class LiveEntityUpdateService {
    */
   categoryUpdateCallback = (message) => {
     let category = JSON.parse(message.body);
+    eventStore.createCategoryUpdateEvent(category);
     categoryStore._contains(category.id)
       ? categoryStore._updateEntity(category.id, category)
       : categoryStore._push(category);
