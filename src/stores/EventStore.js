@@ -16,27 +16,24 @@ class EventStore {
    */
   constructor() {
     this.events = [];
-    let event = {
-      type: "category-update",
-      responsible: "dvonderbey",
-      timestamp: "22.09.2017",
-      id: "id123124",
-      name: "Category 1"
-    };
-    this._push(event);
-    event.id = "a";
-    this._push(event);
-    event.id = "as";
-    this._push(event);
-    event = {
-      type: "category-delete",
-      responsible: "dvonderbey",
-      timestamp: "22.09.2017",
-      id: "id1231das24",
-      name: "Category 1"
-    };
-    this._push(event);
   }
+
+  /**
+   * Creates a category entity creation event containing
+   * the specified category object.
+   *
+   * @param {object} category - The category that has been created
+   */
+  @action("EventStore_createCategoryCreationEvent")
+  createCategoryCreationEvent = (category) => {
+    return this._push({
+      type: "category-create",
+      responsible: category.lastModifiedBy,
+      timestamp: category.lastModifiedDate,
+      id: category.id,
+      name: category.name
+    });
+  };
 
   /**
    * Creates a category entity update event containing
@@ -46,32 +43,183 @@ class EventStore {
    */
   @action("EventStore_createCategoryUpdateEvent")
   createCategoryUpdateEvent = (category) => {
-    let event = {
+    return this._push({
       type: "category-update",
       responsible: category.lastModifiedBy,
       timestamp: category.lastModifiedDate,
       id: category.id,
       name: category.name
-    };
-    return this._push(event);
+    });
   };
 
   /**
    * Creates a category entity delete event containing
    * the specified category object.
    *
-   * @param {object} category - The category that has been modified
+   * @param {object} category - The category that has been deleted
    */
   @action("EventStore_createCategoryDeleteEvent")
   createCategoryDeleteEvent = (category) => {
-    let event = {
+    return this._push({
       type: "category-delete",
       responsible: category.lastModifiedBy,
       timestamp: category.lastModifiedDate,
       id: category.id,
       name: category.name
-    };
-    return this._push(event);
+    });
+  };
+
+  /**
+   * Creates a key entity creation event containing
+   * the specified key object.
+   *
+   * @param {object} key - The Key that has been created
+   */
+  @action("EventStore_createKeyCreationEvent")
+  createKeyCreationEvent = (key) => {
+    return this._push({
+      type: "key-create",
+      responsible: key.lastModifiedBy,
+      timestamp: key.lastModifiedDate,
+      id: key.id,
+      name: key.name
+    });
+  };
+
+  /**
+   * Creates a key entity update event containing
+   * the specified key object.
+   *
+   * @param {object} key - The Key that has been modified
+   */
+  @action("EventStore_createKeyUpdateEvent")
+  createKeyUpdateEvent = (key) => {
+    return this._push({
+      type: "key-update",
+      responsible: key.lastModifiedBy,
+      timestamp: key.lastModifiedDate,
+      id: key.id,
+      name: key.name
+    });
+  };
+
+  /**
+   * Creates a key entity delete event containing
+   * the specified key object.
+   *
+   * @param {object} key - The key that has been deleted
+   */
+  @action("EventStore_createKeyDeleteEvent")
+  createKeyDeleteEvent = (key) => {
+    return this._push({
+      type: "key-delete",
+      responsible: key.lastModifiedBy,
+      timestamp: key.lastModifiedDate,
+      id: key.id,
+      name: key.name
+    });
+  };
+
+  /**
+   * Creates a user entity creation event containing
+   * the specified user object.
+   *
+   * @param {object} user - The Key that has been created
+   */
+  @action("EventStore_createUserCreationEvent")
+  createUserCreationEvent = (user) => {
+    return this._push({
+      type: "user-create",
+      responsible: user.lastModifiedBy,
+      timestamp: user.lastModifiedDate,
+      id: user.id,
+      name: user.login
+    });
+  };
+
+  /**
+   * Creates a user entity update event containing
+   * the specified user object.
+   *
+   * @param {object} user - The Key that has been modified
+   */
+  @action("EventStore_createUserUpdateEvent")
+  createUserUpdateEvent = (user) => {
+    return this._push({
+      type: "user-update",
+      responsible: user.lastModifiedBy,
+      timestamp: user.lastModifiedDate,
+      id: user.id,
+      name: user.login
+    });
+  };
+
+  /**
+   * Creates a user entity delete event containing
+   * the specified user object.
+   *
+   * @param {object} user - The user that has been deleted
+   */
+  @action("EventStore_createUserDeleteEvent")
+  createUserDeleteEvent = (user) => {
+    return this._push({
+      type: "user-delete",
+      responsible: user.lastModifiedBy,
+      timestamp: user.lastModifiedDate,
+      id: user.id,
+      name: user.login
+    });
+  };
+
+  /**
+   * Creates a user entity creation event containing
+   * the specified user object.
+   *
+   * @param {object} userGroup - The user group that has been created
+   */
+  @action("EventStore_createUserGroupCreationEvent")
+  createUserGroupCreationEvent = (userGroup) => {
+    return this._push({
+      type: "usergroup-create",
+      responsible: userGroup.lastModifiedBy,
+      timestamp: userGroup.lastModifiedDate,
+      id: userGroup.id,
+      name: userGroup.name
+    });
+  };
+
+  /**
+   * Creates a user entity update event containing
+   * the specified user object.
+   *
+   * @param {object} userGroup - The user group that has been modified
+   */
+  @action("EventStore_createUserGroupUpdateEvent")
+  createUserGroupUpdateEvent = (userGroup) => {
+    return this._push({
+      type: "usergroup-update",
+      responsible: userGroup.lastModifiedBy,
+      timestamp: userGroup.lastModifiedDate,
+      id: userGroup.id,
+      name: userGroup.name
+    });
+  };
+
+  /**
+   * Creates a user group entity delete event containing
+   * the specified user group object.
+   *
+   * @param {object} userGroup - The user group that has been deleted
+   */
+  @action("EventStore_createUserGroupDeleteEvent")
+  createUserGroupDeleteEvent = (userGroup) => {
+    return this._push({
+      type: "usergroup-delete",
+      responsible: userGroup.lastModifiedBy,
+      timestamp: userGroup.lastModifiedDate,
+      id: userGroup.id,
+      name: userGroup.name
+    });
   };
 
   /**
