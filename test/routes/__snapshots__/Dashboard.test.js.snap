@@ -1,7 +1,669 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Dashboard> should render correctly 1`] = `
-<Dashboard>
-  <div />
-</Dashboard>
+<StaticRouter
+  basename=""
+  context={Object {}}
+  location="/keys"
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/keys",
+          "search": "",
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      authStore={
+        AuthStore {
+          "authorities": Array [
+            Object {
+              "createdBy": "root",
+              "createdDate": "2017-07-04T09:26:52.497+02:00",
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+              "name": "ROLE_USER",
+            },
+            Object {
+              "createdBy": "root",
+              "createdDate": "2017-07-04T09:26:52.537+02:00",
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+              "name": "ROLE_ADMIN",
+            },
+          ],
+          "firstName": "",
+          "isAuthorized": false,
+          "lastName": "",
+          "login": "",
+          "passwordResetToken": "",
+          "privileged": false,
+          "publicKey": "",
+          "publicKeyResetToken": "",
+        }
+      }
+      authorityStore={
+        AuthorityStore {
+          "_findOneByName": [Function],
+          "_updateEntity": [Function],
+          "authorities": Array [
+            Object {
+              "createdBy": "root",
+              "createdDate": "2017-07-04T09:26:52.497+02:00",
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-07-04T09:26:52.497+02:00",
+              "name": "ROLE_USER",
+            },
+            Object {
+              "createdBy": "root",
+              "createdDate": "2017-07-04T09:26:52.537+02:00",
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
+              "name": "ROLE_ADMIN",
+            },
+          ],
+        }
+      }
+      categoryStore={
+        CategoryStore {
+          "_contains": [Function],
+          "_findById": [Function],
+          "categories": Array [
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:41.497+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 3,
+              "keys": Array [
+                2,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:01.09+02:00",
+              "name": "ssh",
+              "parent": 2,
+              "responsible": 1,
+              "treeLevel": 2,
+            },
+            Object {
+              "children": Array [
+                5,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:46.691+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 4,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:46.696+02:00",
+              "name": "intern",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                2,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:33.274+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 1,
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:33.282+02:00",
+              "name": "vorwerk",
+              "parent": null,
+              "responsible": 1,
+              "treeLevel": 0,
+            },
+            Object {
+              "children": Array [
+                3,
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:37.557+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 2,
+              "keys": Array [
+                1,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:04.707+02:00",
+              "name": "servers",
+              "parent": 1,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+            Object {
+              "children": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:13:53.821+02:00",
+              "creator": 1,
+              "groups": Array [],
+              "id": 5,
+              "keys": Array [
+                3,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:13:55.992+02:00",
+              "name": "projektron bcs",
+              "parent": 4,
+              "responsible": 1,
+              "treeLevel": 1,
+            },
+          ],
+        }
+      }
+      eventStore={
+        EventStore {
+          "_contains": [Function],
+          "_findById": [Function],
+          "events": Array [],
+        }
+      }
+      invocationHelper={
+        InvocationHelper {
+          "showProfileModal": false,
+          "showWizard": false,
+        }
+      }
+      keyStore={
+        KeyStore {
+          "_contains": [Function],
+          "_filterAllByCategory": [Function],
+          "_findOneById": [Function],
+          "encryptForSubscribers": [Function],
+          "getPassword": [Function],
+          "keys": Array [
+            Object {
+              "category": 3,
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:47:35.095+02:00",
+              "creator": 1,
+              "id": 2,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:27.067+02:00",
+              "login": "erdbeer",
+              "name": "lecker",
+            },
+            Object {
+              "category": 2,
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:47:34.938+02:00",
+              "creator": 1,
+              "id": 1,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:33.771+02:00",
+              "login": "erdbeer",
+              "name": "lecker",
+            },
+            Object {
+              "category": 5,
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:47:35.294+02:00",
+              "creator": 1,
+              "id": 3,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:14:18.388+02:00",
+              "login": "erdbeer",
+              "name": "lecker",
+            },
+          ],
+        }
+      }
+      userGroupStore={
+        UserGroupStore {
+          "_contains": [Function],
+          "_filterAllByCategory": [Function],
+          "_findOneById": [Function],
+          "_findOneByName": [Function],
+          "userGroups": Array [
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:23.734+02:00",
+              "id": 2,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+              "name": "vorwerk",
+              "users": Array [
+                1,
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:19.101+02:00",
+              "id": 1,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+              "name": "ops",
+              "users": Array [
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:37.824+02:00",
+              "id": 3,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+              "name": "administration",
+              "users": Array [
+                1,
+                2,
+              ],
+            },
+          ],
+        }
+      }
+      userStore={
+        UserStore {
+          "_contains": [Function],
+          "_filterAllByGroup": [Function],
+          "_findOneByEmail": [Function],
+          "_findOneById": [Function],
+          "_findOneByLogin": [Function],
+          "users": Array [
+            Object {
+              "activated": false,
+              "activationKey": "99315975298178909730",
+              "authorities": Array [
+                "ROLE_USER",
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:47.738+02:00",
+              "email": "testuser@communicode.de",
+              "firstName": "Peter",
+              "groups": Array [
+                3,
+                2,
+                1,
+              ],
+              "id": 2,
+              "keyCategories": Array [],
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+              "lastName": "Maffay",
+              "login": "testuser",
+              "resetDate": null,
+              "resetKey": null,
+              "responsibleKeyCategories": Array [],
+            },
+            Object {
+              "activated": true,
+              "activationKey": "28235331690590579877",
+              "authorities": Array [
+                "ROLE_USER",
+                "ROLE_ADMIN",
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:45:12.934+02:00",
+              "email": "cckey_root@communicode.de",
+              "firstName": "communi",
+              "groups": Array [
+                3,
+                2,
+              ],
+              "id": 1,
+              "keyCategories": Array [
+                3,
+                1,
+                5,
+                4,
+                2,
+              ],
+              "keys": Array [
+                3,
+                2,
+                1,
+              ],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
+              "lastName": "key",
+              "login": "root",
+              "resetDate": null,
+              "resetKey": null,
+              "responsibleKeyCategories": Array [
+                3,
+                1,
+                5,
+                4,
+                2,
+              ],
+            },
+            Object {
+              "activated": true,
+              "activationKey": null,
+              "authorities": Array [
+                "ROLE_USER",
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:12:46.33+02:00",
+              "email": "reallynewtestuser@communicode.de",
+              "firstName": "really",
+              "groups": Array [],
+              "id": 4,
+              "keyCategories": Array [],
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
+              "lastName": "new",
+              "login": "reallynewtestuser",
+              "resetDate": null,
+              "resetKey": null,
+              "responsibleKeyCategories": Array [],
+            },
+            Object {
+              "activated": true,
+              "activationKey": null,
+              "authorities": Array [
+                "ROLE_USER",
+              ],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T11:12:28.858+02:00",
+              "email": "newtestuser@communicode.de",
+              "firstName": "new",
+              "groups": Array [
+                2,
+                1,
+              ],
+              "id": 3,
+              "keyCategories": Array [],
+              "keys": Array [],
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
+              "lastName": "test",
+              "login": "newtestuser",
+              "resetDate": null,
+              "resetKey": null,
+              "responsibleKeyCategories": Array [],
+            },
+          ],
+        }
+      }
+    >
+      <inject-Dashboard-with-eventStore-invocationHelper>
+        <Dashboard
+          eventStore={
+            EventStore {
+              "_contains": [Function],
+              "_findById": [Function],
+              "events": Array [],
+            }
+          }
+          invocationHelper={
+            InvocationHelper {
+              "showProfileModal": false,
+              "showWizard": false,
+            }
+          }
+        >
+          <div
+            className="cckey-base-layout-content-container"
+            id="cckey-routes-dashboard"
+          >
+            <Row
+              gutter={0}
+            >
+              <div
+                className="ant-row"
+              >
+                <Widget
+                  type="tutorial"
+                >
+                  <div
+                    className="widget"
+                  >
+                    <TutorialWidget>
+                      <div
+                        className="widget-tutorial"
+                      >
+                        <Col
+                          span={8}
+                        >
+                          <div
+                            className="ant-col-8"
+                          >
+                            <Link
+                              replace={false}
+                              to="/wizard"
+                            >
+                              <a
+                                href="/wizard"
+                                onClick={[Function]}
+                              >
+                                <Component
+                                  className="info-card"
+                                >
+                                  <div
+                                    className="ant-card info-card ant-card-bordered"
+                                  >
+                                    <div
+                                      className="ant-card-body"
+                                    >
+                                      <Icon
+                                        className="icon"
+                                        type="lock"
+                                      >
+                                        <i
+                                          className="anticon anticon-lock icon"
+                                        />
+                                      </Icon>
+                                      <h1>
+                                        Your personal key pair
+                                      </h1>
+                                      <p>
+                                        Your private key secures all your keys and actions here and is needed to properly use this tool.
+                                        <br />
+                                        Please make sure to enter the keypair wizard by clicking on your account name in the upper right to setup your personal key pair.
+                                      </p>
+                                    </div>
+                                  </div>
+                                </Component>
+                              </a>
+                            </Link>
+                          </div>
+                        </Col>
+                        <Col
+                          span={8}
+                        >
+                          <div
+                            className="ant-col-8"
+                          >
+                            <Link
+                              replace={false}
+                              to="/keys"
+                            >
+                              <a
+                                href="/keys"
+                                onClick={[Function]}
+                              >
+                                <Component
+                                  className="info-card"
+                                >
+                                  <div
+                                    className="ant-card info-card ant-card-bordered"
+                                  >
+                                    <div
+                                      className="ant-card-body"
+                                    >
+                                      <Icon
+                                        className="icon"
+                                        type="key"
+                                      >
+                                        <i
+                                          className="anticon anticon-key icon"
+                                        />
+                                      </Icon>
+                                      <h1>
+                                        Get started with keys
+                                      </h1>
+                                      <p>
+                                        Have a look at your personal keys page. It will show all the keys you're allowed to see.
+                                        <br />
+                                        If you want to access the plain text passwords, please make sure you installed a private key. Otherwise it won't work.
+                                        <br />
+                                        Please note that new keys must first be encrypted for you by other users and this could take some time until this person is online. If you need fast access please contact:
+                                        <br />
+                                        <br />
+                                        <b>
+                                          key@communicode.de
+                                        </b>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </Component>
+                              </a>
+                            </Link>
+                          </div>
+                        </Col>
+                        <Col
+                          span={8}
+                        >
+                          <div
+                            className="ant-col-8"
+                          >
+                            <Link
+                              replace={false}
+                              to="/keys"
+                            >
+                              <a
+                                href="/keys"
+                                onClick={[Function]}
+                              >
+                                <Component
+                                  className="info-card"
+                                >
+                                  <div
+                                    className="ant-card info-card ant-card-bordered"
+                                  >
+                                    <div
+                                      className="ant-card-body"
+                                    >
+                                      <Icon
+                                        className="icon"
+                                        type="folder-open"
+                                      >
+                                        <i
+                                          className="anticon anticon-folder-open icon"
+                                        />
+                                      </Icon>
+                                      <h1>
+                                        Category structure
+                                      </h1>
+                                      <p>
+                                        All your keys are sorted by categories. These categories are thematically bound so you will only see the keys you'll need. If you miss a key contact:
+                                        <br />
+                                        <br />
+                                        <b>
+                                          key@communicode.de
+                                        </b>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </Component>
+                              </a>
+                            </Link>
+                          </div>
+                        </Col>
+                      </div>
+                    </TutorialWidget>
+                  </div>
+                </Widget>
+              </div>
+            </Row>
+            <Row
+              gutter={0}
+            >
+              <div
+                className="ant-row"
+              >
+                <Widget
+                  type="livefeed"
+                >
+                  <div
+                    className="widget"
+                  >
+                    <inject-LiveFeedWidget-with-eventStore>
+                      <LiveFeedWidget
+                        eventStore={
+                          EventStore {
+                            "_contains": [Function],
+                            "_findById": [Function],
+                            "events": Array [],
+                          }
+                        }
+                      >
+                        <Col
+                          className="widget-livefeed"
+                          span={8}
+                        >
+                          <div
+                            className="ant-col-8 widget-livefeed"
+                          >
+                            <Component>
+                              <div
+                                className="ant-card ant-card-bordered"
+                              >
+                                <div
+                                  className="ant-card-body"
+                                >
+                                  <div
+                                    className="header"
+                                  >
+                                    Live updates:
+                                  </div>
+                                  <div
+                                    className="emptymessage"
+                                  >
+                                    <Icon
+                                      type="ellipsis"
+                                    >
+                                      <i
+                                        className="anticon anticon-ellipsis"
+                                      />
+                                    </Icon>
+                                    There doesn't seem to be anything in here.
+                                  </div>
+                                </div>
+                              </div>
+                            </Component>
+                          </div>
+                        </Col>
+                      </LiveFeedWidget>
+                    </inject-LiveFeedWidget-with-eventStore>
+                  </div>
+                </Widget>
+              </div>
+            </Row>
+          </div>
+        </Dashboard>
+      </inject-Dashboard-with-eventStore-invocationHelper>
+    </Provider>
+  </Router>
+</StaticRouter>
 `;
