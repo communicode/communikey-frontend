@@ -23,9 +23,10 @@ import "./LiveFeedWidget.less";
  */
 @inject(EVENT_STORE) @observer
 class LiveFeedWidget extends React.Component {
+  abortTimer;
   constructor(props) {
     super(props);
-
+    this.abortTimer = false;
     this.state = {
       /**
        * @type {object} time - The current time updated live
@@ -38,13 +39,21 @@ class LiveFeedWidget extends React.Component {
     this.updateTime();
   }
 
+  componentWillUnmount() {
+    this.abortTimer = true;
+  }
+
   updateTime = () => {
-    this.setState({
-      time: moment().format()
-    });
-    setTimeout(() => {
-      this.updateTime();
-    }, 2000);
+    if(this.abortTimer) {
+      this.abortTimer = false;
+    } else {
+      this.setState({
+        time: moment().format()
+      });
+      setTimeout(() => {
+        this.updateTime();
+      }, 2000);
+    }
   };
 
   render() {
