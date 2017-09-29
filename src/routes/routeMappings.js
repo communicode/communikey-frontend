@@ -7,7 +7,8 @@ import {
   VARIABLE_ID,
   SIGNIN,
   SIGNOUT,
-  ROOT
+  ROOT,
+  WIZARD
 } from "./routeConstants";
 
 /**
@@ -79,6 +80,16 @@ export const ROUTE_ADMINISTRATION_USERS = ROUTE_ROOT + ADMINISTRATION_USERS;
  * @since 0.8.0
  */
 export const ROUTE_KEYS = ROUTE_ROOT + KEYS;
+
+/**
+ * The route mapping for the {@link Keys} component.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const ROUTE_WIZARD = ROUTE_ROOT + WIZARD;
 
 /**
  * The route mapping categories links

@@ -4,7 +4,7 @@ import {Col, Card, Icon} from "antd";
 import "antd/lib/col/style/css";
 import "antd/lib/card/style/css";
 import "./TutorialWidget.less";
-import {ROUTE_KEYS} from "../../../routes/routeMappings";
+import {ROUTE_KEYS, ROUTE_WIZARD} from "../../../routes/routeMappings";
 import {Link} from "react-router-dom";
 
 /**
@@ -25,16 +25,17 @@ class TutorialWidget extends React.Component {
     return (
       <div className="widget-tutorial">
         <Col span={8}>
-          <Link to={ROUTE_KEYS}>
+          <Link to={ROUTE_WIZARD}>
             <Card className="info-card">
               <Icon type="lock" className="icon"/>
               <h1>
-                You and your private key
+                Your personal key pair
               </h1>
               <p>
-                Your private key secures all your keys and actions on this site. Its crucial for
-                everyday operation and should be taken care of very carefully!<br/>
-                Make sure to enter the keypair wizard and setup your private & public key.
+                Your private key secures all your keys and actions here and is needed to
+                properly use this tool.<br/>
+                Please make sure to enter the keypair wizard by clicking on your account name in the
+                upper right to setup your personal key pair.
               </p>
             </Card>
           </Link>
@@ -47,11 +48,13 @@ class TutorialWidget extends React.Component {
                 Get started with keys
               </h1>
               <p>
-                Get started with adding your first key!
-                Click here to get an introduction into key creation and
-                basic management.<br/>
-                Make sure that you´ve set your private key first or
-                you wont be able to create new keys.
+                Have a look at your personal keys page. It will show all the keys you&#39;re
+                allowed to see.<br/>If you want to access the plain text passwords, please make
+                sure you installed a private key. Otherwise it won&#39;t work.<br/>
+                Please note that new keys must first be encrypted for you by other users and this
+                could take some time until this person is online. If you need fast access please
+                contact:<br/><br/>
+                <b>key@communicode.de</b>
               </p>
             </Card>
           </Link>
@@ -61,14 +64,13 @@ class TutorialWidget extends React.Component {
             <Card className="info-card">
               <Icon type="folder-open" className="icon"/>
               <h1>
-                Everything about categories
+                Category structure
               </h1>
               <p>
-                Learn everything about advanced category and key management.
-                Adding your created keys into categories ensures an overseeable key pool and
-                only certain users, selected by you, have access to said keys. <br/><br/>
-                This tutorial contains basic creation of categories and permission
-                management.
+                All your keys are sorted by categories. These categories are thematically bound
+                so you will only see the keys you&#39;ll need.
+                If you miss a key contact:<br/><br/>
+                <b>key@communicode.de</b>
               </p>
             </Card>
           </Link>
