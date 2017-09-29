@@ -23,7 +23,7 @@ const AuthenticatedPrivilegedRoute = ({component: Component, authorized, privile
     render={props => {
       if (authorized) {
         if (privileged) {
-          return <Component authorized={authorized} privileged={privileged} {...props}/>;
+          return <Component authorized={authorized} privileged={privileged} {...rest}/>;
         } else {
           return redirectUnauthorizedToLogin(props.location.pathname);
         }

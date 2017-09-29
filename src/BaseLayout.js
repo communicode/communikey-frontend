@@ -14,7 +14,7 @@ import {
   KEY_STORE,
   USER_STORE,
   USER_GROUP_STORE,
-  ENCRYPTION_JOB_STORE
+  ENCRYPTION_JOB_STORE, INVOCATION_HELPER
 } from "./stores/storeConstants";
 import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
@@ -41,7 +41,7 @@ import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "./BaseLayout.less";
 
-@inject(AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE, ENCRYPTION_JOB_STORE) @observer
+@inject(AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE, ENCRYPTION_JOB_STORE, INVOCATION_HELPER) @observer
 class BaseLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -148,7 +148,7 @@ class BaseLayout extends React.Component {
   isActiveSidebarNavLink = (menuItemKeyName) => this.state.sidebarCurrentSelected === menuItemKeyName;
 
   /**
-   * Toggles the user modal.
+   * Toggles the profile modal.
    */
   toggleProfileModal = () => this.setState(prevState => ({profileModalVisible: !prevState.profileModalVisible}));
 
@@ -158,7 +158,8 @@ class BaseLayout extends React.Component {
    * @callback handleProfileModalClose
    */
   handleProfileModalClose = () => {
-    this.toggleProfileModal();
+    // this.toggleProfileModal();
+    this.props.invocationHelper.toggleProfileModalState();
   };
 
   /**
@@ -325,7 +326,7 @@ class BaseLayout extends React.Component {
               passphraseNeededReject={this.props.passphraseNeededReject}
             />
             <ProfileModal
-              visible={this.state.profileModalVisible}
+              visible={this.props.invocationHelper.showProfileModal}
               onClose={this.handleProfileModalClose}
               maskClosable={this.state.maskClosable}
               onUserPasswordReset={this.handleProfileModalUserPasswordReset}
@@ -389,6 +390,10 @@ BaseLayout.propTypes = {
   userGroupStore: MobXPropTypes.observableArray,
 
   /**
+   * @type {ObservableArray} invocationHelper - The injected invocation helper instance
+   */
+  invocationHelper: MobXPropTypes.observableArray,
+  /**
    * @type {ObservableArray} encryptionJobStore - The injected encryption job store
    */
   encryptionJobStore: MobXPropTypes.objectOrObservableObject,
@@ -411,7 +416,14 @@ BaseLayout.propTypes = {
   /**
    * @type {object} onModalClose - The function that closes the modal
    */
-  onPassphraseModalClose: PropTypes.func
+  onPassphraseModalClose: PropTypes.func,
+
+  /**
+   * The flag if the user comes from the wizard route
+   *
+   * @type {Boolean}
+   */
+  openWizard: PropTypes.bool
 };
 
 export default BaseLayout;

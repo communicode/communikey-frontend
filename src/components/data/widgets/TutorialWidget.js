@@ -4,7 +4,7 @@ import {Col, Card, Icon} from "antd";
 import "antd/lib/col/style/css";
 import "antd/lib/card/style/css";
 import "./TutorialWidget.less";
-import {ROUTE_KEYS} from "../../../routes/routeMappings";
+import {ROUTE_KEYS, ROUTE_WIZARD} from "../../../routes/routeMappings";
 import {Link} from "react-router-dom";
 
 /**
@@ -25,7 +25,7 @@ class TutorialWidget extends React.Component {
     return (
       <div className="widget-tutorial">
         <Col span={8}>
-          <Link to={ROUTE_KEYS}>
+          <Link to={ROUTE_WIZARD}>
             <Card className="info-card">
               <Icon type="lock" className="icon"/>
               <h1>

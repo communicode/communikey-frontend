@@ -82,6 +82,16 @@ export const ADMINISTRATION_USERS = ADMINISTRATION + pathSeparator + "users";
 export const KEYS = "keys";
 
 /**
+ * The route name of the {@link KeypairWizard} component.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.15.0
+ */
+export const WIZARD = "wizard";
+
+/**
  * A route constant for an id variable inside a route.
  *
  * @constant
