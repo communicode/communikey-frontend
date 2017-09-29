@@ -256,7 +256,7 @@ class BaseLayout extends React.Component {
     const OPERATION_TYPES = {
       SETTINGS_PAGE: {
         keyName: "SETTINGS_PAGE",
-        handler: this.toggleProfileModal
+        handler: this.props.invocationHelper.toggleProfileModalState
       }
     };
 
