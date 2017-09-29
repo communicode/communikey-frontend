@@ -1,6 +1,6 @@
 import React from "react";
 import {observer, inject, PropTypes as MobXPropTypes} from "mobx-react";
-import {Row, Col, Card} from "antd";
+import {Row} from "antd";
 import {EVENT_STORE} from "../stores/storeConstants";
 import Widget from "../components/data/Widget";
 import "antd/lib/row/style/css";

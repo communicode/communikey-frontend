@@ -1,13 +1,16 @@
+import _ from "lodash";
 import React from "react";
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Col, Card, Timeline, Icon} from "antd";
+import {Col, Card, Timeline, Icon, Tooltip} from "antd";
 import {EVENT_STORE} from "../../../stores/storeConstants";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
+import {LINK_CATEGORY_BREADCRUMB, LINK_KEY} from "../../../config/constants";
+import moment from "moment";
 import "antd/lib/col/style/css";
 import "antd/lib/card/style/css";
 import "antd/lib/timeline/style/css";
 import "antd/lib/icon/style/css";
+import "antd/lib/tooltip/style/index.less";
 import "./LiveFeedWidget.less";
 
 /**
@@ -25,36 +28,163 @@ class LiveFeedWidget extends React.Component {
   }
 
   render() {
-    const getEventIcon = (type) => {
-      switch (type) {
+    const {eventStore} = this.props;
+
+    const getEventItem = (event, id) => {
+      let timestampDetailed = moment(event.timestamp).format("MMMM Do YYYY, h:mm:ss a");
+      let timestampRelative = moment(event.timestamp).startOf("minute").fromNow();
+      const timestamp = (
+        <Tooltip title={timestampDetailed}>
+          <div className="relative-timestamp">
+            {timestampRelative}
+          </div>
+        </Tooltip>
+      );
+
+      switch (event.type) {
+      case "key-create": {
+        const shareLink = LINK_KEY + event.id;
+        return (
+          <Timeline.Item dot={<Icon type="key" style={{fontSize: "20px", color: "green"}}/>} key={id}>
+            <Link to={shareLink}>
+              Key &#39;{event.name}&#39; has been added by &#39;{event.responsible}&#39;.
+            </Link>
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "key-update": {
+        const shareLink = LINK_KEY + event.id;
+        return (
+          <Timeline.Item dot={<Icon type="key" style={{fontSize: "20px"}}/>} key={id}>
+              <Link to={shareLink}>
+                Key &#39;{event.name}&#39; has been edited by &#39;{event.responsible}&#39;.
+              </Link>
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "key-delete": {
+        return (
+          <Timeline.Item dot={<Icon type="key" style={{fontSize: "20px", color: "red"}}/>} key={id}>
+            Key &#39;{event.name}&#39; has been deleted by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "category-create": {
+        const shareLink = LINK_CATEGORY_BREADCRUMB + event.id;
+        return (
+          <Timeline.Item dot={<Icon type="folder" style={{fontSize: "20px"}}/>} key={id}>
+            <Link to={shareLink}>
+              Category &#39;{event.name}&#39; has been created by &#39;{event.responsible}&#39;.
+            </Link>
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
       case "category-update": {
-        return <Icon type="folder" style={{fontSize: "20px"}}/>;
+        const shareLink = LINK_CATEGORY_BREADCRUMB + event.id;
+        return (
+          <Timeline.Item dot={<Icon type="folder" style={{fontSize: "20px"}}/>} key={id}>
+            <Link to={shareLink}>
+              Category &#39;{event.name}&#39; has been edited by &#39;{event.responsible}&#39;.
+            </Link>
+            {timestamp}
+          </Timeline.Item>
+        );
       }
       case "category-delete": {
-        return <Icon type="folder" style={{fontSize: "20px", color: "red"}}/>;
+        return (
+          <Timeline.Item dot={<Icon type="folder" style={{fontSize: "20px", color: "red"}}/>} key={id}>
+            Category &#39;{event.name}&#39; has been deleted by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "user-create": {
+        return (
+          <Timeline.Item dot={<Icon type="user" style={{fontSize: "20px"}}/>} key={id}>
+            User &#39;{event.name}&#39; has been created by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "user-update": {
+        return (
+          <Timeline.Item dot={<Icon type="user" style={{fontSize: "20px"}}/>} key={id}>
+            User &#39;{event.name}&#39; has been edited by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "user-delete": {
+        return (
+          <Timeline.Item dot={<Icon type="user" style={{fontSize: "20px", color: "red"}}/>} key={id}>
+            User &#39;{event.name}&#39; has been deleted by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "usergroup-create": {
+        return (
+          <Timeline.Item dot={<Icon type="usergroup-add" style={{fontSize: "20px"}}/>} key={id}>
+            User group &#39;{event.name}&#39; has been created by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "usergroup-update": {
+        return (
+          <Timeline.Item dot={<Icon type="usergroup-add" style={{fontSize: "20px"}}/>} key={id}>
+            User group &#39;{event.name}&#39; has been edited by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "usergroup-delete": {
+        return (
+          <Timeline.Item dot={<Icon type="usergroup-delete" style={{fontSize: "20px", color: "red"}}/>} key={id}>
+            User group &#39;{event.name}&#39; has been deleted by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
       }
       }
     };
 
-    return (
-      <Col span={8} className="widget-livefeed">
-        <Card>
-          <Timeline>
-            {
-              this.props.eventStore.events.reverse().map((event, id) => {
-                return (
-                  <Timeline.Item dot={getEventIcon(event.type)} key={id}>
-                    <Link to={"asd"}>
-                      {event.name} was edited by {event.responsible}.
-                    </Link>
-                  </Timeline.Item>
-                );
-              })
-            }
-          </Timeline>
-        </Card>
-      </Col>
-    );
+    if(_.isEmpty(eventStore.events)) {
+      return (
+        <Col span={8} className="widget-livefeed">
+          <Card>
+            <div className="header">
+              Live updates:
+            </div>
+            <div className="emptymessage">
+              <Icon type="ellipsis" />
+              There doesn&#39;t seem to be anything in here.
+            </div>
+          </Card>
+        </Col>
+      );
+    } else {
+      return (
+        <Col span={8} className="widget-livefeed">
+          <Card>
+            <div className="header">
+              Live updates:
+            </div>
+            <Timeline>
+              {
+                eventStore.events.reverse().map((event, id) => {
+                  return getEventItem(event, id);
+                })
+              }
+            </Timeline>
+          </Card>
+        </Col>
+      );
+    }
   }
 }
 
