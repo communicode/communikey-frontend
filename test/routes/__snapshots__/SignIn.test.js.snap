@@ -147,6 +147,19 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
       ],
     }
   }
+  eventStore={
+    EventStore {
+      "_contains": [Function],
+      "_findById": [Function],
+      "events": Array [],
+    }
+  }
+  invocationHelper={
+    InvocationHelper {
+      "showProfileModal": false,
+      "showWizard": false,
+    }
+  }
   keyStore={
     KeyStore {
       "_contains": [Function],
