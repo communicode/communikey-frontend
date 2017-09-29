@@ -21,7 +21,7 @@ const AuthenticatedRoute = ({component: Component, authorized, ...rest}) => (
     {...rest}
     render={props => {
       if (authorized) {
-        return <Component authorized={authorized} {...props} />;
+        return <Component authorized={authorized} {...rest} />;
       } else {
         return redirectUnloggedToLogin(props.location.pathname);
       }

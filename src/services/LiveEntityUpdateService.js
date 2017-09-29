@@ -3,7 +3,8 @@ import {
   keyStore,
   categoryStore,
   userStore,
-  userGroupStore
+  userGroupStore,
+  eventStore
 } from "../Communikey";
 import {
   UPDATES_CATEGORIES,
@@ -72,9 +73,13 @@ class LiveEntityUpdateService {
    */
   keyUpdateCallback = (message) => {
     let key = JSON.parse(message.body);
-    keyStore._contains(key.id)
-      ? keyStore._updateEntity(key.id, key)
-      : keyStore._push(key);
+    if(keyStore._contains(key.id)) {
+      eventStore.createKeyUpdateEvent(key);
+      keyStore._updateEntity(key.id, key);
+    } else {
+      eventStore.createKeyCreationEvent(key);
+      keyStore._push(key);
+    }
   };
 
   /**
@@ -84,6 +89,7 @@ class LiveEntityUpdateService {
    */
   keyDeleteCallback = (message) => {
     let key = JSON.parse(message.body);
+    eventStore.createKeyDeleteEvent(key);
     keyStore._contains(key.id) && keyStore._deleteOne(key.id);
   };
 
@@ -94,9 +100,13 @@ class LiveEntityUpdateService {
    */
   categoryUpdateCallback = (message) => {
     let category = JSON.parse(message.body);
-    categoryStore._contains(category.id)
-      ? categoryStore._updateEntity(category.id, category)
-      : categoryStore._push(category);
+    if(categoryStore._contains(category.id)) {
+      eventStore.createCategoryUpdateEvent(category);
+      categoryStore._updateEntity(category.id, category);
+    } else {
+      eventStore.createCategoryCreationEvent(category);
+      categoryStore._push(category);
+    }
   };
 
   /**
@@ -106,6 +116,7 @@ class LiveEntityUpdateService {
    */
   categoryDeleteCallback = (message) => {
     let category = JSON.parse(message.body);
+    eventStore.createCategoryDeleteEvent(category);
     categoryStore._contains(category.id) && categoryStore._deleteOneById(category.id);
   };
 
@@ -116,9 +127,13 @@ class LiveEntityUpdateService {
    */
   userUpdateCallback = (message) => {
     let user = JSON.parse(message.body);
-    userStore._contains(user.id)
-      ? userStore._updateEntity(user.id, user)
-      : userStore._push(user);
+    if(userStore._contains(user.id)) {
+      eventStore.createUserUpdateEvent(user);
+      userStore._updateEntity(user.id, user);
+    } else {
+      eventStore.createUserCreationEvent(user);
+      userStore._push(user);
+    }
   };
 
   /**
@@ -128,6 +143,7 @@ class LiveEntityUpdateService {
    */
   userDeleteCallback = (message) => {
     let user = JSON.parse(message.body);
+    eventStore.createUserDeleteEvent(user);
     userStore._contains(user.id) && userStore._deleteOneByLogin(user.id);
   };
 
@@ -138,9 +154,13 @@ class LiveEntityUpdateService {
    */
   groupUpdateCallback = (message) => {
     let userGroup = JSON.parse(message.body);
-    userGroupStore._contains(userGroup.id)
-      ? userGroupStore._updateEntity(userGroup.id, userGroup)
-      : userGroupStore._push(userGroup);
+    if(userGroupStore._contains(userGroup.id)) {
+      eventStore.createUserGroupUpdateEvent(userGroup);
+      userGroupStore._updateEntity(userGroup.id, userGroup);
+    } else {
+      eventStore.createUserGroupCreationEvent(userGroup);
+      userGroupStore._push(userGroup);
+    }
   };
 
   /**
@@ -150,6 +170,7 @@ class LiveEntityUpdateService {
    */
   groupDeleteCallback = (message) => {
     let userGroup = JSON.parse(message.body);
+    eventStore.createUserGroupDeleteEvent(userGroup);
     userGroupStore._contains(userGroup.id) && userGroupStore._deleteOne(userGroup.id);
   };
 }

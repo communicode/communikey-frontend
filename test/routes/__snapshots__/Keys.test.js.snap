@@ -346,6 +346,13 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                 }
                             ]
                         },
+                        \\"eventStore\\": {
+                            \\"events\\": []
+                        },
+                        \\"invocationHelper\\": {
+                            \\"showProfileModal\\": false,
+                            \\"showWizard\\": false
+                        },
                         \\"children\\": {
                             \\"key\\": null,
                             \\"ref\\": null,

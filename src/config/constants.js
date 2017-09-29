@@ -96,6 +96,14 @@ export const ERROR_NOT_AUTHORIZED = "You are not authorized to view this page. P
 export const LINK_KEY_SHARE = FRONTEND_URL + ROUTE_KEYS + pathSeparator;
 
 /**
+ * The link for a key.
+ *
+ * @type {string}
+ * @since 0.15.0
+ */
+export const LINK_KEY = ROUTE_KEYS + pathSeparator;
+
+/**
  * The message title for when a deep linked category wasn't found.
  *
  * @type {string}

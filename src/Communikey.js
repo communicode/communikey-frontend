@@ -30,6 +30,8 @@ import KeyStore from "./stores/KeyStore";
 import UserGroupStore from "./stores/UserGroupStore";
 import UserStore from "./stores/UserStore";
 import EncryptionJobStore from "./stores/EncryptionJobStore";
+import EventStore from "./stores/EventStore";
+import InvocationHelper from "./stores/InvocationHelper";
 import appConfig from "./config/app";
 import motionConfig from "./config/motion";
 import {
@@ -41,7 +43,8 @@ import {
   ROUTE_LINKED_CATEGORY,
   ROUTE_SIGNIN,
   ROUTE_SIGNOUT,
-  ROUTE_ROOT
+  ROUTE_ROOT,
+  ROUTE_WIZARD
 } from "./routes/routeMappings";
 import enUS from "antd/lib/locale-provider/en_US";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "./config/constants";
@@ -104,12 +107,31 @@ export const userStore = new UserStore();
  */
 export const encryptionJobStore = new EncryptionJobStore();
 
+
+/**
+ * The event store instance.
+ *
+ * @type {EventStore}
+ * @since 0.15.0
+ */
+export const eventStore = new EventStore();
+
+/**
+ * The invocation helper instance
+ *
+ * @type {LiveEntityUpdateService}
+ * @since 0.15.0
+ */
+export const invocationHelper = new InvocationHelper();
+
+
 /**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
  *
- * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore}, {UserGroupStore}, {UserStore}, {EncryptionJobStore}>}
+ * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore},
+ *       {UserGroupStore}, {UserStore}, {EncryptionJobStore}, {EventStore}, {InvocationHelper}>}
  */
-const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore, encryptionJobStore};
+const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore, encryptionJobStore, eventStore, invocationHelper};
 
 /**
  * The notification service instance.
@@ -238,6 +260,7 @@ class Communikey extends React.Component {
                       <Switch key={location.key} location={location}>
                         <AuthenticatedRoute exact path={ROUTE_ROOT} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedRoute path={ROUTE_DASHBOARD} component={Dashboard} authorized={stores.authStore.isAuthorized}/>
+                        <AuthenticatedRoute path={ROUTE_WIZARD} component={Dashboard} openWizard={true} authorized={stores.authStore.isAuthorized}/>
                         <AuthenticatedPrivilegedRoute
                           path={ROUTE_ADMINISTRATION_USERS}
                           component={UserAdministration}
