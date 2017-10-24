@@ -384,6 +384,7 @@ class KeyModal extends React.Component {
             keyPasswordVisible: false
           });
           notificationService.error(message.title, message.message, 5);
+          reject();
         });
     });
   };
@@ -392,10 +393,14 @@ class KeyModal extends React.Component {
    * Toggles the locked state
    */
   toggleDataLockStatus = () => {
-    !this.state.keyPasswordVisible && this.togglePasswordVisibility()
-      .then(() => {
-        this.props.toggleLockStatus();
-      });
+    if(!this.state.keyPasswordVisible && this.props.locked) {
+      this.togglePasswordVisibility()
+        .then(() => {
+          this.props.toggleLockStatus();
+        });
+    } else {
+      this.props.toggleLockStatus();
+    }
   };
 
   /**
