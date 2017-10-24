@@ -366,15 +366,18 @@ class KeyModal extends React.Component {
 
   /**
    * Toggles the password visibility.
+   * @returns {Promise} - A promise
    */
   togglePasswordVisibility = () => {
-    this.setState(prevState => ({keyPasswordVisible: !prevState.keyPasswordVisible}));
-    !this.state.keyPasswordVisible && !this.props.creationMode &&
+    return new Promise((resolve, reject) => {
+      this.setState(prevState => ({keyPasswordVisible: !prevState.keyPasswordVisible}));
+      !this.state.keyPasswordVisible && !this.props.creationMode &&
       keyStore.getPassword(this.props.cckeyKey.id)
         .then((password) => {
           this.setState({
             decryptedPassword: password
           });
+          resolve();
         })
         .catch((message) => {
           this.setState({
@@ -382,6 +385,17 @@ class KeyModal extends React.Component {
           });
           notificationService.error(message.title, message.message, 5);
         });
+    });
+  };
+
+  /**
+   * Toggles the locked state
+   */
+  toggleDataLockStatus = () => {
+    !this.state.keyPasswordVisible && this.togglePasswordVisibility()
+      .then(() => {
+        this.props.toggleLockStatus();
+      });
   };
 
   /**
@@ -428,7 +442,7 @@ class KeyModal extends React.Component {
 
     const lockStatusButton = () => (
       <Tooltip title={locked ? "Unlock" : "Lock"}>
-        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={toggleLockStatus} icon={locked ? "lock" : "unlock"}/>
+        <Button key="lockStatus" type={locked ? "ghost" : "dashed"} onClick={this.toggleDataLockStatus} icon={locked ? "lock" : "unlock"}/>
       </Tooltip>
     );
 
@@ -479,8 +493,21 @@ class KeyModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              {administrationMode && <Button size="large" onClick={this.handleOnClose}>Cancel</Button>}
-              <Button type="primary" size="large" onClick={this.handleActionButtonOnClick} loading={loading}>{creationMode ? "Create" : "Done"}
+              {administrationMode && !locked &&
+                <Button
+                  type="primary"
+                  size="large"
+                  onClick={this.handleActionButtonOnClick}
+                  loading={loading}
+                >
+                  Save
+                </Button>
+              }
+              <Button
+                size="large"
+                onClick={this.handleOnClose}
+              >
+                Close
               </Button>
             </div>
           </Col>
