@@ -6060,11 +6060,10 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                                     \\"key\\": null,
                                                                                                                                                     \\"ref\\": null,
                                                                                                                                                     \\"props\\": {
-                                                                                                                                                        \\"type\\": \\"primary\\",
                                                                                                                                                         \\"size\\": \\"large\\",
-                                                                                                                                                        \\"loading\\": true,
-                                                                                                                                                        \\"children\\": \\"Done\\",
+                                                                                                                                                        \\"children\\": \\"Close\\",
                                                                                                                                                         \\"prefixCls\\": \\"ant-btn\\",
+                                                                                                                                                        \\"loading\\": false,
                                                                                                                                                         \\"clicked\\": false,
                                                                                                                                                         \\"ghost\\": false
                                                                                                                                                     },

@@ -540,7 +540,7 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                           "placeholder": "Email",
                                           "prefix": <Icon
                                             type="mail"
-                                      />,
+                                          />,
                                           "prefixCls": "ant-input",
                                           "suffix": <Tooltip
                                             arrowPointAtCenter={false}
@@ -550,12 +550,12 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                             prefixCls="ant-tooltip"
                                             title="No account? For access please send an email to key@communicode.de"
                                             transitionName="zoom-big-fast"
-                                      >
+                                          >
                                             <Icon
-                                                  type="info-circle-o"
+                                              type="info-circle-o"
                                             />
                                              
-                                      </Tooltip>,
+                                          </Tooltip>,
                                           "type": "text",
                                         },
                                         "ref": null,
@@ -650,7 +650,7 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                                   "placeholder": "Email",
                                                   "prefix": <Icon
                                                     type="mail"
-                                              />,
+                                                  />,
                                                   "prefixCls": "ant-input",
                                                   "suffix": <Tooltip
                                                     arrowPointAtCenter={false}
@@ -660,12 +660,12 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                                     prefixCls="ant-tooltip"
                                                     title="No account? For access please send an email to key@communicode.de"
                                                     transitionName="zoom-big-fast"
-                                              >
+                                                  >
                                                     <Icon
-                                                          type="info-circle-o"
+                                                      type="info-circle-o"
                                                     />
                                                      
-                                              </Tooltip>,
+                                                  </Tooltip>,
                                                   "type": "text",
                                                 },
                                                 "ref": null,
@@ -1280,7 +1280,7 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                           "placeholder": "Password",
                                           "prefix": <Icon
                                             type="lock"
-                                      />,
+                                          />,
                                           "prefixCls": "ant-input",
                                           "type": "password",
                                         },
@@ -1352,7 +1352,7 @@ exports[`<SignIn> should render correctly with sample data 1`] = `
                                               "placeholder": "Password",
                                               "prefix": <Icon
                                                 type="lock"
-                                          />,
+                                              />,
                                               "prefixCls": "ant-input",
                                               "type": "password",
                                             },
