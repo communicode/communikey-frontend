@@ -423,7 +423,6 @@ class KeyModal extends React.Component {
       onClose,
       onDelete,
       onSave,
-      toggleLockStatus,
       ...modalProps
     } = this.props;
     const {categoryTreeSelectModalSelectedCategory, categoryTreeSelectModalVisible,
@@ -475,6 +474,21 @@ class KeyModal extends React.Component {
       </Tooltip>
     );
 
+    const saveCreateButton = () => {
+      if(creationMode || (administrationMode && !locked)) {
+        return (
+          <Button
+          type="primary"
+          size="large"
+          onClick={this.handleActionButtonOnClick}
+          loading={loading}
+        >
+          {creationMode ? "Create" : "Save"}
+        </Button>
+        );
+      }
+    };
+
     const footer = () => (
       <div className="footer">
         <Row type="flex" align="middle">
@@ -498,22 +512,13 @@ class KeyModal extends React.Component {
           </Col>
           <Col span={8} offset={8}>
             <div className="main">
-              {administrationMode && !locked &&
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={this.handleActionButtonOnClick}
-                  loading={loading}
-                >
-                  Save
-                </Button>
-              }
               <Button
                 size="large"
                 onClick={this.handleOnClose}
               >
                 Close
               </Button>
+              {saveCreateButton()}
             </div>
           </Col>
         </Row>
