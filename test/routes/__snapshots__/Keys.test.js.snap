@@ -6055,7 +6055,6 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                         \\"props\\": {
                                                                                                                                             \\"className\\": \\"main\\",
                                                                                                                                             \\"children\\": [
-                                                                                                                                                false,
                                                                                                                                                 {
                                                                                                                                                     \\"key\\": null,
                                                                                                                                                     \\"ref\\": null,
@@ -6068,7 +6067,8 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                                         \\"ghost\\": false
                                                                                                                                                     },
                                                                                                                                                     \\"_store\\": {}
-                                                                                                                                                }
+                                                                                                                                                },
+                                                                                                                                                null
                                                                                                                                             ]
                                                                                                                                         },
                                                                                                                                         \\"_store\\": {}
