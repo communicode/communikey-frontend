@@ -852,35 +852,35 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                       "key": "login",
                                       "title": <span>
                                         Login
-                                      </span>,
+                                  </span>,
                                     },
                                     Object {
                                       "dataIndex": "email",
                                       "key": "email",
                                       "title": <span>
                                         Email
-                                      </span>,
+                                  </span>,
                                     },
                                     Object {
                                       "dataIndex": "firstName",
                                       "key": "firstName",
                                       "title": <span>
                                         First name
-                                      </span>,
+                                  </span>,
                                     },
                                     Object {
                                       "dataIndex": "lastName",
                                       "key": "lastName",
                                       "title": <span>
                                         Last name
-                                      </span>,
+                                  </span>,
                                     },
                                     Object {
                                       "key": 4,
                                       "render": [Function],
                                       "title": <span>
                                         Status
-                                      </span>,
+                                  </span>,
                                     },
                                   ]
                                 }
@@ -1231,35 +1231,35 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                   Object {
                                                     "children": <span>
                                                       Login
-                                                    </span>,
+                                              </span>,
                                                     "className": "",
                                                     "key": "login",
                                                   },
                                                   Object {
                                                     "children": <span>
                                                       Email
-                                                    </span>,
+                                              </span>,
                                                     "className": "",
                                                     "key": "email",
                                                   },
                                                   Object {
                                                     "children": <span>
                                                       First name
-                                                    </span>,
+                                              </span>,
                                                     "className": "",
                                                     "key": "firstName",
                                                   },
                                                   Object {
                                                     "children": <span>
                                                       Last name
-                                                    </span>,
+                                              </span>,
                                                     "className": "",
                                                     "key": "lastName",
                                                   },
                                                   Object {
                                                     "children": <span>
                                                       Status
-                                                    </span>,
+                                              </span>,
                                                     "className": "",
                                                     "key": 4,
                                                   },
@@ -1325,35 +1325,35 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                     "key": "login",
                                                     "title": <span>
                                                       Login
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "email",
                                                     "key": "email",
                                                     "title": <span>
                                                       Email
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "firstName",
                                                     "key": "firstName",
                                                     "title": <span>
                                                       First name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "lastName",
                                                     "key": "lastName",
                                                     "title": <span>
                                                       Last name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "key": 4,
                                                     "render": [Function],
                                                     "title": <span>
                                                       Status
-                                                    </span>,
+                                                </span>,
                                                   },
                                                 ]
                                               }
@@ -1430,7 +1430,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={
@@ -1559,7 +1559,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "email",
                                                       "title": <span>
                                                         Email
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -1610,7 +1610,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "firstName",
                                                       "title": <span>
                                                         First name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -1661,7 +1661,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "lastName",
                                                       "title": <span>
                                                         Last name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -1712,7 +1712,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "render": [Function],
                                                       "title": <span>
                                                         Status
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -1790,35 +1790,35 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                     "key": "login",
                                                     "title": <span>
                                                       Login
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "email",
                                                     "key": "email",
                                                     "title": <span>
                                                       Email
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "firstName",
                                                     "key": "firstName",
                                                     "title": <span>
                                                       First name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "lastName",
                                                     "key": "lastName",
                                                     "title": <span>
                                                       Last name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "key": 4,
                                                     "render": [Function],
                                                     "title": <span>
                                                       Status
-                                                    </span>,
+                                                </span>,
                                                   },
                                                 ]
                                               }
@@ -1911,7 +1911,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={
@@ -2088,7 +2088,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "email",
                                                       "title": <span>
                                                         Email
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2155,7 +2155,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "firstName",
                                                       "title": <span>
                                                         First name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2222,7 +2222,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "lastName",
                                                       "title": <span>
                                                         Last name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2289,7 +2289,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "render": [Function],
                                                       "title": <span>
                                                         Status
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2383,35 +2383,35 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                     "key": "login",
                                                     "title": <span>
                                                       Login
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "email",
                                                     "key": "email",
                                                     "title": <span>
                                                       Email
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "firstName",
                                                     "key": "firstName",
                                                     "title": <span>
                                                       First name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "lastName",
                                                     "key": "lastName",
                                                     "title": <span>
                                                       Last name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "key": 4,
                                                     "render": [Function],
                                                     "title": <span>
                                                       Status
-                                                    </span>,
+                                                </span>,
                                                   },
                                                 ]
                                               }
@@ -2484,7 +2484,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={
@@ -2601,7 +2601,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "email",
                                                       "title": <span>
                                                         Email
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2648,7 +2648,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "firstName",
                                                       "title": <span>
                                                         First name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2695,7 +2695,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "lastName",
                                                       "title": <span>
                                                         Last name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2742,7 +2742,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "render": [Function],
                                                       "title": <span>
                                                         Status
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -2816,35 +2816,35 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                     "key": "login",
                                                     "title": <span>
                                                       Login
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "email",
                                                     "key": "email",
                                                     "title": <span>
                                                       Email
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "firstName",
                                                     "key": "firstName",
                                                     "title": <span>
                                                       First name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "dataIndex": "lastName",
                                                     "key": "lastName",
                                                     "title": <span>
                                                       Last name
-                                                    </span>,
+                                                </span>,
                                                   },
                                                   Object {
                                                     "key": 4,
                                                     "render": [Function],
                                                     "title": <span>
                                                       Status
-                                                    </span>,
+                                                </span>,
                                                   },
                                                 ]
                                               }
@@ -2920,7 +2920,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={
@@ -3046,7 +3046,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "email",
                                                       "title": <span>
                                                         Email
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -3096,7 +3096,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "firstName",
                                                       "title": <span>
                                                         First name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -3146,7 +3146,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "lastName",
                                                       "title": <span>
                                                         Last name
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -3196,7 +3196,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "render": [Function],
                                                       "title": <span>
                                                         Status
-                                                      </span>,
+                                                    </span>,
                                                     }
                                                   }
                                                   expandIcon={null}
@@ -3303,7 +3303,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                     Object {
                                                       "children": <span>
                                                         Login
-                                                      </span>,
+                                                </span>,
                                                       "className": "",
                                                       "key": "login",
                                                     },
@@ -3341,7 +3341,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                  </span>,
                                                     },
                                                   ]
                                                 }
@@ -3418,7 +3418,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                         "key": "login",
                                                         "title": <span>
                                                           Login
-                                                        </span>,
+                                                      </span>,
                                                       }
                                                     }
                                                     expandIcon={
@@ -3553,7 +3553,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                  </span>,
                                                     },
                                                   ]
                                                 }
@@ -3646,7 +3646,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                         "key": "login",
                                                         "title": <span>
                                                           Login
-                                                        </span>,
+                                                      </span>,
                                                       }
                                                     }
                                                     expandIcon={
@@ -3829,7 +3829,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                  </span>,
                                                     },
                                                   ]
                                                 }
@@ -3902,7 +3902,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                         "key": "login",
                                                         "title": <span>
                                                           Login
-                                                        </span>,
+                                                      </span>,
                                                       }
                                                     }
                                                     expandIcon={
@@ -4025,7 +4025,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                       "key": "login",
                                                       "title": <span>
                                                         Login
-                                                      </span>,
+                                                  </span>,
                                                     },
                                                   ]
                                                 }
@@ -4101,7 +4101,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                                                         "key": "login",
                                                         "title": <span>
                                                           Login
-                                                        </span>,
+                                                      </span>,
                                                       }
                                                     }
                                                     expandIcon={
