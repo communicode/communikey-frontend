@@ -148,15 +148,17 @@ class Keys extends React.Component {
     this.setState({category: updatedCategory});
     categoryModalCreationMode
       ?
-      this.props.categoryStore.create(updatedCategory.name)
-        .then(() => {
+      this.props.categoryStore.create(updatedCategory.name, category.parentId && category.parentId)
+        .then((createdCategory) => {
+          this.setState({category: createdCategory});
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
         })
         .catch(() => this.setProcessingStatus(false))
       :
       this.props.categoryStore.update(updatedCategory)
-        .then(() => {
+        .then((updatedCategory) => {
+          this.setState({category: updatedCategory});
           this.setProcessingStatus(false);
           this.handleCategoryModalClose();
           this.resetSelectedCategoryObject();
@@ -291,6 +293,20 @@ class Keys extends React.Component {
   handleKeyModalCategoryTreeSelectValueChange = (label, selectValue, selectedTreeNode) => {
     selectedTreeNode.triggerNode && this.setState({
       key: update(this.state.key, {categoryId: {$set: selectedTreeNode.triggerNode.props.category.id}})
+    });
+  };
+
+  /**
+   * Handles all category modal category tree select value change events.
+   *
+   * @callback handleKeyModalCategoryTreeSelectValueChange
+   * @param label - The label of the selected tree node
+   * @param selectValue - The value of the selection
+   * @param selectedTreeNode - The selected tree node
+   */
+  handleCategoryModalCategoryTreeSelectValueChange = (label, selectValue, selectedTreeNode) => {
+    selectedTreeNode.triggerNode && this.setState({
+      category: update(this.state.category, {parentId: {$set: selectedTreeNode.triggerNode.props.category.id}})
     });
   };
 
@@ -601,6 +617,7 @@ class Keys extends React.Component {
         creationMode={categoryModalCreationMode}
         loading={processing}
         afterClose={() => this.setCategoryModalCreationMode(false)}
+        onCategoryTreeSelectValueChange={this.handleCategoryModalCategoryTreeSelectValueChange}
         onClose={this.handleCategoryModalClose}
         onDelete={this.handleCategoryModalDelete}
         onSave={this.handleCategoryModalSave}

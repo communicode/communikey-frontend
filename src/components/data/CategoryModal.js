@@ -1,12 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {arrayToTree} from "performant-array-to-tree";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import _ from "lodash";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_SHARE, LINK_CATEGORY_BREADCRUMB} from "../../config/constants";
 import {ROUTE_KEYS} from "../../routes/routeMappings";
-import {Button, Col, Form, Icon, Input, Modal, Row, Table, Tabs, Tooltip, Breadcrumb, Menu, Dropdown} from "antd";
+import {
+  Button,
+  Col,
+  Form,
+  Icon,
+  Input,
+  Modal,
+  Row,
+  Table,
+  Tabs,
+  Tooltip,
+  Breadcrumb,
+  Menu,
+  Dropdown,
+  TreeSelect,
+  Tree
+} from "antd";
 import {Link} from "react-router-dom";
 import {screenMD} from "./../../config/theme/sizes";
 import {getAncestors} from "../../services/StoreService";
@@ -24,6 +41,8 @@ import "antd/lib/tooltip/style/index.less";
 import "antd/lib/breadcrumb/style/index.less";
 import "antd/lib/menu/style/index.less";
 import "antd/lib/dropdown/style/index.less";
+import "antd/lib/tree-select/style/index.less";
+import "antd/lib/tree/style/index.less";
 import "./CategoryModal.less";
 
 /**
@@ -33,7 +52,7 @@ import "./CategoryModal.less";
  */
 const ManagedForm = Form.create()(
   (props) => {
-    const {administrationMode, category, creationMode, form} = props;
+    const {administrationMode, category, creationMode, form, categoryTreeSelect} = props;
     const {getFieldDecorator} = form;
 
     return (
@@ -53,6 +72,9 @@ const ManagedForm = Form.create()(
           />)
           }
         </Form.Item>
+        {creationMode &&
+          categoryTreeSelect()
+        }
         {!creationMode && administrationMode &&
         <div>
           <Form.Item>
@@ -210,6 +232,36 @@ class CategoryModal extends React.Component {
    */
   saveManagedFormRef = (form) => this.form = form;
 
+  /**
+   * Generates the category tree from the specified flat category data array.
+   *
+   * @param categories - The flat category data array to generate the tree structure of
+   * @since 0.16.0
+   */
+  generateTreeFromFlatData = categories => arrayToTree(categories, {id: "id", parentId: "parent"});
+
+  /**
+   * Recursively generates all category tree select nodes.
+   *
+   * @param categories - The categories to generate the tree node structure of
+   * @since 0.16.0
+   */
+  generateCategoryTreeSelectNodes = categories => categories.map(category => {
+    if (category.children.length) {
+      return (
+        <Tree.TreeNode
+          key={category.data.id}
+          value={category.data.name}
+          category={category.data}
+          title={<span><Icon type="folder"/> {category.data.name}</span>}
+        >
+          {this.generateCategoryTreeSelectNodes(category.children)}
+        </Tree.TreeNode>
+      );
+    }
+    return <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={category.data.name}/>;
+  });
+
   render() {
     const {
       administrationMode,
@@ -222,6 +274,8 @@ class CategoryModal extends React.Component {
       onSave,
       toggleLockStatus,
       userGroups,
+      onCategoryTreeSelectValueChange,
+      categoryStore,
       ...modalProps
     } = this.props;
     const {activeTabViewKey} = this.state;
@@ -288,6 +342,20 @@ class CategoryModal extends React.Component {
       </div>
     );
 
+    const categoryTreeSelect = () => (
+      <Form.Item colon={false}>
+        <TreeSelect
+          placeholder="Parent category"
+          showSearch={true}
+          onChange={onCategoryTreeSelectValueChange}
+          allowClear={true}
+          size="large"
+        >
+          {this.generateCategoryTreeSelectNodes(this.generateTreeFromFlatData(categoryStore.categories))}
+        </TreeSelect>
+      </Form.Item>
+    );
+
     const tabViewGeneral = () => (
       <Tabs.TabPane tab="General" key={TAB_PANE_REACT_KEY_GENERAL}>
         <Row type="flex" align="center">
@@ -297,6 +365,7 @@ class CategoryModal extends React.Component {
               category={category}
               administrationMode={administrationMode}
               creationMode={creationMode}
+              categoryTreeSelect={categoryTreeSelect}
             />
           </Col>
         </Row>
@@ -458,8 +527,12 @@ CategoryModal.propTypes = {
    * @type {Array}
    * @since 0.10.0
    */
-  userGroups: PropTypes.array.isRequired
+  userGroups: PropTypes.array.isRequired,
 
+  /**
+   * Callback function to handle category tree select value change events.
+   */
+  onCategoryTreeSelectValueChange: PropTypes.func
 };
 
 CategoryModal.defaultProps = {
