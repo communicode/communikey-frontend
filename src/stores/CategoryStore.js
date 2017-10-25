@@ -95,11 +95,15 @@ class CategoryStore {
    * This is a API- and store synchronization action!
    *
    * @param {string} name - The name of the category to create
+   * @param {string=} parentId - The hashId of the parent
    * @returns {Promise} - A promise
    */
   @action("CategoryStore_create")
-  create = (name) => {
-    return apiService.post(CATEGORIES, {name: name}, {
+  create = (name, parentId) => {
+    return apiService.post(CATEGORIES, {
+      name: name,
+      parent: parentId && parentId
+    }, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
       }
