@@ -381,7 +381,7 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
     }
   }
 >
-  <inject-UserAdministration-with-authorityStore-authStore-userStore>
+  <inject-UserAdministration-with-authorityStore-authStore-userStore-userGroupStore>
     <UserAdministration
       authStore={
         AuthStore {
@@ -429,6 +429,56 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
               "lastModifiedBy": "root",
               "lastModifiedDate": "2017-07-04T09:26:52.537+02:00",
               "name": "ROLE_ADMIN",
+            },
+          ],
+        }
+      }
+      userGroupStore={
+        UserGroupStore {
+          "_contains": [Function],
+          "_filterAllByCategory": [Function],
+          "_findOneById": [Function],
+          "_findOneByName": [Function],
+          "userGroups": Array [
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:23.734+02:00",
+              "id": 2,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+              "name": "vorwerk",
+              "users": Array [
+                1,
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:19.101+02:00",
+              "id": 1,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+              "name": "ops",
+              "users": Array [
+                2,
+                3,
+              ],
+            },
+            Object {
+              "categories": Array [],
+              "createdBy": "root",
+              "createdDate": "2017-06-30T10:46:37.824+02:00",
+              "id": 3,
+              "lastModifiedBy": "root",
+              "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+              "name": "administration",
+              "users": Array [
+                1,
+                2,
+              ],
             },
           ],
         }
@@ -4395,12 +4445,58 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
               ]
             }
             creationMode={false}
+            groups={
+              Array [
+                Object {
+                  "categories": Array [],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T10:46:23.734+02:00",
+                  "id": 2,
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
+                  "name": "vorwerk",
+                  "users": Array [
+                    1,
+                    2,
+                    3,
+                  ],
+                },
+                Object {
+                  "categories": Array [],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T10:46:19.101+02:00",
+                  "id": 1,
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
+                  "name": "ops",
+                  "users": Array [
+                    2,
+                    3,
+                  ],
+                },
+                Object {
+                  "categories": Array [],
+                  "createdBy": "root",
+                  "createdDate": "2017-06-30T10:46:37.824+02:00",
+                  "id": 3,
+                  "lastModifiedBy": "root",
+                  "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
+                  "name": "administration",
+                  "users": Array [
+                    1,
+                    2,
+                  ],
+                },
+              ]
+            }
             loading={false}
             locked={true}
             onAuthorityAdd={[Function]}
             onAuthorityRemove={[Function]}
             onClose={[Function]}
             onDelete={[Function]}
+            onGroupAdd={[Function]}
+            onGroupRemove={[Function]}
             onSave={[Function]}
             onUserActivate={[Function]}
             onUserDeactivate={[Function]}
@@ -4420,6 +4516,8 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
               onAuthorityAdd={[Function]}
               onAuthorityRemove={[Function]}
               onClose={[Function]}
+              onGroupAdd={[Function]}
+              onGroupRemove={[Function]}
               onSave={[Function]}
               onUserPasswordReset={[Function]}
               prefixCls="ant-modal"
@@ -4437,6 +4535,8 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
                 onAuthorityAdd={[Function]}
                 onAuthorityRemove={[Function]}
                 onClose={[Function]}
+                onGroupAdd={[Function]}
+                onGroupRemove={[Function]}
                 onSave={[Function]}
                 onUserPasswordReset={[Function]}
                 prefixCls="ant-modal"
@@ -4449,6 +4549,6 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
         </div>
       </div>
     </UserAdministration>
-  </inject-UserAdministration-with-authorityStore-authStore-userStore>
+  </inject-UserAdministration-with-authorityStore-authStore-userStore-userGroupStore>
 </Provider>
 `;
