@@ -7,7 +7,7 @@ import UserModal from "./../../components/data/UserModal";
 import NoDataMessageBox from "./../../components/feedback/NoDataMessageBox";
 import appConfig from "./../../config/app";
 import {screenMD} from "./../../config/theme/sizes";
-import {AUTHORITY_STORE, AUTH_STORE, USER_STORE} from "./../../stores/storeConstants";
+import {AUTHORITY_STORE, AUTH_STORE, USER_STORE, USER_GROUP_STORE} from "./../../stores/storeConstants";
 import "antd/lib/badge/style/index.less";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
@@ -47,7 +47,7 @@ export const USER_TABLE_DEFAULT_COLUMNS = [
  * @author sgreb@communicode.de
  * @since 0.8.0
  */
-@inject(AUTHORITY_STORE, AUTH_STORE, USER_STORE) @observer
+@inject(AUTHORITY_STORE, AUTH_STORE, USER_STORE, USER_GROUP_STORE) @observer
 class UserAdministration extends React.Component {
   constructor(props) {
     super(props);
@@ -217,6 +217,48 @@ class UserAdministration extends React.Component {
   };
 
   /**
+   * Handles the event to add a user to a group.
+   *
+   * @callback handleUserModalOnGroupAdd
+   * @param {object} group - The group to add the user to
+   * @since 0.16.0
+   */
+  handleUserModalOnGroupAdd = (group) => {
+    this.setProcessingStatus(true);
+    this.props.userGroupStore.addUser(group.id, this.state.user.login)
+      .then(updatedUserGroup => {
+        this.props.userStore.fetchOneById(this.state.user.id)
+          .then((user)=> {
+            this.setState({user: update(this.state.user, {$merge: user})});
+          });
+        this.props.userGroupStore.update(group.id, updatedUserGroup);
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
+  };
+
+  /**
+   * Handles the event to remove a user from a group.
+   *
+   * @callback handleUserModalOnGroupRemove
+   * @param {object} group - The group to remove the user from
+   * @since 0.16.0
+   */
+  handleUserModalOnGroupRemove = (group) => {
+    this.setProcessingStatus(true);
+    this.props.userGroupStore.removeUser(group.id, this.state.user.login)
+      .then(updatedUserGroup => {
+        this.props.userStore.fetchOneById(this.state.user.id)
+          .then((user)=> {
+            this.setState({user: update(this.state.user, {$merge: user})});
+          });
+        this.props.userGroupStore.update(group.id, updatedUserGroup);
+        this.setProcessingStatus(false);
+      })
+      .catch(() => this.setProcessingStatus(false));
+  };
+
+  /**
    * Handles the user modal password reset event.
    *
    * @callback handleUserModalUserPasswordReset
@@ -333,7 +375,7 @@ class UserAdministration extends React.Component {
 
   render() {
     const {processing, user, userModalVisible, userModalCreationMode, userModalLocked} = this.state;
-    const {authorityStore, authStore, userStore} = this.props;
+    const {authorityStore, authStore, userStore, userGroupStore} = this.props;
 
     const mainDataView = () => (
       <div>
@@ -367,6 +409,7 @@ class UserAdministration extends React.Component {
         key={user.id}
         user={user}
         authorities={toJS(authorityStore.authorities)}
+        groups={toJS(userGroupStore.userGroups)}
         administrationMode={authStore.privileged}
         locked={userModalLocked}
         creationMode={userModalCreationMode}
@@ -378,6 +421,8 @@ class UserAdministration extends React.Component {
         onUserActivate={this.handleUserModalUserActivation}
         onAuthorityAdd={this.handleUserModalOnAuthorityAdd}
         onAuthorityRemove={this.handleUserModalOnAuthorityRemove}
+        onGroupAdd={this.handleUserModalOnGroupAdd}
+        onGroupRemove={this.handleUserModalOnGroupRemove}
         onUserDeactivate={this.handleUserModalUserDeactivation}
         onUserInvalidateKeypair={this.handleUserKeypairInvalidation}
         onUserPasswordReset={this.handleUserModalUserPasswordReset}
@@ -425,10 +470,19 @@ UserAdministration.propTypes = {
    * @type {ObservableArray}
    */
   authStore: MobXPropTypes.observableArray,
+
   /**
    * The user store injected by the MobX provider.
    *
    * @type {ObservableArray}
    */
-  userStore: MobXPropTypes.observableArray
+  userStore: MobXPropTypes.observableArray,
+
+  /**
+   * The usergroup store injected by the MobX provider.
+   *
+   * @type {ObservableArray}
+   * @since 0.16.0
+   */
+  userGroupStore: MobXPropTypes.observableArray
 };

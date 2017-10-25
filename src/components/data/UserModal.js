@@ -213,12 +213,20 @@ const managedFormItemLayout = {
     sm: {span: 18, offset: 4}
   }
 };
+
 /**
  * The default authorities table column configuration.
  *
  * @since 0.11.0
  */
 export const AUTHORITIES_TABLE_DEFAULT_COLUMNS = [{title: "Name", dataIndex: "name", key: "name", fixed: true}];
+
+/**
+ * The default groups table column configuration.
+ *
+ * @since 0.16.0
+ */
+export const GROUPS_TABLE_DEFAULT_COLUMNS = [{title: "Name", dataIndex: "name", key: "id", fixed: true}];
 
 /**
  * The name of the React key for the general tab.
@@ -235,6 +243,14 @@ const TAB_PANE_REACT_KEY_GENERAL = "general";
  * @since 0.11.0
  */
 const TAB_PANE_REACT_KEY_AUTHORITIES = "authorities";
+
+/**
+ * The name of the React key for the groups tab.
+ *
+ * @type {string}
+ * @since 0.16.0
+ */
+const TAB_PANE_REACT_KEY_GROUPS = "groups";
 
 /**
  * A modal for user.
@@ -322,6 +338,15 @@ class UserModal extends React.Component {
   handleTabViewAuthoritiesOnRecordSelect = (record, selected) => selected ? this.props.onAuthorityAdd(record) : this.props.onAuthorityRemove(record);
 
   /**
+   * Handles the table record selection event of the groups tab view.
+   *
+   * @param {object} record - The selected authority table record
+   * @param {boolean} selected - Determines whether the record has been selected or unselected
+   * @since 0.16.0
+   */
+  handleTabViewGroupsOnRecordSelect = (record, selected) => selected ? this.props.onGroupAdd(record) : this.props.onGroupRemove(record);
+
+  /**
    * Handles the user modal close event.
    *
    * @callback handleUserModalClose
@@ -382,6 +407,7 @@ class UserModal extends React.Component {
     const {
       administrationMode,
       authorities,
+      groups,
       creationMode,
       loading,
       locked,
@@ -427,6 +453,16 @@ class UserModal extends React.Component {
     const tabViewAuthoritiesTableConfig = {
       selectedRowKeys: user.authorities,
       onSelect: this.handleTabViewAuthoritiesOnRecordSelect
+    };
+
+    /**
+     * The configuration object for the authority table of the authorities tab.
+     *
+     * @since 0.16.0
+     */
+    const tabViewGroupsTableConfig = {
+      selectedRowKeys: user.groups,
+      onSelect: this.handleTabViewGroupsOnRecordSelect
     };
 
     const defaultUserAvatar = () => <img src={appConfig.assets.wireframe.avatars.matthew} className="user-avatar"/>;
@@ -521,6 +557,24 @@ class UserModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    const tabViewGroups = () => (
+      <Tabs.TabPane tab="Groups" key={TAB_PANE_REACT_KEY_GROUPS} disabled={creationMode}>
+        <Row>
+          <div>
+            <Col span={24}>
+              <Table
+                dataSource={groups}
+                columns={GROUPS_TABLE_DEFAULT_COLUMNS}
+                rowKey={record => record.id}
+                rowSelection={tabViewGroupsTableConfig}
+                scroll={{x: screenMD}}
+              />
+            </Col>
+          </div>
+        </Row>
+      </Tabs.TabPane>
+    );
+
     const passwordResetInnerModal = () => (
       <Modal
         visible={passwordResetModalVisible}
@@ -588,6 +642,7 @@ class UserModal extends React.Component {
         <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_GENERAL} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
           {tabViewGeneral()}
           {tabViewAuthorities()}
+          {tabViewGroups()}
         </Tabs>
         <Row><Col>{footer()}</Col></Row>
         {passwordResetInnerModal()}
@@ -610,6 +665,14 @@ UserModal.propTypes = {
    * @since 0.11.0
    */
   authorities: PropTypes.array.isRequired,
+
+  /**
+   * The groups.
+   *
+   * @type {Array}
+   * @since 0.16.0
+   */
+  groups: PropTypes.array.isRequired,
 
   /**
    * Indicates if the user modal is in creation mode.
@@ -647,6 +710,23 @@ UserModal.propTypes = {
    * @since 0.11.0
    */
   onAuthorityRemove: PropTypes.func,
+
+
+  /**
+   * Callback function to handle the event to add a user to a group.
+   *
+   * @type {function}
+   * @since 0.16.0
+   */
+  onGroupAdd: PropTypes.func,
+
+  /**
+   * Callback function to handle the event to remove a user from a group.
+   *
+   * @type {function}
+   * @since 0.16.0
+   */
+  onGroupRemove: PropTypes.func,
 
   /**
    * Callback function to handle close events.
