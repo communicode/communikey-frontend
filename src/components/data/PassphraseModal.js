@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Modal, Input, Icon, Row, Form} from "antd";
 import {encryptionService, notificationService} from "../../Communikey";
+import {IS_FIREFOX} from "../../services/UtilityService";
 import "antd/lib/icon/style/css";
 import "antd/lib/input/style/index.less";
 import "antd/lib/modal/style/index.less";
@@ -30,6 +31,7 @@ const ManagedForm = Form.create()(
             <Input
               name="passphrase"
               className="show-as-bullets"
+              type={IS_FIREFOX ? "password" : "text"}
               // onPressEnter={props.handleSubmit}
             />)
           }
