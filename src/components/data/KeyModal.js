@@ -293,7 +293,7 @@ class KeyModal extends React.Component {
           key={category.data.id}
           value={category.data.name}
           category={category.data}
-          title={<span><Icon type="folder"/>{category.data.name}</span>}
+          title={<span><Icon type="folder"/> {category.data.name}</span>}
         >
           {this.generateCategoryTreeSelectNodes(category.children)}
         </Tree.TreeNode>
