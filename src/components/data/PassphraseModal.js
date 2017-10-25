@@ -31,7 +31,7 @@ const ManagedForm = Form.create()(
             <Input
               name="passphrase"
               className="show-as-bullets"
-              type={ IS_FIREFOX ? "password" : "text" }
+              type={IS_FIREFOX ? "password" : "text"}
               // onPressEnter={props.handleSubmit}
             />)
           }
