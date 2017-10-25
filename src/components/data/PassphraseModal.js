@@ -80,11 +80,7 @@ class PassphraseModal extends React.Component {
    * @param form - The form to save the reference to
    */
   saveManagedFormRef = (form) => this.form = form;
-
-  handlePasswordRerender = () => {
-    console.log("Hey");
-  };
-
+  
   /**
    * Handles the action button click event.
    */
