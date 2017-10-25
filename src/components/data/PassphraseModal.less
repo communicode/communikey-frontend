@@ -11,4 +11,10 @@
     font-size: 1rem;
     text-align: center;
   }
+/* Hinders chrome and IE from automatically trying to save the passphrase.
+   Transforms text in input field into bullets for IE and webkit based browsers */
+.show-as-bullets{
+  text-security: disc;
+  -webkit-text-security: disc;
+}
 }

@@ -14,7 +14,10 @@ const ManagedForm = Form.create()(
     const {form, error} = props;
     const {getFieldDecorator} = form;
     return (
-      <Form hideRequiredMark={true}>
+      <Form
+        hideRequiredMark={true}
+        autocomplete="off"
+      >
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("passphrase") || error ? "error"  : ""}
@@ -26,7 +29,7 @@ const ManagedForm = Form.create()(
           })(
             <Input
               name="passphrase"
-              type="password"
+              className="show-as-bullets"
               // onPressEnter={props.handleSubmit}
             />)
           }
@@ -77,6 +80,10 @@ class PassphraseModal extends React.Component {
    * @param form - The form to save the reference to
    */
   saveManagedFormRef = (form) => this.form = form;
+
+  handlePasswordRerender = () => {
+    console.log("Hey");
+  };
 
   /**
    * Handles the action button click event.
