@@ -14,7 +14,10 @@ const ManagedForm = Form.create()(
     const {form, error} = props;
     const {getFieldDecorator} = form;
     return (
-      <Form hideRequiredMark={true}>
+      <Form
+        hideRequiredMark={true}
+        autocomplete="off"
+      >
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("passphrase") || error ? "error"  : ""}
@@ -26,7 +29,7 @@ const ManagedForm = Form.create()(
           })(
             <Input
               name="passphrase"
-              type="password"
+              className="show-as-bullets"
               // onPressEnter={props.handleSubmit}
             />)
           }
