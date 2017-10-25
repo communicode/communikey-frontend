@@ -7,7 +7,7 @@
  * @constant
  * @default
  * @type {boolean}
- * @since 0.8.0
+ * @since 0.15.1
  */
 export const IS_FIREFOX = typeof InstallTrigger !== "undefined";
 
