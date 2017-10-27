@@ -619,7 +619,6 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                             className="ant-btn-group"
                           >
                             <Button
-                              clicked={false}
                               ghost={true}
                               icon="plus"
                               loading={false}
@@ -630,7 +629,6 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                               <button
                                 className="ant-btn ant-btn-primary ant-btn-background-ghost"
                                 onClick={[Function]}
-                                onMouseUp={[Function]}
                                 type="button"
                               >
                                 <Icon
@@ -890,7 +888,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                 onExpand={[Function]}
                                 onExpandedRowsChange={[Function]}
                                 onRowClick={[Function]}
+                                onRowContextMenu={[Function]}
                                 onRowDoubleClick={[Function]}
+                                onRowMouseEnter={[Function]}
+                                onRowMouseLeave={[Function]}
                                 prefixCls="ant-table"
                                 rowClassName={[Function]}
                                 rowKey={[Function]}
@@ -918,11 +919,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                     >
                                       <div
                                         className="ant-table-body"
-                                        onMouseOver={[Function]}
                                         onScroll={[Function]}
-                                        onTouchStart={[Function]}
                                         style={
                                           Object {
+                                            "WebkitTransform": "translate3d (0, 0, 0)",
                                             "overflowX": "auto",
                                           }
                                         }
@@ -1010,7 +1010,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               onExpand={[Function]}
                                               onHover={[Function]}
                                               onRowClick={[Function]}
+                                              onRowContextMenu={[Function]}
                                               onRowDoubleClick={[Function]}
+                                              onRowMouseEnter={[Function]}
+                                              onRowMouseLeave={[Function]}
                                               prefixCls="ant-table-row"
                                               record={
                                                 Object {
@@ -1040,6 +1043,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               <tr
                                                 className="ant-table-row  ant-table-row-level-0"
                                                 onClick={[Function]}
+                                                onContextMenu={[Function]}
                                                 onDoubleClick={[Function]}
                                                 onMouseEnter={[Function]}
                                                 onMouseLeave={[Function]}
@@ -1174,7 +1178,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               onExpand={[Function]}
                                               onHover={[Function]}
                                               onRowClick={[Function]}
+                                              onRowContextMenu={[Function]}
                                               onRowDoubleClick={[Function]}
+                                              onRowMouseEnter={[Function]}
+                                              onRowMouseLeave={[Function]}
                                               prefixCls="ant-table-row"
                                               record={
                                                 Object {
@@ -1203,6 +1210,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               <tr
                                                 className="ant-table-row  ant-table-row-level-0"
                                                 onClick={[Function]}
+                                                onContextMenu={[Function]}
                                                 onDoubleClick={[Function]}
                                                 onMouseEnter={[Function]}
                                                 onMouseLeave={[Function]}
@@ -1334,7 +1342,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               onExpand={[Function]}
                                               onHover={[Function]}
                                               onRowClick={[Function]}
+                                              onRowContextMenu={[Function]}
                                               onRowDoubleClick={[Function]}
+                                              onRowMouseEnter={[Function]}
+                                              onRowMouseLeave={[Function]}
                                               prefixCls="ant-table-row"
                                               record={
                                                 Object {
@@ -1363,6 +1374,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               <tr
                                                 className="ant-table-row  ant-table-row-level-0"
                                                 onClick={[Function]}
+                                                onContextMenu={[Function]}
                                                 onDoubleClick={[Function]}
                                                 onMouseEnter={[Function]}
                                                 onMouseLeave={[Function]}
@@ -1474,13 +1486,15 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                     >
                                       <div
                                         className="ant-table-body-outer"
-                                        style={Object {}}
+                                        style={
+                                          Object {
+                                            "WebkitTransform": "translate3d (0, 0, 0)",
+                                          }
+                                        }
                                       >
                                         <div
                                           className="ant-table-body-inner"
-                                          onMouseOver={[Function]}
                                           onScroll={[Function]}
-                                          onTouchStart={[Function]}
                                           style={Object {}}
                                         >
                                           <table
@@ -1562,7 +1576,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 onExpand={[Function]}
                                                 onHover={[Function]}
                                                 onRowClick={[Function]}
+                                                onRowContextMenu={[Function]}
                                                 onRowDoubleClick={[Function]}
+                                                onRowMouseEnter={[Function]}
+                                                onRowMouseLeave={[Function]}
                                                 prefixCls="ant-table-row"
                                                 record={
                                                   Object {
@@ -1592,6 +1609,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 <tr
                                                   className="ant-table-row  ant-table-row-level-0"
                                                   onClick={[Function]}
+                                                  onContextMenu={[Function]}
                                                   onDoubleClick={[Function]}
                                                   onMouseEnter={[Function]}
                                                   onMouseLeave={[Function]}
@@ -1726,7 +1744,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 onExpand={[Function]}
                                                 onHover={[Function]}
                                                 onRowClick={[Function]}
+                                                onRowContextMenu={[Function]}
                                                 onRowDoubleClick={[Function]}
+                                                onRowMouseEnter={[Function]}
+                                                onRowMouseLeave={[Function]}
                                                 prefixCls="ant-table-row"
                                                 record={
                                                   Object {
@@ -1755,6 +1776,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 <tr
                                                   className="ant-table-row  ant-table-row-level-0"
                                                   onClick={[Function]}
+                                                  onContextMenu={[Function]}
                                                   onDoubleClick={[Function]}
                                                   onMouseEnter={[Function]}
                                                   onMouseLeave={[Function]}
@@ -1886,7 +1908,10 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 onExpand={[Function]}
                                                 onHover={[Function]}
                                                 onRowClick={[Function]}
+                                                onRowContextMenu={[Function]}
                                                 onRowDoubleClick={[Function]}
+                                                onRowMouseEnter={[Function]}
+                                                onRowMouseLeave={[Function]}
                                                 prefixCls="ant-table-row"
                                                 record={
                                                   Object {
@@ -1915,6 +1940,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 <tr
                                                   className="ant-table-row  ant-table-row-level-0"
                                                   onClick={[Function]}
+                                                  onContextMenu={[Function]}
                                                   onDoubleClick={[Function]}
                                                   onMouseEnter={[Function]}
                                                   onMouseLeave={[Function]}
@@ -2041,10 +2067,12 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                   current={1}
                                   defaultCurrent={1}
                                   defaultPageSize={10}
+                                  itemRender={[Function]}
                                   locale={
                                     Object {
                                       "items_per_page": "条/页",
                                       "jump_to": "跳至",
+                                      "jump_to_confirm": "确定",
                                       "next_3": "向后 3 页",
                                       "next_5": "向后 5 页",
                                       "next_page": "下一页",
@@ -2080,14 +2108,18 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                       tabIndex="0"
                                       title="上一页"
                                     >
-                                      <a />
+                                      <a
+                                        className="ant-pagination-item-link"
+                                      />
                                     </li>
                                     <Pager
                                       active={true}
+                                      itemRender={[Function]}
                                       locale={
                                         Object {
                                           "items_per_page": "条/页",
                                           "jump_to": "跳至",
+                                          "jump_to_confirm": "确定",
                                           "next_3": "向后 3 页",
                                           "next_5": "向后 5 页",
                                           "next_page": "下一页",
@@ -2123,15 +2155,19 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                       tabIndex="0"
                                       title="下一页"
                                     >
-                                      <a />
+                                      <a
+                                        className="ant-pagination-item-link"
+                                      />
                                     </li>
                                     <Options
                                       changeSize={null}
                                       current={1}
+                                      goButton={false}
                                       locale={
                                         Object {
                                           "items_per_page": "条/页",
                                           "jump_to": "跳至",
+                                          "jump_to_confirm": "确定",
                                           "next_3": "向后 3 页",
                                           "next_5": "向后 5 页",
                                           "next_page": "下一页",
@@ -2310,6 +2346,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
               footer={false}
               id="cckey-components-data-views-user-group-modal"
               maskTransitionName="fade"
+              okType="primary"
               onClose={[Function]}
               onSave={[Function]}
               onUserAdd={[Function]}
@@ -2327,6 +2364,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                 footer={false}
                 id="cckey-components-data-views-user-group-modal"
                 maskTransitionName="fade"
+                okType="primary"
                 onClose={[Function]}
                 onSave={[Function]}
                 onUserAdd={[Function]}

@@ -20,8 +20,6 @@
       animation: spin 4s 1 linear;
       animation-iteration-count:infinite;
     }
-    border-top-width: 5px;
-    border-top-color: #49A9EE;
     cursor: pointer;
   }
 
@@ -29,13 +27,17 @@
     .key{
       transition: all 1s linear;
     }
-    border-top-width: 5px;
-    border-top-color: #49A9EE;
     cursor: pointer;
   }
 
   .ant-card {
-    border-color: #49A9EE;
+    overflow: hidden;
+    border-top-color: #49A9EE;
+  }
+
+  .ant-card:hover {
+    border-top-width: 5px;
+    border-top-color: #49A9EE !important;
   }
 
   .ant-card-body {
@@ -70,6 +72,7 @@
     opacity: 0.2;
     color: grey;
     animation-iteration-count:infinite;
+    display: inline-block;
   }
 }
 
