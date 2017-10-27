@@ -8,6 +8,7 @@ exports[`<UserGroupModal> should render correctly with sample data 1`] = `
   footer={false}
   id="cckey-components-data-views-user-group-modal"
   maskTransitionName="fade"
+  okType="primary"
   onClose={[Function]}
   prefixCls="ant-modal"
   transitionName="zoom"
@@ -268,7 +269,6 @@ exports[`<UserGroupModal> should render correctly with sample data 1`] = `
               className="main"
             >
               <Button
-                clicked={false}
                 ghost={false}
                 loading={false}
                 onClick={[Function]}
@@ -278,7 +278,6 @@ exports[`<UserGroupModal> should render correctly with sample data 1`] = `
                 Cancel
               </Button>
               <Button
-                clicked={false}
                 ghost={false}
                 loading={false}
                 onClick={[Function]}
