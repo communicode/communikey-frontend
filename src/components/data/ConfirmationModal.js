@@ -53,12 +53,12 @@ class ConfirmationModal extends React.Component {
 
 ConfirmationModal.propTypes = {
   /**
-   * the cancel button
+   * The cancel button
    */
   cancel: PropTypes.object.isRequired,
 
   /**
-   * the proceed button
+   * The proceed button
    */
   proceed: PropTypes.object.isRequired,
 

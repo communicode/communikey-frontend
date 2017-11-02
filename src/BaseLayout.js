@@ -34,6 +34,7 @@ import {
 } from "./Communikey";
 import ProfileModal from "./components/data/ProfileModal";
 import PassphraseModal from "./components/data/PassphraseModal";
+import ConfirmationModal from "./components/data/ConfirmationModal";
 import "antd/lib/layout/style/index.less";
 import "antd/lib/button/style/index.less";
 import "antd/lib/menu/style/index.less";
@@ -56,7 +57,8 @@ class BaseLayout extends React.Component {
       profileModalVisible: false,
       processing: false,
       wizardSelected: false,
-      maskClosable: true
+      maskClosable: true,
+      confirmSignOutModalVisible: false
     };
   }
 
@@ -153,6 +155,11 @@ class BaseLayout extends React.Component {
   toggleProfileModal = () => this.setState(prevState => ({profileModalVisible: !prevState.profileModalVisible}));
 
   /**
+   * Toggles the sign out modal
+   */
+  toggleConfirmSignOutModal = () => this.setState(prevState => ({confirmSignOutModalVisible: !prevState.confirmSignOutModalVisible}));
+
+  /**
    * Handles the user modal close event.
    *
    * @callback handleProfileModalClose
@@ -204,7 +211,7 @@ class BaseLayout extends React.Component {
   };
 
   render() {
-    const {initialized, isSidebarCollapsed, sidebarCurrentSelected, sidebarMenuMode, sidebarOpenKeys, storesInitialized} = this.state;
+    const {initialized, isSidebarCollapsed, sidebarCurrentSelected, sidebarMenuMode, sidebarOpenKeys, storesInitialized, confirmSignOutModalVisible} = this.state;
     const {authStore, children} = this.props;
 
     const sidebar = () => (
@@ -257,6 +264,10 @@ class BaseLayout extends React.Component {
       SETTINGS_PAGE: {
         keyName: "SETTINGS_PAGE",
         handler: this.props.invocationHelper.toggleProfileModalState
+      },
+      CONFIRM_SIGNOUT: {
+        keyName: "CONFIRM_SIGNOUT",
+        handler: this.toggleConfirmSignOutModal
       }
     };
 
@@ -281,9 +292,7 @@ class BaseLayout extends React.Component {
           <Menu mode="horizontal" onClick={(key) => OPERATION_TYPES[key.key].handler()} selectable={false}>
             <Menu.SubMenu title={authStore.firstName}>
               <Menu.Item key={OPERATION_TYPES.SETTINGS_PAGE.keyName}>Settings</Menu.Item>
-              <Menu.Item key="sign-out">
-                <Link to={ROUTE_SIGNOUT}>Sign out</Link>
-              </Menu.Item>
+              <Menu.Item key={OPERATION_TYPES.CONFIRM_SIGNOUT.keyName}>Sign Out</Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Row>
@@ -319,6 +328,15 @@ class BaseLayout extends React.Component {
         <Layout className="cckey-base-layout">
           {header()}
           <Layout.Content>
+            <ConfirmationModal
+              cancel={<Button size="large" onClick={this.toggleConfirmSignOutModal}>Stay</Button>}
+              proceed={<Button size="large" type="danger"><Link to={ROUTE_SIGNOUT}>Sign out</Link></Button>}
+              visible={confirmSignOutModalVisible}
+              header="Do you really want to sign out?"
+              content="While signing out might be a good idea on other services. Here its not beneficial. Signing out
+                       clears your private key from the local storage, requiring you to install it again. If you dont want to use
+                       communikey anymore, just close the application/tab."
+            />
             <PassphraseModal
               visible={this.props.passphraseNeeded}
               onClose={this.handlePassphraseModalClose}
