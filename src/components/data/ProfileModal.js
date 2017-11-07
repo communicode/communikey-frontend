@@ -544,8 +544,8 @@ class ProfileModal extends React.Component {
         <Row><Col>{footer()}</Col></Row>
         {passwordResetInnerModal()}
         <ConfirmationModal
-          cancel={cancelButton}
-          proceed={proceedButton}
+          cancel={cancelButton()}
+          proceed={proceedButton()}
           visible={cancelModalVisible}
           header="Are you sure you want to leave the setup early?"
           content="This might result in not being able to read or write passwords.
