@@ -316,6 +316,14 @@ class BaseLayout extends React.Component {
       </QueueAnim>
     );
 
+    const cancelButton = () => (
+      <Button size="large" onClick={this.toggleConfirmSignOutModal}>Stay</Button>
+    );
+
+    const confirmButton = () => (
+      <Button size="large" type="danger"><Link to={ROUTE_SIGNOUT}>Sign out</Link></Button>
+    );
+
     const renderBaseLayout = () => (
       <QueueAnim
         delay={motionConfig.baseLayout.delay}
@@ -329,13 +337,16 @@ class BaseLayout extends React.Component {
           {header()}
           <Layout.Content>
             <ConfirmationModal
-              cancel={<Button size="large" onClick={this.toggleConfirmSignOutModal}>Stay</Button>}
-              proceed={<Button size="large" type="danger"><Link to={ROUTE_SIGNOUT}>Sign out</Link></Button>}
+              cancel={cancelButton()}
+              proceed={confirmButton()}
               visible={confirmSignOutModalVisible}
               header="Do you really want to sign out?"
-              content="While signing out might be a good idea on other services. Here its not beneficial. Signing out
-                       clears your private key from the local storage, requiring you to install it again. If you dont want to use
-                       communikey anymore, just close the application/tab."
+              content=
+                {
+                  "While signing out might be a good idea on other services. Here its not beneficial."
+                  + "Signing out clears your private key from the local storage, requiring you to install it again. If you dont want to use"
+                  + "communikey anymore, just close the application/tab."
+                }
             />
             <PassphraseModal
               visible={this.props.passphraseNeeded}

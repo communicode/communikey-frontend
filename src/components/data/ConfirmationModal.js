@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Row, Col, Modal} from "antd";
+import "antd/lib/row/style/css";
+import "antd/lib/col/style/css";
+import "antd/lib/modal/style/index.less";
 import  "./ConfirmationModal.less";
 
 /**
@@ -9,7 +12,7 @@ import  "./ConfirmationModal.less";
  *
  *
  * @author lleifermann@communicode.de
- * @since 0.16.0
+ * @since 0.17.0
  */
 class ConfirmationModal extends React.Component {
   constructor(props) {
@@ -25,26 +28,20 @@ class ConfirmationModal extends React.Component {
         closable={false}
         className="confirmation-modal">
         <Row>
-          <Col span={24}>
-            <h1>
-              {header}
-            </h1>
-            <p>
-              {content}
-            </p>
-          </Col>
+          <h1>
+            {header}
+          </h1>
+          <p>
+            {content}
+          </p>
         </Row>
         <Row>
-          <Col>
-            <div className="footer">
-              <Row type="flex" justify="end">
-                <Col>
-                  {cancel}
-                  {proceed}
-                </Col>
-              </Row>
-            </div>
-          </Col>
+          <div className="footer">
+            <Row type="flex" justify="end">
+                {cancel}
+                {proceed}
+            </Row>
+          </div>
         </Row>
       </Modal>
     );
