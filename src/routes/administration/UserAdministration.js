@@ -92,6 +92,9 @@ class UserAdministration extends React.Component {
       .then(() => {
         this.setProcessingStatus(false);
         this.handleUserModalClose();
+      })
+      .catch(() => {
+        this.setProcessingStatus(false);
       });
   };
 
