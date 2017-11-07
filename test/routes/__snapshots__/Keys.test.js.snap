@@ -1048,19 +1048,17 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                             \\"_rootNodeID\\": 0,
                                                                             \\"_compositeType\\": 0,
                                                                             \\"_instance\\": {
-                                                                                \\"refs\\": {
-                                                                                    \\"inkBar\\": {},
-                                                                                    \\"activeTab\\": {},
-                                                                                    \\"nav\\": {},
-                                                                                    \\"navWrap\\": {},
-                                                                                    \\"container\\": {},
-                                                                                    \\"root\\": {}
-                                                                                },
                                                                                 \\"state\\": {
                                                                                     \\"next\\": false,
                                                                                     \\"prev\\": false
                                                                                 },
                                                                                 \\"offset\\": 0,
+                                                                                \\"inkBar\\": {},
+                                                                                \\"activeTab\\": {},
+                                                                                \\"nav\\": {},
+                                                                                \\"navWrap\\": {},
+                                                                                \\"container\\": {},
+                                                                                \\"root\\": {},
                                                                                 \\"__isMounted\\": true,
                                                                                 \\"lastNextPrevShown\\": false,
                                                                                 \\"resizeEvent\\": {}
@@ -1075,7 +1073,6 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                 \\"_currentElement\\": {
                                                                                     \\"type\\": \\"div\\",
                                                                                     \\"key\\": null,
-                                                                                    \\"ref\\": \\"root\\",
                                                                                     \\"props\\": {
                                                                                         \\"role\\": \\"tablist\\",
                                                                                         \\"className\\": \\"ant-tabs-bar\\",
@@ -1083,7 +1080,6 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                         \\"children\\": {
                                                                                             \\"type\\": \\"div\\",
                                                                                             \\"key\\": \\"container\\",
-                                                                                            \\"ref\\": \\"container\\",
                                                                                             \\"props\\": {
                                                                                                 \\"className\\": \\"ant-tabs-nav-container\\",
                                                                                                 \\"children\\": [
@@ -1130,7 +1126,6 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                     {
                                                                                                         \\"type\\": \\"div\\",
                                                                                                         \\"key\\": null,
-                                                                                                        \\"ref\\": \\"navWrap\\",
                                                                                                         \\"props\\": {
                                                                                                             \\"className\\": \\"ant-tabs-nav-wrap\\",
                                                                                                             \\"children\\": {
@@ -1142,14 +1137,12 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                     \\"children\\": {
                                                                                                                         \\"type\\": \\"div\\",
                                                                                                                         \\"key\\": null,
-                                                                                                                        \\"ref\\": \\"nav\\",
                                                                                                                         \\"props\\": {
                                                                                                                             \\"className\\": \\"ant-tabs-nav ant-tabs-nav-animated\\",
                                                                                                                             \\"children\\": [
                                                                                                                                 {
                                                                                                                                     \\"type\\": \\"div\\",
                                                                                                                                     \\"key\\": \\"inkBar\\",
-                                                                                                                                    \\"ref\\": \\"inkBar\\",
                                                                                                                                     \\"props\\": {
                                                                                                                                         \\"className\\": \\"ant-tabs-ink-bar ant-tabs-ink-bar-animated\\"
                                                                                                                                     },
@@ -1159,7 +1152,6 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                     {
                                                                                                                                         \\"type\\": \\"div\\",
                                                                                                                                         \\"key\\": \\"categorized\\",
-                                                                                                                                        \\"ref\\": \\"activeTab\\",
                                                                                                                                         \\"props\\": {
                                                                                                                                             \\"role\\": \\"tab\\",
                                                                                                                                             \\"aria-disabled\\": \\"false\\",
