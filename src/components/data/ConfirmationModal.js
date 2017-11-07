@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Row, Col, Modal} from "antd";
+import {Row, Modal} from "antd";
 import "antd/lib/row/style/css";
-import "antd/lib/col/style/css";
 import "antd/lib/modal/style/index.less";
 import  "./ConfirmationModal.less";
 

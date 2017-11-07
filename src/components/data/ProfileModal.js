@@ -511,6 +511,20 @@ class ProfileModal extends React.Component {
       </Modal>
     );
 
+    /**
+     * The cancel button
+     */
+    const cancelButton = () => (
+      <Button key="cancel-cancel-keypair-wizard" size="large" onClick={this.handleCancelOnCancel}>Stay</Button>
+    );
+
+    /**
+     * The proceed button
+     */
+    const proceedButton = () => (
+      <Button key="cancel-keypair-wizard" size="large" type="danger" onClick={this.handleCancelOnClose}>Leave</Button>
+    );
+
     return (
       <Modal
         {...modalProps}
@@ -530,8 +544,8 @@ class ProfileModal extends React.Component {
         <Row><Col>{footer()}</Col></Row>
         {passwordResetInnerModal()}
         <ConfirmationModal
-          cancel={<Button key="cancel-cancel-keypair-wizard" size="large" onClick={this.handleCancelOnCancel}>Stay</Button>}
-          proceed={<Button key="cancel-keypair-wizard" size="large" type="danger" onClick={this.handleCancelOnClose}>Leave</Button>}
+          cancel={cancelButton}
+          proceed={proceedButton}
           visible={cancelModalVisible}
           header="Are you sure you want to leave the setup early?"
           content="This might result in not being able to read or write passwords.
