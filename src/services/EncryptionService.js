@@ -106,6 +106,17 @@ class EncryptionService {
   };
 
   /**
+   * Checks if a possible private key is in the local storage
+   *
+   * @author dvonderbey@communicode.de
+   * @return {Boolean} - The availability of a possible private key in the local storage
+   * @since 0.17.0
+   */
+  getPrivateKey = () => {
+    return localStorage.getItem("privateKey");
+  }
+
+  /**
    * Checks if the set passphrase is valid.
    *
    * @author dvonderbey@communicode.de
@@ -114,7 +125,7 @@ class EncryptionService {
    */
   checkPassphrase = () => {
     return new Promise((resolve, reject) => {
-      let encryptedPem = localStorage.getItem("privateKey");
+      let encryptedPem = this.getPrivateKey();
       this.encryptedPrivateKeyPem = encryptedPem;
       if (encryptedPem) {
         try {
@@ -154,7 +165,7 @@ class EncryptionService {
   loadPrivateKey = (privateKey) => {
     return new Promise((resolve, reject) => {
       privateKey && localStorage.setItem("privateKey", privateKey);
-      let encryptedPem = localStorage.getItem("privateKey");
+      let encryptedPem = this.getPrivateKey();
       if (encryptedPem) {
         this.checkForPassphrase()
           .then(() => {
@@ -214,7 +225,7 @@ class EncryptionService {
    * @since 0.15.0
    */
   checkKeyStatus = () => {
-    if(_.isEmpty(localStorage.getItem("privateKey"))) {
+    if(_.isEmpty(this.getPrivateKey())) {
       if(_.isEmpty(authStore.publicKey)) {
         notificationService.info("No key set", "You haven't setup a key for your account yet. Please use the wizard to install one.", 10);
         this.wizardEnabled = true;
@@ -276,8 +287,8 @@ class EncryptionService {
    * @author dvonderbey@communicode.de
    */
   downloadPrivateKey = () => {
-    if (localStorage.getItem("privateKey")) {
-      fileDownload(localStorage.getItem("privateKey"), "privateKey-" + authStore.login + ".pem");
+    if (this.getPrivateKey()) {
+      fileDownload(this.getPrivateKey(), "privateKey-" + authStore.login + ".pem");
     }
   };
 
