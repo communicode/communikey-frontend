@@ -279,7 +279,7 @@ class BaseLayout extends React.Component {
       <Layout.Header className="cckey-base-layout-header">
         <Row type="flex" justify="end" align="bottom">
           {
-            this.props.encryptionJobStore.jobNotice &&
+            this.props.encryptionJobStore.jobNotice && encryptionService.getPrivateKey() &&
             <Button
               type="dashed"
               size="large"
