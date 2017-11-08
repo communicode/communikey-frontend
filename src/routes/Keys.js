@@ -140,30 +140,41 @@ class Keys extends React.Component {
    *
    * @param {object} payload - The key payload
    * @callback handleCategoryModalSave
+   * @return {Promise} - A promise
    */
   handleCategoryModalSave = (payload) => {
-    this.setProcessingStatus(true);
-    const {category, categoryModalCreationMode} = this.state;
-    const updatedCategory = update(category, {$merge: payload});
-    this.setState({category: updatedCategory});
-    categoryModalCreationMode
-      ?
-      this.props.categoryStore.create(updatedCategory.name, category.parentId && category.parentId)
-        .then((createdCategory) => {
-          this.setState({category: createdCategory});
-          this.setProcessingStatus(false);
-          this.handleCategoryModalClose();
-        })
-        .catch(() => this.setProcessingStatus(false))
-      :
-      this.props.categoryStore.update(updatedCategory)
-        .then((updatedCategory) => {
-          this.setState({category: updatedCategory});
-          this.setProcessingStatus(false);
-          this.handleCategoryModalClose();
-          this.resetSelectedCategoryObject();
-        })
-        .catch(() => this.setProcessingStatus(false));
+    return new Promise((resolve, reject) => {
+      this.setProcessingStatus(true);
+      const {category, categoryModalCreationMode} = this.state;
+      const updatedCategory = update(category, {$merge: payload});
+      this.setState({category: updatedCategory});
+      categoryModalCreationMode
+        ?
+        this.props.categoryStore.create(updatedCategory.name, category.parentId && category.parentId)
+          .then((createdCategory) => {
+            this.setState({category: createdCategory});
+            this.setProcessingStatus(false);
+            this.handleCategoryModalClose();
+            resolve();
+          })
+          .catch(() => {
+            this.setProcessingStatus(false);
+            reject();
+          })
+        :
+        this.props.categoryStore.update(updatedCategory)
+          .then((updatedCategory) => {
+            this.setState({category: updatedCategory});
+            this.setProcessingStatus(false);
+            this.handleCategoryModalClose();
+            this.resetSelectedCategoryObject();
+            resolve();
+          })
+          .catch(() => {
+            this.setProcessingStatus(false);
+            reject();
+          });
+    });
   };
 
   /**
@@ -329,41 +340,48 @@ class Keys extends React.Component {
    *
    * @param {object} payload - The key payload
    * @callback handleKeyModalSave
+   * @returns {Promise} A promise
    */
   handleKeyModalSave = (payload) => {
-    this.setProcessingStatus(true);
-    const {key, keyModalCreationMode} = this.state;
-    const updatedKey = update(key, {$merge: payload});
-    this.setState({key: updatedKey});
-    if(keyModalCreationMode) {
-      return this.props.keyStore.create(updatedKey.categoryId,
-                                        updatedKey.name,
-                                        payload.password,
-                                        updatedKey.login,
-                                        updatedKey.notes)
-        .then(() => {
-          this.setProcessingStatus(false);
-          this.handleKeyModalClose();
-        })
-        .catch(() => {
-          this.setProcessingStatus(false);
-          notificationService.error("Error creating key", "Your private key has to be decrypted to create this key.", 5);
-        });
-    } else {
-      return this.props.keyStore.update(updatedKey.id,
-                                        updatedKey.name,
-                                        payload.password,
-                                        updatedKey.login,
-                                        updatedKey.notes)
-        .then(() => {
-          this.setProcessingStatus(false);
-          this.handleKeyModalClose();
-        })
-        .catch(() => {
-          this.setProcessingStatus(false);
-          notificationService.error("Error updating key", "Your private key has to be decrypted to update this key.", 5);
-        });
-    }
+    return new Promise((resolve, reject) => {
+      this.setProcessingStatus(true);
+      const {key, keyModalCreationMode} = this.state;
+      const updatedKey = update(key, {$merge: payload});
+      this.setState({key: updatedKey});
+      if(keyModalCreationMode) {
+        return this.props.keyStore.create(updatedKey.categoryId,
+                                          updatedKey.name,
+                                          payload.password,
+                                          updatedKey.login,
+                                          updatedKey.notes)
+          .then(() => {
+            this.setProcessingStatus(false);
+            this.handleKeyModalClose();
+            resolve();
+          })
+          .catch(() => {
+            this.setProcessingStatus(false);
+            notificationService.error("Error creating key", "Your private key has to be decrypted to create this key.", 5);
+            reject();
+          });
+      } else {
+        return this.props.keyStore.update(updatedKey.id,
+                                          updatedKey.name,
+                                          payload.password,
+                                          updatedKey.login,
+                                          updatedKey.notes)
+          .then(() => {
+            this.setProcessingStatus(false);
+            this.handleKeyModalClose();
+            resolve();
+          })
+          .catch(() => {
+            this.setProcessingStatus(false);
+            notificationService.error("Error updating key", "Your private key has to be decrypted to update this key.", 5);
+            reject();
+          });
+      }
+    });
   };
 
   /**

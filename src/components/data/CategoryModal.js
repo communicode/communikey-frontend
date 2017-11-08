@@ -202,17 +202,28 @@ class CategoryModal extends React.Component {
   }
 
   /**
+   * Resets all fields of the modal.
+   *
+   * @since 0.17.0
+   */
+  resetFields = () => {
+    this.setState({
+      selectedCategoryTreeNode: ""
+    });
+    this.form.resetFields();
+  };
+
+  /**
    * Handles the action button click event.
    *
    * @since 0.10.0
    */
   handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
     if (!errors) {
-      this.props.onSave(payload);
-      this.form.resetFields();
-      this.setState({
-        selectedCategoryTreeNode: ""
-      });
+      this.props.onSave(payload)
+        .then(() => {
+          this.resetFields();
+        });
     }
   });
 
@@ -222,11 +233,8 @@ class CategoryModal extends React.Component {
    * @since 0.10.0
    */
   handleOnClose = () => {
-    this.form.resetFields();
     this.props.onClose();
-    this.setState({
-      selectedCategoryTreeNode: ""
-    });
+    this.resetFields();
   };
 
   /**
