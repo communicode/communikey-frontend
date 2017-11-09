@@ -166,6 +166,11 @@ class Keys extends React.Component {
         .catch(() => this.setProcessingStatus(false));
   };
 
+  /**
+   * Handles the category move to root event.
+   *
+   * @callback handleCategoryMoveToRoot
+   */
   handleCategoryMoveToRoot = () => {
     this.setProcessingStatus(true);
     const {category} = this.state;

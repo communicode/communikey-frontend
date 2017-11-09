@@ -186,7 +186,7 @@ export const CATEGORY_KEYS = _.template(CATEGORIES + CATEGORY_ID + "/keys");
 export const CATEGORY_RESPONSIBLE = _.template(CATEGORIES + CATEGORY_ID + "/responsible");
 
 /**
- * The endpoint for the responsible key category user as compiled template.
+ * The endpoint for moving categories
  *
  * @constant
  * @default

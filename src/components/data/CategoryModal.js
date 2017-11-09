@@ -328,7 +328,7 @@ class CategoryModal extends React.Component {
               }
               {
                 !creationMode && administrationMode &&
-                <Tooltip placement="topLeft" title="Moves the current category to root level">
+                <Tooltip placement="topLeft" title="Moves the current category to root level in the tree hierarchy">
                   <Button
                     disabled={locked}
                     type="secondary"
