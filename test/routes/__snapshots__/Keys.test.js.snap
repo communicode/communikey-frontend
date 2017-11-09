@@ -5509,7 +5509,8 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                         \\"loading\\": true
                                                                     },
                                                                     \\"state\\": {
-                                                                        \\"activeTabViewKey\\": \\"general\\"
+                                                                        \\"activeTabViewKey\\": \\"general\\",
+                                                                        \\"selectedCategoryTreeNode\\": \\"\\"
                                                                     },
                                                                     \\"_reactInternalInstance\\": {
                                                                         \\"_currentElement\\": {
@@ -5955,7 +5956,8 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                     \\"state\\": {
                                                                         \\"categoryTreeSelectModalVisible\\": false,
                                                                         \\"keyPasswordVisible\\": false,
-                                                                        \\"decryptedPassword\\": \\"Decrypting password...\\"
+                                                                        \\"decryptedPassword\\": \\"Decrypting password...\\",
+                                                                        \\"selectedCategoryTreeNode\\": \\"\\"
                                                                     },
                                                                     \\"_reactInternalInstance\\": {
                                                                         \\"_currentElement\\": {

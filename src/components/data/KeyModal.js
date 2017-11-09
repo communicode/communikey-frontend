@@ -258,7 +258,12 @@ class KeyModal extends React.Component {
       /**
        * Holds the current decrypted password if requested
        */
-      decryptedPassword: "Decrypting password..."
+      decryptedPassword: "Decrypting password...",
+
+      /**
+       * The selected node of the category tree select
+       */
+      selectedCategoryTreeNode: ""
     };
   }
 
@@ -303,13 +308,29 @@ class KeyModal extends React.Component {
   });
 
   /**
+   * Resets all fields of the modal.
+   *
+   * @since 0.17.0
+   */
+  resetFields = () => {
+    this.setState({
+      decryptedPassword: "Decrypting password...",
+      selectedCategoryTreeNode: ""
+    });
+    this.form.resetFields();
+  };
+
+  /**
    * Handles the action button click event.
    *
    * @since 0.10.0
    */
   handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
     if (!errors && this.props.administrationMode) {
-      this.props.onSave(payload);
+      this.props.onSave(payload)
+        .then(() => {
+          this.resetFields();
+        });
     }
   });
 
@@ -319,10 +340,7 @@ class KeyModal extends React.Component {
    * @since 0.10.0
    */
   handleOnClose = () => {
-    this.form.resetFields();
-    this.setState({
-      decryptedPassword: "Decrypting password..."
-    });
+    this.resetFields();
     this.props.onClose();
   };
 
@@ -411,6 +429,21 @@ class KeyModal extends React.Component {
    */
   saveManagedFormRef = (form) => this.form = form;
 
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param label - Data from the change event
+   * @param selectValue - Data from the change event
+   * @param selectedTreeNode - Data from the change event
+   * @since 0.17.0
+   */
+  onCategoryTreeSelectChange = (label, selectValue, selectedTreeNode) => {
+    this.setState({
+      selectedCategoryTreeNode: selectedTreeNode.triggerNode.props.category.name
+    });
+    this.props.onCategoryTreeSelectValueChange(label, selectValue, selectedTreeNode);
+  };
+
   render() {
     const {
       administrationMode,
@@ -419,14 +452,13 @@ class KeyModal extends React.Component {
       creationMode,
       loading,
       locked,
-      onCategoryTreeSelectValueChange,
       onClose,
       onDelete,
       onSave,
       ...modalProps
     } = this.props;
     const {categoryTreeSelectModalSelectedCategory, categoryTreeSelectModalVisible,
-           keyPasswordVisible, decryptedPassword} = this.state;
+           keyPasswordVisible, decryptedPassword, selectedCategoryTreeNode} = this.state;
 
     const defaultKeyAvatar = () => <img src={appConfig.assets.logoTypographyGreen} className="key-logo"/>;
 
@@ -435,7 +467,8 @@ class KeyModal extends React.Component {
         <TreeSelect
           placeholder="Category"
           showSearch={true}
-          onChange={onCategoryTreeSelectValueChange}
+          onChange={this.onCategoryTreeSelectChange}
+          value={selectedCategoryTreeNode}
           allowClear={true}
           size="large"
         >

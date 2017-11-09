@@ -189,9 +189,29 @@ class CategoryModal extends React.Component {
        * @type {string}
        * @since 0.10.0
        */
-      activeTabViewKey: TAB_PANE_REACT_KEY_GENERAL
+      activeTabViewKey: TAB_PANE_REACT_KEY_GENERAL,
+
+      /**
+       * The selected node of the category tree select
+       *
+       * @type {string}
+       * @since 0.17.0
+       */
+      selectedCategoryTreeNode: ""
     };
   }
+
+  /**
+   * Resets all fields of the modal.
+   *
+   * @since 0.17.0
+   */
+  resetFields = () => {
+    this.setState({
+      selectedCategoryTreeNode: ""
+    });
+    this.form.resetFields();
+  };
 
   /**
    * Handles the action button click event.
@@ -200,8 +220,10 @@ class CategoryModal extends React.Component {
    */
   handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
     if (!errors) {
-      this.props.onSave(payload);
-      this.form.resetFields();
+      this.props.onSave(payload)
+        .then(() => {
+          this.resetFields();
+        });
     }
   });
 
@@ -211,8 +233,8 @@ class CategoryModal extends React.Component {
    * @since 0.10.0
    */
   handleOnClose = () => {
-    this.form.resetFields();
     this.props.onClose();
+    this.resetFields();
   };
 
   /**
@@ -262,6 +284,21 @@ class CategoryModal extends React.Component {
     return <Tree.TreeNode key={category.data.id} value={category.data.name} category={category.data} title={category.data.name}/>;
   });
 
+  /**
+   * Saves the reference to the managed form component.
+   *
+   * @param label - Data from the change event
+   * @param selectValue - Data from the change event
+   * @param selectedTreeNode - Data from the change event
+   * @since 0.17.0
+   */
+  onCategoryTreeSelectChange = (label, selectValue, selectedTreeNode) => {
+    this.setState({
+      selectedCategoryTreeNode: selectedTreeNode.triggerNode.props.category.name
+    });
+    this.props.onCategoryTreeSelectValueChange(label, selectValue, selectedTreeNode);
+  };
+
   render() {
     const {
       administrationMode,
@@ -274,11 +311,10 @@ class CategoryModal extends React.Component {
       onSave,
       toggleLockStatus,
       userGroups,
-      onCategoryTreeSelectValueChange,
       categoryStore,
       ...modalProps
     } = this.props;
-    const {activeTabViewKey} = this.state;
+    const {activeTabViewKey, selectedCategoryTreeNode} = this.state;
 
     /**
      * The configuration object for the user group table of the user groups tab.
@@ -347,7 +383,8 @@ class CategoryModal extends React.Component {
         <TreeSelect
           placeholder="Parent category"
           showSearch={true}
-          onChange={onCategoryTreeSelectValueChange}
+          onChange={this.onCategoryTreeSelectChange}
+          value={selectedCategoryTreeNode}
           allowClear={true}
           size="large"
         >
