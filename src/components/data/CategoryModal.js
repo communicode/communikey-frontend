@@ -309,6 +309,7 @@ class CategoryModal extends React.Component {
       onClose,
       onDelete,
       onSave,
+      onMoveToRoot,
       toggleLockStatus,
       userGroups,
       categoryStore,
@@ -360,6 +361,19 @@ class CategoryModal extends React.Component {
                     <Icon type="down"/>
                   </Button>
                 </Dropdown>
+              }
+              {
+                !creationMode && administrationMode &&
+                <Tooltip placement="topLeft" title="Moves the current category to root level in the tree hierarchy">
+                  <Button
+                    disabled={locked}
+                    type="secondary"
+                    size="large"
+                    onClick={this.props.onMoveToRoot}
+                  >
+                    Move to<Icon type="home"/>
+                  </Button>
+                </Tooltip>
               }
             </div>
           </Col>
@@ -527,6 +541,14 @@ CategoryModal.propTypes = {
    * @type {function}
    */
   onSave: PropTypes.func,
+
+
+  /**
+   * Callback function to handle the save event.
+   *
+   * @type {function}
+   */
+  onMoveToRoot: PropTypes.func,
 
   /**
    * Callback function to handle the event to add a user group to the category.

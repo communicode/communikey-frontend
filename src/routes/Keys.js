@@ -180,6 +180,24 @@ class Keys extends React.Component {
   };
 
   /**
+   * Handles the category move to root event.
+   *
+   * @callback handleCategoryMoveToRoot
+   */
+  handleCategoryMoveToRoot = () => {
+    this.setProcessingStatus(true);
+    const {category} = this.state;
+    this.props.categoryStore.move(null, category.id)
+      .then((updatedCategory) => {
+        this.setState({category: updatedCategory});
+        this.setProcessingStatus(false);
+        this.handleCategoryModalClose();
+        this.resetSelectedCategoryObject();
+      })
+    .catch(() => this.setProcessingStatus(false));
+  };
+
+  /**
    * Handles the category tree drop event.
    *
    * @callback handleCategoryTreeOnDrop
@@ -188,7 +206,7 @@ class Keys extends React.Component {
   handleCategoryTreeOnDrop = (event) => {
     if (event.dragNode && !event.dropToGap) {
       this.setState({processing: true});
-      this.props.categoryStore.addChild(event.node.props.category.id, event.dragNode.props.category.id)
+      this.props.categoryStore.move(event.node.props.category.id, event.dragNode.props.category.id)
         .then(() => this.setState({processing: false}))
         .catch(() => this.setState({processing: false}));
     }
@@ -648,6 +666,7 @@ class Keys extends React.Component {
         onClose={this.handleCategoryModalClose}
         onDelete={this.handleCategoryModalDelete}
         onSave={this.handleCategoryModalSave}
+        onMoveToRoot={this.handleCategoryMoveToRoot}
         onUserGroupAdd={this.handleCategoryModalOnUserGroupAdd}
         onUserGroupRemove={this.handleCategoryModalOnUserGroupRemove}
         toggleLockStatus={this.toggleCategoryModalLockStatus}
