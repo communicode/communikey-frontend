@@ -6,7 +6,7 @@ import {keyStore,
   userStore,
   liveEntityUpdateService
 } from "./../Communikey";
-import {CATEGORIES, CATEGORY, CATEGORY_CHILDREN, CATEGORY_GROUPS, CATEGORY_KEYS} from "./../services/apiRequestMappings";
+import {CATEGORIES, CATEGORY, CATEGORY_GROUPS, CATEGORY_KEYS, CATEGORY_MOVE} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -25,25 +25,6 @@ class CategoryStore {
   constructor() {
     this.categories = [];
   }
-
-  /**
-   * Adds a child category to the parent category with the specified ID.
-   * This is a API- and store synchronization action!
-   *
-   * @param {number} parentId - The ID of the parent category to add the child category to
-   * @param {number} childId - The ID of the child category to be added to the parent category
-   * @returns {Promise} - A promise
-   */
-  @action("CategoryStore_addChild")
-  addChild = (parentId, childId) => {
-    return apiService.get(CATEGORY_CHILDREN({categoryId: parentId}), {
-      params: {
-        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
-        childKeyCategoryId: childId
-      }
-    })
-      .then(action("CategoryStore_addChild_synchronization", response => this.fetchAll().then(() => response.data)));
-  };
 
   /**
    * Adds a key to the category with the specified ID.
@@ -219,6 +200,27 @@ class CategoryStore {
       }
     })
       .then(action("CategoryStore_update_synchronization", () => this.fetchOne(category.id)));
+  };
+
+  /**
+   * Moves a category.
+   * This is a API- and store synchronization action!
+   *
+   * @param {number} categoryId - The categoryId to move
+   * @param {number} parentId - The target parentId which the categoryId should be moved to
+   * @returns {Promise} - A promise
+   * @since 0.17.0
+   */
+  @action("CategoryStore_move")
+  move = (parentId, categoryId) => {
+    return apiService.post(CATEGORY_MOVE({categoryId: categoryId}), {
+      parent: parentId
+    }, {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+      }
+    })
+      .then(action("CategoryStore_move_synchronization", () => this.fetchOne(categoryId)));
   };
 
   /**

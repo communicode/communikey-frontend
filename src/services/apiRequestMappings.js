@@ -154,15 +154,6 @@ export const USER_GROUP = _.template(USER_GROUPS + USER_GROUP_ID);
  */
 export const CATEGORY = _.template(CATEGORIES + CATEGORY_ID);
 
-/**
- * The endpoint for key category children as compiled template.
- *
- * @constant
- * @default
- * @type {function}
- * @since 0.8.0
- */
-export const CATEGORY_CHILDREN = _.template(CATEGORIES + CATEGORY_ID + "/children");
 
 /**
  * The endpoint for key category user groups as compiled template.
@@ -193,6 +184,16 @@ export const CATEGORY_KEYS = _.template(CATEGORIES + CATEGORY_ID + "/keys");
  * @since 0.8.0
  */
 export const CATEGORY_RESPONSIBLE = _.template(CATEGORIES + CATEGORY_ID + "/responsible");
+
+/**
+ * The endpoint for the responsible key category user as compiled template.
+ *
+ * @constant
+ * @default
+ * @type {function}
+ * @since 0.8.0
+ */
+export const CATEGORY_MOVE = _.template(CATEGORIES + CATEGORY_ID + "/move");
 
 /**
  * The endpoint for a key as compiled template.
