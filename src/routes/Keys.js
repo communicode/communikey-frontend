@@ -15,11 +15,13 @@ import {AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_GROUP_STORE} from "./../stor
 import {
   TAB_PANE_REACT_KEY_CATEGORIZED,
   TAB_PANE_REACT_KEY_POOL,
-  LINK_CATEGORY_BREADCRUMB
+  LINK_CATEGORY_BREADCRUMB,
+  LINK_CATEGORY_SHARE
 } from "../config/constants";
 import {ROUTE_KEYS} from "../routes/routeMappings";
 import {Link} from "react-router-dom";
 import {screenMD} from "./../config/theme/sizes";
+import CopyToClipboard from "react-copy-to-clipboard";
 import "antd/lib/button/style/index.less";
 import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
@@ -490,6 +492,13 @@ class Keys extends React.Component {
           </Button>
         </Tooltip>
         }
+        <Tooltip title="Copy share link">
+          <CopyToClipboard text={LINK_CATEGORY_SHARE + category.id}>
+            <Button shape="circle">
+                <Icon type="copy"/>
+            </Button>
+          </CopyToClipboard>
+        </Tooltip>
       </div>
     );
 
