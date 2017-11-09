@@ -5758,7 +5758,8 @@ exports[`<Keys> should render correctly with sample data 1`] = `
                                                                                                                                                         \\"mouseLeaveDelay\\": 0.1
                                                                                                                                                     },
                                                                                                                                                     \\"_store\\": {}
-                                                                                                                                                }
+                                                                                                                                                },
+                                                                                                                                                false
                                                                                                                                             ]
                                                                                                                                         },
                                                                                                                                         \\"_store\\": {}
