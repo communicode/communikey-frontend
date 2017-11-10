@@ -321,7 +321,7 @@ class BaseLayout extends React.Component {
     );
 
     const confirmButton = () => (
-      <Button size="large" type="danger"><Link to={ROUTE_SIGNOUT}>Sign out</Link></Button>
+      <Link to={ROUTE_SIGNOUT}><Button size="large" type="danger">Sign out</Button></Link>
     );
 
     const renderBaseLayout = () => (
