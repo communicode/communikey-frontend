@@ -363,13 +363,13 @@ class CategoryModal extends React.Component {
                 </Dropdown>
               }
               {
-                !creationMode && administrationMode &&
+                !creationMode && administrationMode && category.parent &&
                 <Tooltip placement="topLeft" title="Moves the current category to root level in the tree hierarchy">
                   <Button
                     disabled={locked}
                     type="secondary"
                     size="large"
-                    onClick={this.props.onMoveToRoot}
+                    onClick={onMoveToRoot}
                   >
                     Move to<Icon type="home"/>
                   </Button>
