@@ -40,6 +40,14 @@ const ManagedForm = Form.create()(
            form, locked, keyPasswordVisible, decryptedPassword} = props;
     const {getFieldDecorator} = form;
 
+    const checkPassword = (rule, value, callback) => {
+      if (value && value !== form.getFieldValue("password")) {
+        callback("The passwords must match!");
+      } else {
+        callback();
+      }
+    };
+
     return (
       <Form hideRequiredMark={true}>
         <Form.Item
@@ -75,12 +83,15 @@ const ManagedForm = Form.create()(
         </Form.Item>
         <Form.Item
           {...managedFormItemLayout}
-          validateStatus={form.getFieldError("password") ? "error" : ""}
           colon={false}
         >
           {getFieldDecorator("password", {
             initialValue: creationMode ? "" : decryptedPassword,
-            rules: [{required: true, message: "Password is required"}]
+            rules: [{
+              required: true, message: "Please input your password!"
+            }, {
+              validator: checkPassword
+            }]
           })(
             <Input
               addonBefore="Password"
@@ -90,6 +101,28 @@ const ManagedForm = Form.create()(
             />
           )}
         </Form.Item>
+        {creationMode && administrationMode &&
+        <Form.Item
+          {...managedFormItemLayout}
+          colon={false}
+        >
+          {getFieldDecorator("passwordConfirm", {
+            initialValue: creationMode ? "" : decryptedPassword,
+            rules: [{
+              required: true, message: "Please retype your password!"
+            }, {
+              validator: checkPassword
+            }]
+          })(
+            <Input
+              addonBefore="Retype password"
+              type={keyPasswordVisible ? "text" : "password"}
+              readOnly={!administrationMode ? true : creationMode ? false : locked}
+              suffix={creationMode ? null : copyPasswordToClipboardIcon(cckeyKey.id)}
+            />
+          )}
+        </Form.Item>
+        }
         <Form.Item
           {...managedFormItemLayout}
           validateStatus={form.getFieldError("notes") ? "error" : ""}
