@@ -38,8 +38,20 @@ import "./../BaseLayout.less";
  * The default key table column configuration.
  */
 const KEY_TABLE_DEFAULT_COLUMNS = [
-  {title: "Name", dataIndex: "name", key: "name", fixed: true, width: 400},
-  {title: "Login", dataIndex: "login", key: "login"}
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+    fixed: true,
+    width: 400,
+    sorter: (a, b) => {return a.name.localeCompare(b.name);}
+  },
+  {
+    title: "Login",
+    dataIndex: "login",
+    key: "login",
+    sorter: (a, b) => {return a.login.localeCompare(b.login);}
+  }
 ];
 
 /**
