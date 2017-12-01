@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import {arrayToTree} from "performant-array-to-tree";
 import PropTypes from "prop-types";
-import {keyStore, notificationService} from "../../Communikey";
+import {keyStore, notificationService, categoryStore} from "../../Communikey";
 import {inject, PropTypes as MobXPropTypes} from "mobx-react";
 import {CATEGORY_STORE} from "../../stores/storeConstants";
 import {LINK_CATEGORY_BREADCRUMB, LINK_KEY_SHARE} from "../../config/constants";
@@ -111,6 +111,16 @@ const ManagedForm = Form.create()(
         <div>
           <Form.Item {...managedFormItemLayout}>
             <Input
+              name="Category"
+              prefix={<Icon type="folder"/>}
+              addonBefore="Category"
+              value={cckeyKey.category ? getCategoryName(cckeyKey.category) : "No category assigned"}
+              disabled={!cckeyKey.category}
+              readOnly={true}
+            />
+          </Form.Item>
+          <Form.Item {...managedFormItemLayout}>
+            <Input
               name="id"
               prefix={<Icon type="lock"/>}
               addonBefore="ID"
@@ -206,6 +216,14 @@ const copyToClipboardIcon = (value) => (
     </Tooltip>
   </CopyToClipboard>
 );
+
+/**
+ * @param categoryId - The categoryId
+ * @returns {String} - The name of the category
+ */
+const getCategoryName = (categoryId) => {
+  return categoryStore._findById(categoryId).name;
+};
 
 /**
  * Layout configurations for all managed form items.
