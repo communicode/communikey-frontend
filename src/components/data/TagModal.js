@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Button, Col, Form, Icon, Input, Modal, Row, Tooltip} from "antd";
+import { SliderPicker } from "react-color";
 import "antd/lib/button/style/index.less";
 import "antd/lib/checkbox/style/index.less";
 import "antd/lib/col/style/css";
@@ -18,7 +19,7 @@ import "./TagModal.less";
  */
 const ManagedForm = Form.create()(
   (props) => {
-    const {administrationMode, tag, creationMode, form} = props;
+    const {tag, creationMode, form, colorPicker} = props;
     const {getFieldDecorator} = form;
 
     return (
@@ -34,26 +35,11 @@ const ManagedForm = Form.create()(
           })(
             <Input
               addonBefore="Name"
-              readOnly={!administrationMode}
             />
           )}
         </Form.Item>
-        <Form.Item
-          {...managedFormItemLayout}
-          validateStatus={form.getFieldError("color") ? "error" : ""}
-          colon={false}
-        >
-          {getFieldDecorator("color", {
-            initialValue: tag.name,
-            rules: [{required: true, message: "Color is required"}]
-          })(
-            <Input
-              addonBefore="Color"
-              readOnly={!administrationMode}
-            />
-          )}
-        </Form.Item>
-        {!creationMode && administrationMode &&
+        {colorPicker()}
+        {!creationMode &&
         <div>
           <Form.Item {...managedFormItemLayout}>
             <Input
@@ -136,6 +122,7 @@ class TagModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      color: props.tag.color ? props.tag.color : "#2ad127"
     };
   }
 
@@ -144,6 +131,7 @@ class TagModal extends React.Component {
    */
   handleActionButtonOnClick = () => this.form.validateFields((errors, payload) => {
     if (!errors) {
+      payload.color = this.state.color;
       this.props.onSave(payload);
       this.form.resetFields();
     }
@@ -164,9 +152,19 @@ class TagModal extends React.Component {
    */
   saveManagedFormRef = (form) => this.form = form;
 
+  /**
+   * Gets the color from the color picker
+   *
+   * @param color - The color picked by the user
+   */
+  handleChangeComplete = (color) => {
+    this.setState({
+      color: color.hex
+    });
+  };
+
   render() {
     const {
-      administrationMode,
       creationMode,
       loading,
       locked,
@@ -189,7 +187,7 @@ class TagModal extends React.Component {
         <Row type="flex" align="middle">
           <Col span={8}>
             <div className="operations">
-              {!creationMode && administrationMode &&
+              {!creationMode &&
               <Button.Group>
                 <Button disabled={locked} key="delete" type="danger" ghost={true} size="large" icon="delete" onClick={onDelete}/>
               </Button.Group>
@@ -208,6 +206,15 @@ class TagModal extends React.Component {
       </div>
     );
 
+    const colorPicker = () => (
+      <Form.Item {...managedFormItemLayout} colon={false}>
+        <SliderPicker
+          color={this.state.color}
+          onChangeComplete={this.handleChangeComplete}
+        />
+      </Form.Item>
+    );
+
     return (
       <Modal
         id="cckey-components-data-views-tag-modal"
@@ -222,12 +229,12 @@ class TagModal extends React.Component {
             <ManagedForm
               ref={this.saveManagedFormRef}
               tag={tag}
-              administrationMode={administrationMode}
               creationMode={creationMode}
+              colorPicker={colorPicker}
             />
           </Col>
         </Row>
-        {!creationMode && administrationMode && <Row span={4}>{lockStatusButton()}</Row>}
+        {!creationMode && <Row span={4}>{lockStatusButton()}</Row>}
         <Row><Col>{footer()}</Col></Row>
       </Modal>
     );
@@ -235,11 +242,6 @@ class TagModal extends React.Component {
 }
 
 TagModal.propTypes = {
-  /**
-   * Indicates if the user group modal is in administration mode.
-   */
-  administrationMode: PropTypes.bool,
-
   /**
    * Indicates if the user group modal is in creation mode.
    *
@@ -298,7 +300,6 @@ TagModal.propTypes = {
 };
 
 TagModal.defaultProps = {
-  administrationMode: false,
   creationMode: false,
   loading: false
 };

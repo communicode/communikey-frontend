@@ -1,7 +1,7 @@
 import React from "react";
 import update from "immutability-helper";
 import _ from "lodash";
-import {Button, Col, Icon, Row, Table} from "antd";
+import {Button, Col, Icon, Row, Table, Tag} from "antd";
 import {inject, observer, PropTypes as MobXPropTypes} from "mobx-react";
 import {toJS} from "mobx";
 import TagModal from "./../../components/data/TagModal";
@@ -13,15 +13,25 @@ import "antd/lib/col/style/css";
 import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "antd/lib/table/style/index.less";
+import "antd/lib/tag/style/index.less";
 import "./TagAdministration.less";
 import "./../../BaseLayout.less";
+
+/**
+ * A tag component to show the color in the table
+ *
+ * @param {object} tag - The tag containing the color
+ * @constructor
+ */
+export const TAG_TABLE_COLOR_TAG = (tag) =>
+  <Tag color={tag.color}>{tag.color}</Tag>;
 
 /**
  * The default tag table column configuration.
  */
 export const TAG_TABLE_DEFAULT_COLUMNS = [
   {title: "Name", dataIndex: "name", key: "name", fixed: true},
-  {title: "Color", dataIndex: "color", key: "color"}
+  {title: "Color", render: TAG_TABLE_COLOR_TAG}
 ];
 
 /**
@@ -165,7 +175,7 @@ class TagAdministration extends React.Component {
 
   render() {
     const {processing, tag, tagModalCreationMode, tagModalLocked, tagModalVisible} = this.state;
-    const {authStore, tagStore} = this.props;
+    const {tagStore} = this.props;
 
     const mainDataView = () => (
       <div>
@@ -198,7 +208,6 @@ class TagAdministration extends React.Component {
         visible={tagModalVisible}
         key={tag.id}
         tag={tag}
-        administrationMode={authStore.privileged}
         locked={tagModalLocked}
         creationMode={tagModalCreationMode}
         loading={processing}
