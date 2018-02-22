@@ -63,6 +63,14 @@ export const ENCRYPTION_JOB_STORE = "encryptionJobStore";
 export const EVENT_STORE = "eventStore";
 
 /**
+ * The instance name of the global {@link TagStore} injected through the MobX React {@linkcode Provider}.
+ *
+ * @type {string}
+ * @since 0.18.0
+ */
+export const TAG_STORE = "tagStore";
+
+/**
  * The instance name of the global {@link InvocationHelper} injected through the MobX React {@linkcode Provider}.
  *
  * @type {string}

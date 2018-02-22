@@ -21,6 +21,7 @@ import SignIn from "./routes/SignIn";
 import SignOut from "./routes/SignOut";
 import UserAdministration from "./routes/administration/UserAdministration";
 import UserGroupAdministration from "./routes/administration/UserGroupAdministration";
+import TagAdministration from "./routes/administration/TagAdministration";
 import Dashboard from "./routes/Dashboard";
 import Keys from "./routes/Keys";
 import AuthorityStore from "./stores/AuthorityStore";
@@ -29,6 +30,7 @@ import CategoryStore from "./stores/CategoryStore";
 import KeyStore from "./stores/KeyStore";
 import UserGroupStore from "./stores/UserGroupStore";
 import UserStore from "./stores/UserStore";
+import TagStore from "./stores/TagStore";
 import EncryptionJobStore from "./stores/EncryptionJobStore";
 import EventStore from "./stores/EventStore";
 import InvocationHelper from "./stores/InvocationHelper";
@@ -37,6 +39,7 @@ import motionConfig from "./config/motion";
 import {
   ROUTE_ADMINISTRATION_USERS,
   ROUTE_ADMINISTRATION_USER_GROUPS,
+  ROUTE_ADMINISTRATION_TAGS,
   ROUTE_DASHBOARD,
   ROUTE_KEYS,
   ROUTE_LINKED_KEY,
@@ -124,6 +127,13 @@ export const eventStore = new EventStore();
  */
 export const invocationHelper = new InvocationHelper();
 
+/**
+ * The tag store instance.
+ *
+ * @type {TagStore}
+ * @since 0.18.0
+ */
+export const tagStore = new TagStore();
 
 /**
  * The wrapper for all store instances to be injected via a MobX {@linkplain Provider} components.
@@ -131,7 +141,7 @@ export const invocationHelper = new InvocationHelper();
  * @type {Object.<{AuthorityStore}, {AuthStore}, {CategoryStore}, {KeyStore},
  *       {UserGroupStore}, {UserStore}, {EncryptionJobStore}, {EventStore}, {InvocationHelper}>}
  */
-const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore, encryptionJobStore, eventStore, invocationHelper};
+const stores = {authorityStore, authStore, categoryStore, keyStore, userGroupStore, userStore, encryptionJobStore, eventStore, invocationHelper, tagStore};
 
 /**
  * The notification service instance.
@@ -270,6 +280,12 @@ class Communikey extends React.Component {
                         <AuthenticatedPrivilegedRoute
                           path={ROUTE_ADMINISTRATION_USER_GROUPS}
                           component={UserGroupAdministration}
+                          authorized={stores.authStore.isAuthorized}
+                          privileged={stores.authStore.privileged}
+                        />
+                        <AuthenticatedPrivilegedRoute
+                          path={ROUTE_ADMINISTRATION_TAGS}
+                          component={TagAdministration}
                           authorized={stores.authStore.isAuthorized}
                           privileged={stores.authStore.privileged}
                         />

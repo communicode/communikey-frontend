@@ -224,6 +224,57 @@ class EventStore {
   };
 
   /**
+   * Creates a tag entity creation event containing
+   * the specified tag object.
+   *
+   * @param {object} tag - The tag that has been created
+   */
+  @action("EventStore_createTagCreationEvent")
+  createTagCreationEvent = (tag) => {
+    return this._push({
+      type: "tag-create",
+      responsible: tag.lastModifiedBy,
+      timestamp: moment().format(),
+      id: tag.id,
+      name: tag.name
+    });
+  };
+
+  /**
+   * Creates a tag entity update event containing
+   * the specified tag object.
+   *
+   * @param {object} tag - The tag that has been modified
+   */
+  @action("EventStore_createTagUpdateEvent")
+  createTagUpdateEvent = (tag) => {
+    return this._push({
+      type: "tag-update",
+      responsible: tag.lastModifiedBy,
+      timestamp: moment().format(),
+      id: tag.id,
+      name: tag.name
+    });
+  };
+
+  /**
+   * Creates a tag entity delete event containing
+   * the specified tag object.
+   *
+   * @param {object} tag - The tag that has been deleted
+   */
+  @action("EventStore_createUserGroupDeleteEvent")
+  createTagDeleteEvent = (tag) => {
+    return this._push({
+      type: "tag-delete",
+      responsible: tag.lastModifiedBy,
+      timestamp: moment().format(),
+      id: tag.id,
+      name: tag.name
+    });
+  };
+
+  /**
    * Finds the event with the specified ID.
    * This is a pure store operation action!
    *
