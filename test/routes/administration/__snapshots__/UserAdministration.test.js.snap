@@ -204,6 +204,44 @@ exports[`<UserAdministration> should render correctly with sample data 1`] = `
       ],
     }
   }
+  tagStore={
+    TagStore {
+      "_contains": [Function],
+      "_findById": [Function],
+      "tags": Array [
+        Object {
+          "color": "#b53029",
+          "createdBy": "root",
+          "createdDate": "2018-02-22T15:20:07.046+01:00",
+          "creator": 1,
+          "id": "eRQrqjKWjyx2",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+          "name": "asdasdsad",
+        },
+        Object {
+          "color": "#322bf2",
+          "createdBy": "root",
+          "createdDate": "2018-02-22T15:19:56.817+01:00",
+          "creator": 1,
+          "id": "0Gren9xWElbx",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+          "name": "test",
+        },
+        Object {
+          "color": "#2ad127",
+          "createdBy": "root",
+          "createdDate": "2018-02-22T15:19:44.353+01:00",
+          "creator": 1,
+          "id": "bPO9Wy1WVw6N",
+          "lastModifiedBy": "root",
+          "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+          "name": "lecker",
+        },
+      ],
+    }
+  }
   userGroupStore={
     UserGroupStore {
       "_contains": [Function],

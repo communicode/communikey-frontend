@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<UserGroupAdministration> should render correctly with sample data 1`] = `
+exports[`<TagAdministration> should render correctly with sample data 1`] = `
 <Provider
   authStore={
     AuthStore {
@@ -419,8 +419,8 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
     }
   }
 >
-  <inject-UserGroupAdministration-with-authStore-userStore-userGroupStore>
-    <UserGroupAdministration
+  <inject-TagAdministration-with-authStore-tagStore>
+    <TagAdministration
       authStore={
         AuthStore {
           "authorities": Array [
@@ -449,178 +449,40 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
           "publicKeyResetToken": "",
         }
       }
-      userGroupStore={
-        UserGroupStore {
+      tagStore={
+        TagStore {
           "_contains": [Function],
-          "_filterAllByCategory": [Function],
-          "_findOneById": [Function],
-          "_findOneByName": [Function],
-          "userGroups": Array [
+          "_findById": [Function],
+          "tags": Array [
             Object {
-              "categories": Array [],
+              "color": "#b53029",
               "createdBy": "root",
-              "createdDate": "2017-06-30T10:46:23.734+02:00",
-              "id": 2,
+              "createdDate": "2018-02-22T15:20:07.046+01:00",
+              "creator": 1,
+              "id": "eRQrqjKWjyx2",
               "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-              "name": "vorwerk",
-              "users": Array [
-                1,
-                2,
-                3,
-              ],
+              "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+              "name": "asdasdsad",
             },
             Object {
-              "categories": Array [],
+              "color": "#322bf2",
               "createdBy": "root",
-              "createdDate": "2017-06-30T10:46:19.101+02:00",
-              "id": 1,
+              "createdDate": "2018-02-22T15:19:56.817+01:00",
+              "creator": 1,
+              "id": "0Gren9xWElbx",
               "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-              "name": "ops",
-              "users": Array [
-                2,
-                3,
-              ],
+              "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+              "name": "test",
             },
             Object {
-              "categories": Array [],
+              "color": "#2ad127",
               "createdBy": "root",
-              "createdDate": "2017-06-30T10:46:37.824+02:00",
-              "id": 3,
+              "createdDate": "2018-02-22T15:19:44.353+01:00",
+              "creator": 1,
+              "id": "bPO9Wy1WVw6N",
               "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-              "name": "administration",
-              "users": Array [
-                1,
-                2,
-              ],
-            },
-          ],
-        }
-      }
-      userStore={
-        UserStore {
-          "_contains": [Function],
-          "_filterAllByGroup": [Function],
-          "_findOneByEmail": [Function],
-          "_findOneById": [Function],
-          "_findOneByLogin": [Function],
-          "users": Array [
-            Object {
-              "activated": false,
-              "activationKey": "99315975298178909730",
-              "authorities": Array [
-                "ROLE_USER",
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T10:46:47.738+02:00",
-              "email": "testuser@communicode.de",
-              "firstName": "Peter",
-              "groups": Array [
-                3,
-                2,
-                1,
-              ],
-              "id": 2,
-              "keyCategories": Array [],
-              "keys": Array [],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
-              "lastName": "Maffay",
-              "login": "testuser",
-              "resetDate": null,
-              "resetKey": null,
-              "responsibleKeyCategories": Array [],
-            },
-            Object {
-              "activated": true,
-              "activationKey": "28235331690590579877",
-              "authorities": Array [
-                "ROLE_USER",
-                "ROLE_ADMIN",
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T10:45:12.934+02:00",
-              "email": "cckey_root@communicode.de",
-              "firstName": "communi",
-              "groups": Array [
-                3,
-                2,
-              ],
-              "id": 1,
-              "keyCategories": Array [
-                3,
-                1,
-                5,
-                4,
-                2,
-              ],
-              "keys": Array [
-                3,
-                2,
-                1,
-              ],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
-              "lastName": "key",
-              "login": "root",
-              "resetDate": null,
-              "resetKey": null,
-              "responsibleKeyCategories": Array [
-                3,
-                1,
-                5,
-                4,
-                2,
-              ],
-            },
-            Object {
-              "activated": true,
-              "activationKey": null,
-              "authorities": Array [
-                "ROLE_USER",
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:12:46.33+02:00",
-              "email": "reallynewtestuser@communicode.de",
-              "firstName": "really",
-              "groups": Array [],
-              "id": 4,
-              "keyCategories": Array [],
-              "keys": Array [],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
-              "lastName": "new",
-              "login": "reallynewtestuser",
-              "resetDate": null,
-              "resetKey": null,
-              "responsibleKeyCategories": Array [],
-            },
-            Object {
-              "activated": true,
-              "activationKey": null,
-              "authorities": Array [
-                "ROLE_USER",
-              ],
-              "createdBy": "root",
-              "createdDate": "2017-06-30T11:12:28.858+02:00",
-              "email": "newtestuser@communicode.de",
-              "firstName": "new",
-              "groups": Array [
-                2,
-                1,
-              ],
-              "id": 3,
-              "keyCategories": Array [],
-              "keys": Array [],
-              "lastModifiedBy": "root",
-              "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
-              "lastName": "test",
-              "login": "newtestuser",
-              "resetDate": null,
-              "resetKey": null,
-              "responsibleKeyCategories": Array [],
+              "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+              "name": "lecker",
             },
           ],
         }
@@ -628,7 +490,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
     >
       <div
         className="cckey-base-layout-content-container"
-        id="cckey-routes-administration-user-group"
+        id="cckey-routes-administration-tag"
       >
         <div
           className="cckey-base-layout-content-container-inner"
@@ -677,7 +539,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                   />
                                 </Icon>
                                 <span>
-                                  User Group
+                                  Tag
                                 </span>
                               </button>
                             </Button>
@@ -706,49 +568,43 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                         "key": "name",
                         "title": "Name",
                       },
+                      Object {
+                        "render": [Function],
+                        "title": "Color",
+                      },
                     ]
                   }
                   dataSource={
                     Array [
                       Object {
-                        "categories": Array [],
+                        "color": "#b53029",
                         "createdBy": "root",
-                        "createdDate": "2017-06-30T10:46:23.734+02:00",
-                        "id": 2,
+                        "createdDate": "2018-02-22T15:20:07.046+01:00",
+                        "creator": 1,
+                        "id": "eRQrqjKWjyx2",
                         "lastModifiedBy": "root",
-                        "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                        "name": "vorwerk",
-                        "users": Array [
-                          1,
-                          2,
-                          3,
-                        ],
+                        "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                        "name": "asdasdsad",
                       },
                       Object {
-                        "categories": Array [],
+                        "color": "#322bf2",
                         "createdBy": "root",
-                        "createdDate": "2017-06-30T10:46:19.101+02:00",
-                        "id": 1,
+                        "createdDate": "2018-02-22T15:19:56.817+01:00",
+                        "creator": 1,
+                        "id": "0Gren9xWElbx",
                         "lastModifiedBy": "root",
-                        "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                        "name": "ops",
-                        "users": Array [
-                          2,
-                          3,
-                        ],
+                        "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                        "name": "test",
                       },
                       Object {
-                        "categories": Array [],
+                        "color": "#2ad127",
                         "createdBy": "root",
-                        "createdDate": "2017-06-30T10:46:37.824+02:00",
-                        "id": 3,
+                        "createdDate": "2018-02-22T15:19:44.353+01:00",
+                        "creator": 1,
+                        "id": "bPO9Wy1WVw6N",
                         "lastModifiedBy": "root",
-                        "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                        "name": "administration",
-                        "users": Array [
-                          1,
-                          2,
-                        ],
+                        "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                        "name": "lecker",
                       },
                     ]
                   }
@@ -823,93 +679,80 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                         Name
                                   </span>,
                                     },
+                                    Object {
+                                      "key": 1,
+                                      "render": [Function],
+                                      "title": <span>
+                                        Color
+                                  </span>,
+                                    },
                                   ]
                                 }
                                 data={
                                   Array [
                                     Object {
-                                      "categories": Array [],
+                                      "color": "#b53029",
                                       "createdBy": "root",
-                                      "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                      "id": 2,
+                                      "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                      "creator": 1,
+                                      "id": "eRQrqjKWjyx2",
                                       "lastModifiedBy": "root",
-                                      "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                      "name": "vorwerk",
-                                      "users": Array [
-                                        1,
-                                        2,
-                                        3,
-                                      ],
+                                      "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                      "name": "asdasdsad",
                                     },
                                     Object {
-                                      "categories": Array [],
+                                      "color": "#322bf2",
                                       "createdBy": "root",
-                                      "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                      "id": 1,
+                                      "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                      "creator": 1,
+                                      "id": "0Gren9xWElbx",
                                       "lastModifiedBy": "root",
-                                      "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                      "name": "ops",
-                                      "users": Array [
-                                        2,
-                                        3,
-                                      ],
+                                      "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                      "name": "test",
                                     },
                                     Object {
-                                      "categories": Array [],
+                                      "color": "#2ad127",
                                       "createdBy": "root",
-                                      "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                      "id": 3,
+                                      "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                      "creator": 1,
+                                      "id": "bPO9Wy1WVw6N",
                                       "lastModifiedBy": "root",
-                                      "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                      "name": "administration",
-                                      "users": Array [
-                                        1,
-                                        2,
-                                      ],
+                                      "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                      "name": "lecker",
                                     },
                                   ]
                                 }
                                 dataSource={
                                   Array [
                                     Object {
-                                      "categories": Array [],
+                                      "color": "#b53029",
                                       "createdBy": "root",
-                                      "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                      "id": 2,
+                                      "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                      "creator": 1,
+                                      "id": "eRQrqjKWjyx2",
                                       "lastModifiedBy": "root",
-                                      "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                      "name": "vorwerk",
-                                      "users": Array [
-                                        1,
-                                        2,
-                                        3,
-                                      ],
+                                      "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                      "name": "asdasdsad",
                                     },
                                     Object {
-                                      "categories": Array [],
+                                      "color": "#322bf2",
                                       "createdBy": "root",
-                                      "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                      "id": 1,
+                                      "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                      "creator": 1,
+                                      "id": "0Gren9xWElbx",
                                       "lastModifiedBy": "root",
-                                      "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                      "name": "ops",
-                                      "users": Array [
-                                        2,
-                                        3,
-                                      ],
+                                      "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                      "name": "test",
                                     },
                                     Object {
-                                      "categories": Array [],
+                                      "color": "#2ad127",
                                       "createdBy": "root",
-                                      "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                      "id": 3,
+                                      "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                      "creator": 1,
+                                      "id": "bPO9Wy1WVw6N",
                                       "lastModifiedBy": "root",
-                                      "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                      "name": "administration",
-                                      "users": Array [
-                                        1,
-                                        2,
-                                      ],
+                                      "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                      "name": "lecker",
                                     },
                                   ]
                                 }
@@ -982,6 +825,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 }
                                               }
                                             />
+                                            <col
+                                              style={
+                                                Object {
+                                                  "minWidth": undefined,
+                                                  "width": undefined,
+                                                }
+                                              }
+                                            />
                                           </colgroup>
                                           <TableHeader
                                             prefixCls="ant-table"
@@ -995,6 +846,13 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               </span>,
                                                     "className": "",
                                                     "key": "name",
+                                                  },
+                                                  Object {
+                                                    "children": <span>
+                                                      Color
+                                              </span>,
+                                                    "className": "",
+                                                    "key": 1,
                                                   },
                                                 ],
                                               ]
@@ -1011,6 +869,13 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 >
                                                   <span>
                                                     Name
+                                                  </span>
+                                                </th>
+                                                <th
+                                                  className=""
+                                                >
+                                                  <span>
+                                                    Color
                                                   </span>
                                                 </th>
                                               </tr>
@@ -1032,6 +897,13 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       Name
                                                 </span>,
                                                   },
+                                                  Object {
+                                                    "key": 1,
+                                                    "render": [Function],
+                                                    "title": <span>
+                                                      Color
+                                                </span>,
+                                                  },
                                                 ]
                                               }
                                               expandIconAsCell={false}
@@ -1039,7 +911,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               expandRowByClick={false}
                                               expanded={false}
                                               height={null}
-                                              hoverKey={2}
+                                              hoverKey="eRQrqjKWjyx2"
                                               indent={0}
                                               indentSize={20}
                                               index={0}
@@ -1055,18 +927,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               prefixCls="ant-table-row"
                                               record={
                                                 Object {
-                                                  "categories": Array [],
+                                                  "color": "#b53029",
                                                   "createdBy": "root",
-                                                  "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                  "id": 2,
+                                                  "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                  "creator": 1,
+                                                  "id": "eRQrqjKWjyx2",
                                                   "lastModifiedBy": "root",
-                                                  "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                  "name": "vorwerk",
-                                                  "users": Array [
-                                                    1,
-                                                    2,
-                                                    3,
-                                                  ],
+                                                  "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                  "name": "asdasdsad",
                                                 }
                                               }
                                               store={
@@ -1111,18 +979,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       prefixCls="ant-table-row"
                                                       record={
                                                         Object {
-                                                          "categories": Array [],
+                                                          "color": "#b53029",
                                                           "createdBy": "root",
-                                                          "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                          "id": 2,
+                                                          "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                          "creator": 1,
+                                                          "id": "eRQrqjKWjyx2",
                                                           "lastModifiedBy": "root",
-                                                          "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                          "name": "vorwerk",
-                                                          "users": Array [
-                                                            1,
-                                                            2,
-                                                            3,
-                                                          ],
+                                                          "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                          "name": "asdasdsad",
                                                         }
                                                       }
                                                     />
@@ -1133,18 +997,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                   prefixCls="ant-table-row"
                                                   record={
                                                     Object {
-                                                      "categories": Array [],
+                                                      "color": "#b53029",
                                                       "createdBy": "root",
-                                                      "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                      "id": 2,
+                                                      "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                      "creator": 1,
+                                                      "id": "eRQrqjKWjyx2",
                                                       "lastModifiedBy": "root",
-                                                      "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                      "name": "vorwerk",
-                                                      "users": Array [
-                                                        1,
-                                                        2,
-                                                        3,
-                                                      ],
+                                                      "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                      "name": "asdasdsad",
                                                     }
                                                   }
                                                 >
@@ -1167,22 +1027,96 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       prefixCls="ant-table-row"
                                                       record={
                                                         Object {
-                                                          "categories": Array [],
+                                                          "color": "#b53029",
                                                           "createdBy": "root",
-                                                          "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                          "id": 2,
+                                                          "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                          "creator": 1,
+                                                          "id": "eRQrqjKWjyx2",
                                                           "lastModifiedBy": "root",
-                                                          "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                          "name": "vorwerk",
-                                                          "users": Array [
-                                                            1,
-                                                            2,
-                                                            3,
-                                                          ],
+                                                          "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                          "name": "asdasdsad",
                                                         }
                                                       }
                                                     />
-                                                    vorwerk
+                                                    asdasdsad
+                                                  </td>
+                                                </TableCell>
+                                                <TableCell
+                                                  column={
+                                                    Object {
+                                                      "key": 1,
+                                                      "render": [Function],
+                                                      "title": <span>
+                                                        Color
+                                                    </span>,
+                                                    }
+                                                  }
+                                                  expandIcon={null}
+                                                  indent={0}
+                                                  indentSize={20}
+                                                  index={0}
+                                                  prefixCls="ant-table-row"
+                                                  record={
+                                                    Object {
+                                                      "color": "#b53029",
+                                                      "createdBy": "root",
+                                                      "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                      "creator": 1,
+                                                      "id": "eRQrqjKWjyx2",
+                                                      "lastModifiedBy": "root",
+                                                      "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                      "name": "asdasdsad",
+                                                    }
+                                                  }
+                                                >
+                                                  <td
+                                                    className=""
+                                                    onClick={[Function]}
+                                                  >
+                                                    <Tag
+                                                      closable={false}
+                                                      color="#b53029"
+                                                      prefixCls="ant-tag"
+                                                    >
+                                                      <Animate
+                                                        animation={Object {}}
+                                                        component=""
+                                                        componentProps={Object {}}
+                                                        onAppear={[Function]}
+                                                        onEnd={[Function]}
+                                                        onEnter={[Function]}
+                                                        onLeave={[Function]}
+                                                        showProp="data-show"
+                                                        transitionAppear={true}
+                                                        transitionEnter={true}
+                                                        transitionLeave={true}
+                                                        transitionName="ant-tag-zoom"
+                                                      >
+                                                        <AnimateChild
+                                                          animation={Object {}}
+                                                          transitionAppear={true}
+                                                          transitionEnter={true}
+                                                          transitionLeave={true}
+                                                          transitionName="ant-tag-zoom"
+                                                        >
+                                                          <div
+                                                            className="ant-tag ant-tag-has-color"
+                                                            data-show={true}
+                                                            style={
+                                                              Object {
+                                                                "backgroundColor": "#b53029",
+                                                              }
+                                                            }
+                                                          >
+                                                            <span
+                                                              className="ant-tag-text"
+                                                            >
+                                                              #b53029
+                                                            </span>
+                                                          </div>
+                                                        </AnimateChild>
+                                                      </Animate>
+                                                    </Tag>
                                                   </td>
                                                 </TableCell>
                                               </tr>
@@ -1200,6 +1134,13 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       Name
                                                 </span>,
                                                   },
+                                                  Object {
+                                                    "key": 1,
+                                                    "render": [Function],
+                                                    "title": <span>
+                                                      Color
+                                                </span>,
+                                                  },
                                                 ]
                                               }
                                               expandIconAsCell={false}
@@ -1207,7 +1148,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               expandRowByClick={false}
                                               expanded={false}
                                               height={null}
-                                              hoverKey={1}
+                                              hoverKey="0Gren9xWElbx"
                                               indent={0}
                                               indentSize={20}
                                               index={1}
@@ -1223,17 +1164,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               prefixCls="ant-table-row"
                                               record={
                                                 Object {
-                                                  "categories": Array [],
+                                                  "color": "#322bf2",
                                                   "createdBy": "root",
-                                                  "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                  "id": 1,
+                                                  "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                  "creator": 1,
+                                                  "id": "0Gren9xWElbx",
                                                   "lastModifiedBy": "root",
-                                                  "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                  "name": "ops",
-                                                  "users": Array [
-                                                    2,
-                                                    3,
-                                                  ],
+                                                  "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                  "name": "test",
                                                 }
                                               }
                                               store={
@@ -1278,17 +1216,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       prefixCls="ant-table-row"
                                                       record={
                                                         Object {
-                                                          "categories": Array [],
+                                                          "color": "#322bf2",
                                                           "createdBy": "root",
-                                                          "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                          "id": 1,
+                                                          "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                          "creator": 1,
+                                                          "id": "0Gren9xWElbx",
                                                           "lastModifiedBy": "root",
-                                                          "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                          "name": "ops",
-                                                          "users": Array [
-                                                            2,
-                                                            3,
-                                                          ],
+                                                          "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                          "name": "test",
                                                         }
                                                       }
                                                     />
@@ -1299,17 +1234,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                   prefixCls="ant-table-row"
                                                   record={
                                                     Object {
-                                                      "categories": Array [],
+                                                      "color": "#322bf2",
                                                       "createdBy": "root",
-                                                      "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                      "id": 1,
+                                                      "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                      "creator": 1,
+                                                      "id": "0Gren9xWElbx",
                                                       "lastModifiedBy": "root",
-                                                      "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                      "name": "ops",
-                                                      "users": Array [
-                                                        2,
-                                                        3,
-                                                      ],
+                                                      "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                      "name": "test",
                                                     }
                                                   }
                                                 >
@@ -1332,21 +1264,96 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       prefixCls="ant-table-row"
                                                       record={
                                                         Object {
-                                                          "categories": Array [],
+                                                          "color": "#322bf2",
                                                           "createdBy": "root",
-                                                          "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                          "id": 1,
+                                                          "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                          "creator": 1,
+                                                          "id": "0Gren9xWElbx",
                                                           "lastModifiedBy": "root",
-                                                          "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                          "name": "ops",
-                                                          "users": Array [
-                                                            2,
-                                                            3,
-                                                          ],
+                                                          "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                          "name": "test",
                                                         }
                                                       }
                                                     />
-                                                    ops
+                                                    test
+                                                  </td>
+                                                </TableCell>
+                                                <TableCell
+                                                  column={
+                                                    Object {
+                                                      "key": 1,
+                                                      "render": [Function],
+                                                      "title": <span>
+                                                        Color
+                                                    </span>,
+                                                    }
+                                                  }
+                                                  expandIcon={null}
+                                                  indent={0}
+                                                  indentSize={20}
+                                                  index={1}
+                                                  prefixCls="ant-table-row"
+                                                  record={
+                                                    Object {
+                                                      "color": "#322bf2",
+                                                      "createdBy": "root",
+                                                      "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                      "creator": 1,
+                                                      "id": "0Gren9xWElbx",
+                                                      "lastModifiedBy": "root",
+                                                      "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                      "name": "test",
+                                                    }
+                                                  }
+                                                >
+                                                  <td
+                                                    className=""
+                                                    onClick={[Function]}
+                                                  >
+                                                    <Tag
+                                                      closable={false}
+                                                      color="#322bf2"
+                                                      prefixCls="ant-tag"
+                                                    >
+                                                      <Animate
+                                                        animation={Object {}}
+                                                        component=""
+                                                        componentProps={Object {}}
+                                                        onAppear={[Function]}
+                                                        onEnd={[Function]}
+                                                        onEnter={[Function]}
+                                                        onLeave={[Function]}
+                                                        showProp="data-show"
+                                                        transitionAppear={true}
+                                                        transitionEnter={true}
+                                                        transitionLeave={true}
+                                                        transitionName="ant-tag-zoom"
+                                                      >
+                                                        <AnimateChild
+                                                          animation={Object {}}
+                                                          transitionAppear={true}
+                                                          transitionEnter={true}
+                                                          transitionLeave={true}
+                                                          transitionName="ant-tag-zoom"
+                                                        >
+                                                          <div
+                                                            className="ant-tag ant-tag-has-color"
+                                                            data-show={true}
+                                                            style={
+                                                              Object {
+                                                                "backgroundColor": "#322bf2",
+                                                              }
+                                                            }
+                                                          >
+                                                            <span
+                                                              className="ant-tag-text"
+                                                            >
+                                                              #322bf2
+                                                            </span>
+                                                          </div>
+                                                        </AnimateChild>
+                                                      </Animate>
+                                                    </Tag>
                                                   </td>
                                                 </TableCell>
                                               </tr>
@@ -1364,6 +1371,13 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       Name
                                                 </span>,
                                                   },
+                                                  Object {
+                                                    "key": 1,
+                                                    "render": [Function],
+                                                    "title": <span>
+                                                      Color
+                                                </span>,
+                                                  },
                                                 ]
                                               }
                                               expandIconAsCell={false}
@@ -1371,7 +1385,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               expandRowByClick={false}
                                               expanded={false}
                                               height={null}
-                                              hoverKey={3}
+                                              hoverKey="bPO9Wy1WVw6N"
                                               indent={0}
                                               indentSize={20}
                                               index={2}
@@ -1387,17 +1401,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                               prefixCls="ant-table-row"
                                               record={
                                                 Object {
-                                                  "categories": Array [],
+                                                  "color": "#2ad127",
                                                   "createdBy": "root",
-                                                  "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                  "id": 3,
+                                                  "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                  "creator": 1,
+                                                  "id": "bPO9Wy1WVw6N",
                                                   "lastModifiedBy": "root",
-                                                  "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                  "name": "administration",
-                                                  "users": Array [
-                                                    1,
-                                                    2,
-                                                  ],
+                                                  "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                  "name": "lecker",
                                                 }
                                               }
                                               store={
@@ -1442,17 +1453,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       prefixCls="ant-table-row"
                                                       record={
                                                         Object {
-                                                          "categories": Array [],
+                                                          "color": "#2ad127",
                                                           "createdBy": "root",
-                                                          "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                          "id": 3,
+                                                          "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                          "creator": 1,
+                                                          "id": "bPO9Wy1WVw6N",
                                                           "lastModifiedBy": "root",
-                                                          "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                          "name": "administration",
-                                                          "users": Array [
-                                                            1,
-                                                            2,
-                                                          ],
+                                                          "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                          "name": "lecker",
                                                         }
                                                       }
                                                     />
@@ -1463,17 +1471,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                   prefixCls="ant-table-row"
                                                   record={
                                                     Object {
-                                                      "categories": Array [],
+                                                      "color": "#2ad127",
                                                       "createdBy": "root",
-                                                      "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                      "id": 3,
+                                                      "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                      "creator": 1,
+                                                      "id": "bPO9Wy1WVw6N",
                                                       "lastModifiedBy": "root",
-                                                      "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                      "name": "administration",
-                                                      "users": Array [
-                                                        1,
-                                                        2,
-                                                      ],
+                                                      "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                      "name": "lecker",
                                                     }
                                                   }
                                                 >
@@ -1496,21 +1501,96 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                       prefixCls="ant-table-row"
                                                       record={
                                                         Object {
-                                                          "categories": Array [],
+                                                          "color": "#2ad127",
                                                           "createdBy": "root",
-                                                          "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                          "id": 3,
+                                                          "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                          "creator": 1,
+                                                          "id": "bPO9Wy1WVw6N",
                                                           "lastModifiedBy": "root",
-                                                          "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                          "name": "administration",
-                                                          "users": Array [
-                                                            1,
-                                                            2,
-                                                          ],
+                                                          "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                          "name": "lecker",
                                                         }
                                                       }
                                                     />
-                                                    administration
+                                                    lecker
+                                                  </td>
+                                                </TableCell>
+                                                <TableCell
+                                                  column={
+                                                    Object {
+                                                      "key": 1,
+                                                      "render": [Function],
+                                                      "title": <span>
+                                                        Color
+                                                    </span>,
+                                                    }
+                                                  }
+                                                  expandIcon={null}
+                                                  indent={0}
+                                                  indentSize={20}
+                                                  index={2}
+                                                  prefixCls="ant-table-row"
+                                                  record={
+                                                    Object {
+                                                      "color": "#2ad127",
+                                                      "createdBy": "root",
+                                                      "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                      "creator": 1,
+                                                      "id": "bPO9Wy1WVw6N",
+                                                      "lastModifiedBy": "root",
+                                                      "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                      "name": "lecker",
+                                                    }
+                                                  }
+                                                >
+                                                  <td
+                                                    className=""
+                                                    onClick={[Function]}
+                                                  >
+                                                    <Tag
+                                                      closable={false}
+                                                      color="#2ad127"
+                                                      prefixCls="ant-tag"
+                                                    >
+                                                      <Animate
+                                                        animation={Object {}}
+                                                        component=""
+                                                        componentProps={Object {}}
+                                                        onAppear={[Function]}
+                                                        onEnd={[Function]}
+                                                        onEnter={[Function]}
+                                                        onLeave={[Function]}
+                                                        showProp="data-show"
+                                                        transitionAppear={true}
+                                                        transitionEnter={true}
+                                                        transitionLeave={true}
+                                                        transitionName="ant-tag-zoom"
+                                                      >
+                                                        <AnimateChild
+                                                          animation={Object {}}
+                                                          transitionAppear={true}
+                                                          transitionEnter={true}
+                                                          transitionLeave={true}
+                                                          transitionName="ant-tag-zoom"
+                                                        >
+                                                          <div
+                                                            className="ant-tag ant-tag-has-color"
+                                                            data-show={true}
+                                                            style={
+                                                              Object {
+                                                                "backgroundColor": "#2ad127",
+                                                              }
+                                                            }
+                                                          >
+                                                            <span
+                                                              className="ant-tag-text"
+                                                            >
+                                                              #2ad127
+                                                            </span>
+                                                          </div>
+                                                        </AnimateChild>
+                                                      </Animate>
+                                                    </Tag>
                                                   </td>
                                                 </TableCell>
                                               </tr>
@@ -1605,7 +1685,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 expandRowByClick={false}
                                                 expanded={false}
                                                 height={null}
-                                                hoverKey={2}
+                                                hoverKey="eRQrqjKWjyx2"
                                                 indent={0}
                                                 indentSize={20}
                                                 index={0}
@@ -1621,18 +1701,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 prefixCls="ant-table-row"
                                                 record={
                                                   Object {
-                                                    "categories": Array [],
+                                                    "color": "#b53029",
                                                     "createdBy": "root",
-                                                    "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                    "id": 2,
+                                                    "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                    "creator": 1,
+                                                    "id": "eRQrqjKWjyx2",
                                                     "lastModifiedBy": "root",
-                                                    "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                    "name": "vorwerk",
-                                                    "users": Array [
-                                                      1,
-                                                      2,
-                                                      3,
-                                                    ],
+                                                    "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                    "name": "asdasdsad",
                                                   }
                                                 }
                                                 store={
@@ -1677,18 +1753,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                         prefixCls="ant-table-row"
                                                         record={
                                                           Object {
-                                                            "categories": Array [],
+                                                            "color": "#b53029",
                                                             "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                            "id": 2,
+                                                            "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                            "creator": 1,
+                                                            "id": "eRQrqjKWjyx2",
                                                             "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                            "name": "vorwerk",
-                                                            "users": Array [
-                                                              1,
-                                                              2,
-                                                              3,
-                                                            ],
+                                                            "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                            "name": "asdasdsad",
                                                           }
                                                         }
                                                       />
@@ -1699,18 +1771,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                     prefixCls="ant-table-row"
                                                     record={
                                                       Object {
-                                                        "categories": Array [],
+                                                        "color": "#b53029",
                                                         "createdBy": "root",
-                                                        "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                        "id": 2,
+                                                        "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                        "creator": 1,
+                                                        "id": "eRQrqjKWjyx2",
                                                         "lastModifiedBy": "root",
-                                                        "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                        "name": "vorwerk",
-                                                        "users": Array [
-                                                          1,
-                                                          2,
-                                                          3,
-                                                        ],
+                                                        "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                        "name": "asdasdsad",
                                                       }
                                                     }
                                                   >
@@ -1733,22 +1801,18 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                         prefixCls="ant-table-row"
                                                         record={
                                                           Object {
-                                                            "categories": Array [],
+                                                            "color": "#b53029",
                                                             "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:46:23.734+02:00",
-                                                            "id": 2,
+                                                            "createdDate": "2018-02-22T15:20:07.046+01:00",
+                                                            "creator": 1,
+                                                            "id": "eRQrqjKWjyx2",
                                                             "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T10:46:23.734+02:00",
-                                                            "name": "vorwerk",
-                                                            "users": Array [
-                                                              1,
-                                                              2,
-                                                              3,
-                                                            ],
+                                                            "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+                                                            "name": "asdasdsad",
                                                           }
                                                         }
                                                       />
-                                                      vorwerk
+                                                      asdasdsad
                                                     </td>
                                                   </TableCell>
                                                 </tr>
@@ -1773,7 +1837,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 expandRowByClick={false}
                                                 expanded={false}
                                                 height={null}
-                                                hoverKey={1}
+                                                hoverKey="0Gren9xWElbx"
                                                 indent={0}
                                                 indentSize={20}
                                                 index={1}
@@ -1789,17 +1853,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 prefixCls="ant-table-row"
                                                 record={
                                                   Object {
-                                                    "categories": Array [],
+                                                    "color": "#322bf2",
                                                     "createdBy": "root",
-                                                    "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                    "id": 1,
+                                                    "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                    "creator": 1,
+                                                    "id": "0Gren9xWElbx",
                                                     "lastModifiedBy": "root",
-                                                    "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                    "name": "ops",
-                                                    "users": Array [
-                                                      2,
-                                                      3,
-                                                    ],
+                                                    "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                    "name": "test",
                                                   }
                                                 }
                                                 store={
@@ -1844,17 +1905,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                         prefixCls="ant-table-row"
                                                         record={
                                                           Object {
-                                                            "categories": Array [],
+                                                            "color": "#322bf2",
                                                             "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                            "id": 1,
+                                                            "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                            "creator": 1,
+                                                            "id": "0Gren9xWElbx",
                                                             "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                            "name": "ops",
-                                                            "users": Array [
-                                                              2,
-                                                              3,
-                                                            ],
+                                                            "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                            "name": "test",
                                                           }
                                                         }
                                                       />
@@ -1865,17 +1923,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                     prefixCls="ant-table-row"
                                                     record={
                                                       Object {
-                                                        "categories": Array [],
+                                                        "color": "#322bf2",
                                                         "createdBy": "root",
-                                                        "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                        "id": 1,
+                                                        "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                        "creator": 1,
+                                                        "id": "0Gren9xWElbx",
                                                         "lastModifiedBy": "root",
-                                                        "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                        "name": "ops",
-                                                        "users": Array [
-                                                          2,
-                                                          3,
-                                                        ],
+                                                        "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                        "name": "test",
                                                       }
                                                     }
                                                   >
@@ -1898,21 +1953,18 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                         prefixCls="ant-table-row"
                                                         record={
                                                           Object {
-                                                            "categories": Array [],
+                                                            "color": "#322bf2",
                                                             "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:46:19.101+02:00",
-                                                            "id": 1,
+                                                            "createdDate": "2018-02-22T15:19:56.817+01:00",
+                                                            "creator": 1,
+                                                            "id": "0Gren9xWElbx",
                                                             "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T10:46:19.101+02:00",
-                                                            "name": "ops",
-                                                            "users": Array [
-                                                              2,
-                                                              3,
-                                                            ],
+                                                            "lastModifiedDate": "2018-02-22T15:19:56.825+01:00",
+                                                            "name": "test",
                                                           }
                                                         }
                                                       />
-                                                      ops
+                                                      test
                                                     </td>
                                                   </TableCell>
                                                 </tr>
@@ -1937,7 +1989,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 expandRowByClick={false}
                                                 expanded={false}
                                                 height={null}
-                                                hoverKey={3}
+                                                hoverKey="bPO9Wy1WVw6N"
                                                 indent={0}
                                                 indentSize={20}
                                                 index={2}
@@ -1953,17 +2005,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                 prefixCls="ant-table-row"
                                                 record={
                                                   Object {
-                                                    "categories": Array [],
+                                                    "color": "#2ad127",
                                                     "createdBy": "root",
-                                                    "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                    "id": 3,
+                                                    "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                    "creator": 1,
+                                                    "id": "bPO9Wy1WVw6N",
                                                     "lastModifiedBy": "root",
-                                                    "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                    "name": "administration",
-                                                    "users": Array [
-                                                      1,
-                                                      2,
-                                                    ],
+                                                    "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                    "name": "lecker",
                                                   }
                                                 }
                                                 store={
@@ -2008,17 +2057,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                         prefixCls="ant-table-row"
                                                         record={
                                                           Object {
-                                                            "categories": Array [],
+                                                            "color": "#2ad127",
                                                             "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                            "id": 3,
+                                                            "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                            "creator": 1,
+                                                            "id": "bPO9Wy1WVw6N",
                                                             "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                            "name": "administration",
-                                                            "users": Array [
-                                                              1,
-                                                              2,
-                                                            ],
+                                                            "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                            "name": "lecker",
                                                           }
                                                         }
                                                       />
@@ -2029,17 +2075,14 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                     prefixCls="ant-table-row"
                                                     record={
                                                       Object {
-                                                        "categories": Array [],
+                                                        "color": "#2ad127",
                                                         "createdBy": "root",
-                                                        "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                        "id": 3,
+                                                        "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                        "creator": 1,
+                                                        "id": "bPO9Wy1WVw6N",
                                                         "lastModifiedBy": "root",
-                                                        "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                        "name": "administration",
-                                                        "users": Array [
-                                                          1,
-                                                          2,
-                                                        ],
+                                                        "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                        "name": "lecker",
                                                       }
                                                     }
                                                   >
@@ -2062,21 +2105,18 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                                         prefixCls="ant-table-row"
                                                         record={
                                                           Object {
-                                                            "categories": Array [],
+                                                            "color": "#2ad127",
                                                             "createdBy": "root",
-                                                            "createdDate": "2017-06-30T10:46:37.824+02:00",
-                                                            "id": 3,
+                                                            "createdDate": "2018-02-22T15:19:44.353+01:00",
+                                                            "creator": 1,
+                                                            "id": "bPO9Wy1WVw6N",
                                                             "lastModifiedBy": "root",
-                                                            "lastModifiedDate": "2017-06-30T10:46:37.824+02:00",
-                                                            "name": "administration",
-                                                            "users": Array [
-                                                              1,
-                                                              2,
-                                                            ],
+                                                            "lastModifiedDate": "2018-02-22T15:19:44.365+01:00",
+                                                            "name": "lecker",
                                                           }
                                                         }
                                                       />
-                                                      administration
+                                                      lecker
                                                     </td>
                                                   </TableCell>
                                                 </tr>
@@ -2242,8 +2282,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
               </div>
             </Row>
           </div>
-          <UserGroupModal
-            administrationMode={false}
+          <TagModal
             afterClose={[Function]}
             creationMode={false}
             loading={false}
@@ -2251,144 +2290,21 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
             onClose={[Function]}
             onDelete={[Function]}
             onSave={[Function]}
-            onUserAdd={[Function]}
-            onUserRemove={[Function]}
+            tag={Object {}}
             toggleLockStatus={[Function]}
-            userGroup={Object {}}
-            users={
-              Array [
-                Object {
-                  "activated": false,
-                  "activationKey": "99315975298178909730",
-                  "authorities": Array [
-                    "ROLE_USER",
-                  ],
-                  "createdBy": "root",
-                  "createdDate": "2017-06-30T10:46:47.738+02:00",
-                  "email": "testuser@communicode.de",
-                  "firstName": "Peter",
-                  "groups": Array [
-                    3,
-                    2,
-                    1,
-                  ],
-                  "id": 2,
-                  "keyCategories": Array [],
-                  "keys": Array [],
-                  "lastModifiedBy": "root",
-                  "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
-                  "lastName": "Maffay",
-                  "login": "testuser",
-                  "resetDate": null,
-                  "resetKey": null,
-                  "responsibleKeyCategories": Array [],
-                },
-                Object {
-                  "activated": true,
-                  "activationKey": "28235331690590579877",
-                  "authorities": Array [
-                    "ROLE_USER",
-                    "ROLE_ADMIN",
-                  ],
-                  "createdBy": "root",
-                  "createdDate": "2017-06-30T10:45:12.934+02:00",
-                  "email": "cckey_root@communicode.de",
-                  "firstName": "communi",
-                  "groups": Array [
-                    3,
-                    2,
-                  ],
-                  "id": 1,
-                  "keyCategories": Array [
-                    3,
-                    1,
-                    5,
-                    4,
-                    2,
-                  ],
-                  "keys": Array [
-                    3,
-                    2,
-                    1,
-                  ],
-                  "lastModifiedBy": "root",
-                  "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
-                  "lastName": "key",
-                  "login": "root",
-                  "resetDate": null,
-                  "resetKey": null,
-                  "responsibleKeyCategories": Array [
-                    3,
-                    1,
-                    5,
-                    4,
-                    2,
-                  ],
-                },
-                Object {
-                  "activated": true,
-                  "activationKey": null,
-                  "authorities": Array [
-                    "ROLE_USER",
-                  ],
-                  "createdBy": "root",
-                  "createdDate": "2017-06-30T11:12:46.33+02:00",
-                  "email": "reallynewtestuser@communicode.de",
-                  "firstName": "really",
-                  "groups": Array [],
-                  "id": 4,
-                  "keyCategories": Array [],
-                  "keys": Array [],
-                  "lastModifiedBy": "root",
-                  "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
-                  "lastName": "new",
-                  "login": "reallynewtestuser",
-                  "resetDate": null,
-                  "resetKey": null,
-                  "responsibleKeyCategories": Array [],
-                },
-                Object {
-                  "activated": true,
-                  "activationKey": null,
-                  "authorities": Array [
-                    "ROLE_USER",
-                  ],
-                  "createdBy": "root",
-                  "createdDate": "2017-06-30T11:12:28.858+02:00",
-                  "email": "newtestuser@communicode.de",
-                  "firstName": "new",
-                  "groups": Array [
-                    2,
-                    1,
-                  ],
-                  "id": 3,
-                  "keyCategories": Array [],
-                  "keys": Array [],
-                  "lastModifiedBy": "root",
-                  "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
-                  "lastName": "test",
-                  "login": "newtestuser",
-                  "resetDate": null,
-                  "resetKey": null,
-                  "responsibleKeyCategories": Array [],
-                },
-              ]
-            }
             visible={false}
           >
             <Modal
               afterClose={[Function]}
-              className="cckey-user-group-modal"
+              className="cckey-tag-modal"
               closable={false}
               confirmLoading={false}
               footer={false}
-              id="cckey-components-data-views-user-group-modal"
+              id="cckey-components-data-views-tag-modal"
               maskTransitionName="fade"
               okType="primary"
               onClose={[Function]}
               onSave={[Function]}
-              onUserAdd={[Function]}
-              onUserRemove={[Function]}
               prefixCls="ant-modal"
               transitionName="zoom"
               visible={false}
@@ -2396,27 +2312,25 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
             >
               <DialogWrap
                 afterClose={[Function]}
-                className="cckey-user-group-modal"
+                className="cckey-tag-modal"
                 closable={false}
                 confirmLoading={false}
                 footer={false}
-                id="cckey-components-data-views-user-group-modal"
+                id="cckey-components-data-views-tag-modal"
                 maskTransitionName="fade"
                 okType="primary"
                 onClose={[Function]}
                 onSave={[Function]}
-                onUserAdd={[Function]}
-                onUserRemove={[Function]}
                 prefixCls="ant-modal"
                 transitionName="zoom"
                 visible={false}
                 width={520}
               />
             </Modal>
-          </UserGroupModal>
+          </TagModal>
         </div>
       </div>
-    </UserGroupAdministration>
-  </inject-UserGroupAdministration-with-authStore-userStore-userGroupStore>
+    </TagAdministration>
+  </inject-TagAdministration-with-authStore-tagStore>
 </Provider>
 `;

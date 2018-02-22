@@ -9,6 +9,7 @@ import UserStore from "../../src/stores/UserStore";
 import NotificationService from "../../src/services/NotificationService";
 import EventStore from "../../src/stores/EventStore";
 import InvocationHelper from "../../src/stores/InvocationHelper";
+import TagStore from "../../src/stores/TagStore";
 
 export const authStore = new AuthStore();
 authStore.authorities = observable(require("./data/authorities.json"));
@@ -28,11 +29,14 @@ userGroupStore.userGroups = observable(require("./data/groups.json"));
 export const userStore = new UserStore();
 userStore.users = observable(require("./data/users.json"));
 
+export const tagStore = new TagStore();
+tagStore.tags = observable(require("./data/tags.json"));
+
 export const eventStore = new EventStore();
 
 export const invocationHelper = new InvocationHelper();
 
-export const stores = {authStore, authorityStore, categoryStore, keyStore, userGroupStore, userStore, eventStore, invocationHelper};
+export const stores = {authStore, authorityStore, categoryStore, keyStore, userGroupStore, userStore, eventStore, invocationHelper, tagStore};
 
 export const notificationService = new NotificationService();
 

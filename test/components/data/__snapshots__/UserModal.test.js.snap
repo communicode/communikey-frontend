@@ -22,6 +22,125 @@ exports[`<UserModal> should render correctly with sample data 1`] = `
     ]
   }
   creationMode={false}
+  groups={
+    Array [
+      Object {
+        "activated": false,
+        "activationKey": "99315975298178909730",
+        "authorities": Array [
+          "ROLE_USER",
+        ],
+        "createdBy": "root",
+        "createdDate": "2017-06-30T10:46:47.738+02:00",
+        "email": "testuser@communicode.de",
+        "firstName": "Peter",
+        "groups": Array [
+          3,
+          2,
+          1,
+        ],
+        "id": 2,
+        "keyCategories": Array [],
+        "keys": Array [],
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-06-30T10:46:47.738+02:00",
+        "lastName": "Maffay",
+        "login": "testuser",
+        "resetDate": null,
+        "resetKey": null,
+        "responsibleKeyCategories": Array [],
+      },
+      Object {
+        "activated": true,
+        "activationKey": "28235331690590579877",
+        "authorities": Array [
+          "ROLE_USER",
+          "ROLE_ADMIN",
+        ],
+        "createdBy": "root",
+        "createdDate": "2017-06-30T10:45:12.934+02:00",
+        "email": "cckey_root@communicode.de",
+        "firstName": "communi",
+        "groups": Array [
+          3,
+          2,
+        ],
+        "id": 1,
+        "keyCategories": Array [
+          3,
+          1,
+          5,
+          4,
+          2,
+        ],
+        "keys": Array [
+          3,
+          2,
+          1,
+        ],
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-06-30T11:15:00.355+02:00",
+        "lastName": "key",
+        "login": "root",
+        "resetDate": null,
+        "resetKey": null,
+        "responsibleKeyCategories": Array [
+          3,
+          1,
+          5,
+          4,
+          2,
+        ],
+      },
+      Object {
+        "activated": true,
+        "activationKey": null,
+        "authorities": Array [
+          "ROLE_USER",
+        ],
+        "createdBy": "root",
+        "createdDate": "2017-06-30T11:12:46.33+02:00",
+        "email": "reallynewtestuser@communicode.de",
+        "firstName": "really",
+        "groups": Array [],
+        "id": 4,
+        "keyCategories": Array [],
+        "keys": Array [],
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-06-30T11:12:52.501+02:00",
+        "lastName": "new",
+        "login": "reallynewtestuser",
+        "resetDate": null,
+        "resetKey": null,
+        "responsibleKeyCategories": Array [],
+      },
+      Object {
+        "activated": true,
+        "activationKey": null,
+        "authorities": Array [
+          "ROLE_USER",
+        ],
+        "createdBy": "root",
+        "createdDate": "2017-06-30T11:12:28.858+02:00",
+        "email": "newtestuser@communicode.de",
+        "firstName": "new",
+        "groups": Array [
+          2,
+          1,
+        ],
+        "id": 3,
+        "keyCategories": Array [],
+        "keys": Array [],
+        "lastModifiedBy": "root",
+        "lastModifiedDate": "2017-06-30T11:12:59.68+02:00",
+        "lastName": "test",
+        "login": "newtestuser",
+        "resetDate": null,
+        "resetKey": null,
+        "responsibleKeyCategories": Array [],
+      },
+    ]
+  }
   loading={false}
   onClose={[Function]}
   user={
