@@ -206,6 +206,16 @@ export const CATEGORY_RESPONSIBLE = _.template(CATEGORIES + CATEGORY_ID + "/resp
 export const CATEGORY_MOVE = _.template(CATEGORIES + CATEGORY_ID + "/move");
 
 /**
+ * The endpoint for adding a tag to a category
+ *
+ * @constant
+ * @default
+ * @type {function}
+ * @since 0.18.0
+ */
+export const CATEGORY_ADD_TAG = _.template(CATEGORIES + CATEGORY_ID + "/tags");
+
+/**
  * The endpoint for a key as compiled template.
  *
  * @constant

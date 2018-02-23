@@ -6,7 +6,7 @@ import {keyStore,
   userStore,
   liveEntityUpdateService
 } from "./../Communikey";
-import {CATEGORIES, CATEGORY, CATEGORY_GROUPS, CATEGORY_KEYS, CATEGORY_MOVE} from "./../services/apiRequestMappings";
+import {CATEGORIES, CATEGORY, CATEGORY_GROUPS, CATEGORY_KEYS, CATEGORY_MOVE, CATEGORY_ADD_TAG} from "./../services/apiRequestMappings";
 import {LOCAL_STORAGE_ACCESS_TOKEN} from "../config/constants";
 
 /**
@@ -218,6 +218,46 @@ class CategoryStore {
     }, {
       params: {
         access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN)
+      }
+    })
+      .then(action("CategoryStore_move_synchronization", () => this.fetchOne(categoryId)));
+  };
+
+  /**
+   * Adds a tag to the category.
+   * This is a API- and store synchronization action!
+   *
+   * @param {number} categoryId - The categoryId of the category
+   * @param {number} tagId - The id of the tag that will be added to the category
+   * @returns {Promise} - A promise
+   * @since 0.18.0
+   */
+  @action("CategoryStore_addTag")
+  addTag = (categoryId, tagId) => {
+    return apiService.get(CATEGORY_ADD_TAG({categoryId: categoryId}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        tagId: tagId
+      }
+    })
+      .then(action("CategoryStore_move_synchronization", () => this.fetchOne(categoryId)));
+  };
+
+  /**
+   * Removes a tag from the category.
+   * This is a API- and store synchronization action!
+   *
+   * @param {number} categoryId - The categoryId of the category
+   * @param {number} tagId - The id of the tag that will be removed from the category
+   * @returns {Promise} - A promise
+   * @since 0.18.0
+   */
+  @action("CategoryStore_addTag")
+  removeTag = (categoryId, tagId) => {
+    return apiService.delete(CATEGORY_ADD_TAG({categoryId: categoryId}), {
+      params: {
+        access_token: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN),
+        tagId: tagId
       }
     })
       .then(action("CategoryStore_move_synchronization", () => this.fetchOne(categoryId)));

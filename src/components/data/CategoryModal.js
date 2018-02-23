@@ -155,6 +155,13 @@ const copyToClipboardIcon = (value) => (
 export const USER_GROUPS_TABLE_DEFAULT_COLUMNS = [{title: "Name", dataIndex: "name", key: "name", fixed: true}];
 
 /**
+ * The default tags table column configuration.
+ *
+ * @since 0.18.0
+ */
+export const TAGS_TABLE_DEFAULT_COLUMNS = [{title: "Name", dataIndex: "name", key: "name", fixed: true}];
+
+/**
  * The name of the React key for the general tab.
  *
  * @type {string}
@@ -169,6 +176,14 @@ const TAB_PANE_REACT_KEY_GENERAL = "general";
  * @since 0.10.0
  */
 const TAB_PANE_REACT_KEY_USER_GROUPS = "userGroups";
+
+/**
+ * The name of the React key for the tags tab.
+ *
+ * @type {string}
+ * @since 0.18.0
+ */
+const TAB_PANE_REACT_KEY_TAGS = "tags";
 
 /**
  * A modal for categories.
@@ -244,7 +259,16 @@ class CategoryModal extends React.Component {
    * @param {boolean} selected - Determines whether the record has been selected or unselected
    * @since 0.10.0
    */
-  handleTabViewUserGroupsOnRecordSelect = (record, selected) => selected ? this.props.onUserGroupAdd(record) : this.props.onUserGroupRemove(record);
+  handleTabViewUserGroupsOnRecordSelect = (record, selected) => selected ? this.props.onTagAdd(record) : this.props.onTagRemove(record);
+
+  /**
+   * Handles the table record selection event of the tags tab view.
+   *
+   * @param {object} record - The selected tag table record
+   * @param {boolean} selected - Determines whether the record has been selected or unselected
+   * @since 0.18.0
+   */
+  handleTabViewTagsOnRecordSelect = (record, selected) => selected ? this.props.onTagAdd(record) : this.props.onTagRemove(record);
 
   /**
    * Saves the reference to the managed form component.
@@ -313,6 +337,7 @@ class CategoryModal extends React.Component {
       toggleLockStatus,
       userGroups,
       categoryStore,
+      tags,
       ...modalProps
     } = this.props;
     const {activeTabViewKey, selectedCategoryTreeNode} = this.state;
@@ -326,6 +351,17 @@ class CategoryModal extends React.Component {
       selectedRowKeys: category.groups,
       onSelect: this.handleTabViewUserGroupsOnRecordSelect
     };
+
+    /**
+     * The configuration object for the tags table of the user tags tab.
+     *
+     * @since 0.18.0
+     */
+    const tabViewTagsTableConfig = {
+      selectedRowKeys: category.tags,
+      onSelect: this.handleTabViewUserGroupsOnRecordSelect
+    };
+
 
     const lockStatusButton = () => (
       <Tooltip title={locked ? "Unlock" : "Lock"}>
@@ -442,6 +478,24 @@ class CategoryModal extends React.Component {
       </Tabs.TabPane>
     );
 
+    const tabViewTags = () => (
+      <Tabs.TabPane tab="Tags" key={TAB_PANE_REACT_KEY_TAGS} disabled={creationMode}>
+        <Row>
+          <div>
+            <Col span={24}>
+              <Table
+                dataSource={tags}
+                columns={TAGS_TABLE_DEFAULT_COLUMNS}
+                rowKey={record => record.id}
+                rowSelection={tabViewTagsTableConfig}
+                scroll={{x: screenMD}}
+              />
+            </Col>
+          </div>
+        </Row>
+      </Tabs.TabPane>
+    );
+
     const breadcrumb = () => {
       return (
         <div className="cckey-category-modal-breadcrumb">
@@ -480,6 +534,7 @@ class CategoryModal extends React.Component {
         <Tabs defaultActiveKey={TAB_PANE_REACT_KEY_GENERAL} onChange={(activeTabViewKey) => this.setState({activeTabViewKey})}>
           {tabViewGeneral()}
           {tabViewUserGroups()}
+          {tabViewTags()}
         </Tabs>
         <Row><Col>{footer()}</Col></Row>
       </Modal>
@@ -567,6 +622,22 @@ CategoryModal.propTypes = {
   onUserGroupRemove: PropTypes.func,
 
   /**
+   * Callback function to handle the event to add a tag to the category.
+   *
+   * @type {function}
+   * @since 0.18.0
+   */
+  onTagAdd: PropTypes.func,
+
+  /**
+   * Callback function to handle the event to remove a tag from the category.
+   *
+   * @type {function}
+   * @since 0.18.0
+   */
+  onTagRemove: PropTypes.func,
+
+  /**
    * Callback function to toggle the user lock status.
    *
    * @type {function}
@@ -587,6 +658,14 @@ CategoryModal.propTypes = {
    * @since 0.10.0
    */
   userGroups: PropTypes.array.isRequired,
+
+  /**
+   * The tags.
+   *
+   * @type {Array}
+   * @since 0.18.0
+   */
+  tags: PropTypes.array.isRequired,
 
   /**
    * Callback function to handle category tree select value change events.
