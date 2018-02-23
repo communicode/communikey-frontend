@@ -2105,6 +2105,7 @@ exports[`<UserGroupAdministration> should render correctly with sample data 1`] 
                                   current={1}
                                   defaultCurrent={1}
                                   defaultPageSize={10}
+                                  hideOnSinglePage={false}
                                   itemRender={[Function]}
                                   locale={
                                     Object {
