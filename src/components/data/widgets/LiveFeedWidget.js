@@ -180,6 +180,30 @@ class LiveFeedWidget extends React.Component {
           </Timeline.Item>
         );
       }
+      case "tag-create": {
+        return (
+          <Timeline.Item dot={<Icon type="tag" style={{fontSize: "20px"}}/>} key={id}>
+            Tag &#39;{event.name}&#39; has been created by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "tag-update": {
+        return (
+          <Timeline.Item dot={<Icon type="tag-o" style={{fontSize: "20px"}}/>} key={id}>
+            Tag &#39;{event.name}&#39; has been edited by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
+      case "tag-delete": {
+        return (
+          <Timeline.Item dot={<Icon type="tag" style={{fontSize: "20px", color: "red"}}/>} key={id}>
+            Tag &#39;{event.name}&#39; has been deleted by &#39;{event.responsible}&#39;.
+            {timestamp}
+          </Timeline.Item>
+        );
+      }
       }
     };
 

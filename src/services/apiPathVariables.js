@@ -47,3 +47,13 @@ export const USER_GROUP_ID = "/${userGroupId}";
  * @since 0.8.0
  */
 export const USER_LOGIN = "/${login}";
+
+/**
+ * The path variable for a tag.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.18.0
+ */
+export const TAG_ID = "/${tagId}";

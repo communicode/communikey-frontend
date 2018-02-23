@@ -14,7 +14,9 @@ import {
   KEY_STORE,
   USER_STORE,
   USER_GROUP_STORE,
-  ENCRYPTION_JOB_STORE, INVOCATION_HELPER
+  ENCRYPTION_JOB_STORE,
+  INVOCATION_HELPER,
+  TAG_STORE
 } from "./stores/storeConstants";
 import {ADMINISTRATION, ROOT} from "./routes/routeConstants";
 import {
@@ -22,7 +24,8 @@ import {
   ROUTE_DASHBOARD,
   ROUTE_ADMINISTRATION_USER_GROUPS,
   ROUTE_ADMINISTRATION_USERS,
-  ROUTE_KEYS
+  ROUTE_KEYS,
+  ROUTE_ADMINISTRATION_TAGS
 } from "./routes/routeMappings";
 import {
   VERSION,
@@ -42,7 +45,7 @@ import "antd/lib/icon/style/css";
 import "antd/lib/row/style/css";
 import "./BaseLayout.less";
 
-@inject(AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE, ENCRYPTION_JOB_STORE, INVOCATION_HELPER) @observer
+@inject(AUTHORITY_STORE, AUTH_STORE, CATEGORY_STORE, KEY_STORE, USER_STORE, USER_GROUP_STORE, ENCRYPTION_JOB_STORE, INVOCATION_HELPER, TAG_STORE) @observer
 class BaseLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -105,14 +108,16 @@ class BaseLayout extends React.Component {
       this.props.categoryStore.fetchAll(),
       this.props.keyStore.fetchAll(),
       this.props.userStore.fetchAll(),
-      this.props.userGroupStore.fetchAll()
+      this.props.userGroupStore.fetchAll(),
+      this.props.tagStore.fetchAll()
     ]);
   };
 
   initializeUserStores = () => {
     return apiService.all([
       this.props.categoryStore.fetchAll(),
-      this.props.keyStore.fetchAll()
+      this.props.keyStore.fetchAll(),
+      this.props.tagStore.fetchAll()
     ]);
   };
 
@@ -248,6 +253,12 @@ class BaseLayout extends React.Component {
                 <NavLink
                   to={ROUTE_ADMINISTRATION_USER_GROUPS}
                   isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_USER_GROUPS)}>User Groups
+                </NavLink>
+              </Menu.Item>
+              <Menu.Item key={ROUTE_ADMINISTRATION_TAGS}>
+                <NavLink
+                  to={ROUTE_ADMINISTRATION_TAGS}
+                  isActive={() => this.isActiveSidebarNavLink(ROUTE_ADMINISTRATION_TAGS)}>Tags
                 </NavLink>
               </Menu.Item>
             </Menu.SubMenu>
@@ -426,6 +437,11 @@ BaseLayout.propTypes = {
    * @type {ObservableArray} encryptionJobStore - The injected encryption job store
    */
   encryptionJobStore: MobXPropTypes.objectOrObservableObject,
+
+  /**
+   * @type {ObservableArray} tagStore - The injected tag store
+   */
+  tagStore: MobXPropTypes.observableArray,
 
   /**
    * @type {object} passphraseNeeded - The state object that invokes a passphrase modal

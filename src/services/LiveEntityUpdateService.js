@@ -4,13 +4,16 @@ import {
   categoryStore,
   userStore,
   userGroupStore,
-  eventStore
+  eventStore,
+  tagStore
 } from "../Communikey";
 import {
   UPDATES_CATEGORIES,
   UPDATES_CATEGORIES_DELETE,
   UPDATES_KEYS,
   UPDATES_KEYS_DELETE,
+  UPDATES_TAGS,
+  UPDATES_TAGS_DELETE,
   UPDATES_USERS,
   UPDATES_USERS_DELETE,
   UPDATES_GROUPS,
@@ -41,6 +44,8 @@ class LiveEntityUpdateService {
       webSocketService.subscribe(UPDATES_CATEGORIES_DELETE, this.categoryDeleteCallback);
       webSocketService.subscribe(UPDATES_KEYS, this.keyUpdateCallback);
       webSocketService.subscribe(UPDATES_KEYS_DELETE, this.keyDeleteCallback);
+      webSocketService.subscribe(UPDATES_TAGS, this.tagUpdateCallback);
+      webSocketService.subscribe(UPDATES_TAGS_DELETE, this.tagDeleteCallback);
       this.userSubscriptionsInitialized = true;
     }
   };
@@ -91,6 +96,33 @@ class LiveEntityUpdateService {
     let key = JSON.parse(message.body);
     eventStore.createKeyDeleteEvent(key);
     keyStore._contains(key.id) && keyStore._deleteOne(key.id);
+  };
+
+  /**
+   * Callback for the tag update subscription
+   *
+   * @param message the callback message parameter of the stomp client
+   */
+  tagUpdateCallback = (message) => {
+    let tag = JSON.parse(message.body);
+    if(tagStore._contains(tag.id)) {
+      eventStore.createTagUpdateEvent(tag);
+      tagStore._updateEntity(tag.id, tag);
+    } else {
+      eventStore.createTagCreationEvent(tag);
+      tagStore._push(tag);
+    }
+  };
+
+  /**
+   * Callback for the tag delete subscription
+   *
+   * @param message the callback message parameter of the stomp client
+   */
+  tagDeleteCallback = (message) => {
+    let tag = JSON.parse(message.body);
+    eventStore.createTagDeleteEvent(tag);
+    tagStore._contains(tag.id) && tagStore._deleteOneById(tag.id);
   };
 
   /**

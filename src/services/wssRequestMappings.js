@@ -133,6 +133,26 @@ export const UPDATES_KEYS = USER + "/updates/keys";
 export const UPDATES_KEYS_DELETE = UPDATES_KEYS + "/delete";
 
 /**
+ * The WSS tag update endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.18.0
+ */
+export const UPDATES_TAGS = QUEUE + "/updates/tags";
+
+/**
+ * The WSS tag delete endpoint.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.18.0
+ */
+export const UPDATES_TAGS_DELETE = UPDATES_TAGS + "/delete";
+
+/**
  * The WSS user update endpoint.
  *
  * @constant

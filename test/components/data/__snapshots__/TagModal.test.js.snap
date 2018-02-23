@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TagModal> should render correctly with sample data 1`] = `
+<TagModal
+  creationMode={false}
+  loading={false}
+  onClose={[Function]}
+  tag={
+    Object {
+      "color": "#b53029",
+      "createdBy": "root",
+      "createdDate": "2018-02-22T15:20:07.046+01:00",
+      "creator": 1,
+      "id": "eRQrqjKWjyx2",
+      "lastModifiedBy": "root",
+      "lastModifiedDate": "2018-02-22T15:20:07.054+01:00",
+      "name": "asdasdsad",
+    }
+  }
+>
+  <Modal
+    className="cckey-tag-modal"
+    closable={false}
+    confirmLoading={false}
+    footer={false}
+    id="cckey-components-data-views-tag-modal"
+    maskTransitionName="fade"
+    okType="primary"
+    onClose={[Function]}
+    prefixCls="ant-modal"
+    transitionName="zoom"
+    visible={false}
+    width={520}
+  >
+    <DialogWrap
+      className="cckey-tag-modal"
+      closable={false}
+      confirmLoading={false}
+      footer={false}
+      id="cckey-components-data-views-tag-modal"
+      maskTransitionName="fade"
+      okType="primary"
+      onClose={[Function]}
+      prefixCls="ant-modal"
+      transitionName="zoom"
+      visible={false}
+      width={520}
+    />
+  </Modal>
+</TagModal>
+`;

@@ -1,6 +1,7 @@
 import {
   ADMINISTRATION_USER_GROUPS,
   ADMINISTRATION_USERS,
+  ADMINISTRATION_TAGS,
   DASHBOARD,
   KEYS,
   CATEGORIES,
@@ -70,6 +71,16 @@ export const ROUTE_ADMINISTRATION_USER_GROUPS = ROUTE_ROOT + ADMINISTRATION_USER
  * @since 0.8.0
  */
 export const ROUTE_ADMINISTRATION_USERS = ROUTE_ROOT + ADMINISTRATION_USERS;
+
+/**
+ * The route mapping for the {@link TagAdministration} components.
+ *
+ * @constant
+ * @default
+ * @type {string}
+ * @since 0.18.0
+ */
+export const ROUTE_ADMINISTRATION_TAGS = ROUTE_ROOT + ADMINISTRATION_TAGS;
 
 /**
  * The route mapping for the {@link Keys} component.
