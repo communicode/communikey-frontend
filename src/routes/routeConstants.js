@@ -72,12 +72,12 @@ export const ADMINISTRATION_USER_GROUPS = ADMINISTRATION + pathSeparator + "user
 export const ADMINISTRATION_USERS = ADMINISTRATION + pathSeparator + "users";
 
 /**
- * The route name of the {@link UserGroupAdministration} component.
+ * The route name of the {@link TagAdministration} component.
  *
  * @constant
  * @default
  * @type {string}
- * @since 0.9.0
+ * @since 0.18.0
  */
 export const ADMINISTRATION_TAGS = ADMINISTRATION + pathSeparator + "tags";
 

@@ -143,7 +143,7 @@ export const UPDATES_KEYS_DELETE = UPDATES_KEYS + "/delete";
 export const UPDATES_TAGS = QUEUE + "/updates/tags";
 
 /**
- * The WSS key delete endpoint.
+ * The WSS tag delete endpoint.
  *
  * @constant
  * @default
