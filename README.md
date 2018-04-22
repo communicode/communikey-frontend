@@ -17,7 +17,8 @@ A simple, centralized, teambased, cross-platform credential manager using GPG en
 
 You will need the following things setup & ready for communikey-frontend to work:
 
-- [npm/Node.js](https://www.npmjs.com/get-npm)
+- [npm](https://www.npmjs.com/get-npm)
+- [Node.js](https://nodejs.org/en/)
 
 
 ## Getting Started
@@ -32,7 +33,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 - execute ``` npm run dev ```
 
-- **Please note that, if you are planning to run the whole application (front&backend). Start the backend first, or the node process steals the backend port.**
+- **Please note that, if you are planning to run the whole application (front&backend). Start the backend first, otherwise the node process will steal the backend port.**
 
 - For setup of the backend, see the corresponding repository [here](https://github.com/communicode/communikey-backend#getting-started)
 
@@ -52,7 +53,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * [React](https://reactjs.org/) - Javascript library
 * [Ant Design](https://ant.design/) - UI library
-* [npm](https://www.npmjs.com/) - Javascript package manager
+* [npm](https://www.npmjs.com/) - Node package manager
 
 ## Contributing
 
