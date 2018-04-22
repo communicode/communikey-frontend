@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "node"
+os:
+  - linux
+before_install:
+  - rm -rf ./node_modules
+before_script:
+  - npm install
+script:
+  - npm run test
